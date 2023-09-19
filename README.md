@@ -12,17 +12,14 @@ ecosystem in Sri Lanka.
 
 ## Team Members
 - [Senuri Wickramasinghe](https://github.com/senuriwick)
-- [Insaf Ahamad](https://github.com/teammember2)
-- [Shanika Ayasmanthi](https://github.com/teammember3)
-- [Mohommad Mushaid](http://github.com/teammember4)
+- [Insaf Ahamad](https://github.com/Inscode)
+- [Shanika Ayasmanthi](https://github.com/Mushahid-Muzammir)
+- [Mohommad Mushaid](https://github.com/shanikaayasmanthi)
 
 ## Project Structure
 project-root/
-│
-├── cilent/
-├── server/
-│
-└── ...
+   cilent/
+   server/
 
 ## Technologies Used
 ### Frontend
