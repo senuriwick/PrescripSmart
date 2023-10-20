@@ -1,0 +1,91 @@
+.top1
+{
+    display: flex;
+    color: #0069FF;
+    margin-top: 3vh;
+    padding-left: 5vh;
+    padding-top: 12vh;
+    
+}
+.firstname
+{
+    margin-right: 20vh;
+}
+.top1 input
+{
+    width:38vh;
+    height:4vh;
+    border-radius: 0.5vh;
+    border-color: #E3E8F4;
+    font-size: 1.5vh;
+    color: #445172BF;
+    border-radius: 0.5vh;
+    padding-left: 3vh;
+    border-color: #E3E8F4;
+}
+.top2
+{
+    display: flex;
+    color: #0069FF;
+    margin-top: 4vh;
+    padding-left: 5vh;
+    
+
+}
+.top2 input
+{
+    width:38vh;
+    height:4vh;
+    border-radius: 0.5vh;
+    border-color: #E3E8F4;
+    font-size: 1.5vh;
+    color: #445172BF;
+    padding-left: 3vh;
+    border-color: #E3E8F4;
+    
+}
+.email
+{
+    margin-right: 20vh;
+}
+.details
+{
+    background-color: #EFF2FB;
+    height: 65vh;
+    margin-right: 30vh;
+    border-radius: 0.5vh;
+
+    
+}
+.details button
+{
+    margin-left: 45vh;
+    margin-top: 5vh ;
+    width:26vh;
+    height:5vh;
+    border-radius: 0.5vh;
+    color: white;
+    background-color: #0069FF;
+    font-size: 2.5vh;
+
+}
+.top3
+{
+
+    color: #0069FF;
+    margin-top: 4vh;
+    padding-left: 5vh;
+}
+.top3 input
+{
+    width:38vh;
+    height:4vh;
+    border-radius: 0.5vh;
+    border-color: #E3E8F4;
+    font-size: 1.5vh;
+    color: #445172BF;
+    padding-left: 3vh;
+    border-color: #E3E8F4;
+    
+
+}
