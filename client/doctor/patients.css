@@ -1,0 +1,88 @@
+.menu {
+  margin-top: 2vh;
+  display: flex;
+  border-bottom: solid;
+  padding-bottom: 0.1vh;
+  border-width: 0.1vh;
+  border-color: rgba(164, 174, 199, 1);
+}
+
+.menu p {
+  margin-right: 4vh;
+  font-size: 2vh;
+  margin-bottom: 1vh;
+  color: rgba(164, 174, 199, 1);
+}
+
+.patientSearch {
+  margin-top: 2vh;
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  padding: 1vh 3vh 2vh;
+}
+
+.patientSearch h1 {
+  font-size: 3vh;
+  font-weight: bold;
+  color: rgba(68, 81, 114, 1);
+}
+
+form input {
+  width: 95%;
+  padding: 1.4vh;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.patient-details table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1vh;
+}
+
+table tr {
+  background-color: #ffffff;
+}
+
+td {
+  padding: 0vh 2vh;
+  color: rgba(164, 174, 199, 1);
+  text-align: center;
+}
+
+td .patientName {
+  color: rgba(0, 105, 255, 1);
+  text-align: left;
+}
+
+td i {
+  cursor: pointer;
+  color: rgba(0, 105, 255, 1);
+}
+
+td button {
+  width: 12vw;
+  height: 5vh;
+  background-color: rgba(0, 105, 255, 1);
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.patient-details .desDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.desDiv img {
+  height: 5vh;
+  padding: 1.75vh 0vh 1vh 1.5vh;
+}
+
+.patient-data {
+  margin-bottom: 2vh;
+}
+
