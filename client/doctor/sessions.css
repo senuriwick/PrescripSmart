@@ -1,0 +1,132 @@
+.menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+}
+
+.menu p {
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+}
+
+.patientSearch {
+    margin-top: 2vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh 2vh;
+    width: 80%;
+}
+
+.patientSearch .sessions-box {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    gap: 20px;
+}
+
+.patientSearch .sessions-box .session-card {
+    background-color: #ffffff;
+    padding: 20px 20px;
+    border-radius: 10px;
+}
+
+.patientSearch .sessions-box .session-card div{
+    font-size: 15px;
+}
+
+.patientSearch .sessions-box .session-card button {
+    margin-top: 25px;
+    width: 100%;
+    background-color: rgba(0, 105, 255, 1);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+/* Modal */
+.session-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.session-content {
+    background-color: #fff;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 35%;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+.session-content .session-modal-content {
+    background-color: rgba(239, 242, 251, 1);
+    padding: 5px 15px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+.session-content .session-modal-content .doctor-data {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+.session-content .session-modal-content .doctor-data img{
+width: 50px;
+height: 50px;
+}
+
+.session-content .session-modal-content .doctor-data .doctor-data1 .name {
+    color: rgba(0, 105, 255, 1);
+}
+
+.session-content .session-modal-content .patient-data {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.session-content .session-modal-content .patient-data button {
+    background-color: rgba(0, 105, 255, 1);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.session-content .cancel {
+    text-align: right;
+}
+.session-content .cancel button{
+    background-color: #FF002E;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #ffffff;
+    margin-top: 10px;
+    cursor: pointer;
+}
