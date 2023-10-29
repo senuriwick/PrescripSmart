@@ -22,10 +22,13 @@ body {
   margin-top: 40vh;
   margin-bottom: 0vh;
   font-size: 12vh;
+  font-family: Inter, 'Source Sans Pro';
+  font-weight: 500;
 }
 
 .smart {
   color: rgba(138, 150, 181, 1);
+  font-family: Inter, 'Source Sans Pro';
 }
 
 #selectRole {
@@ -57,6 +60,8 @@ body {
 
 #iam {
   font-size: 12vh;
+  font-family: Inter, 'Source Sans Pro';
+  font-weight: 500;
 }
 
 
