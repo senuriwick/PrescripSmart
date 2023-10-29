@@ -1,0 +1,91 @@
+.menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+}
+
+.menu p {
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+}
+
+.patientSearch {
+    margin-top: 2vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh 2vh;
+    width: 70%;
+}
+
+.patientSearch h1 {
+    font-size: 3vh;
+    font-weight: bold;
+    color: rgba(68, 81, 114, 1);
+}
+
+.patientSearch .session-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.patientSearch .session-head p {
+    color: rgba(68, 81, 114, 1);
+}
+
+.patientSearch .session-head span {
+    color: rgba(0, 105, 255, 1);
+}
+
+.patientSearch .session-subhead {
+    margin-top: 5px;
+    height: 20px;
+}
+
+.patientSearch .appoinment-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100px;
+    margin-top: 15px;
+}
+
+
+.patientSearch .appoinment-details .appoinment-number {
+    display: inline;
+    text-align: center;
+    padding: 3px 10px;
+    border: 1px solid rgba(164, 174, 199, 1);
+}
+
+.patientSearch .appoinment-details .appoinment-number .num-head {
+    font-size: 12px;
+}
+
+.patientSearch .appoinment-details .appoinment-number .num-main {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.patientSearch .appoinment-details .patient-data .btn-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.patientSearch .appoinment-details .patient-data .btn-box button {
+    background-color: rgba(0, 105, 255, 1);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    width: 150px;
+    font-size: 12px;
+}
