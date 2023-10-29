@@ -75,13 +75,14 @@
                     <div class="patientSearch">
                         <h1>Search Patient</h1>
                         <form>
-                            <input type="text" class="searchBar" placeholder="Enter patient name or Id" />
+                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
+
                         </form>
                         <hr />
                         <div class="patient-details">
                             <table>
                                 <tbody>
-                                    <tr>
+                                    <tr class="patient-details-row">
                                         <td>
                                             <div class="desDiv">
                                                 <img src="profile.png" alt="user-icon">
@@ -91,6 +92,7 @@
                                         
                                         <td>Patient ID - #123456</td>
                                         <td><a href="add_prescription.html"><button>Add Prescription</button></a></td>
+                                        
                                     </tr>
                                     <tr>
                                         <td colspan="3">
@@ -102,7 +104,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="patient-details-row">
                                         <td>
                                             <div class="desDiv">
                                                 <img src="profile.png" alt="user-icon">
@@ -122,8 +124,48 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr class="patient-details-row">
+                                        <td>
+                                            <div class="desDiv">
+                                                <img src="profile.png" alt="user-icon">
+                                                <p class="patientName">Mr. Kasun Gamage</p>
+                                                <i class="fa-solid fa-chevron-down" data-target="content3" onclick="show(this)"></i>                                            </div>
+                                        </td>
+                                        <td>Patient ID - #123457</td>
+                                        <td><button>Add Prescription</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div id="content3" class="patient-data"style="display: none;">
+                                                <p>Age: 30</p>
+                                                <p>Height: 170 cm</p>
+                                                <p>Weight: 60 kg</p>
+                                                <button>Add Prescription</button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                  const searchInput = document.getElementById("searchInput");
+                              
+                                  searchInput.addEventListener("input", function () {
+                                    const searchTerm = searchInput.value.toLowerCase();
+                                    const patientRows = document.querySelectorAll(".patient-details-row");
+                              
+                                    patientRows.forEach(function (row) {
+                                      const patientName = row.querySelector(".patientName").textContent.toLowerCase();
+                                      if (patientName.includes(searchTerm)) {
+                                        row.style.display = "table-row";
+                                      } else {
+                                        row.style.display = "none";
+                                      }
+                                    });
+                                  });
+                                });
+                              </script>
+                              
                             
                         </div>
                     </div>

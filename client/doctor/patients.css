@@ -77,6 +77,10 @@ td button {
   align-items: center;
 }
 
+.patient-details.patient-details-row{
+  display: flex;
+}
+
 .desDiv img {
   height: 5vh;
   padding: 1.75vh 0vh 1vh 1.5vh;
