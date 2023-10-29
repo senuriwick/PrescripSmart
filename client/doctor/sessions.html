@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="patientSearch">
-                        <div class="sessions-box">
+                        <div   id="session-details" class="sessions-box">
                             <div class="session-card">
                                 <div><b>Session #1254</b></div>
                                 <hr>
@@ -103,6 +103,37 @@
                                 <button>VIEW SESSION</button>
                             </div>
                         </div>
+                        <div id="session-patients" class="clicked-session">
+                            <div class="session-number">
+                                <h1>Session #1234</h1>
+                                <p>Number of patients <span style="color: blue;">04</span></p>
+                            </div>
+                            <hr>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="session-patient">
+                                                <img src="profile.png" alt="user-icon">
+                                                <p class="patientName">Ms. Shenaya Perera</p>
+                                            </div>
+                                        </td>
+                                        <td><p class="patientId">Patient ID-#1234567</p></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="session-patient">
+                                                <img src="profile.png" alt="user-icon">
+                                                <p class="patientName">Ms. Shenaya Perera</p>
+                                            </div>
+                                        </td>
+                                        <td><p class="patientId">Patient ID-#1234567</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
 
                     </div>
                 </div>
@@ -126,7 +157,7 @@
                 <div>Time: 08.00 AM</div>
                 <div class="patient-data">
                     <div>No. of patients: 09</div>
-                    <button>VIEW PATIENTS</button>
+                    <button type="button">VIEW PATIENTS</button>
                 </div>
             </div>
             <div class="cancel">
@@ -134,16 +165,33 @@
             </div>
         </div>
     </div>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const viewSessionButtons = document.querySelectorAll(".session-card button");
             const sessionModal = document.getElementById("session-modal");
             const closeSessionModal = sessionModal.querySelector(".close");
 
+            const viewPatientsButton = sessionModal.querySelector(".patient-data button");
+            const sessionPatient = document.getElementById("session-patients");
+            const sessiondetails=document.getElementById("session-details");
+
+
             viewSessionButtons.forEach(button => {
                 button.addEventListener("click", () => {
                     sessionModal.style.display = "block";
+                    
+
                 });
+            });
+
+            viewPatientsButton.addEventListener("click", () => {
+                console.log("view patient button clicked");
+                sessionPatient.style.display="block";
+                sessionModal.style.display="none";
+                sessiondetails.style.display="none";
+
+
             });
 
             closeSessionModal.addEventListener("click", () => {
@@ -155,7 +203,9 @@
                     sessionModal.style.display = "none";
                 }
             });
+
         });
 
     </script>
 </body>
+</html>
