@@ -76,6 +76,7 @@ body {
 .manageDiv {
   padding-top: 3vh;
   border-bottom: solid;
+  border-top: solid;
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 9vh;
