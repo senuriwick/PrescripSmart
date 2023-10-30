@@ -21,7 +21,12 @@
     <div id="selectRolePage">
       <p id="iam">I'm a<span class="dots">...</span></p>
       <div id="options">
-        <button>Patient</button>
+        <button id="patient">Patient</button>
+        <script>
+          document.getElementById("patient").addEventListener("click", function () {
+              window.location.href = "\\client\\patient\\authentication\\loginPage.html";
+          });
+        </script>
         <button>Lab Technician</button>
         <button>Doctor</button>
         <button>Pharmacist</button>
