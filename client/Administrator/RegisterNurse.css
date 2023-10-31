@@ -74,7 +74,8 @@ body {
   
   
   
-  .manageDiv {
+  .manageDiv 
+  {
     padding-top: 3vh;
     border-bottom: solid;
     border-color: rgba(217, 217, 217, 0.75);
@@ -96,11 +97,7 @@ body {
       font-family: inter;
       color: #ffffff;
       text-decoration: none;
-      
-  
-  
-      
-  
+
   }
   
   .othersDiv {
@@ -204,14 +201,28 @@ body {
   {
     color:#17058aee;
   }
-  
-  
 
-
-.top1
+.bar1
 {
-    display: flex;
-    color: #0069FF;
+  width: 130vh;
+  height:180vh;
+  margin-top: 3vh;
+  background-color: #EFF2FB;
+  margin-left: 0.1vh;
+  display: flexbox;
+  
+}
+.bar2
+{
+  width: 110vh;
+  height:160vh;
+  background-color: white;
+  margin-left: 6vh;
+  border-color: black;
+.row1
+{
+    display:flex;
+    color: black;
     margin-top: 1vh;
     padding-left: 5vh;
     padding-top: 1vh;
@@ -219,87 +230,93 @@ body {
 }
 .firstname
 {
-    margin-right: 20vh;
+    margin-right: 7vh;
 }
-.top1 input
+.row1 input
 {
-    width:38vh;
+    
     height:4vh;
     border-radius: 0.5vh;
     border-color: #E3E8F4;
     font-size: 1.5vh;
     font-family: inter;
-    color: #445172BF;
+    color: black;
     border-radius: 0.5vh;
     padding-left: 3vh;
-    border-color: #E3E8F4;
+    border-color: #44517280;
 }
-.top2
+.row2
 {
-    display: flex;
-    color: #0069FF;
-    margin-top: 4vh;
     padding-left: 5vh;
-    
+    padding-top: 1vh;
 
 }
-.top2 input
+.row2 input
 {
-    width:38vh;
+    width:86.5vh;
     height:4vh;
     border-radius: 0.5vh;
     border-color: #E3E8F4;
     font-size: 1.5vh;
     font-family: inter;
-    color: #445172BF;
+    color: black;
+    border-radius: 0.5vh;
     padding-left: 3vh;
     border-color: #E3E8F4;
-    
 }
-.email
-{
-    margin-right: 20vh;
-}
-.details
-{
-    background-color: #EFF2FB;
-    height: 65vh;
-    margin-right: 30vh;
-    border-radius: 0.5vh;
 
-    
-}
-.details button
+
+.sideMenu
 {
-    margin-left: 45vh;
-    margin-top: 5vh ;
-    width:40vh;
-    height:5vh;
-    border-radius: 0.5vh;
+    height:145vh;
+}
+.btn button
+{
+    margin-left: 32vh;
+    margin-top: 9vh;
+    border-radius: 0.8vh;
+    Font:inter;
+    font-size: 2vh;
+    font-weight:50vh;
+    text-align:Center;
     color: white;
-    background-color: #0069FF;
-    font-size: 2.5vh;
-    font-family: inter;
-
-}
-.top3
-{
-
-    color: #0069FF;
-    margin-top: 4vh;
-    padding-left: 5vh;
-}
-.top3 input
-{
-    width:38vh;
+    background-color: #388AFF;
+    Width:32vh;
     height:4vh;
-    border-radius: 0.5vh;
-    border-color: #E3E8F4;
-    font-size: 1.5vh;
-    font-family: inter;
-    color: #445172BF;
+    border: none;
+    cursor: pointer;
+}
+
+
+.back
+{
     padding-left: 3vh;
-    border-color: #E3E8F4;
+}
+.popup
+{
+    padding-left: 6vh;
     
+    background-color:#95bef7;
+    width:41vh;
+    height:45vh;
+    margin-left: 15vh;
+    border-radius: 2vh;
+    top:0%;
+    z-index: 10;
+    visibility: hidden;
+
+}
+.open-popup
+{
+    visibility: visible;
+    top: 50%;
+
+
+
+}
+.popup h1
+{
+    padding-left: 9vh;
+
 
 }
