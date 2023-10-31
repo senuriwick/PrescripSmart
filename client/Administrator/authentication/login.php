@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $result = $mysqli->query($sql);
     
-    $user = $result->fetch_assoc();
+    $administrator = $result->fetch_assoc();
     
     if ($patient) {
         
