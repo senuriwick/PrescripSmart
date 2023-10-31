@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $administrator = $result->fetch_assoc();
     
-    if ($patient) {
+    if ($administrator) {
         
         if (password_verify($_POST["password"], $administrator["password_hash"])) {
             
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             $_SESSION["administrator_id"] = $administrator["id"];
             
-            header("Location: index.php");
+            header("Location: /Administrator/AdminSearchPatient.html");
             exit;
         }
     }
