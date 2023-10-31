@@ -33,7 +33,7 @@ if (isset($_SESSION["patient_id"])) {
         
     <?php else: ?>
         
-        <p><a href="\home.html">HOME PAGE</a> or <a href="signUp.html">sign up</a></p>
+        <p><a href="home.html">HOME PAGE</a> or <a href="signUp.html">sign up</a></p>
         
     <?php endif; ?>
     
