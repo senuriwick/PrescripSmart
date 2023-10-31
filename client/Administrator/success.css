@@ -1,0 +1,78 @@
+.menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
+  
+  .menu p {
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+  }
+  
+  .patientSearch {
+    margin-top: 2vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh 2vh;
+  }
+  
+  .patientSearch h1 {
+    font-size: 3vh;
+    font-weight: bold;
+    color: rgba(68, 81, 114, 1);
+  }
+  .patientSearch a{
+    text-decoration: none;
+    color: #445172;
+  }
+
+  .patientSearch i{
+    padding: 1vh;
+  }
+
+  .patientSearch .success-content{
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin: 10%;
+  }
+
+  .success-content .msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vh;
+    font-weight: bolder;
+  }
+
+  .success-content .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .btn button{
+    background-color: #0069FFBF;
+    padding: 10px 20px;
+    font-size: 1.8vh;
+    font-weight: 500;
+    color:white;
+    border: 1px solid #0069FFBF;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .btn button a{
+    direction: none;
+    color: #ffffff;
+  }
