@@ -5,17 +5,17 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Patient Page</title>
+  <title>Admin search Patient</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
-  <link rel="stylesheet" href="prescriptions_dashboard.css"/>
+  <link rel="stylesheet" href="new_appointment.css"/>
 </head>
 <body>
 
   <div class="content">
     <div class="sideMenu"> 
       <div class="logoDiv">
-          <img class="logoImg" src="Untitled design (5) copy 2.png"/>
+          <img class="logoImg" src="Untitled design (5).png"/>
       </div>
 
       <div class="patientDiv">
@@ -38,6 +38,7 @@
       </div>
     
 
+
       <div class="othersDiv">
         <a href="billing.html" id="billing">Billing</a>
         <a href="terms_of_service.html" id="terms">Terms of Service</a>
@@ -52,65 +53,48 @@
         <p>SAMPLE USERNAME HERE</p>
       </div>  
 
-      <div class="patientInfoContainer">
-        <div class="patientInfo">
+      <div class="adminInfoContainer">
+        <div class="adminInfo">
           <img src="profile.png" alt="profile-pic">
-          <div class="patientNameDiv">
+          <div class="patientNameDivDiv">
             <p class="name">Patient Name</p>
             <p class="role">Patient</p>
           </div>
         </div>
 
         <div class="menu">
-          <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-          <a href="reports_dashboard.html" id="reports">Reports</a>
-          <a href="appointments_dashboard.html" id="appointments">Appointments</a>
+            <a href="new_appointment.html" id="appointments">New Appointment</a>
         </div>
 
-        <div class="prescriptionsDiv">
-          <h1>Prescriptions</h1>
-          <div class="prescriptionFiles">
-            <div class="file">
-              <div class="desDiv">
-                <img src="description.png" alt="description-icon">
-                <p class="description">Pres. description</p>
-              </div>
-              <p>Dr. Doctor Name</p>
-              <p>DD-MM-YYYY</p>
-              <img src="download.png" alt="download-icon">
-            </div>
-            <div class="file">
-              <div class="desDiv">
-                <img src="description.png" alt="description-icon">
-                <p class="description">Pres. description</p>
-              </div>
-              <p>Dr. Doctor Name</p>
-              <p>DD-MM-YYYY</p>
-              <img src="download.png" alt="download-icon">
-            </div>
-            <div class="file">
-              <div class="desDiv">
-                <img src="description.png" alt="description-icon">
-                <p class="description">Pres. description</p>
-              </div>
-              <p>Dr. Doctor Name</p>
-              <p>DD-MM-YYYY</p>
-              <img src="download.png" alt="download-icon">
-            </div>
-            <div class="file">
-              <div class="desDiv">
-                <img src="description.png" alt="description-icon">
-                <p class="description">Pres. description</p>
-              </div>
-              <p>Dr. Doctor Name</p>
-              <p>DD-MM-YYYY</p>
-              <img src="download.png" alt="download-icon">
-            </div>
+        <div class="searchDiv">
+          <h1>Find Your Doctor</h1>
+          <div class="searchFiles">
+            <input type="search" placeholder="Enter doctor's name here">
+            <button type="search"><b>SEARCH</b></button>
+            
           </div>
+          <div class="searchFilter">
+            <div class="searchFilterLine"></div>
+            <select class="filterSelect">
+              <option value="" disabled selected>Select Specialization</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <!-- Add more specialization options as needed -->
+            </select>
+            <select class="filterSelect">
+              <option value="" disabled selected>Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+              <!-- Add more gender options as needed -->
+            </select>
+            <button type="search"><b>ADVANCED SEARCH</b></button>
+          </div>
+          
         </div>
+      </div>
 
-
-        <p class="addnewHeading">Add new</p>
+      <p class="addnewHeading">Add new</p>
         <div class="addnew">
           
           <div class="appointment">
@@ -130,8 +114,9 @@
                 <span class="details">Initiate an online inquiry with a health supervisor</span></p>
             </div>
           </div>
-
-        </div>
-      </div>
     </div>
   </div>
+
+
+</body>
+</html>
