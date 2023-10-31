@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             $_SESSION["administrator_id"] = $administrator["id"];
             
-            header("Location: index.php");
+            header("Location: /Administrator/AdminSearchPatient.html");
             exit;
         }
     }
