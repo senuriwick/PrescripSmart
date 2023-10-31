@@ -1,0 +1,446 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
+
+.content {
+  display: flex;
+}
+
+
+.sideMenu {
+  min-width: 12vw;
+  height: 100vh;
+  background-color: rgba(7, 28, 74, 1);
+}
+
+
+.sideMenuTexts {
+  font-size: 1.7vh;
+  color: #ffffff;
+  line-height: 1.5vh;
+}
+
+.logoDiv {
+  align-items: center;
+  margin-bottom: 4vh;
+}
+
+.logoImg {
+  display: block;
+  margin: auto;
+  height: 5vh;
+  padding-top: 3vh;
+}
+
+.container1{
+  margin: 1rem 0rem -60.9rem -0.6rem;
+  width: 56.5rem;
+  height: 31rem;
+  position: relative;
+  background-color: #eff2fb;
+  border-radius: 1rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.mainOptions {
+  color: white;
+  font-size: 2.2vh;
+  font-weight: bold;
+}
+
+
+.sideMenu p {
+  padding-left: 3vh;
+  margin-right:10px;
+  padding-bottom: 10px;
+}
+
+
+.patientDiv {
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+}
+
+
+.profile {
+  padding: 0.2vh;
+  margin-bottom: 2.5vh;
+  background-color: #445172;
+}
+
+.historyMenu{
+  background-color: #445172;
+    height: 32px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+.profile p{
+  color: #ffffff;
+  font-size: 1.8vh;
+  font-weight: bold;
+}
+
+
+
+.manageDiv {
+  padding-top: 3vh;
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+  padding-bottom: 3vh;
+}
+
+.manageDiv .mainOptions {
+  margin-bottom: 3vh;
+}
+
+
+.othersDiv {
+  padding-top: 3vh;
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+  padding-bottom: 3vh;
+}
+
+
+
+.main {
+  flex: 1;
+}
+
+.navBar {
+  background-color: rgba(138, 150, 181, 1);
+  height: 7vh;
+}
+
+.navBar p {
+  margin: 0;
+  float: right;
+  padding: 2.5vh 0vw;
+  color: #ffffff;
+  font-size: 1.7vh;
+}
+
+.navBar img {
+  float: right;
+  padding: 1.3vh 2vw;
+  height: 4vh;
+}
+
+.patientInfoContainer {
+  width: 80%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
+
+
+.patientInfo {
+  display: flex;
+}
+
+
+.patientInfo img {
+  height: 10vh;
+  margin-right: 1.5vw;
+}
+
+
+.patientNameDiv {
+  padding: 0.01vh 0;
+}
+
+
+.patientInfo .name {
+  font-size: 2.5vh;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  color: rgba(68, 81, 114, 1);
+}
+
+.patientInfo .role {
+  font-size: 1.8vh;
+  margin-top: 0vh;
+  padding-top: 0;
+}
+
+
+.menu {
+  margin-top: 2vh;
+  display: flex;
+  border-bottom: solid;
+  padding-bottom: 0.1vh;
+  border-width: 0.1vh;
+  border-color: rgba(164, 174, 199, 1);
+}
+
+.menu p {
+  margin-right: 4vh;
+  font-size: 2vh;
+  margin-bottom: 1vh;
+  color: rgba(164, 174, 199, 1);
+}
+
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#history{
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+}
+.line {
+  border: 0.75px solid #000;
+  width: 98%;
+  margin-right: 16px;
+  margin-left: 8px;
+  margin-top: 94px;
+}
+
+.noOfPrescriptions{
+  width: 26.1rem;
+  height: 3.9rem;
+  position: absolute;
+  left: 12rem;
+  top: 12.2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2125;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+
+}
+
+.prescription-file1 {
+  box-sizing: border-box;
+  padding: 1.4rem 9.7rem 1rem 2.742rem;
+  width: 65rem;
+  height: 4.1rem;
+  position: absolute;
+  left: 15rem;
+  top: 23rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem rgba(68, 81, 114, 0.5);
+  background-color: #ffffff;
+  border-radius: 1rem;
+}
+
+.prescription-file2 {
+  box-sizing: border-box;
+  padding: 1.2rem 9.7rem 1.2rem 2.942rem;
+  width: 65rem;
+  height: 4.1rem;
+  position: absolute;
+  left: 15rem;
+  top: 28rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem rgba(68, 81, 114, 0.5);
+  background-color: #ffffff;
+  border-radius: 1rem;
+}
+
+.prescription-file3 {
+  box-sizing: border-box;
+  padding: 1.4rem 9.1rem 1rem 2.742rem;
+  width: 65rem;
+  height: 4.1rem;
+  position: absolute;
+  left: 15rem;
+  top: 18.4rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem rgba(68, 81, 114, 0.5);
+  border-radius: 1rem;
+}
+
+
+  #scales {
+    width: 38px;
+    height: 109px;
+    margin: 10px;
+    padding: 5px;
+}
+  
+  
+
+
+
+.clipboard-1 {
+  margin-right: 1.6355rem;
+  width: 2.4rem;
+  height: 3.7rem;
+  position: relative;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+.clipboard-2 {
+  margin-right: 1.6355rem;
+  width: 2.4rem;
+  height: 3.7rem;
+  position: relative;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+.clipboard-3 {
+  margin-right: 1.6355rem;
+  width: 2.4rem;
+  height: 3.7rem;
+  position: relative;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+ .pres-description-1 {
+  margin: 0.1rem 4.23rem 0rem 0rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2125;
+  color: #0069ff;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+ }
+ .doctor-name-1{
+  margin: 0.5rem 6rem 0rem 0rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2125;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dd-mm-yyyy-1 {
+  margin-top: 2.3rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 140px;
+}
+
+.pres-description-2 {
+  margin: 0.1rem 4.23rem 0rem 0rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2125;
+  color: #0069ff;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+ }
+ .doctor-name-2{
+  margin: 0.5rem 6rem 0rem 0rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2125;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dd-mm-yyyy-2 {
+  margin-top: 2.3rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 140px;
+}
+
+.pres-description-3 {
+  margin: 0.1rem 4.23rem 0rem 0rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2125;
+  color: #0069ff;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+ }
+ .doctor-name-3{
+  margin: 0.5rem 5rem 0rem 0rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2125;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dd-mm-yyyy-3 {
+  margin-top: 2.3rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 142px;
+}
+
+/* Base Button Styles */
+.green-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #075009;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: Inter, 'Source Sans Pro';
+  border-radius: 15%;
+}
+
+/* Hover Effect */
+.green-button:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+}
+
+.sideMenuLink {
+  text-decoration: none; /* Remove underline from links */
+  color: #000; /* Set the default text color */
+  transition: background-color 0.3s; /* Add a smooth background color transition */
+}
+
+.sideMenuLink:hover {
+  background-color: #700606; /* Change the background color to gray on hover */
+}
+
+
+
+
+
+

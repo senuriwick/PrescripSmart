@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Pharmacist Page</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"
+    />
+    <link rel="stylesheet" href="./styles/pharmacist_updateOneMed.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="sideMenu">
+        <div class="logoDiv">
+          <img class="logoImg" src="./assets/logo.png" />
+        </div>
+
+        <div class="patientDiv">
+          <p class="mainOptions">PHARMACIST</p>
+
+          <div class="profile">
+            <p>username</p>
+          </div>
+        </div>
+
+        <div class="manageDiv">
+          <p class="mainOptions">MANAGE</p>
+
+          <a href="pharmacist_dashboard.html" class="sideMenuLink">
+            <p class="sideMenuTexts">Patients</p>
+          </a>
+          <div class="medicationMenu">
+            <p class="sideMenuTexts">Medications</p>
+          </div>
+
+          <a href="" class="sideMenuLink">
+            <p class="sideMenuTexts">Profile</p>
+          </a>
+        </div>
+
+
+        <div class="othersDiv">
+          <p class="sideMenuTexts">Terms of Services</p>
+          <p class="sideMenuTexts">Privacy Policy</p>
+          <p class="sideMenuTexts">Settings</p>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="navBar">
+          <img src="./assets/user.png" alt="user-icon" />
+          <p>SAMPLE USERNAME HERE</p>
+        </div>
+
+        <div class="patientInfoContainer">
+          <div class="patientInfo">
+            <img src="./assets/profile.png" alt="profile-pic" />
+            <div class="patientNameDiv">
+              <p class="name">Pharmacist Name</p>
+              <p class="role">Pharmacist</p>
+            </div>
+          </div>
+
+          <div class="menu">
+            <p id="patients">Patients</p>
+            <p id="medications">Medications</p>
+          </div>
+          <div class="container-box">
+            <a href="pharmacist_oneMed.html">
+              <img class="vector" src="./assets/vector.png" alt="Sample Image">
+            </a>
+            
+            <div class="line-19">
+            </div>
+            <p class="medication-name">Medication Name Here</p>
+            <p class="status-in-stock">
+              <span class="status-in-stock-sub-0">Status:</span>
+              <span class="status-in-stock-sub-1"> In-stock</span>
+            </p>
+            <div class="line"></div>
+            <div class="details">
+              <p>Reference No: #125669
+              </p>
+              <p>Batch No: #123
+              </p>
+              <p>Expiry Date: 12/05/2024
+              </p>
+              <p><span>Quantity in Stock:</span><span>345</span></p>
+              <p class="quantity-02">
+                <span>Enter Stock to update</span>
+                <span><span><input type="text" class="text-box" name="name"  placeholder="Enter stock"></span></span>
+              </p>
+  
+            </div>
+            <div><button type="submit" class="blue-button">Add</button>
+              <button type="submit" class="red-button">Out of Stock</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
