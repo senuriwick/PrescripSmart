@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Patient Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
+    <link rel="stylesheet" href="appointments.css" />
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="sideMenu">
+            <div class="logoDiv">
+                <img class="logoImg" src="Untitled design (5) copy 2.png" />
+            </div>
+
+            <div class="patientDiv">
+                <p class="mainOptions">PATIENT</p>
+
+                <div class="profile">
+                    <p>username</p>
+                </div>
+            </div>
+
+
+            <div class="manageDiv">
+                <p class="mainOptions">MANAGE</p>
+
+                <a href="patients_dashboard.html" id="patients">Patients</a>
+                <a href="ongoing.html" id="On-going">On-going session</a>
+                <a href="sessions.html" id="sessions">Sessions</a>
+                <a href="appointments.html" id="appointments">Appoinments</a>
+                <a href="profile.html" id="profile">Profile</a>
+            </div>
+
+
+            <div class="othersDiv">
+                <a href="billing.html" id="billing">Billing</a>
+                <a href="terms_of_service.html" id="terms">Terms of Service</a>
+                <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
+            </div>
+
+        </div>
+
+        <div class="main">
+            <div class="navBar">
+                <img src="user.png" alt="user-icon">
+                <p>SAMPLE USERNAME HERE</p>
+            </div>
+
+            <div class="patientInfoContainer">
+                <div class="patientInfo">
+                    <img src="profile.png" alt="profile-pic">
+                    <div class="patientNameDiv">
+                        <p class="name">Patient Name</p>
+                        <p class="role">Patient</p>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <a href="patients_dashboard.html" id="patients">Patients</a>
+                    <a href="ongoing.html" id="On-going">On-going session</a>
+                    <a href="sessions.html" id="sessions">Sessions</a>
+                    <a href="appointments.html" id="appointments">Appoinments</a>
+                </div>
+
+                <div class="prescriptionsDiv">
+                    <h1>Appointments (Current Session) #125485</h1>
+                    <p>DR. ASANKA RATHNAYAKE<br>
+                        Consultant Physician<br>
+                        Room 04</p>
+
+                    <div class="prescriptionFiles">
+                        <div class="file" onclick="redirectToAppointment()">
+                            <div class="desDiv">
+                                <p class="description">Time: 11.30</p>
+                            </div>
+                            <p>Appointment Ref No.</p>
+                            <p>Appointment No: 12</p>
+                            <p>Patient Name here</p>
+                            <input type="checkbox" id="tickBox">
+                            <label for="tickBox"></label>
+                        </div>
+
+
+                        <div class="prescriptionFiles">
+                            <div class="file" onclick="redirectToAppointment()">
+                                <div class="desDiv">
+                                    <p class="description">Time: 11.30</p>
+                                </div>
+                                <p>Appointment Ref No.</p>
+                                <p>Appointment No: 12</p>
+                                <p>Patient Name here</p>
+                                <input type="checkbox" id="tickBox">
+                                <label for="tickBox"></label>
+                            </div>
+
+                            <div class="prescriptionFiles">
+                                <div class="file" onclick="redirectToAppointment()">
+                                    <div class="desDiv">
+                                        <p class="description">Time: 11.30</p>
+                                    </div>
+                                    <p>Appointment Ref No.</p>
+                                    <p>Appointment No: 12</p>
+                                    <p>Patient Name here</p>
+                                    <input type="checkbox" id="tickBox">
+                                    <label for="tickBox"></label>
+                                </div>
+
+                                <div class="prescriptionFiles">
+                                    <div class="file" onclick="redirectToAppointment()">
+                                        <div class="desDiv">
+                                            <p class="description">Time: 11.30</p>
+                                        </div>
+                                        <p>Appointment Ref No.</p>
+                                        <p>Appointment No: 12</p>
+                                        <p>Patient Name here</p>
+                                        <input type="checkbox" id="tickBox">
+                                        <label for="tickBox"></label>
+                                    </div>
+
+                                    <script>
+                                        function redirectToAppointment() {
+                                            window.location.href = "appointments_2.html";
+                                        }
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
