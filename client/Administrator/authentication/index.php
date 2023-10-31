@@ -2,12 +2,12 @@
 
 session_start();
 
-if (isset($_SESSION["patient_id"])) {
+if (isset($_SESSION["administrator_id"])) {
     
     $mysqli = require __DIR__ . "/database.php";
     
-    $sql = "SELECT * FROM patient
-            WHERE id = {$_SESSION["patient_id"]}";
+    $sql = "SELECT * FROM administrator
+            WHERE id = {$_SESSION["administrator_id"]}";
             
     $result = $mysqli->query($sql);
     
@@ -25,12 +25,13 @@ if (isset($_SESSION["patient_id"])) {
     
     <h1>Home</h1>
     
-    <?php if (isset($patient)): ?>
-        <?php header("Location: \patient\prescription_dashboard.php"); // Redirect to the dashboard page ?>
+    <?php if (isset($administrator)): ?>
+        <script type="text/javascript">
+            window.location.href = "Administrator\\AdminSearchPatient.html";
+        </script>
     <?php else: ?>
         <h1>Home</h1>
         <p><a href="home.html">HOME PAGE</a></p>
     <?php endif; ?>
-    
 </body>
 </html>
