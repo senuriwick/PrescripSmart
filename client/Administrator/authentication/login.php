@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $administrator = $result->fetch_assoc();
     
-    if ($patient) {
+    if ($administrator) {
         
         if (password_verify($_POST["password"], $administrator["password_hash"])) {
             
