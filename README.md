@@ -1,7 +1,7 @@
 # PRESCRIPSMART - A Web Application based on Hospital Task Management and Digital Prescriptions
 
 ## Overview
-PrescripSmart revolutionizes healthcare services in Sri Lanka by providing an all encompassing solution. Through electronic prescriptions, online appointment scheduling, digital laboratory test results, and man more features, the platform ensures a hassle-free and convenient healthcare experience for patients nationwide. By promoting patient safety, streamlining processes, and fostering
+PrescripSmart revolutionizes healthcare services in Sri Lanka by providing an all encompassing solution. Through electronic prescriptions, online appointment scheduling, digital laboratory test results, and many more features, the platform ensures a hassle-free and convenient healthcare experience for patients nationwide. By promoting patient safety, streamlining processes, and fostering
 patient engagement, PrescripSmart leads the way toward a more efficient, patient-centred, and adequate healthcare 
 ecosystem in Sri Lanka.
 
@@ -30,4 +30,5 @@ project-root/
 ### Backend
 - **PHP**: Used as the server-side scripting language.
 - **Database**: MySQL
+
 
