@@ -13,6 +13,17 @@
     color: rgba(164, 174, 199, 1);
 }
 
+
+.menu p a{
+    text-decoration: none;
+    color: rgba(164, 174, 199, 1);
+
+}
+
+p a:active{
+    color: black;
+}
+
 .patientSearch {
     margin-top: 2vh;
     margin-bottom: 4vh;

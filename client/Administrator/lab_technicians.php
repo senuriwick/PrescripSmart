@@ -6,7 +6,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Lab Technicians</title>
+    <title>Admin/Lab Technicians</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -74,7 +74,7 @@
                         <p><a href="#">Patients</a></p>
                         <p><a href="#">Doctors</a></p>
                         <p><a href="#">Nurses</a></p>
-                        <p><a href="#">Lab Technicians</a></p>
+                        <p><a href="lab_techniciants.php">Lab Technicians</a></p>
                         <p><a href="#">Health SV</a></p>
                         <p><a href="#">Receptionists</a></p>
                         <p><a href="#">Pharmacist</a></p>
