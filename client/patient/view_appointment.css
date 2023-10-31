@@ -3,32 +3,7 @@
     margin-top: 2.5vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
-    padding: 1vh 3vh 2vh;
-  }
-  
-  
-  .prescriptionsDiv h1 {
-    font-weight: bold;
-    color: rgba(68, 81, 114, 1);
-  }
-  
-  
-  .file {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff;
-    border-style: solid;
-    border-width: 0.1vh;
-    border-color: rgba(68, 81, 114, 0.5);
-    border-radius: 5px;
-    margin-bottom: 1vh;
-    width: 500px;
-    height: 210px;
-    border-color: white;
-  }
-  
-  .file p {
-    padding: 0vh 2vh;
+    padding: 1vh 3vh 2vh;  
   }
   
   
@@ -40,13 +15,7 @@
   .file .desDiv {
     display: flex;
   }
-   
-  .addnewHeading {
-    font-size: 2vh;
-    font-weight: bold;
-    margin-top: 4vh;
-  }
-  
+
   
   .addnew {
     display: flex;
@@ -419,15 +388,100 @@
     flex-shrink: 0;
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  .rectangle-13-Nk9 {
+    width: 16.9rem;
+    height: 0.2rem;
+    border: solid 1.5rem #0069ff;
+    box-sizing: border-box;
+    background-color: #0069ff;
+  }
+
+
+
+.align-button {
+    display: flex;
+    justify-content: center;
+    margin-top: -2rem;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0069FF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.prescriptionsDiv .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prescriptionsDiv h1 {
+  font-weight: bold;
+  color: rgba(68, 81, 114, 1);
+  margin-right: 20px; /* Adjust the margin as needed */
+}
+
+.buttonstyle {
+  width: 10rem;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: #0069ff;
+  font-size: 16px;
+  color: #fff;
+  font-family: 'Source Sans Pro';
+  border: none;
+  cursor: pointer;
+}
+
+
+.file {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-style: solid;
+  border-width: 0.1vh;
+  border-color: rgba(68, 81, 114, 0.5);
+  border-radius: 5px;
+  margin-bottom: 1vh;
+  width: 50%; 
+}
+
+.file p {
+  padding: 0vh -1vh;
+}
+
+
+.addnewHeading {
+  font-size: 2vh;
+  font-weight: bold;
+  margin-top: 4vh;
+  margin-bottom: 1vh; 
+}
+
