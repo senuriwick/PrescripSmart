@@ -24,7 +24,7 @@
 
             <div class="userDiv">
                 <p class="mainOptions">
-                    <Datag>DOCTOR</Datag>
+                    <Datag>ADMINISTRATOR</Datag>
                 </p>
 
                 <div class="profile">
@@ -37,11 +37,15 @@
                 <p class="mainOptions">MANAGE</p>
 
                 <a href="#patients" class="active">Patients</a>
-                <a href="#ongoingSessions">Ongoing Sessions</a>
-                <a href="sideMenuTexts">Sessions</a>
-                <a href="sideMenuTexts">Profile</a>
+                <a href="#ongoingSessions">Doctors</a>
+                <a href="sideMenuTexts">Nurses</a>
+                <a href="sideMenuTexts">Lab Technician</a>
+                <a href="sideMenuTexts">Health Supervisor</a>
+                <a href="sideMenuTexts">Receptionist</a>
+                <a href="sideMenuTexts">Pharmacist</a>
             </div>
             <div class="othersDiv">
+            <p class="sideMenuTexts">Profile</p>
                 <p class="sideMenuTexts">Billing</p>
                 <p class="sideMenuTexts">Terms of Services</p>
                 <p class="sideMenuTexts">Privacy Policy</p>
@@ -61,21 +65,25 @@
                     <div class="userInfo">
                         <img src="profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Doctor Name</p>
-                            <p class="role">Doctor</p>
+                            <p class="name">Administrator</p>
+                            <p class="role">System admin</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p>Patients</p>
-                        <p>On-going</p>
-                        <p>Sessions</p>
+                        <p><a href="#">Patients</a></p>
+                        <p><a href="#">Doctors</a></p>
+                        <p><a href="#">Nurses</a></p>
+                        <p><a href="#">Lab Technicians</a></p>
+                        <p><a href="#">Health SV</a></p>
+                        <p><a href="#">Receptionists</a></p>
+                        <p><a href="#">Pharmacist</a></p>
                     </div>
 
                     <div class="patientSearch">
                         <h1>Search Lab Technicians</h1>
                         <form>
-                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
+                            <input type="text" class="searchBar" placeholder="Enter patient name or Id" />
                         </form>
                         <hr />
                         <div class="patient-details">
@@ -109,17 +117,21 @@
                                                 <td>
                                                     <div class='desDiv'>
                                                         <img src='profile.png' alt='user-icon'>
-                                                        <p class='patientName' id='patientName'>" . $row['firstname'] . "</p>
+                                                        <p class='patientName'>" . $row['firstname'] . "</p>
                                                     </div>
                                                 </td>
                                                 <td>Employee ID - #" . $row['lab_tec_id'] . "</td>
                                                 <td><a href='lab_tech_profile.php?id=$row[lab_tec_id]'><button>View Profile</button></a></td>
+                                                <td class='update-icon'>
+                                                    <a href='lab_tech_update.php?id=$row[lab_tec_id]'>
+                                                    <i class='fa-solid fa-pen-to-square'></i>
+                                                    </a>
+                                                </td>
                                                 <td class='delete-icon'>
                                                     <a href='delete_technician.php?id=$row[lab_tec_id]'>
                                                         <i class='fa-solid fa-trash'></i>
                                                     </a>
                                                 </td>
-
                                             </tr>
                                             ";
                                     }
@@ -128,30 +140,16 @@
                             </table>
 
                         </div>
+                        <div class="register-btn">
+                            <button>
+                            <a href="register_lab_technician.php">Register a New Lab Technician</a>
+                            </button>
+                        
                     </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-                                  const searchInput = document.getElementById("searchInput");
-                              
-                                  searchInput.addEventListener("input", function () {
-                                    const searchTerm = searchInput.value.toLowerCase();
-                                    const patientRows = document.querySelectorAll(".patient-details tr");
-                              
-                                    patientRows.forEach(function (row) {
-                                      const patientName = row.querySelector(".patientName").textContent.toLowerCase();
-                                      if (patientName.includes(searchTerm)) {
-                                        row.style.display = "table-row";
-                                      } else {
-                                        row.style.display = "none";
-                                      }
-                                    });
-                                  });
-                                });
-
-    </script>
-    
 </body>
