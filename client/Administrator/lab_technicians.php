@@ -83,7 +83,7 @@
                     <div class="patientSearch">
                         <h1>Search Lab Technicians</h1>
                         <form>
-                            <input type="text" class="searchBar" placeholder="Enter patient name or Id" />
+                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
                         </form>
                         <hr />
                         <div class="patient-details">
@@ -152,4 +152,24 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+                                  const searchInput = document.getElementById("searchInput");
+                              
+                                  searchInput.addEventListener("input", function () {
+                                    const searchTerm = searchInput.value.toLowerCase();
+                                    const patientRows = document.querySelectorAll(".patient-details tr");
+                              
+                                    patientRows.forEach(function (row) {
+                                      const patientName = row.querySelector(".patientName").textContent.toLowerCase();
+                                      if (patientName.includes(searchTerm)) {
+                                        row.style.display = "table-row";
+                                      } else {
+                                        row.style.display = "none";
+                                      }
+                                    });
+                                  });
+                                });
+
+    </script>
 </body>

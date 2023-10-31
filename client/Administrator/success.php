@@ -84,7 +84,7 @@
                     <h1><a href="#"><i class="fa-solid fa-arrow-left"></i></a>Lab Technician Registration</h1>
                         <div class="success-content">
                             <div class="msg">Successfull Registration !</div><br>
-                            <div class="btn"><button><a href="register_lab_technician.php">Back To Dashboard</a></button></div>
+                            <div class="btn"><button><a href="lab_tech_profile.php">Back To Dashboard</a></button></div>
                         
                         </div>
                     </div>
