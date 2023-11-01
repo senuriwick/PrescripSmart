@@ -1,3 +1,38 @@
+<?php
+
+$is_invalid = false;
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    
+    $mysqli = require __DIR__ . "/database.php";
+    
+    $sql = sprintf("SELECT * FROM pharmacist
+                    WHERE email = '%s'",
+                   $mysqli->real_escape_string($_POST["email_address"]));
+    
+    $result = $mysqli->query($sql);
+    
+    $pharmacist = $result->fetch_assoc();
+    
+    if ($pharmacist) {
+        
+        if (password_verify($_POST["password"], $pharmacist["password_hash"])) {
+            
+            session_start();
+            
+            session_regenerate_id();
+            
+            $_SESSION["pharmacist_id"] = $pharmacist["id"];
+            
+            header("Location: /pharmacist/pharmacist_dashboard.html");
+            exit;
+        }
+    }
+    
+    $is_invalid = true;
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,15 +46,18 @@
   <link rel="stylesheet" href="loginPage.css">
 </head>
 <body>
+    <?php if ($is_invalid): ?>
+        <em>Invalid Login</em>
+    <?php endif; ?>
 <div class="loginPage">
   <div class="upperRectangle">
   </div>
   <div class="formContainer">
     <div class="loginForm">
       <p class="login-to-your-account">Login to your account</p>
-      <form action="login.php" method="post">
+      <form method="post">
         <div class="emailContainer">
-          <input type="text" id="first-name" name="first-name" placeholder="Enter your email/phone number" class="inputfield">
+          <input type="text" id="email_address" name="email_address" placeholder="Enter your email/phone number" class="inputfield">
           <p class="inputLabel1">
             <span class="inputLabel1-0">email/phone number </span>
             <span class="inputLabel1-1">*</span>
@@ -35,13 +73,16 @@
         <button type="submit" class="loginButton">Log In</button>
       </form>
       <a href="forgot_password.html" class="forgot-password">Forgot Password?</a>
-    </div>
-    <p class="dont-have-an-account-sign-up-here">
-      <span class="dont-have-an-account-sign-up-here-sub-0">Don’t have an account? Sign up</span>
-      <span class="dont-have-an-account-sign-up-here-sub-1">&nbsp;</span>
-      <a href="signUp.html" class="dont-have-an-account-sign-up-here-sub-2">here</a>
-    </p>    
+    </div>    
   </div>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
