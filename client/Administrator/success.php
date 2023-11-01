@@ -6,11 +6,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>On-going Session</title>
+    <title>Admin/Register lab technician</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="on-going_session.css" />
+    <link rel="stylesheet" href="success.css" />
     <link rel="stylesheet" href="sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -24,7 +24,7 @@
 
             <div class="userDiv">
                 <p class="mainOptions">
-                    <Datag>DOCTOR</Datag>
+                    <Datag>Administrator</Datag>
                 </p>
 
                 <div class="profile">
@@ -36,12 +36,16 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
-                <a href="on-going_session.html">Ongoing Sessions</a>
-                <a href="sessions.html">Sessions</a>
-                <a href="profile.html">Profile</a>
+                <a href="#patients" class="active">Patients</a>
+                <a href="#ongoingSessions">Doctors</a>
+                <a href="sideMenuTexts">Nurses</a>
+                <a href="sideMenuTexts">Lab Technicians</a>
+                <a href="#ongoingSessions">Health Supervisors</a>
+                <a href="sideMenuTexts">Receptionists</a>
+                <a href="sideMenuTexts">Pharmacist</a>
             </div>
             <div class="othersDiv">
+                <p class="sideMenuTexts">Profile</p>
                 <p class="sideMenuTexts">Billing</p>
                 <p class="sideMenuTexts">Terms of Services</p>
                 <p class="sideMenuTexts">Privacy Policy</p>
@@ -61,42 +65,48 @@
                     <div class="userInfo">
                         <img src="profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Doctor Name</p>
-                            <p class="role">Doctor</p>
+                            <p class="name">Administrator Name</p>
+                            <p class="role">system Admin</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="patients.html">Patients</a></p>
-                        <p><a href="on-going_session.html">On-going</a></p>
-                        <p><a href="sessions.html">Sessions</a></p>
+                        <p>Patients</p>
+                        <p>Doctors</p>
+                        <p>Nurses</p>
+                        <p>Lab Technicians</p>
+                        <p>Health SV</p>
+                        <p>Receptionists</p>
+                        <p>Pharmacist</p>
                     </div>
 
                     <div class="patientSearch">
-                        <div class="session-head">
-                            <h1>Session No.#1255</h1>
-                            <p>No. of patients left: <span class="countPatients">04</span></p>
-                        </div>
-                        <hr />
-                        <div class="session-subhead"><b>On-going Appointment</b></div>
-                        <div class="appoinment-details">
-                            <div class="appoinment-number">
-                                <span class="num-head">NO.</span><br>
-                                <span class="num-main">12</span>
-                            </div>
-                            <div class="patient-data">
-                                <div>
-                                    <b>Patient Name:  </b>Dananjaya de Silva(#1233458)
-                                </div>
-                                <div class="btn-box">
-                                    <button>VIEW PROFILE</button>
-                                    <button>ADD PRESCRIPTION</button>
-                                </div>
-                            </div>
+                    <h1><a href="#"><i class="fa-solid fa-arrow-left"></i></a>Lab Technician Registration</h1>
+                        <div class="success-content">
+                            <div class="msg">Successfull Registration !</div><br>
+                            <div class="btn"><button><a href="lab_tech_profile.php">Back To Dashboard</a></button></div>
+                        
                         </div>
                     </div>
+                    
+                        
                 </div>
+
             </div>
+
         </div>
+        <!-- <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const registerbutton=document.querySelector(".buttondiv button");
+                const sucsessfulmodel=document.getElementById("model");
+
+                registerbutton.addEventListener("click",()=>{
+                    sucseefulmodel.style.display: "block";
+                })
+
+
+            });
+        </script> -->
     </div>
 </body>

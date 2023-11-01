@@ -17,11 +17,6 @@
 .menu p a{
   text-decoration: none;
   color: rgba(164, 174, 199, 1);
-
-}
-
-p a:active{
-  color: black;
 }
 
 .patientSearch {
@@ -81,14 +76,14 @@ td button {
   cursor: pointer;
 }
 
+/* .patient-details.patient-details-row{
+  display: flex;
+} */
+
 .patient-details .desDiv {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.patient-details.patient-details-row{
-  display: flex;
 }
 
 .desDiv img {
@@ -100,3 +95,24 @@ td button {
   margin-bottom: 2vh;
 }
 
+.patientSearch .register-btn{
+  display: flex;
+  justify-content: center;
+  padding-left: inherit;
+  margin: inherit;
+}
+
+.patientSearch .register-btn button{
+  width: 12vw;
+  height: 5vh;
+  background-color: rgba(0, 105, 255, 1);
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.patientSearch .register-btn button a{
+  text-decoration: none;
+  color: #ffffff;
+}
