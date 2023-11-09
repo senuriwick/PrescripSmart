@@ -5,7 +5,7 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Admin Doc Register</title>
+  <title>Register a Doctor</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="RegisterActor.css"/>
@@ -31,24 +31,24 @@
       <div class="manageDiv">
         <p class="mainOptions">MANAGE</p>
 
-        <a href="http://127.0.0.1:5500/AdminSearchPatient.html" id="appointments">Patients</a>
-        <a href="http://127.0.0.1:5500/AdminSearchDoctor.html" id="appointments">Doctors</a>
-        <a href="http://127.0.0.1:5500/AdminSearchNurse.html" id="appointments">Nurses</a>
-        <a href="http://127.0.0.1:5500/AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
-        <a href="http://127.0.0.1:5500/AdminSearchHealthSV.html" id="appointments">Health SV</a>
-        <a href="http://127.0.0.1:5500/AdminSearchReceptionist.html" id="appointments">Receptionists</a>
-        <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
-        <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Medications</a>
+        <a href="AdminSearchPatient.html" id="appointments">Patients</a>
+        <a href="AdminSearchDoctor.html" id="appointments">Doctors</a>
+        <a href="AdminSearchNurse.html" id="appointments">Nurses</a>
+        <a href="AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
+        <a href="AdminSearchHealthSV.html" id="appointments">Health SV</a>
+        <a href="AdminSearchReceptionist.html" id="appointments">Receptionists</a>
+        <a href="AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
+        <a href="AdminSearchPharmacist.html" id="appointments">Medications</a>
       </div>
     
 
 
       <div class="othersDiv">
-        <p class="appointments">Profile</p>
-        <p class="appointments">Billing</p>
-        <p class="appointments">Terms of Services</p>
-        <p class="appointments">Privacy Policy</p>
-        <p class="appointments">Settings</p>
+        <a class="appointments">Profile</a>
+        <a class="appointments">Billing</a>
+        <a class="appointments">Terms of Services</a>
+        <a class="appointments">Privacy Policy</a>
+        <a class="appointments">Settings</a>
       </div>
 
     </div>
@@ -69,55 +69,62 @@
         </div>
 
         <div class="menu">
-          <a href="http://127.0.0.1:5500/AdminSearchPatient.html" id="prescriptions">Patients</a>
-          <a href="http://127.0.0.1:5500/AdminSearchDoctor.html" id="reports">Doctors</a>
-          <a href="http://127.0.0.1:5500/AdminSearchNurse.html" id="appointments">Nurses</a>
-          <a href="http://127.0.0.1:5500/AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
-          <a href="http://127.0.0.1:5500/AdminSearchHealthSV.html" id="appointments">Health SV</a>
-          <a href="http://127.0.0.1:5500/AdminSearchReceptionist.html" id="appointments">Receptionists</a>
-          <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
+          <a href="AdminSearchPatient.html" id="prescriptions">Patients</a>
+          <a href="AdminSearchDoctor.html" id="reports">Doctors</a>
+          <a href="AdminSearchNurse.html" id="appointments">Nurses</a>
+          <a href="AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
+          <a href="AdminSearchHealthSV.html" id="appointments">Health SV</a>
+          <a href="AdminSearchReceptionist.html" id="appointments">Receptionists</a>
+          <a href="AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
         </div>
 
       <div class="details">
-        <div class="back" style="display: flex; margin-left: -25vh;">
-          <svg>
+        <div class="back" style="display: flex; ">
+          
             <img src="Vector.svg" >
-          </svg>
+          
           <h1 >Doctor Registration</h1>
         </div>
-        <div class="top1">
-          <div class="firstname">
-              <h3>first name</h3>
-              <input type="text" placeholder="Enter doctors' first name">
+        <form action="create.php" method="post">
+          <div class="top1">
+              <div class="firstname">
+                  <div class="req">
+                    <h3 style="color: #0069FF;">first name</h3>
+                    <p style="color: red;">*</p>
+                  </div>
+                  <input type="text" name="first_name" placeholder="Enter doctor's first name">
+              </div>
+              <div class="lastname">
+                <div class="req">
+                  <h3 style="color: #0069FF;">last name</h3>
+                  <p style="color: red;">*</p>
+                </div>
+                  <input type="text" name="last_name" placeholder="Enter doctor's last name">
+              </div>
           </div>
-            <div class="lastname">
-              <h3>last name</h3>
-              <input type="text" placeholder="Enter doctors' last name">
-           </div>
-          </div>
-          
-  
+      
           <div class="top2">
               <div class="email">
                   <h3>email address</h3>
-                  <input type="text" placeholder="Enter doctors' email address">
+                  <input type="text" name="email" placeholder="Enter doctor's email address">
               </div>
-                <div class="phone">
-                  <h3>phone number</h3>
-                  <input type="text" placeholder="Enter doctors' phone number">
-               </div>
+              <div class="phone">
+                <div class="req">
+                  <h3 style="color: #0069FF;">contact number</h3>
+                  <p style="color: red;">*</p>
+                </div>
+                  <input type="text" name="phone_number" placeholder="Enter doctor's phone number">
+              </div>
           </div>
+      
           <div class="top3">
-            <h3>Create password</h3>
-            
-              <input type="text" placeholder="Enter password">
-
-            
-
+            <div class="req">
+              <h3 style="color: #0069FF;">create password</h3>
+              <p style="color: red;">*</p>
+            </div>
+              <input type="password" name="password" placeholder="Enter password">
           </div>
-
-          <button style="border-color: white;"><b>Register</b></button>
-  
-
+          
+          <button type="submit"><b>Register</b></button>
+      </form>
       </div>
-        

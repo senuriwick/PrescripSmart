@@ -5,11 +5,10 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Admin register nurse</title>
+  <title>Employee Security Information</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
-  <link rel="stylesheet" href="Search.css"/>
-  <link rel="stylesheet" href="AdminEmpSecurity.css"/>
+  <link rel="stylesheet" href="RepEmpSecurity.css"/>
 </head>
 
 <body>
@@ -21,7 +20,7 @@
       </div>
 
       <div class="patientDiv">
-        <p class="mainOptions">ADMINISTRATOR</p>
+        <p class="mainOptions">RECEPTIONIST</p>
 
         <div class="profile">
           <p>username</p>
@@ -32,14 +31,12 @@
       <div class="manageDiv">
         <p class="mainOptions">MANAGE</p>
 
-        <a href="http://127.0.0.1:5500/AdminSearchPatient.html" id="appointments">Patients</a>
-        <a href="http://127.0.0.1:5500/AdminSearchDoctor.html" id="appointments">Doctors</a>
-        <a href="http://127.0.0.1:5500/AdminSearchNurse.html" id="appointments">Nurses</a>
-        <a href="http://127.0.0.1:5500/AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
-        <a href="http://127.0.0.1:5500/AdminSearchHealthSV.html" id="appointments">Health SV</a>
-        <a href="http://127.0.0.1:5500/AdminSearchReceptionist.html" id="appointments">Receptionists</a>
-        <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
-        <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Medications</a>
+        <a href="RepAddApp.html" id="prescriptions">Appointments</a>
+        <a href="RepManageSessions.html" id="reports">Sessions</a>
+          <a href="RepSearchPatient.html" id="appointments">Patients</a>
+          <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
+          <a href="RepSearchNurse.html" id="appointments">Nurses</a>
+        
       </div>
     
 
@@ -64,21 +61,21 @@
         <div class="adminInfo">
           <img src="profile.png" alt="profile-pic">
           <div class="adminNameDiv">
-            <p class="name">Administrator Name</p>
-            <p class="role">Admin</p>
+            <p class="name">Receptionist Name</p>
+            <p class="role">Receptionist</p>
           </div>
         </div>
 
         <div class="menu">
-          <a href="http://127.0.0.1:5500/AdminEmpAccount.html" id="appointments">Account</a>
-          <a href="http://127.0.0.1:5500/AdminEmpInfo.html" id="appointments">Personal Info</a>
-          <a href="http://127.0.0.1:5500/AdminEmpSecurity.html" id="appointments">Security</a>
+          <a href="RepEmpAccount.html" id="appointments">Account</a>
+          <a href="RepEmpInfo.html" id="appointments">Personal Info</a>
+          <a href="RepEmpSecurity.html" id="appointments">Security</a>
          
         </div>
 
         <div class="bar1">
 
-            <div class="div specifier" style="padding-top: 4vh;">
+            <div class="div specifier" style="padding-top: 2vh;font-size: 2.3vh;">
                 <h3 style="margin-left:89vh ; color: #445172;">Security Infomation</h3>  
                 <hr color="#A4AEC7"  width="90%">
             </div>
@@ -86,20 +83,20 @@
                     
                 <div class="firstname">
                    <h2>Method of Sign-In</h2>
-                   <input type="text" placeholder="sample_firstnamehere">
+                   <input type="text" placeholder="Email or Contact Number" >
                 </div>
                  <div class="lastname">
                    <h2>Email/Phone Number</h2>
-                   <input type="text" placeholder="sample_lastnamehere">
+                   <input type="text" placeholder="abc@gmail.com OR 07xxxxxxxx" >
                  </div> 
            </div>
 
-        <div class="div-specifier" style="padding-top: 6vh;">
+        <div class="div-specifier" style="padding-top: 3vh;">
             <hr color="#A4AEC7"  width="90%">
             <h2><b>Two-factor Authentication</b></h2>
 
             <h3 style="padding-left: 4vh;">Add an extra layer of security to your account. To sign in, you'll need to provide a code along with your username and password.</h3>
-            <button type="button">SETUP 2FA</button>
+            <button type="button"><b>SETUP 2FA</b></button>
         </div>
         
 

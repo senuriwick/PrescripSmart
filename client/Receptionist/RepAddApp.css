@@ -259,7 +259,7 @@ body {
   .searchFiles button
   {
     background-color: #0069FF;
-    width:12.4vh;
+    width:14vh;
     height:5.4vh;
     border-radius: 0.5vh;
     margin-left: 1.5vh;
@@ -269,6 +269,7 @@ body {
     font-family: inter;
     Line-height: 1.5vh;
     margin-bottom: 8.9vh;
+    border: none;
   }
   .reg
   {
@@ -288,7 +289,7 @@ body {
   }
   .but
   {
-    Width:55vh;
+    Width:60vh;
     height:5vh;
     padding-top: 0.5vh;
     border-radius: 0.8vh;

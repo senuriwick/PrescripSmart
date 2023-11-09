@@ -1,8 +1,8 @@
 .bar1
 {
   width: 130vh;
-  height:80vh;
-  margin-top: 1vh;
+  height:60vh;
+  margin-top: 2vh;
   background-color: #EFF2FB;
   margin-left: 0.1vh;
   display: flexbox;
@@ -14,6 +14,7 @@
     margin-top: 1vh;
     padding-left: 5vh;
     padding-top: 1vh;
+    font-size: 1.7vh;
     
 }
 .row1 input
@@ -21,8 +22,7 @@
     
     height:4vh;
     width:46.5vh;
-    border-radius: 0.5vh;
-    
+    border-radius: 0.9vh;
     font-size: 1.5vh;
     font-family: inter;
     color: black;
@@ -44,7 +44,7 @@
 {
     width:103vh;
     height:4vh;
-    border-radius: 0.5vh;
+    border-radius: 0.9vh;
     border-color: #44517280;
     font-size: 1.5vh;
     font-family: inter;
@@ -56,11 +56,13 @@
 .div-specifier h3
 {
     color: #445172BF;
+    font-size: 1.8vh;
 }
 .div-specifier h2
 {
     padding-top: 2vh;
     padding-left: 4vh;
+    font-size: 2.5vh;
 }
 .div-specifier button
 {
@@ -72,7 +74,7 @@
     background-color: #388AFF;
     color: white;
     font:Inter;
-    font-weight:600;
     font-size: 1.5vh;
     padding: 1.5vh 4vh;
+    border: none;
 }

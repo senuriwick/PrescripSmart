@@ -5,13 +5,12 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Admin register patient</title>
+  <title>Patient Profile</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="Search.css"/>
   <link rel="stylesheet" href="RegisterPatient.css"/>
-</head>
-<body>
+</head><body>
 
   <div class="content">
     <div class="sideMenu"> 
@@ -31,29 +30,29 @@
       <div class="manageDiv">
         <p class="mainOptions">MANAGE</p>
 
-        <a href="http://127.0.0.1:5500/AdminSearchPatient.html" id="appointments">Patients</a>
-        <a href="http://127.0.0.1:5500/AdminSearchDoctor.html" id="appointments">Doctors</a>
-        <a href="http://127.0.0.1:5500/AdminSearchNurse.html" id="appointments">Nurses</a>
-        <a href="http://127.0.0.1:5500/AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
-        <a href="http://127.0.0.1:5500/AdminSearchHealthSV.html" id="appointments">Health SV</a>
-        <a href="http://127.0.0.1:5500/AdminSearchReceptionist.html" id="appointments">Receptionists</a>
-        <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
-        <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Medications</a>
+        <a href="AdminSearchPatient.html" id="appointments">Patients</a>
+        <a href="AdminSearchDoctor.html" id="appointments">Doctors</a>
+        <a href="AdminSearchNurse.html" id="appointments">Nurses</a>
+        <a href="AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
+        <a href="AdminSearchHealthSV.html" id="appointments">Health SV</a>
+        <a href="AdminSearchReceptionist.html" id="appointments">Receptionists</a>
+        <a href="AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
+        <a href="AdminSearchPharmacist.html" id="appointments">Medications</a>
       </div>
     
 
 
       <div class="othersDiv">
-        <a class="sideMenuTexts">Profile</a>
-        <a class="sideMenuTexts">Billing</a>
-        <a class="sideMenuTexts">Terms of Services</a>
-        <a class="sideMenuTexts">Privacy Policy</a>
-        <a class="sideMenuTexts">Settings</a>
+        <a class="appointments">Profile</a>
+        <a class="appointments">Billing</a>
+        <a class="appointments">Terms of Services</a>
+        <a class="appointments">Privacy Policy</a>
+        <a class="appointments">Settings</a>
       </div>
 
     </div>
 
-    <div class="main"
+    <div class="main">
       <div class="navBar">
         <img src="user.png" alt="user-icon">
         <p>SAMPLE USERNAME HERE</p>
@@ -69,48 +68,48 @@
         </div>
 
         <div class="menu">
-          <a href="http://127.0.0.1:5500/AdminSearchPatient.html" id="appointments">Patients</a>
-          <a href="http://127.0.0.1:5500/AdminSearchDoctor.html" id="appointments">Doctors</a>
-          <a href="http://127.0.0.1:5500/AdminSearchNurse.html" id="appointments">Nurses</a>
-          <a href="http://127.0.0.1:5500/AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
-          <a href="http://127.0.0.1:5500/AdminSearchHealthSV.html" id="appointments">Health SV</a>
-          <a href="http://127.0.0.1:5500/AdminSearchReceptionist.html" id="appointments">Receptionists</a>
-          <a href="http://127.0.0.1:5500/AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
+          <a href="AdminSearchPatient.html" id="prescriptions">Patients</a>
+          <a href="AdminSearchDoctor.html" id="reports">Doctors</a>
+          <a href="AdminSearchNurse.html" id="appointments">Nurses</a>
+          <a href="AdminSearchLabtech.html" id="appointments">Lab Technicians</a>
+          <a href="AdminSearchHealthSV.html" id="appointments">Health SV</a>
+          <a href="AdminSearchReceptionist.html" id="appointments">Receptionists</a>
+          <a href="AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
         </div>
 
 
         <div class="bar1" >
 
             <div class="search patient">
-                <div class="back" style="display: flex; margin-left: -25vh;">
-                    <svg>
+                <div class="back">
+                    
                       <img src="Vector.svg" >
-                    </svg>
-                    <h1 style="padding-top: 3vh; padding-left:1vh ;">Search Patient</h1>
+                    
+                    <h1 >Search Patient</h1>
                 </div>
             </div>
             <div class="bar2">
 
-                <div class="div specifier" style="padding-top: 16vh;">
-                    <h3 style="margin-left:84vh ; color: #445172;">Personal health information</h3>  
+                <div class="div specifier" style="padding-top: 5vh;">
+                    <h3 style="margin-left:84vh ; color: #445172; font-size: 2vh;">Personal information</h3>  
                   <hr color="#445172BF"  width="85%">
-                  </div>
+                </div>
                 <div class="row1">
                     
                         <div class="firstname">
                             <h2>First Name</h2>
-                            <input type="text" placeholder="sample_firstnamehere">
+                            <input type="text" placeholder="Saman">
                         </div>
                           <div class="lastname">
                             <h2>Last Name</h2>
-                            <input type="text" placeholder="sample_lastnamehere">
+                            <input type="text" placeholder="Kumara">
                          </div> 
                 </div>
 
                 <div class="row2">
                     <div class="firstname">
                         <h2>Display Name</h2>
-                        <input type="text" placeholder="sample_displaynamehere">
+                        <input type="text" placeholder="Saman_Kumara">
                     </div>    
 
                 </div>
@@ -118,7 +117,7 @@
                 <div class="row2">
                     <div class="firstname">
                         <h2>Home Address</h2>
-                        <input type="text" placeholder="sample_homeaddresshere">
+                        <input type="text" placeholder="No.10, Galle Road,Colombo">
                     </div>    
 
                 </div>
@@ -141,23 +140,23 @@
                     
                     <div class="firstname">
                         <h2>Date of Birth</h2>
-                        <input type="text" placeholder="DD/MM/YYYY">
+                        <input type="date" placeholder="DD/MM/YYYY">
                     </div>
                       <div class="lastname">
                         <h2>Age</h2>
-                        <input type="text" placeholder="34">
+                        <input type="number" placeholder="34">
                      </div> 
                 </div>
 
                 <div class="div specifier" style="margin-top: 5vh;">
-                  <h3 style="margin-left:84vh ; color: #445172;">Personal health information</h3>  
+                  <h3 style="margin-left:84vh ; color: #445172;font-size: 2vh; width:25vh;">Personal health information</h3>  
                 <hr color="#445172BF"  width="85%">
                 </div>
 
                 <div class="row2">
                     <div class="firstname">
                         <h2>Gender</h2>
-                        <input type="text" placeholder="Male">
+                        <input type="text" placeholder="Male/Female">
                     </div>    
 
                 </div>
@@ -175,14 +174,14 @@
                 </div>
 
                 <div class="div specifier" style="margin-top: 5vh;">
-                    <h3 style="margin-left:82vh ; color: #445172;">Emergency contact information </h3>  
+                    <h3 style="margin-left:82vh ; color: #445172;font-size: 2vh;">Emergency contact information </h3>  
                   <hr color="#445172BF" width="85%">
                   </div>
 
                 <div class="row2">
                     <div class="firstname">
                         <h2>Emergency Contact Person Name</h2>
-                        <input type="text" placeholder="sample_namehere">
+                        <input type="text" placeholder="Saman Kumara">
                     </div>    
 
                 </div>

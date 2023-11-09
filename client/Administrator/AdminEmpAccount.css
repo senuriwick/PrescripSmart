@@ -1,11 +1,235 @@
+body {
+    font-family: inter ;
+    margin: 0;
+  }
+  
+  
+  .content {
+    display: flex;
+  }
+  
+  
+  .sideMenu
+  {
+    width: 26vh;
+    height: auto;
+    background-color: rgba(7, 28, 74, 1);
+    overflow: hidden;
+  }
+  
+  
+  .sideMenuTexts {
+    font-size: 1.7vh;
+    color: #ffffff;
+    line-height: 1.5vh;
+    font-family: inter;
+  }
+  
+  .logoDiv {
+    align-items: center;
+    margin-bottom: 4vh;
+  }
+  
+  .logoImg {
+    display: block;
+    margin: auto;
+    height: 8vh;
+    padding-top: 3vh;
+  }
+  
+  
+  .mainOptions {
+    color: white;
+    font-size: 2.2vh;
+    font-weight: bold;
+    font-family: inter;
+  }
+  
+  
+  .sideMenu p {
+    padding-left: 3vh;
+  }
+  
+  
+  .adminDiv {
+    border-bottom: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+  }
+  
+  
+  .profile {
+    background-color: rgba(53, 70, 109, 1);
+    padding: 0.2vh;
+    margin-bottom: 2.5vh;
+  }
+  
+  
+  .profile p
+  {
+    color: #ffffff;
+    font-size: 1.8vh;
+    font-weight: bold;
+    font-family: inter;
+  }
+  
+  
+  
+  .manageDiv {
+    
+    border-bottom: solid;
+    border-top: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+    padding-bottom: 1vh;
+  }
+  
+  
+  .manageDiv .mainOptions
+  {
+    margin-bottom: 5vh;
+  }
+  
+  .manageDiv a
+  {
+      display:block;
+      padding-left: 2.3vh;
+      line-height: 4.3vh;
+      font-size: 1.9vh;
+      font-family: inter;
+      color: #ffffff;
+      text-decoration: none;
+      
+  
+  
+      
+  
+  }
+  
+  .othersDiv {
+    
+    padding-top: 2vh;
+    font-size: 1.9vh;
+    line-height: 5vh;
+    border-bottom: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+    padding-bottom: 3vh;
+    color: white;
+  }
+  .othersDiv a
+  {
+    font-size: 1.9vh;
+    display: block;
+    line-height: 4.3vh;
+    padding-left: 2.3vh;
+  
+  }
+  
+  
+  
+  .main {
+    flex: 1;
+    
+  
+  }
+  
+  .navBar {
+    background-color: rgba(138, 150, 181, 1);
+    height: 7vh;
+    
+  }
+  
+  .navBar p {
+    margin: 0;
+    float: right;
+    padding: 2.5vh 0vh;
+    color: #ffffff;
+    font-size: 1.7vh;
+    font-family: inter;
+  }
+  
+  .navBar img {
+    float: right;
+    padding: 1.3vh 2vw;
+    height: 4vh;
+  }
+  
+  .adminInfoContainer {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 3vh;
+  }
+  
+  
+  .adminInfo {
+    display: flex;
+  }
+  
+  
+  .adminInfo img {
+    height: 10vh;
+    margin-right: 1.5vh;
+  }
+  
+  
+  .adminNameDiv {
+    padding: 0.01vh;
+  }
+  
+  
+  .adminInfo .name {
+    font-size: 2.5vh;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: rgba(68, 81, 114, 1);
+    font-family: inter;
+  }
+  
+  .adminInfo .role {
+    font-size: 1.8vh;
+    margin-top: 0vh;
+    padding-top: 0;
+  }
+  
+  
+  .menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
+  
+  .menu a {
+    margin-right: 7.2vh;
+    font-size: 2vh;
+    font-family: inter;
+    margin-bottom: 1vh;
+    color: #445172BF;
+    text-decoration: none;
+  }
+  menu a:active
+  {
+    color: #0069FF;
+  }
+   a:hover
+  {
+    color:#17058aee;
+  }
+  
+
 .bar1
 {
   width: 130vh;
-  height:80vh;
+  height:75vh;
   margin-top: 3vh;
   background-color: #EFF2FB;
   margin-left: 0.1vh;
   display: flexbox;
+  margin-bottom: 15vh;
 }
 .row1
 {
@@ -14,6 +238,7 @@
     margin-top: 1vh;
     padding-left: 5vh;
     padding-top: 1vh;
+    font-size: 1.5vh;
     
 }
 .row1 input
@@ -23,7 +248,7 @@
     width:46.5vh;
     border-radius: 0.5vh;
     border-color: #E3E8F4;
-    font-size: 1.5vh;
+    font-size: 1.6vh;
     font-family: inter;
     color: black;
     border-radius: 0.5vh;
@@ -39,6 +264,7 @@
 {
     padding-left: 5vh;
     padding-top: 3vh;
+    font-size: 1.5vh;
 }
 .row2 input
 {
@@ -52,4 +278,17 @@
     border-radius: 0.5vh;
     padding-left: 3vh;
     border-color: #E3E8F4;
+}
+.savebut button
+{
+  background-color: #0069FF;
+    width:26vh;
+    height:5.5vh;
+    border-radius: 0.5vh;
+    margin-left: 48vh;
+    color: white;
+    font-Size: 1.7vh;
+    font-family: inter;
+    border: none;
+    margin-top: 8vh;
 }
