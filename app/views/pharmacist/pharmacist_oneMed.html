@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Pharmacist Page</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"
+    />
+    <link rel="stylesheet" href="./styles/pharmacist_oneMed.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the input element and the button
+        const textBox = document.getElementById("myTextBox");
+        const button = document.querySelector(".blue-button");
+
+        // Add a click event listener to the button
+        button.addEventListener("click", function () {
+          // Get the value of the input
+          const inputValue = textBox.value;
+
+          // Check if the value is "125666"
+          if (inputValue === "125666") {
+            // Redirect to sample.html
+            window.location.href = "sample.html";
+          } else {
+            // Redirect to sample2.html
+            window.location.href = "pharmacist_medNotFound.html";
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="content">
+      <div class="sideMenu">
+        <div class="logoDiv">
+          <img class="logoImg" src="./assets/logo.png" />
+        </div>
+
+        <div class="patientDiv">
+          <p class="mainOptions">PHARMACIST</p>
+
+          <div class="profile">
+            <p>username</p>
+          </div>
+        </div>
+
+        <div class="manageDiv">
+          <p class="mainOptions">MANAGE</p>
+
+          <a href="pharmacist_dashboard.html" class="sideMenuLink">
+            <p class="sideMenuTexts">Patients</p>
+          </a>
+          <div class="medicationMenu">
+            <p class="sideMenuTexts">Medications</p>
+          </div>
+
+          <a href="" class="sideMenuLink">
+            <p class="sideMenuTexts">Profile</p>
+          </a>
+        </div>
+
+        <div class="othersDiv">
+          <p class="sideMenuTexts">Terms of Services</p>
+          <p class="sideMenuTexts">Privacy Policy</p>
+          <p class="sideMenuTexts">Settings</p>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="navBar">
+          <img src="./assets/user.png" alt="" />
+          <p>SAMPLE USERNAME HERE</p>
+        </div>
+
+        <div class="patientInfoContainer">
+          <div class="patientInfo">
+            <img src="./assets/profile.png" alt="" />
+            <div class="patientNameDiv">
+              <p class="name">Pharmacist Name</p>
+              <p class="role">Pharmacist</p>
+            </div>
+          </div>
+
+          <div class="menu">
+            <p id="patients">Patients</p>
+            <p id="medications">Medications</p>
+          </div>
+        </div>
+        <div><p class="search-patient">Search Medication</p></div>
+        <div class="container">
+          <div>
+            <input
+              type="text"
+              id="myTextBox"
+              name="textbox"
+              placeholder="Enter medication name or ID"
+            />
+          </div>
+          <div><button class="blue-button">Search</button></div>
+        </div>
+
+        <div class="line"></div>
+        <div class="container1">
+          <p class="item">#1245866</p>
+          <p class="docter-name">Medication Name Here</p>
+          <p class="patient-id">
+            Description here
+            <br />
+          </p>
+          <a href="pharmacist_updateOneMed.html">
+            <button class="view">Manage</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
