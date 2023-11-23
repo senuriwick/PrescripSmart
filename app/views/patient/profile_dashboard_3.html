@@ -6,10 +6,10 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Account</title>
+    <title>Security</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="\public\css\patient\profile_dashboard.css" />
+    <link rel="stylesheet" href="\public\css\patient\profile_dashboard_3.css" />
 </head>
 
 <body>
@@ -68,37 +68,25 @@
 
                 <div class="inquiriesDiv">
                     <h1>Patient ID: #1248623</h1>
-                    <p class="sub1" style="font-weight: bold;">Account Information</p>
+                    <p class="sub1" style="font-weight: bold;">Security Information</p>
                     <div class="accInfo">
                         <div class="parallel">
                         <div class="input-group">
-                            <label for="name">Username</label>
+                            <label for="name">Method of Sign-In</label>
                             <input type="text" id="name" class="input" style="display: inline-block;">
                         </div>
                         <div class="input-group">
-                            <label for="email">Associated Email Address/Phone Number</label>
+                            <label for="email">Email/Phone Number</label>
                             <input type="text" id="email" class="input" style="display: inline-block;">
                         </div>
                         </div>
-                        <div class="input-group">
-                            <label for="password">Current Password</label>
-                            <input type="password" id="password" class="input">
-                        </div>
                     </div>
 
-                    <p class="sub2" style="font-weight: bold;">Password Change</p>
-                    <div class="accInfo">
-                        <div class="parallel">
-                        <div class="input-group">
-                            <label for="newpassword">New Password</label>
-                            <input type="password" id="pass" class="input" style="display: inline-block;">
-                        </div>
-                        <div class="input-group">
-                            <label for="newconfirmpassword">Confirm Password</label>
-                            <input type="password" id="cofirmpass" class="input" style="display: inline-block;">
-                        </div>
-                        </div>
-                        <button type="button" id="submit">SAVE CHANGES</button>
+                    <div>
+                        <h4>Two-factor Authentication</h3>
+                        <p class="para">Add an extra layer of security to your account. To sign in, you'll need to provide a code along with your username and password.</p>
+                        <button type="button" id="submit">SETUP 2FA</button>
+                        <p><br></p>
                     </div>
                 </div>
                 
