@@ -14,17 +14,20 @@
 <div class="loginPage">
   <div class="upperRectangle">
   </div>
+
   <div class="formContainer">
     <div class="loginForm">
       <p class="login-to-your-account">Login to your account</p>
-      <form action="your_login_action.php" method="post">
+
+      <form action="../server/login.php" method="post">
         <div class="emailContainer">
-          <input type="text" id="first-name" name="first-name" placeholder="Enter your email/phone number" class="inputfield">
+          <input type="text" id="email" name="email" placeholder="Enter your email/phone number" class="inputfield">
           <p class="inputLabel1">
             <span class="inputLabel1-0">email/phone number </span>
             <span class="inputLabel1-1">*</span>
           </p>
         </div>
+
         <div class="passwordContainer">
           <input type="password" id="password" name="password" placeholder="Enter your password" class="inputfield">
           <p class="inputLabel2">
@@ -34,6 +37,7 @@
         </div>
         <button type="submit" class="loginButton">Log In</button>
       </form>
+
       <a href="forgot_password.html" class="forgot-password">Forgot Password?</a>
     </div>
     <p class="dont-have-an-account-sign-up-here">

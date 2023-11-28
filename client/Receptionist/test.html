@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 14px 16px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .underline {
+            position: relative;
+        }
+
+        .underline:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .underline:hover:after,
+        .underline.active:after {
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="underline">Home</a>
+    <a href="#" class="underline">About</a>
+    <a href="#" class="underline">Services</a>
+    <a href="#" class="underline">Contact</a>
+</nav>
+
+<script>
+    // Add the "active" class to the clicked menu item
+    document.addEventListener("click", 
+        function () 
+     {
+        var menuItems = document.querySelectorAll('.underline');
+        menuItems.forEach(function (item) 
+        {
+            item.addEventListener('click', function () 
+            {
+                menuItems.forEach(function (otherItem) 
+                {
+                    otherItem.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+     });
+</script>
+
+</body>
+</html>

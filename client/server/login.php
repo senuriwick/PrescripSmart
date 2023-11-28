@@ -6,15 +6,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $mysqli = require __DIR__ . "/database.php";
     
-    $sql = sprintf("SELECT * FROM patient
-                    WHERE email = '%s'",
+    $sql = sprintf("SELECT * FROM users
+                    WHERE email_address = '%s'",
                    $mysqli->real_escape_string($_POST["email"]));
     
-    $result = $mysqli->query($sql);
+    $result = $mysqli->query($sql);//executes the defined query and stores in result
     
-    $user = $result->fetch_assoc();
+    $user = $result->fetch_assoc();//fetches data from the result object
     
-    if ($patient) {
+    if ($user) {
         
         if (password_verify($_POST["password"], $user["password_hash"])) {
             
@@ -22,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             session_regenerate_id();
             
-            $_SESSION["user_id"] = $patient["id"];
+            $_SESSION["user_id"] = $user["email_address"];
             
-            header("Location: index.php");
+            header("Location: ../Administrator/AdminSearchPatient.html");
             exit;
         }
     }
@@ -32,35 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $is_invalid = true;
 }
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-</head>
-<body>
-    
-    <h1>Login</h1>
-    
-    <?php if ($is_invalid): ?>
-        <em>Invalid login</em>
-    <?php endif; ?>
-    
-    <form method="post">
-        <label for="email">email</label>
-        <input type="email" name="email" id="email"
-               value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
-        
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        
-        <button>Log in</button>
-    </form>
-    
-</body>
-</html>
 
 
 

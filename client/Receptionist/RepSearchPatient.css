@@ -38,12 +38,6 @@ body {
   }
   
   
-  .mainOptions {
-    color: white;
-    font-size: 2.2vh;
-    font-weight: bold;
-    font-family: inter;
-  }
   
   
   .sideMenu p {
@@ -72,45 +66,58 @@ body {
     font-weight: bold;
     font-family: inter;
   }
-  
-  
+
   
   .manageDiv {
+    border-top: solid;
+    border-color: #ffffff;
     
-    border-bottom: solid;
     border-color: rgba(217, 217, 217, 0.75);
     border-width: 0.1vh;
     padding-bottom: 1vh;
+    padding-top: 3vh;
+    
   }
   
-  
-  .manageDiv .mainOptions
+  .mainOptions
   {
-    margin-bottom: 5vh;
+    display: block;
+    background-color: rgba(7, 28, 74, 1);
+    color: white;
+    border: none;
+    padding-left: 3.5vh;
+    font-family: inter;
   }
-  
-  .manageDiv a
+
+  .submenus
   {
-      display:block;
-      padding-left: 2.3vh;
-      line-height: 4.3vh;
-      font-size: 1.9vh;
-      font-family: inter;
-      color: #ffffff;
-      text-decoration: none;
-      
-  
-  
-      
-  
+    display: none;
+    padding-top: 4vh;
+    margin-bottom: 6vh;
+    
+   
   }
+
+  .submenus a
+  {
+    display: block;
+    padding-left: 2.3vh;
+    line-height: 5vh;
+    font-size: 1.9vh;
+    font-family: inter;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+
+
   
   .othersDiv {
     
     padding-top: 2vh;
     font-size: 1.9vh;
     line-height: 5vh;
-    border-bottom: solid;
+    border-top: solid;
     border-color: rgba(217, 217, 217, 0.75);
     border-width: 0.1vh;
     padding-bottom: 3vh;
@@ -209,18 +216,42 @@ body {
     margin-bottom: 1vh;
     color: rgba(164, 174, 199, 1);
     text-decoration: none;
+    
+
   }
   menu a:active
   {
     color: #0069FF;
+    border-bottom: #0069FF solid 5px;
+    
   }
    a:hover
   {
     color:#17058aee;
+    
+   
+  }
+  .appointments:after
+   {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  .appointments:hover:after,
+  .appointments.active:after
+  {
+    transform: scaleX(1);
   }
   
   
-  .searchDiv {
+  .searchDiv 
+  {
     margin-top: 4vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 0.5vh;
@@ -230,13 +261,15 @@ body {
   }
   
   
-  .searchDiv h1 {
+  .searchDiv h1 
+  {
     font-weight: bold;
     font-family: inter;
     
     color: rgba(68, 81, 114, 1);
     font-size: 3.6vh;
   }
+
   .searchFiles
   {
     padding:0.5vh;
@@ -244,6 +277,7 @@ body {
     border: none;
     
   }
+
   .searchFiles input
   {
     font-size: 2.1vh;
@@ -256,6 +290,7 @@ body {
     padding-left: 15px;
     
   }
+
   .searchFiles button
   {
     background-color: #0069FF;
@@ -271,6 +306,7 @@ body {
     margin-bottom: 8.9vh;
     border: none;
   }
+
   .reg
   {
     margin-left: 35vh;
@@ -285,8 +321,8 @@ body {
     font-family: inter;
     padding-top: 1vh;
     border-radius: 1.7vh;
-   
   }
+
   .but
   {
     Width:55vh;
@@ -297,13 +333,14 @@ body {
     color: white;
     font-size: 2.3vh;
     font-weight: 30vh;
-  
   }
+
   but :active
   {
     background-color:#006aff50 ;
   
   }
+
   .addapp
   {
     
@@ -314,6 +351,7 @@ body {
     height: 11vh;
     border-radius: 1vh;
   }
+
   .addapp p
   {
     margin-left: 11vh;
@@ -321,21 +359,25 @@ body {
     margin-top: -5vh;
     font-size: 1.5vh;
   }
+
   .newapp
   {
     display: flex;
 
   }
+
   .newapp img{
     padding: 3vh 3vh;
     width: 5vh;
     height: 5vh;
   }
+
   .newapp a{
     padding-top: 3vh;
     color: #0069FF;
     text-decoration:none;
   }
+
   .regbut
   {
     background-color: #0069FF;

@@ -29,24 +29,24 @@
 
 
       <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
+        <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i id="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
 
-        <a href="RepAddApp.html" id="prescriptions">Appointments</a>
-        <a href="RepManageSessions.html" id="reports">Sessions</a>
-          <a href="RepSearchPatient.html" id="appointments">Patients</a>
-          <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
-          <a href="RepSearchNurse.html" id="appointments">Nurses</a>
-        
-      </div>
-    
+        <div class="submenus" id="submenus">
+         <a href="RepAddApp.html" id="prescriptions">Appointments</a>
+         <a href="RepManageSessions.html" id="reports">Sessions</a>
+         <a href="RepSearchPatient.html" id="appointments">Patients</a>
+         <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
+         <a href="RepSearchNurse.html" id="appointments">Nurses</a>
 
+         <div class="othersDiv">
+          <a class="sideMenuTexts">Profile</a>
+          <a class="sideMenuTexts">Billing</a>
+          <a class="sideMenuTexts">Terms of Services</a>
+          <a class="sideMenuTexts">Privacy Policy</a>
+          <a class="sideMenuTexts">Settings</a>
+        </div>
+        </div>
 
-      <div class="othersDiv">
-        <a class="sideMenuTexts">Profile</a>
-        <a class="sideMenuTexts">Billing</a>
-        <a class="sideMenuTexts">Terms of Services</a>
-        <a class="sideMenuTexts">Privacy Policy</a>
-        <a class="sideMenuTexts">Settings</a>
       </div>
 
     </div>

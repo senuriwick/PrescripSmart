@@ -8,6 +8,7 @@
   <title>Receptionist Search Doctor</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="RepSearchDoctor.css"/>
 </head>
 <body>
@@ -28,24 +29,24 @@
 
 
       <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
+        <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i class="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
 
-        <a href="RepAddApp.html" id="prescriptions">Appointments</a>
-        <a href="RepManageSessions.html" id="reports">Sessions</a>
-          <a href="RepSearchPatient.html" id="appointments">Patients</a>
-          <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
-          <a href="RepSearchNurse.html" id="appointments">Nurses</a>
-       
-      </div>
-    
+        <div class="submenus" class="submenus">
+         <a href="RepAddApp.html" class="prescriptions">Appointments</a>
+         <a href="RepManageSessions.html" class="reports">Sessions</a>
+         <a href="RepSearchPatient.html" class="appointments">Patients</a>
+         <a href="RepSearchDoctor.html" class="appointments">Doctors</a>
+         <a href="RepSearchNurse.html" class="appointments">Nurses</a>
 
+         <div class="othersDiv">
+          <a class="sideMenuTexts">Profile</a>
+          <a class="sideMenuTexts">Billing</a>
+          <a class="sideMenuTexts">Terms of Services</a>
+          <a class="sideMenuTexts">Privacy Policy</a>
+          <a class="sideMenuTexts">Settings</a>
+        </div>
+        </div>
 
-      <div class="othersDiv">
-        <a class="sideMenuTexts">Profile</a>
-        <a class="sideMenuTexts">Billing</a>
-        <a class="sideMenuTexts">Terms of Services</a>
-        <a class="sideMenuTexts">Privacy Policy</a>
-        <a class="sideMenuTexts">Settings</a>
       </div>
 
     </div>
@@ -66,20 +67,21 @@
         </div>
 
         <div class="menu">
-          <a href="RepAddApp.html" id="prescriptions">Appointments</a>
-          <a href="RepManageSessions.html" id="reports">Sessions</a>
-          <a href="RepSearchPatient.html" id="appointments">Patients</a>
-          <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
-          <a href="RepSearchNurse.html" id="appointments">Nurses</a>
+          <a href="RepAddApp.html" class="appointments active">Appointments</a>
+          <a href="RepManageSessions.html" class="appointments">Sessions</a>
+          <a href="RepSearchPatient.html" class="appointments">Patients</a>
+          <a href="RepSearchDoctor.html" class="appointments">Doctors</a>
+          <a href="RepSearchNurse.html" class="appointments">Nurses</a>
 
         </div>
 
         <div class="searchDiv">
             <h1>Search Doctor</h1>
             <div class="searchFiles">
-              <input type="search" placeholder="Enter Doctor name/ID here">
+              <input type="search" placeholder="Enter Doctor name/class here">
               <button type="search"><b>SEARCH</b></button> 
             </div>
 
             <button class="regbut"><b>Register new Doctor</b></button>
         </div>
+        <script src="script.js"></script>
