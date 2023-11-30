@@ -6,7 +6,7 @@ $database = "prescripsmart";
 
 // Check if the labTech_ID is provided in the URL
 if (isset($_GET['id'])) {
-    $labTech_ID = $_GET['id'];
+    $nurse_ID = $_GET['id'];
 
     $connection = new mysqli($servername, $username, $password, $database);
     
@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     }
 
     
-    $sql = "SELECT * FROM lab_technician WHERE lab_tec_id = $labTech_ID";
+    $sql = "SELECT * FROM nurse WHERE nurse_id = $nurse_ID";
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
         $row = false;
     }
 } else {
-    header("Location: lab_technicians.php");
+    header("Location: AdminSearchNurse.php");
     exit();
 }
 ?>
@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
                 <a href="#patients" class="active">Patients</a>
                 <a href="#ongoingSessions">Doctors</a>
                 <a href="sideMenuTexts">Nurses</a>
-                <a href="lab_techniciant.php">Lab Technician</a>
+                <a href="sideMenuTexts">Lab Technician</a>
                 <a href="sideMenuTexts">Health Supervisor</a>
                 <a href="sideMenuTexts">Receptionist</a>
                 <a href="sideMenuTexts">Pharmacist</a>
@@ -104,7 +104,7 @@ if (isset($_GET['id'])) {
                     <p><a href="#">Patients</a></p>
                         <p><a href="#">Doctors</a></p>
                         <p><a href="#">Nurses</a></p>
-                        <p><a href="lab_technicians.php">Lab Technicians</a></p>
+                        <p><a href="#">Lab Technicians</a></p>
                         <p><a href="#">Health SV</a></p>
                         <p><a href="#">Receptionists</a></p>
                         <p><a href="#">Pharmacist</a></p>
@@ -113,7 +113,7 @@ if (isset($_GET['id'])) {
                     <div class="doctorprofile">
                     <?php if ($row) { ?>
                         <div class="empid">
-                            Employee Id: #<?php echo $row['lab_tec_id']; ?>
+                            Employee Id: #<?php echo $row['nurse_id']; ?>
                             <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />
