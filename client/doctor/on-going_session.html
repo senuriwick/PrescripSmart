@@ -22,7 +22,7 @@
                 <img class="logoImg" src="Untitled design (5) copy 2.png" />
             </div>
 
-            <div class="userDiv">
+            <!-- <div class="userDiv">
                 <p class="mainOptions">
                     <Datag>DOCTOR</Datag>
                 </p>
@@ -30,7 +30,7 @@
                 <div class="profile">
                     <p>username</p>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="manageDiv">
