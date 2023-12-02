@@ -38,9 +38,15 @@ body {
 }
 
 
+.mainOptions {
+  color: white;
+  font-size: 2.2vh;
+  font-weight: bold;
+  font-family: inter;
+}
 
 
-.sideMenu p {
+.sideMenu a {
   padding-left: 3vh;
 }
 
@@ -68,18 +74,19 @@ body {
 }
 
 
+
 .manageDiv {
+  
   border-top: solid;
   border-color: #ffffff;
-  
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 1vh;
   padding-top: 3vh;
-  
 }
 
-.mainOptions
+
+.manageDiv .mainOptions
 {
   display: block;
   background-color: rgba(7, 28, 74, 1);
@@ -89,6 +96,16 @@ body {
   font-family: inter;
 }
 
+.manageDiv a
+{
+    display:block;
+    padding-left: 2.3vh;
+    line-height: 6vh;
+    font-size: 1.9vh;
+    font-family: inter;
+    color: #ffffff;
+    text-decoration: none;
+}
 .submenus
 {
   display: none;
@@ -102,7 +119,7 @@ body {
 {
   display: block;
   padding-left: 2.3vh;
-  line-height: 5vh;
+  line-height: 6vh;
   font-size: 1.9vh;
   font-family: inter;
   color: #ffffff;
@@ -110,14 +127,12 @@ body {
 }
 
 
-
-
 .othersDiv {
   
   padding-top: 2vh;
   font-size: 1.9vh;
-  line-height: 5vh;
-  border-top: solid;
+  line-height: 6vh;
+  border-bottom: solid;
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 3vh;
@@ -127,10 +142,11 @@ body {
 {
   font-size: 1.9vh;
   display: block;
-  line-height: 5vh;
+  line-height: 6vh;
   padding-left: 2.3vh;
 
 }
+
 
 
 

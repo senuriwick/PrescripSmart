@@ -8,6 +8,7 @@
   <title>Nurse Profile</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="Search.css"/>
   <link rel="stylesheet" href="RegisterNurse.css"/>
 </head>
@@ -20,18 +21,10 @@
           <img class="logoImg" src="Untitled design (5).png"/>
       </div>
 
-      <div class="patientDiv">
-        <p class="mainOptions">ADMINISTRATOR</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div>
-
 
       <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
-
+        <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i id="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
+        <div class="submenus" id="submenus">
         <a href="AdminSearchPatient.html" id="appointments">Patients</a>
         <a href="AdminSearchDoctor.html" id="appointments">Doctors</a>
         <a href="AdminSearchNurse.html" id="appointments">Nurses</a>
@@ -40,7 +33,7 @@
         <a href="AdminSearchReceptionist.html" id="appointments">Receptionists</a>
         <a href="AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
         <a href="AdminSearchPharmacist.html" id="appointments">Medications</a>
-      </div>
+      
     
 
 
@@ -51,6 +44,8 @@
         <a class="sideMenuTexts">Privacy Policy</a>
         <a class="sideMenuTexts">Settings</a>
       </div>
+    </div>
+  </div>
 
     </div>
 
@@ -101,18 +96,18 @@
                     
                         <div class="firstname">
                             <h2>First Name</h2>
-                            <input type="text" placeholder= "Saman">
+                            <input type="text" placeholder= "Enter Your First Name">
                         </div>
                           <div class="lastname">
                             <h2>Last Name</h2>
-                            <input type="text" placeholder="Kumara">
+                            <input type="text" placeholder="Enter Your Last Name">
                          </div> 
                 </div>
 
                 <div class="row2">
                     <div class="firstname">
                         <h2>Display Name</h2>
-                        <input type="text" placeholder="Saman_Kumara">
+                        <input type="text" placeholder="Enter Your Display Name">
                     </div>    
 
                 </div>
@@ -123,7 +118,7 @@
                 <div class="row2">
                     <div class="firstname">
                         <h2>Home Address</h2>
-                        <input type="text" placeholder="No.75, Galle road, Colombo 07">
+                        <input type="text" placeholder="Enter Your Home Address">
                     </div>    
 
                 </div>
@@ -134,11 +129,11 @@
                     
                     <div class="firstname">
                         <h2>National Identity Card Number</h2>
-                        <input type="text" placeholder="xxxxxxxxxxxx">
+                        <input type="text" placeholder="Enter Your NIC Number">
                     </div>
                       <div class="lastname">
                         <h2>Contact Number</h2>
-                        <input type="text" placeholder="07xxxxxxxx">
+                        <input type="text" placeholder="Enter Your Contact Number">
                      </div> 
                 </div>
 
@@ -146,11 +141,11 @@
                     
                     <div class="firstname">
                         <h2>Nurse Registration No.</h2>
-                        <input type="text" placeholder="EC/22202">
+                        <input type="text" placeholder="Enter Your Registration Number">
                     </div>
                       <div class="lastname">
                         <h2>Qualifications</h2>
-                        <input type="text" placeholder="Qualifications Here">
+                        <input type="text" placeholder="Enter Your Qualifications Here">
                      </div> 
                 </div>
 
@@ -160,11 +155,11 @@
                     
                     <div class="firstname">
                         <h2>Department</h2>
-                        <input type="text" placeholder="Eg - OPD">
+                        <input type="text" placeholder="Enter Your Department">
                     </div>
                       <div class="lastname">
                         <h2>Specialization(If any)</h2>
-                        <input type="text" placeholder="Any specialization Here">
+                        <input type="text" placeholder="Any Specialization Here">
                      </div> 
                 </div>
 
@@ -177,21 +172,7 @@
                   
 
                 </div>
-                <script>
-                  let popup = document.getElementById("popup")
-                  function openPopup()
-                  {
-                    popup.classList.add("open-popup");
-
-                  }
-                  function closePopup()
-                  {
-                    popup.classList.remove("open-popup");
-                  }
-
-                </script>
-
-               
+                
 
                
 
@@ -203,3 +184,5 @@
 
 
         </div>
+        <script src="../Receptionist/script.js"></script>
+               

@@ -31,9 +31,9 @@ if ( ! preg_match("/[0-9]/", $_POST["password"])) {
 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-$mysqli = require __DIR__ . "/database.php";
+$mysqli = require __DIR__ . "../server/database.php";
 
-$sql = "INSERT INTO admins (first_name,last_name, email_address, password)
+$sql = "INSERT INTO receptionists (first_name,last_name, email_address, password)
         VALUES (?, ?, ?, ?)";
         
 $stmt = $mysqli->stmt_init();

@@ -5,11 +5,11 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Receptionist Search Doctor</title>
+  <title>Receptionist Add appointmnet</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="RepSearchDoctor.css"/>
+  <link rel="stylesheet" href="RepAddApp.css"/>
 </head>
 <body>
 
@@ -19,16 +19,15 @@
           <img class="logoImg" src="Untitled design (5).png"/>
       </div>
 
-
       <div class="manageDiv">
         <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i id="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
 
         <div class="submenus" id="submenus">
          <a href="RepAddApp.html" id="prescriptions">Appointments</a>
          <a href="RepManageSessions.html" id="reports">Sessions</a>
-         <a href="RepSearchPatient.html" id="appointment">Patients</a>
-         <a href="RepSearchDoctor.html" id="appointment">Doctors</a>
-         <a href="RepSearchNurse.html" id="appointment">Nurses</a>
+         <a href="RepSearchPatient.html" id="appointments">Patients</a>
+         <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
+         <a href="RepSearchNurse.html" id="appointments">Nurses</a>
 
          <div class="othersDiv">
           <a class="sideMenuTexts">Profile</a>
@@ -49,7 +48,7 @@
         <p>SAMPLE USERNAME HERE</p>
       </div>  
 
-      <di class="adminInfoContainer">
+      <div class="adminInfoContainer">
         <div class="adminInfo">
           <img src="profile.png" alt="profile-pic">
           <div class="adminNameDiv">
@@ -59,23 +58,39 @@
         </div>
 
         <div class="menu">
-          <a href="RepAddApp.html" class="appointments active">Appointments</a>
-          <a href="RepManageSessions.html" class="appointments">Sessions</a>
-          <a href="RepSearchPatient.html" class="appointments">Patients</a>
-          <a href="RepSearchDoctor.html" class="appointments">Doctors</a>
-          <a href="RepSearchNurse.html" class="appointments">Nurses</a>
+            <a href="RepAddApp.html" id="prescriptions">Appointments</a>
+            <a href="RepManageSessions.html" id="reports">Sessions</a>
+            <a href="RepSearchPatient.html" id="appointments">Patients</a>
+            <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
+            <a href="RepSearchNurse.html" id="appointments">Nurses</a>
 
         </div>
 
         <div class="searchDiv">
-            <h1>Search Doctor</h1>
-            <div class="searchFiles">
-              <input type="search" placeholder="Enter Doctor name/class here">
-              <button type="search"><b>SEARCH</b></button> 
-            </div>
-
-            <button class="regbut"><b>Register new Doctor</b></button>
+          <h1>Add New Appointment</h1>
+          <div class="searchFiles">
+            <input type="search" placeholder="Enter doctor name or ID here">
+            <button type="search"><b>SEARCH</b></button>
+            
+            '
+            
+          </div>
         </div>
-        <script src="script.js"></script>
-      </body>
-      </html>
+
+
+        
+
+
+      </div>
+
+
+      
+
+
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+
+
+</body>

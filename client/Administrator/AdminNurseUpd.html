@@ -8,6 +8,7 @@
   <title>Register a Nurse</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="RegisterActor.css"/>
   <link rel="stylesheet" href="Search.css"/>
 </head>
@@ -19,17 +20,10 @@
           <img class="logoImg" src="Untitled design (5).png"/>
       </div>
 
-      <div class="patientDiv">
-        <p class="mainOptions">ADMINISTRATOR</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div>
-
 
       <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
+        <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i id="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
+        <div class="submenus" id="submenus">
 
         <a href="AdminSearchPatient.html" id="appointments">Patients</a>
         <a href="AdminSearchDoctor.html" id="appointments">Doctors</a>
@@ -40,7 +34,7 @@
         <a href="AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
         <a href="AdminSearchPharmacist.html" id="appointments">Medications</a>
         
-      </div>
+     
     
 
 
@@ -51,6 +45,8 @@
         <a class="appointments">Privacy Policy</a>
         <a class="appointments">Settings</a>
       </div>
+    </div>
+  </div>
 
     </div>
 
@@ -92,14 +88,14 @@
               <h3>first name</h3>
               <p style="color: red;">*</p>
             </div>
-              <input type="text" placeholder="Enter nurse first name">
+              <input type="text" placeholder="Enter Your First Name">
           </div>
             <div class="lastname">
               <div class="req">
                 <h3>last name</h3>
                 <p style="color: red;">*</p>
               </div>
-              <input type="text" placeholder="Enter nurse last name">
+              <input type="text" placeholder="Enter Your Last Name">
            </div>
           </div>
           
@@ -107,14 +103,14 @@
           <div class="top2">
               <div class="email">
                   <h3>email address</h3>
-                  <input type="email" placeholder="Enter nurse email address">
+                  <input type="email" placeholder="Enter Your Email Address">
               </div>
                 <div class="phone">
                   <div class="req">
                     <h3>contact number</h3>
                     <p style="color: red;">*</p>
                   </div>
-                  <input type="text" placeholder="Enter nurse phone number">
+                  <input type="text" placeholder="Enter Your Phone Number">
                </div>
           </div>
           <div class="top3">
@@ -133,5 +129,6 @@
   
 
       </div>
+      <script src="../Receptionist/script.js"></script>
     </html>
         

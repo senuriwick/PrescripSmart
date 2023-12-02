@@ -8,6 +8,7 @@
   <title>Employee Account Information</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="AdminEmpAccount.css"/>
 </head>
 
@@ -19,18 +20,12 @@
           <img class="logoImg" src="Untitled design (5).png"/>
       </div>
 
-      <div class="patientDiv">
-        <p class="mainOptions">ADMINISTRATOR</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div>
 
 
       <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
+        <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i id="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
 
+        <div class="submenus" id="submenus">
         <a href="AdminSearchPatient.html" id="appointments">Patients</a>
         <a href="AdminSearchDoctor.html" id="appointments">Doctors</a>
         <a href="AdminSearchNurse.html" id="appointments">Nurses</a>
@@ -39,7 +34,7 @@
         <a href="AdminSearchReceptionist.html" id="appointments">Receptionists</a>
         <a href="AdminSearchPharmacist.html" id="appointments">Pharmacists</a>
         <a href="AdminSearchPharmacist.html" id="appointments">Medications</a>
-      </div>
+      
     
 
 
@@ -51,6 +46,8 @@
         <a class="sideMenuTexts">Settings</a>
       </div>
 
+    </div>
+    </div>
     </div>
 
     <div class="main">
@@ -88,11 +85,11 @@
                     
                  <div class="firstname">
                     <h2>Username</h2>
-                    <input type="text" placeholder="Saman_kumara">
+                    <input type="text" placeholder="Enter your Username">
                  </div>
                   <div class="lastname">
                     <h2>Associated Email Address or Phone Number</h2>
-                    <input type="text" placeholder="abc@gmail.com OR 07xxxxxxxx">
+                    <input type="text" placeholder="Your Email Address or Contact Number">
                   </div> 
             </div>
 
@@ -124,5 +121,6 @@
             </div>
             
           </div>
+          <script src="../Receptionist/script.js"></script>
 
 

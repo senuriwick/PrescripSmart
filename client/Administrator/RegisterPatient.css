@@ -12,7 +12,7 @@ body {
 .sideMenu
 {
   width: 26vh;
-  height: auto;
+  height: 225vh;
   background-color: rgba(7, 28, 74, 1);
   overflow: hidden;
 }
@@ -38,12 +38,6 @@ body {
 }
 
 
-.mainOptions {
-  color: white;
-  font-size: 2.2vh;
-  font-weight: bold;
-  font-family: inter;
-}
 
 
 .sideMenu p {
@@ -74,44 +68,53 @@ body {
 }
 
 
-
 .manageDiv {
-  
-  border-bottom: solid;
   border-top: solid;
+  border-color: #ffffff;
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 1vh;
+  padding-top: 3vh;
+  
 }
 
-
-.manageDiv .mainOptions
+.mainOptions
 {
-  margin-bottom: 5vh;
+  display: block;
+  background-color: rgba(7, 28, 74, 1);
+  color: white;
+  border: none;
+  padding-left: 3.5vh;
+  font-family: inter;
+  font-size: 2.2vh;
+  font-weight: bold;
 }
 
-.manageDiv a
+.submenus
 {
-    display:block;
-    padding-left: 2.3vh;
-    line-height: 4.3vh;
-    font-size: 1.9vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-    
+  display: none;
+  padding-top: 4vh;
+  margin-bottom: 6vh;
+  
+ 
+}
 
-
-    
-
+.submenus a
+{
+  display: block;
+  padding-left: 2.3vh;
+  line-height: 6vh;
+  font-size: 1.9vh;
+  font-family: inter;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .othersDiv {
   
   padding-top: 2vh;
   font-size: 1.9vh;
-  line-height: 5vh;
-  border-bottom: solid;
+  border-top: solid;
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 3vh;
@@ -121,17 +124,13 @@ body {
 {
   font-size: 1.9vh;
   display: block;
-  line-height: 4.3vh;
+  line-height: 6vh;
   padding-left: 2.3vh;
 
 }
 
-
-
 .main {
   flex: 1;
-  
-
 }
 
 .navBar {
@@ -217,29 +216,20 @@ menu a:active
 }
  a:hover
 {
-  color:#17058aee;
+  font-weight: bold;
 }
 .back
  {
   padding-left: 5vh;
   padding-top: -8vh;
   display: flex;
-  
  } 
-
- 
 
 .back h1{
   margin-left: 2vh;
   font-size: 3vh;
-  color: #445172;
-  
-  
+  color: #445172; 
 }
-  
-
-
-
 .bar1
 {
     width: 130vh;
@@ -258,9 +248,7 @@ menu a:active
     background-color: white;
     margin-left: 5vh;
     border-color: black;
-    margin-top: 2vh;
-    
-    
+    margin-top: 2vh;   
 }
 .row1
 {
@@ -287,9 +275,7 @@ menu a:active
   font-family: inter;
   color: black;
   padding-left: 3vh;
-  border-color: #E3E8F4;
-  
-  
+  border-color: #E3E8F4;  
 }
 .row2
 {
@@ -314,4 +300,16 @@ menu a:active
   border-color: #E3E8F4;
   
 }
+.age 
+{
+  padding-left: 6vh;
+  font-size: 1.6vh;
+  font-weight: bold;
+
+}
+.age .female1
+{
+  padding-left: 3vh;
+}
+
 

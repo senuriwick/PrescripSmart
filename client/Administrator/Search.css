@@ -12,7 +12,7 @@ body {
 .sideMenu
 {
   width: 26vh;
-  height: 100vh;
+  height: 105vh;
   background-color: rgba(7, 28, 74, 1);
   overflow: hidden;
 }
@@ -38,12 +38,6 @@ body {
 }
 
 
-.mainOptions {
-  color: white;
-  font-size: 2.2vh;
-  font-weight: bold;
-  font-family: inter;
-}
 
 
 .sideMenu p {
@@ -74,44 +68,58 @@ body {
 }
 
 
-
 .manageDiv {
-  
-  border-bottom: solid;
   border-top: solid;
+  border-color: #ffffff;
+  
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 1vh;
+  padding-top: 3vh;
+  
 }
 
-
-.manageDiv .mainOptions
+.mainOptions
 {
-  margin-bottom: 5vh;
+  display: block;
+  background-color: rgba(7, 28, 74, 1);
+  color: white;
+  border: none;
+  padding-left: 3.5vh;
+  font-family: inter;
+  font-size: 2.2vh;
+  font-weight: bold;
 }
 
-.manageDiv a
+.submenus
 {
-    display:block;
-    padding-left: 2.3vh;
-    line-height: 4.3vh;
-    font-size: 1.9vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-    
-
-
-    
-
+  display: none;
+  padding-top: 4vh;
+  margin-bottom: 6vh;
+  
+ 
 }
+
+.submenus a
+{
+  display: block;
+  padding-left: 2.3vh;
+  line-height: 5vh;
+  font-size: 1.9vh;
+  font-family: inter;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+
+
 
 .othersDiv {
   
   padding-top: 2vh;
   font-size: 1.9vh;
   line-height: 5vh;
-  border-bottom: solid;
+  border-top: solid;
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 3vh;
@@ -121,10 +129,11 @@ body {
 {
   font-size: 1.9vh;
   display: block;
-  line-height: 4.3vh;
+  line-height: 5vh;
   padding-left: 2.3vh;
 
 }
+
 
 
 
@@ -217,7 +226,7 @@ menu a:active
 }
  a:hover
 {
-  color:#17058aee;
+  font-weight: bold;
 }
 
 

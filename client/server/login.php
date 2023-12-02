@@ -6,13 +6,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     $mysqli = require __DIR__ . "/database.php";
     
-    $sql = sprintf("SELECT * FROM users
+    $sql = sprintf("SELECT * FROM admins
                     WHERE email_address = '%s'",
                    $mysqli->real_escape_string($_POST["email"]));
     
     $result = $mysqli->query($sql);//executes the defined query and stores in result
     
     $user = $result->fetch_assoc();//fetches data from the result object
+
+    
+
+
     
     if ($user) {
         
@@ -26,16 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             header("Location: ../Administrator/AdminSearchPatient.html");
             exit;
-        }
+       }
     }
     
     $is_invalid = true;
 }
-
-
-
-
-
-
-
-
