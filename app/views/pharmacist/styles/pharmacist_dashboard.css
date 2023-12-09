@@ -1,336 +1,110 @@
-body {
-  font-family: Inter, 'Source Sans Pro';
-  margin: 0;
-}
-
-
-.content {
-  display: flex;
-}
-
-
-.sideMenu {
-  min-width: 12vw;
-  height: 100vh;
-  background-color: rgba(7, 28, 74, 1);
-}
-
-
-.sideMenuTexts {
-  font-size: 1.7vh;
-  color: #ffffff;
-  line-height: 1.5vh;
-  padding-bottom: 10px;
-}
-
-.sideMenuLink {
-  text-decoration: none; 
-  color: #000; 
-  transition: background-color 0.3s; 
-}
-
-
-.logoDiv {
-  align-items: center;
-  margin-bottom: 4vh;
-}
-
-.logoImg {
-  display: block;
-  margin: auto;
-  height: 5vh;
-  padding-top: 3vh;
-}
-
-
-.mainOptions {
-  color: white;
-  font-size: 2.2vh;
-  font-weight: bold;
-}
-
-
-.sideMenu p {
-  padding-left: 3vh;
-}
-
-
-.patientDiv {
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-}
-
-
-.profile {
-  background-color: rgba(53, 70, 109, 1);
-  padding: 0.2vh;
-  margin-bottom: 2.5vh;
-}
-
-
-.profile p{
-  color: #ffffff;
-  font-size: 1.8vh;
-  font-weight: bold;
-}
-
-
-
-.manageDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 3vh;
-}
-
-.manageDiv .mainOptions {
-  margin-bottom: 3vh;
-}
-
-
-.othersDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 3vh;
-}
-
-
-
-.main {
-  flex: 1;
-}
-
-.navBar {
-  background-color: rgba(138, 150, 181, 1);
-  height: 7vh;
-}
-
-.navBar p {
-  margin: 0;
-  float: right;
-  padding: 2.5vh 0vw;
-  color: #ffffff;
-  font-size: 1.7vh;
-}
-
-.navBar img {
-  float: right;
-  padding: 1.3vh 2vw;
-  height: 4vh;
-}
-
-.patientInfoContainer {
-  width: 80%;
-  margin-top: 5vh;
-  margin-left: 3vw;
-}
-
-
-.patientInfo {
-  display: flex;
-}
-
-
-.patientInfo img {
-  height: 10vh;
-  margin-right: 1.5vw;
-}
-
-
-.patientNameDiv {
-  padding: 0.01vh 0;
-}
-
-
-.patientInfo .name {
-  font-size: 2.5vh;
-  font-weight: bold;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  color: rgba(68, 81, 114, 1);
-}
-
-.patientInfo .role {
-  font-size: 1.8vh;
-  margin-top: 0vh;
-  padding-top: 0;
-}
-
-
 .menu {
-  margin-top: 2vh;
-  display: flex;
-  border-bottom: solid;
-  padding-bottom: 0.1vh;
-  border-width: 0.1vh;
-  border-color: rgba(164, 174, 199, 1);
-  margin-bottom: 20px;
+    display: flex;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
 }
 
 .menu p {
-  margin-right: 4vh;
-  font-size: 2vh;
-  margin-bottom: 1vh;
-  color: rgba(164, 174, 199, 1);
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
 }
 
 
-
-.line-middle {
-  margin: 0rem 0rem 2.991rem 0.4rem;
-  width: 124.1008rem;
-  height: 0.1rem;
-  background-color: rgba(68, 81, 114, 0.75);
-  flex-shrink: 0;
-}
-
-
-
-#myTextBox {
-  border: 2px solid #3498db;
-    border-radius: 20px;
-    padding: 10px;
-    width: 290px;
-    font-size: -3px;
-    font-size: 20px;
-    outline: none;
-    margin-right: 10px;
-}
-
-
-#myTextBox:hover {
-  border-color: #e74c3c; 
-}
-
-#myTextBox:focus {
-  border-color: #27ae60; 
-  box-shadow: 0 0 5px #27ae60; 
-}
-
-
-
-.container { 
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.input-container {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.button-container {
-  flex: 0;
-}
-
-
-.blue-button {
-  font-size: 1.4rem;
-    background-color: #0069ff;
-    color: #fff;
-    border: none;
-    padding: 10px 29px;
-    border-radius: 1rem;
-    cursor: pointer /* Change the cursor to a pointer on hover */
-}
-
-.blue-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-.line{
-  margin: 2rem 0rem 2rem 0.4rem;
-  width: 56rem;
-  height: 0.1rem;
-  background-color: rgba(68, 81, 114, 0.75);
+.menu p a{
+    text-decoration: none;
+    color: rgba(164, 174, 199, 1);
 
 }
 
-.search-patient{
+p a:active{
+    color: black;
+}
+
+.divider{
+  width: 84%;
+  margin-left: 0;
+  color:rgba(164, 174, 199, 1);
+}
+
+.prescriptionsDiv {
+    margin-top: 3vh;
+    padding-bottom: 5vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
   
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #445172;
-    font-family: Inter, 'Source Sans Pro';
-    flex-shrink: 0;
+.prescriptionsDiv h1{
+  margin-left: 0.2vw;
+  margin-bottom: 1.5vh;
+  color: rgba(68, 81, 114, 1);
 }
 
-.container1{
-  margin: 0rem 0rem 4.1rem 0.4rem;
-  width: 56.5rem;
-  height: 4.1rem;
-  position: relative;
-  background-color: #eff2fb;
-  border-radius: 1rem;
-  flex-shrink: 0;
-  white-space: nowrap;
+#searchBar {
+  padding: 1.6vh 41vw 1.8vh 1vw;
+  border-radius: 0.5rem;
+  border-style: none;
+  background-color: rgba(239, 242, 251, 1);
+  font-size: 1.1rem;
 }
 
-
-
-.container1 p, .container1 img {
-  display: inline-block;
-  vertical-align: middle; 
-  
-}
-
-.patientMenu{
-  background-color: #445172;
-  height: 32px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-
-}
-
-#patient{
+#searchButton {
+  padding: 1.6vh 3vw;
+  margin-left: 0.5vw;
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #0069FF;
+  color: white;
+  font-size: 1rem;
   font-weight: 500;
-  color:black;
-  font-size:1rem;
+}
+
+#searchButton:hover {
+  background-color: rgba(0, 80, 200, 1); 
+  cursor: pointer;
+}
+
+.patientFile {
+background-color: rgba(239, 242, 251, 1);
+margin-top: 3vh;
+padding: 2vh 1.2vw;
+border-radius: 5px;
+display: flex;
+justify-content: space-between;
+width: 81%;
+}
+
+.patientFile p {
+  margin: 1.2vh;
+  font-size: 1.1rem;
+}
+
+.patientFile #patientId {
+  color: rgba(68, 81, 114, 0.75);
+}
+
+.patientFile button {
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #0069FF;
+  color: white;
+  font-size: 1rem;
+  padding: 1vh 2.5vw;
   
 }
 
-.personcircle{
-  width: 50px; 
-  height: auto; 
-  margin-left: 20px;
-}
-.chevroncompactdown{
-  width: 30px; 
-  height: auto; 
+.patientFile button:hover {
+  background-color: rgba(0, 80, 200, 1); 
+  cursor: pointer;
 }
 
-.docter-name{
-  margin-left: 10px;
+.patientFile .fileInfo {
+  display: flex;
 }
 
-.patient-id{
-  margin-left:80px; 
-  margin-right: 150px;
+.person-circle{
+  width:40px;
+  height:40px;
 }
-
-.view{
-    font-size: 1rem;
-    background-color: #0069ff;
-    color: #fff;
-    border: none;
-    padding: 10px 29px;
-    border-radius: 1rem;
-    cursor: pointer /* Change the cursor to a pointer on hover */;
-}
-
-.view:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-.container1 .view {
-    padding-top: 14px;
-    padding-bottom: 8px;
-    margin-top: 12px;
-}
-
-

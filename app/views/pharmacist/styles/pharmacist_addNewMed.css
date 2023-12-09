@@ -43,7 +43,7 @@ p a:active{
 }
 
 #searchBar {
-  padding: 1.5vh 40vw 1.8vh 1vw;
+  padding: 1.6vh 41vw 1.8vh 1vw;
   border-radius: 0.5rem;
   border-style: none;
   background-color: rgba(239, 242, 251, 1);
@@ -51,7 +51,7 @@ p a:active{
 }
 
 #searchButton {
-  padding: 1.5vh 3vw;
+  padding: 1.6vh 3vw;
   margin-left: 0.5vw;
   border-style: none;
   border-radius: 0.5rem;
@@ -66,40 +66,42 @@ p a:active{
   cursor: pointer;
 }
 
-.patientFile {
-  background-color: rgba(239, 242, 251, 1);
-  margin-top: 3vh;
-  padding: 0.5vh 1vw;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  width: 75%;
+.center-content {
+    margin-left: 25%;
+    margin-top: 30px; 
 }
 
-.patientFile p {
-  margin: 1.2vh;
-  font-size: 1.1rem;
+.grey-text {
+    color:rgba(164, 174, 199, 1);
+    font-size: 1.5rem;
+    font-style:italic;
 }
 
-.patientFile #patientId {
-  color: rgba(68, 81, 114, 0.75);
+hr{
+    width: 84%;
+    margin-left: 0;
+    color:rgba(164, 174, 199, 1);
 }
 
-.patientFile button {
-  border-style: none;
-  border-radius: 0.5rem;
-  background-color: green;
-  color: white;
-  font-size: 1rem;
-  padding: 1vh 2.5vw; 
-  margin-top:0.2rem;
+.divider{
+    width:70%;
+    margin-left:5rem;
 }
 
-.patientFile button:hover {
-  background-color: rgb(21, 185, 24);
-  cursor: pointer;
+#newButton{
+    border-style: none;
+    border-radius: 0.5rem;
+    background-color: rgb(21, 185, 24);
+    color: white;
+    font-size: 1rem;
+    padding: 3vh 8vw; 
+    margin-top:2rem;
+    margin-left: 12rem;
+    font-weight: 550;
 }
 
-.patientFile .id {
-  color: rgba(0, 105, 255, 1);
+#newButton:hover {
+    background-color:green;
+    cursor: pointer;
 }
+

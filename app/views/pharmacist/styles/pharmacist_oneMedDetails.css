@@ -1,0 +1,126 @@
+.menu {
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+    width:75%
+}
+
+.menu p {
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+}
+
+.menu p a{
+    text-decoration: none;
+    color: rgba(164, 174, 199, 1);
+
+}
+
+p a:active{
+    color: black;
+}
+
+.patientSearch {
+    width: 70%; 
+    height: 350px;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 2vh 2vh;
+}
+
+.patient-div {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    border-bottom: solid;
+    border-color: rgba(164, 174, 199, 1);
+    border-width: 0.1vh;
+}
+  
+.med{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right:20rem;
+}
+
+
+.patient-div p:last-child {
+    margin-top:1.5rem;
+}
+
+.vector {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+}
+
+.stock{
+    color: #00cc00; 
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+.med-details{
+    margin-left: 1rem;
+}
+
+.quantity{
+    display: flex;
+    flex-direction: row;    
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.quantity p{
+    margin-right: 1rem;
+}
+
+#searchBar{
+    background: white;
+    border: 1px solid #ccc; /* You can customize the border color */
+    padding: 8px; /* Adjust the padding as needed */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    width: 3rem;
+    height: 1.5rem;
+    margin-left:0.5rem;
+    margin-right:0.5rem;;
+}
+
+.quantity img{
+    width:2rem;
+    height:2rem;
+}
+
+.quantity button{
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+
+}
+
+#redButton {
+    padding: 1.6vh 3vw;
+    margin-left: 0.5vw;
+    border-style: none;
+    border-radius: 0.5rem;
+    background-color:red;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#redButton:hover {
+    background-color: rgb(213, 23, 6);
+    cursor: pointer;
+}
+
+

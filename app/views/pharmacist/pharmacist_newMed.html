@@ -6,11 +6,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Pharmacist Dashboard</title>
+    <title>Pharmacist New Med</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_dashboard.css" />
+    <link rel="stylesheet" href="styles/pharmacist_newMed.css" />
     <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -58,22 +58,45 @@
                         <p><a href="prescriptions.html">Patients</a></p>
                         <p><a href="reports.html">Medications</a></p>
                     </div>
-                    <hr class="divider">
-                    <div class="prescriptionsDiv">
-                        <h1>Search Patient</h1>
-                        <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                        <a href=""><button id="searchButton">SEARCH</button></a>
-                    </div>
-                    <hr class="divider">
-                    <div class="patientFile">
-                        <div class="fileInfo">
-                            <img class="person-circle" src="images/personcircle.png" alt="patient-pic">
-                            <p>Ms. Shenaya Perera</p>
-                        </div>
-                        <p id="patientId">Patient ID #1254852</p>
-                        <a href="" id="viewButton"><button>View Prescriptions</button></a>
-                    </div>
+                    <hr>
+                    <div class="ashBlock">
+                        <h2>Add new medication</h2>
+                        <div class="newRow">
+                            <div>
+                                <div>
+                                    <p>Name<span class="important">*</span></p>
+                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                </div>
+                                <div>
+                                    <p>Expirary Date<span class="important">*</span></p>
+                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                </div>
+                                <div>
+                                    <p>Quantity<span class="important">*</span></p>
+                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                </div>
+                                
+                            </div>
+
+                            <div class="rightDetails">
+                                <div>
+                                    <p>Dosage<span class="important">*</span></p>
+                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                </div>
+                                <div>
+                                    <p>Batch Number<span class="important">*</span></p>
+                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                </div>
+                                <div>
+                                    <p>Status<span class="important">*</span></p>
+                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                </div>
+                                
+                            </div>
                     
+                        </div>
+                        <a href=""><button id="addNew">ADD</button></a>
+                    </div>
                 </div>
             </div>
         </div>
