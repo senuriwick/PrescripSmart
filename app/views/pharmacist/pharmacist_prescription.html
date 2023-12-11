@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <div id="dim-overlay"></div>
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
@@ -81,7 +82,7 @@
                         <div class="prescription-table">
                             <table>
                                 <tbody>
-                                    <tr class="clickable-row">
+                                    <tr class="">   
                                         <td>
                                             <div class="presDiv">
                                                 <img src="images/description.png" alt="download-icon">
@@ -113,10 +114,10 @@
                                     </tr>
                                     <tr class="clickable-row">
                                         <td>
-                                            <div class="presDiv">
+                                            <div class="presDiv" onclick="openPopup()">
                                                 <img src="images/description.png" alt="download-icon">
                                                 <p>Pres. Description</p>
-                                            </div>
+                                            </div>  
                                         </td>
                                         <td>Dr.Doctor Name</td>
                                         <td>DD-MM-YYYY</td>
@@ -125,11 +126,18 @@
                                     </a>
                                 </tbody>
                             </table>
+                            <div id="popup">
+                                <img src="" alt="">
+                                <h2>CONFIDENTIAL PRESCRIPTION</h2>
+                                <p>Your details have been successfully submitted. Thanks!</p>
+                                <button onclick="closePopup()">Close</button>
+                            </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
     </div>
+    <script src="javascripts/pharmcist_prescription.js"></script>
 </body>
+</html>
