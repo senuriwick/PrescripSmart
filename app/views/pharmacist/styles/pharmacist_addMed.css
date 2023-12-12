@@ -1,0 +1,286 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
+
+.content {
+  display: flex;
+}
+
+
+.sideMenu {
+  min-width: 12vw;
+  height: 100vh;
+  background-color: rgba(7, 28, 74, 1);
+}
+
+
+.sideMenuTexts {
+  font-size: 1.7vh;
+  color: #ffffff;
+  line-height: 1.5vh;
+}
+
+.medicationMenu{
+  background-color: #445172;
+  height: 32px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+#medications{
+  
+    font-weight: 500;
+    color:black;
+    font-size:1rem;
+    
+}
+
+
+.sideMenuLink {
+  text-decoration: none; 
+  color: #000; 
+  transition: background-color 0.3s; 
+}
+
+
+.logoDiv {
+  align-items: center;
+  margin-bottom: 4vh;
+}
+
+.logoImg {
+  display: block;
+  margin: auto;
+  height: 5vh;
+  padding-top: 3vh;
+}
+
+.container1{
+  margin: 1rem 0rem -60.9rem -0.6rem;
+  width: 56.5rem;
+  height: 31rem;
+  position: relative;
+  background-color: #eff2fb;
+  border-radius: 1rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.mainOptions {
+  color: white;
+  font-size: 2.2vh;
+  font-weight: bold;
+}
+
+
+.sideMenu p {
+  padding-left: 3vh;
+}
+
+
+.patientDiv {
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+}
+
+
+.profile {
+  background-color: rgba(53, 70, 109, 1);
+  padding: 0.2vh;
+  margin-bottom: 2.5vh;
+}
+
+
+.profile p{
+  color: #ffffff;
+  font-size: 1.8vh;
+  font-weight: bold;
+}
+
+
+
+.manageDiv {
+  padding-top: 3vh;
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+  padding-bottom: 3vh;
+}
+
+.manageDiv .mainOptions {
+  margin-bottom: 3vh;
+}
+
+
+.othersDiv {
+  padding-top: 3vh;
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+  padding-bottom: 3vh;
+}
+
+
+
+.main {
+  flex: 1;
+}
+
+.navBar {
+  background-color: rgba(138, 150, 181, 1);
+  height: 7vh;
+}
+
+.navBar p {
+  margin: 0;
+  float: right;
+  padding: 2.5vh 0vw;
+  color: #ffffff;
+  font-size: 1.7vh;
+}
+
+.navBar img {
+  float: right;
+  padding: 1.3vh 2vw;
+  height: 4vh;
+}
+
+.patientInfoContainer {
+  width: 80%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
+
+
+.patientInfo {
+  display: flex;
+}
+
+
+.patientInfo img {
+  height: 10vh;
+  margin-right: 1.5vw;
+}
+
+
+.patientNameDiv {
+  padding: 0.01vh 0;
+}
+
+
+.patientInfo .name {
+  font-size: 2.5vh;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  color: rgba(68, 81, 114, 1);
+}
+
+.patientInfo .role {
+  font-size: 1.8vh;
+  margin-top: 0vh;
+  padding-top: 0;
+}
+
+
+.menu {
+  margin-top: 2vh;
+  display: flex;
+  border-bottom: solid;
+  padding-bottom: 0.1vh;
+  border-width: 0.1vh;
+  border-color: rgba(164, 174, 199, 1);
+}
+
+.menu p {
+  margin-right: 4vh;
+  font-size: 2vh;
+  margin-bottom: 1vh;
+  color: rgba(164, 174, 199, 1);
+}
+
+.p1{
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
+  flex-shrink: 0;
+  margin-left: 33px;
+  padding-top: 25px
+}
+
+.text-box {
+  border-radius: 14px;
+  padding: 11px;
+  width: 223px;
+  font-size: 18px;
+  outline: none;
+}
+
+
+.text-box:hover {
+  border-color: #e74c3c; 
+}
+
+.text-box:focus {
+  border-color: #27ae60; 
+  box-shadow: 0 0 5px #27ae60; 
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-labels, .right-labels {
+  flex: 1;
+  padding-left: 10px;
+  padding-right: 15px;
+  margin-top:-1px;
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.label-text {
+  flex: 1;
+  color: blue;
+  font-weight: 500;
+  font-family: Inter, 'Source Sans Pro';
+  padding-left: 4px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.text-box {
+  flex: 2;
+  margin-left: 10px;
+  margin-bottom: 62px;
+}
+
+
+.blue-button {
+  font-size: 1.7rem;
+  background-color: #0069ff;
+  color: #fff;
+  border: none;
+  padding: 6px 144px;
+  border-radius: 1rem;
+  cursor: pointer /* Change the cursor to a pointer on hover */;
+  margin-top: -20px;
+  margin-left: 280px;
+  
+}
+
+.blue-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+

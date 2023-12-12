@@ -1,0 +1,372 @@
+.inquiriesDiv {
+    margin-top: 2vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh 2vh;
+    position: relative;
+}
+
+
+.inquiriesDiv h1 {
+    margin-top: 2vh;
+    font-weight: bold;
+    color: #0069ff;
+    font-size: 24px;
+}
+
+
+.addnewHeading {
+    font-size: 2vh;
+    font-weight: bold;
+    margin-top: 4vh;
+}
+
+
+.addnew {
+    display: flex;
+}
+
+
+.appointment {
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh;
+    margin-right: 3vh;
+}
+
+.appointment div {
+    display: flex;
+}
+
+.appointment div img {
+    height: 6vh;
+    padding: 2vh 1vh;
+}
+
+
+.inquiry {
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh;
+}
+
+.inquiry div {
+    display: flex;
+}
+
+.inquiry div img {
+    height: 6vh;
+    padding: 2vh 1vh;
+}
+
+
+.addnew p {
+    padding: 1vh;
+    color: rgba(0, 105, 255, 1);
+    font-weight: 450;
+    font-size: 1.8vh;
+}
+
+.addnew .details {
+    font-size: 1.5vh;
+    font-weight: normal;
+    color: rgba(68, 81, 114, 0.75);
+}
+
+
+body {
+    font-family: inter;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+.content {
+    display: flex;
+}
+
+
+.sideMenu {
+    min-width: 14vw;
+    height: 100vh;
+    background-color: rgba(7, 28, 74, 1);
+}
+
+
+.sideMenuTexts {
+    font-size: 1.7vh;
+    color: #ffffff;
+    line-height: 1.5vh;
+    font-family: inter;
+}
+
+.logoDiv {
+    align-items: center;
+    margin-bottom: 4vh;
+}
+
+.logoImg {
+    display: block;
+    margin: auto;
+    height: 8vh;
+    padding-top: 3vh;
+}
+
+
+.mainOptions {
+    color: white;
+    font-size: 2.2vh;
+    font-weight: bold;
+    font-family: inter;
+}
+
+
+.sideMenu p {
+    padding-left: 3vh;
+}
+
+
+.patientDiv {
+    border-bottom: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+}
+
+
+.profile {
+    background-color: rgba(53, 70, 109, 1);
+    padding: 0.2vh;
+    margin-bottom: 2.5vh;
+}
+
+
+.profile p {
+    color: #ffffff;
+    font-size: 1.8vh;
+    font-weight: bold;
+    font-family: inter;
+}
+
+
+
+.manageDiv {
+    padding-top: 3vh;
+    border-bottom: solid;
+    border-top: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+    padding-bottom: 9vh;
+}
+
+.manageDiv .mainOptions {
+    margin-bottom: 5vh;
+}
+
+.manageDiv a {
+    display: block;
+    padding-left: 3vh;
+    line-height: 3vh;
+    font-size: 1.7vh;
+    font-family: inter;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.othersDiv {
+    padding-top: 3vh;
+    border-bottom: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+    padding-bottom: 3vh;
+    color: white;
+}
+
+.othersDiv a {
+    display: block;
+    padding-left: 3vh;
+    line-height: 3vh;
+    font-size: 1.7vh;
+    font-family: inter;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+
+.main {
+    flex: 1;
+
+}
+
+.navBar {
+    background-color: rgba(138, 150, 181, 1);
+    height: 7vh;
+}
+
+.navBar p {
+    margin: 0;
+    float: right;
+    padding: 2.5vh 0vw;
+    color: #ffffff;
+    font-size: 1.7vh;
+    font-family: inter;
+}
+
+.navBar img {
+    float: right;
+    padding: 1.3vh 2vw;
+    height: 4vh;
+}
+
+.patientInfoContainer {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 3vw;
+}
+
+
+.patientInfo {
+    display: flex;
+}
+
+
+.patientInfo img {
+    height: 10vh;
+    margin-right: 1.5vw;
+}
+
+
+.patientNameDiv {
+    padding: 0.01vh 0;
+}
+
+
+.patientInfo .name {
+    font-size: 2.5vh;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: rgba(68, 81, 114, 1);
+    font-family: inter;
+}
+
+.patientInfo .role {
+    font-size: 1.8vh;
+    margin-top: 0vh;
+    padding-top: 0;
+}
+
+
+.menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+}
+
+.menu a {
+    margin-right: 6.5vh;
+    font-size: 2vh;
+    font-family: inter;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+    text-decoration: none;
+}
+
+menu a:active {
+    color: #0069FF;
+}
+
+a:hover {
+    color: #17058aee;
+}
+
+.accInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.sub1 {
+    color: rgba(68, 81, 114, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 60px; 
+    margin-right: 20px;
+}
+
+.sub2 {
+    color: rgba(68, 81, 114, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 300px; 
+    margin-right: 20px;
+}
+
+.accInfo {
+    border-top: 1px solid rgba(68, 81, 114, 0.75);
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.parallel {
+    display: flex;
+    flex-direction: row;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    margin-right: 50px; 
+}
+
+
+.input {
+    width: 28rem;
+    height: 2.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2125;
+    color: rgba(68, 81, 114, 0.75);
+    font-family: Inter, 'Source Sans Pro';
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 0.2rem #e3e8f4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+}
+
+
+.inquiriesDiv button {
+    width: 15rem;
+    height: 2rem;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2125;
+    color: #ffffff;
+    font-family: Inter, 'Source Sans Pro';
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0069ff;
+    border-radius: 0.5rem;
+    border-color: #0069ff;
+    flex-shrink: 0;
+    margin-top: 15px;
+}
