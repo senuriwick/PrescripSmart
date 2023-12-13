@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_popUp.css" />
+    <link rel="stylesheet" href="styles/pharmacist_prescription.css" />
     <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -127,10 +127,29 @@
                                 </tbody>
                             </table>
                             <div id="popup">
-                                <img src="" alt="">
-                                <h2>CONFIDENTIAL PRESCRIPTION</h2>
+                                <div class="grid-container">
+                                    <img id="qr" src="images/qr-code.png" alt="">
+                                
+                                    <h2>CONFIDENTIAL PRESCRIPTION</h2>
+                                    <img class="close" src="images/close-button.png" alt="">
+                            
+                                    
+                                </div>
+                                <div class="grid-container">
+                                    <p>Reception ID: <span>#2155675</span></p>
+                                    <p class="patient">patient: <span>Ms. S Perera</span></p>
+                                </div>
+                                <div class="grid-container">
+                                    <p>Pres. Date & Time: <span>10.20A.M 12/09/23 </span></p>
+                                    <p id="age">Age: <span>22</span>Yrs</p>
+                                </div>
+                                <div class="grid-container">
+                                    <p>Referred by: Dr.<span>Asanka Rathnayke</span></p>
+                                </div>
+
                                 <p>Your details have been successfully submitted. Thanks!</p>
                                 <button onclick="closePopup()">Close</button>
+                                
                             </div>
                         </div>
                     </div>
