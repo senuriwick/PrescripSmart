@@ -215,7 +215,44 @@ td:hover {
 #age{
     margin-left: -94px;
 }
-  
+
+.diagnosis {
+    display: flex;
+    border: 1px solid #000; /* Set border properties */
+    padding: 38px; /* Set padding to create some space inside the box */
+    margin: 20px auto; /* Set margin to create space outside the box */
+    border-radius: 5px;
+    flex-direction: row;
+}
+
+.diagnosis > p:first-child {
+    margin-left: -30px;
+    margin-top: -35px ;
+}
+
+.med{
+    display: flex;
+    flex-direction: column;
+    margin-left: -84px;
+    margin-top: -18px;
+}
+
+.med > div > p {
+    display: inline-block;
+    margin-right: 100px;
+    margin-bottom: 10px;
+}
+
+.lab p:first-child{
+    margin-left: 10px;
+}
+
+.lab p:last-child{
+    margin-left: 154px;
+}
+
+
+
 
 
   
