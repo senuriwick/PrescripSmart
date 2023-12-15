@@ -6,7 +6,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Admin/Lab Technicians</title>
+    <title>Admin/Nurse</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -74,14 +74,14 @@
                         <p><a href="#">Patients</a></p>
                         <p><a href="#">Doctors</a></p>
                         <p><a href="#">Nurses</a></p>
-                        <p><a href="lab_technicians.php">Lab Technicians</a></p>
+                        <p><a href="lab_techniciants.php">Lab Technicians</a></p>
                         <p><a href="#">Health SV</a></p>
                         <p><a href="#">Receptionists</a></p>
                         <p><a href="#">Pharmacist</a></p>
                     </div>
 
                     <div class="patientSearch">
-                        <h1>Search Lab Technicians</h1>
+                        <h1>Search Nurse</h1>
                         <form>
                             <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
                         </form>
@@ -104,7 +104,7 @@
                                     }
 
                                     // read all row from database table
-                                    $sql = "SELECT * FROM lab_technician";
+                                    $sql = "SELECT * FROM nurse";
                                     $result = $connection->query($sql);
 
                                     if (!$result) {
@@ -120,15 +120,15 @@
                                                         <p class='patientName'>" . $row['firstname'] . "</p>
                                                     </div>
                                                 </td>
-                                                <td>Employee ID - #" . $row['lab_tec_id'] . "</td>
-                                                <td><a href='lab_tech_profile.php?id=$row[lab_tec_id]'><button>View Profile</button></a></td>
+                                                <td>Employee ID - #" . $row['nurse_id'] . "</td>
+                                                <td><a href='nurse_profile.php?id=$row[nurse_id]'><button>View Profile</button></a></td>
                                                 <td class='update-icon'>
-                                                    <a href='lab_tech_update.php?id=$row[lab_tec_id]'>
+                                                    <a href='nurse_update.php?id=$row[nurse_id]'>
                                                     <i class='fa-solid fa-pen-to-square'></i>
                                                     </a>
                                                 </td>
                                                 <td class='delete-icon'>
-                                                    <a href='delete_technician.php?id=$row[lab_tec_id]'>
+                                                    <a href='delete_nurse.php?id=$row[nurse_id]'>
                                                         <i class='fa-solid fa-trash'></i>
                                                     </a>
                                                 </td>
@@ -142,7 +142,7 @@
                         </div>
                         <div class="register-btn">
                             <button>
-                            <a href="register_lab_technician.php">Register a New Lab Technician</a>
+                            <a href="register_nurse.php">Register a New Lab Technician</a>
                             </button>
                         
                     </div>

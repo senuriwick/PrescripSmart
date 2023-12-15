@@ -1,3 +1,33 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "prescripsmart";
+
+// Check if the labTech_ID is provided in the URL
+if (isset($_GET['id'])) {
+    $nurse_ID = $_GET['id'];
+
+    $connection = new mysqli($servername, $username, $password, $database);
+    
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    
+    $sql = "SELECT * FROM nurse WHERE nurse_id = $nurse_ID";
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+    } else {
+        $row = false;
+    }
+} else {
+    header("Location: AdminSearchNurse.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,11 +36,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Doctor profile</title>
+    <title>Admin/Lab techniciant profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="lab_tech_profile.css" />
     <link rel="stylesheet" href="sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -24,7 +54,7 @@
 
             <div class="userDiv">
                 <p class="mainOptions">
-                    <Datag>DOCTOR</Datag>
+                    <Datag>ADMINISTRATOR</Datag>
                 </p>
 
                 <div class="profile">
@@ -36,12 +66,16 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
-                <a href="on-going_session.html">Ongoing Sessions</a>
-                <a href="sessions.html">Sessions</a>
-                <a href="profile.html">Profile</a>
+                <a href="#patients" class="active">Patients</a>
+                <a href="#ongoingSessions">Doctors</a>
+                <a href="sideMenuTexts">Nurses</a>
+                <a href="sideMenuTexts">Lab Technician</a>
+                <a href="sideMenuTexts">Health Supervisor</a>
+                <a href="sideMenuTexts">Receptionist</a>
+                <a href="sideMenuTexts">Pharmacist</a>
             </div>
             <div class="othersDiv">
+            <p class="sideMenuTexts">Profile</p>
                 <p class="sideMenuTexts">Billing</p>
                 <p class="sideMenuTexts">Terms of Services</p>
                 <p class="sideMenuTexts">Privacy Policy</p>
@@ -61,60 +95,61 @@
                     <div class="userInfo">
                         <img src="profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Doctor Name</p>
-                            <p class="role">Doctor</p>
+                            <p class="name">Administrator Name</p>
+                            <p class="role">System admin</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="profile.html">Account</a></p>
-                        <p><a href="personalinfo.html">Personal Info</a></p>
-                        <p><a href="#">Security</a></p>
+                    <p><a href="#">Patients</a></p>
+                        <p><a href="#">Doctors</a></p>
+                        <p><a href="#">Nurses</a></p>
+                        <p><a href="#">Lab Technicians</a></p>
+                        <p><a href="#">Health SV</a></p>
+                        <p><a href="#">Receptionists</a></p>
+                        <p><a href="#">Pharmacist</a></p>
                     </div>
 
                     <div class="doctorprofile">
-                        <div class="empid">Employee Id :#123456
+                    <?php if ($row) { ?>
+                        <div class="empid">
+                            Employee Id: #<?php echo $row['nurse_id']; ?>
                             <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />
                         <div class="detail">
-                            <div>Username
+                            <div>first name
                                 <div class="test-box">
-                                    <div class="test-box-data">
-                                        Shanika Ayasmanthi<i class="fa-solid fa-pen"></i>
+                                    <div class="test-box-data"><?php echo $row['firstname']; ?><i class="fa-solid fa-pen"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div>Associated Email Address/ Phone Number
+                            <div>Last name
                                 <div class="test-box">
-                                    011456875
+                                    <?php echo $row['lastname']; ?>
                                 </div>
                             </div>
-                            <div>Current password
+
+                            <div>Associated email address
                                 <div class="test-box">
-                                    **********
+                                    <?php echo $row['email']; ?>
                                 </div>
                             </div>
+                            <div>Associated Phone Number
+                                <div class="test-box">
+                                    <?php echo $row['phone']; ?>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <hr/>
-                        <div class="detail">
-                            <div>
-                                <form>
-                                    <label>New password</label><br>
-                                    <input type="password" placeholder="********">
-                                </form>
-                            </div>
-                            <div>
-                                <form>
-                                    <label>Confirm password</label><br>
-                                    <input type="password" placeholder="**********">
-                                </form>
-                            </div>
-                            <div><button>SAVE CHANGES</button></div>
+                    <?php } else { ?>
+                        <p>No data found</p>
+                    <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </body>

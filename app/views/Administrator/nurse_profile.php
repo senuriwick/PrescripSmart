@@ -6,7 +6,7 @@ $database = "prescripsmart";
 
 // Check if the labTech_ID is provided in the URL
 if (isset($_GET['id'])) {
-    $labTech_ID = $_GET['id'];
+    $nurse_ID = $_GET['id'];
 
     $connection = new mysqli($servername, $username, $password, $database);
     
@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     }
 
     
-    $sql = "SELECT * FROM lab_technician WHERE lab_tec_id = $labTech_ID";
+    $sql = "SELECT * FROM nurse WHERE nurse_id = $nurse_ID";
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
         $row = false;
     }
 } else {
-    header("Location: lab_technicians.php");
+    header("Location: lab_technician.php");
     exit();
 }
 ?>
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Admin/Lab techniciant profile</title>
+    <title>Admin/Nurse profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -68,8 +68,8 @@ if (isset($_GET['id'])) {
 
                 <a href="#patients" class="active">Patients</a>
                 <a href="#ongoingSessions">Doctors</a>
-                <a href="sideMenuTexts">Nurses</a>
-                <a href="lab_techniciant.php">Lab Technician</a>
+                <a href="AdminSearchNurse.php">Nurses</a>
+                <a href="sideMenuTexts">Lab Technician</a>
                 <a href="sideMenuTexts">Health Supervisor</a>
                 <a href="sideMenuTexts">Receptionist</a>
                 <a href="sideMenuTexts">Pharmacist</a>
@@ -103,8 +103,8 @@ if (isset($_GET['id'])) {
                     <div class="menu">
                     <p><a href="#">Patients</a></p>
                         <p><a href="#">Doctors</a></p>
-                        <p><a href="#">Nurses</a></p>
-                        <p><a href="lab_technicians.php">Lab Technicians</a></p>
+                        <p><a href="AdminSearchNurse.php">Nurses</a></p>
+                        <p><a href="#">Lab Technicians</a></p>
                         <p><a href="#">Health SV</a></p>
                         <p><a href="#">Receptionists</a></p>
                         <p><a href="#">Pharmacist</a></p>
@@ -113,7 +113,7 @@ if (isset($_GET['id'])) {
                     <div class="doctorprofile">
                     <?php if ($row) { ?>
                         <div class="empid">
-                            Employee Id: #<?php echo $row['lab_tec_id']; ?>
+                            Employee Id: #<?php echo $row['nurse_id']; ?>
                             <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />

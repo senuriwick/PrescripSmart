@@ -6,12 +6,12 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>On-going Session</title>
+    <title>Doctor profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="on-going_session.css" />
-    <link rel="stylesheet" href="sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../../../public/css/doctor/profile.css" />
+    <link rel="stylesheet" href="../../../public/css/doctor/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -22,7 +22,7 @@
                 <img class="logoImg" src="Untitled design (5) copy 2.png" />
             </div>
 
-            <div class="userDiv">
+            <!-- <div class="userDiv">
                 <p class="mainOptions">
                     <Datag>DOCTOR</Datag>
                 </p>
@@ -30,7 +30,7 @@
                 <div class="profile">
                     <p>username</p>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="manageDiv">
@@ -67,32 +67,50 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="patients.html">Patients</a></p>
-                        <p><a href="on-going_session.html">On-going</a></p>
-                        <p><a href="sessions.html">Sessions</a></p>
+                        <p><a href="profile.html">Account</a></p>
+                        <p><a href="personalinfo.html">Personal Info</a></p>
+                        <p><a href="#">Security</a></p>
                     </div>
 
-                    <div class="patientSearch">
-                        <div class="session-head">
-                            <h1>Session No.#1255</h1>
-                            <p>No. of patients left: <span class="countPatients">04</span></p>
+                    <div class="doctorprofile">
+                        <div class="empid">Employee Id :#123456
+                            <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />
-                        <div class="session-subhead"><b>On-going Appointment</b></div>
-                        <div class="appoinment-details">
-                            <div class="appoinment-number">
-                                <span class="num-head">NO.</span><br>
-                                <span class="num-main">12</span>
-                            </div>
-                            <div class="patient-data">
-                                <div>
-                                    <b>Patient Name:  </b>Dananjaya de Silva(#1233458)
-                                </div>
-                                <div class="btn-box">
-                                    <button>VIEW PROFILE</button>
-                                    <button>ADD PRESCRIPTION</button>
+                        <div class="detail">
+                            <div>Username
+                                <div class="test-box">
+                                    <div class="test-box-data">
+                                        Shanika Ayasmanthi<i class="fa-solid fa-pen"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <div>Associated Email Address/ Phone Number
+                                <div class="test-box">
+                                    011456875
+                                </div>
+                            </div>
+                            <div>Current password
+                                <div class="test-box">
+                                    **********
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="detail">
+                            <div>
+                                <form>
+                                    <label>New password</label><br>
+                                    <input type="password" placeholder="********">
+                                </form>
+                            </div>
+                            <div>
+                                <form>
+                                    <label>Confirm password</label><br>
+                                    <input type="password" placeholder="**********">
+                                </form>
+                            </div>
+                            <div><button>SAVE CHANGES</button></div>
                         </div>
                     </div>
                 </div>

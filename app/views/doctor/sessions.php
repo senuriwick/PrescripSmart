@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="sessions.css" />
-    <link rel="stylesheet" href="sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../../../public/css/doctor/sessions.css" />
+    <link rel="stylesheet" href="../../../public/css/doctor/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -22,7 +22,7 @@
                 <img class="logoImg" src="Untitled design (5) copy 2.png" />
             </div>
 
-            <div class="userDiv">
+            <!-- <div class="userDiv">
                 <p class="mainOptions">
                     <Datag>DOCTOR</Datag>
                 </p>
@@ -30,7 +30,7 @@
                 <div class="profile">
                     <p>username</p>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="manageDiv">
