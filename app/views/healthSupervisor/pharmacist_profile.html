@@ -6,11 +6,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Pharmacist 2Factor</title>
+    <title>HealthSupervisor Profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_2factor.css" />
+    <link rel="stylesheet" href="styles/pharmacist_profile.css" />
     <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -24,20 +24,16 @@
 
             <div class="userDiv">
                 <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
+                    <Datag>HealthSupervisor</Datag>
                 </p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
             </div>
 
 
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
-                <a href="on-going_session.html">Medications</a>
+                <a href="patients.html" class="active">Inquiries</a>
+                <a href="on-going_session.html">History</a>
                 <a href="profile.html">Profile</a>
             </div>
             <div class="othersDiv">
@@ -60,8 +56,8 @@
                     <div class="userInfo">
                         <img src="images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name">HealthSupervisor Name</p>
+                            <p class="role">HealthSupervisor</p>
                         </div>
                     </div>
 
@@ -73,34 +69,46 @@
 
                     <div class="pharmacistprofile">
                         <div class="empid">Employee Id :#123456
-                            <div class="accountinfotext">Security Information</div>
+                            <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />
                         <div class="detail">
                             <div>
                                 <form>
-                                    <label>Method of Sign In</label><br>
-                                    <input type="text" placeholder="email">
+                                    <label>Username</label><br>
+                                    <input type="text" placeholder="sampleUsername">
                                 </form>
                             </div>
                             <div>
-                                <form class="sample_username">
-                                    <input type="text" placeholder="sample email/phoneNumber">
+                                <form>
+                                    <label>Associated EmailAddress/phoneNumber</label><br>
+                                    <input type="text" placeholder="sample Email/Phone">
                                 </form>
                             </div>
-                       
+                            <div>
+                                <form>
+                                    <label>Current Password</label><br>
+                                    <input type="password" placeholder="********">
+                                </form>
+                            </div>
                         </div>
                         
                         <hr/>
                         <div class="detail">
                             <div>
                                 <form>
-                                    <label>Two-Factor Authentication</label><br>
+                                    <label>New password</label><br>
+                                    <input type="password" placeholder="********">
                                 </form>
-                                <p class="text">Add an extra layer of security to your account. To sign in, you'll need to provide a code along with your username and password</p>
-                            </div>  
+                            </div>
+                            <div>
+                                <form>
+                                    <label>Confirm password</label><br>
+                                    <input type="password" placeholder="**********">
+                                </form>
+                            </div>
+                            <div><button>SAVE CHANGES</button></div>
                         </div>
-                        <div><button>SETUP 2FA</button></div>
                     </div>
                 </div>
             </div>
