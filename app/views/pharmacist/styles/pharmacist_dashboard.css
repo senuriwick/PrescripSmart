@@ -5,18 +5,20 @@
     border-color: rgba(164, 174, 199, 1);
 }
 
+
 .menu p {
     margin-right: 4vh;
     font-size: 2vh;
-    margin-bottom: 1vh;
-    color: rgba(164, 174, 199, 1);
+    margin-bottom: 1vh;   
 }
 
+.menu p:first-child{
+  font-weight: 500;
+}
 
 .menu p a{
     text-decoration: none;
     color: rgba(164, 174, 199, 1);
-
 }
 
 p a:active{
@@ -36,7 +38,7 @@ p a:active{
     border-color: rgba(164, 174, 199, 1);
   }
   
-.prescriptionsDiv h1{
+.prescriptionsDiv h2{
   margin-left: 0.2vw;
   margin-bottom: 1.5vh;
   color: rgba(68, 81, 114, 1);
@@ -108,3 +110,4 @@ width: 81%;
   width:40px;
   height:40px;
 }
+
