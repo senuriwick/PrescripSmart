@@ -149,7 +149,7 @@ td:hover {
 } */
 
 #popup{
-    /* display: none; */
+    display: none;
     width: 600px;
     height: 600px;
     background: #fff;
@@ -165,7 +165,7 @@ td:hover {
 }
 
 #dim-overlay {
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;

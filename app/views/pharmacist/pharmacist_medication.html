@@ -22,12 +22,18 @@
                 <img class="logoImg" src="images/logo.png" />
             </div>
 
+            <div class="userDiv">
+                <p class="mainOptions">
+                    <Datag>PHARMACIST</Datag>
+                </p>
+            </div>
+
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
-                <a href="on-going_session.html">Medications</a>
-                <a href="profile.html">Profile</a>
+                <a href="pharmacist_dashboard.html" class="active">Patients</a>
+                <a href="">Medications</a>
+                <a href="pharmacist_profile.html">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -55,14 +61,14 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="prescriptions.html">Patients</a></p>
-                        <p><a href="reports.html">Medications</a></p>
+                        <p><a href="pharmacist_dashboard.html">Patients</a></p>
+                        <p><a href="reports.html" style="color: black; font-weight: 500;">Medications</a></p>
                     </div>
                     <hr class="divider">
                     <div class="prescriptionsDiv">
-                        <h1>Search Patient</h1>
+                        <h2>Search Medication</h2>
                         <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                        <a href=""><button id="searchButton">SEARCH</button></a>
+                        <a href="pharmacist_addNewMed.html"><button id="searchButton">SEARCH</button></a>
                     </div>
                     <hr class="divider">
                     <div class="patientFile">
@@ -70,7 +76,7 @@
                         <p class="id">#1245866</p>
                         <p>Medication Name Here</p>
                         <p id="patientId">A description Here</p>
-                        <a href="" id="viewButton"><button>Manage</button></a>
+                        <a href="pharmacist_oneMedDetails.html" id="viewButton"><button>Manage</button></a>
                     </div>
                     
                 </div>
