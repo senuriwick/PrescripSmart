@@ -1,3 +1,48 @@
+<?php
+
+$errors = [];
+$errorMessage = '';
+
+if (!empty($_POST)) {
+    $email = $_POST['email'];
+    $name = $_POST['name'];
+    $message = $_POST['message'];
+
+    if (empty($name)) {
+        $errors[] = 'Name is empty';
+    }
+
+    if (empty($email)) {
+        $errors[] = 'Email is empty';
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'Email is invalid';
+    }
+
+    if(empty($message)) {
+        $errors[] = 'Message is empty';
+    }
+
+    if(empty($errors)) {
+        $toEmail = 'mashawickramasinghe04@gmail.com';
+        $emailSubject = 'New inquiry';
+        $headers = ['From' => $email, 'Reply-To' => $email, 'Content-type' => 'text/html; charset=utf-8'];
+        $bodyParagraphs = ["Name: {$name}", "Email: {$email}", "Message:", $message];
+        $body = join(PHP_EOL, $bodyParagraphs);
+
+        if(mail($toEmail, $emailSubject, $body, $headers)) {
+            echo "Thank you for contacting us";
+        } else {
+            $errorMessage = 'Oops, something went wrong. Please try again later';
+        }
+
+    } else {
+        $allErrors = join('<br/>', $errors);
+        $errorMessage = "<p style='color: red;'>{$allErrors}</p>";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -9,11 +54,11 @@
     <title>Inquiries</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="\public\css\patient\inquiries_dashboard.css" />
+    <link rel="stylesheet" href="\public\css\patient\inquiries_dashboard.css"/>
 </head>
 
 <body>
-
+<body>
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
@@ -70,7 +115,8 @@
                         supervisors will promptly respond to your request via email. Kindly provide us with your email
                         address below for a swift and efficient response.</p>
                     <br>
-                    <form>
+                    <form method="post" action="inquiries_dashboard.php" id="contact-form">
+                        <?php echo((!empty($errorMessage)) ? $errorMessage : '') ?>
                         <div class="input-group">
                             <label for="email" class="required-label">Email Address <span
                                     class="asterisk">*</span></label>
@@ -90,34 +136,48 @@
                                 class="messageInput" required></textarea>
                         </div>
 
-                        <button type="button" id="submit">Submit</button>
+                        <button type="submit" id="submit">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script>
-        document.getElementById("submit").addEventListener("click", function () {
-            const emailInput = document.getElementById("email").value;
-            const nameInput = document.getElementById("name").value;
-            const messageInput = document.getElementById("message").value;
-
-            if (emailInput.trim() === "" || nameInput.trim() === "" || messageInput.trim() === "") {
-                alert("Please fill in all the required fields.");
-                return;
+        const constraints = {
+            name: {
+                presence: {allowEmpty: false}
+            },
+            email: {
+                presence: {allowEmpty: false}
+            },
+            message: {
+                presence: {allowEmpty: false}
             }
+        };
 
-            document.querySelector('.inquiriesDiv form').style.display = 'none'; // Hide the form
-            var successMessage = document.createElement('div');
-            successMessage.innerHTML = '<p><strong style="color: #0069ff;">Your inquiry has been forwarded.</p><button id="goToDashboardButton" class="back">Back</button>';
-            successMessage.id = 'successMessage';
-            document.querySelector('.inquiriesDiv').appendChild(successMessage);
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', function(event) {
+            const formValues = {
+                name: form.elements.name.value,
+                email: form.elements.email.value,
+                message: form.elements.message.value,
+            };
 
-            document.getElementById("goToDashboardButton").addEventListener("click", function () {
-                window.location.href = "inquiries_dashboard.html";
-            });
-        });
+            const errors = validate(formValues, constraints);
+            if(errors) {
+                event.preventDefault();
+                const errorMessage = Object
+                .values(errors)
+                .map(function (fieldValues) {
+                    return fieldValues.join(', ')
+                })
+                .join("\n");
+
+                alert(errorMessage);
+            }
+        }, false); 
     </script>
 </body>
 
