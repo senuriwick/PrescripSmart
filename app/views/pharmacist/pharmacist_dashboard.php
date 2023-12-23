@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>Pharmacist Dashboard</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_dashboard.css" />
-    <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
+    
+<?php require APPROOT."/views/inc/components/header.php" ?>
+    <!-- <link rel="stylesheet" href="styles/pharmacist_dashboard.css" /> -->
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_dashboard.css" />
+    <!-- <link rel="stylesheet" href="styles/sideMenu&navBar.css" /> -->
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/app/views/pharmacist/styles/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +12,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="images/logo.png" />
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
             </div>
 
             <div class="userDiv">
@@ -46,14 +39,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="images/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="images/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Patient Name</p>
                             <p class="role">Patient</p>
@@ -71,17 +64,20 @@
                         <a href=""><button id="searchButton">SEARCH</button></a>
                     </div>
                     <hr class="divider">
+                    <?php foreach($data['patients'] as $patient): ?>
                     <div class="patientFile">
                         <div class="fileInfo">
-                            <img class="person-circle" src="images/personcircle.png" alt="patient-pic">
-                            <p>Ms. Shenaya Perera</p>
+                            <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
+                            <p><?php echo $patient->name; ?></p>
                         </div>
-                        <p id="patientId">Patient ID #1254852</p>
+                        <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
                         <a href="pharmacist_prescription.html" id="viewButton"><button>View Prescriptions</button></a>
                     </div>
+                    <?php endforeach; ?>
                     
                 </div>
             </div>
         </div>
     </div>
-</body>
+<?php require APPROOT."/views/inc/components/footer.php" ?>
+ 

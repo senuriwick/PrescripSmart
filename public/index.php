@@ -1,7 +1,7 @@
 <?php
+    require_once   "../app/bootloader.php";
 
-require_once '../app/boot.php';
+    $init = new Core;
+?>
 
-//Init CORE Library
 
-$init = new Core();
