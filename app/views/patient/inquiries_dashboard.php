@@ -1,11 +1,14 @@
 <?php
+require_once __DIR__ . '/../../../vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+
 
 $errors = [];
 $errorMessage = '';
 
 if (!empty($_POST)) {
-    $email = $_POST['email'];
     $name = $_POST['name'];
+    $email = $_POST['email'];
     $message = $_POST['message'];
 
     if (empty($name)) {
@@ -16,29 +19,51 @@ if (!empty($_POST)) {
         $errors[] = 'Email is empty';
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'Email is invalid';
+
     }
 
-    if(empty($message)) {
+
+    if (empty($message)) {
         $errors[] = 'Message is empty';
     }
 
-    if(empty($errors)) {
-        $toEmail = 'mashawickramasinghe04@gmail.com';
-        $emailSubject = 'New inquiry';
-        $headers = ['From' => $email, 'Reply-To' => $email, 'Content-type' => 'text/html; charset=utf-8'];
-        $bodyParagraphs = ["Name: {$name}", "Email: {$email}", "Message:", $message];
-        $body = join(PHP_EOL, $bodyParagraphs);
-
-        if(mail($toEmail, $emailSubject, $body, $headers)) {
-            echo "Thank you for contacting us";
-        } else {
-            $errorMessage = 'Oops, something went wrong. Please try again later';
-        }
-
-    } else {
+    if (!empty($errors)) {
         $allErrors = join('<br/>', $errors);
         $errorMessage = "<p style='color: red;'>{$allErrors}</p>";
+    } else {
+        $mail = new PHPMailer();
+
+
+        // specify SMTP credentials
+        $mail->isSMTP();
+        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 587;
+        $mail->Username = 'c1c5e702c258b7';
+        $mail->Password = 'f38034f0c8a7e9';
+
+
+        $mail->setFrom($email, $name);
+        $mail->addReplyTo($email, $name);
+        $mail->addAddress('recipient1@mailtrap.io', 'Tim');
+        $mail->Subject = 'New message from patient';
+
+        // Enable HTML if needed
+        $mail->isHTML(true);
+        $bodyParagraphs = ["Name: {$name}", "Email: {$email}", "Message:", nl2br($message)];
+        $body = join('<br />', $bodyParagraphs);
+        $mail->Body = $body;
+        // echo $body;
+
+        if ($mail->send()) {
+            header('Location: inquiries_dashboard.php');
+            //echo "SUCCESS";
+        } else {
+            $errorMessage = 'Oops, something went wrong. Mailer Error: ' . $mail->ErrorInfo;
+        }
+
     }
+
 }
 
 ?>
@@ -54,10 +79,10 @@ if (!empty($_POST)) {
     <title>Inquiries</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="\public\css\patient\inquiries_dashboard.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="/public/css/patient/inquiries_dashboard.css" />
 </head>
 
-<body>
 <body>
     <div class="content">
         <div class="sideMenu">
