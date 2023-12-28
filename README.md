@@ -17,9 +17,7 @@ ecosystem in Sri Lanka.
 - [Mohommad Mushaid](https://github.com/shanikaayasmanthi)
 
 ## Project Structure
-project-root/
-   cilent/
-   server/
+Using MVC architecture and related folder structure.
 
 ## Technologies Used
 ### Frontend
