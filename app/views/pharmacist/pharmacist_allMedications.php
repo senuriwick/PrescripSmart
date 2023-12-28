@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>Pharmacist Medication</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_allMedications.css" />
-    <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
+<?php require APPROOT."/views/inc/header.php" ?>
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_allMedications.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +8,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="images/logo.png" />
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
             </div>
 
             <div class="userDiv">
@@ -31,9 +20,9 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="pharmacist_dashboard.html" class="active">Patients</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/dashboard" class="active">Patients</a>
                 <a href="">Medications</a>
-                <a href="pharmacist_profile.html">Profile</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <a href="http://">Billing</a>
@@ -46,14 +35,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="images/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="images/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Patient Name</p>
                             <p class="role">Patient</p>
@@ -61,19 +50,29 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="pharmacist_dashboard.html">Patients</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a></p>
                         <p><a href="" style="font-weight: 500;color: black;">Medications</a></p>
                     </div>
                     <hr class="divider">
                     <div class="prescriptionsDiv">
                         <h2 class="heading">Search Patient</h2>
                         <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                        <a href="pharmacist_medication.html"><button id="searchButton">SEARCH</button></a>
+                        <a href="<?php echo URLROOT; ?>/Pharmacist/pharmacistMedication"><button id="searchButton">SEARCH</button></a>
                     </div>
                     <hr class="divider">
                     <div class="allMed">
                         <h3 class="heading">Inventory(1458)</h3>
+                      
+                        <?php foreach($data['medications'] as $medication): ?>
                         <div class="patientFile">
+                            
+                            <p class="id"><?php echo $medication->batch_number; ?></p>
+                            <p><?php echo $medication->name; ?></p>
+                            <p id="patientId"><?php echo $medication->dosage; ?></p>
+                            <a href="pharmacist_oneMedDetails.html" id="viewButton"><button>Manage</button></a>
+                        </div>
+                        <?php endforeach; ?>
+                        <!-- <div class="patientFile">
                             
                             <p class="id">#1245866</p>
                             <p>Medication Name Here</p>
@@ -93,25 +92,11 @@
                             <p>Medication Name Here</p>
                             <p id="patientId">A description Here</p>
                             <a href="pharmacist_oneMedDetails.html" id="viewButton"><button>Manage</button></a>
-                        </div>
-                        <div class="patientFile">
-                            
-                            <p class="id">#1245866</p>
-                            <p>Medication Name Here</p>
-                            <p id="patientId">A description Here</p>
-                            <a href="pharmacist_oneMedDetails.html" id="viewButton"><button>Manage</button></a>
-                        </div>
-                        <div class="patientFile">
-                            
-                            <p class="id">#1245866</p>
-                            <p>Medication Name Here</p>
-                            <p id="patientId">A description Here</p>
-                            <a href="pharmacist_oneMedDetails.html" id="viewButton"><button>Manage</button></a>
-                        </div>
+                        </div> -->
         
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
+<?php require APPROOT."/views/inc/footer.php" ?>

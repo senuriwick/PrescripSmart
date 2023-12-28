@@ -14,11 +14,11 @@
         }
 
         /* View */
-        public function view( $view, $data = [] ) {
+        public function view( $view, $data = []) {
 
             if( file_exists( '../app/views/' . $view . '.php' ) ) {
 
-                $data['url'] = getUrl();
+                // $data['url'] = getUrl();
                 require_once '../app/views/' . $view . '.php';
 
             } else {

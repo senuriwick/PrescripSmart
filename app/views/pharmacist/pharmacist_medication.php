@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="styles/pharmacist_medication.css" />
     <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_medication.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +21,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="images/logo.png" />
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png"/>
             </div>
 
             <div class="userDiv">
@@ -31,9 +33,9 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="pharmacist_dashboard.html" class="active">Patients</a>
+                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a>
                 <a href="">Medications</a>
-                <a href="pharmacist_profile.html">Profile</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -46,14 +48,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="images/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="images/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Patient Name</p>
                             <p class="role">Patient</p>
@@ -61,14 +63,14 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="pharmacist_dashboard.html">Patients</a></p>
+                    <p><a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a></p>
                         <p><a href="reports.html" style="color: black; font-weight: 500;">Medications</a></p>
                     </div>
                     <hr class="divider">
                     <div class="prescriptionsDiv">
                         <h2>Search Medication</h2>
                         <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                        <a href="pharmacist_addNewMed.html"><button id="searchButton">SEARCH</button></a>
+                        <a href="<?php echo URLROOT; ?>/Pharmacist/pharmacistAddNewMed"><button id="searchButton">SEARCH</button></a>
                     </div>
                     <hr class="divider">
                     <div class="patientFile">

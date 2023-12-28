@@ -10,7 +10,7 @@ class Database
     private $dbname = DB_NAME;
 
     /* Properties */
-    private $dbhandler;
+    private $dbh;
     private $statement;
     private $error;
 
@@ -25,7 +25,7 @@ class Database
 
         // Create PDO instance
         try {
-            $this->dbhandler = new PDO($dsn, $this->dbuser, $this->dbpass, $options);
+            $this->dbh = new PDO($dsn, $this->dbuser, $this->dbpass, $options);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
             echo $this->error;
@@ -35,7 +35,7 @@ class Database
     // Prepare statement with query
     public function query($sql)
     {
-        $this->statement = $this->dbhandler->prepare($sql);
+        $this->statement = $this->dbh->prepare($sql);
     }
 
     // Bind values
