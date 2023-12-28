@@ -12,5 +12,17 @@ class DoctorPatient {
         return $results;
     }
 
+    public function getPrescriptionDetails(){
+        $this->db->query('SELECT * FROM prescriptions');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getPrescriptionCount(){
+        $this->db->query('SELECT * FROM prescriptions');
+        $this->db->resultSet();
+        return $this->db->rowCount();
+    }
+
     
 }
