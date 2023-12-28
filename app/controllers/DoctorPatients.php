@@ -29,6 +29,14 @@ class DoctorPatients extends Controller{
         $this->view('doctor/prescriptions',$data);
     }
 
+    public function viewReports(){
+        $reportDetails = $this->dpModel->getReportDetails();
+
+        $data = [
+            'reportsData' => $reportDetails
+        ];
+        $this->view('doctor/reports',$data);
+    }
     
 
 }

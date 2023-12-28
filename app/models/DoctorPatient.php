@@ -24,5 +24,11 @@ class DoctorPatient {
         return $this->db->rowCount();
     }
 
+    public function getReportDetails(){
+        $this->db->query('SELECT * FROM reports');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
     
 }

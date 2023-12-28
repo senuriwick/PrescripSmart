@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="../../../public/css/doctor/prescriptions.css" />
-    <link rel="stylesheet" href="../../../public/css/doctor/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../public/css/doctor/prescriptions.css" />
+    <link rel="stylesheet" href="../public/css/doctor/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="../public/img/doctor/Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="userDiv">
@@ -36,7 +36,7 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/patients" class="active">Patients</a>
                 <a href="on-going_session.html">Ongoing Sessions</a>
                 <a href="sessions.html">Sessions</a>
                 <a href="profile.html">Profile</a>
@@ -52,14 +52,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="user.png" alt="user-icon">
+                    <img src="../public/img/doctor/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="profile.png" alt="profile-pic">
+                        <img src="../public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Patient Name</p>
                             <p class="role">Patient</p>
@@ -67,8 +67,8 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="prescriptions.html">Prescription</a></p>
-                        <p><a href="reports.html">Reports</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/viewPrescriptions">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/viewReports">Reports</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -78,46 +78,18 @@
                         <div class="prescription-table">
                             <table>
                                 <tbody>
+                                    <?php foreach($data['reportsData'] as $reportData): ?>
                                     <tr class="clickable-row1">
                                         <td>
                                             <div class="presDiv">
-                                                <img src="description.png" alt="download-icon">
-                                                <p>Report Description</p>
+                                                <img src="../public/img/doctor/description.png" alt="download-icon">
+                                                <p><?php echo $reportData->report_descript; ?></p>
                                             </div>
                                         </td>
-                                        <td>Dr.Doctor Name</td>
+                                        <td><?php echo $reportData->doctor_name; ?></td>
                                         <td></td>
                                     </tr>
-                                    <tr class="clickable-row1">
-                                        <td>
-                                            <div class="presDiv">
-                                                <img src="description.png" alt="download-icon">
-                                                <p>Report Description</p>
-                                            </div>
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="clickable-row1">
-                                        <td>
-                                            <div class="presDiv">
-                                                <img src="description.png" alt="download-icon">
-                                                <p>Report Description</p>
-                                            </div>
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="clickable-row1">
-                                        <td>
-                                            <div class="presDiv">
-                                                <img src="description.png" alt="download-icon">
-                                                <p>Report Description</p>
-                                            </div>
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td></td>
-                                    </tr>
+                                    <?php endforeach; ?>    
                                 </tbody>
                             </table>
 
@@ -132,7 +104,7 @@
             <span class="close1">&times;</span>
             <a href="www.prescripsamert.com">www.prescripsamert.com</a>
             <div class="model-head">
-                <img src="qr.png" alt="qr-img" />
+                <img src="../public/img/doctor/qr.png" alt="qr-img" />
                 <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
                 <i class="fa-solid fa-circle-arrow-up"></i>
             </div>

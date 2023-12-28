@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="patients.html">Patients</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/patients">Patients</a></p>
                         <p><a href="on-going_session.html">On-going</a></p>
                         <p><a href="sessions.html">Sessions</a></p>
                     </div>

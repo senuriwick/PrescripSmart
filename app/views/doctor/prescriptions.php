@@ -36,7 +36,7 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/patients" class="active">Patients</a>
                 <a href="on-going_session.html">Ongoing Sessions</a>
                 <a href="sessions.html">Sessions</a>
                 <a href="profile.html">Profile</a>
@@ -67,8 +67,8 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="prescriptions.html">Prescription</a></p>
-                        <p><a href="reports.html">Reports</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/viewPrescriptions">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/doctorPatients/viewReports">Reports</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -110,7 +110,7 @@
             <span class="close">&times;</span>
             <a href="www.prescripsamert.com">www.prescripsamert.com</a>
             <div class="model-head">
-                <img src="qr.png" alt="qr-img" />
+                <img src="../public/img/doctor/qr.png" alt="qr-img" />
                 <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                 <i class="fa-solid fa-circle-arrow-up"></i>
             </div>
