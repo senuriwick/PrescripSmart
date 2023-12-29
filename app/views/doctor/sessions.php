@@ -37,7 +37,7 @@
                 <p class="mainOptions">MANAGE</p>
 
                 <a href="<?php echo URLROOT;?>/doctorPatients/patients" class="active">Patients</a>
-                <a href="on-going_session.html">Ongoing Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/viewOngoingSession">Ongoing Sessions</a>
                 <a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a>
                 <a href="profile.html">Profile</a>
             </div>
@@ -68,7 +68,7 @@
 
                     <div class="menu">
                         <p><a href="<?php echo URLROOT;?>/doctorPatients/patients">Patients</a></p>
-                        <p><a href="on-going_session.html">On-going</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/viewOngoingSession">On-going</a></p>
                         <p><a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a></p>
                     </div>
 
@@ -78,8 +78,8 @@
                             <div class="session-card">
                                 <div><b><?php echo $sessionData->session_id; ?></b></div>
                                 <hr>
-                                <div><?php echo $sessionData->session_date;?></div>
-                                <div><?php echo $sessionData->session_time;?></div>
+                                <div><?php echo formatCustomDate($sessionData->session_date);?></div>
+                                <div><?php echo formatCustomTime($sessionData->session_time);?></div>
                                 <button>VIEW SESSION</button>
                             </div>
                             <?php endforeach; ?>
@@ -191,3 +191,18 @@
     </script>
 </body>
 </html>
+
+<?php
+    function formatCustomDate($dataString){
+        $dateTime = new DateTime($dataString);
+        $formattedDate = $dateTime->format('d, M, Y');
+        return $formattedDate;
+}
+
+function formatCustomTime($timeString){
+    $dateTime = new DateTime($timeString);
+    $formattedTime = $dateTime->format('h:i A');
+    return $formattedTime;
+}
+
+?>
