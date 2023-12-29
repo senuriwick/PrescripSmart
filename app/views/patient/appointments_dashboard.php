@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <title>Appointments</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\appointments_dashboard.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\appointments_dashboard.css" />
 </head>
-<body>
 
+<body>
   <div class="content">
-    <div class="sideMenu"> 
+    <div class="sideMenu">
       <div class="logoDiv">
-          <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png"/>
+        <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
       </div>
 
       <!-- <div class="patientDiv">
@@ -36,7 +37,7 @@
         <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
         <a href="prescriptions_dashboard.html" id="profile">Profile</a>
       </div>
-    
+
 
       <div class="othersDiv">
         <a href="billing.html" id="billing">Billing</a>
@@ -50,7 +51,7 @@
       <div class="navBar">
         <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
         <p>SAMPLE USERNAME HERE</p>
-      </div>  
+      </div>
 
       <div class="patientInfoContainer">
         <div class="patientInfo">
@@ -67,62 +68,43 @@
           <a href="appointments_dashboard.html" id="appointments">Appointments</a>
         </div>
 
+
         <div class="prescriptionsDiv">
           <h1>Appointments (Active)</h1>
-          <div class="prescriptionFiles">
-          
+
+          <?php foreach ($data['appointments'] as $appointment): ?>
             <div class="file">
               <div class="desDiv">
-                <p class="time">Time: 10.30AM</p>
+                <p class="time">Time:
+                  <?php echo $appointment->time; ?>
+                </p>
               </div>
-              <p>Appointment No: 12</p>
-              <p>Dr Name: Dr. Doctor Name</p>
-              <p>DD-MM-YYYY</p>
-              <a href="view_appointment.html"><img src="More.png" alt="more-icon"></a>
+              <p>No.
+                <?php echo $appointment->appointment_ID; ?>
+              </p>
+              <p>Dr Name:
+                <?php echo $appointment->doctor_ID; ?>
+              </p>
+              <p>Date:
+                <?php echo $appointment->date; ?>
+              </p>
+              <a href="<?php echo URLROOT; ?>..\view_appointment.php"><img src="<?php echo URLROOT; ?>\public\img\patient\More.png" alt="more-icon"></a>
             </div>
 
-            <div class="file">
-              <div class="desDiv">
-                <p class="time">Time: 10.30AM</p>
-              </div>
-              <p>Appointment No: 12</p>
-              <p>Dr Name: Dr. Doctor Name</p>
-              <p>DD-MM-YYYY</p>
-              <a href="view_appointment.html"><img src="More.png" alt="more-icon"></a>
-            </div>
+          <?php endforeach; ?>
 
-            <div class="file">
-                <div class="desDiv">
-                  <p class="time">Time: 10.30AM</p>
-                </div>
-                <p>Appointment No: 12</p>
-                <p>Dr Name: Dr. Doctor Name</p>
-                <p>DD-MM-YYYY</p>
-                <a href="view_appointment.html"><img src="More.png" alt="more-icon"></a>
-              </div>
-
-              <div class="file">
-                <div class="desDiv">
-                  <p class="time">Time: 10.30AM</p>
-                </div>
-                <p>Appointment No: 12</p>
-                <p>Dr Name: Dr. Doctor Name</p>
-                <p>DD-MM-YYYY</p>
-                <a href="view_appointment.html"><img src="More.png" alt="more-icon"></a>
-              </div>
-          </div>
         </div>
-
 
         <p class="addnewHeading">Add new</p>
         <div class="addnew">
-          
+
           <div class="appointment">
             <div>
               <img src="<?php echo URLROOT; ?>\public\img\patient\appointment.png" alt="appointment-icon">
               <p>
-                <a href ="appointments_dashboard.html" id="appointments">Schedule an Appointment</a>
-                <span class="details">The modern way to schedule and meet with convenience</span></p>
+                <a href="appointments_dashboard.html" id="appointments">Schedule an Appointment</a>
+                <span class="details">The modern way to schedule and meet with convenience</span>
+              </p>
             </div>
           </div>
 
@@ -131,7 +113,8 @@
               <img src="<?php echo URLROOT; ?>\public\img\patient\message.png" alt="chat-icon">
               <p>
                 <a href="inquiries_dashboard.html" id="inquiries">Make an Inquiry</a>
-                <span class="details">Initiate an online inquiry with a health supervisor</span></p>
+                <span class="details">Initiate an online inquiry with a health supervisor</span>
+              </p>
             </div>
           </div>
 
@@ -139,3 +122,9 @@
       </div>
     </div>
   </div>
+  </div>
+
+  </div>
+</body>
+
+</html>
