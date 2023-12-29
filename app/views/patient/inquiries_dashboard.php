@@ -22,7 +22,6 @@ if (!empty($_POST)) {
 
     }
 
-
     if (empty($message)) {
         $errors[] = 'Message is empty';
     }
@@ -35,20 +34,19 @@ if (!empty($_POST)) {
 
 
         // specify SMTP credentials
-        $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
-        $mail->SMTPAuth = true;
-        $mail->Port = 587;
-        $mail->Username = 'c1c5e702c258b7';
-        $mail->Password = 'f38034f0c8a7e9';
+        // $mail->isSMTP();
+        // $mail->Host = 'sandbox.smtp.mailtrap.io';
+        // $mail->SMTPAuth = true;
+        // $mail->Port = 587;
+        // $mail->Username = 'c1c5e702c258b7';
+        // $mail->Password = 'f38034f0c8a7e9';
 
 
-        $mail->setFrom($email, $name);
-        $mail->addReplyTo($email, $name);
-        $mail->addAddress('recipient1@mailtrap.io', 'Tim');
-        $mail->Subject = 'New message from patient';
+        // $mail->setFrom($email, $name);
+        // $mail->addReplyTo($email, $name);
+        // $mail->addAddress('recipient1@mailtrap.io', 'Tim');
+        // $mail->Subject = 'New message from patient';
 
-        // Enable HTML if needed
         $mail->isHTML(true);
         $bodyParagraphs = ["Name: {$name}", "Email: {$email}", "Message:", nl2br($message)];
         $body = join('<br />', $bodyParagraphs);
@@ -56,7 +54,7 @@ if (!empty($_POST)) {
         // echo $body;
 
         if ($mail->send()) {
-            header('Location: inquiries_dashboard.php');
+            header('Location: inquiries_dashboard');
             //echo "SUCCESS";
         } else {
             $errorMessage = 'Oops, something went wrong. Mailer Error: ' . $mail->ErrorInfo;
@@ -80,23 +78,23 @@ if (!empty($_POST)) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="/public/css/patient/inquiries_dashboard.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/patient/inquiries_dashboard.css" />
 </head>
 
 <body>
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="\public\img\patient\Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="<?php echo URLROOT; ?>/public/img/patient/Untitled design (5) copy 2.png" />
             </div>
 
-            <div class="patientDiv">
+            <!-- <div class="patientDiv">
                 <p class="mainOptions">PATIENT</p>
 
                 <div class="profile">
                     <p>username</p>
                 </div>
-            </div>
+            </div> -->
 
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
@@ -117,13 +115,13 @@ if (!empty($_POST)) {
 
         <div class="main">
             <div class="navBar">
-                <img src="\public\img\patient\user.png" alt="user-icon">
+                <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
                 <p>SAMPLE USERNAME HERE</p>
             </div>
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
-                    <img src="\public\img\patient\profile.png" alt="profile-pic">
+                    <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
                     <div class="patientNameDiv">
                         <p class="name">Patient Name</p>
                         <p class="role">Patient</p>
@@ -140,7 +138,7 @@ if (!empty($_POST)) {
                         supervisors will promptly respond to your request via email. Kindly provide us with your email
                         address below for a swift and efficient response.</p>
                     <br>
-                    <form method="post" action="inquiries_dashboard.php" id="contact-form">
+                    <form method="post" action="inquiries_dashboard" id="contact-form">
                         <?php echo((!empty($errorMessage)) ? $errorMessage : '') ?>
                         <div class="input-group">
                             <label for="email" class="required-label">Email Address <span

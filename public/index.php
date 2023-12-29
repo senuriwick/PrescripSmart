@@ -1,7 +1,7 @@
 <?php
     require_once   "../app/bootloader.php";
 
-    $init = new Core;
+    $init = new Core();
 ?>
 
 
