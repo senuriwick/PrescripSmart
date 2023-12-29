@@ -30,5 +30,17 @@ class DoctorPatient {
         return $results;
     }
 
+    public function getReportCount(){
+        $this->db->query('SELECT * FROM reports');
+        $this->db->resultSet();
+        return $this->db->rowCount();
+    }
+
+    public function getSessionsDetails(){
+        $this->db->query('SELECT * FROM doctorSessions');
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
     
 }

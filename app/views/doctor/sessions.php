@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="../../../public/css/doctor/sessions.css" />
-    <link rel="stylesheet" href="../../../public/css/doctor/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../public/css/doctor/sessions.css" />
+    <link rel="stylesheet" href="../public/css/doctor/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="../public/img/doctor/Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="userDiv">
@@ -36,9 +36,9 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/patients" class="active">Patients</a>
                 <a href="on-going_session.html">Ongoing Sessions</a>
-                <a href="sessions.html">Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a>
                 <a href="profile.html">Profile</a>
             </div>
             <div class="othersDiv">
@@ -52,14 +52,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="user.png" alt="user-icon">
+                    <img src="../public/img/doctor/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="profile.png" alt="profile-pic">
+                        <img src="../public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Doctor Name</p>
                             <p class="role">Doctor</p>
@@ -67,42 +67,24 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="patients.html">Patients</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/patients">Patients</a></p>
                         <p><a href="on-going_session.html">On-going</a></p>
-                        <p><a href="sessions.html">Sessions</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a></p>
                     </div>
 
                     <div class="patientSearch">
                         <div   id="session-details" class="sessions-box">
+                        <?php foreach($data['sessionsData'] as $sessionData): ?>
                             <div class="session-card">
-                                <div><b>Session #1254</b></div>
+                                <div><b><?php echo $sessionData->session_id; ?></b></div>
                                 <hr>
-                                <div>Date: Sunday, 17th Sept,2023</div>
-                                <div>Time: 08.00 AM</div>
+                                <div><?php echo $sessionData->session_date;?></div>
+                                <div><?php echo $sessionData->session_time;?></div>
                                 <button>VIEW SESSION</button>
                             </div>
-                            <div class="session-card">
-                                <div><b>Session #1255</b></div>
-                                <hr>
-                                <div>Date: Sunday, 17th Sept,2023</div>
-                                <div>Time: 08.00 AM</div>
-                                <button>VIEW SESSION</button>
-                            </div>
-                            <div class="session-card">
-                                <div><b>Session #1256</b></div>
-                                <hr>
-                                <div>Date: Sunday, 17th Sept,2023</div>
-                                <div>Time: 08.00 AM</div>
-                                <button>VIEW SESSION</button>
-                            </div>
-                            <div class="session-card">
-                                <div><b>Session #1257</b></div>
-                                <hr>
-                                <div>Date: Sunday, 17th Sept,2023</div>
-                                <div>Time: 08.00 AM</div>
-                                <button>VIEW SESSION</button>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
+                        
                         <div id="session-patients" class="clicked-session">
                             <div class="session-number">
                                 <h1>Session #1234</h1>
@@ -114,7 +96,7 @@
                                     <tr>
                                         <td>
                                             <div class="session-patient">
-                                                <img src="profile.png" alt="user-icon">
+                                                <img src="../public/img/doctor/profile.png" alt="user-icon">
                                                 <p class="patientName">Ms. Shenaya Perera</p>
                                             </div>
                                         </td>
@@ -124,7 +106,7 @@
                                     <tr>
                                         <td>
                                             <div class="session-patient">
-                                                <img src="profile.png" alt="user-icon">
+                                                <img src="../public/img/doctor/profile.png" alt="user-icon">
                                                 <p class="patientName">Ms. Shenaya Perera</p>
                                             </div>
                                         </td>
@@ -146,7 +128,7 @@
             <div class="modal-head"><b>Session #1254</b></div>
             <div class="session-modal-content">
                 <div class="doctor-data">
-                    <img src="profile.png" alt="user-icon">
+                    <img src="../public/img/doctor/profile.png" alt="user-icon">
                     <div class="doctor-data1">
                         <div class="name"><b>DR.ASANKA RATHNAYAKE</b></div>
                         <div class="role">Consultant Physician</div>

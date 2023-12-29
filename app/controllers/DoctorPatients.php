@@ -31,11 +31,21 @@ class DoctorPatients extends Controller{
 
     public function viewReports(){
         $reportDetails = $this->dpModel->getReportDetails();
+        $reportCount = $this->dpModel->getReportCount();
 
         $data = [
-            'reportsData' => $reportDetails
+            'reportsData' => $reportDetails,
+            'reportsCount' => $reportCount
         ];
         $this->view('doctor/reports',$data);
+    }
+
+    public function sessions(){
+        $sessionsDetails = $this->dpModel->getSessionsDetails();
+        $data = [
+            'sessionsData' => $sessionsDetails
+        ];
+        $this->view('doctor/sessions',$data);
     }
     
 
