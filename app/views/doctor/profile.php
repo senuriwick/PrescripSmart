@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="../../../public/css/doctor/profile.css" />
-    <link rel="stylesheet" href="../../../public/css/doctor/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../public/css/doctor/profile.css" />
+    <link rel="stylesheet" href="../public/css/doctor/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="../public/img/doctor/Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="userDiv">
@@ -36,10 +36,10 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
-                <a href="on-going_session.html">Ongoing Sessions</a>
-                <a href="sessions.html">Sessions</a>
-                <a href="profile.html">Profile</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/patients" class="active">Patients</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/viewOngoingSession">Ongoing Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -52,14 +52,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="user.png" alt="user-icon">
+                    <img src="../public/img/doctor/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="profile.png" alt="profile-pic">
+                        <img src="../public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Doctor Name</p>
                             <p class="role">Doctor</p>
@@ -67,8 +67,8 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="profile.html">Account</a></p>
-                        <p><a href="personalinfo.html">Personal Info</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/profile">Account</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctorPatients/personalInfo">Personal Info</a></p>
                         <p><a href="#">Security</a></p>
                     </div>
 

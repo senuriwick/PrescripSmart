@@ -39,7 +39,7 @@
                 <a href="<?php echo URLROOT; ?>/doctorPatients/patients" class="active">Patients</a>
                 <a href="<?php echo URLROOT; ?>/doctorPatients/viewOngoingSession">Ongoing Sessions</a>
                 <a href="<?php echo URLROOT; ?>/doctorPatients/sessions">Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctorProfile/profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/doctorPatients/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
