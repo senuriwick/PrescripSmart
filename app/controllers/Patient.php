@@ -3,7 +3,7 @@ class Patient extends Controller
 {
     public function __construct()
     {
-        $this->patientModel = $this->model('M_Patient'); // Corrected model name
+        $this->patientModel = $this->model('M_Patient');
     }
 
     public function index()
@@ -22,33 +22,31 @@ class Patient extends Controller
         $data = [
             'appointments' => $appointments
         ];
-        $this->view('patient/appointments_dashboard', $data); // Passing data to the view
+        $this->view('patient/appointments_dashboard', $data);
     }
-
-    // public function view_appointment($appointment_ID)
-    // {
-    //     $appointment = $this->patientModel->viewAppointment($appointment_ID);
-    //     $data = [
-    //         'appointment' => $appointment
-    //     ];
-    //     $this->view('patient/view_appointment', $data);
-    // }
 
     public function view_appointment()
-{
-    $appointment_ID = $_GET['appointment_id'] ?? null;
+    {
+        $appointment_ID = $_GET['appointment_id'] ?? null;
 
-    if ($appointment_ID !== null) {
-        $appointment = $this->patientModel->viewAppointment($appointment_ID);
-        $data = [
-            'appointment' => $appointment
-        ];
-        $this->view('patient/view_appointment', $data);
-    } else {
-        // Handle the case where appointment_id is not provided
-        // You might want to redirect the user or display an error message
-        echo "Appointment ID not provided";
+        if ($appointment_ID !== null) {
+            $appointment = $this->patientModel->viewAppointment($appointment_ID);
+            $data = [
+                'appointment' => $appointment
+            ];
+            $this->view('patient/view_appointment', $data);
+        } else {
+            echo "Appointment ID not provided";
+        }
     }
-}
+
+    public function new_appointment()
+    {
+        $doctors = $this->patientModel->searchDoctor();
+        $data = [
+            'doctors' => $doctors
+        ];
+        $this->view('patient/new_appointment', $data);
+    }
 }
 ?>
