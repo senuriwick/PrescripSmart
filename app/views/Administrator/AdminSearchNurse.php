@@ -45,7 +45,7 @@
                 <a href="sideMenuTexts">Pharmacist</a>
             </div>
             <div class="othersDiv">
-            <p class="sideMenuTexts">Profile</p>
+                <p class="sideMenuTexts">Profile</p>
                 <p class="sideMenuTexts">Billing</p>
                 <p class="sideMenuTexts">Terms of Services</p>
                 <p class="sideMenuTexts">Privacy Policy</p>
@@ -83,7 +83,8 @@
                     <div class="patientSearch">
                         <h1>Search Nurse</h1>
                         <form>
-                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
+                            <input type="text" class="searchBar" id="searchInput"
+                                placeholder="Enter patient name or Id" />
                         </form>
                         <hr />
                         <div class="patient-details">
@@ -142,34 +143,34 @@
                         </div>
                         <div class="register-btn">
                             <button>
-                            <a href="register_nurse.php">Register a New Lab Technician</a>
+                                <a href="register_nurse.php">Register a New Lab Technician</a>
                             </button>
-                        
+
+                        </div>
                     </div>
-                    </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-                                  const searchInput = document.getElementById("searchInput");
-                              
-                                  searchInput.addEventListener("input", function () {
-                                    const searchTerm = searchInput.value.toLowerCase();
-                                    const patientRows = document.querySelectorAll(".patient-details tr");
-                              
-                                    patientRows.forEach(function (row) {
-                                      const patientName = row.querySelector(".patientName").textContent.toLowerCase();
-                                      if (patientName.includes(searchTerm)) {
-                                        row.style.display = "table-row";
-                                      } else {
-                                        row.style.display = "none";
-                                      }
-                                    });
-                                  });
-                                });
+            const searchInput = document.getElementById("searchInput");
+
+            searchInput.addEventListener("input", function () {
+                const searchTerm = searchInput.value.toLowerCase();
+                const patientRows = document.querySelectorAll(".patient-details tr");
+
+                patientRows.forEach(function (row) {
+                    const patientName = row.querySelector(".patientName").textContent.toLowerCase();
+                    if (patientName.includes(searchTerm)) {
+                        row.style.display = "table-row";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            });
+        });
 
     </script>
 </body>
