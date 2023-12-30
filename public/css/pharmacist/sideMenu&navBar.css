@@ -7,8 +7,7 @@ body {
     display: grid;
     height: 100vh;
     grid-template-columns: 200px 1fr;
-    grid-template-areas:
-        "sideMenu container"
+    grid-template-areas: "sideMenu container";
 }
 
 .container {

@@ -74,7 +74,7 @@
                         <p class="grey-text">Sorry, Not Found</p>
                     </div>
                     <hr class="divider">
-                    <a href="pharmacist_newMed.html"><button id="newButton">ADD NEW MEDICATION</button></a>
+                    <a href="<?php echo URLROOT; ?>/Pharmacist/enterNewMed"><button id="newButton">ADD NEW MEDICATION</button></a>
                 </div>
             </div>
         </div>

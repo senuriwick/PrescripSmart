@@ -45,26 +45,17 @@
         public function pharmacistAddNewMed(){
             $this->view('pharmacist/pharmacist_addNewMed');
         }
-    }
-?>
-<?php
-    class Pharmacist extends Controller{
-        public function __construct(){
-            // echo "this is a pages controller";
-            $this->pharmacistModel = $this->model('M_Pharmacist');
+
+        public function pharmacistOneMedDetails(){
+            $this->view('pharmacist/pharmacist_oneMedDetails');
         }
 
-        public function index(){
-
+        public function enterNewMed(){
+            $this->view('pharmacist/pharmacist_newMed');
         }
 
-        public function dashboard(){
-            $patients = $this->pharmacistModel->getPatients();
-            $data = [
-                'patients' => $patients
-            ];
-            $this->view('pharmacist/pharmacist_dashboard', $data);
-            // echo "insaf";
+        public function allPrescriptions(){
+            $this->view('pharmacist/pharmacist_prescription');
         }
     }
 ?>

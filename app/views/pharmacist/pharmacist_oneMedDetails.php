@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_oneMedDetails.css" />
-    <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_oneMedDetails.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="images/logo.png" />
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
             </div>
 
             <div class="userDiv">
@@ -31,9 +31,9 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
-                <a href="on-going_session.html">Medications</a>
-                <a href="profile.html">Profile</a>
+                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a>
+                <a href="">Medications</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -46,14 +46,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="images/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="images/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Patient Name</p>
                             <p class="role">Patient</p>
@@ -61,16 +61,16 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="prescriptions.html">Patients</a></p>
-                        <p><a href="reports.html">Medications</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a></p>
+                        <p><a href="reports.html" style="color: black; font-weight: 500;">Medications</a></p>
                     </div>
                     
                     <div class="patientSearch">
                         <div class="patient-div">
-                            <a href="pharmacist_allMedications.html">
+                            <a href="<?php echo URLROOT; ?>/Pharmacist/medications">
                                 <img
                                   class="vector"
-                                  src="./images/vector.png"
+                                  src="<?php echo URLROOT?>/app/views/pharmacist/images/vector.png"
                                   alt="Sample Image"
                                 />
                                 </a>
@@ -84,9 +84,9 @@
                         </div>
                         <div class="quantity">
                             <p>Qty in Stock: </p>
-                            <button><img src="images/minus.png" alt=""></button>
+                            <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/minus.png" alt=""></button>
                             <input type="text" id="searchBar" name="search">
-                            <button><img src="images/plus.png" alt=""></button>
+                            <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/plus.png" alt=""></button>
                         </div>
                         <a href=""><button id="redButton">Mark as Out of Stock</button></a>
                     </div>

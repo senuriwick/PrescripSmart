@@ -78,7 +78,7 @@
                         <p class="id">#1245866</p>
                         <p>Medication Name Here</p>
                         <p id="patientId">A description Here</p>
-                        <a href="pharmacist_oneMedDetails.html" id="viewButton"><button>Manage</button></a>
+                        <a href="<?php echo URLROOT; ?>/Pharmacist/pharmacistOneMedDetails" id="viewButton"><button>Manage</button></a>
                     </div>
                     
                 </div>
