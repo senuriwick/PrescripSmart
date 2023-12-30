@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_prescription.css" />
-    <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_prescription.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -20,7 +20,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="images/logo.png" />
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
             </div>
 
             <div class="userDiv">
@@ -32,9 +32,9 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Patients</a>
-                <a href="on-going_session.html">Medications</a>
-                <a href="profile.html">Profile</a>
+                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a>
+                <a href="">Medications</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -47,14 +47,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="images/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="images/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Patient Name</p>
                             <p class="role">Patient</p>
@@ -62,8 +62,8 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="prescriptions.html">Patients</a></p>
-                        <p><a href="reports.html">Medications</a></p>
+                    <p style="color:black">Patients</p>
+                        <p><a href="<?php echo URLROOT ?>/Pharmacist/medications">Medications</a></p>
                     </div>
                     
                     <div class="patientSearch">
@@ -71,11 +71,11 @@
                             <a href="pharmacist_dashboard.html">
                                 <img
                                   class="vector"
-                                  src="./images/vector.png"
+                                  src="<?php echo URLROOT?>/app/views/pharmacist/images/vector.png"
                                   alt="Sample Image"
                                 />
                             </a>
-                            <img class="person-circle" src="images/personcircle.png" alt="patient-pic">
+                            <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
                             <div class="patient-desc">
                                 <p>Sheneya Perera</p>
                                 <p>Patient Id 12345</p>
@@ -91,7 +91,7 @@
                                     <tr class="">   
                                         <td>
                                             <div class="presDiv" onclick="openPopup()">
-                                                <img src="images/description.png" alt="download-icon">
+                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
                                                 <p>Pres. Description</p>
                                             </div>
                                         </td>
@@ -101,7 +101,7 @@
                                     <tr class="clickable-row">
                                         <td>
                                             <div class="presDiv" onclick="openPopup()">
-                                                <img src="images/description.png" alt="download-icon">
+                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
                                                 <p>Pres. Description</p>
                                             </div>
                                         </td>
@@ -111,7 +111,7 @@
                                     <tr class="clickable-row">
                                         <td>
                                             <div class="presDiv" onclick="openPopup()">
-                                                <img src="images/description.png" alt="download-icon">
+                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
                                                 <p>Pres. Description</p>
                                             </div>
                                         </td>
@@ -121,7 +121,7 @@
                                     <tr class="clickable-row">
                                         <td>
                                             <div class="presDiv" onclick="openPopup()">
-                                                <img src="images/description.png" alt="download-icon">
+                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
                                                 <p>Pres. Description</p>
                                             </div>  
                                         </td>

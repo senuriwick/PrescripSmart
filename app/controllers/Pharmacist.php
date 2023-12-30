@@ -17,5 +17,45 @@
             $this->view('pharmacist/pharmacist_dashboard', $data);
             // echo "insaf";
         }
+
+        public function medications(){
+            $medications = $this->pharmacistModel->getMedications();
+            $data = [
+                'medications' => $medications
+            ];
+            $this->view('pharmacist/pharmacist_allMedications', $data);
+        }
+
+        public function profile(){
+            $this->view('pharmacist/pharmacist_profile');
+        }
+
+        public function personal(){
+            $this->view('pharmacist/pharmacist_personalInfo');
+        }
+
+        public function security(){
+            $this->view('pharmacist/pharmacist_2factor');
+        }
+
+        public function pharmacistMedication(){
+            $this->view('pharmacist/pharmacist_medication');
+        }
+
+        public function pharmacistAddNewMed(){
+            $this->view('pharmacist/pharmacist_addNewMed');
+        }
+
+        public function pharmacistOneMedDetails(){
+            $this->view('pharmacist/pharmacist_oneMedDetails');
+        }
+
+        public function enterNewMed(){
+            $this->view('pharmacist/pharmacist_newMed');
+        }
+
+        public function allPrescriptions(){
+            $this->view('pharmacist/pharmacist_prescription');
+        }
     }
 ?>

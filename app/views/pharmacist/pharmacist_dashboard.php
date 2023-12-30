@@ -1,10 +1,10 @@
 
-    
 <?php require APPROOT."/views/inc/components/header.php" ?>
     <!-- <link rel="stylesheet" href="styles/pharmacist_dashboard.css" /> -->
     <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_dashboard.css" />
     <!-- <link rel="stylesheet" href="styles/sideMenu&navBar.css" /> -->
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/app/views/pharmacist/styles/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
+
     <script src="main.js"></script>
 </head>
 
@@ -12,7 +12,9 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
+
                 <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
+
             </div>
 
             <div class="userDiv">
@@ -20,13 +22,13 @@
                     <Datag>PHARMACIST</Datag>
                 </p>
             </div>
-            
+
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="" class="active">Patients</a>
-                <a href="pharmacist_allMedications.html">Medications</a>
-                <a href="pharmacist_profile.html">Profile</a>
+                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a>
+                <a href="">Medications</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -54,8 +56,9 @@
                     </div>
 
                     <div class="menu">
+
                         <p style="color:black">Patients</p>
-                        <p><a href="pharmacist_allMedications.html">Medications</a></p>
+                        <p><a href="<?php echo URLROOT ?>/Pharmacist/medications">Medications</a></p>
                     </div>
                     <hr class="divider">
                     <div class="prescriptionsDiv">
@@ -71,7 +74,7 @@
                             <p><?php echo $patient->name; ?></p>
                         </div>
                         <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
-                        <a href="pharmacist_prescription.html" id="viewButton"><button>View Prescriptions</button></a>
+                        <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions" id="viewButton"><button>View Prescriptions</button></a>
                     </div>
                     <?php endforeach; ?>
                     

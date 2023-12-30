@@ -9,7 +9,8 @@
   <title>Appointments</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-  <link rel="stylesheet" href="\public\css\patient\view_appointment.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\view_appointment.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
 </head>
 
 <body>
@@ -17,16 +18,16 @@
   <div class="content">
     <div class="sideMenu">
       <div class="logoDiv">
-        <img class="logoImg" src="\public\img\patient\Untitled design (5) copy 2.png" />
+        <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
       </div>
 
-      <div class="patientDiv">
+      <!-- <div class="patientDiv">
         <p class="mainOptions">PATIENT</p>
 
         <div class="profile">
           <p>username</p>
         </div>
-      </div>
+      </div> -->
 
 
       <div class="manageDiv">
@@ -50,13 +51,13 @@
 
     <div class="main">
       <div class="navBar">
-        <img src="\public\img\patient\user.png" alt="user-icon">
+        <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
         <p>SAMPLE USERNAME HERE</p>
       </div>
 
       <div class="patientInfoContainer">
         <div class="patientInfo">
-          <img src="\public\img\patient\profile.png" alt="profile-pic">
+          <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
           <div class="patientNameDiv">
             <p class="name">Patient Name</p>
             <p class="role">Patient</p>
@@ -71,11 +72,13 @@
 
         <div class="prescriptionsDiv">
           <div>
-            <div class="section-header">
-              <h1>Appointment (#214568)</h1>
-            <button id="cancelButton" class="buttonstyle">Cancel Appointment</button>
-            </div>
-          
+          <div class="section-header">
+    <?php $appointment_ID = $_GET['appointment_id']; ?>
+    <?php $appointment = $data['appointment']; ?>
+    <h1>Appointment (#<?php echo $appointment->appointment_ID; ?>)</h1>
+    <button id="cancelButton" class="buttonstyle">Cancel Appointment</button>
+</div>
+
             <div id="confirmationPopup" class="popup">
               <div class="popup-content">
                 <p>Are you sure you want to cancel this appointment?</p>
@@ -125,28 +128,34 @@
             </script>
           </div>
           <div class="prescriptionFiles">
-            <div class="file">
-              <div class="group">
-                <div class="number">
-                  <span class="number-sub-0">
-                    NO.<br>12</span>
-                </div>
-              </div>
+    <div class="file">
+        <div class="group">
+            <div class="number">
+                <span class="number-sub-0">
+                    NO.<br><?php echo $appointment->appointment_ID; ?></span>
+            </div>
+        </div>
 
-              <div class="text">
-                <div class="auto-group-oxxo-Sau">
-                  <p>Time: 11.30 AM<br>Date: Wed, 13th Sep, 2023<br>Patient: Ms. S Perera<br>Doctor: Dr. C
-                    Wickramasinghe<br>Payment Status: </p>
-                  <div class="auto-group-ppa1-jrq">
+        <div class="text">
+            <div class="auto-group-oxxo-Sau">
+                <p>Time:
+                    <?php echo $appointment->time; ?><br>Date:
+                    <?php echo $appointment->date; ?><br>Patient:
+                    <?php echo $appointment->patient_ID; ?><br>Doctor:
+                    <?php echo $appointment->doctor_ID; ?><br>Payment Status:
+                </p>
+                <div class="auto-group-ppa1-jrq">
                     <p class="paid-fkV" style="color: red; font-weight: 800;">PAID</p>
                     <!-- <img class="checksquare-h4u" src="CheckSquare.png"/> -->
-                  </div>
                 </div>
-              </div>
-
             </div>
-          </div>
         </div>
+    </div>
+</div>
+        </div>
+
+
+
 
 
         <p class="addnewHeading">Add new</p>
@@ -154,7 +163,7 @@
 
           <div class="appointment">
             <div>
-              <img src="\public\img\patient\appointment.png" alt="appointment-icon">
+              <img src="<?php echo URLROOT; ?>\public\img\patient\appointment.png" alt="appointment-icon">
               <p>
                 <a href="new_appointment.html" id="appointments">Schedule an Appointment</a>
                 <span class="details">The modern way to schedule and meet with convenience</span>
@@ -164,7 +173,7 @@
 
           <div class="inquiry">
             <div>
-              <img src="\public\img\patient\message.png" alt="chat-icon">
+              <img src="<?php echo URLROOT; ?>\public\img\patient\message.png" alt="chat-icon">
               <p>
                 <a href="inquiries_dashboard.html" id="inquiries">Make an Inquiry</a>
                 <span class="details">Initiate an online inquiry with a health supervisor</span>
@@ -176,3 +185,6 @@
       </div>
     </div>
   </div>
+  </div>
+</body>
+</html>

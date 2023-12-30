@@ -11,5 +11,10 @@
             return $this->db->resultSet();
         }
 
+        public function getMedications(){
+            $this->db->query('SELECT * FROM Medication');
+            return $this->db->resultSet();
+        }
+
     }
 ?>
