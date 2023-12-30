@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\appointments_dashboard.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
 </head>
 
 <body>
@@ -88,12 +89,34 @@
               <p>Date:
                 <?php echo $appointment->date; ?>
               </p>
-              <a href="<?php echo URLROOT; ?>..\view_appointment.php"><img src="<?php echo URLROOT; ?>\public\img\patient\More.png" alt="more-icon"></a>
+              <a href="view_appointment?appointment_id=<?php echo $appointment->appointment_ID; ?>">
+                <img src="<?php echo URLROOT; ?>\public\img\patient\More.png" alt="more-icon">
+              </a>
+              <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                  const moreIcons = document.querySelectorAll('.more-icon');
+
+                  moreIcons.forEach(icon => {
+                    icon.addEventListener('click', function () {
+                      // Extract the appointment ID from the href attribute
+                      const appointment_ID = this.parentNode.getAttribute('data-appointment-id');
+
+                      // Redirect to view_appointment.php with the appointment ID as a query parameter
+                      window.location.href = 'view_appointment?appointment_id=' + appointment_ID;
+                    });
+                  });
+                });
+              </script>
             </div>
+
 
           <?php endforeach; ?>
 
         </div>
+
+
+
+
 
         <p class="addnewHeading">Add new</p>
         <div class="addnew">
