@@ -9,11 +9,12 @@
   <title>New Appointment</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\new_appointment.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/patient/new_appointment.css" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
 </head>
 
 <body>
+
 
   <div class="content">
     <div class="sideMenu">
@@ -84,16 +85,18 @@
                     <tr class="patient-details-row" style="display: none;">
                       <td>
                         <div class="desDiv">
-                          <p class="patientName">
-                            <?php echo $doctor->fName; ?>
-                            <?php echo $doctor->lName; ?>
-                          </p>
-                          <p class="patientSpecialization">
-                            <?php echo $doctor->specialization; ?>
-                          </p>
-                          <p class="patientGender">
-                            <?php echo $doctor->gender; ?>
-                          </p>
+                          <a href="<?php echo URLROOT; ?>/public/patient/doctor_sessions?doctor_ID=<?php echo $doctor->doctor_ID; ?>"
+                            class="doctor-link">
+                            <p class="patientName">
+                              <?php echo $doctor->fName; ?>
+                              <?php echo $doctor->lName; ?>
+                            </p>
+                            <p class="patientSpecialization">
+                              <?php echo $doctor->specialization; ?>
+                            </p>
+                            <p class="patientGender">
+                              <?php echo $doctor->gender; ?>
+                            </p>
                         </div>
                       </td>
                     </tr>
@@ -134,12 +137,32 @@
                     });
                   }
                 });
-
-
-
-
               </script>
             </div>
+
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                const doctorLinks = document.querySelectorAll(".doctor-link");
+
+                doctorLinks.forEach(function (link) {
+                  link.addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    const doctorHref = link.getAttribute("href");
+                    const doctorIDMatch = doctorHref.match(/doctor_ID=(\d+)/);
+
+                    if (doctorIDMatch && doctorIDMatch[1]) {
+                      const doctorID = doctorIDMatch[1];
+
+                      window.location.href = `<?php echo URLROOT; ?>/public/patient/doctor_sessions?doctor_ID=${doctorID}`;
+                    } else {
+                      console.error("Doctor ID not found in the href attribute");
+                    }
+                  });
+                });
+              });
+            </script>
+
 
 
 
