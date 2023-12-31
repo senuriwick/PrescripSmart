@@ -70,52 +70,75 @@
                 </div>
 
                 <div>
-                <?php $doctor_ID = $_GET['doctor_ID']; ?>
-                <?php $session = $data['session']; ?>
+                    <?php $doctor_ID = $_GET['doctor_ID']; ?>
+                    <?php $session = $data['session']; ?>
 
-                <?php 
-                $doctorname = '';
-                $doctorspec = '';
+                    <?php
+                    $doctorname = '';
+                    $doctorspec = '';
 
-                if(!empty($data['session'])) {
-                    $doctorname = $data['session'][0]->doctorName;
-                    $doctorspec = $data['session'][0]->specialization;
-                } else {
-                    echo "No sessions found";
-                }
-                ?>
-                    <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.<?php echo $doctorname; ?></p>
+                    if (!empty($data['session'])) {
+                        $doctorname = $data['session'][0]->doctorName;
+                        $doctorspec = $data['session'][0]->specialization;
+                    } else {
+                        echo "No sessions found";
+                    }
+                    ?>
+                    <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.
+                        <?php echo $doctorname; ?>
+                    </p>
                 </div>
 
                 <div class="searchDiv">
-                    <h1 style="font-size: 24px; color:  #0069FF;">DR. <?php echo $doctorname; ?></h1>
-                    <p style="line-height: 0.4;"><?php echo $doctorspec; ?></p>
+                    <h1 style="font-size: 24px; color:  #0069FF;">DR.
+                        <?php echo $doctorname; ?>
+                    </h1>
+                    <p style="line-height: 0.4;">
+                        <?php echo $doctorspec; ?>
+                    </p>
                     <div class="line1"></div>
 
                     <div class="boxes-container">
 
-                    <?php 
-if (!empty($data['session'])) {
-    foreach ($data['session'] as $session): ?>
-        <div class="box1">
-            <p class="sessionname">Session #<?php echo $session->session_ID; ?></p>
-            <p class="text">
-                Date: <?php echo $session->sessionDate; ?>
-                <br />
-                Time: <?php echo $session->time; ?>
-            </p>
-            <div class="line2"></div>
-            <button type="button" id="booknow" name="booknow" class="rectangle-70-mtM">BOOK NOW</button>
-            <script>
-                document.getElementById("booknow").addEventListener("click", function () {
-                    window.location.href = "new_appointment_confirmation.html";
-                });
-            </script>
-        </div>
-<?php endforeach;
-} else {
-    echo "No sessions found";
-} ?>
+                        <?php
+                        if (!empty($data['session'])) {
+                            foreach ($data['session'] as $session): ?>
+                                <div class="box1">
+                                    <p class="sessionname">Session #
+                                        <?php echo $session->session_ID; ?>
+                                    </p>
+                                    <p class="text">
+                                        Date:
+                                        <?php echo $session->sessionDate; ?>
+                                        <br />
+                                        Time:
+                                        <?php echo $session->time; ?>
+                                        <br />
+                                        Appointment No:
+                                        <?php echo $session->current_appointment; ?>
+                                    </p>
+                                    <div class="line2"></div>
+                                    <button type="button" class="rectangle-70-mtM"
+                                        onclick="bookNow(<?php echo $session->session_ID; ?>)">
+                                        BOOK NOW
+                                    </button>
+
+
+                                    <script>
+                                        function bookNow(sessionID) {
+                                            var confirmationURL = "<?php echo URLROOT; ?>/patient/appointment_confirmation";
+                                            confirmationURL += "?sessionID=" + encodeURIComponent(sessionID);
+
+                                            window.location.href = confirmationURL;
+                                        }
+                                    </script>
+
+
+                                </div>
+                            <?php endforeach;
+                        } else {
+                            echo "No sessions found";
+                        } ?>
 
                     </div>
 
