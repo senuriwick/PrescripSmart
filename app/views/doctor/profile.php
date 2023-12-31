@@ -36,10 +36,10 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="<?php echo URLROOT;?>/doctorPatients/patients" class="active">Patients</a>
-                <a href="<?php echo URLROOT;?>/doctorPatients/viewOngoingSession">Ongoing Sessions</a>
-                <a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a>
-                <a href="<?php echo URLROOT;?>/doctorPatients/profile">Profile</a>
+                <a href="<?php echo URLROOT;?>/doctor/patients" class="active">Patients</a>
+                <a href="<?php echo URLROOT;?>/doctor/viewOngoingSession">Ongoing Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctor/sessions">Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctor/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -67,8 +67,8 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT;?>/doctorPatients/profile">Account</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctorPatients/personalInfo">Personal Info</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/profile">Account</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/personalInfo">Personal Info</a></p>
                         <p><a href="#">Security</a></p>
                     </div>
 
