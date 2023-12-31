@@ -37,9 +37,9 @@
                 <p class="mainOptions">MANAGE</p>
 
                 <a href="<?php echo URLROOT;?>/doctorPatients/patients" class="active">Patients</a>
-                <a href="<?php echo URLROOT;?>/doctorPatients/viewOngongSession">Ongoing Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/viewOngoingSession">Ongoing Sessions</a>
                 <a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a>
-                <a href="profile.html">Profile</a>
+                <a href="<?php echo URLROOT;?>/doctorPatients/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>

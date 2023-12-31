@@ -51,6 +51,14 @@ class DoctorPatients extends Controller{
     public function viewOngoingSession(){
         $this->view('doctor/on-going_session');
     }
+
+    public function Profile(){
+        $this->view('doctor/profile');
+    }
+
+    public function personalInfo(){
+        $this->view('doctor/personalinfo');
+    }
     
 
 }

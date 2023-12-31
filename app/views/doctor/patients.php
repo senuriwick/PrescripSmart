@@ -39,7 +39,7 @@
                 <a href="<?php echo URLROOT; ?>/doctorPatients/patients" class="active">Patients</a>
                 <a href="<?php echo URLROOT; ?>/doctorPatients/viewOngoingSession">Ongoing Sessions</a>
                 <a href="<?php echo URLROOT; ?>/doctorPatients/sessions">Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctorProfile/profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/doctorPatients/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -82,8 +82,9 @@
                         <div class="patient-details">
                             <table>
                                 <tbody>
+                                <?php foreach($data['patientsData'] as $patientData): ?>
                                     <tr class="patient-details-row">
-                                        <?php foreach($data['patientsData'] as $patientData): ?>
+                                        
                                         <td>
                                             <div class="desDiv">
                                                 <img src="../public/img/doctor/profile.png" alt="user-icon">
@@ -114,18 +115,25 @@
                               
                                   searchInput.addEventListener("input", function () {
                                     const searchTerm = searchInput.value.toLowerCase();
+                                    const regex = new RegExp(searchTerm, 'i');
                                     const patientRows = document.querySelectorAll(".patient-details-row");
                               
-                                    patientRows.forEach(function (row) {
-                                      const patientName = row.querySelector(".patientName").textContent.toLowerCase();
-                                      if (patientName.includes(searchTerm)) {
-                                        row.style.display = "table-row";
-                                      } else {
-                                        row.style.display = "none";
-                                      }
+                                        patientRows.forEach(function (row) {
+                                            const patientName = row.querySelector(".patientName").textContent.toLowerCase();
+                                        //   if (patientName.includes(searchTerm)) {
+                                        //     row.style.display = "table-row";
+                                        //   } else {
+                                        //     row.style.display = "none";
+
+                                            if (regex.test(patientName)) {
+                                                    row.style.display = "table-row";
+                                                } else {
+                                                    row.style.display = "none";
+                                                }
+                                      });
                                     });
                                   });
-                                });
+                                
                               </script>
                         </div>
                     </div>

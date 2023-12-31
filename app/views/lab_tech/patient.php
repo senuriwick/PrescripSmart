@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="patient.css" />
-    <link rel="stylesheet" href="sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../public/css/lab_tech/patient.css" />
+    <link rel="stylesheet" href="../public/css/lab_tech/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,10 +19,10 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="../public/img/lab_tech/Untitled design (5) copy 2.png" />
             </div>
 
-            <div class="userDiv">
+            <!-- <div class="userDiv">
                 <p class="mainOptions">
                     <Datag>LAB TECHNICIAN</Datag>
                 </p>
@@ -30,13 +30,13 @@
                 <div class="profile">
                     <p>username</p>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patient.html" class="active">Patients</a>
+                <a href="<?php echo URLROOT; ?>/LabTechnician/patient" class="active">Patients</a>
                 <a href="profile.html">Profile</a>
             </div>
             <div class="othersDiv">
@@ -49,14 +49,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="user.png" alt="user-icon">
+                    <img src="../public/img/lab_tech/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="profile.png" alt="profile-pic">
+                        <img src="../public/img/lab_tech/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">Lab technician Name</p>
                             <p class="role">Lab technician</p>
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="patient.html">Patients</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/LabTechnician/patient">Patients</a></p>
                     </div>
 
                     <div class="patientSearch" id="patientSearch">
@@ -79,7 +79,7 @@
                                     <tr>
                                         <td>
                                             <div class="desDiv">
-                                                <img src="profile.png" alt="user-icon">
+                                                <img src="../public/img/lab_tech/profile.png" alt="user-icon">
                                                 <p class="patientName">Ms. Shenaya Perera</p>
                                                 <i class="fa-solid fa-chevron-down" data-target="content1" onclick="show(this)"></i>                                            </div>
                                         </td>
@@ -100,7 +100,7 @@
                                     <tr>
                                         <td>
                                             <div class="desDiv">
-                                                <img src="profile.png" alt="user-icon">
+                                                <img src="../public/img/lab_tech/profile.png" alt="user-icon">
                                                 <p class="patientName">Mr. John Due</p>
                                                 <i class="fa-solid fa-chevron-down" data-target="content2" onclick="show(this)"></i>                                            </div>
                                         </td>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="patient-test-data" id="patient-test-data" style="display: none;">
                         <div class="patientInfo">
-                            <img src="profile.png" alt="profile">
+                            <img src="../public/img/lab_tech/profile.png" alt="profile">
                             <div class="infoDetail">
                                 <p class="name">Ms. Shenaya Perera</p>
                                 <p class="id">Patient ID-#12345</p>
@@ -169,7 +169,7 @@
                     </div>
                     <div class="patient-test-data" id="upload-patient-test-data" style="display: none;">
                         <div class="patientInfo">
-                            <img src="profile.png" alt="profile">
+                            <img src="../public/img/lab_tech/profile.png" alt="profile">
                             <div class="infoDetail">
                                 <p class="name">Ms. Shenaya Perera</p>
                                 <p class="id">Patient ID-#12345</p>
