@@ -85,7 +85,7 @@
                     <tr class="patient-details-row" style="display: none;">
                       <td>
                         <div class="desDiv">
-                          <a href="<?php echo URLROOT; ?>/public/patient/doctor_sessions?doctor_ID=<?php echo $doctor->doctor_ID; ?>"
+                          <a href="<?php echo URLROOT; ?>/patient/doctor_sessions?doctor_ID=<?php echo $doctor->doctor_ID; ?>"
                             class="doctor-link">
                             <p class="patientName">
                               <?php echo $doctor->fName; ?>
@@ -154,7 +154,7 @@
                     if (doctorIDMatch && doctorIDMatch[1]) {
                       const doctorID = doctorIDMatch[1];
 
-                      window.location.href = `<?php echo URLROOT; ?>/public/patient/doctor_sessions?doctor_ID=${doctorID}`;
+                      window.location.href = `<?php echo URLROOT; ?>/patient/doctor_sessions?doctor_ID=${doctorID}`;
                     } else {
                       console.error("Doctor ID not found in the href attribute");
                     }
