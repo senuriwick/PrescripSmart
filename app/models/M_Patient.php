@@ -28,5 +28,13 @@ class M_Patient
         $result = $this->db->resultSet();
         return $result;
     }
+
+    public function docSession($doctor_ID)
+    {
+        $this->db->query('SELECT * FROM sessions WHERE doctor_ID = :doctor_id');
+        $this->db->bind(':doctor_id', $doctor_ID);
+        $result = $this->db->resultSet();
+        return $result;
+    }
 }
 ?>
