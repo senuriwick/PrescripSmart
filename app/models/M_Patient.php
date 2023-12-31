@@ -32,7 +32,12 @@ class M_Patient
     public function docSession($doctor_ID)
     {
         $currentDate = date('Y-m-d');
-        $this->db->query('SELECT s. *, d.fName, d.lName, d.specialization FROM sessions s INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID WHERE s.doctor_ID = :doctor_id AND s.sessionDate >= :current_date ORDER BY s.sessionDate ASC, s.time ASC');
+        $this->db->query('SELECT s. *, d.fName, d.lName, d.specialization FROM sessions s 
+        INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID 
+        WHERE s.doctor_ID = :doctor_id 
+        AND s.sessionDate >= :current_date 
+        AND s.total_appointments >= s.current_appointment
+        ORDER BY s.sessionDate ASC, s.time ASC');
         $this->db->bind(':doctor_id', $doctor_ID);
         $this->db->bind(':current_date', $currentDate);
         $result = $this->db->resultSet();
