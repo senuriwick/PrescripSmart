@@ -70,72 +70,53 @@
                 </div>
 
                 <div>
-                    <p style="font-size: small; color: gray;">Search Results (1)<br>Doctor:Asanka Rathnayake</p>
+                <?php $doctor_ID = $_GET['doctor_ID']; ?>
+                <?php $session = $data['session']; ?>
+
+                <?php 
+                $doctorname = '';
+                $doctorspec = '';
+
+                if(!empty($data['session'])) {
+                    $doctorname = $data['session'][0]->doctorName;
+                    $doctorspec = $data['session'][0]->specialization;
+                } else {
+                    echo "No sessions found";
+                }
+                ?>
+                    <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.<?php echo $doctorname; ?></p>
                 </div>
 
                 <div class="searchDiv">
-                    <h1 style="font-size: 24px; color:  #0069FF;">DR. ASANKA RATHNAYAKE</h1>
-                    <p style="line-height: 0.4;">Consultant Physician</p>
+                    <h1 style="font-size: 24px; color:  #0069FF;">DR. <?php echo $doctorname; ?></h1>
+                    <p style="line-height: 0.4;"><?php echo $doctorspec; ?></p>
                     <div class="line1"></div>
 
                     <div class="boxes-container">
 
-                        <div class="box1">
+                    <?php 
+if (!empty($data['session'])) {
+    foreach ($data['session'] as $session): ?>
+        <div class="box1">
+            <p class="sessionname">Session #<?php echo $session->session_ID; ?></p>
+            <p class="text">
+                Date: <?php echo $session->sessionDate; ?>
+                <br />
+                Time: <?php echo $session->time; ?>
+            </p>
+            <div class="line2"></div>
+            <button type="button" id="booknow" name="booknow" class="rectangle-70-mtM">BOOK NOW</button>
+            <script>
+                document.getElementById("booknow").addEventListener("click", function () {
+                    window.location.href = "new_appointment_confirmation.html";
+                });
+            </script>
+        </div>
+<?php endforeach;
+} else {
+    echo "No sessions found";
+} ?>
 
-                            <p class="sessionname">Session #1254</p>
-                            <p class="text">
-                                Date: Sunday, 17th Sept, 2023
-                                <br />
-                                Time: 06.00 A.M
-                            </p>
-                            <div class="line2">
-                            </div>
-                            <button type="button" id="booknow" name="booknow" class="rectangle-70-mtM">BOOK NOW</button>
-
-                            <script>
-                                document.getElementById("booknow").addEventListener("click", function () {
-                                    window.location.href = "new_appointment_confirmation.html";
-                                });
-                            </script>
-                        </div>
-
-                        <div class="box1">
-
-                            <p class="sessionname">Session #1254</p>
-                            <p class="text">
-                                Date: Sunday, 17th Sept, 2023
-                                <br />
-                                Time: 06.00 A.M
-                            </p>
-                            <div class="line2">
-                            </div>
-                            <button type="button" id="booknow" name="booknow" class="rectangle-70-mtM">BOOK NOW</button>
-
-                            <script>
-                                document.getElementById("booknow").addEventListener("click", function () {
-                                    window.location.href = "new_appointment_confirmation.html";
-                                });
-                            </script>
-                        </div>
-
-                        <div class="box1">
-
-                            <p class="sessionname">Session #1254</p>
-                            <p class="text">
-                                Date: Sunday, 17th Sept, 2023
-                                <br />
-                                Time: 06.00 A.M
-                            </p>
-                            <div class="line2">
-                            </div>
-                            <button type="button" id="booknow" name="booknow" class="rectangle-70-mtM">BOOK NOW</button>
-
-                            <script>
-                                document.getElementById("booknow").addEventListener("click", function () {
-                                    window.location.href = "new_appointment_confirmation.html";
-                                });
-                            </script>
-                        </div>
                     </div>
 
                 </div>
