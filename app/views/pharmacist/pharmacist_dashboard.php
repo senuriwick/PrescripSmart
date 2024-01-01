@@ -50,8 +50,8 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
-                            <p class="role">Patient</p>
+                            <p class="name">Pharmacist Name</p>
+                            <p class="role">Pharmacist</p>
                         </div>
                     </div>
 

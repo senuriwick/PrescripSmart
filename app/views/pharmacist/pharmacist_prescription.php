@@ -68,7 +68,7 @@
                     
                     <div class="patientSearch">
                         <div class="patient-div">
-                            <a href="pharmacist_dashboard.html">
+                            <a href="<?php echo URLROOT ?>/Pharmacist/dashboard">
                                 <img
                                   class="vector"
                                   src="<?php echo URLROOT?>/app/views/pharmacist/images/vector.png"
@@ -134,10 +134,10 @@
                             </table>
                             <div id="popup">
                                 <div class="grid-container">
-                                    <img id="qr" src="images/qr-code.png" alt="">
+                                    <img id="qr" src="<?php echo URLROOT?>/app/views/pharmacist/images/qr-code.png" alt="">
                                 
                                     <h2>CONFIDENTIAL PRESCRIPTION</h2>
-                                    <img onclick="closePopup()" class="close" src="images/close-button.png" alt="">
+                                    <img onclick="closePopup()" class="close" src="<?php echo URLROOT?>/app/views/pharmacist/images/close-button.png" alt="">
                             
                                     
                                 </div>
@@ -192,6 +192,6 @@
             </div>
         </div>
     </div>
-    <script src="javascripts/pharmcist_prescription.js"></script>
+    <script src="<?php echo URLROOT?>/app/views/pharmacist/javascripts/pharmcist_prescription.js"></script>
 </body>
 </html>

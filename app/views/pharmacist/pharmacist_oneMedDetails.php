@@ -55,8 +55,8 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
-                            <p class="role">Patient</p>
+                            <p class="name">Pharmacist Name</p>
+                            <p class="role">Pharmacist</p>
                         </div>
                     </div>
 
@@ -73,19 +73,21 @@
                                   src="<?php echo URLROOT?>/app/views/pharmacist/images/vector.png"
                                   alt="Sample Image"
                                 />
-                                </a>
-                            <p class="med">Medication Name Here</p>
-                            <p>Status:<span class="stock">In-Stock</span></p>
+                            </a>
+                            <p class="med"> Medication Name : <?php echo isset($_GET['name']) ? $_GET['name']:''; ?></p>
+                            <p>Status: <span class="stock"><?php echo isset($_GET['status']) ? $_GET['status']:''; ?></span></p>
                         </div>  
-                        <div class="med-details">
-                            <p>Reference No:  <span>#125677</span></p>
-                            <p>Batch No:  <span>#123</span></p>
-                            <p>Expiry Date:  <span>12/05/2024</span></p>
+                    
+                            <p>Reference No: <span><?php echo isset($_GET['id']) ? $_GET['id']: ''; ?></span></p>
+                   
+                            <p>Batch No: <span><?php echo isset($_GET['batch_number']) ? $_GET['batch_number']:''; ?></span></p>
+               
+                            <p>Expiry Date: <span><?php echo isset($_GET['expiry_date']) ? $_GET['expiry_date'] : '12/05/2024'; ?></span></p>
                         </div>
                         <div class="quantity">
                             <p>Qty in Stock: </p>
                             <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/minus.png" alt=""></button>
-                            <input type="text" id="searchBar" name="search">
+                            <input type="text" id="searchBar" name="search" value="<?php echo isset($_GET['quantity']) ? $_GET['quantity']:''; ?>">
                             <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/plus.png" alt=""></button>
                         </div>
                         <a href=""><button id="redButton">Mark as Out of Stock</button></a>
