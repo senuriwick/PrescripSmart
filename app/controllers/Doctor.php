@@ -1,7 +1,7 @@
 <?php
-class DoctorPatients extends Controller{
+class Doctor extends Controller{
     public function __construct(){
-        $this->dpModel = $this->model('DoctorPatient');
+        $this->dpModel = $this->model('M_Doctor');
     }
     public function index(){
         $this->view('doctor/patients');
@@ -60,6 +60,9 @@ class DoctorPatients extends Controller{
         $this->view('doctor/personalinfo');
     }
     
+    public function security(){
+        $this->view('doctor/security');
+    }
 
 }
 ?>

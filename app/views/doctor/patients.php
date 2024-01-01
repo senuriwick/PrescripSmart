@@ -36,10 +36,10 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="<?php echo URLROOT; ?>/doctorPatients/patients" class="active">Patients</a>
-                <a href="<?php echo URLROOT; ?>/doctorPatients/viewOngoingSession">Ongoing Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctorPatients/sessions">Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctorPatients/profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/doctor/patients" class="active">Patients</a>
+                <a href="<?php echo URLROOT; ?>/doctor/viewOngoingSession">Ongoing Sessions</a>
+                <a href="<?php echo URLROOT; ?>/doctor/sessions">Sessions</a>
+                <a href="<?php echo URLROOT; ?>/doctor/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -67,9 +67,9 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT;?>/doctorPatients/patients">Patients</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctorPatients/viewOngoingSession">On-going</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctorPatients/sessions">Sessions</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/patients">Patients</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/viewOngoingSession">On-going</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/sessions">Sessions</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -89,11 +89,12 @@
                                             <div class="desDiv">
                                                 <img src="../public/img/doctor/profile.png" alt="user-icon">
                                                 <p class="patientName"><?php echo $patientData->patient_name; ?></p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patientData->patient_id; ?>" onclick="show(this)"></i>                                            </div>
+                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patientData->patient_id; ?>" onclick="show(this)"></i>                                            
+                                            </div>
                                         </td>
                                         
                                         <td>Patient ID - <?php echo $patientData->patient_id ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/doctorPatients/addPrescription"><button>Add Prescription</button></a></td>
+                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription"><button>Add Prescription</button></a></td>
                                     </tr>
                                     
                                     <tr>
@@ -102,7 +103,7 @@
                                                 <p>Age: <?php echo $patientData->Age; ?></p>
                                                 <p>Height: <?php echo $patientData->height; ?> cm</p>
                                                 <p>Weight: <?php echo $patientData->weight; ?> kg</p>
-                                                <a href="<?php echo URLROOT; ?>/doctorPatients/addPrescription"><button>Add prescription</button></a>
+                                                <a href="<?php echo URLROOT; ?>/doctor/addPrescription"><button>Add prescription</button></a>
                                             </div>
                                         </td>
                                     </tr>

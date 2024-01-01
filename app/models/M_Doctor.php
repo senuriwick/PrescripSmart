@@ -1,6 +1,6 @@
 <?php
 
-class DoctorPatient {
+class M_Doctor {
     private $db;
     public function __construct(){
         $this->db = new Database;
