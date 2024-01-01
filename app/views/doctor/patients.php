@@ -89,7 +89,8 @@
                                             <div class="desDiv">
                                                 <img src="../public/img/doctor/profile.png" alt="user-icon">
                                                 <p class="patientName"><?php echo $patientData->patient_name; ?></p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patientData->patient_id; ?>" onclick="show(this)"></i>                                            </div>
+                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patientData->patient_id; ?>" onclick="show(this)"></i>                                            
+                                            </div>
                                         </td>
                                         
                                         <td>Patient ID - <?php echo $patientData->patient_id ?></td>

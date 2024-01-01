@@ -69,7 +69,7 @@
                     <div class="menu">
                         <p><a href="<?php echo URLROOT;?>/doctor/profile">Account</a></p>
                         <p><a href="<?php echo URLROOT;?>/doctor/personalInfo">Personal Info</a></p>
-                        <p><a href="#">Security</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/security">Security</a></p>
                     </div>
 
                     <div class="doctorprofile">

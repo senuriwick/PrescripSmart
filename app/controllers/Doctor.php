@@ -60,6 +60,9 @@ class Doctor extends Controller{
         $this->view('doctor/personalinfo');
     }
     
+    public function security(){
+        $this->view('doctor/security');
+    }
 
 }
 ?>

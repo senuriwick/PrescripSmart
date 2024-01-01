@@ -6,11 +6,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Doctor profile</title>
+    <title>Account Security</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="../public/css/doctor/personalinfo.css" />
+    <link rel="stylesheet" href="../public/css/doctor/profile.css" />
     <link rel="stylesheet" href="../public/css/doctor/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -38,7 +38,7 @@
 
                 <a href="<?php echo URLROOT;?>/doctor/patients" class="active">Patients</a>
                 <a href="<?php echo URLROOT;?>/doctor/viewOngoingSession">Ongoing Sessions</a>
-                <a href="<?php echo URLROOT;?>/doctor/viewReports">Sessions</a>
+                <a href="<?php echo URLROOT;?>/doctor/sessions">Sessions</a>
                 <a href="<?php echo URLROOT;?>/doctor/profile">Profile</a>
             </div>
             <div class="othersDiv">
@@ -77,61 +77,37 @@
                             <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />
-                        <div class="details">
-                            <form>
-                                <label for="">First Name</label><br>
-                                <input type="text" placeholder="First name">
-                            </form>
-                            <form>
-                                <label for="">Last Name</label><br>
-                                <input type="text" placeholder="Last name">
-                            </form>
+                        <div class="detail">
+                            <div>
+                                <form>
+                                    <label>Method of Sign-In</label><br>
+                                    <input type="email || phonenumber" placeholder="email">
+                                </form>
+                            </div>
+                            <div>
+                                <form>
+                                    <label></label><br>
+                                    <input type="email ||  phonenumber" placeholder="sample email or phone number here">
+                                </form>
+                            </div>
+                            
                         </div>
-                        <div class="details">
-                            <form>
-                                <label for="">Display Name</label><br>
-                                <input type="text" placeholder="Display name">
-                            </form>
-                        </div>
-                        <p>This will be how your name will be displayed in the dashboard.</p>
-                        <div class="details">
-                            <form>
-                                <label for="">Home Address</label><br>
-                                <input type="text" placeholder="Home Address">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <form>
-                                <label for="">NIC  Number</label><br>
-                                <input type="number" placeholder="200045465455">
-                            </form>
-                            <form>
-                                <label for="">Contact Number</label><br>
-                                <input type="tel" placeholder="0214569889">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <form>
-                                <label for="">Doctor Registration Number</label><br>
-                                <input type="number" placeholder="548968451">
-                            </form>
-                            <form>
-                                <label for="">Qualification</label><br>
-                                <input type="text" placeholder="Qualification">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <form>
-                                <label for="">Department</label><br>
-                                <input type="text" placeholder="Department">
-                            </form>
-                            <form>
-                                <label for="">Specialization</label><br>
-                                <input type="text" placeholder="Specialization">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <button>Save Changes</button>
+                            <!-- <div>Current password
+                                <div class="test-box">
+                                    **********
+                                </div>
+                            </div> -->
+                        <!-- </div> -->
+                        <hr/>
+                        <div class="detail">
+                            <div>Two-factor Authentication
+                            </div>
+                        <br>
+                        
+                             <div style="color:#445172BF">
+                            Add an extra layer of security to your account. To sign in, you'll need to provide a code along with your username and password.
+                            </div><br>
+                            <div class="detail"><div><button>SETUP 2FA</button></div></div>
                         </div>
                     </div>
                 </div>
