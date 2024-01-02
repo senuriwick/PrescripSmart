@@ -65,7 +65,10 @@
                 </div>
 
                 <?php $session_ID = $_GET['sessionID']; ?>
+                <!-- <?php var_dump($session_ID); ?> -->
                 <?php $appInfo = $data['selectedSession']; ?>
+
+
                 <div class="menu">
                     <a href="new_appointment.html" id="appointments">New Appointment</a>
                 </div>
@@ -129,6 +132,18 @@
                         </div>
                     </div>
 
+                    <div style="display:none">
+                        <form action="<?php echo URLROOT; ?>/Patient/appointment_confirmation" method="POST"
+                            id="addapp">
+                            <input type="hidden" name="patient_ID" value="125">
+                            <input type="hidden" name="doctor_ID" value="<?php echo $appInfo->doctor_ID ?>">
+                            <input type="hidden" name="session_ID" value="<?php echo $appInfo->session_ID ?>">
+                            <input type="hidden" name="time" value="<?php echo $appInfo->time ?>">
+                            <input type="hidden" name="date" value="<?php echo $appInfo->sessionDate ?>">
+                            <input type="submit" style="display:none" id="insertapp">
+                        </form>
+                    </div>
+
                     <script>
                         document.querySelector(".policy").addEventListener("click", function () {
                             document.getElementById("policyPopup").style.display = "block";
@@ -142,25 +157,77 @@
                             document.getElementById("customConfirmation").style.display = "block";
                         });
 
+                        // document.getElementById("yesButton").addEventListener("click", function () {
+                        //     let addapp = document.getElementById("addapp");
+                        //     let insertapp = document.getElementById("insertapp");
+                        //     insertapp.click();
+
+                        //     document.getElementById("customConfirmation").style.display = "none";
+
+                        //     let appointmentDetails = { id: 'APPOINTMENT_ID'};
+                        //     document.getElementById("confirmationOptions").style.display = "block";
+
+                        // });
+
                         document.getElementById("yesButton").addEventListener("click", function () {
+                            // ... other code ...
+                            let addapp = document.getElementById("addapp");
+                            let insertapp = document.getElementById("insertapp");
+
+                            // Trigger the form submission
+                            insertapp.click();
+
+                            // Hide the confirmation dialog
                             document.getElementById("customConfirmation").style.display = "none";
-                            document.getElementById("confirmationOptions").style.display = "block";
+
+                            // Assuming you have the appointment details available in the response after insertion,
+                            // replace 'lastInsertedID' with the actual variable holding the appointment details.
+                            let lastInsertedID = 'lastInsertedID';
+
+                            // Check if the insertion was successful (you can adjust this condition based on your server response)
+                            if (lastInsertedID) {
+                                // Show the "View Appointment" and "Pay Now" buttons
+                                document.getElementById("viewAppointmentButton").style.display = "block";
+                                document.getElementById("payNowButton").style.display = "block";
+
+                                // Add an event listener to the "View Appointment" button.
+                                document.getElementById("viewAppointmentButton").addEventListener("click", function () {
+                                    window.location.href = "view_appointment?appointment_id=" + lastInsertedID;
+                                });
+
+                                // Add an event listener to the "Pay Now" button.
+                                document.getElementById("payNowButton").addEventListener("click", function () {
+                                    // Add "Pay Now" action here
+                                    alert("Pay Now");
+                                    document.getElementById("confirmationOptions").style.display = "none";
+                                });
+
+                                // Show the confirmation options
+                                document.getElementById("confirmationOptions").style.display = "block";
+
+                                
+                            } else {
+                                // Handle the case where insertion was not successful
+                                alert("Appointment insertion failed. Please try again.");
+                            }
                         });
+
 
                         document.getElementById("noButton").addEventListener("click", function () {
                             document.getElementById("customConfirmation").style.display = "none";
                         });
 
-                        document.getElementById("viewAppointmentButton").addEventListener("click", function () {
-                            window.location.href = 'view_appointment.html';
-                            document.getElementById("confirmationOptions").style.display = "none";
-                        });
+                        // document.getElementById("viewAppointmentButton").addEventListener("click", function () {
+                        //     window.location.href = 'view_appointment.html';
+                        //     document.getElementById("confirmationOptions").style.display = "none";
 
-                        document.getElementById("payNowButton").addEventListener("click", function () {
-                            // Add "Pay Now" action here
-                            alert("Pay Now");
-                            document.getElementById("confirmationOptions").style.display = "none";
-                        });
+                        // });
+
+                        // document.getElementById("payNowButton").addEventListener("click", function () {
+                        //     // Add "Pay Now" action here
+                        //     alert("Pay Now");
+                        //     document.getElementById("confirmationOptions").style.display = "none";
+                        // });
 
                         document.querySelector(".policy").addEventListener("click", function () {
                             document.getElementById("policyPopup").style.display = "block";

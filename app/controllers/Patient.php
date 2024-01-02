@@ -64,42 +64,25 @@ class Patient extends Controller
         }
     }
 
-
     public function appointment_confirmation()
-{
-    $session_ID = $_GET['sessionID'] ?? null;
-    $confirmation = $_POST['confirmation'] ?? null;
+    {
+        $session_ID = $_GET['sessionID'] ?? null;
 
-    if ($session_ID != null) {
-        // Fetch the patient ID
-        $patient_ID = 125;
+        if ($session_ID != null) {
 
-        $selectedSession = $this->patientModel->getSessionDetails($session_ID);
-        $data = [
-            'selectedSession' => $selectedSession
-        ];
-        $this->view('patient/appointment_confirmation', $data);
-    } else {
-        echo "Session ID not provided";
-    }
-
-    if ($session_ID != null && $confirmation == 'yes') {
-        // Fetch the patient ID
-        $patient_ID = 125;
-
-        $confirmationResult = $this->patientModel->confirmAppointment($patient_ID, $session_ID);
-
-        if ($confirmationResult) {
-            echo json_encode(['success' => true]);
-            exit;
+            $selectedSession = $this->patientModel->getSessionDetails($session_ID);
+            $data = [
+                'selectedSession' => $selectedSession
+            ];
+            $this->view('patient/appointment_confirmation', $data);
         } else {
-            echo json_encode(['success' => false]);
-            exit;
+            echo "Session ID not provided";
         }
-    } else {
-        echo "Invalid request";
+
+        // // var_dump($_POST);
+        $this->patientModel->confirmAppointment(); 
     }
-}
+
 
 }
 ?>
