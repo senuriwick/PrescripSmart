@@ -45,43 +45,6 @@ class M_Patient
         return $result;
     }
 
-
-    public function confirmAppointment($patient_ID, $session_ID)
-    {
-        $sessionDetails = $this->getSessionDetails($session_ID);
-
-        if ($sessionDetails) {
-            $doctor_ID = $sessionDetails->doctor_ID;
-
-            // Start a database transaction
-            $this->db->beginTransaction();
-
-            try {
-                $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, date) 
-                             VALUES (:patient_id, :session_id, :doctor_id, :session_date)');
-                $this->db->bind(':patient_id', $patient_ID);
-                $this->db->bind(':session_id', $session_ID);
-                $this->db->bind(':doctor_id', $doctor_ID);
-                $this->db->bind(':session_date', $sessionDetails->sessionDate);
-                $this->db->execute();
-
-                $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1 WHERE session_ID = :session_id');
-                $this->db->bind(':session_id', $session_ID);
-                $this->db->execute();
-
-                $this->db->commit();
-
-                return true;
-            } catch (Exception $e) {
-                // An error occurred, rollback the transaction
-                $this->db->rollBack();
-                return false;
-            }
-        }
-
-        return false;
-    }
-
     public function getSessionDetails($session_ID)
     {
         $this->db->query('SELECT * FROM sessions WHERE session_ID = :session_id');
@@ -90,5 +53,22 @@ class M_Patient
         return $result;
     }
 
+    public function confirmAppointment()
+    {
+        // var_dump($_POST);
+        $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date) VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date)');
+        $this->db->bind(':patient_id', $_POST['patient_ID']);
+        $this->db->bind(':session_id', $_POST['session_ID']);
+        $this->db->bind(':doctor_id', $_POST['doctor_ID']);
+        $this->db->bind(':sessionTime', $_POST['time']);
+        $this->db->bind(':session_date', $_POST['date']);
+        $this->db->execute();
+
+        // Get the last inserted ID
+        $lastInsertedID = $this->db->lastInsertId();
+
+        // Return the last inserted ID
+        return $lastInsertedID;
+    }
 }
 ?>

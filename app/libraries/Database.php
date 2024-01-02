@@ -101,5 +101,10 @@ class Database
         return $this->dbh->rollBack();
     }
 
+    public function lastInsertId()
+    {
+        return $this->dbh->lastInsertId();
+    }
+
 }
 
