@@ -12,4 +12,16 @@ class LabTechnician extends Controller{
     public function patient(){
         $this->view('lab_tech/patient');
     }
+
+    public function profile(){
+        $this->view('lab_tech/profile');
+    }
+
+    public function personalInfo(){
+        $this->view('lab_tech/personalinfo');
+    }
+
+    public function security(){
+        $this->view('lab_tech/security');
+    }
 }

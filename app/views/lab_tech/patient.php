@@ -37,7 +37,7 @@
                 <p class="mainOptions">MANAGE</p>
 
                 <a href="<?php echo URLROOT; ?>/LabTechnician/patient" class="active">Patients</a>
-                <a href="profile.html">Profile</a>
+                <a href="<?php echo URLROOT;?>/labTechnician/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Terms of Services</p>

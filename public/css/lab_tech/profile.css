@@ -14,18 +14,8 @@
     color: rgba(164, 174, 199, 1);
     text-decoration: none;
   }
-
-  .menu p a{
-    text-decoration: none;
-    color: rgba(164, 174, 199, 1);
-
-}
-
-p a:active{
-    color: black;
-}
   
-  .doctorprofile {
+  .labprofile {
     margin-top: 2vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
@@ -33,52 +23,69 @@ p a:active{
    
   }
   
-  .doctorprofile .empid {
+  .labprofile .empid {
     font-size: 3vh;
     font-weight: bold;
     color: #0069FF;
   }
 
-  .doctorprofile .accountinfotext{
+  .labprofile .accountinfotext{
     font-size: 1.9vh;
     text-align:right;
     color:#445172 ;
   }
   
-  .doctorprofile .details{
-    display: flex;
-    justify-content: space-between;
-    margin-top: inherit;
+  .labprofile .detail{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 20vh;
+    margin-top: 20px;
+
+    
   }
 
-  .doctorprofile p{
-    font-size: 1.5vh;
-    margin-top: auto;
-  }
-
-  .doctorprofile .details form{
-    width: 100%;
-  }
-
-  .details form label{
-    font-size: 1.8vh;
+  .labprofile .detail>div{
+    padding: 0 5px;
     font-weight: bold;
+    font-size: 1.8vh;
   }
 
-  .doctorprofile .details button{
-    width: 30%;
-    background-color: #0069FFBF;
+  .labprofile .detail .test-box{
+    background-color: #ffffff;
     padding: 10px 20px;
-    font-size: 1.8vh;
+    font-size: 1.5vh;
     font-weight: 500;
-    color:white;
-    border: 1px solid #0069FFBF;
+    color:#445172BF;
+    border: 1px solid #44517280;
     border-radius: 10px;
     margin-top: 5px;
-
+    
   }
 
-  .doctorprofile .details form input{
+  .labprofile .detail .test-box-data{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .labprofile .detail .test-box i{
+    color: #0069FF;
+    cursor: pointer;
+  }
+
+  .labprofile .detail button{
+    background-color: #0069FFBF;
+    border: 1px solid #0069FFBF;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1.5vh;
+    font-weight: 500;
+    border-radius: 10px;
+    /* width: 250px; */
+    cursor: pointer;
+
+  }
+  .labprofile .detail form input{
     width: 85%;
     background-color: #ffffff;
     padding: 10px 20px;
@@ -89,3 +96,4 @@ p a:active{
     border-radius: 10px;
     margin-top: 5px;
   }
+
