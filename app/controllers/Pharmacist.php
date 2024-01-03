@@ -42,11 +42,11 @@
             $this->view('pharmacist/pharmacist_medication');
         }
 
-        public function pharmacistAddNewMed(){
+        public function addNewMed(){
             $this->view('pharmacist/pharmacist_addNewMed');
         }
 
-        public function pharmacistOneMedDetails(){
+        public function oneMedDetails(){
             $this->view('pharmacist/pharmacist_oneMedDetails');
         }
 

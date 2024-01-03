@@ -48,5 +48,41 @@ class Patient extends Controller
         ];
         $this->view('patient/new_appointment', $data);
     }
+
+    public function doctor_sessions()
+    {
+        $doctor_ID = $_GET['doctor_ID'] ?? null;
+
+        if ($doctor_ID !== null) {
+            $session = $this->patientModel->docSession($doctor_ID);
+            $data = [
+                'session' => $session
+            ];
+            $this->view('patient/doctor_sessions', $data);
+        } else {
+            echo "Doctor ID not provided";
+        }
+    }
+
+    public function appointment_confirmation()
+    {
+        $session_ID = $_GET['sessionID'] ?? null;
+
+        if ($session_ID != null) {
+
+            $selectedSession = $this->patientModel->getSessionDetails($session_ID);
+            $data = [
+                'selectedSession' => $selectedSession
+            ];
+            $this->view('patient/appointment_confirmation', $data);
+        } else {
+            echo "Session ID not provided";
+        }
+
+        // // var_dump($_POST);
+        $this->patientModel->confirmAppointment(); 
+    }
+
+
 }
 ?>

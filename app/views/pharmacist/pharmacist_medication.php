@@ -57,8 +57,8 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
-                            <p class="role">Patient</p>
+                            <p class="name">Pharmacist Name</p>
+                            <p class="role">Pharmacist</p>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                     <div class="prescriptionsDiv">
                         <h2>Search Medication</h2>
                         <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                        <a href="<?php echo URLROOT; ?>/Pharmacist/pharmacistAddNewMed"><button id="searchButton">SEARCH</button></a>
+                        <a href="<?php echo URLROOT; ?>/Pharmacist/addNewMed"><button id="searchButton">SEARCH</button></a>
                     </div>
                     <hr class="divider">
                     <div class="patientFile">
@@ -78,7 +78,7 @@
                         <p class="id">#1245866</p>
                         <p>Medication Name Here</p>
                         <p id="patientId">A description Here</p>
-                        <a href="<?php echo URLROOT; ?>/Pharmacist/pharmacistOneMedDetails" id="viewButton"><button>Manage</button></a>
+                        <a href="<?php echo URLROOT; ?>/Pharmacist/oneMedDetails" id="viewButton"><button>Manage</button></a>
                     </div>
                     
                 </div>

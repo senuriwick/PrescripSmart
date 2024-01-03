@@ -517,6 +517,24 @@ td button {
   padding: 1.75vh 0vh 1vh 1.5vh;
 }
 
+.desDiv .doctor-link {
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 250px;
+  padding: 2px;
+  margin: 5px 0;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 8px; */
+  transition: background-color 0.3s ease;
+}
+
+.desDiv .doctor-link:hover {
+  background-color: #f0f0f0;
+}
+
 .patient-data {
   margin-bottom: 2vh;
 }
@@ -532,14 +550,3 @@ select option {
   color: initial;
   background-color: initial;
 }
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

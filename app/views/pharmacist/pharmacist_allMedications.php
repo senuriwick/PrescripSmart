@@ -44,8 +44,8 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
-                            <p class="role">Patient</p>
+                            <p class="name">Pharmacist Name</p>
+                            <p class="role">Pharmacist</p>
                         </div>
                     </div>
 
@@ -69,7 +69,8 @@
                             <p class="id"><?php echo $medication->batch_number; ?></p>
                             <p><?php echo $medication->name; ?></p>
                             <p id="patientId"><?php echo $medication->dosage; ?></p>
-                            <a href="pharmacist_oneMedDetails.html" id="viewButton"><button>Manage</button></a>
+                            <!-- <a href="<?php echo URLROOT ?>/Pharmacist/oneMedDetails" id="viewButton"><button>Manage</button></a> -->
+                            <a href="<?php echo URLROOT ?>/Pharmacist/oneMedDetails?batch_number=<?php echo $medication->batch_number; ?>&name=<?php echo $medication->name; ?>&dosage=<?php echo $medication->dosage; ?>&id=<?php echo $medication->id; ?>&expiry_date=<?php echo $medication->expiry_date; ?>&quantity=<?php echo $medication->quantity; ?>&status=<?php echo $medication->status; ?>" id="viewButton"><button>Manage</button></a>
                         </div>
                         <?php endforeach; ?>
                         <!-- <div class="patientFile">
