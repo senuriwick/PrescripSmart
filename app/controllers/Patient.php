@@ -75,14 +75,23 @@ class Patient extends Controller
                 'selectedSession' => $selectedSession
             ];
             $this->view('patient/appointment_confirmation', $data);
+            // $referrence = $this->patientModel->confirmAppointment();
         } else {
             echo "Session ID not provided";
         }
 
         // // var_dump($_POST);
-        $this->patientModel->confirmAppointment(); 
+        $referrence = $this->patientModel->confirmAppointment(); 
+        header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
+
     }
 
+    public function appointment_complete()
+    {
+        $referrence = $_GET['referrence'] ?? null;
+        $this->view('patient/appointment_complete');
+    }
+    
 
 }
 ?>
