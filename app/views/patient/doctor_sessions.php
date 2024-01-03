@@ -80,23 +80,29 @@
                     if (!empty($data['session'])) {
                         $doctorname = $data['session'][0]->doctorName;
                         $doctorspec = $data['session'][0]->specialization;
-                    } else {
-                        echo "No sessions found";
                     }
                     ?>
-                    <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.
+                    <!-- <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.
                         <?php echo $doctorname; ?>
-                    </p>
+                    </p> -->
+
+                    <?php if (!empty($data['session'])): ?>
+                        <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.
+                            <?php echo $doctorname; ?>
+                        </p>
+                    <?php endif; ?>
                 </div>
 
                 <div class="searchDiv">
-                    <h1 style="font-size: 24px; color:  #0069FF;">DR.
-                        <?php echo $doctorname; ?>
-                    </h1>
-                    <p style="line-height: 0.4;">
-                        <?php echo $doctorspec; ?>
-                    </p>
-                    <div class="line1"></div>
+                    <?php if (!empty($data['session'])): ?>
+                        <h1 style="font-size: 24px; color:  #0069FF;">DR.
+                            <?php echo $doctorname; ?>
+                        </h1>
+                        <p style="line-height: 0.4;">
+                            <?php echo $doctorspec; ?>
+                        </p>
+                        <div class="line1"></div>
+                    <?php endif; ?>
 
                     <div class="boxes-container">
 
