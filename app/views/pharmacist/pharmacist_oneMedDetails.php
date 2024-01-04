@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    
     <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_oneMedDetails.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
@@ -74,9 +75,10 @@
                                   alt="Sample Image"
                                 />
                             </a>
-                            <p class="med"> Medication Name : <?php echo isset($_GET['name']) ? $_GET['name']:''; ?></p>
-                            <p>Status: <span class="stock"><?php echo isset($_GET['status']) ? $_GET['status']:''; ?></span></p>
+                            <p class="med"><?php echo isset($_GET['name']) ? $_GET['name']:''; ?></p>
+                            <p class="status">Status: <span class="stock"><?php echo isset($_GET['status']) ? $_GET['status']:''; ?></span></p>
                         </div>  
+                        <div>
                     
                             <p>Reference No: <span><?php echo isset($_GET['id']) ? $_GET['id']: ''; ?></span></p>
                    
@@ -90,11 +92,12 @@
                             <input type="text" id="searchBar" name="search" value="<?php echo isset($_GET['quantity']) ? $_GET['quantity']:''; ?>">
                             <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/plus.png" alt=""></button>
                         </div>
-                        <a href=""><button id="redButton">Mark as Out of Stock</button></a>
+                        <button id="outOfStock">Mark as Out of Stock</button>
                     </div>
                     
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="<?php echo URL_ROOT; ?>public/javascripts/testerjs/oneMedDetails.js"></script>
 </body>
