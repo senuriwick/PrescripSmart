@@ -62,7 +62,7 @@
 
                     <div class="menu">
                     <p><a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a></p>
-                        <p><a href="reports.html" style="color: black; font-weight: 500;">Medications</a></p>
+                        <p><a href="" style="color: black; font-weight: 500;">Medications</a></p>
                     </div>
                     <hr>
                     <div class="ashBlock">
