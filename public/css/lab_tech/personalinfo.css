@@ -25,7 +25,7 @@ p a:active{
     color: black;
 }
   
-  .doctorprofile {
+  .labprofile {
     margin-top: 2vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
@@ -33,30 +33,30 @@ p a:active{
    
   }
   
-  .doctorprofile .empid {
+  .labprofile .empid {
     font-size: 3vh;
     font-weight: bold;
     color: #0069FF;
   }
 
-  .doctorprofile .accountinfotext{
+  .labprofile .accountinfotext{
     font-size: 1.9vh;
     text-align:right;
     color:#445172 ;
   }
   
-  .doctorprofile .details{
+  .labprofile .details{
     display: flex;
     justify-content: space-between;
     margin-top: inherit;
   }
 
-  .doctorprofile p{
+  .labprofile p{
     font-size: 1.5vh;
     margin-top: auto;
   }
 
-  .doctorprofile .details form{
+  .labprofile .details form{
     width: 100%;
   }
 
@@ -65,7 +65,7 @@ p a:active{
     font-weight: bold;
   }
 
-  .doctorprofile .details button{
+  .labprofile .details button{
     width: 30%;
     background-color: #0069FFBF;
     padding: 10px 20px;
@@ -78,7 +78,7 @@ p a:active{
 
   }
 
-  .doctorprofile .details form input{
+  .labprofile .details form input{
     width: 85%;
     background-color: #ffffff;
     padding: 10px 20px;
