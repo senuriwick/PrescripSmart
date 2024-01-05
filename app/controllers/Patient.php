@@ -38,6 +38,9 @@ class Patient extends Controller
         } else {
             echo "Appointment ID not provided";
         }
+
+        $this->patientModel->deleteAppointment($appointment_ID);
+        header("Location: /prescripsmart/patient/appointment_cancelled");
     }
 
     public function new_appointment()

@@ -104,6 +104,14 @@
               </div>
             </div>
 
+            <div style="display:none">
+                        <form action="<?php echo URLROOT; ?>/Patient/view_appointment" method="POST"
+                            id="addapp">
+                            <input type="hidden" name="appointment_ID" value="<?php echo $appointment_ID ?>">
+                            <input type="submit" style="display:none" id="insertapp">
+                        </form>
+                    </div>
+
             <script>
               document.addEventListener('DOMContentLoaded', function () {
                 const cancelButton = document.getElementById('cancelButton');
@@ -141,6 +149,14 @@
                   confirmationPopup.style.display = 'block';
 
                 });
+
+                confirmYesButton.addEventListener('click', function() {
+                  let addapp = document.getElementById("addapp");
+                  let insertapp = document.getElementById("insertapp");
+
+                            // Trigger the form submission
+                  insertapp.click();
+                })
               });
 
             </script>
