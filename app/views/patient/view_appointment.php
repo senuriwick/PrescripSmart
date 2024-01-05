@@ -72,12 +72,22 @@
 
         <div class="prescriptionsDiv">
           <div>
-          <div class="section-header">
-    <?php $appointment_ID = $_GET['appointment_id']; ?>
-    <?php $appointment = $data['appointment']; ?>
-    <h1>Appointment (#<?php echo $appointment->appointment_ID; ?>)</h1>
-    <button id="cancelButton" class="buttonstyle">Cancel Appointment</button>
-</div>
+            <div class="section-header">
+              <?php $appointment_ID = $_GET['appointment_id']; ?>
+              <?php $appointment = $data['appointment']; ?>
+              <h1>Appointment (#
+                <?php echo $appointment->appointment_ID; ?>)
+              </h1>
+              <button id="cancelButton" class="buttonstyle">Cancel Appointment</button>
+            </div>
+
+            <div id="policyPopup" class="popup">
+              <div class="popup-content">
+                <h2>Cancellation Policy</h2>
+                <p>Your cancellation policy message goes here.</p>
+                <button id="closePolicy" class="buttonstyle">Close</button>
+              </div>
+            </div>
 
             <div id="confirmationPopup" class="popup">
               <div class="popup-content">
@@ -102,10 +112,12 @@
                 const confirmYesButton = document.getElementById('confirmYesButton');
                 const confirmNoButton = document.getElementById('confirmNoButton');
                 const goToDashboardButton = document.getElementById('goToDashboardButton');
+                const policyPopup = document.getElementById('policyPopup');
 
 
                 cancelButton.addEventListener('click', function () {
-                  confirmationPopup.style.display = 'block';
+                  policyPopup.style.display = 'block';
+                  // confirmationPopup.style.display = 'block';
                 });
 
 
@@ -123,35 +135,43 @@
                 goToDashboardButton.addEventListener('click', function () {
                   window.location.href = 'appointments_dashboard.html';
                 });
+
+                document.getElementById("closePolicy").addEventListener("click", function () {
+                  document.getElementById("policyPopup").style.display = "none";
+                  confirmationPopup.style.display = 'block';
+
+                });
               });
 
             </script>
           </div>
           <div class="prescriptionFiles">
-    <div class="file">
-        <div class="group">
-            <div class="number">
-                <span class="number-sub-0">
-                    NO.<br><?php echo $appointment->appointment_ID; ?></span>
-            </div>
-        </div>
+            <div class="file">
+              <div class="group">
+                <div class="number">
+                  <span class="number-sub-0">
+                    NO.<br>
+                    <?php echo $appointment->appointment_ID; ?>
+                  </span>
+                </div>
+              </div>
 
-        <div class="text">
-            <div class="auto-group-oxxo-Sau">
-                <p>Time:
+              <div class="text">
+                <div class="auto-group-oxxo-Sau">
+                  <p>Time:
                     <?php echo $appointment->time; ?><br>Date:
                     <?php echo $appointment->date; ?><br>Patient:
                     <?php echo $appointment->patient_ID; ?><br>Doctor:
                     <?php echo $appointment->doctor_ID; ?><br>Payment Status:
-                </p>
-                <div class="auto-group-ppa1-jrq">
+                  </p>
+                  <div class="auto-group-ppa1-jrq">
                     <p class="paid-fkV" style="color: red; font-weight: 800;">PAID</p>
                     <!-- <img class="checksquare-h4u" src="CheckSquare.png"/> -->
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-</div>
+          </div>
         </div>
 
 
@@ -187,4 +207,5 @@
   </div>
   </div>
 </body>
+
 </html>
