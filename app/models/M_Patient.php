@@ -23,6 +23,13 @@ class M_Patient
         return $result;
     }
 
+    public function deleteAppointment($appointment_ID)
+{
+    $this->db->query('DELETE FROM appointments WHERE appointment_ID = :appointment_id');
+    $this->db->bind(':appointment_id', $_POST['appointment_ID']);
+    return $this->db->execute();
+}
+
     public function searchDoctor()
     {
         $this->db->query('SELECT * FROM doctors');
