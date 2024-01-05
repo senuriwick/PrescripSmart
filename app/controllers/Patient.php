@@ -83,7 +83,6 @@ class Patient extends Controller
         // // var_dump($_POST);
         $referrence = $this->patientModel->confirmAppointment(); 
         header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
-
     }
 
     public function appointment_complete()
