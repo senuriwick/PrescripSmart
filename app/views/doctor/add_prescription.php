@@ -61,7 +61,7 @@
                     <div class="userInfo">
                         <img src="../public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
+                            <p class="name"><?php echo $data['patient'];?></p>
                             <p class="role">Patient</p>
                         </div>
                     </div>
