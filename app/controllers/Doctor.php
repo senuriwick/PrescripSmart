@@ -15,7 +15,7 @@ class Doctor extends Controller{
     }
 
     public function addPrescription($id){
-        $patient = $this->dpModel->getPatientName($id);
+        $patient = $this->dpModel->getonePatient($id);
         $data = [
             'patient' => $patient
         ];
@@ -25,21 +25,25 @@ class Doctor extends Controller{
     public function viewPrescriptions($id){
         $prescriptionDetails = $this->dpModel->getPrescriptionDetails($id);
         $prescriptionCount = $this->dpModel->getPrescriptionCount($id);
+        $patient = $this->dpModel->getonePatient($id);
 
         $data = [
             'prescriptionsData' => $prescriptionDetails,
-            'prescriptionsCount' => $prescriptionCount
+            'prescriptionsCount' => $prescriptionCount,
+            'patient' => $patient
         ];
         $this->view('doctor/prescriptions',$data);
     }
 
-    public function viewReports(){
-        $reportDetails = $this->dpModel->getReportDetails();
-        $reportCount = $this->dpModel->getReportCount();
+    public function viewReports($id){
+        $reportDetails = $this->dpModel->getReportDetails($id);
+        $reportCount = $this->dpModel->getReportCount($id);
+        $patient = $this->dpModel->getonePatient($id);
 
         $data = [
             'reportsData' => $reportDetails,
-            'reportsCount' => $reportCount
+            'reportsCount' => $reportCount,
+            'patient' => $patient
         ];
         $this->view('doctor/reports',$data);
     }

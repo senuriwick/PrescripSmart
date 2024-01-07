@@ -26,8 +26,9 @@ class M_Doctor {
         return $this->db->rowCount();
     }
 
-    public function getReportDetails(){
-        $this->db->query('SELECT * FROM reports');
+    public function getReportDetails($patientid){
+        $this->db->query('SELECT * FROM reports WHERE patient_id=:id');
+        $this->db->bind(':id',$patientid);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -44,7 +45,7 @@ class M_Doctor {
         return $results;
     }
 
-    public function getPatientName($patientid){
+    public function getonePatient($patientid){
         $this->db->query('SELECT * FROM patientDetails WHERE patient_id=:id');
         $this->db->bind(':id',$patientid);
         $results = $this->db->single();

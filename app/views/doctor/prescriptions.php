@@ -61,14 +61,14 @@
                     <div class="userInfo">
                         <img src="../../public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
+                            <p class="name"><?php echo $data['patient']->patient_name;?></p>
                             <p class="role">Patient</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewPrescriptions">Prescription</a></p>
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewReports">Reports</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_id;?>">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_id;?>">Reports</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -92,7 +92,7 @@
                                     <?php endforeach;?>
                                     <tr>
                                         <td colspan="3" class="td-cols">
-                                            <a href="<?php echo URLROOT;?>/doctorPatients/addPrescription">+ Add Prescription</a>
+                                            <a href="<?php echo URLROOT;?>/doctor/addPrescription/<?php echo $data['patient']->patient_id; ?>">+ Add Prescription</a>
                                         </td>
                                     </tr>
 
