@@ -22,9 +22,9 @@ class Doctor extends Controller{
         $this->view('doctor/add_prescription',$data);
     }
 
-    public function viewPrescriptions(){
-        $prescriptionDetails = $this->dpModel->getPrescriptionDetails();
-        $prescriptionCount = $this->dpModel->getPrescriptionCount();
+    public function viewPrescriptions($id){
+        $prescriptionDetails = $this->dpModel->getPrescriptionDetails($id);
+        $prescriptionCount = $this->dpModel->getPrescriptionCount($id);
 
         $data = [
             'prescriptionsData' => $prescriptionDetails,

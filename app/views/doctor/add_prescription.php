@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_id;?>">Prescription</a></p>
                         <p><a href="<?php echo URLROOT;?>/doctor/viewReports">Reports</a></p>
                     </div>
 
