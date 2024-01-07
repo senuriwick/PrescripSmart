@@ -94,7 +94,7 @@
                                         </td>
                                         
                                         <td>Patient ID - <?php echo $patientData->patient_id ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription?id=<?php echo $patientData->patient_id;?>"><button>Add Prescription</button></a></td>
+                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_id;?>"><button>Add Prescription</button></a></td>
                                     </tr>
                                     
                                     <tr>

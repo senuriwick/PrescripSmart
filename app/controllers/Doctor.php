@@ -14,8 +14,8 @@ class Doctor extends Controller{
         $this->view('doctor/patients',$data);
     }
 
-    public function addPrescription(){
-        $patient = $this->dpModel->getPatientName();
+    public function addPrescription($id){
+        $patient = $this->dpModel->getPatientName($id);
         $data = [
             'patient' => $patient
         ];

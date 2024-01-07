@@ -42,9 +42,9 @@ class M_Doctor {
         return $results;
     }
 
-    public function getPatientName(){
-        $patientid = $_GET['id'];
-        $this->db->query('SELECT patient_name FROM patientDetails WHERE patient_id="$patientid" LIMIT 1');
+    public function getPatientName($patientid){
+        $this->db->query('SELECT * FROM patientDetails WHERE patient_id=:id');
+        $this->db->bind(':id',$patientid);
         $results = $this->db->single();
         return $results;
     }
