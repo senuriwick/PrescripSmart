@@ -98,12 +98,12 @@
             </div>
 
             <div style="display:none">
-                        <form action="<?php echo URLROOT; ?>/Patient/view_appointment" method="POST"
+                        <form action="<?php echo URLROOT; ?>/Patient/delete_appointment/<?=$appointment_ID?>" method="POST"
                             id="addapp">
                             <input type="hidden" name="appointment_ID" value="<?php echo $appointment_ID ?>">
                             <input type="submit" style="display:none" id="insertapp">
                         </form>
-                    </div>
+            </div>
 
             <script>
               document.addEventListener('DOMContentLoaded', function () {

@@ -17,17 +17,17 @@ class M_Patient
 
     public function viewAppointment($appointment_ID)
     {
-        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 125 AND appointment_ID = :appointment_id');
+        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 125 AND appointment_ID = :appointment_id AND status="active"');
         $this->db->bind(':appointment_id', $appointment_ID);
         $result = $this->db->single();
         return $result;
     }
 
-    public function deleteAppointment()
+    public function deleteAppointment($appointment_ID)
     {
         $this->db->query('UPDATE appointments SET status = "cancelled" 
         WHERE appointment_ID = :appointment_id');
-        $this->db->bind(':appointment_id', $_POST['appointment_ID']);
+        $this->db->bind(':appointment_id', $appointment_ID);
         return $this->db->execute();
     }
 
@@ -61,19 +61,19 @@ class M_Patient
         return $result;
     }
 
-    public function confirmAppointment()
+    public function confirmAppointment($patient_ID,$session_ID,$doctor_ID,$time,$date)
     {
         try {
             $this->db->beginTransaction();
 
             // Insert into appointments table
-            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date) 
-                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date)');
-            $this->db->bind(':patient_id', $_POST['patient_ID']);
-            $this->db->bind(':session_id', $_POST['session_ID']);
-            $this->db->bind(':doctor_id', $_POST['doctor_ID']);
-            $this->db->bind(':sessionTime', $_POST['time']);
-            $this->db->bind(':session_date', $_POST['date']);
+            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status) 
+                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active")');
+            $this->db->bind(':patient_id', $patient_ID);
+            $this->db->bind(':session_id', $session_ID);
+            $this->db->bind(':doctor_id', $doctor_ID);
+            $this->db->bind(':sessionTime', $time);
+            $this->db->bind(':session_date', $date);
             $this->db->execute();
 
             // Get the last inserted ID
@@ -82,7 +82,7 @@ class M_Patient
             // Increment current_appointment in sessions table
             $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1 
                           WHERE session_ID = :session_id');
-            $this->db->bind(':session_id', $_POST['session_ID']);
+            $this->db->bind(':session_id', $session_ID);
             $this->db->execute();
 
             $this->db->commit();

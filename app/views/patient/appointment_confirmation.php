@@ -134,8 +134,7 @@
                     </div>
 
                     <div style="display:none">
-                        <form action="<?php echo URLROOT; ?>/Patient/appointment_confirmation" method="POST"
-                            id="addapp">
+                    <form action="<?php echo URLROOT; ?>/Patient/appointment_reservation/<?=125?>/<?= $appInfo->doctor_ID ?>/<?= $appInfo->session_ID ?>/<?= $appInfo->time ?>/<?= $appInfo->sessionDate ?>" method="POST" id="addapp">
                             <input type="hidden" name="patient_ID" value="125">
                             <input type="hidden" name="doctor_ID" value="<?php echo $appInfo->doctor_ID ?>">
                             <input type="hidden" name="session_ID" value="<?php echo $appInfo->session_ID ?>">
