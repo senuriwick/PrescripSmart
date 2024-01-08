@@ -94,7 +94,7 @@
                                         </td>
                                         
                                         <td>Patient ID - <?php echo $patientData->patient_id ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription"><button>Add Prescription</button></a></td>
+                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_id;?>"><button>Add Prescription</button></a></td>
                                     </tr>
                                     
                                     <tr>
@@ -103,7 +103,7 @@
                                                 <p>Age: <?php echo $patientData->Age; ?></p>
                                                 <p>Height: <?php echo $patientData->height; ?> cm</p>
                                                 <p>Weight: <?php echo $patientData->weight; ?> kg</p>
-                                                <a href="<?php echo URLROOT; ?>/doctor/addPrescription"><button>Add prescription</button></a>
+                                                <a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_id;?>"><button>Add prescription</button></a>
                                             </div>
                                         </td>
                                     </tr>

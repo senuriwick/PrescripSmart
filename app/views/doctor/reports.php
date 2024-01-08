@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="../public/css/doctor/prescriptions.css" />
-    <link rel="stylesheet" href="../public/css/doctor/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../../public/css/doctor/prescriptions.css" />
+    <link rel="stylesheet" href="../../public/css/doctor/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="../public/img/doctor/Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="../../public/img/doctor/Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="userDiv">
@@ -52,23 +52,23 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="../public/img/doctor/user.png" alt="user-icon">
+                    <img src="../../public/img/doctor/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="../public/img/doctor/profile.png" alt="profile-pic">
+                        <img src="../../public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
+                            <p class="name"><?php echo $data['patient']->patient_name;?></p>
                             <p class="role">Patient</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewPrescriptions">Prescription</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewReports">Reports</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_id;?>">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/viewReports/<?php echo $data['patient']->patient_id;?>">Reports</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -82,7 +82,7 @@
                                     <tr class="clickable-row1">
                                         <td>
                                             <div class="presDiv">
-                                                <img src="../public/img/doctor/description.png" alt="download-icon">
+                                                <img src="../../public/img/doctor/description.png" alt="download-icon">
                                                 <p><?php echo $reportData->report_descript; ?></p>
                                             </div>
                                         </td>
@@ -104,7 +104,7 @@
             <span class="close1">&times;</span>
             <a href="www.prescripsamert.com">www.prescripsamert.com</a>
             <div class="model-head">
-                <img src="../public/img/doctor/qr.png" alt="qr-img" />
+                <img src="../../public/img/doctor/qr.png" alt="qr-img" />
                 <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
                 <i class="fa-solid fa-circle-arrow-up"></i>
             </div>

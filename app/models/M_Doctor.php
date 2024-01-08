@@ -12,20 +12,23 @@ class M_Doctor {
         return $results;
     }
 
-    public function getPrescriptionDetails(){
-        $this->db->query('SELECT * FROM prescriptions');
+    public function getPrescriptionDetails($patientid){
+        $this->db->query('SELECT * FROM prescriptions WHERE patient_id=:id');
+        $this->db->bind(':id',$patientid);
         $results = $this->db->resultSet();
         return $results;
     }
 
-    public function getPrescriptionCount(){
-        $this->db->query('SELECT * FROM prescriptions');
+    public function getPrescriptionCount($patientid){
+        $this->db->query('SELECT * FROM prescriptions WHERE patient_id=:id');
+        $this->db->bind(':id',$patientid);
         $this->db->resultSet();
         return $this->db->rowCount();
     }
 
-    public function getReportDetails(){
-        $this->db->query('SELECT * FROM reports');
+    public function getReportDetails($patientid){
+        $this->db->query('SELECT * FROM reports WHERE patient_id=:id');
+        $this->db->bind(':id',$patientid);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -39,6 +42,13 @@ class M_Doctor {
     public function getSessionsDetails(){
         $this->db->query('SELECT * FROM doctorSessions');
         $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getonePatient($patientid){
+        $this->db->query('SELECT * FROM patientDetails WHERE patient_id=:id');
+        $this->db->bind(':id',$patientid);
+        $results = $this->db->single();
         return $results;
     }
 
