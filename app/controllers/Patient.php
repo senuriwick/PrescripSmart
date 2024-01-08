@@ -1,6 +1,7 @@
 <?php
 class Patient extends Controller
 {
+    private $patientModel;
     public function __construct()
     {
         $this->patientModel = $this->model('M_Patient');
@@ -39,7 +40,12 @@ class Patient extends Controller
             echo "Appointment ID not provided";
         }
 
-        $this->patientModel->deleteAppointment();
+        // $this->patientModel->deleteAppointment();
+        // header("Location: /prescripsmart/patient/appointment_cancelled");
+    }
+
+    public function delete_appointment(int $appointment_ID) {
+        $this->patientModel->deleteAppointment($appointment_ID);
         header("Location: /prescripsmart/patient/appointment_cancelled");
     }
 
@@ -50,6 +56,12 @@ class Patient extends Controller
             'doctors' => $doctors
         ];
         $this->view('patient/new_appointment', $data);
+    }
+
+    public function appointment_reservation(int $patient_ID, int $session_ID, int $doctor_ID, $time,$date) 
+    {
+        $referrence = $this->patientModel->confirmAppointment($patient_ID,$session_ID,$doctor_ID,$time,$date); 
+        header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
 
     public function doctor_sessions()
@@ -84,8 +96,8 @@ class Patient extends Controller
         }
 
         // // var_dump($_POST);
-        $referrence = $this->patientModel->confirmAppointment(); 
-        header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
+        // $referrence = $this->patientModel->confirmAppointment(); 
+        // header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
 
     public function appointment_complete()

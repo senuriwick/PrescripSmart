@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="searchDiv">
-                    <div id="confirmationOptions" class="confirmationOptions">
+                    <!-- <div id="confirmationOptions" class="confirmationOptions"> -->
                         <div class="confirmationOptionsContent">
                             <h2>Appointment Scheduled</h2>
                             <p>Your appointment has been scheduled.</p>

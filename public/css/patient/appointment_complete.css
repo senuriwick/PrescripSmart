@@ -391,6 +391,7 @@ body {
 }
 
 .customConfirmationButton {
+  display: inline;
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
@@ -427,6 +428,7 @@ body {
 }
 
 .viewAppointmentButton {
+  
     background-color: #0069FF;
     color: #fff;
     font-family: 'Source Sans Pro';
@@ -436,6 +438,7 @@ body {
 }
 
 .payNowButton {
+    
     background-color: green;
     border-color: green;
     color: #fff;
