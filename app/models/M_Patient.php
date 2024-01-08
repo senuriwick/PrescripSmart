@@ -10,7 +10,7 @@ class M_Patient
 
     public function getAppointments()
     {
-        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 125');
+        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 125 AND status = "active"');
         $result = $this->db->resultSet();
         return $result;
     }
@@ -23,12 +23,13 @@ class M_Patient
         return $result;
     }
 
-    public function deleteAppointment($appointment_ID)
-{
-    $this->db->query('DELETE FROM appointments WHERE appointment_ID = :appointment_id');
-    $this->db->bind(':appointment_id', $_POST['appointment_ID']);
-    return $this->db->execute();
-}
+    public function deleteAppointment()
+    {
+        $this->db->query('UPDATE appointments SET status = "cancelled" 
+        WHERE appointment_ID = :appointment_id');
+        $this->db->bind(':appointment_id', $_POST['appointment_ID']);
+        return $this->db->execute();
+    }
 
     public function searchDoctor()
     {

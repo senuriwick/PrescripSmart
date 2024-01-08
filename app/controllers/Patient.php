@@ -39,7 +39,7 @@ class Patient extends Controller
             echo "Appointment ID not provided";
         }
 
-        $this->patientModel->deleteAppointment($appointment_ID);
+        $this->patientModel->deleteAppointment();
         header("Location: /prescripsmart/patient/appointment_cancelled");
     }
 
@@ -92,6 +92,11 @@ class Patient extends Controller
     {
         $referrence = $_GET['referrence'] ?? null;
         $this->view('patient/appointment_complete');
+    }
+
+    public function appointment_cancelled()
+    {
+        $this->view('patient/appointment_cancelled');
     }
     
 

@@ -166,7 +166,7 @@
                             insertapp.click();
 
                             document.getElementById("customConfirmation").style.display = "none";
-                            document.getElementById("confirmationOptions").style.display = "block";
+                            document.getElementById("confirmationOptions").style.display = "none";
 
                         });
 
