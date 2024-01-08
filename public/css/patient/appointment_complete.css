@@ -410,7 +410,7 @@ body {
 }
 
 .confirmationOptions {
-    display: none;
+    /* display: none; */
     position: absolute;
     top: 30vh;
     left: 30vw;
@@ -443,40 +443,3 @@ body {
     width: 10rem;
     height: 2.5rem;
 }
-
-
-
-
-  
-  
-  
-  
-  
- 
-  
-
-  
- 
-  
-  
- 
-  
-
-  
-
-  
-  
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

@@ -69,7 +69,7 @@
           <a href="reports_dashboard.html" id="reports">Reports</a>
           <a href="appointments_dashboard.html" id="appointments">Appointments</a>
         </div>
-
+ 
         <div class="prescriptionsDiv">
           <div>
             <div class="section-header">
