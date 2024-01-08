@@ -69,7 +69,7 @@
           <a href="reports_dashboard.html" id="reports">Reports</a>
           <a href="appointments_dashboard.html" id="appointments">Appointments</a>
         </div>
-
+ 
         <div class="prescriptionsDiv">
           <div>
             <div class="section-header">
@@ -97,13 +97,6 @@
               </div>
             </div>
 
-            <div id="successPopup" class="popup">
-              <div class="popup-content">
-                <p>Your appointment has been cancelled.</p>
-                <button id="goToDashboardButton">Go back to dashboard</button>
-              </div>
-            </div>
-
             <div style="display:none">
                         <form action="<?php echo URLROOT; ?>/Patient/view_appointment" method="POST"
                             id="addapp">
@@ -116,10 +109,8 @@
               document.addEventListener('DOMContentLoaded', function () {
                 const cancelButton = document.getElementById('cancelButton');
                 const confirmationPopup = document.getElementById('confirmationPopup');
-                const successPopup = document.getElementById('successPopup');
                 const confirmYesButton = document.getElementById('confirmYesButton');
                 const confirmNoButton = document.getElementById('confirmNoButton');
-                const goToDashboardButton = document.getElementById('goToDashboardButton');
                 const policyPopup = document.getElementById('policyPopup');
 
 
@@ -133,16 +124,14 @@
                   confirmationPopup.style.display = 'none';
                 });
 
-
                 confirmYesButton.addEventListener('click', function () {
                   confirmationPopup.style.display = 'none';
-                  successPopup.style.display = 'block';
+                  // successPopup.style.display = 'block';
                 });
 
-
-                goToDashboardButton.addEventListener('click', function () {
-                  window.location.href = 'appointments_dashboard.html';
-                });
+                // goToDashboardButton.addEventListener('click', function () {
+                //   window.location.href = 'appointments_dashboard.html';
+                // });
 
                 document.getElementById("closePolicy").addEventListener("click", function () {
                   document.getElementById("policyPopup").style.display = "none";
@@ -154,7 +143,7 @@
                   let addapp = document.getElementById("addapp");
                   let insertapp = document.getElementById("insertapp");
 
-                            // Trigger the form submission
+                  // Trigger the form submission
                   insertapp.click();
                 })
               });
