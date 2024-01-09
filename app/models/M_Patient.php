@@ -97,5 +97,32 @@ class M_Patient
             return false;
         }
     }
+
+    public function prescriptions()
+    {
+        // $this->db->query('SELECT * FROM prescriptions WHERE patient_ID = 125');
+        // $this->db->query('SELECT p. *, d.fName, d.lName, FROM prescriptions p 
+        // INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        // WHERE patient_ID = 125
+        // ORDER BY p.prescriptionDate ASC');
+
+$this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
+INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+WHERE p.patient_ID = 125
+
+ORDER BY p.prescription_Date ASC');
+
+
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function viewPrescription($prescription_ID)
+    {
+        $this->db->query('SELECT * FROM prescriptions WHERE patient_ID = 125 AND prescription_ID = :prescription_id');
+        $this->db->bind(':prescription_id', $prescription_ID);
+        $result = $this->db->single();
+        return $result;
+    }
 }
 ?>

@@ -110,7 +110,14 @@ class Patient extends Controller
     {
         $this->view('patient/appointment_cancelled');
     }
-    
 
+    public function prescriptions_dashboard()
+    {
+        $prescriptions = $this->patientModel->prescriptions();
+        $data = [
+            'prescriptions' => $prescriptions
+        ];
+        $this->view('patient/prescriptions_dashboard', $data);
+    }
 }
 ?>
