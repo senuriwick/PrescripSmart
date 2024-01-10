@@ -92,7 +92,7 @@
               <a href="view_appointment?appointment_id=<?php echo $appointment->appointment_ID; ?>">
                 <img src="<?php echo URLROOT; ?>\public\img\patient\More.png" alt="more-icon">
               </a>
-              <script>
+              <!-- <script>
                 document.addEventListener('DOMContentLoaded', function () {
                   const moreIcons = document.querySelectorAll('.more-icon');
 
@@ -106,7 +106,7 @@
                     });
                   });
                 });
-              </script>
+              </script> -->
             </div>
 
 
