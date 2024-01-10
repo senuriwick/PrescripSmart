@@ -88,28 +88,36 @@
                 <p>
                   <?php echo $prescription->prescription_Date; ?>
                 </p>
-                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon">
+                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
+                  data-container-pid="<?= $prescription->prescription_ID ?>">
                 <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon">
               </div>
 
             </div>
 
-            <div id="myModal" class="modal" style="display: none;">
+            <div id="myModal<?= $prescription->prescription_ID ?>" class="modal" style="display: none;">
 
               <div class="modal-content">
                 <span class="close">&times;</span>
-                <a href="www.prescripsamert.com">www.prescripsmart.com</a>
+                <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
                   <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" />
                   <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
                 <div class="model-details">
-                  <div>Prescription ID: #<?php echo $prescription->prescription_ID; ?></div>
+                  <div>Prescription ID: #
+                    <?php echo $prescription->prescription_ID; ?>
+                  </div>
                   <div>Patient: S.Perera</div>
-                  <div>Pres Date & Time: <?php echo $prescription->prescription_Date; ?> 10:00 AM</div>
+                  <div>Pres Date & Time:
+                    <?php echo $prescription->prescription_Date; ?> 10:00 AM
+                  </div>
                   <div>Age: 22 Yrs</div>
-                  <div>Referred by: Dr.<?php echo $prescription->fName; ?> <?php echo $prescription->lName; ?></div>
+                  <div>Referred by: Dr.
+                    <?php echo $prescription->fName; ?>
+                    <?php echo $prescription->lName; ?>
+                  </div>
                 </div>
                 <div class="pres-box">
                   <label>Diagnosis</label>
@@ -150,11 +158,11 @@
                   </table>
                 </div>
                 <div class="notice">(For viewing purpose only)</div>
+                <button type="button" id="qr" class="qr-button">View QR</button>
               </div>
             </div>
-
-          </div>
-        <?php endforeach; ?>
+          <?php endforeach; ?>
+        </div>
 
         <p class="addnewHeading">Add new</p>
         <div class="addnew">
@@ -187,25 +195,30 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("myModal");
-    const closeButton = modal.querySelector(".close");
     const eyeIcons = document.querySelectorAll('.file img[src*="Eye.png"]');
 
     eyeIcons.forEach(icon => {
+      const prescriptionID = icon.getAttribute('data-container-pid');
+      const modal = document.getElementById(`myModal${prescriptionID}`);
+      const closeButton = modal.querySelector(".close");
+
       icon.addEventListener("click", () => {
-        modal.style.display = "block";
+        modal.style.display = 'block';
+      });
+
+      closeButton.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
       });
     });
 
-    closeButton.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
-
-    window.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
+    // const modal = document.getElementById("myModal");
+    // const closeButton = modal.querySelector(".close");
   });
 </script>
 

@@ -316,7 +316,9 @@ a:hover {
   color: #17058aee;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .modal {
+/* Modal */
+.prescriptionsDiv .modal {
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -327,7 +329,8 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .modal-content {
+
+.prescriptionsDiv .modal-content {
   background-color: #fff;
   margin: 8% auto;
   padding: 20px;
@@ -337,7 +340,7 @@ a:hover {
   position: relative;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .close {
+.prescriptionsDiv .close {
   position: absolute;
   top: 0;
   right: 0;
@@ -345,7 +348,19 @@ a:hover {
   cursor: pointer;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .model-head {
+.prescriptionsDiv .close1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prescriptionsDiv .modal-content a {
+  font-size: 11px;
+}
+
+.prescriptionsDiv .modal-content .model-head {
   display: flex;
   align-items: center;
   height: 40px;
@@ -353,22 +368,22 @@ a:hover {
   gap: 8px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .model-head img {
+.prescriptionsDiv .modal-content .model-head img {
   width: 40px;
   height: 40px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .model-details {
+.prescriptionsDiv .modal-content .model-details {
   display: grid;
   grid-template-columns: auto auto;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .model-details>div {
+.prescriptionsDiv .modal-content .model-details>div {
   font-size: 12px;
   padding: 2px 0;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .pres-box {
+.prescriptionsDiv .modal-content .pres-box {
   margin-top: 10px;
   padding: 5px 10px 10px 10px;
   border: 0.7px solid rgb(128, 123, 123);
@@ -376,16 +391,16 @@ a:hover {
   border-radius: 10px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv label {
+.prescriptionsDiv .modal-content label {
   font-size: 14px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .pres-box div {
+.prescriptionsDiv .modal-content .pres-box div {
   margin-top: 3px;
   font-size: 12px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .pres-box table {
+.prescriptionsDiv .modal-content .pres-box table {
   border-collapse: collapse;
   width: 100%;
   border-top: 1px solid #ddd;
@@ -393,20 +408,20 @@ a:hover {
   margin-bottom: 6px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .pres-box table tr {
+.prescriptionsDiv .modal-content .pres-box table tr {
   border-bottom: 1px solid #ddd;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .pres-box table td {
+.prescriptionsDiv .modal-content .pres-box table td {
   font-size: 12px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .test-box {
+.prescriptionsDiv .modal-content .test-box {
   min-height: 20px;
   margin-top: 10px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .test-box table {
+.prescriptionsDiv .modal-content .test-box table {
   border-collapse: collapse;
   width: 100%;
   border-top: 1px solid #ddd;
@@ -414,18 +429,27 @@ a:hover {
   margin-bottom: 20px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .test-box table td {
+.prescriptionsDiv .modal-content .test-box table td {
   border-bottom: 1px solid #ddd;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .test-box table td {
+.prescriptionsDiv .modal-content .test-box table td {
   font-size: 12px;
 }
 
-.content .main .patientInfoContainer .prescriptionsDiv .notice {
+.prescriptionsDiv .modal-content .notice {
   font-size: 10px;
   margin-top: 6px;
   text-align: center;
+}
+
+.qr-button {
+  background-color: #0069FF;
+  color: white;
+  float: right;
+  border-radius: 10%;
+  border-color: #0069FF;
+  margin-top: -10px;
 }
 
 .inquiry a {
