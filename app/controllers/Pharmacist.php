@@ -57,5 +57,42 @@
         public function allPrescriptions(){
             $this->view('pharmacist/pharmacist_prescription');
         }
+
+        public function insertNewMedication(){
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $medicationData = [
+                    'name' => $_POST['name'],
+                    'expiry_date' => $_POST['expiry'],
+                    'quantity' => $_POST['quantity'],
+                    'dosage' => $_POST['dosage'],
+                    'batch' => $_POST['batch'],
+                    'status' => $_POST['status']
+                ];
+            $result = $this->pharmacistModel->insertMedication($medicationData);
+
+            if($result){
+                redirect("/Pharmacist/medications");
+            }
+            else{
+                echo "Error: Medication could not be added. please try again";
+            }
+            }
+        }
+
+        public function markOutOfStock(){
+            if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])){
+                $medication_id = $_GET['id'];
+
+                $result = $this->pharmacistModel->markMedicationOutOfStock($medication_id);
+
+                if($result){
+                    redirect("/Pharmacist/medications");
+                }else{
+                    echo "Error:Medication could not be marked as out of stock";
+                }
+            }else{
+                echo "Invalid request or missing parameters";
+            }
+        }
     }
 ?>

@@ -127,4 +127,9 @@ p a:active{
     cursor: pointer;
 }
 
+#outOfStock a {
+    text-decoration: none;
+    color: inherit;
+}
+
 

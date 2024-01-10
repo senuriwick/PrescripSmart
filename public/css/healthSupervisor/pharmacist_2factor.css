@@ -38,7 +38,7 @@
 .pharmacistprofile .detail{
   display: grid;
   grid-template-columns: 50% 50%;
-  height: 20vh;
+  height: 15vh;
   margin-top: 20px;
 
   
@@ -47,10 +47,19 @@
 .pharmacistprofile .detail>div{
   padding: 0 5px;
   font-weight: bold;
-  font-size: 1.8vh;
+  font-size: 2.5vh;
 }
 
-.pharmacistprofile .detail button{
+.text{
+  padding: 0 5px;
+  font-weight: normal;
+  font-size: 2.5vh;
+  color: rgba(164, 174, 199, 1);
+  display: block;
+  margin-top: 5px;
+}
+
+.pharmacistprofile div > button{
   background-color: #0069FFBF;
   border: 1px solid #0069FFBF;
   color: #ffffff;
@@ -71,20 +80,15 @@
   font-weight: 500;
   color:#445172BF;
   border: 1px solid #44517280;
-  border-radius:5px;
+  border-radius: 5px;
   margin-top: 5px;
 }
 
-.pharmacistprofile .detail button:hover{
+.pharmacistprofile div > button:hover{
   background-color: rgba(0, 80, 200, 1); 
   cursor: pointer;
 }
 
-/* .manageDiv img{
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  margin-right: 0.5rem;
-  border-radius: 50%;
-} */
-
+.sample_username{
+  margin-top: 1.3rem;
+}

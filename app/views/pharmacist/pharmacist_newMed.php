@@ -67,41 +67,43 @@
                     <hr>
                     <div class="ashBlock">
                         <h2>Add new medication</h2>
-                        <div class="newRow">
-                            <div>
+                        <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/insertNewMedication">
+                            <div class="newRow">
                                 <div>
-                                    <p>Name<span class="important">*</span></p>
-                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                    <div>
+                                        <p>Name<span class="important">*</span></p>
+                                        <input type="text" id="searchBar" name="name" placeholder="Enter medication Name" class="inputfield">
+                                    </div>
+                                    <div>
+                                        <p>Expiry Date<span class="important">*</span></p>
+                                        <input type="text" id="searchBar" name="expiry" placeholder="Enter Date(YYYY-MM-DD)" class="inputfield">
+                                    </div>
+                                    <div>
+                                        <p>Quantity<span class="important">*</span></p>
+                                        <input type="text" id="searchBar" name="quantity" placeholder="Enter Quantity" class="inputfield">
+                                    </div>
+                                    
                                 </div>
-                                <div>
-                                    <p>Expirary Date<span class="important">*</span></p>
-                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                                </div>
-                                <div>
-                                    <p>Quantity<span class="important">*</span></p>
-                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                                </div>
-                                
-                            </div>
 
-                            <div class="rightDetails">
-                                <div>
-                                    <p>Dosage<span class="important">*</span></p>
-                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+                                <div class="rightDetails">
+                                    <div>
+                                        <p>Dosage<span class="important">*</span></p>
+                                        <input type="text" id="searchBar" name="dosage" placeholder="Enter Dosage" class="inputfield">
+                                    </div>
+                                    <div>
+                                        <p>Batch Number<span class="important">*</span></p>
+                                        <input type="text" id="searchBar" name="batch" placeholder="Enter Batch Number" class="inputfield">
+                                    </div>
+                                    <div>
+                                        <p>Status<span class="important">*</span></p>
+                                        <input type="text" id="searchBar" name="status" placeholder="Enter Status" class="inputfield">
+                                    </div>
+                                    
                                 </div>
-                                <div>
-                                    <p>Batch Number<span class="important">*</span></p>
-                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                                </div>
-                                <div>
-                                    <p>Status<span class="important">*</span></p>
-                                    <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                                </div>
-                                
+                        
                             </div>
-                    
-                        </div>
-                        <a href=""><button id="addNew">ADD</button></a>
+                            <button type="submit" id="addNew">ADD</button>
+                        </form>
                     </div>
                 </div>
             </div>

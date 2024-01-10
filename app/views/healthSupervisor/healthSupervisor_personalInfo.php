@@ -6,12 +6,12 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>HealthSupervisor personalDetails</title>
+    <title>pharmacist personalDetails</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/pharmacist_personalInfo.css" />
-    <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_personalInfo.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,22 +19,21 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="images/logo.png" />
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
             </div>
 
             <div class="userDiv">
                 <p class="mainOptions">
-                    <Datag>DOCTOR</Datag>
+                    <Datag>PHARMACIST</Datag>
                 </p>
             </div>
 
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="patients.html" class="active">Inquiries</a>
-                <a href="on-going_session.html">History</a>
-                <a href="profile.html">Profile</a>
+                <p class="mainOptions">MANAGE</p>  
+                <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
+                <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
+                <a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -47,24 +46,24 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="images/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png"alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="images/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">HealthSupervisor Name</p>
-                            <p class="role">HealthSupervisor</p>
+                            <p class="name">Pharmacist Name</p>
+                            <p class="role">Pharmacist</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="profile.html">Account</a></p>
-                        <p><a href="personalinfo.html">Personal Info</a></p>
-                        <p><a href="#">Security</a></p>
+                        <p><a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Account</a></p>
+                        <p><a href="" style="color: black;font-weight: 500;">Personal Info</a></p>
+                        <p><a href="<?php echo URLROOT ?>/HealthSupervisor/security">Security</a></p>
                     </div>
 
                     <div class="pharmacist_profile">

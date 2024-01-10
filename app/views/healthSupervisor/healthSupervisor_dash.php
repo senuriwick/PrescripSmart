@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="styles/healthSupervisor_dash.css" />
-    <link rel="stylesheet" href="styles/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/healthSupervisor/healthSupervisor_dash.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -19,15 +19,15 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="images/logo.png" />
+                <img class="logoImg" src="<?php echo URLROOT?>/public/img/healthSupervisor/logo.png" />
             </div>
 
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="patients.html" class="active">Inquiries</a>
-                <a href="on-going_session.html">History</a>
-                <a href="profile.html">Profile</a>
+                <a href="">Inquiries</a>
+                <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
+                <a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -40,14 +40,14 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="images/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT?>/public/img/healthSupervisor/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="images/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT?>/public/img/healthSupervisor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
                             <p class="name">HealthSupervisor Name</p>
                             <p class="role">HealthSupervisor</p>
@@ -55,42 +55,42 @@
                     </div>
 
                     <div class="menu">
-                        <p><a href="prescriptions.html">Inquiries</a></p>
-                        <p><a href="reports.html">History</a></p>
+                        <p style="color:black">Inquiries</p>
+                        <p><a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a></p>
                     </div>
                     <hr class="divider">
                     <div class="patientFile">
                         <h2>Inquiries(5)</h2>
                         <div class="inquiry">
-                          <img src="images/envelope.png" alt="">
+                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
                           <button>view</button>
                         </div>
                         <div class="inquiry">
-                          <img src="images/envelope.png"  alt="">
+                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
                           <button>view</button>
                         </div>
                         <div class="inquiry">
-                          <img src="images/envelope.png"  alt="">
+                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
                           <button>view</button>
                         </div>
                         <div class="inquiry">
-                          <img src="images/envelope.png"  alt="">
+                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
                           <button>view</button>
                         </div>
                         <div class="inquiry">
-                          <img src="images/envelope.png"  alt="">
+                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
