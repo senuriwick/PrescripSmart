@@ -102,7 +102,7 @@
     <div id="myModal-1" class="modal">
         <div class="modal-content">
             <span class="close1">&times;</span>
-            <a href="www.prescripsamert.com">www.prescripsamert.com</a>
+            <a href="www.prescripsmart.com">www.prescripsmart.com</a>
             <div class="model-head">
                 <img src="<?php echo URLROOT;?>/public/img/doctor/qr.png" alt="qr-img" />
                 <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
@@ -113,7 +113,7 @@
                 <div>Patient: S.Perera</div>
                 <div>Pres Date & Time: 12/09/23 10:00 AM</div>
                 <div>Age: 22 Yrs</div>
-                <div>Reffered by: Dr.Asanka Rathnayake</div>
+                <div>Referred by: Dr.Asanka Rathnayake</div>
             </div>
             <div class="test-box">
                 <table>

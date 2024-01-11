@@ -47,6 +47,11 @@
     height: 3vh;
     padding: 1.75vh 1.5vh 1vh 1.5vh; 
   }
+
+  .file img[alt="eye-icon"] {
+    height: 3vh;
+    padding: 1.75vh 1.5vh 1vh 1.5vh;
+  }
   
   .addnewHeading {
     font-size: 2vh;
@@ -335,6 +340,134 @@
     color: #0069FF;
     text-decoration: none;
   }
+
+
+  /* Modal */
+.reportsDiv .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.reportsDiv .modal-content {
+  background-color: #fff;
+  margin: 8% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 35%;
+  position: relative;
+}
+
+.reportsDiv .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.reportsDiv .close1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.reportsDiv .modal-content a {
+  font-size: 11px;
+}
+
+.reportsDiv .modal-content .model-head {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-top: 4px;
+  gap: 8px;
+}
+
+.reportsDiv .modal-content .model-head img {
+  width: 40px;
+  height: 40px;
+}
+
+.reportsDiv .modal-content .model-details {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.reportsDiv .modal-content .model-details>div {
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.reportsDiv .modal-content .pres-box {
+  margin-top: 10px;
+  padding: 5px 10px 10px 10px;
+  border: 0.7px solid rgb(128, 123, 123);
+  min-height: 20px;
+  border-radius: 10px;
+}
+
+.reportsDiv .modal-content label {
+  font-size: 14px;
+}
+
+.reportsDiv .modal-content .pres-box div {
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.reportsDiv .modal-content .pres-box table {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.reportsDiv .modal-content .pres-box table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.reportsDiv .modal-content .pres-box table td {
+  font-size: 12px;
+}
+
+.reportsDiv .modal-content .test-box {
+  min-height: 20px;
+  margin-top: 10px;
+}
+
+.reportsDiv .modal-content .test-box table {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.reportsDiv .modal-content .test-box table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.reportsDiv .modal-content .test-box table td {
+  font-size: 12px;
+}
+
+.reportsDiv .modal-content .notice {
+  font-size: 10px;
+  margin-top: 6px;
+  text-align: center;
+}
   
   
   
