@@ -119,5 +119,14 @@ class Patient extends Controller
         ];
         $this->view('patient/prescriptions_dashboard', $data);
     }
+
+    public function reports_dashboard()
+    {
+        $reports = $this->patientModel->labreports();
+        $data = [
+            'reports' => $reports
+        ];
+        $this->view('patient/reports_dashboard', $data);
+    }
 }
 ?>
