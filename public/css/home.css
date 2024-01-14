@@ -1,0 +1,96 @@
+html{
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0px;
+  }
+  
+  .welcomePage {
+    background-color: rgba(239, 242, 251, 1);
+    padding-top: 1.2vh;
+    padding-bottom: 40vh;
+    height: 60vh;
+  }
+  
+  .container {
+    margin: 0vh 15vw;
+  }
+  
+  
+  .mainTitle {
+    margin-top: 40vh;
+    margin-bottom: 0vh;
+    font-size: 12vh;
+    font-family: Inter, 'Source Sans Pro';
+    font-weight: 500;
+  }
+  
+  .smart {
+    color: rgba(138, 150, 181, 1);
+    font-family: Inter, 'Source Sans Pro';
+  }
+  
+  #selectRole {
+    background-color: rgba(0, 105, 255, 1);
+    color: white;
+    font-size: 3vh;
+    border: none;
+    padding: 1.7vh 2vw;
+    border-radius: 5vh;
+  }
+  
+  
+  
+  #page2 {
+    background-color: rgba(227, 232, 244, 1);
+    padding-top: 10px;
+  }
+  
+  
+  
+  
+  #selectRolePage {
+    height: 90vh;
+    max-width: 60vw;
+    margin: auto;
+  }
+  
+  
+  
+  #iam {
+    font-size: 12vh;
+    font-family: Inter, 'Source Sans Pro';
+    font-weight: 500;
+  }
+  
+  
+  .dots {
+    color: rgba(138, 150, 181, 1);
+  }
+  
+  
+  
+  #options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10vw;
+    row-gap: 4vh;
+  }
+  
+  
+  
+  #options button {
+    background-color: rgba(7, 28, 74, 1);
+    color: white;
+    font-size: 4vh;
+    font-weight: bold;
+    border: none;
+    padding: 1.7vh 1vw;
+    border-radius: 2vh;
+  
+  
+    flex: 30%;
+    width: 25%;
+  } .
