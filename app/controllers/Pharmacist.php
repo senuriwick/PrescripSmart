@@ -1,7 +1,6 @@
 <?php
     class Pharmacist extends Controller{
         public function __construct(){
-            // echo "this is a pages controller";
             $this->pharmacistModel = $this->model('M_Pharmacist');
         }
 
@@ -15,7 +14,6 @@
                 'patients' => $patients
             ];
             $this->view('pharmacist/pharmacist_dashboard', $data);
-            // echo "insaf";
         }
 
         public function medications(){

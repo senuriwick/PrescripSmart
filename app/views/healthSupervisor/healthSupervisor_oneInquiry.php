@@ -25,7 +25,7 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="">Inquiries</a>
+                <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Profile</a>
             </div>
@@ -61,7 +61,7 @@
                     <hr class="divider">
                     <div class="patientFile">
                         <div class="patient-div">
-                            <a href="<?php echo URLROOT; ?>/Pharmacist/medications">
+                            <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">
                                 <img
                                 class="vector"
                                 src="<?php echo URLROOT?>/app/views/pharmacist/images/vector.png"
@@ -69,22 +69,23 @@
                                 />
                             </a>
                             <h2>Inquiries(5)</h2>
-                            <button id="mark">view</button>
+                            <button id="mark">Mark As Read</button>
                         </div>  
                         <div class="row">
                             <div>
-                                <p class="label">Name</p>
-                                <input type="text" id="searchBar" name="name" placeholder="Enter medication Name" class="inputfield">
+                                <p class="label">Email Address</p>
+                                <input type="text" id="searchBar" name="name" placeholder="Email" class="inputfield">
                             </div>
                             <div>
                                 <p class="label">Name</p>
-                                <input type="text" id="searchBar" name="name" placeholder="Enter medication Name" class="inputfield">
+                                <input type="text" id="searchBar" name="name" placeholder="Name" class="inputfield">
                             </div>
                         </div>
                         <div>
-                            <p class="label">Name</p>
-                            <textarea id="searchBar" name="name" placeholder="Enter medication Name" class="inputfield"></textarea>
+                            <p class="label">Message</p>
+                            <textarea id="searchBar" name="name" placeholder="Message" class="inputfield"></textarea>
                         </div>
+                        <button class="reply">Reply</button>
                        
                     </div>
                 </div>

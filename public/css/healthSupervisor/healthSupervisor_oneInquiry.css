@@ -45,7 +45,8 @@ color:rgba(164, 174, 199, 1);
   border-radius: 5px;
   padding: 0 20px;
   width: 76%;
-  height: 75%;
+  height: 70%;
+  margin-top:25px;
 }
 
 .patientFile h2{
@@ -74,11 +75,16 @@ textarea{
   background-color: green;
   color: white;
   font-size: 1rem;
-  height: 25px;
-  width: 88px;
+  height: 35px;
+  width: auto;
   margin-top: 12px;
   margin-left: auto;
-  
+  padding:0 10px;
+}
+
+#mark:hover{
+  cursor:pointer;
+  background-color: rgb(45, 184, 45);
 }
 
 .vector {
@@ -99,5 +105,24 @@ textarea{
 .label{
   color:#056BFE;
   font-weight: bold;
+}
+
+.reply{ 
+  background-color: #0069FFBF;
+  border: 1px solid #0069FFBF;
+  color: #ffffff;
+  padding: 10px 100px;
+  font-size: 1.5vh;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 550;
+  font-size: 1rem;
+  margin-top:25px;
+}
+
+.reply:hover{
+  background-color: rgba(0, 80, 200, 1); 
+  cursor: pointer;
 }
 

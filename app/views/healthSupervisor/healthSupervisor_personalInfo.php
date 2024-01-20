@@ -55,8 +55,8 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name">Health Supervisor Name</p>
+                            <p class="role">Health Supervisor</p>
                         </div>
                     </div>
 

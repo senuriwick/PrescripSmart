@@ -1,16 +1,18 @@
 <?php
     class HealthSupervisor extends Controller{
         public function __construct(){
-            // echo "this is a pages controller";
-            // $this->healthSupervisorModel = $this->model('M_HealthSupervisor');
+            $this->healthSupervisorModel = $this->model('M_HealthSupervisor');
         }
 
         public function index(){
 
         }
 
-
         public function dashboard(){
+            $inquiries = $this->healthSupervisorModel->getInquiries();
+            $data = [
+                'inquiries' => $inquiries
+            ];
             $this->view('healthSupervisor/healthSupervisor_dash');
         }
 

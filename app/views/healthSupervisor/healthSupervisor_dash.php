@@ -61,41 +61,43 @@
                     <hr class="divider">
                     <div class="patientFile">
                         <h2>Inquiries(5)</h2>
+                        <?php foreach($data['inquiries'] as $inquiry): ?>
                         <div class="inquiry">
+                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
+                          <p id="idNO"><?php echo $inquiry->id; ?></p>
+                          <p><?php echo $inquiry->patient_name; ?></p>
+                          <p><?php echo $inquiry->inquiry_date; ?></p>
+                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
+                        </div>
+                        <?php endforeach; ?>
+                        <!-- <div class="inquiry">
                           <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
-                          <button>view</button>
-                        </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <button>view</button>
+                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
                         </div>
                         <div class="inquiry">
                           <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
-                          <button>view</button>
+                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
                         </div>
                         <div class="inquiry">
                           <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
-                          <button>view</button>
+                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
                         </div>
                         <div class="inquiry">
                           <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
                           <p id="idNO">#1343553</p>
                           <p>Patient Name</p>
                           <p>DD-MM-YYYY</p>
-                          <button>view</button>
-                        </div>
+                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
+                        </div> -->
                     
                 </div>
             </div>
