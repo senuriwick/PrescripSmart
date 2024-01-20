@@ -14,7 +14,9 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"
     />
-    <link rel="stylesheet" href="./styles/healthSupervisor_dashboard.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/healthSupervisor/healthSupervisor_dashboard.css" />
+    <!-- <link rel="stylesheet" href="styles/sideMenu&navBar.css" /> -->
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
   </head>
   <body>
     <div class="content">
@@ -67,7 +69,7 @@
           </div>
 
           <div class="menu">
-            <p id="inquiries">Inquiries</p>
+            <p id="">Inquiries</p>
             <p id="history">History</p>
           </div>
 

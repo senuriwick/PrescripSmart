@@ -12,6 +12,10 @@
   color: rgba(164, 174, 199, 1);
 }
 
+.menu p:last-child{
+  font-weight: 600;
+}
+
 
 .menu p a{
   text-decoration: none;

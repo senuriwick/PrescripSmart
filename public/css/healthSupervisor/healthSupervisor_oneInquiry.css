@@ -1,0 +1,128 @@
+.menu {
+    display: flex;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+}
+
+.menu p {
+  margin-right: 4vh;
+  font-size: 2vh;
+  margin-bottom: 1vh;
+  color: rgba(164, 174, 199, 1);
+}
+
+.menu p:first-child{
+font-weight: 600;
+}
+
+
+.menu p a{
+  text-decoration: none;
+  color: rgba(164, 174, 199, 1);
+
+}
+
+p a:active{
+  color: black;
+}
+
+.divider{
+width: 90%;
+margin-left: 0;
+color:rgba(164, 174, 199, 1);
+}
+
+/* .ash-box {
+  width: 200px;
+  height: 200px;
+  background-color: #b2beb5; 
+  border: 1px solid #666;
+} */
+
+.patientFile {    
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 5px;
+  padding: 0 20px;
+  width: 76%;
+  height: 70%;
+  margin-top:25px;
+}
+
+.patientFile h2{
+  color: rgba(68, 81, 114, 1);
+  padding: 0;
+}
+
+.patient-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+textarea{
+  width:70%;
+  height: 100px;
+}
+#mark {
+  border-style: none;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  font-size: 1rem;
+  height: 35px;
+  width: auto;
+  margin-top: 12px;
+  margin-left: auto;
+  padding:0 10px;
+}
+
+#mark:hover{
+  cursor:pointer;
+  background-color: rgb(45, 184, 45);
+}
+
+.vector {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+}
+
+#searchBar {
+  padding: 1.6vh 12vw 1.8vh 1vw;
+  border-radius: 0.5rem;
+  border-style: none;
+  background-color: rgb(255, 255, 255);
+  font-size: 1.1rem;
+}
+
+.label{
+  color:#056BFE;
+  font-weight: bold;
+}
+
+.reply{ 
+  background-color: #0069FFBF;
+  border: 1px solid #0069FFBF;
+  color: #ffffff;
+  padding: 10px 100px;
+  font-size: 1.5vh;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 550;
+  font-size: 1rem;
+  margin-top:25px;
+}
+
+.reply:hover{
+  background-color: rgba(0, 80, 200, 1); 
+  cursor: pointer;
+}
+

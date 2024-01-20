@@ -31,9 +31,9 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="" class="active">Patients</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/dashboard">Patients</a>
                 <a href="<?php echo URLROOT ?>/Pharmacist/medications">Medications</a>
-                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
+                <a href="#">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>

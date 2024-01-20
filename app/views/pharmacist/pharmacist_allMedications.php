@@ -55,7 +55,7 @@
                     </div>
                     <hr class="divider">
                     <div class="prescriptionsDiv">
-                        <h2 class="heading">Search Patient</h2>
+                        <h2 class="heading">Search Medication</h2>
                         <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
                         <a href="<?php echo URLROOT; ?>/Pharmacist/pharmacistMedication"><button id="searchButton">SEARCH</button></a>
                     </div>
