@@ -131,4 +131,12 @@ class M_Patient
         $result = $this->db->resultSet();
         return $result;
     }
+
+    public function updateDownloadCount($reportId)
+    {
+        $this->db->query('UPDATE lab_reports SET downloads = downloads + 1 WHERE report_ID = :report_id');
+        $this->db->bind(':report_id', $reportId);
+        $this->db->execute();
+    }
+
 }

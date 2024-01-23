@@ -77,7 +77,8 @@
               <div class="file">
                 <div class="desDiv">
                   <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
-                  <p class="description">Report #<?php echo $report->report_ID; ?>
+                  <p class="description">Report #
+                    <?php echo $report->report_ID; ?>
                   </p>
                 </div>
                 <p>Issued on:
@@ -89,7 +90,21 @@
                 </p>
                 <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
                   data-container-pid="<?= $report->report_ID ?>">
-                <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon">
+                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon"> -->
+
+                <!-- <?php if ($report->downloads <= 5): ?>
+                  <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>" download>
+                    <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
+                  </a>
+                <?php endif; ?> -->
+
+                <?php if ($report->downloads <= 5): ?>
+                  <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>"
+                    class="download-link" data-report-id="<?= $report->report_ID ?>">
+                    <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
+                  </a>
+                <?php endif; ?>
+
               </div>
             </div>
 
@@ -103,11 +118,18 @@
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
                 <div class="model-details">
-                  <div>Prescription ID: #<?php echo $report->prescription_ID; ?></div>
+                  <div>Prescription ID: #
+                    <?php echo $report->prescription_ID; ?>
+                  </div>
                   <div>Patient: S.Perera</div>
-                  <div>Pres Date & Time: <?php echo $report->prescription_Date; ?> 10:00 AM</div>
+                  <div>Pres Date & Time:
+                    <?php echo $report->prescription_Date; ?> 10:00 AM
+                  </div>
                   <div>Age: 22 Yrs</div>
-                  <div>Referred by: Dr.<?php echo $report->fName; ?> <?php echo $report->lName; ?></div>
+                  <div>Referred by: Dr.
+                    <?php echo $report->fName; ?>
+                    <?php echo $report->lName; ?>
+                  </div>
                 </div>
                 <div class="test-box">
                   <table>
@@ -143,10 +165,6 @@
         </div>
 
 
-
-
-
-
         <p class="addnewHeading">Add new</p>
         <div class="addnew">
 
@@ -176,32 +194,61 @@
   </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const eyeIcons = document.querySelectorAll('.file img[src*="Eye.png"]');
+    document.addEventListener("DOMContentLoaded", function () {
+      const downloadLinks = document.querySelectorAll('.download-link');
 
-    eyeIcons.forEach(icon => {
-      const reportID = icon.getAttribute('data-container-pid');
-      const modal = document.getElementById(`myModal${reportID}`);
-      const closeButton = modal.querySelector(".close");
-
-      icon.addEventListener("click", () => {
-        modal.style.display = 'block';
+      downloadLinks.forEach(link => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          const reportId = link.getAttribute('data-report-id');
+          updateDownloadCount(reportId);
+          window.location.href = link.getAttribute('href');
+        });
       });
 
-      closeButton.addEventListener("click", () => {
-        modal.style.display = "none";
-      });
+      const eyeIcons = document.querySelectorAll('.file img[src*="Eye.png"]');
 
-      window.addEventListener("click", (event) => {
-        if (event.target === modal) {
+      eyeIcons.forEach(icon => {
+        const reportID = icon.getAttribute('data-container-pid');
+        const modal = document.getElementById(`myModal${reportID}`);
+        const closeButton = modal.querySelector(".close");
+
+        icon.addEventListener("click", () => {
+          modal.style.display = 'block';
+        });
+
+        closeButton.addEventListener("click", () => {
           modal.style.display = "none";
-        }
-      });
-    });
+        });
 
-    // const modal = document.getElementById("myModal");
-    // const closeButton = modal.querySelector(".close");
-  });
-</script>
+        window.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+
+      // const modal = document.getElementById("myModal");
+      // const closeButton = modal.querySelector(".close");
+
+      function updateDownloadCount(reportId) {
+        // Send an AJAX request to update the download count
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "<?php echo URLROOT; ?>/patient/updateDownloadCount/" + reportId, true);
+        xhr.send();
+
+        // You can handle the response if needed
+        xhr.onload = function () {
+          if (xhr.status == 200) {
+            console.log("Download count updated successfully");
+          } else {
+            console.error("Failed to update download count");
+          }
+        };
+      }
+    });
+  </script>
+
 </body>
+
 </html>
