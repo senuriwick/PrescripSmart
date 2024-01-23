@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\prescriptions_dashboard.css" />
-  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
 </head>
 
@@ -92,7 +91,7 @@
                 </p>
                 <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
                   data-container-pid="<?= $prescription->prescription_ID ?>">
-                <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon">
+                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon"> -->
               </div>
 
             </div>
@@ -160,7 +159,18 @@
                   </table>
                 </div>
                 <div class="notice">(For viewing purpose only)</div>
-                <button type="button" id="qr" class="qr-button">View QR</button>
+                <button type="button" id="qr" class="qr-button"
+                  onclick="viewQR(<?php echo $prescription->prescription_ID; ?>)">View QR</button>
+
+                <script>
+                  function viewQR(prescriptionID) {
+                    var qrURL = "<?php echo URLROOT; ?>/patient/qr_download";
+                    qrURL += "?prescriptionID=" + encodeURIComponent(prescriptionID);
+
+                    window.location.href = qrURL;
+                  }
+                </script>
+
               </div>
             </div>
           <?php endforeach; ?>
@@ -223,5 +233,6 @@
     // const closeButton = modal.querySelector(".close");
   });
 </script>
+
 
 </html>
