@@ -128,5 +128,20 @@ class Patient extends Controller
         ];
         $this->view('patient/reports_dashboard', $data);
     }
+
+    public function qr_download()
+    {
+        $this->view('patient/qr_download');
+    }
+
+    public function public_prescriptionView()
+    {
+        $prescription_ID = $_GET['prescription'] ?? null;
+        $prescriptions = $this->patientModel->viewPrescription($prescription_ID);
+        $data = [
+            'prescription' => $prescriptions
+        ];
+        
+        $this->view('patient/public_prescriptionView', $data);
+    }
 }
-?>

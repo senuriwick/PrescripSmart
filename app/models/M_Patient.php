@@ -111,7 +111,9 @@ class M_Patient
 
     public function viewPrescription($prescription_ID)
     {
-        $this->db->query('SELECT * FROM prescriptions WHERE patient_ID = 125 AND prescription_ID = :prescription_id');
+        $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        WHERE p.patient_ID = 125 AND p.prescription_ID = :prescription_id');
         $this->db->bind(':prescription_id', $prescription_ID);
         $result = $this->db->single();
         return $result;
@@ -130,4 +132,3 @@ class M_Patient
         return $result;
     }
 }
-?>

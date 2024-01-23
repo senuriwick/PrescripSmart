@@ -1,11 +1,12 @@
 <?php
 // (A) LOAD QR CODE LIBRARY
-require "vendor/autoload.php";
+require "vendor\autoload.php";
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 
 // (B) CREATE QR CODE
-$qr = QrCode::create("https://code-boxx.com");
+$url = $_GET['prescriptionID'];
+$qr = new QrCode("http://localhost/prescripsmart/patient/public_prescriptionView?prescription=$url");
 $writer = new PngWriter();
 $result = $writer->write($qr);
 
