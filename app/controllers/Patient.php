@@ -144,4 +144,10 @@ class Patient extends Controller
         
         $this->view('patient/public_prescriptionView', $data);
     }
+
+    public function updateDownloadCount($reportId)
+    {
+        $this->patientModel->updateDownloadCount($reportId);
+    }
+
 }
