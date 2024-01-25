@@ -150,4 +150,49 @@ class Patient extends Controller
         $this->patientModel->updateDownloadCount($reportId);
     }
 
+    public function profile_dashboard()
+    {
+        $this->view('patient/profile_dashboard');
+    }
+
+    public function personal_information()
+    {
+        $patient = $this->patientModel->patientInfo();
+        $data = [
+            'patient' => $patient
+        ];
+        $this->view('patient/personal_information', $data);
+    }
+
+    public function personalInfoUpdate()
+    {
+        // echo "Received data: $fname, $lname, $dname, $haddress, $nic, $cno, $dob, $age, $gender, $height, $weight, $ename, $econtact, $relationship";
+        // $this->patientModel->updateInfo($fname,$lname,$dname,$haddress,$nic,$cno,$dob,$age,$gender,$height,$weight,$ename,$econtact,$relationship);
+        // header("Location: /prescripsmart/patient/personalInformation");
+        // exit();
+        
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $dname = $_POST["dname"];
+            $haddress = $_POST["haddress"];
+            $nic = $_POST["nic"];
+            $cno = $_POST["cno"];
+            $dob = $_POST["dob"];
+            $age = $_POST["age"];
+            $gender = $_POST["gender"];
+            $height = $_POST["height"];
+            $weight = $_POST["weight"];
+            $ename = $_POST["ename"];
+            $econtact = $_POST["econtact"];
+            $relationship = $_POST["relationship"];
+    
+            $this->patientModel->updateInfo($fname,$lname,$dname,$haddress,$nic,$cno,$dob,$age,$gender,$height,$weight,$ename,$econtact,$relationship);
+    
+            header("Location: /prescripsmart/patient/personal_information");
+            exit();
+        }
+    }
+
 }
