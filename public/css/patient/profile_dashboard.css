@@ -90,6 +90,7 @@ body {
     min-width: 14vw;
     height: 100vh;
     background-color: rgba(7, 28, 74, 1);
+    position: fixed;
 }
 
 
@@ -191,11 +192,10 @@ body {
     text-decoration: none;
 }
 
-
-
 .main {
     flex: 1;
-
+    margin-left: 210px;
+    margin-bottom: 3%;
 }
 
 .navBar {
@@ -308,13 +308,13 @@ a:hover {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 300px; 
+    margin-top: 210px; 
     margin-right: 20px;
 }
 
 .accInfo {
     border-top: 1px solid rgba(68, 81, 114, 0.75);
-    margin-top: 40px;
+    margin-top: 45px;
     display: flex;
     flex-direction: column;
 }
@@ -364,9 +364,9 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0069ff;
+    background-color: rgba(68, 81, 114, 0.75);
     border-radius: 0.5rem;
-    border-color: #0069ff;
+    border-color: rgba(68, 81, 114, 0.75);
     flex-shrink: 0;
     margin-top: 15px;
 }

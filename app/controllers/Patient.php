@@ -150,9 +150,27 @@ class Patient extends Controller
         $this->patientModel->updateDownloadCount($reportId);
     }
 
-    public function profile_dashboard()
+    public function account_information()
     {
-        $this->view('patient/profile_dashboard');
+        $patient = $this->patientModel->patientInfo();
+        $data = [
+            'patient' => $patient
+        ];
+        $this->view('patient/account_information', $data);
+    }
+
+    public function accountInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["username"];
+            // $password = $_POST["password"];
+            // $newpassword = $_POST["newpassword"];
+            
+            $this->patientModel->updateAccInfo($username);
+    
+            header("Location: /prescripsmart/patient/account_information");
+            exit();
+        }
     }
 
     public function personal_information()
@@ -166,12 +184,6 @@ class Patient extends Controller
 
     public function personalInfoUpdate()
     {
-        // echo "Received data: $fname, $lname, $dname, $haddress, $nic, $cno, $dob, $age, $gender, $height, $weight, $ename, $econtact, $relationship";
-        // $this->patientModel->updateInfo($fname,$lname,$dname,$haddress,$nic,$cno,$dob,$age,$gender,$height,$weight,$ename,$econtact,$relationship);
-        // header("Location: /prescripsmart/patient/personalInformation");
-        // exit();
-        
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $fname = $_POST["fname"];
             $lname = $_POST["lname"];

@@ -172,4 +172,14 @@ class M_Patient
             $this->db->execute();
      }
 
+     public function updateAccInfo($username)
+     {
+        $this->db->query('UPDATE patients SET username = :username 
+        WHERE patient_ID = 1248623');
+        $this->db->bind(':username', $username);
+        // $this->db->bind(':password', $newpassword);
+
+        $this->db->execute();
+     }
+
 }
