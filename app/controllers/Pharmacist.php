@@ -8,21 +8,62 @@
 
         }
 
-        public function dashboard(){
-            $patients = $this->pharmacistModel->getPatients();
+        // public function dashboard(){
+        //     $patients = $this->pharmacistModel->getPatients();
+        //     $data = [
+        //         'patients' => $patients
+        //     ];
+        //     $this->view('pharmacist/pharmacist_dashboard', $data);
+        // }
+
+        public function dashboard($page = 1){
+            $itemsPerPage = 5;
+            $offset = ($page - 1) * $itemsPerPage;
+
+            $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
+            $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
+
+            $totalPages = ceil($totalPatients/$itemsPerPage);
+
             $data = [
-                'patients' => $patients
+                'patients' => $patients,
+                'totalPatients' => $totalPatients,
+                'currentPage' => $page,
+                'totalPages' => $totalPages,
             ];
+
             $this->view('pharmacist/pharmacist_dashboard', $data);
         }
 
-        public function medications(){
-            $medications = $this->pharmacistModel->getMedications();
+        // public function medications(){
+        //     $medications = $this->pharmacistModel->getMedications();
+        //     $totalMedications = count($medications);
+        //     $data = [
+        //         'medications' => $medications,  
+        //         'totalMedications' => $totalMedications,
+        //     ];
+        //     $this->view('pharmacist/pharmacist_allMedications', $data);
+        // }
+
+        public function medications($page = 1){
+            $itemsPerPage = 4;
+            $offset = ($page - 1) * $itemsPerPage;
+        
+            $medications = $this->pharmacistModel->getMedicationsPaginated($itemsPerPage, $offset);
+            $totalMedications = $this->pharmacistModel->getTotalMedicationsCount();
+        
+            $totalPages = ceil($totalMedications / $itemsPerPage);
+        
             $data = [
-                'medications' => $medications
+                'medications' => $medications,
+                'totalMedications' => $totalMedications,
+                'currentPage' => $page,
+                'totalPages' => $totalPages,
             ];
+        
             $this->view('pharmacist/pharmacist_allMedications', $data);
         }
+        
 
         public function profile(){
             $this->view('pharmacist/pharmacist_profile');
@@ -92,5 +133,52 @@
                 echo "Invalid request or missing parameters";
             }
         }
+
+        public function searchPatient(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+                $patientName = $_POST['search'];
+                $patients = $this->pharmacistModel->searchPatient($patientName);
+        
+                $data = [
+                    'patients' => $patients
+                ];
+                $this->view('pharmacist/pharmacist_searchedPatient', $data);
+            }
+        }
+
+        // public function searchMedicine(){
+        //     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+        //         $medicineName = $_POST['search'];
+        //         $medications = $this->pharmacistModel->searchMedicine($medicineName);
+        
+        //         $data = [
+        //             'medications' => $medications
+        //         ];
+        //         $this->view('pharmacist/pharmacist_allMedications', $data);
+        //     }
+        // }
+
+        public function searchMedicine(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+                $medicineName = $_POST['search'];
+                $medications = $this->pharmacistModel->searchMedicine($medicineName);
+                $totalMedications = $this->pharmacistModel->getTotalMedicationsCount(); // Fetch total count of medications
+        
+                if (empty($medications)) {
+                    // No medicine found, redirect to the newMed view
+                    $this->view('pharmacist/pharmacist_addNewMed');
+                } else {
+                    // Medicine found, display the searchedMedicine view
+                    $data = [
+                        'medications' => $medications,
+                        'totalMedications' => $totalMedications, // Include total count in the data array
+                    ];
+            
+                    $this->view('pharmacist/pharmacist_searchedMedicine', $data);
+                }
+            }
+        }
+        
+        
     }
 ?>

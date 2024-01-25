@@ -43,7 +43,7 @@ margin-bottom: 1.5vh;
 color: rgba(68, 81, 114, 1);
 }
 
-#searchBar {
+#search {
 padding: 1.5vh 40vw 1.8vh 1vw;
 border-radius: 0.5rem;
 border-style: none;
@@ -105,4 +105,38 @@ cursor: pointer;
 .patientFile .id {
 color: rgba(0, 105, 255, 1);
 }
+
+/* Pagination container styles */
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+/* Pagination link styles */
+.pagination a {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Active page link styles */
+.pagination a.active {
+  background-color: #007BFF;
+  color: #fff;
+  border: 1px solid #007BFF;
+}
+
+/* Hover styles for pagination links */
+.pagination a:hover {
+  background-color: #f5f5f5;
+}
+
 

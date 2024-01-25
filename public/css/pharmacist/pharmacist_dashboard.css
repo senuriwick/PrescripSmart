@@ -44,7 +44,7 @@ p a:active{
   color: rgba(68, 81, 114, 1);
 }
 
-#searchBar {
+#search {
   padding: 1.6vh 41vw 1.8vh 1vw;
   border-radius: 0.5rem;
   border-style: none;
@@ -69,13 +69,14 @@ p a:active{
 }
 
 .patientFile {
-background-color: rgba(239, 242, 251, 1);
-margin-top: 3vh;
-padding: 2vh 1.2vw;
-border-radius: 5px;
-display: flex;
-justify-content: space-between;
-width: 81%;
+  background-color: rgba(239, 242, 251, 1);
+  margin-top: 3vh;
+  padding: 0.5vh 1vw;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: -0.5rem;
 }
 
 .patientFile p {
@@ -111,3 +112,34 @@ width: 81%;
   height:40px;
 }
 
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+/* Pagination link styles */
+.pagination a {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Active page link styles */
+.pagination a.active {
+  background-color: #007BFF;
+  color: #fff;
+  border: 1px solid #007BFF;
+}
+
+/* Hover styles for pagination links */
+.pagination a:hover {
+  background-color: #f5f5f5;
+}

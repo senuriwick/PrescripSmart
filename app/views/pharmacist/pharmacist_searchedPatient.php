@@ -80,13 +80,6 @@
                             <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>" id="viewButton"><button>View Prescriptions</button></a>
                         </div>
                     <?php endforeach; ?>
-
-                    <!-- Pagination Links -->
-                    <div class="pagination">
-                        <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                            <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                        <?php endfor; ?>
-                    </div>
         </div>
 
                     
