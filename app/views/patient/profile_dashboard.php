@@ -9,7 +9,7 @@
     <title>Account</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="\public\css\patient\profile_dashboard.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\profile_dashboard.css" />
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="\public\img\patient\Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="patientDiv">
@@ -47,13 +47,13 @@
 
         <div class="main">
             <div class="navBar">
-                <img src="\public\img\patient\user.png" alt="user-icon">
+                <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
                 <p>SAMPLE USERNAME HERE</p>
             </div>
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
-                    <img src="\public\img\patient\profile.png" alt="profile-pic">
+                    <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
                     <div class="patientNameDiv">
                         <p class="name">Patient Name</p>
                         <p class="role">Patient</p>

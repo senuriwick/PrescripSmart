@@ -139,4 +139,37 @@ class M_Patient
         $this->db->execute();
     }
 
+    public function patientInfo()
+    {
+        $this->db->query('SELECT * FROM patients WHERE patient_ID = 1248623');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function updateInfo($fname,$lname,$dname,$haddress,$nic,$cno,$dob,$age,$gender,$height,$weight,$ename,$econtact,$relationship)
+    {
+            $this->db->query('UPDATE patients SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
+            home_Address = :haddress, NIC = :nic, contact_Number = :cno, DOB = :dob, age = :age, 
+            gender = :gender, height = :height, weight = :weight, 
+            emergency_Contact_Person = :ename, emergency_Contact_Number = :econtact, relationship = :relationship
+                          WHERE patient_ID = 1248623');
+
+            $this->db->bind(':fname', $fname);
+            $this->db->bind(':lname', $lname);
+            $this->db->bind(':dname', $dname);
+            $this->db->bind(':haddress', $haddress);
+            $this->db->bind(':nic', $nic);
+            $this->db->bind(':cno', $cno);
+            $this->db->bind(':dob', $dob);
+            $this->db->bind(':age', $age);
+            $this->db->bind(':gender', $gender);
+            $this->db->bind(':height', $height);
+            $this->db->bind(':weight', $weight);
+            $this->db->bind(':ename', $ename);
+            $this->db->bind(':econtact', $econtact);
+            $this->db->bind(':relationship', $relationship);
+
+            $this->db->execute();
+     }
+
 }

@@ -31,6 +31,7 @@ body {
     min-width: 14vw;
     height: 190vh;
     background-color: rgba(7, 28, 74, 1);
+    position: fixed;
 }
 
 
@@ -39,6 +40,10 @@ body {
     color: #ffffff;
     line-height: 1.5vh;
     font-family: inter;
+}
+
+.sideMenu p {
+    padding-left: 3vh;
 }
 
 .logoDiv {
@@ -60,12 +65,6 @@ body {
     font-weight: bold;
     font-family: inter;
 }
-
-
-.sideMenu p {
-    padding-left: 3vh;
-}
-
 
 .patientDiv {
     border-bottom: solid;
@@ -132,11 +131,10 @@ body {
     text-decoration: none;
 }
 
-
-
 .main {
     flex: 1;
-
+    margin-left: 210px;
+    margin-bottom: 3%;
 }
 
 .navBar {
@@ -324,7 +322,7 @@ a:hover {
     font: italic;
 }
 
-.inquiriesDiv button {
+.content .main .patientInfoContainer .inquiriesDiv button {
     width: 15rem;
     height: 2rem;
     text-align: center;
@@ -337,9 +335,9 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0069ff;
+    background-color: grey;
     border-radius: 0.5rem;
-    border-color: #0069ff;
+    border-color: grey;
     flex-shrink: 0;
     margin-top: 15px;
 }
