@@ -66,39 +66,50 @@
                     <a href="profile_dashboard_3.html" id="security">Security</a>
                 </div>
 
+                <?php $patient = $data['patient'] ?>
+
                 <div class="inquiriesDiv">
-                    <h1>Patient ID: #1248623</h1>
+                    <h1>Patient ID: #<?php echo $patient->patient_ID?></h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
+                
                     <div class="accInfo">
+                    <form action = "<?php echo URLROOT; ?>/patient/accountInfoUpdate" method="POST">
                         <div class="parallel">
                         <div class="input-group">
                             <label for="name">Username</label>
-                            <input type="text" id="name" class="input" style="display: inline-block;">
+                            <input type="text" id="username" class="input" name = "username" value = "<?php echo $patient->username?>" style="display: inline-block;">
                         </div>
                         <div class="input-group">
                             <label for="email">Associated Email Address/Phone Number</label>
-                            <input type="text" id="email" class="input" style="display: inline-block;">
+                            <?php if ($patient->signIn_Method == "email"): ?>
+                                <input type="text" id="email" class="input" name = "email" readonly value="<?php echo $patient->email_address ?>"
+                                    style="display: inline-block;">
+                            <?php else: ?>
+                                <input type="text" id="phone" class="input" name = "phone" readonly value="<?php echo $patient->contact_Number ?>"
+                                    style="display: inline-block;">
+                            <?php endif; ?>
                         </div>
-                        </div>
-                        <div class="input-group">
-                            <label for="password">Current Password</label>
-                            <input type="password" id="password" class="input">
+
                         </div>
                     </div>
 
                     <p class="sub2" style="font-weight: bold;">Password Change</p>
                     <div class="accInfo">
+                        <div class="input-group">
+                            <label for="password">Current Password</label>
+                            <input type="password" id="password" placeholder="Enter your current password here" name = "password" class="input">
+                        </div>
                         <div class="parallel">
                         <div class="input-group">
                             <label for="newpassword">New Password</label>
-                            <input type="password" id="pass" class="input" style="display: inline-block;">
+                            <input type="password" id="newpassword" class="input" placeholder="Enter your new password here" name = "newpassword" style="display: inline-block;">
                         </div>
                         <div class="input-group">
                             <label for="newconfirmpassword">Confirm Password</label>
-                            <input type="password" id="cofirmpass" class="input" style="display: inline-block;">
+                            <input type="password" id="cofirmpassword" class="input" placeholder="Re-enter your new password here" name = "confirmpassword" style="display: inline-block;">
                         </div>
                         </div>
-                        <button type="button" id="submit">SAVE CHANGES</button>
+                        <button type="submit" id="submit">SAVE CHANGES</button>
                     </div>
                 </div>
                 
@@ -109,6 +120,22 @@
     </div>
     </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var inputFields = document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]');
+            var submitBtn = document.getElementById('submit');
+
+            inputFields.forEach(function (input) {
+                input.addEventListener('input', function () {
+                    submitBtn.style.backgroundColor = "#0069FF" ;
+                    submitBtn.style.borderColor = "#0069FF" ;
+                });
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>
