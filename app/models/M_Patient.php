@@ -182,4 +182,12 @@ class M_Patient
         $this->db->execute();
      }
 
+     public function resetPassword($newpassword)
+     {
+        $this->db->query('UPDATE patients SET password = :newpassword 
+        WHERE patient_ID = 1248623');
+        $this->db->bind(':newpassword', $newpassword);
+        $this->db->execute();
+     }
+
 }

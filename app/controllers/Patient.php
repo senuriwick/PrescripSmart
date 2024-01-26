@@ -173,6 +173,18 @@ class Patient extends Controller
         }
     }
 
+    public function passwordReset()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $newpassword = $_POST["newpassword"];
+            
+            $this->patientModel->resetPassword($newpassword);
+    
+            header("Location: /prescripsmart/patient/account_information");
+            exit();
+        }
+    }
+
     public function personal_information()
     {
         $patient = $this->patientModel->patientInfo();
