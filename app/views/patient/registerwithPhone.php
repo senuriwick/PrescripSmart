@@ -8,44 +8,41 @@
   <title>Sign Up Page via Email</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
-  <link rel="stylesheet" href="signUp-Email.css"/>
-  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
-  <script src="/js/validation.js" defer></script>
+  <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/patient/signUp-Phone.css"/>
 </head>
 
 <body>
-<div class="signUp-Email">
+<div class="signUp-Phone">
   <div class="upperRectangle">
   </div>
   <div class="container">
     <div class="register-form">
-      <form action="\signUp.php" method="POST" id="signup" novalidate>
-      <p class="sign-up-with-email">Sign up with email</p>
-      <p class="sign-up-with-phone-number-instead">
-        <span class="sign-up-with-phone-number-instead-sub-0">Sign up with&nbsp;</span>
-        <a href="signUp-Phone.html" class="sign-up-with-phone-number-instead-sub-1">phone number&nbsp;</a>
-        <span class="sign-up-with-phone-number-instead-sub-2"> instead</span>
+      <p class="sign-up-with-phone-number">Sign up with phone number</p>
+      <p class="sign-up-with-email-instead">
+        <span class="sign-up-with-email-instead-sub-0">Sign up with&nbsp;</span>
+        <a href="<?php echo URLROOT?>/patient/registerwithEmail" class="sign-up-with-email-instead-sub-1">email address&nbsp;</a>
+        <span class="sign-up-with-email-instead-sub-2"> instead</span>
       </p>
       <div class="box1">
         <p class="first-name ">
           <span class="first-name-sub-0">first name </span>
           <span class="first-name-sub-1">*</span>
         </p>
-        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" class="firstNameInput">
+        <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" class="firstNameInput">
       </div>
       <div class="box2">
         <p class="last-name ">
           <span class="last-name-sub-0">last name </span>
           <span class="last-name-sub-1">*</span>
         </p>
-        <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" class="lastNameInput">
+        <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" class="lastNameInput">
       </div>
       <div class="box3">
-        <p class="email-address">
-          <span class="email-address-sub-0">email address </span>
-          <span class="email-address-sub-1">*</span>
+        <p class="phone-number">
+          <span class="phone-number-sub-0">email address </span>
+          <span class="phone-number-sub-1">*</span>
         </p>
-        <input type="text" id="email_address" name="email_address" placeholder="Enter your email address" class="emailInput">
+        <input type="text" id="phone-number" name="phone-number" placeholder="Enter your phone number" class="phoneInput">
       </div>
       <div class="box4">
         <p class="password">
@@ -54,14 +51,13 @@
         </p>
         <input type="password" id="password" name="password" placeholder="Create a Password" class="passwordInput">
       </div>
-      <button type="submit" class="box5" id="continue">Continue</button>
+      <button type="button" class="box5" id="continue">Continue</button>
 
-                <!-- <script>
+                <script>
                     document.getElementById("continue").addEventListener("click", function () {
-                        window.location.href = "signUp-Email-2.html";
+                        window.location.href = "signUp-Phone-2.html";
                     });
-                </script> -->
-      </form>
+                </script>
     </div>
     <p class="Conditions">
       <span class="Conditions-sub-0">By signing up you agree to the </span>

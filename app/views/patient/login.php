@@ -46,7 +46,7 @@
       <p class="dont-have-an-account-sign-up-here">
         <span class="dont-have-an-account-sign-up-here-sub-0">Don’t have an account? Sign up</span>
         <span class="dont-have-an-account-sign-up-here-sub-1">&nbsp;</span>
-        <a href="signUp.html" class="dont-have-an-account-sign-up-here-sub-2">here</a>
+        <a href="<?php echo URLROOT?>/patient/registration" class="dont-have-an-account-sign-up-here-sub-2">here</a>
       </p>
     </div>
   </div>

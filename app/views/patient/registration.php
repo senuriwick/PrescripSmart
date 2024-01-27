@@ -9,7 +9,7 @@
     <title>Sign Up page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
-    <link rel="stylesheet" href="signUp.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/patient/signUp.css" />
     <script src="/js/validation.js" defer></script>
 </head>
 
@@ -21,11 +21,12 @@
             <div class="sign-up-form">
                 <p class="create-your-account">Create your account</p>
                 <p class="all-your-prescriptions-in-one-place">All your prescriptions. In one place.</p>
+
                 <button type="button" class="sign-up-email" id="continue">Sign Up with Email</button>
 
                 <script>
                     document.getElementById("continue").addEventListener("click", function () {
-                        window.location.href = "signUp-Email.html";
+                        window.location.href = "<?php echo URLROOT?>/patient/registerwithEmail";
                     });
                 </script>
 
@@ -33,7 +34,7 @@
 
                 <script>
                     document.getElementById("phoneSignUpButton").addEventListener("click", function () {
-                        window.location.href = "signUp-Phone.html";
+                        window.location.href = "<?php echo URLROOT?>/patient/registerwithPhone";
                     });
                 </script>
 
@@ -42,7 +43,7 @@
                 <p class="already-have-an-account-sign-in-here">
                     <span class="already-have-an-account-sign-in-here-0">Already have an account? Sign in</span>
                     <span class="already-have-an-account-sign-in-here-1">&nbsp;</span>
-                    <a href="login.php" class="already-have-an-account-sign-in-here-2">here</a>
+                    <a href="<?php echo URLROOT?>/patient/login" class="already-have-an-account-sign-in-here-2">here</a>
                 </p>
             </div>
             <p class="terms-and-conditions">
