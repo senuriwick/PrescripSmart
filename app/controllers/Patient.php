@@ -12,6 +12,21 @@ class Patient extends Controller
         // $this->view('doctor/patients');
     }
 
+    public function registration()
+    {
+        $this->view('patient/registration');
+    }
+
+    public function registerwithEmail()
+    {
+        $this->view('patient/registerwithEmail');
+    }
+
+    public function registerwithPhone()
+    {
+        $this->view('patient/registerwithPhone');
+    }
+
     public function login()
     {
         $this->view('patient/login');
