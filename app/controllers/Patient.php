@@ -12,6 +12,31 @@ class Patient extends Controller
         // $this->view('doctor/patients');
     }
 
+    public function login()
+    {
+        $this->view('patient/login');
+    }
+
+    public function authenticate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email_address = $_POST["email_address"];
+            $password = $_POST["password"];
+
+            $result = $this->patientModel->authenticate($email_address, $password);
+
+            if ($result) {
+                if ($password == $result->password) {
+                    echo json_encode(["success" => true]);
+                } else {
+                    echo json_encode(["error" => "Invalid password"]);
+                }
+            } else {
+                echo json_encode(["error" => "Email/Phone Number does not exist"]);
+            }
+        }
+    }
+
     public function inquiries_dashboard()
     {
         $this->view('patient/inquiries_dashboard');
@@ -44,7 +69,8 @@ class Patient extends Controller
         // header("Location: /prescripsmart/patient/appointment_cancelled");
     }
 
-    public function delete_appointment(int $appointment_ID) {
+    public function delete_appointment(int $appointment_ID)
+    {
         $this->patientModel->deleteAppointment($appointment_ID);
         header("Location: /prescripsmart/patient/appointment_cancelled");
     }
@@ -58,9 +84,9 @@ class Patient extends Controller
         $this->view('patient/new_appointment', $data);
     }
 
-    public function appointment_reservation(int $patient_ID, int $session_ID, int $doctor_ID, $time,$date) 
+    public function appointment_reservation(int $patient_ID, int $session_ID, int $doctor_ID, $time, $date)
     {
-        $referrence = $this->patientModel->confirmAppointment($patient_ID,$session_ID,$doctor_ID,$time,$date); 
+        $referrence = $this->patientModel->confirmAppointment($patient_ID, $session_ID, $doctor_ID, $time, $date);
         header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
 
@@ -141,7 +167,7 @@ class Patient extends Controller
         $data = [
             'prescription' => $prescriptions
         ];
-        
+
         $this->view('patient/public_prescriptionView', $data);
     }
 
@@ -165,9 +191,9 @@ class Patient extends Controller
             $username = $_POST["username"];
             // $password = $_POST["password"];
             // $newpassword = $_POST["newpassword"];
-            
+
             $this->patientModel->updateAccInfo($username);
-    
+
             header("Location: /prescripsmart/patient/account_information");
             exit();
         }
@@ -177,9 +203,9 @@ class Patient extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
-            
+
             $this->patientModel->resetPassword($newpassword);
-    
+
             header("Location: /prescripsmart/patient/account_information");
             exit();
         }
@@ -211,9 +237,9 @@ class Patient extends Controller
             $ename = $_POST["ename"];
             $econtact = $_POST["econtact"];
             $relationship = $_POST["relationship"];
-    
-            $this->patientModel->updateInfo($fname,$lname,$dname,$haddress,$nic,$cno,$dob,$age,$gender,$height,$weight,$ename,$econtact,$relationship);
-    
+
+            $this->patientModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $dob, $age, $gender, $height, $weight, $ename, $econtact, $relationship);
+
             header("Location: /prescripsmart/patient/personal_information");
             exit();
         }
