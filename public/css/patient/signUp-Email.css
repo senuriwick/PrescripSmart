@@ -111,8 +111,7 @@ body {
   display: flex;
   align-items: baseline;
 }
-.signUp-Email .container .register-form .box1 .first-name  .first-name-sub-0 {
-}
+
 .signUp-Email .container .register-form .box1 .first-name  .first-name-sub-1 {
   font-size: 2rem;
   font-weight: 500;
@@ -153,8 +152,7 @@ body {
   display: flex;
   align-items: baseline;
 }
-.signUp-Email .container .register-form .box2 .last-name  .last-name-sub-0 {
-}
+
 .signUp-Email .container .register-form .box2 .last-name  .last-name-sub-1 {
   font-size: 2rem;
   font-weight: 500;
@@ -195,8 +193,7 @@ body {
   display: flex;
   align-items: baseline;
 }
-.signUp-Email .container .register-form .box3 .email-address .email-address-sub-0 {
-}
+
 .signUp-Email .container .register-form .box3 .email-address .email-address-sub-1 {
   font-size: 2rem;
   font-weight: 500;
@@ -238,8 +235,7 @@ body {
   align-items: baseline;
   flex-shrink: 0;
 }
-.signUp-Email .container .register-form .box4 .password .password-sub-0 {
-}
+
 .signUp-Email .container .register-form .box4 .password .password-sub-1 {
   font-size: 2rem;
   font-weight: 500;
@@ -334,4 +330,10 @@ body {
   line-height: 1.2125;
   color: #0069ff;
   font-family: Inter, 'Source Sans Pro';
+}
+
+.green {
+  background-color: green;
+  border-color: green;
+  color: white;
 }

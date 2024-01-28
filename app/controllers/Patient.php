@@ -21,6 +21,40 @@ class Patient extends Controller
     {
         $this->view('patient/registerwithEmail');
     }
+    public function registrationEmail()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $first_name = $_POST["first_name"];
+            $last_name = $_POST["last_name"];
+            $email_address = $_POST["email_address"];
+            $password = $_POST["password"];
+
+            $result = $this->patientModel->users($email_address);
+
+            if ($result) {
+                echo json_encode(["error" => "User already exists!"]);
+            } else {
+                $reference = $this->patientModel->register($first_name, $last_name, $email_address, $password);
+                echo json_encode(["success" => true, "reference" => $reference]);
+            }
+        }
+    }
+
+    public function emailverification()
+    {
+        $user_ID = $_GET['reference'] ?? null;
+
+        if ($user_ID !== null) {
+            $user = $this->patientModel->user($user_ID);
+            $data = [
+                'user' => $user
+            ];
+            $this->view('patient/emailverification', $data);
+        } else {
+            echo "User ID not provided";
+        }
+    }
+
 
     public function registerwithPhone()
     {
