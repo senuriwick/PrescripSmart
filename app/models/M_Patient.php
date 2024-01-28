@@ -7,6 +7,36 @@ class M_Patient
     {
         $this->db = new Database();
     }
+
+    public function users($email_address)
+    {
+        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address');
+        $this->db->bind(':email_address', $email_address);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function user($user_ID)
+    {
+        $this->db->query('SELECT * FROM users WHERE user_ID = :user_ID');
+        $this->db->bind(':user_ID', $user_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function register($first_name, $last_name, $email_address, $password)
+    {
+        $this->db->query('INSERT INTO users (email_phone, password, first_Name, last_Name, role) 
+                          VALUES (:email_address, :password, :first_name, :last_name, "Patient")');
+        $this->db->bind(':first_name', $first_name);
+        $this->db->bind(':last_name', $last_name);
+        $this->db->bind(':email_address', $email_address);
+        $this->db->bind(':password', $password);
+
+        $this->db->execute();
+        $reference = $this->db->lastInsertId();
+        return $reference;
+    }
     public function authenticate($email_address, $password)
     {
         $this->db->query('SELECT * FROM patients WHERE email_Address = :email_address OR contact_Number = :email_address');
@@ -73,7 +103,6 @@ class M_Patient
         try {
             $this->db->beginTransaction();
 
-            // Insert into appointments table
             $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status) 
                           VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active")');
             $this->db->bind(':patient_id', $patient_ID);
@@ -86,7 +115,6 @@ class M_Patient
             // Get the last inserted ID
             $reference = $this->db->lastInsertId();
 
-            // Increment current_appointment in sessions table
             $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1 
                           WHERE session_ID = :session_id');
             $this->db->bind(':session_id', $session_ID);
@@ -94,12 +122,10 @@ class M_Patient
 
             $this->db->commit();
 
-            // Return the last inserted ID
             return $reference;
         } catch (Exception $e) {
             // An error occurred, rollback the transaction
             $this->db->rollBack();
-            // Handle the exception
             echo "Error: " . $e->getMessage();
             return false;
         }
