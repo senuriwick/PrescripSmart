@@ -308,6 +308,7 @@ body {
   font-family: Inter, 'Source Sans Pro';
   white-space: nowrap;
 }
+
 .signUp-page-3 .container .detailsForm .container2 .container4 .group6 .contactNo {
   box-sizing: border-box;
   padding: 1.578rem 3.2rem 2.035rem 3.2rem;
@@ -409,3 +410,8 @@ body {
   color: rgba(68, 81, 114, 0.75);
   font-family: Inter, 'Source Sans Pro';
 }
+
+.required {
+  color: red;
+}
+

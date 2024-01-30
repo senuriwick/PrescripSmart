@@ -8,7 +8,7 @@ class M_Patient
         $this->db = new Database();
     }
 
-    public function users($email_address)
+    public function find_user_by_email($email_address)
     {
         $this->db->query('SELECT * FROM users WHERE email_phone = :email_address');
         $this->db->bind(':email_address', $email_address);
@@ -16,7 +16,7 @@ class M_Patient
         return $result;
     }
 
-    public function user($user_ID)
+    public function find_user_by_id($user_ID)
     {
         $this->db->query('SELECT * FROM users WHERE user_ID = :user_ID');
         $this->db->bind(':user_ID', $user_ID);
@@ -24,7 +24,16 @@ class M_Patient
         return $result;
     }
 
-    public function register($first_name, $last_name, $email_address, $password, $activation_code, int $expiry = 1 * 24  * 60 * 60)
+    function delete_user_by_id(int $id, int $active = 0)
+    {
+        $this->db->query('DELETE FROM users WHERE user_ID =:id and active=:active');
+
+        $this->db->bind(':id', $id);
+        $this->db->bind(':active', $active);
+        $this->db->execute();
+    }
+
+    public function register($first_name, $last_name, $email_address, $password, $activation_code, int $expiry = 1 * 24 * 60 * 60)
     {
         $this->db->query('INSERT INTO users (username, email_phone, password, first_Name, last_Name, role, activation_code, activation_expiry) 
                           VALUES (:username, :email_address, :password, :first_name, :last_name, "Patient", :activation_code, :expiry)');
@@ -40,9 +49,50 @@ class M_Patient
         $reference = $this->db->lastInsertId();
         return $reference;
     }
+
+    public function patientRegistration($user_ID, $first_name, $last_name, $email_address)
+    {
+        $this->db->query('INSERT INTO patients (patient_ID, first_Name, last_Name, display_Name, email_address, signIn_Method, NIC) 
+        VALUES (:id, :fName, :lName, :dName, :email, "email", :id)');
+        $this->db->bind(':id', $user_ID);
+        $this->db->bind(':fName', $first_name);
+        $this->db->bind(':lName', $last_name);
+        $this->db->bind(':dName', $first_name . ' ' . $last_name);
+        $this->db->bind(':email', $email_address);
+
+        $this->db->execute();
+    }
+
+    public function patientRegistration_02($NIC, $DOB, $age, $address, $phone, $id)
+    {
+        $this->db->query('UPDATE patients SET NIC = :nic, DOB = :dob, age = :age, home_Address = :address, contact_Number = :phone WHERE patient_ID = :id');
+        $this->db->bind(':nic', $NIC);
+        $this->db->bind(':dob', $DOB);
+        $this->db->bind(':age', $age);
+        $this->db->bind(':address', $address);
+        $this->db->bind(':phone', $phone);
+        $this->db->bind(':id', $id);
+
+        $this->db->execute();
+    }
+
+    public function patientRegistration_03($gender, $weight, $height ,$emergency, $phoneNo, $id)
+    {
+        $this->db->query('UPDATE patients SET gender = :gender, weight = :weight, height = :height, emergency_Contact_Person = :emergency, emergency_Contact_Number = :phone WHERE patient_ID = :id');
+        $this->db->bind(':gender', $gender);
+        $this->db->bind(':weight', $weight);
+        $this->db->bind(':height', $height);
+        $this->db->bind(':emergency', $emergency);
+        $this->db->bind(':phone', $phoneNo);
+        $this->db->bind(':id', $id);
+
+        $this->db->execute();
+    }
+
+
     public function authenticate($email_address, $password)
     {
-        $this->db->query('SELECT * FROM patients WHERE email_Address = :email_address OR contact_Number = :email_address');
+        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address OR username = :email_address AND active = 1');
         $this->db->bind(':email_address', $email_address);
         $result = $this->db->single();
         return $result;
@@ -217,8 +267,8 @@ class M_Patient
 
     public function updateAccInfo($username)
     {
-        $this->db->query('UPDATE patients SET username = :username 
-        WHERE patient_ID = 1248623');
+        $this->db->query('UPDATE users SET username = :username 
+        WHERE user_ID = 1248623');
         $this->db->bind(':username', $username);
         // $this->db->bind(':password', $newpassword);
 
@@ -227,9 +277,9 @@ class M_Patient
 
     public function resetPassword($newpassword)
     {
-        $this->db->query('UPDATE patients SET password = :newpassword 
-        WHERE patient_ID = 1248623');
-        $this->db->bind(':newpassword', $newpassword);
+        $this->db->query('UPDATE users SET password = :newpassword 
+        WHERE user_ID = 1248623');
+        $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
         $this->db->execute();
     }
 

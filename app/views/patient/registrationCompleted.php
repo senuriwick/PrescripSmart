@@ -8,7 +8,7 @@
   <title>Sign Up page 6</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
-  <link rel="stylesheet" href="signUp-4.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/patient/signUp-4.css"/>
 </head>
 <body>
 <div class="signUp-page-4">
@@ -28,7 +28,7 @@
 
                 <script>
                     document.getElementById("visitProfile").addEventListener("click", function () {
-                        window.location.href = "loginPage.html";
+                        window.location.href = "<?php echo URLROOT?>/patient/login";
                     });
                 </script>
     <div class="group8">

@@ -8,9 +8,7 @@
   <title>Sign Up page 2</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
-  <link rel="stylesheet" href="signUp-2.css"/>
-  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
-  <script src="/server/js/validation.js" defer></script>
+  <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/patient/signUp-2.css"/>
 </head>
 <body>
 <div class="signUp-page-3">
@@ -25,12 +23,14 @@
       <div class="sideRectangle">
       </div>
       <div class="container2">
-        <form>
+
+      <?php $user = $data['user'] ?>
+        <form action = "<?php echo URLROOT?>/patient/emailregistrationContd" method = "POST">
         <div class="group2">
           <p class="text1">Few more things...</p>
           <div class="box1">
-            <p class="nic">NIC</p>
-            <input type="number" id="nic" name="nic" placeholder="Enter your national identity card number" class="input1">
+            <p class="nic">NIC<span class="required">*</span></p>
+            <input type="number" id="nic" name="nic" placeholder="Enter your national identity card number" class="input1" required>
           </div>
         </div>
         <div class="container3">
@@ -39,14 +39,14 @@
               <span class="dob-sub-0">date of birth </span>
               <span class="dob-sub-1">*</span>
             </p>
-            <input type="date" id="dob" name="dob" placeholder="DD/MM/YYYY" class="DOB">
+            <input type="date" id="dob" name="dob" placeholder="DD/MM/YYYY" class="DOB" required>
           </div>
           <div class="group4">
             <p class="age">
               <span class="age-sub-0">age </span>
               <span class="age-sub-1">*</span>
             </p>
-            <input type="number" id="age" name="age" placeholder="Enter your age" class="agehere">
+            <input type="number" id="age" name="age" placeholder="Enter your age" class="agehere" required>
           </div>
         </div>
         <div class="container4">
@@ -55,20 +55,16 @@
             <input type="text" id="address" name="address" placeholder="Enter your home address" class="address">
           </div>
           <div class="group6">
-            <p class="contact-number">contact number</p>
-            <input type="number" id="phoneNo" name="phoneNo" placeholder="Enter your contact number" class="contactNo">
+            <p class="contact-number">contact number<span class="required">*</span></p>
+            <input type="number" id="phoneNo" name="phoneNo" placeholder="Enter your contact number" class="contactNo" required>
+            <input type="number" id="id" name="id" value = <?php echo $user->user_ID?> style="display: none">
           </div>
-          <button type="button" class="group7" id="continue">Continue</button>
-
-                <script>
-                    document.getElementById("continue").addEventListener("click", function () {
-                        window.location.href = "signUp-3.html";
-                    });
-                </script>
+          <button type="submit" class="group7" id="continue">Continue</button>
         </div>
       </form>
       </div>
     </div>
+
     <div class="group8">
       <p class="terms-of-service-HBw">
         <a href="termsAndConditions.html" class="terms-of-service-HBw-sub-0">Terms of Service</a>
@@ -79,6 +75,7 @@
         <a href="termsAndConditions.html" class="privacy-policy-wZK-sub-1">Privacy Policy</a>
       </p>
     </div>
+
   </div>
 </div>
 </body>

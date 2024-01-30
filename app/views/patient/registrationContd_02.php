@@ -9,7 +9,7 @@
   <title>Sign Up page 3</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
-  <link rel="stylesheet" href="signUp-3.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/patient/signUp-3.css" />
 </head>
 
 <body>
@@ -22,33 +22,44 @@
     </div>
     <div class="container">
       <div class="detailsForm">
+      <?php $user = $data['user'] ?>
         <div class="sideRectangle">
         </div>
         <div class="container2">
+          <form action = "<?php echo URLROOT?>/patient/emailregistrationContd_02" method = "POST">
           <div class="group2">
             <p class="text1">One last bit...</p>
             <div class="box1">
-              <p class="gender">Gender</p>
-              <select name="gender" id="gender" class="input1">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
+    <p class="gender">Gender</p>
+    <div class="gender-options">
+        <label for="male">
+            <input type="radio" id="male" name="gender" value="male" required>
+            Male
+        </label>
+        <label for="female">
+            <input type="radio" id="female" name="gender" value="female" required>
+            Female
+        </label>
+        <label for="other">
+            <input type="radio" id="other" name="gender" value="other" required>
+            Other
+        </label>
+    </div>
+</div>
 
-            </div>
           </div>
           <div class="container3">
             <div class="group3">
               <p class="weight">
                 <span class="weight-sub-0">weight </span>
-                <span class="weight-sub-1">*</span>
+                <!-- <span class="weight-sub-1">*</span> -->
               </p>
               <input type="number" id="weight" name="weight" placeholder="e.g: 45 kg" class="weight1">
             </div>
             <div class="group4">
               <p class="height">
                 <span class="height-sub-0">height </span>
-                <span class="height-sub-1">*</span>
+                <!-- <span class="height-sub-1">*</span> -->
               </p>
               <input type="number" id="height" name="height" placeholder="e.g: 155cm" class="height1">
             </div>
@@ -57,20 +68,16 @@
             <div class="group5">
               <p class="emergency">emergency</p>
               <input type="text" id="emergency" name="emergency"
-                placeholder="Enter the name of the emergency contact person" class="emergency1">
+                placeholder="Enter the name of the emergency contact person" class="emergency1" required>
             </div>
             <div class="group6">
               <p class="emergency-contact-number">emergency contact number</p>
               <input type="number" id="phoneNo" name="phoneNo" placeholder="Enter your emergency contact number"
-                class="contactNo1">
+                class="contactNo1" required>
             </div>
+            <input type="number" id="id" name="id" value = <?php echo $user->user_ID?> style="display: none">
             <button type="submit" class="group7" id="submit">Submit</button>
 
-            <script>
-              document.getElementById("submit").addEventListener("click", function () {
-                window.location.href = "signUp-4.html";
-              });
-            </script>
           </div>
         </div>
       </div>

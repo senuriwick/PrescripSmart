@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/patient/signUp-Email-2.css" />
+
+  <style>
+    .box1:disabled {
+      background-color: grey; 
+      color: grey; 
+      cursor: not-allowed; 
+    }
+  </style>
+
 </head>
 
 <body>
@@ -19,30 +28,16 @@
     <div class="container">
       <div class="confirmationForm">
 
-        <?php $user = $data['user']; ?>
-        <form action = '<?php echo URLROOT?>/patient/resend_activation_email' method = "POST" id = "resend">
-        <p class="confirmEmail">Confirm your email address</p>
-        <p class="sampleEmail">
-          <span class="sampleEmail-sub-0">
-            We sent an email to
-            <br />
-
-          </span>
-          <span class="sampleEmail-sub-1">
-            <?php echo $user->email_phone ?>
-          </span>
-        </p>
+        <!-- <p class="confirmEmail">Verification email has been re-sent.</p> -->
         <div class="line1">
         </div>
         <p class="text1">
-          Please confirm your email address by clicking
+            Verification email has been re-sent.
           <br />
-          the link we just sent to your inbox
+          Please check your inbox and try again. Thank you!
         </p>
 
-        <input type="text" id="email" name="email" value = <?php echo $user->email_phone?> style="display: none">
-        <button type="submit" class="box1" id="ResendVerification">Resend Verification Email</button>
-        </form>
+        <button type="submit" class="box1" id="ResendVerification" disabled >Resend Verification Email</button>
       </div>
     </div>
   </div>
