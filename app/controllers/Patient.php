@@ -17,27 +17,100 @@ class Patient extends Controller
         $this->view('patient/registration');
     }
 
+    public function generate_activation_code()
+    {
+        return bin2hex(random_bytes(16));
+    }
+
+    public function send_activation_email($email, $activation_code)
+    {
+        // create the activation link
+        $activation_link = "http://localhost/prescripsmart/patient/activate?email=$email&activation_code=$activation_code";
+        $message = <<<MESSAGE
+            Hi,
+            Please click the following link to activate your account:
+            $activation_link
+            MESSAGE;
+
+        require '../PHPMailerAutoload.php';
+
+        $mail = new PHPMailer;
+        //$mail->SMTPDebug = 4;                               // Enable verbose debug output
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'annabethwalker22@gmail.com';       // SMTP username
+        $mail->Password = 'loezmkkmqombsiyb';                 // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+
+        $mail->setFrom('annabethwalker22@gmail.com', 'Prescripsmart');
+        $mail->addAddress($email);     // Add a recipient
+        //$mail->addAddress('ellen@example.com');               // Name is optional
+        // $mail->addReplyTo('info@example.com', 'Information');
+        // $mail->addCC('cc@example.com');
+        // $mail->addBCC('bcc@example.com');
+
+        // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+        $mail->isHTML(true);                                     // Set email format to HTML
+
+        $mail->Subject = 'Please activate your account';
+        $mail->Body = $message;
+        //$mail->AltBody = $message;
+
+        if (!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            //echo 'Message has been sent';
+        }
+    }
+
+    public function activate()
+    {
+        $email = $_GET['email'] ?? null;
+        $user = $this->patientModel->users($email);
+
+        if ($user->active == 0) {
+            $this->patientModel->activate($email);
+            header("Location: /prescripsmart/patient/login");
+        } else {
+            header("Location: /prescripsmart/patient/login");
+        }
+    }
+
     public function registerwithEmail()
     {
         $this->view('patient/registerwithEmail');
     }
     public function registrationEmail()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $first_name = $_POST["first_name"];
-            $last_name = $_POST["last_name"];
-            $email_address = $_POST["email_address"];
-            $password = $_POST["password"];
+        try {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $first_name = $_POST["first_name"];
+                $last_name = $_POST["last_name"];
+                $email_address = $_POST["email_address"];
+                $password = $_POST["password"];
 
-            $result = $this->patientModel->users($email_address);
+                $result = $this->patientModel->users($email_address);
 
-            if ($result) {
-                echo json_encode(["error" => "User already exists!"]);
-            } else {
-                $reference = $this->patientModel->register($first_name, $last_name, $email_address, $password);
-                echo json_encode(["success" => true, "reference" => $reference]);
+                if ($result) {
+                    echo json_encode(["error" => "User already exists!"]);
+                } else {
+                    $activation_code = $this->generate_activation_code();
+                    //$expiry = 1 * 24 * 60 * 60;
+                    $reference = $this->patientModel->register($first_name, $last_name, $email_address, $password, $activation_code);
+                    //$this->send_activation_email($email_address, $activation_code);
+                    echo json_encode(["success" => true, "reference" => $reference]);
+                }
             }
+        } catch (Exception $e) {
+            // Log or handle the exception
+            error_log($e->getMessage());
+            echo json_encode(["error" => "An error occurred. Please try again later."]);
         }
+
     }
 
     public function emailverification()
@@ -49,12 +122,12 @@ class Patient extends Controller
             $data = [
                 'user' => $user
             ];
+            $this->send_activation_email($user->email_phone, $user->activation_code);
             $this->view('patient/emailverification', $data);
         } else {
             echo "User ID not provided";
         }
     }
-
 
     public function registerwithPhone()
     {
