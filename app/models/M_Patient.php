@@ -24,14 +24,17 @@ class M_Patient
         return $result;
     }
 
-    public function register($first_name, $last_name, $email_address, $password)
+    public function register($first_name, $last_name, $email_address, $password, $activation_code, int $expiry = 1 * 24  * 60 * 60)
     {
-        $this->db->query('INSERT INTO users (email_phone, password, first_Name, last_Name, role) 
-                          VALUES (:email_address, :password, :first_name, :last_name, "Patient")');
+        $this->db->query('INSERT INTO users (username, email_phone, password, first_Name, last_Name, role, activation_code, activation_expiry) 
+                          VALUES (:username, :email_address, :password, :first_name, :last_name, "Patient", :activation_code, :expiry)');
         $this->db->bind(':first_name', $first_name);
         $this->db->bind(':last_name', $last_name);
+        $this->db->bind(':username', $first_name . '_' . $last_name);
         $this->db->bind(':email_address', $email_address);
-        $this->db->bind(':password', $password);
+        $this->db->bind(':password', password_hash($password, PASSWORD_BCRYPT));
+        $this->db->bind(':activation_code', password_hash($activation_code, PASSWORD_DEFAULT));
+        $this->db->bind(':expiry', date('Y-m-d H:i:s', time() + $expiry));
 
         $this->db->execute();
         $reference = $this->db->lastInsertId();
@@ -43,6 +46,13 @@ class M_Patient
         $this->db->bind(':email_address', $email_address);
         $result = $this->db->single();
         return $result;
+    }
+
+    public function activate($email)
+    {
+        $this->db->query('UPDATE users SET active = 1, activated_at = CURRENT_TIMESTAMP WHERE email_phone = :email');
+        $this->db->bind(':email', $email);
+        $this->db->execute();
     }
 
     public function getAppointments()
