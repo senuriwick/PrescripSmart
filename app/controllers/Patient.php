@@ -67,19 +67,69 @@ class Patient extends Controller
         }
     }
 
+
+    public function resend_activation_email()
+    {
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST["email"];
+            $activation_code = $this->generate_activation_code();
+
+
+            // create the activation link
+            $activation_link = "http://localhost/prescripsmart/patient/activate?email=$email&activation_code=$activation_code";
+            $message = <<<MESSAGE
+            Hi,
+            Please click the following link to activate your account:
+            $activation_link
+            MESSAGE;
+
+            require '../PHPMailerAutoload.php';
+
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'annabethwalker22@gmail.com';
+            $mail->Password = 'loezmkkmqombsiyb';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('annabethwalker22@gmail.com', 'Prescripsmart');
+            $mail->addAddress($email);
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Please activate your account';
+            $mail->Body = $message;
+
+            if (!$mail->send()) {
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                header("Location: /prescripsmart/patient/emailverification_2");
+                //echo 'Message has been sent';
+            }
+        }
+    }
+
     public function activate()
     {
         $email = $_GET['email'] ?? null;
-        $user = $this->patientModel->users($email);
+        $activatecode = $_GET['activation_code'] ?? null;
+        $user = $this->patientModel->find_user_by_email($email);
 
-        if ($user->active == 0) {
+        $currentTimestamp = date('Y-m-d H:i:s');
+        if($user->activation_expiry < $currentTimestamp)
+        {
+            $this->patientModel->delete_user_by_id($user->user_ID);
+
+        } else if ($user->active == 0 && password_verify($activatecode, $user->activation_code)){
             $this->patientModel->activate($email);
-            header("Location: /prescripsmart/patient/login");
+            header("Location: /prescripsmart/patient/registrationContd?id=$user->user_ID");
         } else {
             header("Location: /prescripsmart/patient/login");
         }
     }
-
     public function registerwithEmail()
     {
         $this->view('patient/registerwithEmail');
@@ -93,7 +143,7 @@ class Patient extends Controller
                 $email_address = $_POST["email_address"];
                 $password = $_POST["password"];
 
-                $result = $this->patientModel->users($email_address);
+                $result = $this->patientModel->find_user_by_email($email_address);
 
                 if ($result) {
                     echo json_encode(["error" => "User already exists!"]);
@@ -101,7 +151,7 @@ class Patient extends Controller
                     $activation_code = $this->generate_activation_code();
                     //$expiry = 1 * 24 * 60 * 60;
                     $reference = $this->patientModel->register($first_name, $last_name, $email_address, $password, $activation_code);
-                    //$this->send_activation_email($email_address, $activation_code);
+                    $this->send_activation_email($email_address, $activation_code);
                     echo json_encode(["success" => true, "reference" => $reference]);
                 }
             }
@@ -113,20 +163,105 @@ class Patient extends Controller
 
     }
 
+    public function registrationContd()
+    {
+        $userID = $_GET["id"];
+
+        if ($userID !== null) {
+            $user = $this->patientModel->find_user_by_id($userID);
+            $data = [
+                'user' => $user
+            ];
+            $this->patientModel->patientRegistration($user->user_ID, $user->first_Name, $user->last_Name, $user->email_phone);
+            $this->view('patient/registrationContd', $data);
+            exit;
+        } else {
+            echo "User ID not provided";
+        }
+    }
+
+    public function registrationContd_02()
+    {
+        $userID = $_GET["id"];
+
+        if ($userID !== null) {
+            $user = $this->patientModel->find_user_by_id($userID);
+            $data = [
+                'user' => $user
+            ];
+            $this->view('patient/registrationContd_02', $data);
+            exit;
+        } else {
+            echo "User ID not provided";
+        }
+    }
+
+    public function emailregistrationContd()
+    {
+        try {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $NIC = $_POST['nic'];
+                $DOB = $_POST['dob'];
+                $age = $_POST['age'];
+                $address = $_POST['address'];
+                $phone = $_POST['phoneNo'];
+                $id = $_POST['id'];
+
+                //$user = $this->patientModel->find_user_by_id($id);
+                //$this->patientModel->patientRegistration($user->user_ID, $user->first_Name, $user->last_Name, $user->email_phone);
+                $this->patientModel->patientRegistration_02($NIC, $DOB, $age,$address, $phone, $id);
+                header("Location: /prescripsmart/patient/registrationContd_02?id=$id");
+                exit;
+            }
+        } catch (Exception $e) {
+            echo "An error occurred: " . $e->getMessage();
+        }
+    }
+
+    public function emailregistrationContd_02()
+    {
+        try {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $gender = $_POST['gender'];
+                $weight = $_POST['weight'];
+                $height = $_POST['height'];
+                $emergency = $_POST['emergency'];
+                $phoneNo = $_POST['phoneNo'];
+                $id = $_POST['id'];
+
+                $this->patientModel->patientRegistration_03($gender, $weight, $height ,$emergency, $phoneNo, $id);
+                header("Location: /prescripsmart/patient/registrationCompleted");
+                exit;
+            }
+        } catch (Exception $e) {
+            echo "An error occurred: " . $e->getMessage();
+        }
+    }
+
+    public function registrationCompleted()
+    {
+        $this->view('/patient/registrationCompleted');
+    }
+
     public function emailverification()
     {
         $user_ID = $_GET['reference'] ?? null;
 
         if ($user_ID !== null) {
-            $user = $this->patientModel->user($user_ID);
+            $user = $this->patientModel->find_user_by_id($user_ID);
             $data = [
                 'user' => $user
             ];
-            $this->send_activation_email($user->email_phone, $user->activation_code);
+            //$this->send_activation_email($user->email_phone, $user->activation_code);
             $this->view('patient/emailverification', $data);
         } else {
             echo "User ID not provided";
         }
+    }
+
+    public function emailverification_2()
+    {
+        $this->view('patient/emailverification_2');
     }
 
     public function registerwithPhone()
@@ -148,7 +283,10 @@ class Patient extends Controller
             $result = $this->patientModel->authenticate($email_address, $password);
 
             if ($result) {
-                if ($password == $result->password) {
+                if (password_verify($password, $result->password)) 
+                {
+                    session_start();
+                    $_SESSION['user_ID'] = $result->user_ID;
                     echo json_encode(["success" => true]);
                 } else {
                     echo json_encode(["error" => "Invalid password"]);
