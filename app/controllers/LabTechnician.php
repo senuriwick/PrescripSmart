@@ -10,7 +10,12 @@ class LabTechnician extends Controller{
     }
 
     public function patient(){
-        $this->view('lab_tech/patient');
+        $reportsToUpload = $this->dpModel->repotsToUploadList();
+        $data = [
+            'reportsToUpload' => $reportsToUpload
+        ];
+
+        $this->view('lab_tech/patient',$data);
     }
 
     public function profile(){

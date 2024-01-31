@@ -76,15 +76,16 @@
                         <div class="patient-details">
                             <table>
                                 <tbody>
+                                    <?php foreach ($data['reportsToUpload'] as $reportToUpload): ?>
                                     <tr class="patient-detail-row">
                                         <td>
                                             <div class="desDiv">
                                                 <img src="../public/img/lab_tech/profile.png" alt="user-icon">
-                                                <p class="patientName">Ms. Shenaya Perera</p>
+                                                <p class="patientName"><?php echo $reportToUpload->patient_name;?></p>
                                                 <i class="fa-solid fa-chevron-down" data-target="content1" onclick="show(this)"></i>                                            </div>
                                         </td>
                                         
-                                        <td>Patient ID - #123456</td>
+                                        <td>Patient ID-<?php echo $reportToUpload->patient_id;?></td>
                                         <td><a href="#"><button>View Test</button></a></td>
                                     </tr>
                                     <tr>
@@ -97,26 +98,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="patient-detail-row">
-                                        <td>
-                                            <div class="desDiv">
-                                                <img src="../public/img/lab_tech/profile.png" alt="user-icon">
-                                                <p class="patientName">Mr. John Due</p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content2" onclick="show(this)"></i>                                            </div>
-                                        </td>
-                                        <td>Patient ID - #123457</td>
-                                        <td><button>View Test</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div id="content2" class="patient-data" >
-                                                <p>Age: 30</p>
-                                                <p>Height: 170 cm</p>
-                                                <p>Weight: 60 kg</p>
-                                                <a href="#"><button>View Test</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php endforeach;?>
                                 </tbody>
                             </table>
                             
