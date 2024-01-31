@@ -2,7 +2,7 @@
 
 class LabTechnician extends Controller{
     public function __construct(){
-        // $this->dpModel = $this->model('LabTechnician');
+        $this->dpModel = $this->model('M_LabTechnician');
     }
 
     public function index(){

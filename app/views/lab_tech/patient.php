@@ -70,13 +70,13 @@
                     <div class="patientSearch" id="patientSearch">
                         <h1>Search Patient</h1>
                         <form>
-                            <input type="text" class="searchBar" placeholder="Enter patient name or Id" />
+                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
                         </form>
                         <hr />
                         <div class="patient-details">
                             <table>
                                 <tbody>
-                                    <tr>
+                                    <tr class="patient-detail-row">
                                         <td>
                                             <div class="desDiv">
                                                 <img src="../public/img/lab_tech/profile.png" alt="user-icon">
@@ -97,7 +97,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="patient-detail-row">
                                         <td>
                                             <div class="desDiv">
                                                 <img src="../public/img/lab_tech/profile.png" alt="user-icon">
@@ -209,6 +209,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function (){
+            const searchInput = document.getElementById("searchInput");
             const viewtestbutton=document.querySelectorAll("td button");
             const patienttestdata=document.getElementById("patient-test-data");
             const patientdetails = document.getElementById("patientSearch");
@@ -220,12 +221,33 @@
             const modeluploadbutton=uploadmodel.querySelector(".model-content button");
             const uploadedcontent=document.getElementById("upload-patient-test-data");
 
+            searchInput.addEventListener("input",function(){
+                const searchTerm = searchInput.value.toLowerCase();
+                const regex = new RegExp(searchTerm, 'i');
+                const patientRows = document.querySelectorAll(".patient-detail-row");
+
+                patientRows.forEach(function (row){
+                    const patientName = row.querySelector(".patientName").textContent.toLowerCase();
+
+                    //   if (patientName.includes(searchTerm)) {
+                    //             row.style.display = "table-row";
+                    //         } else {
+                    //              row.style.display = "none";}
+
+                    if(regex.test(patientName)){
+                        row.style.display= "table-row";
+                    }else{
+                        row.style.display= "none";
+                    }
+                });
+            });
+            
             viewtestbutton.forEach(button =>{
                 button.addEventListener("click",()=>{
                     patienttestdata.style.display="block";
                     patientdetails.style.display="none";
                     uploadmodel.style.display="none";
-                })
+                });
             });
 
             uploadbutton.addEventListener("click",()=>{
@@ -250,8 +272,15 @@
                 uploadedcontent.style.display="block";
                 patientdetails.style.display="none";
                 patienttestdata.style.display="none";
-            })
+            });
+            
+
+            
         });
+
+    
+
+
     </script>
 </body>
 </html>
