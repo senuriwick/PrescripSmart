@@ -9,7 +9,7 @@
     <title>New Appointment</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/patient/new_appointment_confirmation.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/patient/appointment_complete.css" />
     <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" /> -->
 </head>
 
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="searchDiv">
-                    <div id="confirmationOptions" class="confirmationOptions">
+                    <!-- <div id="confirmationOptions" class="confirmationOptions"> -->
                         <div class="confirmationOptionsContent">
                             <h2>Appointment Scheduled</h2>
                             <p>Your appointment has been scheduled.</p>
@@ -78,26 +78,28 @@
                             <button id="payNowButton" class="customConfirmationButton payNowButton">Pay Now</button>
                         </div>
                     </div>
-
-                    <script>
-
-                        document.getElementById("viewAppointmentButton").style.display = "block";
-                        document.getElementById("payNowButton").style.display = "block";
-
-                        document.getElementById("viewAppointmentButton").addEventListener("click", function () {
-                            // Redirect to the specific appointment details page
-                            window.location.href = "view_appointment.php?appointment_id=<?php echo $appointment_ID; ?>";
-                        });
-
-                        document.getElementById("payNowButton").addEventListener("click", function () {
-                            // Add "Pay Now" action here
-                            alert("Pay Now");
-                        });
-                    </script>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("viewAppointmentButton").style.display = "block";
+            document.getElementById("payNowButton").style.display = "block";
+        });
+
+        document.getElementById("viewAppointmentButton").addEventListener("click", function () {
+            // Redirect to the specific appointment details page
+            window.location.href = "view_appointment?appointment_id=<?php echo $appointment_ID; ?>";
+            // window.location.href = 'view_appointment?appointment_id=' + <?php echo $appointment_ID; ?>;
+        });
+
+        document.getElementById("payNowButton").addEventListener("click", function () {
+            // Add "Pay Now" action here
+            alert("Pay Now");
+        });
+    </script>
 </body>
 
 </html>

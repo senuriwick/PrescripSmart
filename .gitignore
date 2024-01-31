@@ -20,27 +20,3 @@ app/config/config.php
    define('URLROOT', 'http://localhost/PrescripSmart');
    define('SITENAME', 'PrescripSmart');
 ?>
-
-
-document.getElementById("confirmationOptions").style.display = "block";
-
-                        document.getElementById("viewAppointmentButton").addEventListener("click", function () {
-                            window.location.href = "view_appointment?appointment_id=<?php echo $appointment->appointment_ID; ?>";
-                            // document.getElementById("confirmationOptions").style.display = "none";
-                        });
-
-                        document.getElementById("payNowButton").addEventListener("click", function () {
-                            // Add "Pay Now" action here
-                            alert("Pay Now");
-                            // document.getElementById("confirmationOptions").style.display = "none";
-                        });
-
-                        document.querySelector(".policy").addEventListener("click", function () {
-                            document.getElementById("policyPopup").style.display = "block";
-                        });
-
-                        document.getElementById("closePolicy").addEventListener("click", function () {
-                            document.getElementById("policyPopup").style.display = "none";
-                        });
-              
-              <?php $appointment_ID = $_GET['referrence']; ?>

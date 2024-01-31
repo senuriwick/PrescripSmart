@@ -231,7 +231,7 @@ body {
         height: 0.05rem;
         position: absolute;
         left: 17.5rem;
-        top: 22.5rem;
+        top: 27rem;
         background-color: rgba(68, 81, 114, 0.75);
 
   }
@@ -241,7 +241,7 @@ body {
     height: 10rem;
     position: absolute;
     left: 18rem;
-    top: 25rem;
+    top: 28rem;
     background-color: #ffffff;
     border-radius: 1rem;
   }
@@ -251,7 +251,7 @@ body {
     height: 3rem;
     position: absolute;
     left: 19rem;
-    top: 25rem;
+    top: 28rem;
     text-align: left;
     font-size: 16px;
     line-height: 1.2125;
@@ -284,7 +284,7 @@ body {
     height: 2rem;
     position: absolute;
     left: 19rem;
-    top: 32rem;
+    top: 35rem;
     background-color: rgba(0, 105, 255, 0.75);
     border-radius: 0.5rem;
     font-size: 15px;;
@@ -333,7 +333,7 @@ body {
   .policy {
     position: absolute;
     left: 19rem;
-    top: 29rem;
+    top: 32rem;
     text-align: left;
     font-size: 16px;
     line-height: 1.2125;

@@ -119,7 +119,7 @@
                 <div>Patient: S.Perera</div>
                 <div>Pres Date & Time: 12/09/23 10:00 AM</div>
                 <div>Age: 22 Yrs</div>
-                <div>Reffered by: Dr.Asanka Rathnayake</div>
+                <div>Referred by: Dr.Asanka Rathnayake</div>
             </div>
             <div class="pres-box">
                 <label>Diagnosis</label>

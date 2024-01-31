@@ -9,7 +9,7 @@
     <title>New Appointment</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\new_appointment_confirmation.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/patient/new_appointment_confirmation.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
 </head>
 
@@ -134,8 +134,7 @@
                     </div>
 
                     <div style="display:none">
-                        <form action="<?php echo URLROOT; ?>/Patient/appointment_confirmation" method="POST"
-                            id="addapp">
+                    <form action="<?php echo URLROOT; ?>/Patient/appointment_reservation/<?=125?>/<?= $appInfo->doctor_ID ?>/<?= $appInfo->session_ID ?>/<?= $appInfo->time ?>/<?= $appInfo->sessionDate ?>" method="POST" id="addapp">
                             <input type="hidden" name="patient_ID" value="125">
                             <input type="hidden" name="doctor_ID" value="<?php echo $appInfo->doctor_ID ?>">
                             <input type="hidden" name="session_ID" value="<?php echo $appInfo->session_ID ?>">
@@ -166,7 +165,7 @@
                             insertapp.click();
 
                             document.getElementById("customConfirmation").style.display = "none";
-                            document.getElementById("confirmationOptions").style.display = "block";
+                            document.getElementById("confirmationOptions").style.display = "none";
 
                         });
 

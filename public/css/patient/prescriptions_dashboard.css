@@ -1,4 +1,3 @@
-
 .prescriptionsDiv {
   margin-top: 2.5vh;
   background-color: rgba(239, 242, 251, 1);
@@ -45,7 +44,12 @@
 
 .file img[alt="download-icon"] {
   height: 3vh;
-  padding: 1.75vh 1.5vh 1vh 1.5vh; 
+  padding: 1.75vh 1.5vh 1vh 1.5vh;
+}
+
+.file img[alt="eye-icon"] {
+  height: 3vh;
+  padding: 1.75vh 1.5vh 1vh 1.5vh;
 }
 
 .addnewHeading {
@@ -108,7 +112,7 @@
 
 
 body {
-  font-family: inter ;
+  font-family: inter;
   margin: 0;
 }
 
@@ -172,8 +176,7 @@ body {
 }
 
 
-.profile p
-{
+.profile p {
   color: #ffffff;
   font-size: 1.8vh;
   font-weight: bold;
@@ -190,20 +193,18 @@ body {
   padding-bottom: 9vh;
 }
 
-.manageDiv .mainOptions
-{
+.manageDiv .mainOptions {
   margin-bottom: 5vh;
 }
 
-.manageDiv a
-{
-    display:block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
+.manageDiv a {
+  display: block;
+  padding-left: 3vh;
+  line-height: 3vh;
+  font-size: 1.7vh;
+  font-family: inter;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .othersDiv {
@@ -215,18 +216,15 @@ body {
   color: white;
 }
 
-.othersDiv a
-{
-    display:block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
+.othersDiv a {
+  display: block;
+  padding-left: 3vh;
+  line-height: 3vh;
+  font-size: 1.7vh;
+  font-family: inter;
+  color: #ffffff;
+  text-decoration: none;
 }
-
-
 
 .main {
   flex: 1;
@@ -309,42 +307,162 @@ body {
   color: rgba(164, 174, 199, 1);
   text-decoration: none;
 }
-menu a:active
-{
+
+menu a:active {
   color: #0069FF;
 }
- a:hover
-{
-  color:#17058aee;
+
+a:hover {
+  color: #17058aee;
 }
 
-.inquiry a
-{
-    display:block;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #0069FF;
-    text-decoration: none;
+/* Modal */
+.prescriptionsDiv .modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.appointment a
-{
-  display:block;
+
+.prescriptionsDiv .modal-content {
+  background-color: #fff;
+  margin: 8% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 35%;
+  position: relative;
+}
+
+.prescriptionsDiv .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prescriptionsDiv .close1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prescriptionsDiv .modal-content a {
+  font-size: 11px;
+}
+
+.prescriptionsDiv .modal-content .model-head {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-top: 4px;
+  gap: 8px;
+}
+
+.prescriptionsDiv .modal-content .model-head img {
+  width: 40px;
+  height: 40px;
+}
+
+.prescriptionsDiv .modal-content .model-details {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.prescriptionsDiv .modal-content .model-details>div {
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.prescriptionsDiv .modal-content .pres-box {
+  margin-top: 10px;
+  padding: 5px 10px 10px 10px;
+  border: 0.7px solid rgb(128, 123, 123);
+  min-height: 20px;
+  border-radius: 10px;
+}
+
+.prescriptionsDiv .modal-content label {
+  font-size: 14px;
+}
+
+.prescriptionsDiv .modal-content .pres-box div {
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.prescriptionsDiv .modal-content .pres-box table {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.prescriptionsDiv .modal-content .pres-box table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.prescriptionsDiv .modal-content .pres-box table td {
+  font-size: 12px;
+}
+
+.prescriptionsDiv .modal-content .test-box {
+  min-height: 20px;
+  margin-top: 10px;
+}
+
+.prescriptionsDiv .modal-content .test-box table {
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.prescriptionsDiv .modal-content .test-box table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.prescriptionsDiv .modal-content .test-box table td {
+  font-size: 12px;
+}
+
+.prescriptionsDiv .modal-content .notice {
+  font-size: 10px;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.qr-button {
+  background-color: #0069FF;
+  color: white;
+  float: right;
+  border-radius: 10%;
+  border-color: #0069FF;
+  margin-top: -10px;
+}
+
+.inquiry a {
+  display: block;
   font-size: 1.7vh;
   font-family: inter;
   color: #0069FF;
   text-decoration: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+.appointment a {
+  display: block;
+  font-size: 1.7vh;
+  font-family: inter;
+  color: #0069FF;
+  text-decoration: none;
+}

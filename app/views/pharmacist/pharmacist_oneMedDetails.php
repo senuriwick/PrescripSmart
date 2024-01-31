@@ -92,7 +92,7 @@
                             <input type="text" id="searchBar" name="search" value="<?php echo isset($_GET['quantity']) ? $_GET['quantity']:''; ?>">
                             <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/plus.png" alt=""></button>
                         </div>
-                        <button id="outOfStock">Mark as Out of Stock</button>
+                        <button id="outOfStock"><a href="<?php echo URLROOT; ?>/Pharmacist/markOutOfStock?id=<?php echo isset($_GET['id'])?$_GET['id']:''; ?>">Mark as Out of Stock</a></button>
                     </div>
                     
                 </div>

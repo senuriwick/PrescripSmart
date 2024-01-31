@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\appointments_dashboard.css" />
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
+  <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" /> -->
 </head>
 
 <body>
@@ -92,7 +92,7 @@
               <a href="view_appointment?appointment_id=<?php echo $appointment->appointment_ID; ?>">
                 <img src="<?php echo URLROOT; ?>\public\img\patient\More.png" alt="more-icon">
               </a>
-              <script>
+              <!-- <script>
                 document.addEventListener('DOMContentLoaded', function () {
                   const moreIcons = document.querySelectorAll('.more-icon');
 
@@ -106,7 +106,7 @@
                     });
                   });
                 });
-              </script>
+              </script> -->
             </div>
 
 
