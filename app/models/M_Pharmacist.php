@@ -93,6 +93,13 @@
         
             return $this->db->resultSet();
         }
+
+        public function getPharmacistProfileDetails($employeeId) {
+            $this->db->query('SELECT * FROM pharmacist_profiles WHERE employee_id = :employeeId');
+            $this->db->bind(':employeeId', $employeeId);
+    
+            return $this->db->single();
+        }
         
 
     }

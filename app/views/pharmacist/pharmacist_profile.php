@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="pharmacistprofile">
-                        <div class="empid">Employee Id :#123456
+                        <div class="empid">Employee Id <span><?php echo $data['pharmacistProfile']->employee_id; ?></span>
                             <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />
@@ -75,39 +75,44 @@
                             <div>
                                 <form>
                                     <label>Username</label><br>
-                                    <input type="text" placeholder="sampleUsername">
+                                    <input type="text" placeholder="<?php echo $data['pharmacistProfile']->username; ?>">
                                 </form>
                             </div>
                             <div>
                                 <form>
                                     <label>Associated EmailAddress/phoneNumber</label><br>
-                                    <input type="text" placeholder="sample Email/Phone">
+                                    <input type="text" placeholder="<?php echo $data['pharmacistProfile']->email_phone; ?>">
                                 </form>
                             </div>
                             <div>
                                 <form>
                                     <label>Current Password</label><br>
-                                    <input type="password" placeholder="********">
+                                    <input type="password" placeholder="<?php echo $data['pharmacistProfile']->password; ?>">
                                 </form>
                             </div>
                         </div>
                         
+
                         <hr/>
                         <div class="detail">
-                            <div>
-                                <form>
+                            <form id="passwordForm" action="<?php echo URLROOT; ?>/Pharmacist/updatePassword" method="post">
+                                <div>
+
                                     <label>New password</label><br>
-                                    <input type="password" placeholder="********">
-                                </form>
-                            </div>
-                            <div>
-                                <form>
-                                    <label>Confirm password</label><br>
-                                    <input type="password" placeholder="**********">
-                                </form>
-                            </div>
-                            <div><button>SAVE CHANGES</button></div>
+                                    <input type="password" id="newPassword" name="newPassword" placeholder="********">
+                                    </form>
+                                    
+                                </div>
+                                <div>
+                                    <form action=""><label>Confirm password</label><br>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="**********"></form>
+                                </div>
+                                <button type="button" onclick="validatePasswords()">SAVE CHANGES</button>
+                            </form>
                         </div>
+
+                        <script src="<?php echo URLROOT; ?>/public/js/pharmacist/profile.js"></script>
+
                     </div>
                 </div>
             </div>

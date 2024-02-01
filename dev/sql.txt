@@ -72,3 +72,20 @@ INSERT INTO inquiries (inquiry_no, email, inquiry_date, message, patient_name) V
 (3, 'mary.jones@example.com', '2024-03-12', 'Seeking information on available services.', 'Mary Jones'),
 (4, 'david.brown@example.com', '2024-04-18', 'Concerns about recent medication side effects.', 'David Brown'),
 (5, 'susan.miller@example.com', '2024-05-25', 'Request for clarification on billing statements.', 'Susan Miller');
+
+
+profile 
+
+CREATE TABLE pharmacist_profiles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    employee_id VARCHAR(10) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    email_phone VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO pharmacist_profiles (employee_id, username, email_phone, password) 
+VALUES ('#123456', 'sampleUsername', 'sample@email.com', 'hashed_password');
+
+

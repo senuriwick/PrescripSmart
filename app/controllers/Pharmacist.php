@@ -64,9 +64,19 @@
             $this->view('pharmacist/pharmacist_allMedications', $data);
         }
         
-
-        public function profile(){
-            $this->view('pharmacist/pharmacist_profile');
+        public function profile() {
+            // Assume $employeeId is the identifier for the logged-in pharmacist
+            $employeeId = "#123456"; // Replace with actual employee ID retrieval logic
+    
+            // Fetch pharmacist profile details
+            $pharmacistProfile = $this->pharmacistModel->getPharmacistProfileDetails($employeeId);
+    
+            // Pass the details to the view
+            $data = [
+                'pharmacistProfile' => $pharmacistProfile,
+            ];
+    
+            $this->view('pharmacist/pharmacist_profile', $data);
         }
 
         public function personal(){
