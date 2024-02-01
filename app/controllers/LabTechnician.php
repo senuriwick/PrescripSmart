@@ -2,7 +2,7 @@
 
 class LabTechnician extends Controller{
     public function __construct(){
-        // $this->dpModel = $this->model('LabTechnician');
+        $this->dpModel = $this->model('M_LabTechnician');
     }
 
     public function index(){
@@ -10,7 +10,12 @@ class LabTechnician extends Controller{
     }
 
     public function patient(){
-        $this->view('lab_tech/patient');
+        $reportsToUpload = $this->dpModel->repotsToUploadList();
+        $data = [
+            'reportsToUpload' => $reportsToUpload
+        ];
+
+        $this->view('lab_tech/patient',$data);
     }
 
     public function profile(){

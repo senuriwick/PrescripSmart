@@ -70,21 +70,22 @@
                     <div class="patientSearch" id="patientSearch">
                         <h1>Search Patient</h1>
                         <form>
-                            <input type="text" class="searchBar" placeholder="Enter patient name or Id" />
+                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
                         </form>
                         <hr />
                         <div class="patient-details">
                             <table>
                                 <tbody>
-                                    <tr>
+                                    <?php foreach ($data['reportsToUpload'] as $reportToUpload): ?>
+                                    <tr class="patient-detail-row">
                                         <td>
                                             <div class="desDiv">
                                                 <img src="../public/img/lab_tech/profile.png" alt="user-icon">
-                                                <p class="patientName">Ms. Shenaya Perera</p>
+                                                <p class="patientName"><?php echo $reportToUpload->patient_name;?></p>
                                                 <i class="fa-solid fa-chevron-down" data-target="content1" onclick="show(this)"></i>                                            </div>
                                         </td>
                                         
-                                        <td>Patient ID - #123456</td>
+                                        <td>Patient ID-<?php echo $reportToUpload->patient_id;?></td>
                                         <td><a href="#"><button>View Test</button></a></td>
                                     </tr>
                                     <tr>
@@ -97,26 +98,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="desDiv">
-                                                <img src="../public/img/lab_tech/profile.png" alt="user-icon">
-                                                <p class="patientName">Mr. John Due</p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content2" onclick="show(this)"></i>                                            </div>
-                                        </td>
-                                        <td>Patient ID - #123457</td>
-                                        <td><button>View Test</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div id="content2" class="patient-data" >
-                                                <p>Age: 30</p>
-                                                <p>Height: 170 cm</p>
-                                                <p>Weight: 60 kg</p>
-                                                <a href="#"><button>View Test</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php endforeach;?>
                                 </tbody>
                             </table>
                             
@@ -209,6 +191,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function (){
+            const searchInput = document.getElementById("searchInput");
             const viewtestbutton=document.querySelectorAll("td button");
             const patienttestdata=document.getElementById("patient-test-data");
             const patientdetails = document.getElementById("patientSearch");
@@ -220,12 +203,33 @@
             const modeluploadbutton=uploadmodel.querySelector(".model-content button");
             const uploadedcontent=document.getElementById("upload-patient-test-data");
 
+            searchInput.addEventListener("input",function(){
+                const searchTerm = searchInput.value.toLowerCase();
+                const regex = new RegExp(searchTerm, 'i');
+                const patientRows = document.querySelectorAll(".patient-detail-row");
+
+                patientRows.forEach(function (row){
+                    const patientName = row.querySelector(".patientName").textContent.toLowerCase();
+
+                    //   if (patientName.includes(searchTerm)) {
+                    //             row.style.display = "table-row";
+                    //         } else {
+                    //              row.style.display = "none";}
+
+                    if(regex.test(patientName)){
+                        row.style.display= "table-row";
+                    }else{
+                        row.style.display= "none";
+                    }
+                });
+            });
+            
             viewtestbutton.forEach(button =>{
                 button.addEventListener("click",()=>{
                     patienttestdata.style.display="block";
                     patientdetails.style.display="none";
                     uploadmodel.style.display="none";
-                })
+                });
             });
 
             uploadbutton.addEventListener("click",()=>{
@@ -250,8 +254,15 @@
                 uploadedcontent.style.display="block";
                 patientdetails.style.display="none";
                 patienttestdata.style.display="none";
-            })
+            });
+            
+
+            
         });
+
+    
+
+
     </script>
 </body>
 </html>
