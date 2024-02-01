@@ -1,3 +1,6 @@
+
+PHARMACIST
+
 -- Corrected patients table
 CREATE TABLE patients (
     id INT PRIMARY KEY,
@@ -87,5 +90,27 @@ CREATE TABLE pharmacist_profiles (
 
 INSERT INTO pharmacist_profiles (employee_id, username, email_phone, password) 
 VALUES ('#123456', 'sampleUsername', 'sample@email.com', 'hashed_password');
+
+HEALTHSUPERVISOR
+
+
+
+
+
+PATIENT 
+
+
+
+
+
+DOCTOR 
+
+
+
+
+ADMIN
+
+
+
 
 
