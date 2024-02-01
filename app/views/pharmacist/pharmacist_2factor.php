@@ -63,7 +63,7 @@
 
                     <div class="menu">
                         <p><a href="<?php echo URLROOT ?>/Pharmacist/profile">Account</a></p>
-                        <p><a href="<?php echo URLROOT ?>/Pharmacist/medications">Personal Info</a></p>
+                        <p><a href="<?php echo URLROOT ?>/Pharmacist/personal">Personal Info</a></p>
                         <p><a href="" style="color: black; font-weight: 500;">Security</a></p>
                     </div>
 

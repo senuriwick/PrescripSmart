@@ -64,7 +64,6 @@
                     <hr class="divider">
         
                     <div class="allMed">
-                        <h3 class="heading">Inventory (<?php echo $data['totalMedications'];?>)</h3>
                     
                         <?php foreach($data['medications'] as $medication): ?>
                             <div class="patientFile">
@@ -75,12 +74,6 @@
                             </div>
                         <?php endforeach; ?>
 
-                        <!-- Pagination Links -->
-                        <div class="pagination">
-                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/medications/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php endfor; ?>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -50,11 +50,17 @@
   font-size: 1.8vh;
 }
 
+.pharmacistprofile .detail form >div{
+  padding: 0 5px;
+  font-weight: bold;
+  font-size: 1.8vh;
+}
+
 .pharmacistprofile .detail button{
   background-color: #0069FFBF;
   border: 1px solid #0069FFBF;
   color: #ffffff;
-  padding: 10px 100px;
+  padding: 10px 50px;
   font-size: 1.5vh;
   font-weight: 500;
   border-radius: 5px;
@@ -62,7 +68,7 @@
   font-weight: 550;
   font-size: 1rem;
 }
-.pharmacistprofile .detail form input{
+.pharmacistprofile .detail input{
   width: 85%;
   background-color: #ffffff;
   padding: 10px 20px;
