@@ -1,0 +1,121 @@
+.menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
+  
+  .menu p {
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+  }
+  
+  .patientSearch {
+    margin-top: 2vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh 2vh;
+  }
+  
+  .patientSearch h1 {
+    font-size: 3vh;
+    font-weight: bold;
+    color: rgba(68, 81, 114, 1);
+  }
+
+  .patientSearch i{
+    padding: 1vh;
+  }
+  .patientSearch a{
+    text-decoration: none;
+    color: #445172;
+  }
+
+  .patientSearch .formdiv{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: inherit;
+
+  }
+
+  .formdiv form .divdetails{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding: 1vh;
+  }
+
+  .patientSearch .buttondiv{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: inherit;
+    padding: inherit;
+
+  }
+
+  .patientSearch .buttondiv button{
+    width: 30%;
+    background-color: #0069FFBF;
+    padding: 10px 20px;
+    font-size: 1.8vh;
+    font-weight: 500;
+    color:white;
+    border: 1px solid #0069FFBF;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+    cursor: pointer;
+    
+  }
+
+  .patientSearch .formdiv form{
+    width: 100%;
+  }
+
+  .patientSearch .formdiv label{
+    color: #388AFF;
+    font-size: 2vh;
+  }
+
+  .formdiv .divdetails .formdetail{
+    width: 100%;
+  }
+  
+  .patientSearch .formdiv form .divdetails input{
+    width: 85%;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1.5vh;
+    font-weight: 500;
+    color:#445172BF;
+    border: 1px solid #44517280;
+    border-radius: 10px;
+    margin-top: 5px;
+    outline: none;
+  }
+
+  .patientSearch .formdetail form .divdetails input:autofill {
+    background-color: #fff;
+  }
+  .patientSearch form p {
+    float: left;
+    width: 49%;
+  }
+  .patientSearch form p:not(:nth-child(2n)) {
+    margin-right: 2%;
+  }
+  .patientSearch form p:last-child {
+    clear: both;
+    width: 100%;
+  }
+  .patientSearch form p:nth-last-child(2) {
+    clear: both;
+    width: 100%;
+  }
+ 

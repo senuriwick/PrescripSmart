@@ -1,0 +1,322 @@
+body {
+    font-family: inter ;
+    margin: 0;
+  }
+  
+  
+  .content {
+    display: flex;
+  }
+  
+  
+  .sideMenu
+  {
+    width: 22vh;
+    height: 210vh;
+    background-color: rgba(7, 28, 74, 1);
+  }
+  
+  
+  .sideMenuTexts {
+    font-size: 1.7vh;
+    color: #ffffff;
+    line-height: 1.5vh;
+    font-family: inter;
+  }
+  
+  .logoDiv {
+    align-items: center;
+    margin-bottom: 4vh;
+  }
+  
+  .logoImg {
+    display: block;
+    margin: auto;
+    height: 8vh;
+    padding-top: 3vh;
+  }
+  
+  
+  .mainOptions {
+    color: white;
+    font-size: 2.2vh;
+    font-weight: bold;
+    font-family: inter;
+  }
+  
+  
+  .sideMenu p {
+    padding-left: 3vh;
+  }
+  
+  
+  .adminDiv {
+    border-bottom: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+  }
+  
+  
+  .profile {
+    background-color: rgba(53, 70, 109, 1);
+    padding: 0.2vh;
+    margin-bottom: 2.5vh;
+  }
+  
+  
+  .profile p
+  {
+    color: #ffffff;
+    font-size: 1.8vh;
+    font-weight: bold;
+    font-family: inter;
+  }
+  
+  
+  
+  .manageDiv 
+  {
+    padding-top: 3vh;
+    border-bottom: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+    padding-bottom: 9vh;
+  }
+  
+  .manageDiv .mainOptions
+  {
+    margin-bottom: 5vh;
+  }
+  
+  .manageDiv a
+  {
+      display:block;
+      padding-left: 3vh;
+      line-height: 3vh;
+      font-size: 1.7vh;
+      font-family: inter;
+      color: #ffffff;
+      text-decoration: none;
+
+  }
+  
+  .othersDiv {
+    padding-top: 3vh;
+    font-size: 1.7vh;
+    border-bottom: solid;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+    padding-bottom: 3vh;
+    color: white;
+  }
+  
+  
+  
+  .main {
+    flex: 1;
+  
+  }
+  
+  .navBar {
+    background-color: rgba(138, 150, 181, 1);
+    height: 7vh;
+  }
+  
+  .navBar p {
+    margin: 0;
+    float: right;
+    padding: 2.5vh 0vh;
+    color: #ffffff;
+    font-size: 1.7vh;
+    font-family: inter;
+  }
+  
+  .navBar img {
+    float: right;
+    padding: 1.3vh 2vw;
+    height: 4vh;
+  }
+  
+  .adminInfoContainer {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 3vh;
+  }
+  
+  
+  .adminInfo {
+    display: flex;
+  }
+  
+  
+  .adminInfo img {
+    height: 10vh;
+    margin-right: 1.5vw;
+  }
+  
+  
+  .adminNameDiv {
+    padding: 0.01vh 0;
+  }
+  
+  
+  .adminInfo .name {
+    font-size: 2.5vh;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: rgba(68, 81, 114, 1);
+    font-family: inter;
+  }
+  
+  .adminInfo .role {
+    font-size: 1.8vh;
+    margin-top: 0vh;
+    padding-top: 0;
+  }
+  
+  
+  .menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
+  
+  .menu a {
+    margin-right: 7.2vh;
+    font-size: 2vh;
+    font-family: inter;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+    text-decoration: none;
+  }
+  menu a:active
+  {
+    color: #0069FF;
+  }
+   a:hover
+  {
+    color:#17058aee;
+  }
+
+.bar1
+{
+  width: 130vh;
+  height:180vh;
+  margin-top: 3vh;
+  background-color: #EFF2FB;
+  margin-left: 0.1vh;
+  display: flexbox;
+  
+}
+.bar2
+{
+  width: 110vh;
+  height:160vh;
+  background-color: white;
+  margin-left: 6vh;
+  border-color: black;
+.row1
+{
+    display:flex;
+    color: black;
+    margin-top: 1vh;
+    padding-left: 5vh;
+    padding-top: 1vh;
+    
+}
+.firstname
+{
+    margin-right: 7vh;
+}
+.row1 input
+{
+    
+    height:4vh;
+    border-radius: 0.5vh;
+    border-color: #E3E8F4;
+    font-size: 1.5vh;
+    font-family: inter;
+    color: black;
+    border-radius: 0.5vh;
+    padding-left: 3vh;
+    border-color: #44517280;
+}
+.row2
+{
+    padding-left: 5vh;
+    padding-top: 1vh;
+
+}
+.row2 input
+{
+    width:86.5vh;
+    height:4vh;
+    border-radius: 0.5vh;
+    border-color: #E3E8F4;
+    font-size: 1.5vh;
+    font-family: inter;
+    color: black;
+    border-radius: 0.5vh;
+    padding-left: 3vh;
+    border-color: #E3E8F4;
+}
+
+
+.sideMenu
+{
+    height:145vh;
+}
+.btn button
+{
+    margin-left: 32vh;
+    margin-top: 9vh;
+    border-radius: 0.8vh;
+    Font:inter;
+    font-size: 2vh;
+    font-weight:50vh;
+    text-align:Center;
+    color: white;
+    background-color: #388AFF;
+    Width:32vh;
+    height:4vh;
+    border: none;
+    cursor: pointer;
+}
+
+
+.back
+{
+    padding-left: 3vh;
+}
+.popup
+{
+    padding-left: 6vh;
+    
+    background-color:#95bef7;
+    width:41vh;
+    height:45vh;
+    margin-left: 15vh;
+    border-radius: 2vh;
+    top:0%;
+    z-index: 10;
+    visibility: hidden;
+
+}
+.open-popup
+{
+    visibility: visible;
+    top: 50%;
+
+
+
+}
+.popup h1
+{
+    padding-left: 9vh;
+
+
+}
