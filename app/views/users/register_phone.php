@@ -5,10 +5,10 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Sign Up Page via Email</title>
+  <title>Sign Up Page via Phone</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
-  <link rel="stylesheet" href="signUp-Email.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/signUp-Email.css">
   <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
   <script src="../server/js/validation.js" defer></script>
 </head>
@@ -21,10 +21,10 @@
     <div class="register-form">
 
       
-      <p class="sign-up-with-email">Sign up with email</p>
+      <p class="sign-up-with-email">Sign up with Phone</p>
       <p class="sign-up-with-phone-number-instead">
         <span class="sign-up-with-phone-number-instead-sub-0">Sign up with&nbsp;</span>
-        <a href="signUp-Phone.html" class="sign-up-with-phone-number-instead-sub-1">phone number&nbsp;</a>
+        <a href="signUp-Phone.html" class="sign-up-with-phone-number-instead-sub-1">Email&nbsp;</a>
         <span class="sign-up-with-phone-number-instead-sub-2"> instead</span>
       </p>
 
@@ -49,7 +49,7 @@
 
       <div class="box3">
         <p class="email-address">
-          <span class="email-address-sub-0">email address </span>
+          <span class="email-address-sub-0">Phone number </span>
           <span class="email-address-sub-1">*</span>
         </p>
         <input type="text" id="email-address" name="email_address" placeholder="Enter your email address" class="emailInput">

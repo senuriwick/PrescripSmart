@@ -39,7 +39,8 @@
     }
 
     // Bind values
-    public function bind($param, $value, $type = null){
+    public function bind($param, $value, $type = null)
+    {
       if(is_null($type)){
         switch(true){
           case is_int($value):
@@ -60,7 +61,8 @@
     }
 
     // Execute the prepared statement
-    public function execute(){
+    public function execute()
+    {
       return $this->stmt->execute();
     }
 

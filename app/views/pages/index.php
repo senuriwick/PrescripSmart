@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HomePage</title>
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
-  <link rel="stylesheet" href="../../../public/css/home.css">
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/home.css">
+ 
 </head>
 
 <body>
   <div class="welcomePage">
     <div class="container">
         <p class="mainTitle">Prescrip<span class="smart">Smart</span></p>
-        <a href="#page2"><button id="selectRole">Select role</button></a>
+        <a href="#page2"><button id="selectRole" >Select role</button></a>
     </div>
   </div>
 
@@ -23,6 +25,7 @@
       <div id="options">
         <button id="patient">Patient</button>
         
+        
         <button>Lab Technician</button>
         <button>Doctor</button>
         <button>Pharmacist</button>
@@ -30,16 +33,16 @@
         <button id="admin">System Admin</button>
         <script>
           document.getElementById("admin").addEventListener("click", function () {
-              window.location.href = "../";
+              window.location.href = "<?php echo URLROOT?>/users/login";
           });
         </script>
 
         <button id="receptionist">Receptionist</button>
-        <script>
+        <!-- <script>
           document.getElementById("receptionist").addEventListener("click", function () {
               window.location.href = "..\\general\\loginPage.html";
           });
-        </script>
+        </script> -->
 
         <button >Health Supervisor</button>
         

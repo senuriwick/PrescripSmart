@@ -8,7 +8,7 @@
   <title>Login Page</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
-  <link rel="stylesheet" href="loginPage.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/loginPage.css">
 </head>
 <body>
 <div class="loginPage">
@@ -17,12 +17,12 @@
 
   <div class="formContainer">
     <div class="loginForm">
-      <?php flash('register_success'); ?>
+      <?php //flash('register_success'); ?> 
       <p class="login-to-your-account">Login to your account</p>
 
-      <form action="<?php echo URLROOT; ?>users/login" method="post">
+      <form action="<?php echo URLROOT; ?>/users/login" method="post">
         <div class="emailContainer">
-          <input type="text" id="email" name="email" placeholder="Enter your email/phone number" class="inputfield">
+          <input type="text" id="email_address" name="email_address" placeholder="Enter your email/phone number" class="inputfield">
           <p class="inputLabel1">
             <span class="inputLabel1-0">email/phone number </span>
             <span class="inputLabel1-1">*</span>
@@ -44,7 +44,7 @@
     <p class="dont-have-an-account-sign-up-here">
       <span class="dont-have-an-account-sign-up-here-sub-0">Don’t have an account? Sign up</span>
       <span class="dont-have-an-account-sign-up-here-sub-1">&nbsp;</span>
-      <a href="signUp.html" class="dont-have-an-account-sign-up-here-sub-2">here</a>
+      <a href="<?php echo URLROOT ?>/users/register_select" class="dont-have-an-account-sign-up-here-sub-2">here</a>
     </p>    
   </div>
 </div>
