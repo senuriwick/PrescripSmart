@@ -7,9 +7,9 @@
    * Return rows and results
    */
   class Database {
-    private $host = DB_HOST;
-    private $user = DB_USER;
-    private $pass = DB_PASS;
+    private $dbhost = DB_HOST;
+    private $dbuser = DB_USER;
+    private $dbpass = DB_PASS;
     private $dbname = DB_NAME;
 
     private $dbh;
@@ -18,7 +18,7 @@
 
     public function __construct(){
       // Set DSN
-      $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
+      $dsn = 'mysql:host=' . $this->dbhost . ';dbname=' . $this->dbname;
       $options = array(
         PDO::ATTR_PERSISTENT => true,
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -26,7 +26,7 @@
 
       // Create PDO instance
       try{
-        $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
+        $this->dbh = new PDO($dsn, $this->dbuser, $this->dbpass, $options);
       } catch(PDOException $e){
         $this->error = $e->getMessage();
         echo $this->error;
@@ -82,4 +82,25 @@
     public function rowCount(){
       return $this->stmt->rowCount();
     }
+    public function beginTransaction()
+    {
+        return $this->dbh->beginTransaction();
+    }
+    public function commit()
+    {
+        return $this->dbh->commit();
+    }
+    public function rollBack()
+    {
+        return $this->dbh->rollBack();
+    }
+
+    public function lastInsertId()
+{
+   return $this->dbh->lastInsertId();
+}
+
+
+
+
   }

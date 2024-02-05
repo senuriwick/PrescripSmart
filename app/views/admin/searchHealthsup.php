@@ -30,7 +30,7 @@
                                 <div class="column">
 
                                     <td >
-                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/PersonCircle.png"  alt="profile-pic">
+                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                                     <?php echo $post->p_name;?>
                                     </td>
                                     <td>
