@@ -285,8 +285,8 @@ class Patient extends Controller
             if ($result) {
                 if (password_verify($password, $result->password)) 
                 {
-                    session_start();
-                    $_SESSION['user_ID'] = $result->user_ID;
+                    //session_start();
+                    //$_SESSION['user_ID'] = $result->user_ID;
                     echo json_encode(["success" => true]);
                 } else {
                     echo json_encode(["error" => "Invalid password"]);
@@ -344,9 +344,9 @@ class Patient extends Controller
         $this->view('patient/new_appointment', $data);
     }
 
-    public function appointment_reservation(int $patient_ID, int $session_ID, int $doctor_ID, $time, $date)
+    public function appointment_reservation(int $patient_ID, int $doctor_ID, int $session_ID, $time, $date)
     {
-        $referrence = $this->patientModel->confirmAppointment($patient_ID, $session_ID, $doctor_ID, $time, $date);
+        $referrence = $this->patientModel->confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date);
         header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
 

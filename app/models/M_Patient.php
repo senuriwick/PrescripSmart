@@ -158,7 +158,7 @@ class M_Patient
         return $result;
     }
 
-    public function confirmAppointment($patient_ID, $session_ID, $doctor_ID, $time, $date)
+    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date)
     {
         try {
             $this->db->beginTransaction();

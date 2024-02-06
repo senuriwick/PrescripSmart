@@ -163,12 +163,6 @@
               });
             </script>
 
-            <!-- <script>
-              document.getElementById("search").addEventListener("click", function () {
-                  window.location.href = "new_appointment_2.html";
-              });
-          </script> -->
-
           </div>
 
           <?php
