@@ -1,6 +1,5 @@
 <?php
 
-
 /** PDO(PHP DATA Object) DATABASE CLASS */
 
 class Database
