@@ -30,4 +30,50 @@ class Nurse extends Controller
         ];
         $this->view('nurse/patient_profile', $data);
     }
+
+    public function appointments()
+    {
+        $currentSession = $this->nurseModel->currentSession();
+
+        if ($currentSession) {
+            $currentSessionID = $currentSession->session_ID;
+            $doctorID = $currentSession->doctor_ID;
+            $doctorDetails = $this->nurseModel->doctors($doctorID);
+            $appointments = $this->nurseModel->appointments($currentSessionID);
+
+            $data = [
+                'appointments' => $appointments,
+                'session' => $currentSession,
+                'doctor' => $doctorDetails
+            ];
+            $this->view('nurse/appointments', $data);
+        } else {
+            $this->view('nurse/appointments');
+        }
+    }
+
+    public function appointment_view()
+    {
+        $appointmentID = $_GET['reference'];
+        $appointment = $this->nurseModel->filter_appointment_by_ID($appointmentID);
+
+        $doctorID = $appointment->doctor_ID;
+        $patientID = $appointment->patient_ID;
+        $doctorDetails = $this->nurseModel->doctors($doctorID);
+        $patientDetails = $this->nurseModel->patientdetails($patientID);
+
+        $data = [
+            'appointment' => $appointment,
+            'doctor' => $doctorDetails,
+            'patient' => $patientDetails
+        ];
+        $this->view('nurse/appointment_view', $data);
+    }
+
+    // public function appointment_complete()
+    // {
+    //     $appointmentID = $_POST['appointmentID'];
+    //     $this->nurseModel->markAppointmentComplete($appointmentID);
+    // }
+
 }

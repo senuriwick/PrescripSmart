@@ -89,3 +89,7 @@ INSERT INTO pharmacist_profiles (employee_id, username, email_phone, password)
 VALUES ('#123456', 'sampleUsername', 'sample@email.com', 'hashed_password');
 
 
+~Nurse 
+INSERT INTO `nurses` (`nurse_ID`, `first_Name`, `last_Name`) VALUES ('1254638', 'Senali', 'De Silva');
+
+

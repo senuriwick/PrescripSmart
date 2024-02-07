@@ -9,7 +9,7 @@
     <title>Appointments</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="\public\css\nurse\appointments_2.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\nurse\appointments_2.css" />
 </head>
 
 <body>
@@ -17,16 +17,16 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="\public\img\nurse\Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="<?php echo URLROOT ?>\public\img\nurse\Untitled design (5) copy 2.png" />
             </div>
 
-            <div class="patientDiv">
+            <!-- <div class="patientDiv">
                 <p class="mainOptions">NURSE</p>
 
                 <div class="profile">
                     <p>username</p>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="manageDiv">
@@ -50,13 +50,13 @@
 
         <div class="main">
             <div class="navBar">
-                <img src="\public\img\nurse\user.png" alt="user-icon">
+                <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
                 <p>SAMPLE USERNAME HERE</p>
             </div>
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
-                    <img src="\public\img\nurse\profile.png" alt="profile-pic">
+                    <img src="<?php echo URLROOT ?>\public\img\nurse\profile.png" alt="profile-pic">
                     <div class="patientNameDiv">
                         <p class="name">Nurse Name</p>
                         <p class="role">Nurse</p>
@@ -79,25 +79,41 @@
 
                     </div>
                     <div class="prescriptionFiles">
+                        <?php $appointment = $data['appointment']; ?>
+                        <?php $doctor = $data['doctor']; ?>
+                        <?php $patient = $data['patient'] ?>
                         <div class="file">
                             <div class="group">
                                 <div class="number">
                                     <span class="number-sub-0">
-                                        NO.<br>12</span>
+                                        NO.<br>
+                                        <?php echo $appointment->appointment_No ?>
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="text">
                                 <div class="auto-group-oxxo-Sau">
-                                    <p>Time: 11.30 AM<br>Date: Wed, 13th Sep, 2023<br>Patient: Ms. S Perera<br>Doctor:
-                                        Dr. C
-                                        Wickramasinghe<br>Payment Status: </p>
+                                    <p>
+                                        Time:
+                                        <?php echo $appointment->time ?><br>
+                                        Date:
+                                        <?php echo $appointment->date ?><br>
+                                        Patient:
+                                        <?php echo ($patient->gender == 'male') ? 'Mr.' : 'Ms.' ?>
+                                        <?php echo $patient->display_Name ?><br>
+                                        Doctor: Dr.
+                                        <?php echo $doctor->fName ?>
+                                        <?php echo $doctor->lName ?><br>
+                                        Payment Status:
+                                    </p>
                                     <div class="auto-group-ppa1-jrq">
                                         <p class="paid-fkV" style="color: red; font-weight: 800;">PAID</p>
                                         <!-- <img class="checksquare-h4u" src="CheckSquare.png"/> -->
                                     </div>
                                 </div>
                             </div>
+
 
                         </div>
                     </div>
