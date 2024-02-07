@@ -114,3 +114,7 @@ ADMIN
 
 
 
+~Nurse 
+INSERT INTO `nurses` (`nurse_ID`, `first_Name`, `last_Name`) VALUES ('1254638', 'Senali', 'De Silva');
+
+
