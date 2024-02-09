@@ -128,5 +128,27 @@ class M_admin
         $result = $this->db->resultSet();
         return $result;
     }
+
+    public function registerDoc($data)
+    {
+        $this->db->query('INSERT INTO doctors (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+        // Bind values
+        $this->db->bind(':first_name', $data['first_name']);
+        $this->db->bind(':last_name', $data['last_name']);
+        $this->db->bind(':email_address', $data['email']);
+        $this->db->bind(':phone_number', $data['phone_number']);
+        $this->db->bind(':password', $data['password']);
+  
+  
+        // Execute
+        if($this->db->execute())
+        {
+          return true;
+        }
+         else
+        {
+          return false;
+        }
+      }
     
 }

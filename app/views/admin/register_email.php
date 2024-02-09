@@ -27,7 +27,7 @@
         <span class="sign-up-with-phone-number-instead-sub-2"> instead</span>
       </p>
 
-      <form action="<?php echo URLROOT; ?>/admin/register_email" method="post">
+      <form action="<?php echo URLROOT; ?>admin/register_email" method="post">
 
       <div class="box1">
 

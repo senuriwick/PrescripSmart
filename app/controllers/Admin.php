@@ -45,7 +45,8 @@
         // Now, instead of using the constant, you can use the integer value directly
                     $_POST = filter_input_array(INPUT_POST, 513);
         // Init data
-        $data = [
+        $data = 
+        [
           'first_name' => trim($_POST['first_name']),
           'last_name' => trim($_POST['last_name']),
           'email_address' => trim($_POST['email_address']),
@@ -243,7 +244,7 @@
     {
       $_SESSION['email_address'] = $user->email_address;
       $_SESSION['first_name'] = $user->first_name;
-      redirect('admin/searchPatient');
+      redirect('/admin/searchPatient');
     }
 
     public function logout()
@@ -331,7 +332,135 @@
     public function regDoctor()
     {
       $this->view('admin/regDoctor');
+
+
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        // Process form
+        // Sanitize POST data
+        //Then run the form
+         //define('FILTER_SANITIZE_STRING', 513);
+
+        // Now, instead of using the constant, you can use the integer value directly
+                    $_POST = filter_input_array(INPUT_POST, 513);
+        // Init data
+        $data = [
+          'first_name' => trim($_POST['first_name']),
+          'last_name' => trim($_POST['last_name']),
+          'email' => trim($_POST['email']),
+          'phone_number' => trim($_POST['phone_number']),
+          'password' => trim($_POST['password']),
+          'firstname_err' => '',
+          'lastname_err' => '',
+          'email_err' => '',
+          'phonenum_err' => '',
+          'password_err' => ''
+        ];
+
+        // Validate Email
+        if(empty($data['email']))
+        {
+          $data['email_err'] = 'Please enter email address';
+        }
+         else 
+        {
+          // Check email
+          if($this->userModel->findUserByEmail($data['email']))
+          {
+        
+            $data['email_err'] = 'Email is already taken';
+          }
+        }
+
+        // Validate First Name
+        if(empty($data['first_name']))
+        {
+          $data['firstname_err'] = 'Please enter first name';
+        }
+
+        if(empty($data['last_name']))
+        {
+          $data['lastname_err'] = 'Please enter last name';
+        }
+
+        // Validate Email address
+        if(empty($data['email']))
+        {
+          $data['email_err'] = 'Please enter valid email address';
+
+        }
+        
+        if(empty($data['phone_number']))
+        {
+          $data['phonenum_err'] = 'Please enter valid email address';
+
+        }
+
+        elseif(strlen($data['password']) < 6)
+      {
+          $data['password_err'] = 'Password must be at least 6 characters';
+      }
+
+        // Validate Confirm Password
+        // if(empty($data['confirm_password']))
+        // {
+        //   $data['confirm_password_err'] = 'Please confirm password';
+        // } else 
+        // {
+        //   if($data['password'] != $data['confirm_password'])
+        //   {
+        //     $data['confirm_password_err'] = 'Passwords do not match';
+        //   }
+        // }
+
+        // Make sure errors are empty
+        if(empty($data['firstname_err']) && empty($data['lastname_err']) && empty($data['phonenum_err']) && empty($data['email_err']) && empty($data['password_err']))
+        {
+          // Hash Password
+          $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+          // Register User
+          if($this->userModel->registerDoc($data))
+          {
+            // flash('register_success', 'You are registered and can log in');
+            redirect('/admin/searchDoctor');
+          }
+           else 
+          {
+            die('Something went wrong');
+          }
+
+        } 
+        else
+        {
+          // Load view with errors
+          $this->view('admin/register_email', $data);
+        }
+
+      }
+      else 
+      {
+        // Init data
+        $data =[
+          'first_name' => '',
+          'last_name' => '',
+          'email_address' => '',
+          'password' => '',
+          'firstname_err' => '',
+          'lastname_err' => '',
+          'emailaddress_err' => '',
+          'password_err' => ''
+        ];
+
+        // Load view
+        $this->view('admin/register_email', $data);
+      }
+      
+
+
     }
+
+    
     
     
   }
