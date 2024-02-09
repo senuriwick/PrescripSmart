@@ -8,8 +8,8 @@ app/views/includes/header.php
 app/views/PAGE_STRUCTURE.txt
 app/config/config.php
 
-vendor/twilio
-vendor/composer
-vendor/bacon
-vendor/dasprid
-vendor/endroid
+vendor/twilio/
+vendor/composer/
+vendor/bacon/
+vendor/dasprid/
+vendor/endroid/
