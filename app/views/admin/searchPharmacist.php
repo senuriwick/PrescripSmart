@@ -20,7 +20,7 @@
           <div class="searchFiles">
 
             <input type="search" placeholder="Enter Pharmacists' Name/ID here">
-            <button type="search"><b>SEARCH</b></button>
+            <button type="search" class="searchButton"><b>SEARCH</b></button>
 
             <?php foreach($data['pharmacists'] as $post): ?>
                               <tr class="row">
@@ -30,15 +30,19 @@
 
                                     <td >
                                     <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                                    <?php echo $post->p_name;?>
+                                    <div class= "name">
+                                    <?php echo $post->last_name;?>
+                                    </div> 
                                     </td>
                                     <td>
-                                    <p style="margin-left: 10vh;">Patient ID- <?php echo $post->p_id;?></p>
+                                    <p style="margin-left: 10vh;">Employee ID- <?php echo $post->pharmacist_id;?></p>
                                     </td>
                                     <td>
-                                    <button>
+                                    <button class="profileButton">
                                        View profile
                                     </button>
+                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/Trash.png"  alt="profile-pic">
+
                                     </td>
                                                
                                   </div>

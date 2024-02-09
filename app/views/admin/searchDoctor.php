@@ -18,26 +18,34 @@
         <div class="searchDiv">
           <h1>Search Doctor</h1>
           <div class="searchFiles">
+<form>
+<input type="text" id="searchinput" placeholder="Enter Doctors' Name/ID here">
+<button type="search" class="searchButton"><b>SEARCH</b></button>
 
-            <input type="search" placeholder="Enter Doctors' Name/ID here">
-            <button type="search"><b>SEARCH</b></button>
+
+</form>
             <?php foreach($data['doctors'] as $post): ?>
                               <tr class="row">
-                                        
-                                        
+                                                                           
                                 <div class="column">
 
                                     <td >
                                     <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                                    <?php echo $post->p_name;?>
+                                    <p class="name">
+                                    <?php echo $post->last_name;?>
+                                    </p> 
                                     </td>
+
                                     <td>
-                                    <p style="margin-left: 10vh;">Patient ID- <?php echo $post->p_id;?></p>
+                                    <p style="margin-left: 10vh;">Employee ID- <?php echo $post->doctor_id;?></p>
                                     </td>
+
                                     <td>
-                                    <button>
+                                    <button class="profileButton">
                                        View profile
                                     </button>
+                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/Trash.png"  alt="profile-pic">
+
                                     </td>
                                                
                                   </div>
@@ -48,16 +56,43 @@
          </div>
        </div>
 
-        <!-- <div class="addapp">
+        <div class="addapp">
           <div class="newapp">
             <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
             <a href="<?php echo URLROOT?>/admin/regDoctor">Register a new doctor</a>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
 </body>
 <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchinput");//element
+
+  searchInput.addEventListener("input", function () {
+    const searchTerm = searchInput.value.toLowerCase();//This line retrieves value of the search input field and converts it to lowercase.
+    const regex = new RegExp(searchTerm, 'i'); 
+    const Rows = document.querySelectorAll(".row");
+
+        Rows.forEach(function (row) {
+            const Name = row.querySelector(".name").textContent.toLowerCase();
+        //   if (Name.includes(searchTerm)) {
+        //     row.style.display = "table-row";
+        //   } else {
+        //     row.style.display = "none";
+
+            if (regex.test(Name)) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+      });
+    });
+  });
+</script>
+
+
                
 </html>

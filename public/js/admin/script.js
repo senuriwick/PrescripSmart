@@ -26,6 +26,7 @@ function toggleCaret() {
       caretIcon.classList.add("fa-caret-down");
    }
 }
+
 document.addEventListener("DOMContentLoaded", 
       function () 
    {
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded",
       });
   });
 
+
   var btnContainer = document.getElementsByClassName("menu");
   var btns = btnContainer.getElementsByClassName("appointments");
   for (var i = 0; i < btns.length; i++)
@@ -54,6 +56,30 @@ document.addEventListener("DOMContentLoaded",
     this.className += " active";
   })
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchinput");//element
+
+  searchInput.addEventListener("input", function () {
+    const searchTerm = searchInput.value.toLowerCase();
+    const regex = new RegExp(searchTerm, 'i'); 
+    const Rows = document.querySelectorAll(".row");
+
+        Rows.forEach(function (row) {
+            const Name = row.querySelector(".name").textContent.toLowerCase();
+        //   if (Name.includes(searchTerm)) {
+        //     row.style.display = "table-row";
+        //   } else {
+        //     row.style.display = "none";
+
+            if (regex.test(Name)) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+      });
+    });
+  });
 
 
 

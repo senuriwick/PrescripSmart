@@ -5,7 +5,7 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Search a Doctor</title>
+  <title>Search a Patient</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -20,7 +20,9 @@
           <div class="searchFiles">
 
             <input type="search" placeholder="Enter Patients' Name/ID here">
-            <button type="search"><b>SEARCH</b></button>
+            <button type="search" class="searchButton"><b>SEARCH</b></button>
+
+            <hr style="margin-bottom: 3vh;">
 
             <?php foreach($data['patients'] as $post): ?>
                               <tr class="row">
@@ -30,15 +32,20 @@
 
                                     <td >
                                     <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                                    <?php echo $post->p_name;?>
+                                    <div class= "name">
+                                    <?php echo $post->last_name;?>
+                                    </div>
                                     </td>
+
                                     <td>
-                                    <p style="margin-left: 10vh;">Patient ID- <?php echo $post->p_id;?></p>
+                                    <p style="margin-left: 10vh;" >Patient ID- <?php echo $post->patient_id;?></p>
                                     </td>
+
                                     <td>
-                                    <button>
+                                    <button class="profileButton">
                                        View profile
                                     </button>
+                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/Trash.png"  alt="profile-pic">
                                     </td>
                                                
                                   </div>
