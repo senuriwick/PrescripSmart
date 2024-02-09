@@ -1,0 +1,8 @@
+To be completed :
+~ Patient 
+Appointment payment gateaway
+Forgot password
+Two factor authentication
+Patient profile picture upload
+Appointment email
+Current session patient ID

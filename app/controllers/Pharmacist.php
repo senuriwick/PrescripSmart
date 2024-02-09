@@ -17,7 +17,7 @@
         // }
 
         public function dashboard($page = 1){
-            $itemsPerPage = 5;
+            $itemsPerPage =6;
             $offset = ($page - 1) * $itemsPerPage;
 
             $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);

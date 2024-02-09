@@ -1,12 +1,10 @@
 <?php
-  /*
-   * PDO Database Class
-   * Connect to database
-   * Create prepared statements
-   * Bind values
-   * Return rows and results
-   */
-  class Database {
+
+
+/** PDO(PHP DATA Object) DATABASE CLASS */
+
+class Database
+{
     private $dbhost = DB_HOST;
     private $dbuser = DB_USER;
     private $dbpass = DB_PASS;

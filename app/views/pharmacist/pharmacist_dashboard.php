@@ -39,11 +39,9 @@
 
         </div>
         <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
+            <div class="navBar">  
+                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
+                <p>USERNAME</p>  
             </div>
             <div class="main">
                 <div class="main-Container">

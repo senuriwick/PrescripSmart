@@ -158,7 +158,7 @@ class M_Patient
         return $result;
     }
 
-    public function confirmAppointment($patient_ID, $session_ID, $doctor_ID, $time, $date)
+    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date)
     {
         try {
             $this->db->beginTransaction();
@@ -234,7 +234,7 @@ class M_Patient
 
     public function patientInfo()
     {
-        $this->db->query('SELECT * FROM patients WHERE patient_ID = 1248623');
+        $this->db->query('SELECT * FROM patients WHERE patient_ID = 12368');
         $result = $this->db->single();
         return $result;
     }
@@ -245,7 +245,7 @@ class M_Patient
             home_Address = :haddress, NIC = :nic, contact_Number = :cno, DOB = :dob, age = :age, 
             gender = :gender, height = :height, weight = :weight, 
             emergency_Contact_Person = :ename, emergency_Contact_Number = :econtact, relationship = :relationship
-                          WHERE patient_ID = 1248623');
+                          WHERE patient_ID = 12368');
 
         $this->db->bind(':fname', $fname);
         $this->db->bind(':lname', $lname);
