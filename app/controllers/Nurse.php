@@ -70,10 +70,20 @@ class Nurse extends Controller
         $this->view('nurse/appointment_view', $data);
     }
 
-    // public function appointment_complete()
-    // {
-    //     $appointmentID = $_POST['appointmentID'];
-    //     $this->nurseModel->markAppointmentComplete($appointmentID);
-    // }
+    public function appointment_complete()
+    {
+        if (isset($_POST['appointmentID']) && isset($_POST['status'])) {
+            $appointmentID = $_POST['appointmentID'];
+            $status = $_POST['status'];
+            $success = $this->nurseModel->markAppointmentComplete($appointmentID, $status);
 
+            if ($success) {
+                echo json_encode(array('success' => true));
+            } else {
+                echo json_encode(array('success' => false, 'message' => 'Failed to update appointment status'));
+            }
+        } else {
+            echo json_encode(array('success' => false, 'message' => 'Appointment ID or status not provided'));
+        }
+    }
 }

@@ -84,7 +84,7 @@
                     <!-- <h1 style="font-size: 18px; color:  #0069FF;">Monday, 18th September, 2023 At 19.00 P.M </h1> -->
                     <h1 style="font-size: 18px; color:  #0069FF;">
                         <?php echo $appInfo->sessionDate ?> At
-                        <?php echo $appInfo->time ?> P.M
+                        <?php echo $appInfo->start_time ?> P.M
                     </h1>
                     <p style="line-height: 0.4;">Session #
                         <?php echo $appInfo->session_ID ?>
@@ -134,11 +134,11 @@
                     </div>
 
                     <div style="display:none">
-                    <form action="<?php echo URLROOT; ?>/Patient/appointment_reservation/<?=125?>/<?= $appInfo->doctor_ID ?>/<?= $appInfo->session_ID ?>/<?= $appInfo->time ?>/<?= $appInfo->sessionDate ?>" method="POST" id="addapp">
-                            <input type="hidden" name="patient_ID" value="125">
+                    <form action="<?php echo URLROOT; ?>/Patient/appointment_reservation/<?=12368?>/<?= $appInfo->doctor_ID ?>/<?= $appInfo->session_ID ?>/<?= $appInfo->start_time ?>/<?= $appInfo->sessionDate ?>" method="POST" id="addapp">
+                            <input type="hidden" name="patient_ID" value="12368">
                             <input type="hidden" name="doctor_ID" value="<?php echo $appInfo->doctor_ID ?>">
                             <input type="hidden" name="session_ID" value="<?php echo $appInfo->session_ID ?>">
-                            <input type="hidden" name="time" value="<?php echo $appInfo->time ?>">
+                            <input type="hidden" name="time" value="<?php echo $appInfo->start_time ?>">
                             <input type="hidden" name="date" value="<?php echo $appInfo->sessionDate ?>">
                             <input type="submit" style="display:none" id="insertapp">
                         </form>

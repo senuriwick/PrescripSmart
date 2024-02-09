@@ -72,7 +72,7 @@
 
                 <div class="prescriptionsDiv">
                     <?php if (empty($data['session'])): ?>
-                        <p>You currenly have no on-going sessions. Thank you!</p>
+                        <p>You currently have no on-going sessions. Thank you!</p>
                     <?php else: ?>
                         <?php $session = $data['session']; ?>
                         <?php $doctor = $data['doctor']; ?>
@@ -90,37 +90,80 @@
                         <?php else: ?>
                             <?php foreach ($data['appointments'] as $appointment): ?>
                                 <div class="prescriptionFiles">
-                                    <div class="file" onclick="redirectToAppointment(<?php echo $appointment->appointment_ID ?>)">
-                                        <div class="desDiv">
-                                            <p class="description">Time:
-                                                <?php echo $appointment->time ?>
+                                    <div class="file">
+                                        <div class="file2"
+                                            onclick="redirectToAppointment(<?php echo $appointment->appointment_ID ?>)">
+                                            <div class="desDiv">
+                                                <p class="description">Time:
+                                                    <?php echo $appointment->time ?>
+                                                </p>
+                                            </div>
+                                            <p>Referrence No: #
+                                                <?php echo $appointment->appointment_ID ?>
+                                            </p>
+                                            <p>Appointment No:
+                                                <?php echo $appointment->appointment_No ?>
+                                            </p>
+                                            <p>
+                                                <?php echo ($appointment->gender == 'male') ? 'Mr.' : 'Ms.' ?>
+                                                <?php echo $appointment->display_Name ?>
                                             </p>
                                         </div>
-                                        <p>Appointment Ref No.
-                                            <?php echo $appointment->appointment_ID ?>
-                                        </p>
-                                        <p>Appointment No:
-                                            <?php echo $appointment->appointment_No ?>
-                                        </p>
-                                        <p>
-                                            <?php echo ($appointment->gender == 'male') ? 'Mr.' : 'Ms.' ?>
-                                            <?php echo $appointment->display_Name ?>
-                                        </p>
-                                        <input type="checkbox" id="tickBox">
-                                        <label for="tickBox"></label>
+
+                                        <form method="POST">
+                                            <?php
+                                            $checkboxId = 'tickBox_' . $appointment->appointment_ID;
+                                            $checked = ($appointment->status == 'completed') ? 'checked' : '';
+                                            ?>
+                                            <input type="checkbox" id="<?php echo $checkboxId ?>"
+                                                value="<?php echo $appointment->appointment_ID ?>" <?php echo $checked ?>>
+                                            <label for="<?php echo $checkboxId ?>"></label>
+                                        </form>
+
                                     </div>
                                 </div>
-                                <script>
-                                    function redirectToAppointment(appointmentID) {
-                                        window.location.href = "<?php echo URLROOT ?>/nurse/appointment_view?reference=" + appointmentID;
-                                    }
-                                </script>
-
                             <?php endforeach; ?>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
-
             </div>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function redirectToAppointment(appointmentID) {
+            window.location.href = "<?php echo URLROOT ?>/nurse/appointment_view?reference=" + appointmentID;
+        }
+
+        $(document).ready(function () {
+            $('input[type="checkbox"]').change(function () {
+                var checkbox = $(this);
+                var appointmentID = checkbox.val();
+                var status = checkbox.is(":checked") ? 'completed' : 'active';
+                var formData = { appointmentID: appointmentID, status: status };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo URLROOT ?>/nurse/appointment_complete',
+                    data: formData,
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            console.log('Appointment status updated successfully');
+                        } else {
+                            console.error('Error: ' + response.message);
+                        }
+                    },
+                    error: function () {
+                        console.log('Error occurred during AJAX request.');
+                    }
+                });
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
