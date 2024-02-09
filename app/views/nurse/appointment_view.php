@@ -70,18 +70,18 @@
                     <a href="appointments.html" id="appointments">Appoinments</a>
                 </div>
 
+                <?php $appointment = $data['appointment']; ?>
+                <?php $doctor = $data['doctor']; ?>
+                <?php $patient = $data['patient'] ?>
+
                 <div class="prescriptionsDiv">
                     <div>
                         <div class="section-header">
-                            <h1>Appointment (#214568)</h1>
+                            <h1>Appointment (#<?php echo $appointment->appointment_ID?>)</h1>
                         </div>
-
 
                     </div>
                     <div class="prescriptionFiles">
-                        <?php $appointment = $data['appointment']; ?>
-                        <?php $doctor = $data['doctor']; ?>
-                        <?php $patient = $data['patient'] ?>
                         <div class="file">
                             <div class="group">
                                 <div class="number">

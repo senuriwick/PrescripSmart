@@ -119,7 +119,7 @@
                                         <?php echo $session->sessionDate; ?>
                                         <br />
                                         Time:
-                                        <?php echo $session->time; ?>
+                                        <?php echo $session->start_time; ?>-<?php echo $session->end_time; ?>
                                         <br />
                                         Appointment No:
                                         <?php echo $session->current_appointment; ?>

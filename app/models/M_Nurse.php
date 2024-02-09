@@ -59,9 +59,18 @@ class M_Nurse
         return $result;
     }
 
-    // public function markAppointmentComplete($appointmentID)
-    // {
-    //     $this->db->query('UPDATE appointments SET status = "completed" WHERE appointment_ID = :appointmentID');
-    //     $this->db->bind(':appointmentID', $appointmentID);
-    // }
+    public function markAppointmentComplete($appointmentID, $status)
+    {
+        try {
+            $newStatus = ($status == 'completed') ? 'completed' : 'active';
+            $this->db->query('UPDATE appointments SET status = :status WHERE appointment_ID = :appointmentID');
+            $this->db->bind(':status', $newStatus);
+            $this->db->bind(':appointmentID', $appointmentID);
+            $this->db->execute();
+            return true;
+        } catch (PDOException $e) {
+            error_log('Error updating appointment status: ' . $e->getMessage());
+            return false;
+        }
+    }
 }
