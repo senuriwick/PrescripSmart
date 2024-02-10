@@ -63,6 +63,34 @@
             $this->view('pharmacist/pharmacist_dashboard', $data);
         }
 
+        public function searchPatientAjax(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+                $patientName = $_POST['search'];
+                $patients = $this->pharmacistModel->searchPatient($patientName);
+        
+                $data = [
+                    'patients' => $patients
+                ];
+
+                $this->view('pharmacist/pharmacist_patientAjax', $data);
+            }
+                
+        }
+
+        public function searchMedicineAjax(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+                $medicineName = $_POST['search'];
+                $medications = $this->pharmacistModel->searchMedicine($medicineName);
+
+                $data = [
+                    'medications' => $medications
+                ];
+
+                $this->view('pharmacist/pharmacist_medicineAjax',$data);
+            }
+        }
+        
+
         // public function medications(){
         //     $medications = $this->pharmacistModel->getMedications();
         //     $totalMedications = count($medications);
