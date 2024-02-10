@@ -40,6 +40,17 @@ class M_Nurse
         return $result;
     }
 
+    public function sessions()
+    {
+        $this->db->query('SELECT s.*, d.fName, d.lName, d.specialization FROM sessions s
+        INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID
+        WHERE s.sessionDate >= CURRENT_DATE AND s.nurse_ID = :nurseID');
+        $this->db->bind(':nurseID', 1254638);
+
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
     public function appointments($sessionID)
     {
         $this->db->query('SELECT a.*, p.display_Name, p.gender FROM appointments a

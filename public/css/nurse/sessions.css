@@ -3,7 +3,7 @@
 body {
     font-family: inter ;
     margin: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   
   
@@ -14,9 +14,10 @@ body {
 
   .sideMenu {
     min-width: 14vw;
-    height: 100vh;
+    height: 190vh;
     background-color: rgba(7, 28, 74, 1);
-  }
+    position: fixed;
+}
   
   
   .sideMenuTexts {
@@ -121,11 +122,12 @@ body {
       color: #ffffff;
       text-decoration: none;
   }
+  
   .main {
     flex: 1;
-    
-  
-  }
+    margin-left: 210px;
+    margin-bottom: 3%;
+}
   
   .navBar {
     background-color: rgba(138, 150, 181, 1);
@@ -286,6 +288,7 @@ body {
 
 .boxes-container {
     display: flex;
+    /* flex-direction: row; */
     justify-content: space-between; 
     flex-wrap: wrap;
 }
