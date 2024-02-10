@@ -86,4 +86,25 @@ class Nurse extends Controller
             echo json_encode(array('success' => false, 'message' => 'Appointment ID or status not provided'));
         }
     }
+
+    public function ongoing_session()
+    {
+        $currentSession = $this->nurseModel->currentSession();
+
+        if ($currentSession) {
+            $currentSessionID = $currentSession->session_ID;
+            $doctorID = $currentSession->doctor_ID;
+            $doctorDetails = $this->nurseModel->doctors($doctorID);
+            $appointments = $this->nurseModel->appointments($currentSessionID);
+
+            $data = [
+                'appointments' => $appointments,
+                'session' => $currentSession,
+                'doctor' => $doctorDetails
+            ];
+            $this->view('nurse/ongoing_session', $data);
+        } else {
+            $this->view('nurse/ongoing_session');
+        }
+    }
 }
