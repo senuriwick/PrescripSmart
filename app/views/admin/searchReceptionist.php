@@ -28,7 +28,7 @@
                                         
                                 <div class="column">
 
-                                    <td >
+                                    <td>
                                     <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                                     <div class= "name">
                                     <?php echo $post->last_name;?>
@@ -55,12 +55,13 @@
          </div>
        </div>
 
-        <!-- <div class="addapp">
+       <div class="addapp">
           <div class="newapp">
-            <img src="<?php //echo URLROOT ?>/img/FilePerson.png">
-            <a href="AdminDocRegister.html">Register a new doctor</a>
+            <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
+            <a href="<?php echo URLROOT?>/admin/viewRegreceptionist">Register a new Receptionist</a>
           </div>
-        </div> -->
+        </div>
+        
       </div>
     </div>
   </div>

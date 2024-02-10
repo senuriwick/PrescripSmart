@@ -19,11 +19,10 @@
           <h1>Search Doctor</h1>
           <div class="searchFiles">
 <form>
-<input type="text" id="searchinput" placeholder="Enter Doctors' Name/ID here">
-<button type="search" class="searchButton"><b>SEARCH</b></button>
-
-
+ <input type="text" id="searchinput" placeholder="Enter Doctors' Name/ID here">
+ <button type="search" class="searchButton"><b>SEARCH</b></button>
 </form>
+
             <?php foreach($data['doctors'] as $post): ?>
                               <tr class="row">
                                                                            
@@ -59,9 +58,10 @@
         <div class="addapp">
           <div class="newapp">
             <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
-            <a href="<?php echo URLROOT?>/admin/regDoctor">Register a new doctor</a>
+            <a href="<?php echo URLROOT?>/admin/viewregdoctor">Register a new doctor</a>
           </div>
         </div>
+        
       </div>
     </div>
   </div>

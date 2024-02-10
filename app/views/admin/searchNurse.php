@@ -55,12 +55,13 @@
          </div>
        </div>
 
-        <!-- <div class="addapp">
+       <div class="addapp">
           <div class="newapp">
-            <img src="<?php //echo URLROOT ?>/img/FilePerson.png">
-            <a href="AdminDocRegister.html">Register a new doctor</a>
+            <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
+            <a href="<?php echo URLROOT?>/admin/viewRegnurse">Register a new Nurse</a>
           </div>
-        </div> -->
+        </div>
+        
       </div>
     </div>
   </div>

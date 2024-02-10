@@ -407,7 +407,7 @@ but :active
     margin-left: 2.5vh;
     margin-top: 1.5vh;
     background-color: #EFF2FB;
-    width: 40vh;
+    width: auto;
     height: 10vh;
     border-radius: 1vh;
   }
