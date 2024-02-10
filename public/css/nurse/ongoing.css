@@ -8,6 +8,7 @@
 body {
   font-family: inter ;
   margin: 0;
+  /* overflow: hidden; */
 }
 
 
@@ -18,8 +19,9 @@ body {
 
 .sideMenu {
   min-width: 14vw;
-  height: 100vh;
+  height: 190vh;
   background-color: rgba(7, 28, 74, 1);
+  position: fixed;
 }
 
 
@@ -125,10 +127,10 @@ body {
 }
 
 
-
 .main {
   flex: 1;
-
+  margin-left: 210px;
+  margin-bottom: 3%;
 }
 
 .navBar {
@@ -277,8 +279,6 @@ menu a:active
   border-radius: 10px;
 }
 
-
-
 .sessionAppointments {
   background-color: white;
   border-radius: 10px;
@@ -306,11 +306,11 @@ menu a:active
 }
 
 .sessionAppointments .done {
-  border-style: solid;
-  border-width: 0.1vh;
+  /* border-style: solid; */
+  /* border-width: 0.1vh; */
   border-radius: 10px;
-  margin-top: 0.8rem;
-  border-color: rgba(164, 174, 199, 1);
+  /* margin-top: 0.8rem; */
+  /* border-color: rgba(164, 174, 199, 1); */
   display: flex;
   justify-content: space-between; 
 }
@@ -335,7 +335,6 @@ menu a:active
   margin: 0.3rem;
   color: white;
 }
-
 
 .sessionAppointments .waiting {
   background-color: rgba(0, 105, 255, 0.2);
@@ -368,5 +367,29 @@ menu a:active
   color: white;
   font-weight: normal;
 }
+
+.sessionAppointments .appointmentDiv .done.active {
+  background-color: rgba(0, 105, 255, 0.2);
+  border-color: rgba(0, 105, 255, 0.2);
+  width: 100%;
+}
+
+.sessionAppointments .appointmentDiv .done.completed {
+  width: 100%;
+}
+
+.sessionAppointments .done .status.cancelled {
+  background-color: gray;
+}
+
+.sessionAppointments .done .status.active {
+  background-color: rgba(255, 0, 46, 1); 
+}
+
+.sessionAppointments .done .status.completed {
+  background-color: rgba(57, 122, 73, 1);
+}
+
+
 
 
