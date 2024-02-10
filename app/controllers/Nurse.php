@@ -107,4 +107,13 @@ class Nurse extends Controller
             $this->view('nurse/ongoing_session');
         }
     }
+
+    public function sessions()
+    {
+        $sessions = $this->nurseModel->sessions();
+        $data = [
+            'sessions' => $sessions
+        ];
+        $this->view('nurse/sessions', $data);
+    }
 }
