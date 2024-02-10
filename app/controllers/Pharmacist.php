@@ -16,6 +16,34 @@
         //     $this->view('pharmacist/pharmacist_dashboard', $data);
         // }
 
+            
+        public function login(){
+            $this->view('pharmacist/login');
+        }
+
+        public function loginCheck(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+    
+                $user = $this->pharmacistModel->getUserByUsername($username);
+    
+                if ($user && password_verify($password, $user->password)) {
+                    // Password is correct
+                    session_start();
+                    $_SESSION['user_id'] = $user->user_id;
+                    $_SESSION['username'] = $user->username;
+                    $_SESSION['role'] = $user->role;
+                    redirect("/Pharmacist/dashboard");
+                    exit();
+                } else {
+                    // Password is incorrect
+                    $error = "Invalid username or password";
+                }
+            }
+    
+            
+        }
         public function dashboard($page = 1){
             $itemsPerPage =6;
             $offset = ($page - 1) * $itemsPerPage;
