@@ -67,17 +67,18 @@
                         </form>
                     </div>
                     <hr class="divider">  
-
-                    <?php foreach($data['patients'] as $patient): ?>
-                        <div class="patientFile">
-                            <div class="fileInfo">
-                                <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
-                                <p><?php echo $patient->name; ?></p>
+                    <div class="patientFiles">
+                        <?php foreach($data['patients'] as $patient): ?>
+                            <div class="patientFile">
+                                <div class="fileInfo">
+                                    <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
+                                    <p><?php echo $patient->name; ?></p>
+                                </div>
+                                <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
+                                <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>" id="viewButton"><button>View Prescriptions</button></a>
                             </div>
-                            <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
-                            <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>" id="viewButton"><button>View Prescriptions</button></a>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div>
 
                     <!-- Pagination Links -->
                     <div class="pagination">
@@ -92,5 +93,45 @@
             </div>
         </div>
     </div>
-<?php require APPROOT."/views/inc/components/footer.php" ?>
+    
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Attach input event handler to the search input field
+        $('#search').on('input', function () {
+            // Get the current value of the search input
+            var searchTerm = $(this).val();
+
+            // Perform AJAX request only if the search term is not empty
+            if (searchTerm.trim() !== '') {
+                $.ajax({
+                    url: '<?php echo URLROOT; ?>/Pharmacist/searchPatientAjax',
+                    type: 'POST',
+                    data: { search: searchTerm },
+                    success: function (response) {
+                        // Update the HTML content of the element with the class "patientFiles"
+                        $('.patientFiles').html(response);
+
+                        // Hide the pagination div
+                        $('.pagination').hide();
+                    },
+                    error: function () {
+                        // Handle errors
+                    }
+                });
+            } else {
+                // Clear the results and show the pagination div if the search term is empty
+                // $('.patientFiles').html('');
+                $('.pagination').show();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
+
  

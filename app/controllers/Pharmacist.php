@@ -16,6 +16,34 @@
         //     $this->view('pharmacist/pharmacist_dashboard', $data);
         // }
 
+            
+        public function login(){
+            $this->view('pharmacist/login');
+        }
+
+        public function loginCheck(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+    
+                $user = $this->pharmacistModel->getUserByUsername($username);
+    
+                if ($user && password_verify($password, $user->password)) {
+                    // Password is correct
+                    session_start();
+                    $_SESSION['user_id'] = $user->user_id;
+                    $_SESSION['username'] = $user->username;
+                    $_SESSION['role'] = $user->role;
+                    redirect("/Pharmacist/dashboard");
+                    exit();
+                } else {
+                    // Password is incorrect
+                    $error = "Invalid username or password";
+                }
+            }
+    
+            
+        }
         public function dashboard($page = 1){
             $itemsPerPage =6;
             $offset = ($page - 1) * $itemsPerPage;
@@ -34,6 +62,34 @@
 
             $this->view('pharmacist/pharmacist_dashboard', $data);
         }
+
+        public function searchPatientAjax(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+                $patientName = $_POST['search'];
+                $patients = $this->pharmacistModel->searchPatient($patientName);
+        
+                $data = [
+                    'patients' => $patients
+                ];
+
+                $this->view('pharmacist/pharmacist_patientAjax', $data);
+            }
+                
+        }
+
+        public function searchMedicineAjax(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+                $medicineName = $_POST['search'];
+                $medications = $this->pharmacistModel->searchMedicine($medicineName);
+
+                $data = [
+                    'medications' => $medications
+                ];
+
+                $this->view('pharmacist/pharmacist_medicineAjax',$data);
+            }
+        }
+        
 
         // public function medications(){
         //     $medications = $this->pharmacistModel->getMedications();
