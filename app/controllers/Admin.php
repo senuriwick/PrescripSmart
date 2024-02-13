@@ -1285,6 +1285,21 @@
 
     }
 
+    public function deleteProfile($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        if($this->userModel->deleteProfile($id))
+        {
+          echo"Profile sucessfully deleted";
+        }
+        else
+        {
+          echo"something went wrong";
+        }
+      }
+    }
+
     
     
     

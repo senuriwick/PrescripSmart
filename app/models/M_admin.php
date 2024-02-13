@@ -282,5 +282,119 @@ class M_admin
           return false;
         }
       }
+
+      public function deleteProfileDoc($id)
+      {
+        $this->db->query('DELETE FROM doctors WHERE doctor_id = :id');
+        $this->db->bind(':id',$id);
+
+         // Execute
+         if($this->db->execute())
+         {
+           return true;
+         }
+          else
+         {
+           return false;
+         }
+      }
+
+      public function deleteProfileAdmin($id)
+      {
+        $this->db->query('DELETE FROM admins WHERE admin_id = :id');
+        $this->db->bind(':id',$id);
+
+         // Execute
+         if($this->db->execute())
+         {
+           return true;
+         }
+          else
+         {
+           return false;
+         }
+      }
+
+      public function deleteProfileHealthsup($id)
+      {
+        $this->db->query('DELETE FROM healthsupervisors WHERE healthsp_id = :id');
+        $this->db->bind(':id',$id);
+
+         // Execute
+         if($this->db->execute())
+         {
+           return true;
+         }
+          else
+         {
+           return false;
+         }
+      }
+
+      public function deleteProfileNurse($id)
+      {
+        $this->db->query('DELETE FROM nurses WHERE nurse_id = :id');
+        $this->db->bind(':id',$id);
+
+         // Execute
+         if($this->db->execute())
+         {
+           return true;
+         }
+          else
+         {
+           return false;
+         }
+      }
+
+      public function deleteProfilePatient($id)
+      {
+        $this->db->query('DELETE FROM patients WHERE patient_id = :id');
+        $this->db->bind(':id',$id);
+
+         // Execute
+         if($this->db->execute())
+         {
+           return true;
+         }
+          else
+         {
+           return false;
+         }
+      }
+
+      public function deleteProfilePharmacist($id)
+      {
+        $this->db->query('DELETE FROM pharmacists WHERE pharmacist_id = :id');
+        $this->db->bind(':id',$id);
+
+         // Execute
+         if($this->db->execute())
+         {
+           return true;
+         }
+          else
+         {
+           return false;
+         }
+      }
+
+      public function deleteProfileReceptionst($id)
+      {
+        $this->db->query('DELETE FROM receptionists WHERE receptionist_id = :id');
+        $this->db->bind(':id',$id);
+
+         // Execute
+         if($this->db->execute())
+         {
+           return true;
+         }
+          else
+         {
+           return false;
+         }
+      }
+
+      
     
 }

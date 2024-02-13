@@ -19,7 +19,7 @@
           <h1>Search Doctor</h1>
           <div class="searchFiles">
 <form>
- <input type="text" id="searchinput" placeholder="Enter Doctors' Name/ID here">
+ <input type="text" id="searchinput" class="searchinput" placeholder="Enter Doctors' Name/ID here">
  <button type="search" class="searchButton"><b>SEARCH</b></button>
 </form>
 
@@ -43,7 +43,10 @@
                                     <button class="profileButton">
                                        View profile
                                     </button>
-                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/Trash.png"  alt="profile-pic">
+
+                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->doctor_id ?>">
+                                  <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                  </form>
 
                                     </td>
                                                

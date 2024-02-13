@@ -19,7 +19,7 @@
           <h1>Search Pharmacist</h1>
           <div class="searchFiles">
 
-            <input type="search" placeholder="Enter Pharmacists' Name/ID here">
+          <input type="text" id="searchinput" class="searchinput" placeholder="Enter Pharmacists' Name/ID here">
             <button type="search" class="searchButton"><b>SEARCH</b></button>
 
             <?php foreach($data['pharmacists'] as $post): ?>
@@ -41,8 +41,11 @@
                                     <button class="profileButton">
                                        View profile
                                     </button>
-                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/Trash.png"  alt="profile-pic">
 
+
+                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->pharmacist_id ?>">
+                                  <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                  </form>
                                     </td>
                                                
                                   </div>
