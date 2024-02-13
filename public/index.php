@@ -3,5 +3,3 @@
 
     $init = new Core();
 ?>
-
-

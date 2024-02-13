@@ -39,11 +39,9 @@
 
         </div>
         <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
+            <div class="navBar">  
+                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
+                <p>USERNAME</p>  
             </div>
             <div class="main">
                 <div class="main-Container">
@@ -63,24 +61,77 @@
                     <hr class="divider">
                     <div class="prescriptionsDiv">
                         <h2>Search Patient</h2>
-                        <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-                        <a href=""><button id="searchButton">SEARCH</button></a>
+                        <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchPatient">
+                            <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield">
+                            <button type="submit" id="searchButton">SEARCH</button>
+                        </form>
                     </div>
-                    <hr class="divider">
-                    <?php foreach($data['patients'] as $patient): ?>
-                    <div class="patientFile">
-                        <div class="fileInfo">
-                            <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
-                            <p><?php echo $patient->name; ?></p>
-                        </div>
-                        <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
-                        <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions" id="viewButton"><button>View Prescriptions</button></a>
+                    <hr class="divider">  
+                    <div class="patientFiles">
+                        <?php foreach($data['patients'] as $patient): ?>
+                            <div class="patientFile">
+                                <div class="fileInfo">
+                                    <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
+                                    <p><?php echo $patient->name; ?></p>
+                                </div>
+                                <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
+                                <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>" id="viewButton"><button>View Prescriptions</button></a>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                    <?php endforeach; ?>
+
+                    <!-- Pagination Links -->
+                    <div class="pagination">
+                        <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                            <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                        <?php endfor; ?>
+                    </div>
+        </div>
+
                     
                 </div>
             </div>
         </div>
     </div>
-<?php require APPROOT."/views/inc/components/footer.php" ?>
+    
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Attach input event handler to the search input field
+        $('#search').on('input', function () {
+            // Get the current value of the search input
+            var searchTerm = $(this).val();
+
+            // Perform AJAX request only if the search term is not empty
+            if (searchTerm.trim() !== '') {
+                $.ajax({
+                    url: '<?php echo URLROOT; ?>/Pharmacist/searchPatientAjax',
+                    type: 'POST',
+                    data: { search: searchTerm },
+                    success: function (response) {
+                        // Update the HTML content of the element with the class "patientFiles"
+                        $('.patientFiles').html(response);
+
+                        // Hide the pagination div
+                        $('.pagination').hide();
+                    },
+                    error: function () {
+                        // Handle errors
+                    }
+                });
+            } else {
+                // Clear the results and show the pagination div if the search term is empty
+                // $('.patientFiles').html('');
+                $('.pagination').show();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
+
  

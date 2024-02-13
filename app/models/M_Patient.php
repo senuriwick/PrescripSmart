@@ -107,14 +107,14 @@ class M_Patient
 
     public function getAppointments()
     {
-        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 125 AND status = "active"');
+        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 12368 AND status = "active"');
         $result = $this->db->resultSet();
         return $result;
     }
 
     public function viewAppointment($appointment_ID)
     {
-        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 125 AND appointment_ID = :appointment_id AND status="active"');
+        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 12368 AND appointment_ID = :appointment_id AND status="active"');
         $this->db->bind(':appointment_id', $appointment_ID);
         $result = $this->db->single();
         return $result;
@@ -143,7 +143,7 @@ class M_Patient
         WHERE s.doctor_ID = :doctor_id 
         AND s.sessionDate >= :current_date 
         AND s.total_appointments >= s.current_appointment
-        ORDER BY s.sessionDate ASC, s.time ASC');
+        ORDER BY s.sessionDate ASC, s.start_time ASC');
         $this->db->bind(':doctor_id', $doctor_ID);
         $this->db->bind(':current_date', $currentDate);
         $result = $this->db->resultSet();
@@ -158,7 +158,7 @@ class M_Patient
         return $result;
     }
 
-    public function confirmAppointment($patient_ID, $session_ID, $doctor_ID, $time, $date)
+    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date)
     {
         try {
             $this->db->beginTransaction();
@@ -195,7 +195,7 @@ class M_Patient
     {
         $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
         INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
-        WHERE p.patient_ID = 125
+        WHERE p.patient_ID = 12368
         ORDER BY p.prescription_Date ASC');
 
         $result = $this->db->resultSet();
@@ -206,7 +206,7 @@ class M_Patient
     {
         $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
         INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
-        WHERE p.patient_ID = 125 AND p.prescription_ID = :prescription_id');
+        WHERE p.patient_ID = 12368 AND p.prescription_ID = :prescription_id');
         $this->db->bind(':prescription_id', $prescription_ID);
         $result = $this->db->single();
         return $result;
@@ -218,7 +218,7 @@ class M_Patient
         FROM lab_reports l
         INNER JOIN doctors d ON l.doctor_ID = d.doctor_ID 
         INNER JOIN prescriptions p ON l.prescription_ID = p.prescription_ID
-        WHERE l.patient_ID = 125
+        WHERE l.patient_ID = 12368
         ORDER BY l.report_Date ASC');
 
         $result = $this->db->resultSet();
@@ -234,7 +234,7 @@ class M_Patient
 
     public function patientInfo()
     {
-        $this->db->query('SELECT * FROM patients WHERE patient_ID = 1248623');
+        $this->db->query('SELECT * FROM patients WHERE patient_ID = 12368');
         $result = $this->db->single();
         return $result;
     }
@@ -245,7 +245,7 @@ class M_Patient
             home_Address = :haddress, NIC = :nic, contact_Number = :cno, DOB = :dob, age = :age, 
             gender = :gender, height = :height, weight = :weight, 
             emergency_Contact_Person = :ename, emergency_Contact_Number = :econtact, relationship = :relationship
-                          WHERE patient_ID = 1248623');
+                          WHERE patient_ID = 12368');
 
         $this->db->bind(':fname', $fname);
         $this->db->bind(':lname', $lname);
@@ -268,7 +268,7 @@ class M_Patient
     public function updateAccInfo($username)
     {
         $this->db->query('UPDATE users SET username = :username 
-        WHERE user_ID = 1248623');
+        WHERE user_ID = 12368');
         $this->db->bind(':username', $username);
         // $this->db->bind(':password', $newpassword);
 
@@ -278,7 +278,7 @@ class M_Patient
     public function resetPassword($newpassword)
     {
         $this->db->query('UPDATE users SET password = :newpassword 
-        WHERE user_ID = 1248623');
+        WHERE user_ID = 12368');
         $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
         $this->db->execute();
     }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\new_appointment_2.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
+    <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\doctor\sideMenu&navBar.css" /> -->
 </head>
 
 <body>
@@ -119,7 +119,7 @@
                                         <?php echo $session->sessionDate; ?>
                                         <br />
                                         Time:
-                                        <?php echo $session->time; ?>
+                                        <?php echo $session->start_time; ?>-<?php echo $session->end_time; ?>
                                         <br />
                                         Appointment No:
                                         <?php echo $session->current_appointment; ?>
