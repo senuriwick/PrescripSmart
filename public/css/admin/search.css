@@ -260,7 +260,7 @@ menu a:active
   border: none;
   
 }
-.searchFiles input
+.searchinput
 {
   font-size: 2.1vh;
   font-weight:40vh;
@@ -369,11 +369,7 @@ but :active
   font-family: inter;
   font-weight: 10vh;
   font-size: 1.5vh;
-  z-index: 9;
-  
-  
-  
-  
+  z-index: 9;   
 }
 
 .regdoc
@@ -395,6 +391,12 @@ but :active
 
 
 }
+
+.trash-image
+{
+  width: 4vh;
+  height: 4vh;
+}
 .regdoc img
 {
   
@@ -407,7 +409,7 @@ but :active
     margin-left: 2.5vh;
     margin-top: 1.5vh;
     background-color: #EFF2FB;
-    width: 40vh;
+    width: auto;
     height: 10vh;
     border-radius: 1vh;
   }

@@ -13,23 +13,30 @@ body {
 {
   width: 26vh;
   background-color: rgba(7, 28, 74, 1);
-  overflow: hidden;
+  position: fixed;
+  height: 190vh;
+  
+
+
+
 }
 
-
-.sideMenuTexts {
+.sideMenuTexts 
+{
   font-size: 1.7vh;
   color: #ffffff;
   line-height: 1.5vh;
   font-family: inter;
 }
 
-.logoDiv {
+.logoDiv 
+{
   align-items: center;
   margin-bottom: 4vh;
 }
 
-.logoImg {
+.logoImg 
+{
   display: block;
   margin: auto;
   height: 8vh;
@@ -37,27 +44,24 @@ body {
 }
 
 
-.mainOptions {
-  color: white;
-  font-size: 2.2vh;
-  font-weight: bold;
-  font-family: inter;
-}
 
 
-.sideMenu a {
+.sideMenu p 
+{
   padding-left: 3vh;
 }
 
 
-.adminDiv {
+.adminDiv 
+{
   border-bottom: solid;
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
 }
 
 
-.profile {
+.profile 
+{
   background-color: rgba(53, 70, 109, 1);
   padding: 0.2vh;
   margin-bottom: 2.5vh;
@@ -73,19 +77,17 @@ body {
 }
 
 
-
 .manageDiv {
-  
   border-top: solid;
   border-color: #ffffff;
+  
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 1vh;
   padding-top: 3vh;
 }
 
-
-.manageDiv .mainOptions
+.mainOptions
 {
   display: block;
   background-color: rgba(7, 28, 74, 1);
@@ -93,25 +95,15 @@ body {
   border: none;
   padding-left: 3.5vh;
   font-family: inter;
+  font-size: 2.2vh;
+  font-weight: bold;
 }
 
-.manageDiv a
-{
-    display:block;
-    padding-left: 2.3vh;
-    line-height: 4.3vh;
-    font-size: 1.9vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-}
 .submenus
 {
   display: none;
   padding-top: 4vh;
   margin-bottom: 6vh;
-  
- 
 }
 
 .submenus a
@@ -126,12 +118,14 @@ body {
 }
 
 
+
+
 .othersDiv {
   
   padding-top: 2vh;
   font-size: 1.9vh;
   line-height: 5vh;
-  border-bottom: solid;
+  border-top: solid;
   border-color: rgba(217, 217, 217, 0.75);
   border-width: 0.1vh;
   padding-bottom: 3vh;
@@ -141,23 +135,23 @@ body {
 {
   font-size: 1.9vh;
   display: block;
-  line-height: 4.3vh;
+  line-height: 5vh;
   padding-left: 2.3vh;
 
 }
 
 
 
+
 .main {
   flex: 1;
-  
+  margin-left: 26vh;
 
 }
 
 .navBar {
   background-color: rgba(138, 150, 181, 1);
-  height: 7vh;
-  
+  height: 7vh;  
 }
 
 .navBar p {
@@ -195,7 +189,6 @@ body {
 
 .adminNameDiv {
   padding: 0.01vh;
-   
 }
 
 
@@ -238,9 +231,7 @@ menu a:active
 }
  a:hover
 {
-  
   font-weight: bold;
-
 }
 
   

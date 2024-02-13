@@ -19,7 +19,7 @@
           <h1>Search Nurse</h1>
           <div class="searchFiles">
 
-            <input type="search" placeholder="Enter Nurses' Name/ID here">
+          <input type="text" id="searchinput" class="searchinput" placeholder="Enter Nurses' Name/ID here">
             <button type="search" class="searchButton"><b>SEARCH</b></button>
 
             <?php foreach($data['nurses'] as $post): ?>
@@ -43,8 +43,10 @@
                                     <button class="profileButton">
                                        View profile
                                     </button>
-                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/Trash.png"  alt="profile-pic">
 
+                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->nurse_id ?>">
+                                  <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                  </form>
                                     </td>
                                                
                                   </div>
@@ -55,12 +57,13 @@
          </div>
        </div>
 
-        <!-- <div class="addapp">
+       <div class="addapp">
           <div class="newapp">
-            <img src="<?php //echo URLROOT ?>/img/FilePerson.png">
-            <a href="AdminDocRegister.html">Register a new doctor</a>
+            <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
+            <a href="<?php echo URLROOT?>/admin/viewRegnurse">Register a new Nurse</a>
           </div>
-        </div> -->
+        </div>
+        
       </div>
     </div>
   </div>
