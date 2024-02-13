@@ -18,6 +18,11 @@ class LabTechnician extends Controller{
         $this->view('lab_tech/patient',$data);
     }
 
+    // public function getpatientDetails($id){
+    //     $patientDetails = $this->dpModel->getpatient($id);
+    //     echo json_decode($patientDetails);
+    // }
+
     public function profile(){
         $this->view('lab_tech/profile');
     }
@@ -28,5 +33,13 @@ class LabTechnician extends Controller{
 
     public function security(){
         $this->view('lab_tech/security');
+    }
+
+    public function reports($id){
+        $patientDetails = $this->dpModel->getPatient($id);
+        $data = [
+            'patientDetails'=>$patientDetails
+        ];
+        $this->view('lab_tech/reports',$data);
     }
 }
