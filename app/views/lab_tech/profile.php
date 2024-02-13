@@ -36,7 +36,7 @@
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="<?php echo URLROOT;?>/labTechnician/patients" class="active">Patients</a>
+                <a href="<?php echo URLROOT;?>/labTechnician/patient" class="active">Patients</a>
                 <a href="<?php echo URLROOT;?>/labTechnician/profile">Profile</a>
             </div>
             <div class="othersDiv">
