@@ -19,9 +19,11 @@
           <h1>Search Patient</h1>
           <div class="searchFiles">
 
+          <form>
           <input type="text" id="searchinput" class="searchinput" placeholder="Enter Patients' Name/ID here">
-            <button type="search" class="searchButton"><b>SEARCH</b></button>
-
+          <button type="search" class="searchButton"><b>SEARCH</b></button>
+          </form>
+          
             <hr style="margin-bottom: 3vh;">
 
             <?php foreach($data['patients'] as $post): ?>

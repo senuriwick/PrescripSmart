@@ -38,11 +38,11 @@
         </script>
 
         <button id="receptionist">Receptionist</button>
-        <!-- <script>
+        <script>
           document.getElementById("receptionist").addEventListener("click", function () {
-              window.location.href = "..\\general\\loginPage.html";
+              window.location.href = "<?php echo URLROOT?>/admin/login";
           });
-        </script> -->
+        </script>
 
         <button >Health Supervisor</button>
         

@@ -207,7 +207,6 @@
           {
             // Create Session
             $this->createusersession($loggedInUser);
-            $this->view('admin/searchDoctor');
             
           } 
           else 

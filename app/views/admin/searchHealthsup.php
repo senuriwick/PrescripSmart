@@ -20,8 +20,13 @@
           <h1>Search Health Supervisor</h1>
           <div class="searchFiles">
 
-          <input type="text" id="searchinput" class="searchinput" placeholder="Enter Health Supervisors' Name/ID here">
+            <form>
+            <input type="text" id="searchinput" class="searchinput" placeholder="Enter Health Supervisors' Name/ID here">
             <button type="search" class="searchButton"><b>SEARCH</b></button>
+            </form>
+
+            <hr style="margin-bottom: 3vh;">
+
 
             <?php foreach($data['healthsups'] as $post): ?>
                               <tr class="row">

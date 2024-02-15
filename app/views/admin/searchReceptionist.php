@@ -19,15 +19,20 @@
           <h1>Search Receptionist</h1>
           <div class="searchFiles">
 
+          <form>
           <input type="text" id="searchinput" class="searchinput" placeholder="Enter Receptionists' Name/ID here">
-            <button type="search" class="searchButton"><b>SEARCH</b></button>
+          <button type="search" class="searchButton"><b>SEARCH</b></button>
+          </form>
+
+
+          <hr style="margin-bottom: 3vh;">
+
 
             <?php foreach($data['receptionists'] as $post): ?>
                               <tr class="row">
                                         
                                         
                                 <div class="column">
-
                                     <td>
                                     <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                                     <div class= "name">
@@ -44,12 +49,10 @@
                                        View profile
                                     </button>
 
-
                                   <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->receptionist_id ?>">
                                   <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                   </form>
-                                    </td>
-                                               
+                                    </td>             
                                   </div>
                                         
                                 </tr>
