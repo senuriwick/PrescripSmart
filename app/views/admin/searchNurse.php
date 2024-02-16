@@ -19,8 +19,13 @@
           <h1>Search Nurse</h1>
           <div class="searchFiles">
 
+          <form>
           <input type="text" id="searchinput" class="searchinput" placeholder="Enter Nurses' Name/ID here">
-            <button type="search" class="searchButton"><b>SEARCH</b></button>
+          <button type="search" class="searchButton"><b>SEARCH</b></button>
+          </form>
+
+          <hr style="margin-bottom: 3vh;">
+
 
             <?php foreach($data['nurses'] as $post): ?>
                               <tr class="row">

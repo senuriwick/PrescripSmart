@@ -23,6 +23,9 @@
  <button type="search" class="searchButton"><b>SEARCH</b></button>
 </form>
 
+<hr style="margin-bottom: 3vh;">
+
+
             <?php foreach($data['doctors'] as $post): ?>
                               <tr class="row">
                                                                            
