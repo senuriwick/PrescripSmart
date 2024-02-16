@@ -67,68 +67,62 @@
                         <p><a href="<?php echo URLROOT ?>/Pharmacist/security">Security</a></p>
                     </div>
 
-                    <div class="pharmacist_profile">
-                        <div class="empid">Employee Id :#123456
-                            <div class="accountinfotext">Account Information</div>
+                    <?php $pharmacist = $data['pharmacist'] ?>
+
+                    <form action="<?php echo URLROOT; ?>/pharmacist/personalInfoUpdate" method="POST">
+                        <div class="pharmacist_profile">
+                            <div class="empid">Employee Id :#123456
+                                <div class="accountinfotext">Account Information</div>
+                            </div>
+                            <hr />
+                            <div class="details">
+                                <form>
+                                    <label for="">First Name</label><br>
+                                    <input type="text" id="fName" value="<?php echo $pharmacist->first_name; ?>">
+                                </form>
+                                <form>
+                                    <label for="">Last Name</label><br>
+                                    <input type="text" id="lName" value="<?php echo $pharmacist->last_name; ?>">
+                                </form>
+                            </div>
+                            <div class="details">
+                                <form>
+                                    <label for="">Display Name</label><br>
+                                    <input type="text" id="displayName"value="<?php echo $pharmacist->display_name; ?>">
+                                </form>
+                            </div>
+                            <p>This will be how your name will be displayed in the dashboard.</p>
+                            <div class="details">
+                                <form>
+                                    <label for="">Home Address</label><br>
+                                    <input type="text" id="address" value="<?php echo $pharmacist->home_address; ?>">
+                                </form>
+                            </div>
+                            <div class="details">
+                                <form>
+                                    <label for="">NIC  Number</label><br>
+                                    <input type="text" id="nic" value="<?php echo $pharmacist->nic; ?>">
+                                </form>
+                                <form>
+                                    <label for="">Contact Number</label><br>
+                                    <input type="text" id="contact" value="<?php echo $pharmacist->contact_number; ?>">
+                                </form>
+                            </div>
+                            <div class="details">
+                                <form>
+                                    <label for="">Pharmacist Registration Number</label><br>
+                                    <input type="text" id="regNo" value="<?php echo $pharmacist->pharmacist_registrationNo; ?>">
+                                </form>
+                                <form>
+                                    <label for="">Qualification</label><br>
+                                    <input type="text" id="qualification" value="<?php echo $pharmacist->qualifications; ?>">
+                                </form>
+                            </div>
+                            <div class="details">
+                                <button>Save Changes</button>
+                            </div>
                         </div>
-                        <hr />
-                        <div class="details">
-                            <form>
-                                <label for="">First Name</label><br>
-                                <input type="text" placeholder="First name">
-                            </form>
-                            <form>
-                                <label for="">Last Name</label><br>
-                                <input type="text" placeholder="Last name">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <form>
-                                <label for="">Display Name</label><br>
-                                <input type="text" placeholder="Display name">
-                            </form>
-                        </div>
-                        <p>This will be how your name will be displayed in the dashboard.</p>
-                        <div class="details">
-                            <form>
-                                <label for="">Home Address</label><br>
-                                <input type="text" placeholder="Home Address">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <form>
-                                <label for="">NIC  Number</label><br>
-                                <input type="number" placeholder="200045465455">
-                            </form>
-                            <form>
-                                <label for="">Contact Number</label><br>
-                                <input type="tel" placeholder="0214569889">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <form>
-                                <label for="">Doctor Registration Number</label><br>
-                                <input type="number" placeholder="548968451">
-                            </form>
-                            <form>
-                                <label for="">Qualification</label><br>
-                                <input type="text" placeholder="Qualification">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <form>
-                                <label for="">Department</label><br>
-                                <input type="text" placeholder="Department">
-                            </form>
-                            <form>
-                                <label for="">Specialization</label><br>
-                                <input type="text" placeholder="Specialization">
-                            </form>
-                        </div>
-                        <div class="details">
-                            <button>Save Changes</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

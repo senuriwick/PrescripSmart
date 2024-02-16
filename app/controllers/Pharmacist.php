@@ -122,21 +122,121 @@
         
         public function profile() {
             // Assume $employeeId is the identifier for the logged-in pharmacist
-            $employeeId = "#123456"; // Replace with actual employee ID retrieval logic
+            $userId = "1"; // Replace with actual employee ID retrieval logic
     
             // Fetch pharmacist profile details
-            $pharmacistProfile = $this->pharmacistModel->getPharmacistProfileDetails($employeeId);
+            $pharmacistProfile = $this->pharmacistModel->getUserDetails($userId);
     
             // Pass the details to the view
             $data = [
-                'pharmacistProfile' => $pharmacistProfile,
+                'userPharm' => $pharmacistProfile,
+            ];
+    
+            $this->view('pharmacist/pharmacist_profileCheck', $data);
+        }
+
+        public function profileCheck() {
+            // Assume $employeeId is the identifier for the logged-in pharmacist
+            $userId = "1"; // Replace with actual employee ID retrieval logic
+    
+            // Fetch pharmacist profile details
+            $pharmacistProfile = $this->pharmacistModel->getUserDetails($userId);
+    
+            // Pass the details to the view
+            $data = [
+                'userPharm' => $pharmacistProfile,
             ];
     
             $this->view('pharmacist/pharmacist_profile', $data);
         }
 
+        public function accountInfoUpdate()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = $_POST["username"];
+                // $password = $_POST["password"];
+                // $newpassword = $_POST["newpassword"];
+
+                $this->pharmacistModel->updateAccInfo($username);
+
+                redirect("/Pharmacist/profile");
+                exit();
+            }
+        }
+
+        public function passwordReset()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $newpassword = $_POST["newpassword"];
+    
+                $this->pharmacistModel->resetPassword($newpassword);
+    
+                redirect('/Pharmacist/profile');
+                exit();
+            }
+        }
+
+        public function checkCurrentPassword() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
+                $currentPassword = $_POST['currentPassword'];
+    
+                // Assume $user is the object representing the logged-in user
+                $user_id = 1;
+                $user = $this->pharmacistModel->getUserDetails($user_id);
+    
+                if ($user && password_verify($currentPassword, $user->password)) {
+                    echo '<span style="color: green;">You\'re good to go!</span>';
+                } else {
+                    echo '<span style="color: red;">Incorrect password!</span>';
+                }
+            } else {
+                // Handle invalid or missing parameters
+                echo '<span style="color: red;">Error: Invalid request.</span>';
+            }
+        }
+
         public function personal(){
-            $this->view('pharmacist/pharmacist_personalInfo');
+            $pharmacist = $this->pharmacistModel->pharmacistInfo();
+            $data = [
+                'pharmacist' => $pharmacist
+            ];
+            $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
+        }
+
+        // public function personalInfoUpdate()
+        // {
+        //     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        //         $fname = $_POST["fName"];
+        //         $lname = $_POST["lName"];
+        //         $dname = $_POST["displayName"];
+        //         $address = $_POST["address"];
+        //         $nic = $_POST["nic"];
+        //         $contact = $_POST["contact"];
+        //         $regNo = $_POST["regNo"];
+        //         $qualification = $_POST["qualification"];
+    
+        //         $this->pharmacistModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
+        //         redirect("Pharmacist/personal");
+        //         exit();
+        //     }
+        // }
+
+        public function personalInfoUpdate()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $fname = $_POST["fName"];
+                $lname = $_POST["lName"];
+                $dname = $_POST["displayName"];
+                $address = $_POST["address"];
+                $nic = $_POST["nic"];
+                $contact = $_POST["contact"];
+                $regNo = $_POST["regNo"];
+                $qualification = $_POST["qualification"];
+    
+                $this->pharmacistModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
+                redirect("/Pharmacist/personal");
+                exit();
+            }
         }
 
         public function security(){

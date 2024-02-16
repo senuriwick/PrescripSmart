@@ -35,6 +35,33 @@
   color:#445172 ;
 }
 
+.inquiriesDiv h1 {
+  margin-top: 2vh;
+  font-weight: bold;
+  color: #0069ff;
+  font-size: 24px;
+}
+
+.inquiriesDiv button {
+  width: 15rem;
+  height: 2rem;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: #ffffff;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(68, 81, 114, 0.75);
+  border-radius: 0.5rem;
+  border-color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  margin-top: 15px;
+}
+
 .pharmacistprofile .detail{
   display: grid;
   grid-template-columns: 50% 50%;
@@ -50,17 +77,11 @@
   font-size: 1.8vh;
 }
 
-.pharmacistprofile .detail form >div{
-  padding: 0 5px;
-  font-weight: bold;
-  font-size: 1.8vh;
-}
-
 .pharmacistprofile .detail button{
   background-color: #0069FFBF;
   border: 1px solid #0069FFBF;
   color: #ffffff;
-  padding: 10px 50px;
+  padding: 10px 100px;
   font-size: 1.5vh;
   font-weight: 500;
   border-radius: 5px;
@@ -68,7 +89,7 @@
   font-weight: 550;
   font-size: 1rem;
 }
-.pharmacistprofile .detail input{
+.pharmacistprofile .detail form input{
   width: 85%;
   background-color: #ffffff;
   padding: 10px 20px;
@@ -84,6 +105,73 @@
   background-color: rgba(0, 80, 200, 1); 
   cursor: pointer;
 }
+
+.inquiriesDiv {
+  margin-top: 2vh;
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  padding: 1vh 3vh 2vh;
+  position: relative;
+}
+
+.sub1 {
+  color: rgba(68, 81, 114, 1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 60px;
+  margin-right: 20px;
+}
+
+.accInfo {
+  border-top: 1px solid rgba(68, 81, 114, 0.75);
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+}
+
+.parallel {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  margin-right: 50px;
+}
+
+
+.input {
+  width: 28rem;
+  height: 2.5rem;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: rgba(68, 81, 114, 0.75);
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.2rem #e3e8f4;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sub2 {
+  color: rgba(68, 81, 114, 1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 255px;
+  margin-right: 20px;
+}
+
 
 /* .manageDiv img{
   width: 20px;
