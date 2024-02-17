@@ -9,7 +9,7 @@
     <title>Account</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\profile_dashboard.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\nurse\profile_dashboard.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -18,7 +18,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="<?php echo URLROOT ?>\public\img\nurse\Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="patientDiv">
@@ -31,11 +31,10 @@
 
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
-
-                <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-                <a href="reports_dashboard.html" id="reports">Reports</a>
-                <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-                <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
+                <a href="patients_dashboard.html" id="patients">Patients</a>
+                <a href="ongoing.html" id="On-going">On-going session</a>
+                <a href="sessions.html" id="sessions">Sessions</a>
+                <a href="appointments.html" id="appointments">Appoinments</a>
                 <a href="profile_dashboard.html" id="profile">Profile</a>
             </div>
 
@@ -48,16 +47,16 @@
 
         <div class="main">
             <div class="navBar">
-                <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
+                <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
                 <p>SAMPLE USERNAME HERE</p>
             </div>
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
-                    <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
+                    <img src="<?php echo URLROOT ?>\public\img\nurse\profile.png" alt="profile-pic">
                     <div class="patientNameDiv">
-                        <p class="name">Patient Name</p>
-                        <p class="role">Patient</p>
+                        <p class="name">Nurse Name</p>
+                        <p class="role">Nurse</p>
                     </div>
                 </div>
 
@@ -67,69 +66,63 @@
                     <a href="profile_dashboard_3.html" id="security">Security</a>
                 </div>
 
-                <?php $patient = $data['patient'] ?>
+                <?php $nurse = $data['nurse'] ?>
 
                 <div class="inquiriesDiv">
-                    <h1>Patient ID: #
-                        <?php echo $patient->patient_ID ?>
+                    <h1>Employee ID: #<?php echo $nurse->user_ID ?>
                     </h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
                     <div class="accInfo">
-                        <form action="<?php echo URLROOT; ?>/patient/accountInfoUpdate" method="POST">
+                        <form action="<?php echo URLROOT; ?>/nurse/accountInfoUpdate" method="POST">
                             <div class="parallel">
                                 <div class="input-group">
                                     <label for="name">Username</label>
                                     <input type="text" id="username" class="input" name="username"
-                                        value="<?php echo $patient->display_Name ?>" style="display: inline-block;">
+                                        style="display: inline-block;" value="<?php echo $nurse->username ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Associated Email Address/Phone Number</label>
-                                    <?php if ($patient->signIn_Method == "email"): ?>
-                                        <input type="text" id="email" class="input" name="email" readonly
-                                            value="<?php echo $patient->email_address ?>" style="display: inline-block;">
-                                    <?php else: ?>
-                                        <input type="text" id="phone" class="input" name="phone" readonly
-                                            value="<?php echo $patient->contact_Number ?>" style="display: inline-block;">
-                                    <?php endif; ?>
+                                    <input type="text" id="email" class="input" name="email" readonly
+                                        value="<?php echo $nurse->email_phone ?>" style="display: inline-block;">
                                 </div>
-
                             </div>
-                            <button type="submit" id="submit">SAVE CHANGES</button>
-                        </form>
                     </div>
 
-                    <p class="sub2" style="font-weight: bold;">Reset Password</p>
-                    <div class="accInfo">
-                        <form action="<?php echo URLROOT; ?>/patient/passwordReset" method="POST">
+                    <button type="submit" id="submit">SAVE CHANGES</button>
+                    </form>
+                </div>
+
+                <p class="sub2" style="font-weight: bold;">Reset Password</p>
+                <div class="accInfo">
+                    <form action="<?php echo URLROOT; ?>/nurse/passwordReset" method="POST">
+                        <div class="input-group">
+                            <label for="password">Current Password</label>
+                            <input type="password" id="password" placeholder="Enter your current password here"
+                                name="password" class="input">
+                        </div>
+                        <div id="passwordMatch"></div>
+
+                        <div class="parallel">
+
                             <div class="input-group">
-                                <label for="password">Current Password</label>
-                                <input type="password" id="password" placeholder="Enter your current password here"
-                                    name="password" class="input">
+                                <label for="newpassword">New Password</label>
+                                <input type="password" id="newpassword" class="input"
+                                    placeholder="Enter your new password here" name="newpassword"
+                                    style="display: inline-block;">
                             </div>
-                            <div id="passwordMatch"></div>
 
-                            <div class="parallel">
-
-                                <div class="input-group">
-                                    <label for="newpassword">New Password</label>
-                                    <input type="password" id="newpassword" class="input"
-                                        placeholder="Enter your new password here" name="newpassword"
-                                        style="display: inline-block;">
-                                </div>
-
-                                <div class="input-group">
-                                    <label for="newconfirmpassword">Confirm Password</label>
-                                    <input type="password" id="confirmpassword" class="input"
-                                        placeholder="Re-enter your new password here" name="confirmpassword"
-                                        style="display: inline-block;">
-                                </div>
+                            <div class="input-group">
+                                <label for="newconfirmpassword">Confirm Password</label>
+                                <input type="password" id="confirmpassword" class="input"
+                                    placeholder="Re-enter your new password here" name="confirmpassword"
+                                    style="display: inline-block;">
                             </div>
-                            <div id="newpasswordMatch"></div>
-                            <button type="submit" id="reset">RESET PASSWORD</button>
+                        </div>
+                        <div id="newpasswordMatch"></div>
+                        <button type="submit" id="reset">RESET PASSWORD</button>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
 
@@ -140,6 +133,7 @@
     </div>
     </div>
     </div>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -159,7 +153,7 @@
         $(document).ready(function () {
             function checkPasswords() {
                 var enteredPassword = $('#password').val();
-                var databasePassword = "<?php echo $patient->password ?>";
+                var databasePassword = "<?php echo $nurse->password ?>";
                 var newPassword = $('#newpassword').val();
                 var confirmPassword = $('#confirmpassword').val();
 
@@ -191,7 +185,6 @@
         });
 
     </script>
-
 
 </body>
 

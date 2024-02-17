@@ -70,8 +70,7 @@
 
                 <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/patient/personalInfoUpdate" method="POST">
-                        <h1>Patient ID: #
-                            <?php echo $patient->patient_ID ?>
+                        <h1>Patient ID: #<?php echo $patient->patient_ID ?>
                         </h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">
@@ -178,7 +177,7 @@
                         <button type="submit" id="submit" name="submit">SAVE CHANGES</button>
                     </form>
                 </div>
-                </form>
+                
             </div>
 
         </div>
