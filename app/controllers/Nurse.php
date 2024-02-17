@@ -116,4 +116,68 @@ class Nurse extends Controller
         ];
         $this->view('nurse/sessions', $data);
     }
+
+    public function account_information()
+    {
+        $nurse = $this->nurseModel->nurseInfo();
+        $data = [
+            'nurse' => $nurse
+        ];
+        $this->view('nurse/account_information', $data);
+    }
+
+    public function accountInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["username"];
+            // $password = $_POST["password"];
+            // $newpassword = $_POST["newpassword"];
+
+            $this->nurseModel->updateAccInfo($username);
+
+            header("Location: /prescripsmart/nurse/account_information");
+            exit();
+        }
+    }
+
+    public function passwordReset()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $newpassword = $_POST["newpassword"];
+
+            $this->nurseModel->resetPassword($newpassword);
+
+            header("Location: /prescripsmart/nurse/account_information");
+            exit();
+        }
+    }
+
+    public function personal_information()
+    {
+        $nurse = $this->nurseModel->nurseDetails();
+        $data = [
+            'nurse' => $nurse
+        ];
+        $this->view('nurse/personal_information', $data);
+    }
+
+    public function personalInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $dname = $_POST["dname"];
+            $haddress = $_POST["haddress"];
+            $nic = $_POST["nic"];
+            $cno = $_POST["cno"];
+            $regno = $_POST["regno"];
+            $qual = $_POST["qual"];
+            $spec = $_POST["spec"];
+
+            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec);
+
+            header("Location: /prescripsmart/nurse/personal_information");
+            exit();
+        }
+    }
 }

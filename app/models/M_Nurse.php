@@ -84,4 +84,57 @@ class M_Nurse
             return false;
         }
     }
+
+    public function nurseInfo()
+    {
+        // $this->db->query('SELECT * FROM nurses WHERE nurse_ID = 1254638');
+        $this->db->query('SELECT user_ID,username,email_phone,password FROM users WHERE user_ID = 1254638');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function updateAccInfo($username)
+    {
+        $this->db->query('UPDATE users SET username = :username 
+        WHERE user_ID = 1254638');
+        $this->db->bind(':username', $username);
+        // $this->db->bind(':password', $newpassword);
+
+        $this->db->execute();
+    }
+
+    public function resetPassword($newpassword)
+    {
+        $this->db->query('UPDATE users SET password = :newpassword 
+        WHERE user_ID = 1254638');
+        $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+        $this->db->execute();
+    }
+
+    public function nurseDetails()
+    {
+        $this->db->query('SELECT * FROM nurses WHERE nurse_ID = 1254638');
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec)
+    {
+        $this->db->query('UPDATE nurses SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
+            home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
+            specializations = :spec
+            WHERE nurse_ID = 1254638');
+
+        $this->db->bind(':fname', $fname);
+        $this->db->bind(':lname', $lname);
+        $this->db->bind(':dname', $dname);
+        $this->db->bind(':haddress', $haddress);
+        $this->db->bind(':nic', $nic);
+        $this->db->bind(':cno', $cno);
+        $this->db->bind(':regno', $regno);
+        $this->db->bind(':qual', $qual);
+        $this->db->bind(':spec', $spec);
+
+        $this->db->execute();
+    }
 }
