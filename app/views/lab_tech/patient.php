@@ -82,22 +82,13 @@
                                             <div class="desDiv">
                                                 <img src="../public/img/lab_tech/profile.png" alt="user-icon">
                                                 <p class="patientName"><?php echo $reportToUpload->patient_name;?></p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content1" onclick="show(this)"></i>                                            </div>
+                                            </div>
                                         </td>
                                         
                                         <td>Patient ID-<?php echo $reportToUpload->patient_id;?></td>
                                         <td><a href="<?php echo URLROOT; ?>/LabTechnician/reports/<?php echo $reportToUpload->patient_id;?>"><button >View Test</button></a></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div id="content1" class="patient-data" style="display: none;">
-                                                <p>Age: 30</p>
-                                                <p>Height: 170 cm</p>
-                                                <p>Weight: 60 kg</p>
-                                                <a href="#"><button>View Test</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
