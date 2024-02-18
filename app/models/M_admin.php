@@ -240,7 +240,7 @@ class M_admin
       }
 
       public function regPharmacist($data)
-    {
+     {
         $this->db->query('INSERT INTO pharmacists (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
         // Bind values
         $this->db->bind(':first_name', $data['first_name']);
@@ -259,7 +259,7 @@ class M_admin
         {
           return false;
         }
-      }
+    }
 
       public function regReceptionist($data)
     {
@@ -281,7 +281,7 @@ class M_admin
         {
           return false;
         }
-      }
+    }
 
       public function deleteProfileDoc($id)
       {
@@ -299,9 +299,10 @@ class M_admin
          }
       }
 
-      public function deleteProfileAdmin($id)
+
+      public function deleteProfileHealthsup($id)
       {
-        $this->db->query('DELETE FROM admins WHERE admin_id = :id');
+        $this->db->query('DELETE FROM healthsupervisors WHERE healthsp_id = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -315,9 +316,9 @@ class M_admin
          }
       }
 
-      public function deleteProfileHealthsup($id)
+      public function deleteProfileLabtech($id)
       {
-        $this->db->query('DELETE FROM healthsupervisors WHERE healthsp_id = :id');
+        $this->db->query('DELETE FROM labtechnicians WHERE labtech_id = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -325,6 +326,7 @@ class M_admin
          {
            return true;
          }
+
           else
          {
            return false;
@@ -379,7 +381,7 @@ class M_admin
          }
       }
 
-      public function deleteProfileReceptionst($id)
+      public function deleteProfileReceptionist($id)
       {
         $this->db->query('DELETE FROM receptionists WHERE receptionist_id = :id');
         $this->db->bind(':id',$id);
@@ -393,8 +395,6 @@ class M_admin
          {
            return false;
          }
-      }
-
-      
+      }     
     
 }

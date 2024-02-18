@@ -312,14 +312,14 @@ body {
     background-color: #0069FF;
     width:14vh;
     height:5.4vh;
-    border-radius: 0.5vh;
+    border-radius: 1vh;
     margin-left: 1.5vh;
     color: white;
     font-weight: 100vh;
     font-Size: 1.7vh;
     font-family: inter;
     Line-height: 1.5vh;
-    margin-bottom: 8.9vh;
+    margin-bottom: 4vh;
     border: none;
   }
 
@@ -344,7 +344,7 @@ body {
     Width:55vh;
     height:5vh;
     padding-top: 0.5vh;
-    border-radius: 0.8vh;
+    border-radius: 1vh;
     background-color: #0069FF;
     color: white;
     font-size: 2.3vh;
@@ -397,17 +397,67 @@ body {
   .regbut
   {
     background-color: #0069FF;
-    width:26vh;
     height:5.5vh;
-    border-radius: 0.5vh;
-    margin-left: 33vh;
+    width: 25vh;
+    border-radius: 1vh;
     color: white;
     font-Size: 1.7vh;
     font-family: inter;
     border: none;
-    margin-top: 15vh;
+    margin-top: 3vh;
 
   }
+
+  .column
+{
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    margin-bottom: 2vh;
+    height:7vh;
+}
+.column p
+{
+  color: #445172BF;
+  cursor: pointer; 
+  width: 60vh;
+  font-size: 2vh;
+}
+
+.person-circle
+{
+  padding-left: 1vh;
+  padding-right: 1vh;
+  width: 5vh;
+  height: 5vh;
+}
+.column .name
+{
+  width: 50vh;
+}
+.profileButton
+{
+  width: 40vh;
+  height: 5vh;
+  background-color: rgba(0, 105, 255, 1);
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-left: 30%;
+  border: none;
+  font-weight: 100vh;
+  font-Size: 1.7vh;
+  font-family: inter;
+  Line-height: 1.5vh;
+}
+.trash-image
+{
+  width: 3.5vh;
+  height: 3.5vh;
+  margin-right: 2vh;
+}
   
   
   

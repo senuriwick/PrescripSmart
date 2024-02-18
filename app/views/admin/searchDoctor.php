@@ -47,7 +47,7 @@
                                        View profile
                                     </button>
 
-                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->doctor_id ?>">
+                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->doctor_id ?>">
                                   <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                   </form>
 
@@ -57,6 +57,7 @@
                                         
                                 </tr>
                                     <?php endforeach; ?>
+                                    
 
          </div>
        </div>
@@ -72,6 +73,7 @@
     </div>
   </div>
 </body>
+
 <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

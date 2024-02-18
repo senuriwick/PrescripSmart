@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/search.css"/>
+  <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
+
 </head>
 <body>
 
@@ -51,7 +53,7 @@
                                     </button>
 
 
-                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->healthsp_id ?>">
+                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileHealthsup/<?php echo $post->healthsp_id ?>">
                                   <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                   </form>
                                     </td>
@@ -75,6 +77,5 @@
     </div>
   </div>
 </body>
-<script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
                
 </html>

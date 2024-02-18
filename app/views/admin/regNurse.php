@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/RegisterActor.css"/>
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/search.css"/>
+  <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
+
 </head>
 <body>
 <?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
@@ -68,6 +70,5 @@
           
           <button type="submit"><b>Register</b></button>
         </form>
-      <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
     </html>
         
