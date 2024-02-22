@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/search.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/>
+
 </head>
 <body>
 
@@ -43,13 +45,10 @@
                                     </td>
 
                                     <td>
-                                    <button class="profileButton">
-                                       View profile
-                                    </button>
-
-                                  <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->doctor_id ?>">
-                                  <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                                  </form>
+                                    <button class="profileButton">View profile </button>
+                                    <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->doctor_id ?>">
+                                    <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                    </form>
 
                                     </td>
                                                
@@ -57,6 +56,7 @@
                                         
                                 </tr>
                                     <?php endforeach; ?>
+                                    
 
          </div>
        </div>
@@ -72,6 +72,7 @@
     </div>
   </div>
 </body>
+
 <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

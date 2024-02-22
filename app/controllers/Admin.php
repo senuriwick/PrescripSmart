@@ -30,10 +30,7 @@
 //
     public function register_email()
     {
-     
-      $this->view('admin/register_email');
       
-
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
         // Process form
@@ -256,6 +253,9 @@
     public function searchPatient()
     {
       $posts = $this->userModel->getPatients();
+      $num = mysqli_num_rows($posts);
+      $dataperPage = 3;
+      $totalPages = ceil($num/$dataperPage);
       $data = [
         'patients'=> $posts
       ];
@@ -377,8 +377,6 @@
                     $_POST = filter_input_array(INPUT_POST, 513);
         // Init data
 
-        $this->view('admin/regDoctor');
-
 
         $data = [
           'first_name' => trim($_POST['first_name']),
@@ -462,17 +460,20 @@
           {
             // flash('register_success', 'You are registered and can log in');
             redirect('/admin/searchDoctor');
+           
           }
            else 
           {
             die('Something went wrong');
+            
           }
 
         } 
         else
         {
           // Load view with errors
-          $this->view('admin/register_email', $data);
+          //$this->view('admin/register_email', $data);
+          echo"this 13";
         }
 
       }
@@ -491,7 +492,8 @@
         ];
 
         // Load view
-       // $this->view('admin/register_email', $data);
+       $this->view('admin/register_email', $data);
+       
       }
       
 
@@ -762,9 +764,7 @@
 
     public function regNurse()
     {
-      $this->view('admin/regNurse');
-
-
+      
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
         // Process form
@@ -1024,7 +1024,7 @@
 
     public function regPharmacist()
     {
-      $this->view('admin/regPharmacist');
+     
 
 
       if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -1284,11 +1284,11 @@
 
     }
 
-    public function deleteProfile($id)
+    public function deleteProfileDoc($id)
     {
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
-        if($this->userModel->deleteProfile($id))
+        if($this->userModel->deleteProfileDoc($id))
         {
           echo"Profile sucessfully deleted";
         }
@@ -1298,6 +1298,93 @@
         }
       }
     }
+    public function deleteProfileLabtech($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        if($this->userModel->deleteProfileLabtech($id))
+        {
+          echo"Profile sucessfully deleted";
+        }
+        else
+        {
+          echo"something went wrong";
+        }
+      }
+    }
+    public function deleteProfileHealthsup($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        if($this->userModel->deleteProfileHealthsup($id))
+        {
+          echo"Profile sucessfully deleted";
+        }
+        else
+        {
+          echo"something went wrong";
+        }
+      }
+    }
+
+    public function deleteProfileNurse($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        if($this->userModel-> deleteProfileNurse($id))
+        {
+          echo"Profile sucessfully deleted";
+        }
+        else
+        {
+          echo"something went wrong";
+        }
+      }
+    }
+    public function deleteProfilePatient($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        if($this->userModel->deleteProfilePatient($id))
+        {
+          echo"Profile sucessfully deleted";
+        }
+        else
+        {
+          echo"something went wrong";
+        }
+      }
+    }
+    public function deleteProfilePharmacist($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        if($this->userModel->deleteProfilePharmacist($id))
+        {
+          echo"Profile sucessfully deleted";
+        }
+        else
+        {
+          echo"something went wrong";
+        }
+      }
+    }
+
+    public function deleteProfileReceptionist($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        if($this->userModel->deleteProfileReceptionist($id))
+        {
+          echo"Profile sucessfully deleted";
+        }
+        else
+        {
+          echo"something went wrong";
+        }
+      }
+    }
+    
 
     
     

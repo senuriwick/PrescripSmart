@@ -9,73 +9,49 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/RepSearchApp.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/RepAddApp.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/navbar&sidemenu.css"/>
 </head>
 <body>
 
-  <div class="content">
-    <div class="sideMenu"> 
-      <div class="logoDiv">
-      <img class="logoImg" src="<?php echo URLROOT ?>/img/admin/Untitled design (5).png"/>
-      </div>
+  <?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
 
-
-      <div class="manageDiv">
-        <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i id="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
-
-        <div class="submenus" id="submenus">
-         <a href="RepAddApp.html" id="prescriptions">Appointments</a>
-         <a href="RepManageSessions.html" id="reports">Sessions</a>
-         <a href="RepSearchPatient.html" id="appointments">Patients</a>
-         <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
-         <a href="RepSearchNurse.html" id="appointments">Nurses</a>
-
-         <div class="othersDiv">
-          <a class="sideMenuTexts">Profile</a>
-          <a class="sideMenuTexts">Billing</a>
-          <a class="sideMenuTexts">Terms of Services</a>
-          <a class="sideMenuTexts">Privacy Policy</a>
-          <a class="sideMenuTexts">Settings</a>
-        </div>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="main">
-      <div class="navBar">
-      <img src="<?php echo URLROOT ?>/img/admin/user.png" alt="user-icon">
-        <p>SAMPLE USERNAME HERE</p>
-      </div>  
-
-      <div class="adminInfoContainer">
-        <div class="adminInfo">
-        <img src="<?php echo URLROOT ?>/img/admin/profile.png" alt="profile-pic">
-          <div class="adminNameDiv">
-            <p class="name">Receptionist Name</p>
-            <p class="role">Receptionist</p>
-          </div>
-        </div>
-
-        <div class="menu">
-            <a href="RepAddApp.html" id="prescriptions">Appointments</a>
-            <a href="RepManageSessions.html" id="reports">Sessions</a>
-            <a href="RepSearchPatient.html" id="appointments">Patients</a>
-            <a href="RepSearchDoctor.html" id="appointments">Doctors</a>
-            <a href="RepSearchNurse.html" id="appointments">Nurses</a>
-
-        </div>
 
         <div class="searchDiv">
           <h1>Add New Appointment</h1>
           <div class="searchFiles">
             <input type="search" placeholder="Enter doctor name or ID here">
             <button type="search"><b>SEARCH</b></button>
-            
-            '
-            
+
+            <hr style="margin-bottom: 3vh;">
+    
           </div>
+
+           <div class="app-doc">
+           <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="profile-pic">
+           <h3>DR. ASANKA SAYAKKARA</h3>
+           </div>
+          
+          <h4 class="doc-pos">Consultant Physician</h4>
+
+          <div class="sessions">
+
+
+          <h4><strong>Session #23233</strong></h4>
+          <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
+
+          <p>Date: Sunday, 17th Sept, 2023</p>
+          <p>Time: 06.00 A.M </p>
+
+          <button><strong>BOOK NOW</strong> </button>
+          
+        
+
+
+          </div>
+
+
+
         </div>
 
 

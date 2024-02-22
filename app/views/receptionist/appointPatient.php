@@ -5,11 +5,11 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Receptionist Search Doctor</title>
+  <title>Receptionist Assign Patient</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/RepSearchDoctor.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/RepAssignPatient.css"/>
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/navbar&sidemenu.css"/>
   <script src="<?php echo URLROOT ?>/js/receptionist/script.js"></script>
 
@@ -21,51 +21,80 @@
 
 
         <div class="searchDiv">
-            <h1>Search Doctor</h1>
-            <div class="searchFiles">
-              <input type="search" placeholder="Enter Doctor name/ID here">
-              <button type="search"><b>SEARCH</b></button> 
-            </div>
+          <div class="back">
+          
+              <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >
+            
+            <h1>Add New Appointment</h1>
+          </div>
 
-            <?php foreach($data['doctors'] as $post): ?>
-                              <tr class="row">
+          <div class="sessions">
+
+            <h4><strong>Session #23233</strong></h4>
+            <hr style="margin-top: -2vh; width: 25vh;">
+
+            <p>Date: Sunday, 17th Sept, 2023</p>
+            <p>Time: 06.00 A.M </p>
+            <p>Dr. Asanka Sayakkara</p>
+            <p>Token No - 12</p>
+            <p>Channeling Fee: Rs.4000</p>
+    
+          </div>
+
+          <hr style="margin-bottom: 2vh; color:#445172BF;">
+
+
+
+           <div class="searchFiles">
+            <input type="search" style="border-radius: 1vh;" placeholder="Enter patient name or ID here">
+            <button type="search"><b>SEARCH</b></button>
+           </div>
+
+           <tr class="row">
                                                                            
                                 <div class="column">
 
                                     <td >
                                     <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                                     <p class="name">
-                                    <?php echo $post->last_name;?>
+                                    Ms. Shenaya Perera
                                     </p> 
                                     </td>
 
                                     <td>
-                                    <p style="margin-left: 10vh;">Employee ID- <?php echo $post->doctor_id;?></p>
+                                    <p style="margin-left: 10vh;">Age - 22</p>
                                     </td>
 
                                     <td>
-                                    <button class="profileButton">
-                                       View profile
-                                    </button>
+                                    <p>
+                                        Patient ID #32562
+                                    </p>
 
-                                  <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileDoc/<?php echo $post->doctor_id ?>">
-                                  <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                                  </form>
-
+                                  
                                     </td>
                                                
                                   </div>
                                         
                                 </tr>
-                                    <?php endforeach; ?>
+
+                                <button type="submit" class="add-app"><b><strong>ADD APPOINTMENT</strong></b></button>
+
 
         </div>
-        <div class="addapp">
-          <div class="newapp">
-            <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
-            <a href="<?php echo URLROOT?>/receptionist/viewregDoctor">Register a new doctor</a>
-          </div>
-        </div>
 
-      </body>
-      </html>
+
+        
+
+
+      </div>
+
+
+      
+
+
+    </div>
+
+  </div>
+
+
+</body>
