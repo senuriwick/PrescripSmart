@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="../public/css/lab_tech/patient.css" />
-    <link rel="stylesheet" href="../public/css/lab_tech/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="../public/css/lab_tech/sideMenu_navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -82,22 +82,13 @@
                                             <div class="desDiv">
                                                 <img src="../public/img/lab_tech/profile.png" alt="user-icon">
                                                 <p class="patientName"><?php echo $reportToUpload->patient_name;?></p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content1" onclick="show(this)"></i>                                            </div>
+                                            </div>
                                         </td>
                                         
                                         <td>Patient ID-<?php echo $reportToUpload->patient_id;?></td>
                                         <td><a href="<?php echo URLROOT; ?>/LabTechnician/reports/<?php echo $reportToUpload->patient_id;?>"><button >View Test</button></a></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div id="content1" class="patient-data" style="display: none;">
-                                                <p>Age: 30</p>
-                                                <p>Height: 170 cm</p>
-                                                <p>Weight: 60 kg</p>
-                                                <a href="#"><button>View Test</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    
                                     <?php endforeach;?>
                                 </tbody>
                             </table>
@@ -119,12 +110,6 @@
 
                 patientRows.forEach(function (row){
                     const patientName = row.querySelector(".patientName").textContent.toLowerCase();
-
-                    //   if (patientName.includes(searchTerm)) {
-                    //             row.style.display = "table-row";
-                    //         } else {
-                    //              row.style.display = "none";}
-
                     if(regex.test(patientName)){
                         row.style.display= "table-row";
                     }else{

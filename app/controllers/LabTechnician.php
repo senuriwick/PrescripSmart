@@ -36,9 +36,13 @@ class LabTechnician extends Controller{
     }
 
     public function reports($id){
+        $testData = $this->dpModel->getTests($id);
         $patientDetails = $this->dpModel->getPatient($id);
+        $testCount = $this->dpModel->getTestCount($id);
         $data = [
-            'patientDetails'=>$patientDetails
+            'patientDetails'=>$patientDetails,
+            'testData'=>$testData,
+            'testCount' =>$testCount
         ];
         $this->view('lab_tech/reports',$data);
     }

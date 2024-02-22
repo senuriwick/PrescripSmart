@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/lab_tech/patient.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/lab_tech/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/lab_tech/sideMenu_navBar.css" />
     <script src="main.js"></script>
 </head>
 
@@ -76,30 +76,20 @@
                             </div>
                         </div>
                         <hr>
-                        <h1>Test (4)</h1>
+                        <h1>Test (<?php echo $data['testCount'];?>)</h1>
                         <div class="test-details-box">
+                            <?php foreach($data['testData'] as $test):?>
                             <div class="test-details">
-                                <p class="test-descript">Test Description : <span style="font-weight: normal;">Sample here</span></p>
-                                <p class="rest-data">Date : 10/10/2023</p>
-                                <p class="rest-data">Refered by : Doctor name</p>
-                                <p class="rest-data">Remarks : Docter comments here</p>
+                                <p class="test-descript">Test Description : <span style="font-weight: normal;"><?php echo $test->test_descript;?></span></p>
+                                <p class="rest-data">Date : <?php echo $test->date;?></p>
+                                <p class="rest-data">Refered by : <?php echo $test->doctor_fname; echo " "; echo $test->doctor_lname;?></p>
+                                <?php if ($test->remarks!=""){?><p class="rest-data">Remarks : <?php echo $test->remarks;}?></p>
                             </div>
                             <div class="buttons">
                                 <button style="background-color:#397A49;">Uploads Report</button>
                                 <button style="background-color: #0069FF;">Mark As Done</button>
                             </div>
-                        </div>
-                        <div class="test-details-box">
-                            <div class="test-details">
-                                <p class="test-descript">Test Description : <span style="font-weight: normal;">Sample here</span></p>
-                                <p class="rest-data">Date : 10/10/2023</p>
-                                <p class="rest-data">Refered by : Doctor name</p>
-                                <p class="rest-data">Remarks : Docter comments here</p>
-                            </div>
-                            <div class="buttons" id="buttons">
-                                <button  id="upload-button" style="background-color:#397A49;">Uploads Report</button>
-                                <button style="background-color: #0069FF;">Mark As Done</button>
-                            </div>
+                            <?php endforeach;?>
                         </div>
                     </div>
                     <div class="upload-model" id="upload-model" style="display: none;">
@@ -121,7 +111,7 @@
                             </div>
                         </div>
                         <hr>
-                        <h1>Test (4)</h1>
+                        <h1>Test ()</h1>
                         <div class="test-details-box">
                             <div class="test-details">
                                 <p class="test-descript">Test Description : <span style="font-weight: normal;">Sample here</span></p>

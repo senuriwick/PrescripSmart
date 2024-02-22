@@ -20,4 +20,19 @@ class M_LabTechnician {
         $results = $this->db->single();
         return $results;
     }
+
+    public function getTests($patientID){
+        $this->db->query('SELECT test.* , doctordetails.* FROM `test` LEFT JOIN `doctordetails` 
+        ON test.doctor_id=doctordetails.doctor_id WHERE test.patient_id=:id AND test.report_id=""');
+        $this->db->bind(':id',$patientID);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getTestCount($patientID){
+        $this->db->query('SELECT * FROM test WHERE patient_id=:id AND report_id=""');
+        $this->db->bind(':id',$patientID);
+        $results=$this->db->resultSet();
+        return $this->db->rowCount();
+    }
 }
