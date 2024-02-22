@@ -30,10 +30,7 @@
 //
     public function register_email()
     {
-     
-      $this->view('admin/register_email');
       
-
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
         // Process form
@@ -256,6 +253,9 @@
     public function searchPatient()
     {
       $posts = $this->userModel->getPatients();
+      $num = mysqli_num_rows($posts);
+      $dataperPage = 3;
+      $totalPages = ceil($num/$dataperPage);
       $data = [
         'patients'=> $posts
       ];
@@ -1326,6 +1326,7 @@
         }
       }
     }
+
     public function deleteProfileNurse($id)
     {
       if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -1368,6 +1369,7 @@
         }
       }
     }
+
     public function deleteProfileReceptionist($id)
     {
       if($_SERVER['REQUEST_METHOD'] == 'POST')

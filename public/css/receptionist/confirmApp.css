@@ -1,0 +1,62 @@
+.app-div
+{
+    width: 120vh;
+    height: 66vh;
+    background-color: #EFF2FB;
+    margin-top: 2vh;
+}
+.app-div img
+{
+    margin-left: 4vh;
+    margin-top:0.1vh ;
+    margin-right: 2vh;
+}
+.header
+{
+    display: flex;
+}
+.app-div h2
+{
+    padding-top: 0.2vh;
+}
+.app-div h4
+{
+    color: #0069FF;
+    margin-left: 10vh;
+    margin-top: -0.2vh;
+}
+.app-details
+{
+    margin-left: 8vh;
+    margin-top: 2vh;
+    background-color: white;
+    width: 100vh;
+    height: 40vh;
+    border-radius: 1vh;
+}
+.details
+{
+    display: flex;
+    margin-left: 4vh;
+    font-size: 2vh;
+    margin-top: -1vh;
+}
+.first
+{
+    width: 30vh;
+}
+
+.app-div button
+{
+  background-color: #0069FF;
+  width:18vh;
+  height:4.5vh;
+  border-radius: 1vh;
+  color: white;
+  font-weight: 100vh;
+  font-Size: 2vh;
+  font-family: inter;
+  border: none;
+  margin-left: 8vh;
+  margin-top: 2vh;
+}

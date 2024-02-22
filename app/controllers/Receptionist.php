@@ -15,12 +15,11 @@
     public function index()
     {
      
-      $this->view('receptionist/appointPatient');
+      $this->view('receptionist/confirmApp');
     }
 
     public function login()
    {
-
       // Check for POST
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
@@ -74,7 +73,6 @@
           {
             // Create Session
             $this->createusersession($loggedInUser);
-            $this->view('receptionist/searchDoctor');
             
           } 
           else 
@@ -92,7 +90,7 @@
 
       } 
       else 
-    {
+     {
         // Init data
         $data =[    
           'email' => '',
@@ -602,6 +600,13 @@
       
 
 
+    }
+
+    public function createusersession($user)
+    {
+      $_SESSION['email_address'] = $user->email_address;
+      $_SESSION['first_name'] = $user->first_name;
+      redirect('/receptionist/searchApp');
     }
 
 
