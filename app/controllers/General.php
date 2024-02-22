@@ -16,4 +16,32 @@ class General extends Controller
     {
         $this->view('general/home');
     }
+
+    public function employee_login()
+    {
+        $this->view('general/employee_login');
+    }
+
+    public function employee_authentication()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email_address = $_POST["email_address"];
+            $password = $_POST["password"];
+
+            $result = $this->generalModel->employee_authentication($email_address, $password);
+
+            if ($result) {
+                if (password_verify($password, $result->password)) 
+                {
+                    //session_start();
+                    //$_SESSION['user_ID'] = $result->user_ID;
+                    echo json_encode(["success" => true, "role" => $result->role]);
+                } else {
+                    echo json_encode(["error" => "Invalid password"]);
+                }
+            } else {
+                echo json_encode(["error" => "Email/Phone Number does not exist"]);
+            }
+        }
+    }
 }
