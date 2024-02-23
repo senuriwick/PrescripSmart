@@ -50,6 +50,31 @@ class M_Patient
         return $reference;
     }
 
+    public function updateOTP($otp, $userID)
+    {
+        $this->db->query('UPDATE users SET activation_code = :activation_code WHERE user_ID = :userID');
+        $this->db->bind(':activation_code', password_hash($otp, PASSWORD_DEFAULT));
+        $this->db->bind(':userID', $userID);
+        $this->db->execute();
+    }
+
+    public function registerPhone($first_name, $last_name, $phone_number, $password, $activation_code, int $expiry = 1 * 24 * 60 * 60)
+    {
+        $this->db->query('INSERT INTO users (username, email_phone, password, first_Name, last_Name, role, activation_code, activation_expiry) 
+                          VALUES (:username, :phone_number, :password, :first_name, :last_name, "Patient", :activation_code, :expiry)');
+        $this->db->bind(':first_name', $first_name);
+        $this->db->bind(':last_name', $last_name);
+        $this->db->bind(':username', $first_name . '_' . $last_name);
+        $this->db->bind(':phone_number', $phone_number);
+        $this->db->bind(':password', password_hash($password, PASSWORD_BCRYPT));
+        $this->db->bind(':activation_code', password_hash($activation_code, PASSWORD_DEFAULT));
+        $this->db->bind(':expiry', date('Y-m-d H:i:s', time() + $expiry));
+
+        $this->db->execute();
+        $reference = $this->db->lastInsertId();
+        return $reference;
+    }
+
     public function patientRegistration($user_ID, $first_name, $last_name, $email_address)
     {
         $this->db->query('INSERT INTO patients (patient_ID, first_Name, last_Name, display_Name, email_address, signIn_Method, NIC) 
@@ -59,6 +84,32 @@ class M_Patient
         $this->db->bind(':lName', $last_name);
         $this->db->bind(':dName', $first_name . ' ' . $last_name);
         $this->db->bind(':email', $email_address);
+
+        $this->db->execute();
+    }
+
+    public function patientRegistrationPhone($user_ID, $first_name, $last_name, $contact_Number)
+    {
+        $this->db->query('INSERT INTO patients (patient_ID, first_Name, last_Name, display_Name, contact_Number, signIn_Method, NIC, email_address) 
+        VALUES (:id, :fName, :lName, :dName, :contact_Number, "phone", :id, :id)');
+        $this->db->bind(':id', $user_ID);
+        $this->db->bind(':fName', $first_name);
+        $this->db->bind(':lName', $last_name);
+        $this->db->bind(':dName', $first_name . ' ' . $last_name);
+        $this->db->bind(':contact_Number', $contact_Number);
+
+        $this->db->execute();
+    }
+
+    public function patientRegistration_02Phone($NIC, $DOB, $age, $address, $email, $id)
+    {
+        $this->db->query('UPDATE patients SET NIC = :nic, DOB = :dob, age = :age, home_Address = :address, email_address = :email WHERE patient_ID = :id');
+        $this->db->bind(':nic', $NIC);
+        $this->db->bind(':dob', $DOB);
+        $this->db->bind(':age', $age);
+        $this->db->bind(':address', $address);
+        $this->db->bind(':email', $email);
+        $this->db->bind(':id', $id);
 
         $this->db->execute();
     }
@@ -76,7 +127,7 @@ class M_Patient
         $this->db->execute();
     }
 
-    public function patientRegistration_03($gender, $weight, $height ,$emergency, $phoneNo, $id)
+    public function patientRegistration_03($gender, $weight, $height, $emergency, $phoneNo, $id)
     {
         $this->db->query('UPDATE patients SET gender = :gender, weight = :weight, height = :height, emergency_Contact_Person = :emergency, emergency_Contact_Number = :phone WHERE patient_ID = :id');
         $this->db->bind(':gender', $gender);
