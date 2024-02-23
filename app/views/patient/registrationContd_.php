@@ -8,7 +8,7 @@
   <title>Sign Up page 2</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
-  <link rel="stylesheet" href="signUp-2.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT?>/public/css/patient/signUp-2-2.css"/>
 </head>
 <body>
 <div class="signUp-page-3">
@@ -23,11 +23,13 @@
       <div class="sideRectangle">
       </div>
       <div class="container2">
+      <?php $user = $data['user'] ?>
+      <form action = "<?php echo URLROOT?>/patient/phoneregistrationContd" method = "POST">
         <div class="group2">
           <p class="text1">Few more things...</p>
           <div class="box1">
             <p class="nic">NIC</p>
-            <input type="number" id="nic" name="nic" placeholder="Enter your national identity card number" class="input1">
+            <input type="number" id="nic" name="nic" placeholder="Enter your national identity card number" class="input1" required>
           </div>
         </div>
         <div class="container3">
@@ -36,14 +38,14 @@
               <span class="dob-sub-0">date of birth </span>
               <span class="dob-sub-1">*</span>
             </p>
-            <input type="date" id="dob" name="dob" placeholder="DD/MM/YYYY" class="DOB">
+            <input type="date" id="dob" name="dob" placeholder="DD/MM/YYYY" class="DOB" required>
           </div>
           <div class="group4">
             <p class="age">
               <span class="age-sub-0">age </span>
               <span class="age-sub-1">*</span>
             </p>
-            <input type="number" id="age" name="age" placeholder="Enter your age" class="agehere">
+            <input type="number" id="age" name="age" placeholder="Enter your age" class="agehere" required>
           </div>
         </div>
         <div class="container4">
@@ -53,15 +55,11 @@
           </div>
           <div class="group6">
             <p class="contact-number">email address</p>
-            <input type="text" id="phoneNo" name="phoneNo" placeholder="Enter your email address" class="contactNo">
+            <input type="text" id="email" name="email" placeholder="Enter your email address" class="contactNo" required>
+            <input type="number" id="id" name="id" value = <?php echo $user->user_ID?> style="display: none">
           </div>
-          <button type="button" class="group7" id="continue">Continue</button>
+          <button type="submit" class="group7" id="continue">Continue</button>
 
-                <script>
-                    document.getElementById("continue").addEventListener("click", function () {
-                        window.location.href = "signUp-3.html";
-                    });
-                </script>
         </div>
       </div>
     </div>
