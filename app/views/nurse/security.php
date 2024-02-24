@@ -9,7 +9,7 @@
     <title>Security</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\patient\profile_dashboard_3.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\nurse\profile_dashboard_3.css" />
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT ?>\public\img\patient\Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="<?php echo URLROOT ?>\public\img\nurse\Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="patientDiv">
@@ -30,11 +30,10 @@
 
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
-
-                <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-                <a href="reports_dashboard.html" id="reports">Reports</a>
-                <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-                <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
+                <a href="patients_dashboard.html" id="patients">Patients</a>
+                <a href="ongoing.html" id="On-going">On-going session</a>
+                <a href="sessions.html" id="sessions">Sessions</a>
+                <a href="appointments.html" id="appointments">Appoinments</a>
                 <a href="profile_dashboard.html" id="profile">Profile</a>
             </div>
 
@@ -47,16 +46,16 @@
 
         <div class="main">
             <div class="navBar">
-                <img src="<?php echo URLROOT ?>\public\img\patient\user.png" alt="user-icon">
+                <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
                 <p>SAMPLE USERNAME HERE</p>
             </div>
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
-                    <img src="<?php echo URLROOT ?>\public\img\patient\profile.png" alt="profile-pic">
+                    <img src="<?php echo URLROOT ?>\public\img\nurse\profile.png" alt="profile-pic">
                     <div class="patientNameDiv">
-                        <p class="name">Patient Name</p>
-                        <p class="role">Patient</p>
+                        <p class="name">Nurse Name</p>
+                        <p class="role">Nurse</p>
                     </div>
                 </div>
 
@@ -67,11 +66,11 @@
                 </div>
 
                 <div class="inquiriesDiv">
-                    <?php $user = $data['user'] ?>
-                    <h1>Patient ID: #<?php echo $user->user_ID ?></h1>
+                <?php $user = $data['user'] ?>
+                    <h1>Employee ID: #<?php echo $user->user_ID ?></h1>
                     <p class="sub1" style="font-weight: bold;">Security Information</p>
                     <div class="accInfo">
-                        <div class="parallel">
+                    <div class="parallel">
                             <div class="input-group">
                                 <label for="name">Method of Sign-In</label>
                                 <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $user->method_of_signin ?>>
@@ -83,7 +82,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div>
                         <h4>Two-factor Authentication</h3>
                             <p class="para">Add an extra layer of security to your account. To sign in, you'll need to
@@ -94,7 +92,7 @@
                             </label>
                     </div>
                 </div>
-
+                
             </div>
         </div>
 
@@ -112,7 +110,7 @@
             var user_ID = user;
 
             $.ajax({
-                url: '<?php echo URLROOT?>/patient/toggle2FA',
+                url: '<?php echo URLROOT?>/nurse/toggle2FA',
                 method: 'POST',
                 dataType: 'json',
                 data: {

@@ -69,7 +69,7 @@
           success: function (response) {
             if (response.success) {
               if (response.two_factor_required) {
-                var emailOrPhone = $('#email_address').val(); // Get the entered email/phone
+                var emailOrPhone = $('#email_address').val();
                 window.location.href = '/prescripsmart/patient/two_factor_authentication?user=' + encodeURIComponent(emailOrPhone);
               } else {
                 window.location.href = '/prescripsmart/patient/prescriptions_dashboard';

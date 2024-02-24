@@ -17,7 +17,7 @@
         <div class="upperRectangle">
         </div>
         <div class="container">
-            <form id="twofactor-form" action="<?php echo URLROOT ?>/patient/twofactorverification" method="POST">
+            <form id="twofactor-form" action="<?php echo URLROOT ?>/general/twofactorverification" method="POST">
                 <div class="confirmationForm">
                     <?php $user = $data['user']; ?>
 
@@ -67,7 +67,23 @@
                     dataType: 'json',
                     success: function (response) {
                         if (response.success) {
-                            window.location.href = '/prescripsmart/patient/prescriptions_dashboard';
+                            if (response.role === 'Admin') {
+                                window.location.href = '/prescripsmart/admin/searchPatient';
+                            } else if (response.role === 'Doctor') {
+                                window.location.href = '/prescripsmart/doctor/sessions';
+                            } else if (response.role === 'Nurse') {
+                                window.location.href = '/prescripsmart/nurse/patients_dashboard';
+                            } else if (response.role === 'Receptionist') {
+                                window.location.href = '/prescripsmart/receptionist/searchPatient';
+                            } else if (response.role === 'Lab_technician') {
+                                window.location.href = '/prescripsmart/lab_tech/patient';
+                            } else if (response.role === 'Pharmacist') {
+                                window.location.href = '/prescripsmart/pharmacist/pharmacist_dashboard';
+                            } else if (response.role === 'Health_supervisor') {
+                                window.location.href = '/prescripsmart/healthSupervisor/healthSupervisor_dashboard';
+                            } else {
+                                window.location.href = '/prescripsmart/general/home';
+                            }
                         } else if (response.error) {
                             $('#error-message').text(response.error);
                         }
@@ -95,9 +111,9 @@
                 $.ajax({
                     type: 'POST',
                     <?php if ($user->method_of_signin == "Phone") { ?>
-                       url: '<?php echo URLROOT ?>/patient/resend_security_sms',
+                       url: '<?php echo URLROOT ?>/general/resend_security_sms',
                     <?php } else { ?>
-                       url: '<?php echo URLROOT ?>/patient/resend_security_email',
+                       url: '<?php echo URLROOT ?>/general/resend_security_email',
                     <?php } ?>
                    data: { emailPhone: emailphone },
                     dataType: 'json',

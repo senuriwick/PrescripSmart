@@ -180,4 +180,38 @@ class Nurse extends Controller
             exit();
         }
     }
+
+    public function security()
+    {
+        $userID = 1254638;
+        $user = $this->nurseModel->find_user_by_id($userID);
+        $data = [
+            'user' => $user
+        ];
+        $this->view('nurse/security', $data);
+    }
+
+    public function toggle2FA()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['toggle_state'])) {
+                $toggleState = $_POST['toggle_state'];
+                $userID = $_POST['userID'];
+        
+                if ($toggleState == 'on') {
+                    $this->nurseModel->manage2FA($toggleState, $userID);
+                } else if ($toggleState == 'off') {
+                    $this->nurseModel->manage2FA($toggleState, $userID);
+                }
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+        }
+
+    }
+
+    
 }
