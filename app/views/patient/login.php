@@ -46,7 +46,7 @@
       <p class="dont-have-an-account-sign-up-here">
         <span class="dont-have-an-account-sign-up-here-sub-0">Don’t have an account? Sign up</span>
         <span class="dont-have-an-account-sign-up-here-sub-1">&nbsp;</span>
-        <a href="<?php echo URLROOT?>/patient/registration" class="dont-have-an-account-sign-up-here-sub-2">here</a>
+        <a href="<?php echo URLROOT ?>/patient/registration" class="dont-have-an-account-sign-up-here-sub-2">here</a>
       </p>
     </div>
   </div>
@@ -65,16 +65,23 @@
           url: '<?php echo URLROOT ?>/patient/authenticate',
           data: formData,
           dataType: 'json',
+
           success: function (response) {
-            if (response.error) {
-              if (response.error == 'Email/Phone Number does not exist') {
+            if (response.success) {
+              if (response.two_factor_required) {
+                var emailOrPhone = $('#email_address').val(); // Get the entered email/phone
+                window.location.href = '/prescripsmart/patient/two_factor_authentication?user=' + encodeURIComponent(emailOrPhone);
+              } else {
+                window.location.href = '/prescripsmart/patient/prescriptions_dashboard';
+              }
+            } else if (response.error) {
+              if (response.error === 'Email/Phone Number does not exist') {
                 $('#email_error').text(response.error).css({ 'color': 'red' });
-              } else if (response.error == 'Invalid password') {
+              } else if (response.error === 'Invalid password') {
                 $('#password_error').text(response.error).css({ 'color': 'red' });
               }
             } else {
-              $('#userValidation').text("");
-              window.location.href = '/prescripsmart/patient/prescriptions_dashboard'; // Redirect on success
+              console.log('Unexpected response:', response);
             }
           },
           error: function () {

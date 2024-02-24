@@ -35,8 +35,8 @@ class M_Patient
 
     public function register($first_name, $last_name, $email_address, $password, $activation_code, int $expiry = 1 * 24 * 60 * 60)
     {
-        $this->db->query('INSERT INTO users (username, email_phone, password, first_Name, last_Name, role, activation_code, activation_expiry) 
-                          VALUES (:username, :email_address, :password, :first_name, :last_name, "Patient", :activation_code, :expiry)');
+        $this->db->query('INSERT INTO users (username, email_phone, password, first_Name, last_Name, role, activation_code, activation_expiry, method_of_signin) 
+                          VALUES (:username, :email_address, :password, :first_name, :last_name, "Patient", :activation_code, :expiry, "Email")');
         $this->db->bind(':first_name', $first_name);
         $this->db->bind(':last_name', $last_name);
         $this->db->bind(':username', $first_name . '_' . $last_name);
@@ -60,8 +60,8 @@ class M_Patient
 
     public function registerPhone($first_name, $last_name, $phone_number, $password, $activation_code, int $expiry = 1 * 24 * 60 * 60)
     {
-        $this->db->query('INSERT INTO users (username, email_phone, password, first_Name, last_Name, role, activation_code, activation_expiry) 
-                          VALUES (:username, :phone_number, :password, :first_name, :last_name, "Patient", :activation_code, :expiry)');
+        $this->db->query('INSERT INTO users (username, email_phone, password, first_Name, last_Name, role, activation_code, activation_expiry, method_of_signin) 
+                          VALUES (:username, :phone_number, :password, :first_name, :last_name, "Patient", :activation_code, :expiry, "Phone")');
         $this->db->bind(':first_name', $first_name);
         $this->db->bind(':last_name', $last_name);
         $this->db->bind(':username', $first_name . '_' . $last_name);
@@ -143,7 +143,7 @@ class M_Patient
 
     public function authenticate($email_address, $password)
     {
-        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address OR username = :email_address AND active = 1');
+        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address AND active = 1');
         $this->db->bind(':email_address', $email_address);
         $result = $this->db->single();
         return $result;
@@ -334,4 +334,19 @@ class M_Patient
         $this->db->execute();
     }
 
+    public function manage2FA($toggleState, $userID)
+    {
+        $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_ID = :userID');
+        $this->db->bind(':TFA', $toggleState);
+        $this->db->bind(':userID', $userID);
+        $this->db->execute();
+    }
+
+    public function updateCode($code, $user)
+    {
+        $this->db->query('UPDATE users SET otp_code = :code WHERE email_phone = :user OR user_ID = :user');
+        $this->db->bind(':code', password_hash($code, PASSWORD_BCRYPT));
+        $this->db->bind(':user', $user);
+        $this->db->execute();
+    }
 }

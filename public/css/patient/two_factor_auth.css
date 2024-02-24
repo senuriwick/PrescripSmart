@@ -165,8 +165,7 @@ body {
     align-items: baseline;
     flex-shrink: 0;
   }
-  .signUp-Phone-2 .container .text2 .text2-sub-0 {
-  }
+  
   .signUp-Phone-2 .container .text2 .text2-sub-1 {
     font-size: 2rem;
     font-weight: 500;
@@ -175,3 +174,14 @@ body {
     color: #0069ff;
     font-family: Inter, 'Source Sans Pro';
   }
+
+  .disabled {
+    pointer-events: none;
+    color: grey;
+}
+
+.error-message {
+    color: red;
+    font-size: 2rem;
+}
+

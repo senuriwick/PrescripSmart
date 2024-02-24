@@ -431,9 +431,22 @@ class Patient extends Controller
 
             if ($result) {
                 if (password_verify($password, $result->password)) {
+                    if($result->two_factor_auth == "on"){
+                        if($result->method_of_signin == "Email"){
+                            $security_code = $this->generate_OTP(6);
+                            $this->patientModel->updateCode($security_code, $result->user_ID);
+                            $this->send_security_email($result->email_phone, $security_code);
+                        } else {
+                            $security_code = $this->generate_OTP(6);
+                            $this->patientModel->updateCode($security_code, $result->user_ID);
+                            $this->send_security_sms($result->email_phone, $security_code);
+                        }
+                        echo json_encode(["success" => true, "two_factor_required" => true]);
+                    } else {
+                        echo json_encode(["success" => true, "two_factor_required" => false]);
+                    }
                     //session_start();
                     //$_SESSION['user_ID'] = $result->user_ID;
-                    echo json_encode(["success" => true]);
                 } else {
                     echo json_encode(["error" => "Invalid password"]);
                 }
@@ -441,6 +454,76 @@ class Patient extends Controller
                 echo json_encode(["error" => "Email/Phone Number does not exist"]);
             }
         }
+    }
+
+    public function send_security_email($email, $code)
+    {
+        $message = <<<MESSAGE
+            Hi,
+            Please use the following security code to login:
+            $code
+            MESSAGE;
+
+        require '../PHPMailerAutoload.php';
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();                                      
+        $mail->Host = 'smtp.gmail.com';                       
+        $mail->SMTPAuth = true;                               
+        $mail->Username = 'annabethwalker22@gmail.com';       
+        $mail->Password = 'loezmkkmqombsiyb';                 
+        $mail->SMTPSecure = 'tls';                            
+        $mail->Port = 587;                                    
+
+        $mail->setFrom('annabethwalker22@gmail.com', 'Prescripsmart');
+        $mail->addAddress($email);     
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Security Login';
+        $mail->Body = $message;
+
+        if (!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            //echo 'Message has been sent';
+        }
+    }
+
+    public function send_security_sms($phone, $code)
+    {
+        require '../vendor/autoload.php';
+
+        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
+        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
+        $twilio_number = "+12674227302";
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create(
+            $phone,
+            array(
+                'from' => $twilio_number,
+                'body' => 'Please use the following OTP: ' . $code
+            )
+        );
+    }
+
+    public function resend_security_email()
+    {
+        $email = $_POST['emailPhone'];
+        $security_code = $this->generate_OTP(6);
+        $this->patientModel->updateCode($security_code, $email);
+        $this->send_security_email($email, $security_code);
+        echo json_encode(["success" => true]);
+    }
+
+    public function resend_security_sms()
+    {
+        $phone = $_POST['emailPhone'];
+        $security_code = $this->generate_OTP(6);
+        $this->patientModel->updateCode($security_code, $phone);
+        $this->send_security_sms($phone, $security_code);
+        echo json_encode(["success" => true]);
     }
 
     public function inquiries_dashboard()
@@ -648,6 +731,62 @@ class Patient extends Controller
 
             header("Location: /prescripsmart/patient/personal_information");
             exit();
+        }
+    }
+
+    public function security()
+    {
+        $userID = 1254659;
+        $user = $this->patientModel->find_user_by_id($userID);
+        $data = [
+            'user' => $user
+        ];
+        $this->view('patient/security', $data);
+    }
+    
+    public function two_factor_authentication()
+    {
+        $userCred = $_GET['user'];
+        $user = $this->patientModel->find_user_by_email($userCred);
+        $data = [
+            'user' => $user
+        ];
+        $this->view('patient/two_factor_authentication', $data);
+    }
+
+    public function twoFA()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['toggle_state'])) {
+                $toggleState = $_POST['toggle_state'];
+                $userID = $_POST['userID'];
+        
+                if ($toggleState == 'on') {
+                    $this->patientModel->manage2FA($toggleState, $userID);
+                } else if ($toggleState == 'off') {
+                    $this->patientModel->manage2FA($toggleState, $userID);
+                }
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+        }
+
+    }
+
+    public function twofactor()
+    {
+        $code = $_POST['code'];
+        $emailphone = $_POST['phone'];
+
+        $user = $this->patientModel->find_user_by_email($emailphone);
+
+        if($user->two_factor_auth == "on" && password_verify($code, $user->otp_code)){
+            echo json_encode(["success" => true]);
+        } else {
+            echo json_encode(["error" => "Incorrect code"]);
         }
     }
 
