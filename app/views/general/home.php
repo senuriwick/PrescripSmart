@@ -39,7 +39,7 @@
           });
 
           document.getElementById("employee").addEventListener("click", function () {
-              window.location.href = "\\client\\lab tech\\authentication\\loginPage.html";
+              window.location.href = "<?php echo URLROOT; ?>/general/employee_login";
           });
   </script>
 

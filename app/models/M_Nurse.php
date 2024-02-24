@@ -137,4 +137,20 @@ class M_Nurse
 
         $this->db->execute();
     }
+
+    public function find_user_by_id($user_ID)
+    {
+        $this->db->query('SELECT * FROM users WHERE user_ID = :user_ID');
+        $this->db->bind(':user_ID', $user_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function manage2FA($toggleState, $userID)
+    {
+        $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_ID = :userID');
+        $this->db->bind(':TFA', $toggleState);
+        $this->db->bind(':userID', $userID);
+        $this->db->execute();
+    }
 }

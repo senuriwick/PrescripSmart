@@ -754,7 +754,7 @@ class Patient extends Controller
         $this->view('patient/two_factor_authentication', $data);
     }
 
-    public function twoFA()
+    public function toggle2FA()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST['toggle_state'])) {
@@ -776,7 +776,7 @@ class Patient extends Controller
 
     }
 
-    public function twofactor()
+    public function twofactorverification()
     {
         $code = $_POST['code'];
         $emailphone = $_POST['phone'];

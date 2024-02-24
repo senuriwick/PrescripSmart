@@ -62,15 +62,14 @@
                     url: '<?php echo URLROOT ?>/general/employee_authentication',
                     data: formData,
                     dataType: 'json',
+
                     success: function (response) {
-                        if (response.error) {
-                            if (response.error == 'Email/Phone Number does not exist') {
-                                $('#email_error').text(response.error).css({ 'color': 'red' });
-                            } else if (response.error == 'Invalid password') {
-                                $('#password_error').text(response.error).css({ 'color': 'red' });
-                            }
-                        } else {
-                            $('#userValidation').text("");
+                        if (response.success) {
+                            if (response.two_factor_required) {
+                var emailOrPhone = $('#email_address').val();
+                window.location.href = '/prescripsmart/general/two_factor_authentication?user=' + encodeURIComponent(emailOrPhone);
+              } else {
+                $('#userValidation').text("");
 
                             // Redirect based on user's role
                             if (response.role === 'Admin') {
@@ -91,7 +90,17 @@
                                 window.location.href = '/prescripsmart/general/home';
                             }
                         }
-                    },
+              }   
+              else if (response.error) {
+              if (response.error === 'Email/Phone Number does not exist') {
+                $('#email_error').text(response.error).css({ 'color': 'red' });
+              } else if (response.error === 'Invalid password') {
+                $('#password_error').text(response.error).css({ 'color': 'red' });
+              }
+            } else {
+              console.log('Unexpected response:', response);
+            }
+          },
                     error: function () {
                         console.log('Error occurred during AJAX request.');
                     }
