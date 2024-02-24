@@ -114,7 +114,45 @@ ADMIN
 
 
 
-~Nurse 
+NURSE
 INSERT INTO `nurses` (`nurse_ID`, `first_Name`, `last_Name`) VALUES ('1254638', 'Senali', 'De Silva');
+
+
+
+USERS
+CREATE TABLE `users` (
+  `user_ID` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email_phone` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `first_Name` varchar(255) NOT NULL,
+  `last_Name` varchar(255) NOT NULL,
+  `role` varchar(25) NOT NULL,
+  `active` tinyint(1) DEFAULT 0,
+  `activation_code` varchar(255) NOT NULL,
+  `activation_expiry` datetime NOT NULL,
+  `activated_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `method_of_signin` varchar(10) NOT NULL,
+  `two_factor_auth` varchar(5) NOT NULL DEFAULT 'off',
+  `otp_code` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `users` (`user_ID`, `username`, `email_phone`, `password`, `first_Name`, `last_Name`, `role`, `active`, `activation_code`, `activation_expiry`, `activated_at`, `created_at`, `updated_at`, `method_of_signin`, `two_factor_auth`, `otp_code`) VALUES
+(12355, 'Annabeth_Walker', 'annabethwalker22@gmail.com', '$2y$10$T1TMljhn8mc1y2eD10kX3uiATtLt6DWjzsC2ay2y1DZAvHKomYQVK', 'Annabeth', 'Walker', 'Nurse', 1, '316204', '2024-01-31 08:29:17', '2024-01-30 13:00:09', '2024-01-30 07:29:17', '2024-02-24 19:38:15', 'Email', 'on', '$2y$10$vhpfjBp0I4QNvZEf.ir4iOynla2fyA6DCXU2BbMVfSt/7CBQ2OKDW'),
+(12356, 'Sanjani_Wickramasinghe', '+94774936420', '$2y$10$T1TMljhn8mc1y2eD10kX3uiATtLt6DWjzsC2ay2y1DZAvHKomYQVK', 'Sanjani', 'Wickramasinghe', 'Doctor', 0, '316204', '2024-01-31 08:31:34', NULL, '2024-01-30 07:31:34', '2024-02-24 19:41:27', 'Phone', 'on', '$2y$10$vM2CQ9tch8qpZinstcQ0beCyxyDGim0aPkBcHbMJIxECVPe.v1Vgy'),
+(12359, 'Saumya_Sewwandi', 'saumyasewwandi05@gmail.com', '$2y$10$LxvtTNCIH7KLaiZbKD1lluRxE5Ul8h/b7ZdMD1gVkzRR.6MIbXV6e', 'Saumya', 'Sewwandi', 'Patient', 0, '316204', '2024-01-31 12:53:29', NULL, '2024-01-30 11:53:29', '2024-02-23 09:55:32', '', '', ''),
+(12368, 'Masha_Wickramasinghe', 'mashawickramasinghe04@gmail.com', '$2y$10$wyqKt/7g69chUd6soDdrQebBY28j53i5GjNSxuu6uixHKByWuKwyy', 'Masha', 'Wickramasinghe', 'Patient', 1, '316204', '2024-01-31 17:22:48', '2024-01-30 21:54:20', '2024-01-30 16:22:48', '2024-02-24 13:39:47', 'Email', 'on', '$2y$10$3iBU1I5ug51rJJUkUPrngeuA8KACRfap2.eTpwxU6UnBR60DDkAeG'),
+(1254638, 'Senali_De_Silva', 'senali123@gmail.com', '$2y$10$GiP/tK0xV3MjKa2wAePlw.nQiFNP8visVOqsxLLOzsRFMDW1/beYS', 'Senali', 'De Silva', 'Nurse', 1, '316204', '2024-02-17 16:09:54', '2024-02-17 20:39:55', '2024-02-17 15:10:55', '2024-02-24 19:11:54', 'Email', 'on', ''),
+(1254659, 'Rusara_Wimalasena', '+94774936420', '$2y$10$T1TMljhn8mc1y2eD10kX3uiATtLt6DWjzsC2ay2y1DZAvHKomYQVK', 'Rusara', 'Wimalasena', 'Patient', 1, '$2y$10$LCHHL5J5I6sJ/TJlURdQJObS22jhypfH.15sCElP01NZFuH0QLvpu', '2024-02-24 05:45:29', '2024-02-23 10:19:48', '2024-02-23 04:45:29', '2024-02-24 19:41:27', 'Phone', 'on', '$2y$10$vM2CQ9tch8qpZinstcQ0beCyxyDGim0aPkBcHbMJIxECVPe.v1Vgy');
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_ID`);
+
+ALTER TABLE `users`
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1254660;
+COMMIT;
+
 
 
