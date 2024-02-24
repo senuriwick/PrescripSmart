@@ -80,53 +80,132 @@ class M_admin
         }
       }
 
+      public function getPatient_set($page = 1,$perPage = 4)
+    {
+      $offset = ($page-1)*$perPage;
+      $this->db->query('SELECT * FROM patients LIMIT :offset, :perPage');
+      $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+      $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+
+      return $this->db->resultSet();
+
+    }
+
     public function getPatients()
     {
-        $this->db->query('SELECT * FROM patients');
-        $result = $this->db->resultSet();
-        return $result;
+        $this->db->query('SELECT COUNT(*) as total FROM patients');
+        $row = $this->db->single();
+        return $row->total;
     }
+
+    public function getDoctor_set($page = 1,$perPage = 2)
+    {
+      $offset = ($page-1)*$perPage;
+      $this->db->query('SELECT * FROM doctors LIMIT :offset, :perPage');
+      $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+      $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+
+      return $this->db->resultSet();
+
+    }
+    
 
     public function getDoctors()
     {
-        $this->db->query('SELECT * FROM doctors');
-        $result = $this->db->resultSet();
-        return $result;
+      $this->db->query('SELECT COUNT(*) as total FROM doctors');
+      $row = $this->db->single();
+      return $row->total;
+    }
+    
+
+    public function getHealthsup_set($page = 1,$perPage = 4)
+    {
+      $offset = ($page-1)*$perPage;
+      $this->db->query('SELECT * FROM healthsupervisors LIMIT :offset, :perPage');
+      $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+      $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+
+      return $this->db->resultSet();
+
     }
 
     public function getHealthsups()
     {
-        $this->db->query('SELECT * FROM healthsupervisors');
-        $result = $this->db->resultSet();
-        return $result;
+        $this->db->query('SELECT COUNT(*) as total FROM healthsupervisors');
+        $row = $this->db->single();
+        return $row->total;
+    }
+
+    public function getLabtech_set($page = 1,$perPage = 4)
+    {
+      $offset = ($page-1)*$perPage;
+      $this->db->query('SELECT * FROM labtechnicians LIMIT :offset, :perPage');
+      $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+      $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+
+      return $this->db->resultSet();
+
     }
 
     public function getLabtechs()
     {
-        $this->db->query('SELECT * FROM labtechnicians');
-        $result = $this->db->resultSet();
-        return $result;
+        $this->db->query('SELECT COUNT(*) as total FROM labtechnicians');
+        $row = $this->db->single();
+        return $row->total;
+    }
+
+    public function getNurse_set($page = 1,$perPage = 4)
+    {
+      $offset = ($page-1)*$perPage;
+      $this->db->query('SELECT * FROM nurses LIMIT :offset, :perPage');
+      $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+      $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+
+      return $this->db->resultSet();
+
     }
 
     public function getNurses()
     {
-        $this->db->query('SELECT * FROM nurses');
-        $result = $this->db->resultSet();
-        return $result;
+        $this->db->query('SELECT COUNT(*) as total FROM nurses');
+        $row = $this->db->single();
+        return $row->total;
+    }
+
+    public function getPharmacist_set($page = 1,$perPage = 4)
+    {
+      $offset = ($page-1)*$perPage;
+      $this->db->query('SELECT * FROM pharmacists LIMIT :offset, :perPage');
+      $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+      $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+
+      return $this->db->resultSet();
+
     }
 
     public function getPharmacists()
     {
-        $this->db->query('SELECT * FROM pharmacists');
-        $result = $this->db->resultSet();
-        return $result;
+        $this->db->query('SELECT COUNT(*) as total FROM pharmacists');
+        $row = $this->db->single();
+        return $row->total;
+    }
+
+    public function getReceptionist_set($page = 1,$perPage = 4)
+    {
+      $offset = ($page-1)*$perPage;
+      $this->db->query('SELECT * FROM receptionists LIMIT :offset, :perPage');
+      $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+      $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+
+      return $this->db->resultSet();
+
     }
 
     public function getReceptionists()
     {
-        $this->db->query('SELECT * FROM receptionists');
-        $result = $this->db->resultSet();
-        return $result;
+        $this->db->query('SELECT COUNT(*) as total FROM receptionists');
+        $row = $this->db->single();
+        return $row->total;
     }
 
     public function regDoctor($data)

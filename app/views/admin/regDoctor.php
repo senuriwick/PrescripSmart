@@ -19,29 +19,27 @@
    <?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
    
       <div class="details">
-        <div class="back" style="display: flex; ">
-          
-            <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >
-          
-          <h1 >Doctor Registration</h1>
-        </div>
+          <div class="back" style="display: flex; ">         
+             <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >
+             <h1 >Doctor Registration</h1>
+          </div>
         <form action="<?php echo URLROOT; ?>/admin/regDoctor" method="post">
 
           <div class="top1">
-              <div class="firstname">
-                  <div class="req">
-                    <h3 style="color: #0069FF;">first name</h3>
-                    <p style="color: red;">*</p>
-                  </div>
+                <div class="firstname">
+                    <div class="req">
+                      <h3 style="color: #0069FF;">first name</h3>
+                      <p style="color: red;">*</p>
+                    </div>
                   <input type="text" name="first_name" placeholder="Enter Your first name">
-              </div>
-              <div class="lastname">
-                <div class="req">
-                  <h3 style="color: #0069FF;">last name</h3>
-                  <p style="color: red;">*</p>
                 </div>
+                <div class="lastname">
+                    <div class="req">
+                       <h3 style="color: #0069FF;">last name</h3>
+                       <p style="color: red;">*</p>
+                    </div>
                   <input type="text" name="last_name" placeholder="Enter Your last name">
-              </div>
+                </div>
           </div>
       
           <div class="top2">
@@ -50,19 +48,19 @@
                   <input type="text" name="email" placeholder="Enter Your email address">
               </div>
               <div class="phone">
-                <div class="req">
-                  <h3 style="color: #0069FF;">contact number</h3>
-                  <p style="color: red;">*</p>
-                </div>
+                  <div class="req">
+                      <h3 style="color: #0069FF;">contact number</h3>
+                      <p style="color: red;">*</p>
+                  </div>
                   <input type="text" name="phone_number" placeholder="Enter Your phone number">
               </div>
           </div>
       
           <div class="top3">
-            <div class="req">
-              <h3 style="color: #0069FF;">create password</h3>
-              <p style="color: red;">*</p>
-            </div>
+              <div class="req">
+                  <h3 style="color: #0069FF;">create password</h3>
+                  <p style="color: red;">*</p>
+              </div>
               <input type="password" name="password" placeholder="Enter password">
           </div>
           

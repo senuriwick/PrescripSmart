@@ -15,60 +15,53 @@
 
 </head>
 <body>
-<?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
-
-    
-
-        
+<?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>     
       <div class="details">
-        <div class="back" style="display: flex; ">
-          
-            <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >
-          
-          <h1 >Nurse Registration</h1>
-        </div>
-        <form action="<?php echo URLROOT; ?>/admin/regNurse "method="POST">
+          <div class="back" style="display: flex; ">         
+              <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >         
+              <h1 >Nurse Registration</h1>
+          </div>
+          <form action="<?php echo URLROOT; ?>/admin/regNurse "method="POST">
 
-          <div class="top1">
-              <div class="firstname">
-                  <div class="req">
-                    <h3 style="color: #0069FF;">first name</h3>
-                    <p style="color: red;">*</p>
-                  </div>
-                  <input type="text" name="first_name" placeholder="Enter Your first name">
-              </div>
-              <div class="lastname">
-                <div class="req">
-                  <h3 style="color: #0069FF;">last name</h3>
-                  <p style="color: red;">*</p>
+            <div class="top1">
+                <div class="firstname">
+                    <div class="req">
+                        <h3 style="color: #0069FF;">first name</h3>
+                        <p style="color: red;">*</p>
+                    </div>
+                    <input type="text" name="first_name" placeholder="Enter Your first name">
                 </div>
-                  <input type="text" name="last_name" placeholder="Enter Your last name">
-              </div>
-          </div>
-      
-          <div class="top2">
-              <div class="email">
-                  <h3>email address</h3>
-                  <input type="text" name="email" placeholder="Enter Your email address">
-              </div>
-              <div class="phone">
-                <div class="req">
-                  <h3 style="color: #0069FF;">contact number</h3>
-                  <p style="color: red;">*</p>
+                <div class="lastname">
+                    <div class="req">
+                        <h3 style="color: #0069FF;">last name</h3>
+                        <p style="color: red;">*</p>
+                    </div>
+                    <input type="text" name="last_name" placeholder="Enter Your last name">
                 </div>
-                  <input type="text" name="phone_number" placeholder="Enter Your phone number">
-              </div>
-          </div>
-      
-          <div class="top3">
-            <div class="req">
-              <h3 style="color: #0069FF;">create password</h3>
-              <p style="color: red;">*</p>
             </div>
-              <input type="password" name="password" placeholder="Enter password">
-          </div>
-          
-          <button type="submit"><b>Register</b></button>
+        
+            <div class="top2">
+                    <div class="email">
+                        <h3>email address</h3>
+                        <input type="text" name="email" placeholder="Enter Your email address">
+                    </div>
+                    <div class="phone">
+                        <div class="req">
+                          <h3 style="color: #0069FF;">contact number</h3>
+                          <p style="color: red;">*</p>
+                        </div>
+                        <input type="text" name="phone_number" placeholder="Enter Your phone number">
+                    </div>
+            </div>
+        
+            <div class="top3">
+                    <div class="req">
+                          <h3 style="color: #0069FF;">create password</h3>
+                          <p style="color: red;">*</p>
+                    </div>
+                    <input type="password" name="password" placeholder="Enter password">
+            </div>         
+            <button type="submit"><b>Register</b></button>
         </form>
     </html>
         

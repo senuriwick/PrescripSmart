@@ -19,57 +19,53 @@
 
 <h3 class="today-date" id="today-date"></h3>
 <script>
-  var today = new Date();
-  var suffixes = ["th", "st", "nd", "rd"];
-  function getDaySuffix(day) 
-  {
-    if (day >= 11 && day <= 13)
+    var today = new Date();
+    var suffixes = ["th", "st", "nd", "rd"];
+    function getDaySuffix(day) 
     {
-    return "th";
-    }
-    var index = day % 10;
-    return (index <= 3) ? suffixes[index] : "th";
-  } 
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      if (day >= 11 && day <= 13)
+      {
+      return "th";
+      }
+      var index = day % 10;
+      return (index <= 3) ? suffixes[index] : "th";
+    } 
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
+      var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    // Format the date
-    var formattedDate = today.getDate() + getDaySuffix(today.getDate()) + " " + days[today.getDay()] + ", " + months[today.getMonth()] + " " + today.getFullYear();
+      // Format the date
+      var formattedDate = today.getDate() + getDaySuffix(today.getDate()) + " " + days[today.getDay()] + ", " + months[today.getMonth()] + " " + today.getFullYear();
 
-    // Display the date
-    document.getElementById("today-date").innerHTML = formattedDate;
+      // Display the date
+      document.getElementById("today-date").innerHTML = formattedDate;
 </script>
 
         <div class="searchDiv">
-            <h1>Todays' Sessions</h1>
-            <div class="searchFiles">
-              <input class="search-input" type="search" placeholder="Search Doctor name/ID here">
-              <button type="search"><b>SEARCH</b></button> 
-            </div>
-
-            
+              <h1>Todays' Sessions</h1>
+              <div class="searchFiles">
+                  <input class="search-input" type="search" placeholder="Search Doctor name/ID here">
+                  <button type="search"><b>SEARCH</b></button> 
+              </div>           
         </div>
 
         <div class="sessions">
-          <div class="doc-info">
-          <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="user-icon">
-          <h3>Dr. Asanka Sayakkara</h3>
-          </div>
-          <h5>Consultant physician</h5>
+              <div class="doc-info">
+                  <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="user-icon">
+                  <h3>Dr. Asanka Sayakkara</h3>
+              </div>
+              
+              <h5>Consultant physician</h5>
+              <hr style="color: #D9D9D9; margin-bottom:2vh; width:90vh; margin-top: -2vh;">
 
-          <hr style="color: #D9D9D9; margin-bottom:2vh; width:90vh; margin-top: -2vh;">
+              <div class="session-card">
+                  <h4><strong>Session #23233</strong></h4>
+                  <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
+                  <p>Date: Sunday, 17th Sept, 2023</p>
+                  <p>Time: 06.00 A.M </p>
+                  <button><strong>CANCEL</strong> </button>
+              </div>
 
-          <div class="session-card">
-          <h4><strong>Session #23233</strong></h4>
-          <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
-
-          <p>Date: Sunday, 17th Sept, 2023</p>
-          <p>Time: 06.00 A.M </p>
-
-          <button><strong>CANCEL</strong> </button>
-
-
-          </div>
+          
 
         </div>
         
