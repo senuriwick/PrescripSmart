@@ -20,7 +20,7 @@
     <div class="loginForm"> 
       <p class="login-to-your-account">Login to your account</p>
 
-      <form action="<?php echo URLROOT; ?>/admin/searchdoctor" method="post">
+      <form action="<?php echo URLROOT; ?>/admin/login" method="post">
         <div class="emailContainer">
           <input type="text" id="email_address" name="email_address" placeholder="Enter your email/phone number" class="inputfield">
           <p class="inputLabel1">

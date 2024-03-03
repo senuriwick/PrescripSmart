@@ -66,5 +66,11 @@
         </div>
         <button type="submit"><b>Register</b></button>
    </form>
+</div>
+
+        <div class="popup">
+          <h2>Registration successful!</h2>
+          <a><button><b>Back to dashboard</b></button></a>
+        </div>
 </html>
         

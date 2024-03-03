@@ -108,6 +108,14 @@ class M_admin
       return $this->db->resultSet();
 
     }
+
+    public function getalldoctors()
+    {
+      $this->db->query('SELECT * FROM doctors');
+      $results = $this->db->resultSet();
+      return $results;
+
+    }
     
 
     public function getDoctors()
@@ -209,158 +217,224 @@ class M_admin
     }
 
     public function regDoctor($data)
-    {
-        $this->db->query('INSERT INTO doctors (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-        // Bind values
-        $this->db->bind(':first_name', $data['first_name']);
-        $this->db->bind(':last_name', $data['last_name']);
-        $this->db->bind(':email_address', $data['email']);
-        $this->db->bind(':phone_number', $data['phone_number']);
-        $this->db->bind(':password', $data['password']);
+      {
+        $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+            $this->db->bind(':first_name', $data['first_name']);
+            $this->db->bind(':last_name', $data['last_name']);
+            $this->db->bind(':email_address', $data['email']);
+            $this->db->bind(':phone_number', $data['phone_number']);
+    
+          $employeeInserted = $this->db->execute();
+
+         $this->db->query('INSERT INTO doctors (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+            $this->db->bind(':first_name', $data['first_name']);
+            $this->db->bind(':last_name', $data['last_name']);
+            $this->db->bind(':email_address', $data['email']);
+            $this->db->bind(':phone_number', $data['phone_number']);
+            $this->db->bind(':password', $data['password']);
+
+          $doctorInserted = $this->db->execute();
+
+          
+          
   
-  
-        // Execute
-        if($this->db->execute())
-        {
-          return true;
-        }
-         else
-        {
-          return false;
-        }
+          // Execute
+          if($employeeInserted && $doctorInserted )
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
       }
 
       public function regHealthsup($data)
-    {
-        $this->db->query('INSERT INTO healthsupervisors (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-        // Bind values
-        $this->db->bind(':first_name', $data['first_name']);
-        $this->db->bind(':last_name', $data['last_name']);
-        $this->db->bind(':email_address', $data['email']);
-        $this->db->bind(':phone_number', $data['phone_number']);
-        $this->db->bind(':password', $data['password']);
+      {
+          $this->db->query('INSERT INTO healthsupervisors (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+          // Bind values
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':phone_number', $data['phone_number']);
+          $this->db->bind(':password', $data['password']);
+    
+    
+          $healthsupInserted = $this->db->execute();
+
+          $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+              $this->db->bind(':first_name', $data['first_name']);
+              $this->db->bind(':last_name', $data['last_name']);
+              $this->db->bind(':email_address', $data['email']);
+              $this->db->bind(':phone_number', $data['phone_number']);
+          
+          $employeeInserted = $this->db->execute();
+          
   
-  
-        // Execute
-        if($this->db->execute())
-        {
-          return true;
-        }
-         else
-        {
-          return false;
-        }
+          // Execute
+          if($employeeInserted && $healthsupInserted )
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
       }
 
       public function regLabtech($data)
-    {
-        $this->db->query('INSERT INTO labtechnicians (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-        // Bind values
-        $this->db->bind(':first_name', $data['first_name']);
-        $this->db->bind(':last_name', $data['last_name']);
-        $this->db->bind(':email_address', $data['email']);
-        $this->db->bind(':phone_number', $data['phone_number']);
-        $this->db->bind(':password', $data['password']);
-  
-  
-        // Execute
-        if($this->db->execute())
-        {
-          return true;
-        }
-         else
-        {
-          return false;
-        }
+      {
+
+        $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+              $this->db->bind(':first_name', $data['first_name']);
+              $this->db->bind(':last_name', $data['last_name']);
+              $this->db->bind(':email_address', $data['email']);
+              $this->db->bind(':phone_number', $data['phone_number']);
+          
+          $employeeInserted = $this->db->execute();
+          
+          $this->db->query('INSERT INTO labtechnicians (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+          // Bind values
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':phone_number', $data['phone_number']);
+          $this->db->bind(':password', $data['password']);
+    
+    
+          $labtechInserted = $this->db->execute();
+
+          // Execute
+          if($employeeInserted && $labtechInserted )
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
       }
 
       public function regNurse($data)
-    {
-        $this->db->query('INSERT INTO nurses (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-        // Bind values
-        $this->db->bind(':first_name', $data['first_name']);
-        $this->db->bind(':last_name', $data['last_name']);
-        $this->db->bind(':email_address', $data['email']);
-        $this->db->bind(':phone_number', $data['phone_number']);
-        $this->db->bind(':password', $data['password']);
+      {
+          $this->db->query('INSERT INTO nurses (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+          // Bind values
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':phone_number', $data['phone_number']);
+          $this->db->bind(':password', $data['password']);
+    
+    
+          $nurseInserted = $this->db->execute();
+
+          $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+              $this->db->bind(':first_name', $data['first_name']);
+              $this->db->bind(':last_name', $data['last_name']);
+              $this->db->bind(':email_address', $data['email']);
+              $this->db->bind(':phone_number', $data['phone_number']);
+          
+          $employeeInserted = $this->db->execute();
+          
   
-  
-        // Execute
-        if($this->db->execute())
-        {
-          return true;
-        }
-         else
-        {
-          return false;
-        }
+          // Execute
+          if($employeeInserted && $nurseInserted )
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
       }
 
       public function regPatient($data)
-    {
-        $this->db->query('INSERT INTO patients (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-        // Bind values
-        $this->db->bind(':first_name', $data['first_name']);
-        $this->db->bind(':last_name', $data['last_name']);
-        $this->db->bind(':email_address', $data['email']);
-        $this->db->bind(':phone_number', $data['phone_number']);
-        $this->db->bind(':password', $data['password']);
-  
-  
-        // Execute
-        if($this->db->execute())
-        {
-          return true;
-        }
-         else
-        {
-          return false;
-        }
+      {
+          $this->db->query('INSERT INTO patients (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+          // Bind values
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':phone_number', $data['phone_number']);
+          $this->db->bind(':password', $data['password']);
+    
+    
+          // Execute
+          if($this->db->execute())
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
       }
 
       public function regPharmacist($data)
-     {
-        $this->db->query('INSERT INTO pharmacists (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-        // Bind values
-        $this->db->bind(':first_name', $data['first_name']);
-        $this->db->bind(':last_name', $data['last_name']);
-        $this->db->bind(':email_address', $data['email']);
-        $this->db->bind(':phone_number', $data['phone_number']);
-        $this->db->bind(':password', $data['password']);
+      {
+          $this->db->query('INSERT INTO pharmacists (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+          // Bind values
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':phone_number', $data['phone_number']);
+          $this->db->bind(':password', $data['password']);
+    
+    
+          $pharmacistInserted = $this->db->execute();
+
+          $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+              $this->db->bind(':first_name', $data['first_name']);
+              $this->db->bind(':last_name', $data['last_name']);
+              $this->db->bind(':email_address', $data['email']);
+              $this->db->bind(':phone_number', $data['phone_number']);
+          
+          $employeeInserted = $this->db->execute();
+          
   
-  
-        // Execute
-        if($this->db->execute())
-        {
-          return true;
-        }
-         else
-        {
-          return false;
-        }
-    }
+          // Execute
+          if($employeeInserted && $pharmacistInserted )
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+      }
 
       public function regReceptionist($data)
-    {
-        $this->db->query('INSERT INTO receptionists (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-        // Bind values
-        $this->db->bind(':first_name', $data['first_name']);
-        $this->db->bind(':last_name', $data['last_name']);
-        $this->db->bind(':email_address', $data['email']);
-        $this->db->bind(':phone_number', $data['phone_number']);
-        $this->db->bind(':password', $data['password']);
-  
-  
-        // Execute
-        if($this->db->execute())
-        {
-          return true;
-        }
-         else
-        {
-          return false;
-        }
-    }
+      {
+            $this->db->query('INSERT INTO receptionists (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+            // Bind values
+            $this->db->bind(':first_name', $data['first_name']);
+            $this->db->bind(':last_name', $data['last_name']);
+            $this->db->bind(':email_address', $data['email']);
+            $this->db->bind(':phone_number', $data['phone_number']);
+            $this->db->bind(':password', $data['password']);
+      
+      
+            $receptionistInserted = $this->db->execute();
+
+            $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+                $this->db->bind(':first_name', $data['first_name']);
+                $this->db->bind(':last_name', $data['last_name']);
+                $this->db->bind(':email_address', $data['email']);
+                $this->db->bind(':phone_number', $data['phone_number']);
+            
+            $employeeInserted = $this->db->execute();
+            
+    
+            // Execute
+            if($employeeInserted && $receptionistInserted )
+            {
+              return true;
+            }
+            else
+            {
+              return false;
+            }
+      }
 
       public function deleteProfileDoc($id)
       {
@@ -474,6 +548,44 @@ class M_admin
          {
            return false;
          }
-      }     
+      }   
+      
+      
+        public function getuserbyID($id, $table)
+      {
+        $sql = "SELECT e.*, d.*
+                FROM employees e
+                JOIN $table d ON e.emp_id = d.emp_id
+                WHERE e.emp_id = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+
+      public function updatePost($data)
+      {
+        // Prepare Query
+        $this->db->query('UPDATE posts SET title = :title, body = :body WHERE id = :id'); 
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':first_name', $data['title']);
+        $this->db->bind(':last_name', $data['body']);
+        
+        //Execute
+        if($this->db->execute()){
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+
+       
+      
+
+
+
     
 }

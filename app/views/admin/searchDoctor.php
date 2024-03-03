@@ -30,22 +30,22 @@
               <div class="details">
                     <table>
                       <tbody>
-                          <?php foreach($data['doctors'] as $post): ?>
+                          <?php foreach($data['doctorlist'] as $post): ?>
                             <tr class="row">                                                                         
                               <td>
-                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png">
                                     <p class="name">
                                       Mr.
-                                    <?php echo $post->last_name;?>
+                                    <?php echo ucwords($post->last_name);?>
                                     </p> 
                               </td>
                               <td>
-                                    <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_id;?></p>
+                                    <p style="margin-left: 10vh;">Employee ID #<?php echo $post->emp_id;?></p>
                               </td>
                               <td>
-                                    <button class="profileButton"><b>View Profile</b> </button>
-                                    <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->doctor_id ?>">
-                                    <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                    <a href="<?php echo URLROOT ?>/admin/showProfileDoc/<?php echo $post->emp_id ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                     <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->emp_id ?>">  
+                                    <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" onclick="confirmDelete()">
                                     </form>
                               </td>                                                   
                           </tr>
@@ -59,6 +59,7 @@
       
 
        <div class="pagination">
+       <?php echo"<"; ?>
           <?php if($data['currentPage']>1): ?>
             <a href="<?php echo URLROOT; ?>/admin/searchDoctor/<?php echo ($data['currentPage']-1); ?>">Previous</a>
           <?php endif; ?>
@@ -70,6 +71,8 @@
           <?php if($data['currentPage'] < $data['totalPages']): ?>
             <a href="<?php echo URLROOT ?>/admin/searchDoctor/<?php echo ($data['currentPage'] + 1) ?>">Next</a>
           <?php  endif; ?>
+        <?php echo">"; ?>
+
 
        </div>
     </div>
@@ -82,7 +85,7 @@
         </div>
         
   </body>   
-  <script>
+                <script>
                       document.addEventListener("DOMContentLoaded", function () {
                       const searchInput = document.getElementById("searchinput");//element
 
@@ -105,5 +108,19 @@
                           });
                         });
                     });
-                  </script>          
+
+                    function confirmDelete()
+                    {
+                      var alert = window.alert("Confirm delete all records of the user");
+                      
+                      
+                    }
+
+                    
+
+
+                        
+                    
+
+                </script>          
 </html>

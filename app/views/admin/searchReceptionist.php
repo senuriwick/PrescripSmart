@@ -36,7 +36,7 @@
                                       <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                                       <p class= "name">
                                         Mr.
-                                        <?php echo $post->last_name;?>
+                                        <?php echo ucwords($post->last_name);?>
                                       </p>                                    
                                   </td>
 
@@ -45,7 +45,7 @@
                                   </td>
 
                                   <td>
-                                      <button class="profileButton"><b>View Profile</b></button>                                                                          
+                                  <a href="<?php echo URLROOT ?>/admin/showProfileReceptionist/<?php echo $post->emp_id ?>"><button class="profileButton"><b>View Profile</b></button> </a>
                                       <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->receptionist_id ?>">
                                       <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                       </form>
@@ -84,6 +84,7 @@
   </div> 
   
   <div class="pagination">
+      <?php echo"<"; ?>
           <?php if($data['currentPage']>1): ?>
             <a href="<?php echo URLROOT; ?>/admin/searchReceptionist/<?php echo ($data['currentPage']-1); ?>">Previous</a>
           <?php endif; ?>
@@ -95,6 +96,7 @@
           <?php if($data['currentPage'] < $data['totalPages']): ?>
             <a href="<?php echo URLROOT ?>/admin/searchReceptionist/<?php echo ($data['currentPage'] + 1) ?>">Next</a>
           <?php  endif; ?>
+      <?php echo">"; ?>
 
        </div>
 </div>
