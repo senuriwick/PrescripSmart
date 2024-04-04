@@ -93,6 +93,26 @@ VALUES ('#123456', 'sampleUsername', 'sample@email.com', 'hashed_password');
 
 HEALTHSUPERVISOR
 
+CREATE TABLE `inquiries` (
+  `inquiry_ID` int(11) NOT NULL,
+  `patient_ID` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `message` varchar(512) NOT NULL,
+  `reply` varchar(512) NOT NULL,
+  `supervisor_ID` int(11) NOT NULL,
+  `status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `inquiries` (`inquiry_ID`, `patient_ID`, `email`, `name`, `message`, `reply`, `supervisor_ID`, `status`) VALUES
+(1, 12368, 'mashawickramasinghe04@gmail.com', 'Masha Wickramasinghe', 'Hi. This is a test message', '', 0, 'awaiting reply');
+
+ALTER TABLE `inquiries`
+  ADD PRIMARY KEY (`inquiry_ID`);
+
+ALTER TABLE `inquiries`
+  MODIFY `inquiry_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
 
 
 

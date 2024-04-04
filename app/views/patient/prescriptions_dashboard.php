@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+<pre><?=print_r($_SESSION)?></pre>
   <div class="content">
     <div class="sideMenu">
       <div class="logoDiv">
@@ -193,7 +193,7 @@
             <div>
               <img src="<?php echo URLROOT; ?>\public\img\patient\message.png" alt="chat-icon">
               <p>
-                <a href="inquiries_dashboard.html" id="inquiries">Make an Inquiry</a>
+                <a href="<?php echo URLROOT?>/patient/inquiries_dashboard" id="inquiries">Make an Inquiry</a>
                 <span class="details">Initiate an online inquiry with a health supervisor</span>
               </p>
             </div>

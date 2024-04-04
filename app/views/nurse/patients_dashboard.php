@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+  <pre><?=print_r($_SESSION)?></pre>
   <div class="content">
     <div class="sideMenu">
       <div class="logoDiv">
@@ -34,7 +34,7 @@
 
         <a href="patients_dashboard.html" id="patients">Patients</a>
         <a href="ongoing.html" id="On-going">On-going session</a>
-        <a href="sessions.html" id="sessions">Sessions</a>
+        <a href="<?php echo URLROOT?>/nurse/sessions" id="sessions">Sessions</a>
         <a href="appointments.html" id="appointments">Appoinments</a>
         <a href="profile.html" id="profile">Profile</a>
       </div>
@@ -51,7 +51,8 @@
     <div class="main">
       <div class="navBar">
         <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
-        <p>SAMPLE USERNAME HERE</p>
+        <!-- <p>SAMPLE USERNAME HERE</p> -->
+        <p><?php echo $_SESSION['USER_DATA']->user_ID;?></p>
       </div>
 
       <div class="patientInfoContainer">
@@ -134,3 +135,12 @@
 
 
 </body>
+
+<!-- $_SESSIONN['USER_DATA'] = $user;
+Auth
+
+getUserId() {
+  if($_SESSION['USER_DATA']->id != "") {
+    return $_SESSION['USER_DATA']->id
+  }
+} -->

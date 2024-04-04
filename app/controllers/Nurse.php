@@ -14,6 +14,7 @@ class Nurse extends Controller
 
     public function patients_dashboard()
     {
+        $_SESSION['Hello'] = "Hello World";
         $patients = $this->nurseModel->patients();
         $data = [
             'patients' => $patients
