@@ -13,6 +13,7 @@
 </head>
 
 <body>
+<pre><?=print_r($_SESSION)?></pre>
 
     <div class="content">
         <div class="sideMenu">

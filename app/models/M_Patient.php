@@ -349,4 +349,19 @@ class M_Patient
         $this->db->bind(':user', $user);
         $this->db->execute();
     }
+
+    public function inquiries($userID, $email, $name, $message)
+    {
+        $this->db->query('INSERT INTO inquiries (patient_ID, email, name, message, status) VALUES (:userID, :email, :name, :message, "awaiting reply")');
+        $this->db->bind(':userID', $userID);
+        $this->db->bind(':email', $email);
+        $this->db->bind(':name', $name);
+        $this->db->bind(':message', $message);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

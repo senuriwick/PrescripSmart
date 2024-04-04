@@ -43,6 +43,7 @@ class General extends Controller
             $result = $this->generalModel->employee_authentication($email_address, $password);
 
             if ($result) {
+                $_SESSION['USER_DATA'] = $result;
                 if (password_verify($password, $result->password)) 
                 {
                     if($result->two_factor_auth == "on"){
@@ -55,9 +56,6 @@ class General extends Controller
                             $this->generalModel->updateCode($security_code, $result->user_ID);
                             $this->send_security_sms($result->email_phone, $security_code);
                         }
-
-                    //session_start();
-                    //$_SESSION['user_ID'] = $result->user_ID;
                     echo json_encode(["success" => true, "two_factor_required" => true]);
                 } else {
                     echo json_encode(["success" => true, "role" => $result->role, "two_factor_required" => false]);
@@ -164,8 +162,5 @@ class General extends Controller
             echo json_encode(["error" => "Incorrect code"]);
         }
     }
-
-
-
 
 }

@@ -173,9 +173,7 @@
                 uploadedcontent.style.display="block";
                 patienttestdata.style.display="none";
             });
-            
-
-            
+               
         });
 
 

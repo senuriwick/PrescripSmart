@@ -430,6 +430,7 @@ class Patient extends Controller
             $result = $this->patientModel->authenticate($email_address, $password);
 
             if ($result) {
+                $_SESSION['USER_DATA'] = $result;
                 if (password_verify($password, $result->password)) {
                     if($result->two_factor_auth == "on"){
                         if($result->method_of_signin == "Email"){
@@ -531,6 +532,25 @@ class Patient extends Controller
         $this->view('patient/inquiries_dashboard');
     }
 
+    public function inquiries()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST["email"];
+            $name = $_POST["name"];
+            $message = $_POST["message"];
+            
+            $inquirySaved = $this->patientModel->inquiries($_SESSION['USER_DATA']->user_ID, $email, $name, $message);
+    
+            if ($inquirySaved) {
+                echo json_encode(array("success" => true));
+            } else {
+                echo json_encode(array("success" => false, "message" => "Failed to save the inquiry."));
+            }
+            
+            exit();
+        }
+    }
+    
     public function appointments_dashboard()
     {
         $appointments = $this->patientModel->getAppointments();
