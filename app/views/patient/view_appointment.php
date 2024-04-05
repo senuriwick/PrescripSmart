@@ -170,7 +170,7 @@
                     <?php echo $appointment->doctor_ID; ?><br>Payment Status:
                   </p>
                   <div class="auto-group-ppa1-jrq">
-                    <p class="paid-fkV" style="color: red; font-weight: 800;">PAID</p>
+                    <p class="paid-fkV" style="color: red; font-weight: 800;"><?php echo $appointment->payment_status?></p>
                     <!-- <img class="checksquare-h4u" src="CheckSquare.png"/> -->
                   </div>
                 </div>

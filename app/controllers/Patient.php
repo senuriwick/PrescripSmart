@@ -638,8 +638,67 @@ class Patient extends Controller
     public function appointment_complete()
     {
         $referrence = $_GET['referrence'] ?? null;
-        $this->view('patient/appointment_complete');
+        $appointment = $this->patientModel->appointment($referrence);
+        $patient = $this->patientModel->patientInfo($appointment->patient_ID);
+        $merchant_id = 1226371;
+        $order_id = $appointment->appointment_ID;
+        $amount = "1000";
+        $currency = "LKR";
+        $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
+
+        $hash = strtoupper(
+            md5(
+                $merchant_id . 
+                $order_id . 
+                number_format($amount, 2, '.', '') . 
+                $currency .  
+                strtoupper(md5($merchant_secret)) 
+            ) 
+        );
+        $data = [
+            'appointment' => $appointment,
+            'hash' => $hash,
+            'patient' => $patient
+        ];
+        $this->view('patient/appointment_complete', $data);
     }
+
+    public function notify_url()
+    {
+        $merchant_id = $_POST['merchant_id'];
+        $order_id = $_POST['order_id'];
+        $payhere_amount = $_POST['payhere_amount'];
+        $payment_id = $_POST['payment_id'];
+        $method = $_POST['method'];
+        $payhere_currency = $_POST['payhere_currency'];
+        $status_code = $_POST['status_code'];
+        $md5sig = $_POST['md5sig'];
+        
+
+        $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
+
+        $local_md5sig = strtoupper(
+            md5(
+                $merchant_id .
+                $order_id .
+                $payhere_amount .
+                $payhere_currency .
+                $status_code .
+                strtoupper(md5($merchant_secret))
+            )
+        );
+
+        if (($local_md5sig === $md5sig) and ($status_code == 2)) {
+            $this->patientModel->updatePayment($order_id, $payment_id, $method);
+        }
+    }
+
+    public function update_payment()
+    {
+        $appointment_ID = $_POST['orderId'];
+        $this->patientModel->updatePayment($appointment_ID);
+    }
+
 
     public function appointment_cancelled()
     {

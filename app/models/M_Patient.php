@@ -163,6 +163,14 @@ class M_Patient
         return $result;
     }
 
+    public function appointment($referrence)
+    {
+        $this->db->query('SELECT * FROM appointments WHERE appointment_ID = :ref');
+        $this->db->bind(':ref', $referrence);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function viewAppointment($appointment_ID)
     {
         $this->db->query('SELECT * FROM appointments WHERE patient_ID = 12368 AND appointment_ID = :appointment_id AND status="active"');
@@ -357,6 +365,20 @@ class M_Patient
         $this->db->bind(':email', $email);
         $this->db->bind(':name', $name);
         $this->db->bind(':message', $message);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updatePayment($appointment_ID)
+    {
+        $this->db->query('UPDATE appointments SET payment_status = "PAID" WHERE appointment_ID = :appointment_ID');
+        $this->db->bind(':appointment_ID', $appointment_ID);
+        // $this->db->bind(':payment_id', $payment_id);
+        // $this->db->bind(':method', $orderID);
 
         if ($this->db->execute()) {
             return true;
