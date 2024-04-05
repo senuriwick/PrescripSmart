@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<pre><?=print_r($_SESSION)?></pre>
+<!-- <pre><?=print_r($_SESSION)?></pre> -->
   <div class="content">
     <div class="sideMenu">
       <div class="logoDiv">
@@ -51,8 +51,11 @@
 
     <div class="main">
       <div class="navBar">
-        <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
+        <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon" id="userIcon">
         <p>SAMPLE USERNAME HERE</p>
+        <div id="logoutOption" style="display: none;">
+          <a href="#" id="logoutButton">Logout</a>
+        </div>
       </div>
 
       <div class="patientInfoContainer">
@@ -228,9 +231,41 @@
         }
       });
     });
+  });
+</script>
 
-    // const modal = document.getElementById("myModal");
-    // const closeButton = modal.querySelector(".close");
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userIcon = document.getElementById('userIcon');
+      const logoutOption = document.getElementById('logoutOption');
+
+      userIcon.addEventListener('click', function () {
+        logoutOption.style.display = (logoutOption.style.display === 'block') ? 'none' : 'block';
+      });
+
+      const logoutButton = document.getElementById('logoutButton');
+
+      logoutButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        logout();
+      });
+
+      function logout() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // Logout successful, redirect to home page
+              window.location.href = '<?php echo URLROOT; ?>/general/home';
+          } else {
+            console.error('Logout failed');
+          }
+        }
+      };
+      xhr.open('GET', '<?php echo URLROOT; ?>/patient/logout', true);
+      xhr.send();
+    }
   });
 </script>
 

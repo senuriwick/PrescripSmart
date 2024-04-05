@@ -421,6 +421,14 @@ class Patient extends Controller
         $this->view('patient/login');
     }
 
+    public function logout()
+    {
+        if(!empty($_SESSION['USER_DATA'])) 
+        {
+            unset($_SESSION['USER_DATA']);
+        }
+    }
+
     public function authenticate()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

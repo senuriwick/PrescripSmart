@@ -466,3 +466,38 @@ a:hover {
   color: #0069FF;
   text-decoration: none;
 }
+
+
+/* Style for logout button and container */
+#logoutOption {
+  display: none;
+  position: absolute;
+  top: 10vh;
+  right: 2vw;
+  width: 150px;
+  height: 25px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center content horizontally */
+}
+
+#logoutButton {
+  color: #fff;
+  background-color: #ff0000;
+  padding: 5px 40px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  display: inline-block; /* Display as inline block */
+}
+
+#logoutButton:hover {
+  background-color: #cc0000;
+}
+
+
+
