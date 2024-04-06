@@ -10,44 +10,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\prescriptions_dashboard.css" />
-
 </head>
 
 <body>
 <!-- <pre><?=print_r($_SESSION)?></pre> -->
   <div class="content">
-    <div class="sideMenu">
-      <div class="logoDiv">
-        <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
-      </div>
-
-      <!-- <div class="patientDiv">
-        <p class="mainOptions">PATIENT</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div> -->
-
-
-      <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
-
-        <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-        <a href="reports_dashboard.html" id="reports">Reports</a>
-        <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-        <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
-        <a href="prescriptions_dashboard.html" id="profile">Profile</a>
-      </div>
-
-
-      <div class="othersDiv">
-        <a href="billing.html" id="billing">Billing</a>
-        <a href="terms_of_service.html" id="terms">Terms of Service</a>
-        <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-      </div>
-
-    </div>
+  <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
       <div class="navBar">

@@ -122,44 +122,7 @@ body {
 }
 
 
-.sideMenu {
-  min-width: 14vw;
-  height: 100vh;
-  background-color: rgba(7, 28, 74, 1);
-}
 
-
-.sideMenuTexts {
-  font-size: 1.7vh;
-  color: #ffffff;
-  line-height: 1.5vh;
-  font-family: inter;
-}
-
-.logoDiv {
-  align-items: center;
-  margin-bottom: 4vh;
-}
-
-.logoImg {
-  display: block;
-  margin: auto;
-  height: 8vh;
-  padding-top: 3vh;
-}
-
-
-.mainOptions {
-  color: white;
-  font-size: 2.2vh;
-  font-weight: bold;
-  font-family: inter;
-}
-
-
-.sideMenu p {
-  padding-left: 3vh;
-}
 
 
 .patientDiv {
@@ -181,49 +144,6 @@ body {
   font-size: 1.8vh;
   font-weight: bold;
   font-family: inter;
-}
-
-
-
-.manageDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 9vh;
-}
-
-.manageDiv .mainOptions {
-  margin-bottom: 5vh;
-}
-
-.manageDiv a {
-  display: block;
-  padding-left: 3vh;
-  line-height: 3vh;
-  font-size: 1.7vh;
-  font-family: inter;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.othersDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 3vh;
-  color: white;
-}
-
-.othersDiv a {
-  display: block;
-  padding-left: 3vh;
-  line-height: 3vh;
-  font-size: 1.7vh;
-  font-family: inter;
-  color: #ffffff;
-  text-decoration: none;
 }
 
 .main {
@@ -313,7 +233,7 @@ menu a:active {
 }
 
 a:hover {
-  color: #17058aee;
+  color: #0069FF;
 }
 
 /* Modal */

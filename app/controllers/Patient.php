@@ -15,6 +15,11 @@ class Patient extends Controller
         // $this->view('doctor/patients');
     }
 
+    public function side_navigation_panel()
+    {
+        $this->view('patient/side_navigation_panel');
+    }
+
     public function registration()
     {
         $this->view('patient/registration');

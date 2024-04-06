@@ -5,6 +5,8 @@ app/views/includes/header.php
 
 .idea/
 
+public/uploads/profile_images/
+
 app/views/PAGE_STRUCTURE.txt
 app/config/config.php
 
