@@ -51,13 +51,30 @@
                 <p>SAMPLE USERNAME HERE</p>
             </div>
 
+            <?php $user = $data['user'] ?>
             <div class="patientInfoContainer">
                 <div class="patientInfo">
-                    <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
+
+                    <div class="profile-pic-container">
+                        <?php if ($user->profile_photo): ?>
+                            <img src="<?php echo URLROOT?>\public\uploads\profile_images\<?php echo $user->profile_photo?>"
+                                alt="profile-pic" id="profile-pic">
+                        <?php else: ?>
+                            <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" 
+                                alt="default-profile-pic" id="profile-pic">
+                        <?php endif; ?>
+                        <img src="<?php echo URLROOT ?>\public\img\patient\editicon.png" alt="edit-icon"
+                            class="edit-icon" id="edit-icon">
+                        <label for="file-upload" class="edit-icon" id="edit-icon"></label>
+                        <input type="file" id="file-upload" style="display: none;" name="image">
+                        
+                    </div>
+
                     <div class="patientNameDiv">
                         <p class="name">Patient Name</p>
                         <p class="role">Patient</p>
                     </div>
+
                 </div>
 
                 <div class="menu">
@@ -70,7 +87,8 @@
 
                 <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/patient/personalInfoUpdate" method="POST">
-                        <h1>Patient ID: #<?php echo $patient->patient_ID ?>
+                        <h1>Patient ID: #
+                            <?php echo $patient->patient_ID ?>
                         </h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">
@@ -177,7 +195,7 @@
                         <button type="submit" id="submit" name="submit">SAVE CHANGES</button>
                     </form>
                 </div>
-                
+
             </div>
 
         </div>
@@ -195,12 +213,61 @@
 
             inputFields.forEach(function (input) {
                 input.addEventListener('input', function () {
-                    submitBtn.style.backgroundColor = "#0069FF" ;
-                    submitBtn.style.borderColor = "#0069FF" ;
+                    submitBtn.style.backgroundColor = "#0069FF";
+                    submitBtn.style.borderColor = "#0069FF";
                 });
             });
         });
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var editIcon = document.getElementById('edit-icon');
+    var fileInput = document.getElementById('file-upload');
+    var profilePic = document.getElementById('profile-pic');
+
+    editIcon.addEventListener('click', function () {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                profilePic.src = e.target.result;
+                updateProfilePicture(e.target.result);
+            }
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
+
+    function updateProfilePicture(imageData) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT; ?>/patient/updateProfilePicture', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log('Profile picture updated successfully');
+            } else {
+                console.error('Error updating profile picture:', xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+        var formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        xhr.send(formData);
+    }
+});
+
+</script>
+
+                
+
+
+
 
 </body>
 

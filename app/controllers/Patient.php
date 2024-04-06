@@ -790,8 +790,10 @@ class Patient extends Controller
     public function personal_information()
     {
         $patient = $this->patientModel->patientInfo();
+        $user = $this->patientModel->find_user_by_id(12368);
         $data = [
-            'patient' => $patient
+            'patient' => $patient,
+            'user' => $user
         ];
         $this->view('patient/personal_information', $data);
     }
@@ -876,5 +878,50 @@ class Patient extends Controller
             echo json_encode(["error" => "Incorrect code"]);
         }
     }
+    public function updateProfilePicture()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+            $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/profile_images/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    
+           
+            // Check file size
+            // if ($_FILES["image"]["size"] > 500000) {
+            //     echo "Sorry, your file is too large.";
+            //     $uploadOk = 0;
+            // }
+    
+            //Allow only certain file formats
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif") {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+    
 
+            if ($uploadOk == 0) {
+                // echo "Sorry, your file was not uploaded.";
+            } else {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+    
+                    $image = basename($_FILES["image"]["name"]);
+    
+                    $userID = 12368; //hardcoded
+                    $result = $this->patientModel->updateProfilePicture($image, $userID);
+    
+                    if ($result) {
+                        echo json_encode(array("success" => true));
+                    } else {
+                        echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
+                    }
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }
+        }
+    }
+    
 }

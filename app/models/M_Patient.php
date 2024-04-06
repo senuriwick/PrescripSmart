@@ -386,4 +386,19 @@ class M_Patient
             return false;
         }
     }
+
+    public function updateProfilePicture($filename, $userID)
+    {
+        try {
+            $this->db->query('UPDATE users SET profile_photo = :profile_picture WHERE user_ID = :user_id');
+            $this->db->bind(':profile_picture', $filename);
+            $this->db->bind(':user_id', $userID);
+            $this->db->execute();
+            return true; 
+        } catch (PDOException $e) {
+            error_log("Database error: " . $e->getMessage());
+            return false; 
+        }
+    }
+    
 }

@@ -66,7 +66,7 @@
             <p class="role">Patient</p>
           </div>
         </div>
-
+        
         <div class="menu">
           <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
           <a href="reports_dashboard.html" id="reports">Reports</a>
