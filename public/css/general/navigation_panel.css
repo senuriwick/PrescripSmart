@@ -6,6 +6,8 @@
   min-width: 15vw;
   height: 100vh;
   background-color: rgba(7, 28, 74, 1);
+  overflow: hidden;
+  position: fixed;
 }
 
 
@@ -86,6 +88,10 @@
   text-decoration: none;
 }
 
+.manageDiv a:hover {
+  color: #ffffff;
+}
+
 
 .manageDiv .menu-item {
   display: flex;
@@ -136,6 +142,10 @@
   padding: 1vh 1vh;
   padding-left: 3vh;
   text-decoration: none;
+}
+
+.othersDiv a:hover {
+  color: #ffffff;
 }
 
 .sideMenu .othersDiv .sub-menu-item:hover {

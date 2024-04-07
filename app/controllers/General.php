@@ -13,6 +13,7 @@ class General extends Controller
     {
         // $this->view('doctor/patients');
     }
+
     public function home()
     {
         $this->view('general/home');
@@ -160,6 +161,14 @@ class General extends Controller
             echo json_encode(["success" => true, "role" => $user->role]);
         } else {
             echo json_encode(["error" => "Incorrect code"]);
+        }
+    }
+
+    public function logout()
+    {
+        if(!empty($_SESSION['USER_DATA'])) 
+        {
+            unset($_SESSION['USER_DATA']);
         }
     }
 

@@ -16,55 +16,13 @@
 <body>
 
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="patientDiv">
-                <p class="mainOptions">PATIENT</p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-                <a href="reports_dashboard.html" id="reports">Reports</a>
-                <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-                <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
-                <a href="prescriptions_dashboard.html" id="profile">Profile</a>
-            </div>
-
-
-
-            <div class="othersDiv">
-                <a href="billing.html" id="billing">Billing</a>
-                <a href="terms_of_service.html" id="terms">Terms of Service</a>
-                <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-            </div>
-
-        </div>
+        <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-            <div class="navBar">
-                <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
-                <p>SAMPLE USERNAME HERE</p>
-            </div>
+            <?php include 'top_navigation_panel.php'; ?>
 
             <div class="adminInfoContainer">
-                <div class="adminInfo">
-                    <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
-                    <div class="patientNameDivDiv">
-                        <p class="name">Patient Name</p>
-                        <p class="role">Patient</p>
-                    </div>
-                </div>
-
+                <?php include 'information_container.php'; ?>
 
                 <div class="menu">
                     <a href="new_appointment.html" id="appointments">New Appointment</a>
@@ -119,7 +77,8 @@
                                         <?php echo $session->sessionDate; ?>
                                         <br />
                                         Time:
-                                        <?php echo $session->start_time; ?>-<?php echo $session->end_time; ?>
+                                        <?php echo $session->start_time; ?>-
+                                        <?php echo $session->end_time; ?>
                                         <br />
                                         Appointment No:
                                         <?php echo $session->current_appointment; ?>
@@ -129,8 +88,7 @@
                                         onclick="bookNow(<?php echo $session->session_ID; ?>)">
                                         BOOK NOW
                                     </button>
-
-
+                                    
                                     <script>
                                         function bookNow(sessionID) {
                                             var confirmationURL = "<?php echo URLROOT; ?>/patient/appointment_confirmation";
@@ -140,21 +98,15 @@
                                         }
                                     </script>
 
-
                                 </div>
                             <?php endforeach;
                         } else {
                             echo "No sessions found";
                         } ?>
-
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>
