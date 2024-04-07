@@ -99,9 +99,17 @@
         public function searchMedicine($medicineName){
             $this->db->query('SELECT * FROM medication WHERE name LIKE :medicineName');
             $this->db->bind(':medicineName', '%' . $medicineName . '%'); // Use '%' for partial matches
-        
             return $this->db->resultSet();
         }
+
+        public function updateMedicationQuantity($medicationId, $quantity){
+            $this->db->query('UPDATE medication SET quantity = :quantity WHERE id = :id');
+            $this->db->bind(':id', $medicationId);
+            $this->db->bind(':quantity', $quantity);
+            
+            return $this->db->execute();
+        }
+    
 
         // public function getPharmacistProfileDetails($employeeId) {
         //     $this->db->query('SELECT * FROM pharmacist_profiles WHERE employee_id = :employeeId');
