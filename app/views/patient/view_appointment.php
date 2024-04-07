@@ -10,66 +10,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\view_appointment.css" />
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
 </head>
 
 <body>
 
   <div class="content">
-    <div class="sideMenu">
-      <div class="logoDiv">
-        <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
-      </div>
-
-      <!-- <div class="patientDiv">
-        <p class="mainOptions">PATIENT</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div> -->
-
-
-      <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
-
-        <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-        <a href="reports_dashboard.html" id="reports">Reports</a>
-        <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-        <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
-        <a href="prescriptions_dashboard.html" id="profile">Profile</a>
-      </div>
-
-
-      <div class="othersDiv">
-        <a href="billing.html" id="billing">Billing</a>
-        <a href="terms_of_service.html" id="terms">Terms of Service</a>
-        <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-      </div>
-
-    </div>
+    <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
-      <div class="navBar">
-        <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
-        <p>SAMPLE USERNAME HERE</p>
-      </div>
+      <?php include 'top_navigation_panel.php'; ?>
 
       <div class="patientInfoContainer">
-        <div class="patientInfo">
-          <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
-          <div class="patientNameDiv">
-            <p class="name">Patient Name</p>
-            <p class="role">Patient</p>
-          </div>
-        </div>
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
-        <div class="menu">
-          <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-          <a href="reports_dashboard.html" id="reports">Reports</a>
-          <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-        </div>
- 
         <div class="prescriptionsDiv">
           <div>
             <div class="section-header">
@@ -98,11 +52,11 @@
             </div>
 
             <div style="display:none">
-                        <form action="<?php echo URLROOT; ?>/Patient/delete_appointment/<?=$appointment_ID?>" method="POST"
-                            id="addapp">
-                            <input type="hidden" name="appointment_ID" value="<?php echo $appointment_ID ?>">
-                            <input type="submit" style="display:none" id="insertapp">
-                        </form>
+              <form action="<?php echo URLROOT; ?>/Patient/delete_appointment/<?= $appointment_ID ?>" method="POST"
+                id="addapp">
+                <input type="hidden" name="appointment_ID" value="<?php echo $appointment_ID ?>">
+                <input type="submit" style="display:none" id="insertapp">
+              </form>
             </div>
 
             <script>
@@ -139,7 +93,7 @@
 
                 });
 
-                confirmYesButton.addEventListener('click', function() {
+                confirmYesButton.addEventListener('click', function () {
                   let addapp = document.getElementById("addapp");
                   let insertapp = document.getElementById("insertapp");
 
@@ -170,7 +124,9 @@
                     <?php echo $appointment->doctor_ID; ?><br>Payment Status:
                   </p>
                   <div class="auto-group-ppa1-jrq">
-                    <p class="paid-fkV" style="color: red; font-weight: 800;"><?php echo $appointment->payment_status?></p>
+                    <p class="paid-fkV" style="color: red; font-weight: 800;">
+                      <?php echo $appointment->payment_status ?>
+                    </p>
                     <!-- <img class="checksquare-h4u" src="CheckSquare.png"/> -->
                   </div>
                 </div>
@@ -178,39 +134,10 @@
             </div>
           </div>
         </div>
-
-
-
-
-
-        <p class="addnewHeading">Add new</p>
-        <div class="addnew">
-
-          <div class="appointment">
-            <div>
-              <img src="<?php echo URLROOT; ?>\public\img\patient\appointment.png" alt="appointment-icon">
-              <p>
-                <a href="new_appointment.html" id="appointments">Schedule an Appointment</a>
-                <span class="details">The modern way to schedule and meet with convenience</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="inquiry">
-            <div>
-              <img src="<?php echo URLROOT; ?>\public\img\patient\message.png" alt="chat-icon">
-              <p>
-                <a href="inquiries_dashboard.html" id="inquiries">Make an Inquiry</a>
-                <span class="details">Initiate an online inquiry with a health supervisor</span>
-              </p>
-            </div>
-          </div>
-
-        </div>
+        <?php include 'add_new_container.php'; ?>
       </div>
     </div>
   </div>
   </div>
 </body>
-
 </html>

@@ -11,55 +11,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/patient/inquiries_dashboard.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" />
 </head>
 
 <body>
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT; ?>/public/img/patient/Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="patientDiv">
-                <p class="mainOptions">PATIENT</p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-                <a href="reports_dashboard.html" id="reports">Reports</a>
-                <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-                <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
-                <a href="profile_dashboard.html" id="profile">Profile</a>
-            </div>
-
-            <div class="othersDiv">
-                <a href="billing.html" id="billing">Billing</a>
-                <a href="terms_of_service.html" id="terms">Terms of Service</a>
-                <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-            </div>
-        </div>
+    <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-            <div class="navBar">
-                <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
-                <p>SAMPLE USERNAME HERE</p>
-            </div>
+        <?php include 'top_navigation_panel.php'; ?>
 
             <div class="patientInfoContainer">
-                <div class="patientInfo">
-                    <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
-                    <div class="patientNameDiv">
-                        <p class="name">Patient Name</p>
-                        <p class="role">Patient</p>
-                    </div>
-                </div>
+            <?php include 'information_container.php'; ?>
 
                 <div class="menu">
                     <a href="inquiries_dashboard.html" id="inquiries">Health Inquiries</a>

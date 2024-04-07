@@ -18,29 +18,12 @@
   <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
-      <div class="navBar">
-        <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon" id="userIcon">
-        <p>SAMPLE USERNAME HERE</p>
-        <div id="logoutOption" style="display: none;">
-          <a href="#" id="logoutButton">Logout</a>
-        </div>
-      </div>
+        <?php include 'top_navigation_panel.php'; ?>
 
       <div class="patientInfoContainer">
-        <div class="patientInfo">
-          <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
-          <div class="patientNameDiv">
-            <p class="name">Patient Name</p>
-            <p class="role">Patient</p>
-          </div>
-        </div>
+      <?php include 'information_container.php'; ?>
+      <?php include 'in_page_navigation.php'; ?>
         
-        <div class="menu">
-          <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-          <a href="reports_dashboard.html" id="reports">Reports</a>
-          <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-        </div>
-
         <div class="prescriptionsDiv">
           <h1>Prescriptions</h1>
           <?php foreach ($data['prescriptions'] as $prescription): ?>
@@ -147,33 +130,12 @@
           <?php endforeach; ?>
         </div>
 
-        <p class="addnewHeading">Add new</p>
-        <div class="addnew">
+        <?php include 'add_new_container.php'; ?>
 
-          <div class="appointment">
-            <div>
-              <img src="<?php echo URLROOT; ?>\public\img\patient\appointment.png" alt="appointment-icon">
-              <p>
-                <a href="new_appointment.html" id="appointments">Schedule an Appointment</a>
-                <span class="details">The modern way to schedule and meet with convenience</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="inquiry">
-            <div>
-              <img src="<?php echo URLROOT; ?>\public\img\patient\message.png" alt="chat-icon">
-              <p>
-                <a href="<?php echo URLROOT?>/patient/inquiries_dashboard" id="inquiries">Make an Inquiry</a>
-                <span class="details">Initiate an online inquiry with a health supervisor</span>
-              </p>
-            </div>
-          </div>
-
-        </div>
       </div>
     </div>
   </div>
+  <!-- <script src="<?php echo URLROOT; ?>/public/js/prescriptions.js"></script> -->
 </body>
 
 <script>
@@ -201,41 +163,5 @@
     });
   });
 </script>
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const userIcon = document.getElementById('userIcon');
-      const logoutOption = document.getElementById('logoutOption');
-
-      userIcon.addEventListener('click', function () {
-        logoutOption.style.display = (logoutOption.style.display === 'block') ? 'none' : 'block';
-      });
-
-      const logoutButton = document.getElementById('logoutButton');
-
-      logoutButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        logout();
-      });
-
-      function logout() {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              // Logout successful, redirect to home page
-              window.location.href = '<?php echo URLROOT; ?>/general/home';
-          } else {
-            console.error('Logout failed');
-          }
-        }
-      };
-      xhr.open('GET', '<?php echo URLROOT; ?>/patient/logout', true);
-      xhr.send();
-    }
-  });
-</script>
-
 
 </html>

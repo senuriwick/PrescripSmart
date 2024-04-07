@@ -1,0 +1,25 @@
+.menu {
+    margin-top: 4vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
+
+.menu a {
+    margin-right: 6.5vh;
+    font-size: 2vh;
+    font-family: inter;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+    text-decoration: none;
+  }
+  
+  menu a:active {
+    color: #0069FF;
+  }
+  
+  a:hover {
+    color: #0069FF;
+  }
