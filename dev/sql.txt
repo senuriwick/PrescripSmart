@@ -1,10 +1,10 @@
 
 PHARMACIST
 
--- Corrected patients table
+
 CREATE TABLE patients (
     id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255),
     dob DATE,
     gender VARCHAR(10)
 );
@@ -19,9 +19,9 @@ INSERT INTO patients (id, name, dob, gender) VALUES
 (6, 'David Brown', '1980-07-28', 'Male'),
 (7, 'Sophia Miller', '1992-12-15', 'Female');
 
--- Corrected prescriptions table
+
 CREATE TABLE prescriptions (
-    prescription_id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     patient_id INT,
     prescription_text TEXT,
     prescribing_date DATE,
@@ -29,11 +29,56 @@ CREATE TABLE prescriptions (
     FOREIGN KEY (patient_id) REFERENCES patients(id)
 );
 
--- Add sample prescription data
-INSERT INTO prescriptions (prescription_id, patient_id, prescription_text, prescribing_date, prescribing_doctor) VALUES
-(101, 1, 'Take medication X twice a day', '2023-01-15', 'Dr. Johnson'),
-(102, 1, 'Prescription for pain relief', '2023-02-01', 'Dr. Smith'),
-(103, 2, 'Allergy medication', '2023-03-10', 'Dr. Davis');
+INSERT INTO prescriptions (patient_id, prescription_text, prescribing_date, prescribing_doctor) VALUES
+(1, 'Take medication X twice a day', '2023-01-15', 'Dr. Johnson'),
+(1, 'Prescription for pain relief', '2023-02-01', 'Dr. Smith'),
+(2, 'Allergy medication', '2023-03-10', 'Dr. Davis');
+
+
+CREATE TABLE diagnosis (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    prescription_id INT,
+    diagnosis_description TEXT,
+    FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
+);
+
+INSERT INTO diagnosis (prescription_id, diagnosis_description)
+VALUES
+    (1, 'Common cold'),
+    (2, 'Hypertension'),
+    (3, 'Allergic reaction'),
+
+CREATE TABLE medications (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    prescription_id INT,
+    name VARCHAR(255),
+    dosage VARCHAR(50),
+    remarks TEXT,
+    FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
+);
+
+INSERT INTO medications (prescription_id, name, dosage, remarks)
+VALUES
+    (1, 'ColdEx', '1 tablet every 6 hours', 'Take with food'),
+    (2, 'Lisinopril', '10 mg daily', 'Monitor blood pressure regularly'),
+    (3, 'Antihistamine', 'As directed', 'Avoid alcohol'),
+   
+
+CREATE TABLE lab_tests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    prescription_id INT,
+    name VARCHAR(255),
+    remarks TEXT,
+    FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
+);
+
+INSERT INTO lab_tests (prescription_id, name, remarks)
+VALUES
+    (1, 'Blood Count', 'Check for infection'),
+    (2, 'Cholesterol Level', 'Monitor lipid profile'),
+    (3, 'Allergy Test', 'Identify allergens')
+   
+    
 
 -- Corrected medication table
 CREATE TABLE medication (
@@ -90,6 +135,8 @@ CREATE TABLE pharmacist_profiles (
 
 INSERT INTO pharmacist_profiles (employee_id, username, email_phone, password) 
 VALUES ('#123456', 'sampleUsername', 'sample@email.com', 'hashed_password');
+
+
 
 HEALTHSUPERVISOR
 

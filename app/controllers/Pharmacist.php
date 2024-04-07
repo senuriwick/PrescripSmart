@@ -300,6 +300,24 @@
             }
         }
 
+        public function updateMedicationQuantity(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['medication_id']) && isset($_POST['quantity'])) {
+                $medicationId = $_POST['medication_id'];
+                $quantity = $_POST['quantity'];
+        
+                $result = $this->pharmacistModel->updateMedicationQuantity($medicationId, $quantity);
+        
+                if($result){
+                    echo json_encode(array('success' => true, 'message' => 'Medication quantity updated successfully'));
+                } else {
+                    echo json_encode(array('success' => false, 'message' => 'Error updating medication quantity'));
+                }
+            } else {
+                echo json_encode(array('success' => false, 'message' => 'Invalid request or missing parameters'));
+            }
+        }
+        
+
         public function searchPatient(){
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                 $patientName = $_POST['search'];
