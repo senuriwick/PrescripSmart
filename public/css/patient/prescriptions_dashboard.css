@@ -62,26 +62,6 @@ body {
   display: flex;
 }
 
-.patientDiv {
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-}
-
-
-.profile {
-  background-color: rgba(53, 70, 109, 1);
-  padding: 0.2vh;
-  margin-bottom: 2.5vh;
-}
-
-
-.profile p {
-  color: #ffffff;
-  font-size: 1.8vh;
-  font-weight: bold;
-  font-family: inter;
-}
 
 .main {
   flex: 1;

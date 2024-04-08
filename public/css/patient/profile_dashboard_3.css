@@ -18,7 +18,7 @@
 body {
     font-family: inter;
     margin: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 

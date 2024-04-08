@@ -29,7 +29,7 @@
 
 
                 <div class="menu">
-                    <a href="new_appointment.html" id="appointments">New Appointment</a>
+                    <a href="<?php echo URLROOT?>/patient/new_appointment" id="appointments">New Appointment</a>
                 </div>
 
                 <div>
@@ -92,12 +92,12 @@
                     </div>
 
                     <div style="display:none">
-                    <form action="<?php echo URLROOT; ?>/Patient/appointment_reservation/<?=12368?>/<?= $appInfo->doctor_ID ?>/<?= $appInfo->session_ID ?>/<?= $appInfo->start_time ?>/<?= $appInfo->sessionDate ?>" method="POST" id="addapp">
-                            <input type="hidden" name="patient_ID" value="12368">
+                    <form action="<?php echo URLROOT; ?>/Patient/appointment_reservation/<?= $appInfo->doctor_ID ?>/<?= $appInfo->session_ID ?>/<?= $appInfo->start_time ?>/<?= $appInfo->sessionDate ?>/<?= $appInfo->sessionCharge ?>" method="POST" id="addapp">
                             <input type="hidden" name="doctor_ID" value="<?php echo $appInfo->doctor_ID ?>">
                             <input type="hidden" name="session_ID" value="<?php echo $appInfo->session_ID ?>">
                             <input type="hidden" name="time" value="<?php echo $appInfo->start_time ?>">
                             <input type="hidden" name="date" value="<?php echo $appInfo->sessionDate ?>">
+                            <input type="hidden" name="charge" value="<?php echo $appInfo->sessionCharge?>">
                             <input type="submit" style="display:none" id="insertapp">
                         </form>
                     </div>

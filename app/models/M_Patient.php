@@ -156,9 +156,10 @@ class M_Patient
         $this->db->execute();
     }
 
-    public function getAppointments()
+    public function getAppointments($userID)
     {
-        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 12368 AND status = "active"');
+        $this->db->query('SELECT * FROM appointments WHERE patient_ID = :patientID AND status = "active"');
+        $this->db->bind(':patientID', $userID);
         $result = $this->db->resultSet();
         return $result;
     }
@@ -171,10 +172,11 @@ class M_Patient
         return $result;
     }
 
-    public function viewAppointment($appointment_ID)
+    public function viewAppointment($appointment_ID, $userID)
     {
-        $this->db->query('SELECT * FROM appointments WHERE patient_ID = 12368 AND appointment_ID = :appointment_id AND status="active"');
+        $this->db->query('SELECT * FROM appointments WHERE patient_ID = :user_id  AND appointment_ID = :appointment_id AND status="active"');
         $this->db->bind(':appointment_id', $appointment_ID);
+        $this->db->bind(':user_id', $userID);
         $result = $this->db->single();
         return $result;
     }
@@ -217,18 +219,19 @@ class M_Patient
         return $result;
     }
 
-    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date)
+    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date, $charge)
     {
         try {
             $this->db->beginTransaction();
 
-            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status) 
-                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active")');
+            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status) 
+                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active", :charge, "UNPAID")');
             $this->db->bind(':patient_id', $patient_ID);
             $this->db->bind(':session_id', $session_ID);
             $this->db->bind(':doctor_id', $doctor_ID);
             $this->db->bind(':sessionTime', $time);
             $this->db->bind(':session_date', $date);
+            $this->db->bind(':charge', $charge);
             $this->db->execute();
 
             // Get the last inserted ID
@@ -250,36 +253,53 @@ class M_Patient
         }
     }
 
-    public function prescriptions()
+    public function updatePayment($appointment_ID)
+    {
+        $this->db->query('UPDATE appointments SET payment_status = "PAID" WHERE appointment_ID = :appointment_ID');
+        $this->db->bind(':appointment_ID', $appointment_ID);
+        // $this->db->bind(':payment_id', $payment_id);
+        // $this->db->bind(':method', $orderID);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function prescriptions($userID)
     {
         $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
         INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
-        WHERE p.patient_ID = 12368
+        WHERE p.patient_ID = :userID
         ORDER BY p.prescription_Date ASC');
+        $this->db->bind(':userID', $userID);
 
         $result = $this->db->resultSet();
         return $result;
     }
 
-    public function viewPrescription($prescription_ID)
+    public function viewPrescription($prescription_ID, $userID)
     {
         $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
         INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
-        WHERE p.patient_ID = 12368 AND p.prescription_ID = :prescription_id');
+        WHERE p.patient_ID = :userID AND p.prescription_ID = :prescription_id');
         $this->db->bind(':prescription_id', $prescription_ID);
+        $this->db->bind(':userID', $userID);
         $result = $this->db->single();
         return $result;
     }
 
-    public function labreports()
+    public function labreports($userID)
     {
         $this->db->query('SELECT l.*, d.fName, d.lName, p.prescription_Date 
         FROM lab_reports l
         INNER JOIN doctors d ON l.doctor_ID = d.doctor_ID 
         INNER JOIN prescriptions p ON l.prescription_ID = p.prescription_ID
-        WHERE l.patient_ID = 12368
+        WHERE l.patient_ID = :userID
         ORDER BY l.report_Date ASC');
 
+        $this->db->bind(':userID', $userID);
         $result = $this->db->resultSet();
         return $result;
     }
@@ -291,20 +311,21 @@ class M_Patient
         $this->db->execute();
     }
 
-    public function patientInfo()
+    public function patientInfo($userID)
     {
-        $this->db->query('SELECT * FROM patients WHERE patient_ID = 12368');
+        $this->db->query('SELECT * FROM patients WHERE patient_ID = :userID');
+        $this->db->bind(':userID', $userID);
         $result = $this->db->single();
         return $result;
     }
 
-    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $dob, $age, $gender, $height, $weight, $ename, $econtact, $relationship)
+    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $dob, $age, $gender, $height, $weight, $ename, $econtact, $relationship, $userID)
     {
         $this->db->query('UPDATE patients SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
             home_Address = :haddress, NIC = :nic, contact_Number = :cno, DOB = :dob, age = :age, 
             gender = :gender, height = :height, weight = :weight, 
             emergency_Contact_Person = :ename, emergency_Contact_Number = :econtact, relationship = :relationship
-                          WHERE patient_ID = 12368');
+                          WHERE patient_ID = :userID');
 
         $this->db->bind(':fname', $fname);
         $this->db->bind(':lname', $lname);
@@ -320,25 +341,28 @@ class M_Patient
         $this->db->bind(':ename', $ename);
         $this->db->bind(':econtact', $econtact);
         $this->db->bind(':relationship', $relationship);
+        $this->db->bind(':userID', $userID);
 
         $this->db->execute();
     }
 
-    public function updateAccInfo($username)
+    public function updateAccInfo($username, $userID)
     {
         $this->db->query('UPDATE users SET username = :username 
-        WHERE user_ID = 12368');
+        WHERE user_ID = :userID');
         $this->db->bind(':username', $username);
+        $this->db->bind(':userID', $userID);
         // $this->db->bind(':password', $newpassword);
 
         $this->db->execute();
     }
 
-    public function resetPassword($newpassword)
+    public function resetPassword($newpassword, $userID)
     {
         $this->db->query('UPDATE users SET password = :newpassword 
-        WHERE user_ID = 12368');
+        WHERE user_ID = :userID');
         $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+        $this->db->bind('userID', $userID);
         $this->db->execute();
     }
 
@@ -365,20 +389,6 @@ class M_Patient
         $this->db->bind(':email', $email);
         $this->db->bind(':name', $name);
         $this->db->bind(':message', $message);
-
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function updatePayment($appointment_ID)
-    {
-        $this->db->query('UPDATE appointments SET payment_status = "PAID" WHERE appointment_ID = :appointment_ID');
-        $this->db->bind(':appointment_ID', $appointment_ID);
-        // $this->db->bind(':payment_id', $payment_id);
-        // $this->db->bind(':method', $orderID);
 
         if ($this->db->execute()) {
             return true;

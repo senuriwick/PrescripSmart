@@ -20,13 +20,12 @@
         <div class="main">
         <?php include 'top_navigation_panel.php'; ?>
 
-            <?php $user = $data['user'] ?>
             <div class="patientInfoContainer">
                 <div class="patientInfo">
 
                     <div class="profile-pic-container">
-                        <?php if ($user->profile_photo): ?>
-                            <img src="<?php echo URLROOT?>\public\uploads\profile_images\<?php echo $user->profile_photo?>"
+                        <?php if ($_SESSION['USER_DATA']->profile_photo): ?>
+                            <img src="<?php echo URLROOT?>\public\uploads\profile_images\<?php echo $_SESSION['USER_DATA']->profile_photo?>"
                                 alt="profile-pic" id="profile-pic">
                         <?php else: ?>
                             <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" 

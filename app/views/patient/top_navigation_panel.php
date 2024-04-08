@@ -22,7 +22,6 @@
     <div id="logoutOption" style="display: none;">
       <a href="#" id="logoutButton">Logout</a>
     </div>
-
   </div>
 
   <script>
