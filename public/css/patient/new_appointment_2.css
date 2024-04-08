@@ -17,21 +17,6 @@ body {
 }
 
 
-.profile {
-  background-color: rgba(53, 70, 109, 1);
-  padding: 0.2vh;
-  margin-bottom: 2.5vh;
-}
-
-
-.profile p {
-  color: #ffffff;
-  font-size: 1.8vh;
-  font-weight: bold;
-  font-family: inter;
-}
-
-
 .main {
   flex: 1;
   margin-left: 220px;
@@ -212,4 +197,19 @@ but :active {
   width: 100%;
   height: 4px;
   background-color: #0069FF;
+}
+
+.sessions {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.sessions::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px; 
+  background-color: #0069FF; 
 }

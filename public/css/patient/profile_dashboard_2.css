@@ -40,20 +40,6 @@ body {
 }
 
 
-.profile {
-    background-color: rgba(53, 70, 109, 1);
-    padding: 0.2vh;
-    margin-bottom: 2.5vh;
-}
-
-
-.profile p {
-    color: #ffffff;
-    font-size: 1.8vh;
-    font-weight: bold;
-    font-family: inter;
-}
-
 .main {
     flex: 1;
     margin-left: 220px;
@@ -74,7 +60,7 @@ body {
 
 .patientNameDiv {
     padding: 0.01vh 0;
-    margin-left: 20px; 
+    margin-left: 20px;
 }
 
 .patientInfo .name {
@@ -109,7 +95,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 80px; 
+    margin-top: 80px;
     margin-right: 20px;
 }
 
@@ -118,7 +104,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 625px; 
+    margin-top: 625px;
     margin-right: 20px;
 }
 
@@ -127,7 +113,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 865px; 
+    margin-top: 865px;
     margin-right: 20px;
 }
 
@@ -137,16 +123,18 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .parallel {
     display: flex;
     flex-direction: row;
 }
+
 .input-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
     margin-top: 15px;
-    margin-right: 50px; 
+    margin-right: 50px;
 }
 
 
@@ -213,17 +201,17 @@ body {
     margin-top: 15px;
 }
 
-  .profile-pic-container {
+.profile-pic-container {
     position: relative;
     display: inline-block;
     width: 10vh;
     height: 10vh;
-    border-radius: 50%; 
-    overflow: hidden; 
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .profile-pic-container img {
-    width: 100%; 
+    width: 100%;
     height: auto;
 }
 
@@ -247,9 +235,9 @@ body {
     border-color: #0069FF;
     border-spacing: 2cm;
     position: relative;
-  }
-  
-  .menu #personalinfo::after {
+}
+
+.menu #personalinfo::after {
     content: '';
     position: absolute;
     bottom: -8px;
@@ -257,5 +245,19 @@ body {
     width: 100%;
     height: 4px;
     background-color: #0069FF;
-  }
+}
 
+.profile {
+    background-color: rgba(68, 81, 114, 1);
+    position: relative;
+}
+
+.profile::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #0069FF;
+}

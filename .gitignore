@@ -1,15 +1,22 @@
-**/.DS_Store
+# Ignore .DS_Store files
 .DS_Store
 
+# Ignore header.php inside app/views/includes/
 app/views/includes/header.php
 
+# Ignore .idea directory
 .idea/
 
+# Ignore profile images uploaded to public directory
 public/uploads/profile_images/
 
+# Ignore PAGE_STRUCTURE.txt inside app/views/
 app/views/PAGE_STRUCTURE.txt
+
+# Ignore config.php inside app/config/
 app/config/config.php
 
+# Ignore all directories inside vendor/
 vendor/twilio/
 vendor/composer/
 vendor/bacon/

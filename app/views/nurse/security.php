@@ -15,55 +15,14 @@
 <body>
 
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT ?>\public\img\nurse\Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="patientDiv">
-                <p class="mainOptions">PATIENT</p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-                <a href="patients_dashboard.html" id="patients">Patients</a>
-                <a href="ongoing.html" id="On-going">On-going session</a>
-                <a href="sessions.html" id="sessions">Sessions</a>
-                <a href="appointments.html" id="appointments">Appoinments</a>
-                <a href="profile_dashboard.html" id="profile">Profile</a>
-            </div>
-
-            <div class="othersDiv">
-                <a href="billing.html" id="billing">Billing</a>
-                <a href="terms_of_service.html" id="terms">Terms of Service</a>
-                <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-            </div>
-        </div>
+    <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-            <div class="navBar">
-                <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
-                <p>SAMPLE USERNAME HERE</p>
-            </div>
+        <?php include 'top_navigation_panel.php'; ?>
 
             <div class="patientInfoContainer">
-                <div class="patientInfo">
-                    <img src="<?php echo URLROOT ?>\public\img\nurse\profile.png" alt="profile-pic">
-                    <div class="patientNameDiv">
-                        <p class="name">Nurse Name</p>
-                        <p class="role">Nurse</p>
-                    </div>
-                </div>
-
-                <div class="menu">
-                    <a href="profile_dashboard.html" id="account">Account</a>
-                    <a href="profile_dashboard_2.html" id="personalinfo">Personal Info</a>
-                    <a href="profile_dashboard_3.html" id="security">Security</a>
-                </div>
+            <?php include 'information_container.php'; ?>
+            <?php include 'in_page_navigation_account.php'; ?>
 
                 <div class="inquiriesDiv">
                 <?php $user = $data['user'] ?>
@@ -73,12 +32,12 @@
                     <div class="parallel">
                             <div class="input-group">
                                 <label for="name">Method of Sign-In</label>
-                                <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $user->method_of_signin ?>>
+                                <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $user->method_of_signin ?> readonly>
                             </div>
                             <div class="input-group">
                                 <label for="email">Email/Phone Number</label>
                                 <input type="text" id="email_phone" class="input" style="display: inline-block;"
-                                    value=<?php echo $user->email_phone ?>>
+                                    value=<?php echo $user->email_phone ?> readonly>
                             </div>
                         </div>
                     </div>

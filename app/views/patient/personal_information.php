@@ -20,9 +20,9 @@
         <div class="main">
         <?php include 'top_navigation_panel.php'; ?>
 
-            <?php $user = $data['user'] ?>
             <div class="patientInfoContainer">
                 <div class="patientInfo">
+                <?php $user = $data['user'] ?>
 
                     <div class="profile-pic-container">
                         <?php if ($user->profile_photo): ?>

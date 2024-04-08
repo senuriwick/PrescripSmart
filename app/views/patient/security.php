@@ -26,18 +26,18 @@
 
                 <div class="inquiriesDiv">
                     <?php $user = $data['user'] ?>
-                    <h1>Patient ID: #<?php echo $user->user_ID ?></h1>
+                    <h1>Patient ID: #<?php echo $_SESSION['USER_DATA']->user_ID ?></h1>
                     <p class="sub1" style="font-weight: bold;">Security Information</p>
                     <div class="accInfo">
                         <div class="parallel">
                             <div class="input-group">
                                 <label for="name">Method of Sign-In</label>
-                                <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $user->method_of_signin ?>>
+                                <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $_SESSION['USER_DATA']->method_of_signin ?>>
                             </div>
                             <div class="input-group">
                                 <label for="email">Email/Phone Number</label>
                                 <input type="text" id="email_phone" class="input" style="display: inline-block;"
-                                    value=<?php echo $user->email_phone ?>>
+                                    value=<?php echo $_SESSION['USER_DATA']->email_phone ?>>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
     $(document).ready(function () {
         $('#toggleTwoFactorAuth').change(function () {
             var toggleState = $(this).is(':checked') ? 'on' : 'off';
-            var user = '<?php echo $user->user_ID?>';
+            var user = '<?php echo $_SESSION['USER_DATA']->user_ID?>';
             var user_ID = user;
 
             $.ajax({
