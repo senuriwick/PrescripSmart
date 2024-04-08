@@ -644,6 +644,7 @@ class Patient extends Controller
         $referrence = $_GET['referrence'] ?? null;
         $appointment = $this->patientModel->appointment($referrence);
         $patient = $this->patientModel->patientInfo($appointment->patient_ID);
+        $doctor = $this->patientModel->searchDoctor_byID($appointment->doctor_ID);
         $merchant_id = 1226371;
         $order_id = $appointment->appointment_ID;
         $amount = "$appointment->amount";
@@ -664,7 +665,67 @@ class Patient extends Controller
             'hash' => $hash,
             'patient' => $patient
         ];
+
+        if ($_SESSION['USER_DATA']->method_of_signin == "Email"){
+            $this->appointment_email($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->fName, $doctor->lName);
+        } else {
+            $this->appointment_message($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->fName, $doctor->lName);
+        }
         $this->view('patient/appointment_complete', $data);
+    }
+
+    public function appointment_email($email, $firstName, $lastName, $doctorF, $doctorL)
+    {
+        $message = <<<MESSAGE
+            Dear Mr/Ms. $firstName $lastName;
+            Your appointment for Dr.$doctorF $doctorL has been confirmed. Please login to view more details.
+            Thank You!
+            MESSAGE;
+
+        require '../PHPMailerAutoload.php';
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();                                      
+        $mail->Host = 'smtp.gmail.com';                       
+        $mail->SMTPAuth = true;                               
+        $mail->Username = 'prescripsmart@gmail.com';       
+        $mail->Password = 'fgpacxjdxjogzlwk';                 
+        $mail->SMTPSecure = 'tls';                            
+        $mail->Port = 587;                                    
+
+        $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
+        $mail->addAddress($email);     
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Appointment Confirmation';
+        $mail->Body = $message;
+
+        if (!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            //echo 'Message has been sent';
+        }
+    }
+
+    public function appointment_message($phone_number, $firstName, $lastName, $doctorF, $doctorL)
+    {
+        require '../vendor/autoload.php';
+        
+        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
+        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
+        $twilio_number = "+12674227302";
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create(
+            $phone_number,
+            array(
+                'from' => $twilio_number,
+                'body' => 'Dear Mr/Ms. ' . $firstName . ' ' . $lastName . ';
+                Your appointment for Dr. ' . $doctorF . ' ' . $doctorL . ' has been confirmed. Please login to view more details.
+                Thank You!'                
+            )
+        );
     }
 
     public function notify_url()
@@ -750,7 +811,7 @@ class Patient extends Controller
 
     public function account_information()
     {
-        $patient = $this->patientModel->patientInfo($_SESSION['USER_DATA']->user_ID);
+        $patient = $this->patientModel->patientInfo();
         $data = [
             'patient' => $patient
         ];
@@ -785,9 +846,11 @@ class Patient extends Controller
 
     public function personal_information()
     {
-        $patient = $this->patientModel->patientInfo($_SESSION['USER_DATA']->user_ID);
+        $patient = $this->patientModel->patientDetails();
+        $user = $this->patientModel->patientInfo();
         $data = [
-            'patient' => $patient
+            'patient' => $patient,
+            'user' => $user
         ];
         $this->view('patient/personal_information', $data);
     }

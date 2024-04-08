@@ -28,7 +28,7 @@
                 <?php $patient = $data['patient'] ?>
 
                 <div class="inquiriesDiv">
-                    <h1>Patient ID: #<?php echo $patient->patient_ID ?>
+                    <h1>Patient ID: #<?php echo $patient->user_ID ?>
                     </h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
@@ -38,16 +38,16 @@
                                 <div class="input-group">
                                     <label for="name">Username</label>
                                     <input type="text" id="username" class="input" name="username"
-                                        value="<?php echo $patient->display_Name ?>" style="display: inline-block;">
+                                        value="<?php echo $patient->username ?>" style="display: inline-block;">
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Associated Email Address/Phone Number</label>
-                                    <?php if ($patient->signIn_Method == "email"): ?>
+                                    <?php if ($patient->sign_in_method == "Email"): ?>
                                         <input type="text" id="email" class="input" name="email" readonly
-                                            value="<?php echo $patient->email_address ?>" style="display: inline-block;">
+                                            value="<?php echo $patient->email_phone ?>" style="display: inline-block;">
                                     <?php else: ?>
                                         <input type="text" id="phone" class="input" name="phone" readonly
-                                            value="<?php echo $patient->contact_Number ?>" style="display: inline-block;">
+                                            value="<?php echo $patient->email_phone ?>" style="display: inline-block;">
                                     <?php endif; ?>
                                 </div>
 

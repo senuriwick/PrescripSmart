@@ -13,63 +13,15 @@
 </head>
 
 <body>
-  <pre><?=print_r($_SESSION)?></pre>
   <div class="content">
-    <div class="sideMenu">
-      <div class="logoDiv">
-        <img class="logoImg" src="<?php echo URLROOT ?>\public\img\nurse\Untitled design (5) copy 2.png" />
-      </div>
-
-      <!-- <div class="patientDiv">
-        <p class="mainOptions">NURSE</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div> -->
-
-
-      <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
-
-        <a href="patients_dashboard.html" id="patients">Patients</a>
-        <a href="ongoing.html" id="On-going">On-going session</a>
-        <a href="<?php echo URLROOT?>/nurse/sessions" id="sessions">Sessions</a>
-        <a href="appointments.html" id="appointments">Appoinments</a>
-        <a href="profile.html" id="profile">Profile</a>
-      </div>
-
-
-      <div class="othersDiv">
-        <a href="billing.html" id="billing">Terms of Service</a>
-        <a href="terms_of_service.html" id="terms">Privacy Policy</a>
-        <a href="privacy_policy.html" id="privacy">Settings</a>
-      </div>
-
-    </div>
+  <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
-      <div class="navBar">
-        <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
-        <!-- <p>SAMPLE USERNAME HERE</p> -->
-        <p><?php echo $_SESSION['USER_DATA']->user_ID;?></p>
-      </div>
+    <?php include 'top_navigation_panel.php'; ?>
 
       <div class="patientInfoContainer">
-        <div class="patientInfo">
-          <img src="<?php echo URLROOT ?>\public\img\nurse\profile.png" alt="profile-pic">
-          <div class="patientNameDiv">
-            <p class="name">Nurse Name</p>
-            <p class="role">Nurse</p>
-          </div>
-        </div>
-
-        <div class="menu">
-          <a href="patients_dashboard.html" id="patients">Patients</a>
-          <a href="ongoing.html" id="On-going">On-going session</a>
-          <a href="sessions.html" id="sessions">Sessions</a>
-          <a href="appointments.html" id="appointments">Appoinments</a>
-        </div>
+      <?php include 'information_container.php'; ?>
+      <?php include 'in_page_navigation.php'; ?>
 
         <div class="prescriptionsDiv">
           <h1>Search Patient</h1>
@@ -135,12 +87,3 @@
 
 
 </body>
-
-<!-- $_SESSIONN['USER_DATA'] = $user;
-Auth
-
-getUserId() {
-  if($_SESSION['USER_DATA']->id != "") {
-    return $_SESSION['USER_DATA']->id
-  }
-} -->

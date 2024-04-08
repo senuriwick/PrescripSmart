@@ -220,3 +220,18 @@ body {
   height: 4px;
   background-color: #0069FF;
 }
+
+.reports {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.reports::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px; 
+  background-color: #0069FF; 
+}

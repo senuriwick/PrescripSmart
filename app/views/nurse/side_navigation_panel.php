@@ -20,31 +20,27 @@
         </div>
 
         <div class="manageDiv">
-            <p class="mainOptions">Patient Tools</p>
+            <p class="mainOptions">Nurse Tools</p>
 
-            <div class="menu-item prescriptions">
-                <img src="<?php echo URLROOT; ?>/public/img/patient/prescription_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/prescriptions_dashboard" id="prescriptions">Prescriptions</a>
+            <div class="menu-item patients">
+                <img src="<?php echo URLROOT; ?>/public/img/nurse/patient_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/nurse/patients_dashboard" id="patients">Patients</a>
             </div>
-            <div class="menu-item reports">
-                <img src="<?php echo URLROOT ?>/public/img/patient/reports_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/reports_dashboard" id="reports">Reports</a>
-            </div>
-            <div class="menu-item appointments">
-                <img src="<?php echo URLROOT ?>/public/img/patient/appointment_icon2.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/appointments_dashboard" id="appointments">Appointments</a>
+            <div class="menu-item on-going">
+                <img src="<?php echo URLROOT ?>/public/img/nurse/ongoing_icon2.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/nurse/ongoing_session" id="on-going">On-going session</a>
             </div>
             <div class="menu-item sessions">
-                <img src="<?php echo URLROOT ?>/public/img/patient/session_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/new_appointment" id="sessions">Sessions</a>
+                <img src="<?php echo URLROOT ?>/public/img/nurse/session_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/nurse/sessions" id="sessions">Sessions</a>
             </div>
-            <div class="menu-item inquiries">
-                <img src="<?php echo URLROOT ?>/public/img/patient/inquiries_icon2.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/inquiries_dashboard" id="inquiries">Inquiries</a>
+            <div class="menu-item appointments">
+                <img src="<?php echo URLROOT ?>/public/img/nurse/appointment_icon2.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/nurse/appointments" id="appointments">Appoinments</a>
             </div>
             <div class="menu-item profile">
-                <img src="<?php echo URLROOT ?>/public/img/patient/account_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/personal_information" id="profile">Profile</a>
+                <img src="<?php echo URLROOT ?>/public/img/nurse/account_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/nurse/personal_information" id="profile">Profile</a>
             </div>
         </div>
 

@@ -1,12 +1,6 @@
 
-.menu .selectedMenu {
-  color: black;
-  font-weight: bold;
-}
-
-
 body {
-  font-family: inter ;
+  font-family: inter;
   margin: 0;
 }
 
@@ -16,208 +10,18 @@ body {
 }
 
 
-.sideMenu {
-  min-width: 14vw;
-  height: 100vh;
-  background-color: rgba(7, 28, 74, 1);
-}
-
-
-.sideMenuTexts {
-  font-size: 1.7vh;
-  color: #ffffff;
-  line-height: 1.5vh;
-  font-family: inter;
-}
-
-.logoDiv {
-  align-items: center;
-  margin-bottom: 4vh;
-}
-
-.logoImg {
-  display: block;
-  margin: auto;
-  height: 8vh;
-  padding-top: 3vh;
-}
-
-
-.mainOptions {
-  color: white;
-  font-size: 2.2vh;
-  font-weight: bold;
-  font-family: inter;
-}
-
-
-.sideMenu p {
-  padding-left: 3vh;
-}
-
-
-.patientDiv {
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-}
-
-
-.profile {
-  background-color: rgba(53, 70, 109, 1);
-  padding: 0.2vh;
-  margin-bottom: 2.5vh;
-}
-
-
-.profile p
-{
-  color: #ffffff;
-  font-size: 1.8vh;
-  font-weight: bold;
-  font-family: inter;
-}
-
-
-
-.manageDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 9vh;
-}
-
-.manageDiv .mainOptions
-{
-  margin-bottom: 5vh;
-}
-
-.manageDiv a
-{
-    display:block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.othersDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 3vh;
-  color: white;
-}
-
-.othersDiv a
-{
-    display:block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-
-
 .main {
   flex: 1;
-
+  margin-left: 220px;
+  margin-bottom: 3%;
 }
 
-.navBar {
-  background-color: rgba(138, 150, 181, 1);
-  height: 7vh;
-}
-
-.navBar p {
-  margin: 0;
-  float: right;
-  padding: 2.5vh 0vw;
-  color: #ffffff;
-  font-size: 1.7vh;
-  font-family: inter;
-}
-
-.navBar img {
-  float: right;
-  padding: 1.3vh 2vw;
-  height: 4vh;
-}
 
 .patientInfoContainer {
   width: 80%;
   margin-top: 5vh;
   margin-left: 3vw;
 }
-
-
-.patientInfo {
-  display: flex;
-}
-
-
-.patientInfo img {
-  height: 10vh;
-  margin-right: 1.5vw;
-}
-
-
-.patientNameDiv {
-  padding: 0.01vh 0;
-}
-
-
-.patientInfo .name {
-  font-size: 2.5vh;
-  font-weight: bold;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  color: rgba(68, 81, 114, 1);
-  font-family: inter;
-}
-
-.patientInfo .role {
-  font-size: 1.8vh;
-  margin-top: 0vh;
-  padding-top: 0;
-}
-
-
-.menu {
-  margin-top: 2vh;
-  display: flex;
-  border-bottom: solid;
-  padding-bottom: 0.1vh;
-  border-width: 0.1vh;
-  border-color: rgba(164, 174, 199, 1);
-}
-
-.menu a {
-  margin-right: 6.5vh;
-  font-size: 2vh;
-  font-family: inter;
-  margin-bottom: 1vh;
-  color: rgba(164, 174, 199, 1);
-  text-decoration: none;
-}
-menu a:active
-{
-  color: #0069FF;
-}
- a:hover
-{
-  color:#17058aee;
-}
-
-
-
 
 
 .prescriptionsDiv {
@@ -228,7 +32,7 @@ menu a:active
   border-color: rgba(164, 174, 199, 1);
 }
 
-.prescriptionsDiv h1{
+.prescriptionsDiv h1 {
   margin-left: 0.2vw;
   margin-bottom: 1.5vh;
 }
@@ -277,7 +81,7 @@ menu a:active
   color: white;
   font-size: 1rem;
   padding: 1vh 2.5vw;
-  
+
 }
 
 .patientFile .fileInfo {
@@ -288,8 +92,6 @@ menu a:active
   height: 5vh;
   margin-right: 1vw;
 }
-
-
 
 
 .patientFileBack {
@@ -333,7 +135,7 @@ menu a:active
   margin-right: 3vw;
 }
 
-.detailDiv .detailHeading{
+.detailDiv .detailHeading {
   font-weight: bold;
   margin-bottom: 1vh;
   margin-top: 3vh;
@@ -361,5 +163,34 @@ menu a:active
   display: flex;
 }
 
+.patients {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
 
+.patients::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #0069FF;
+}
 
+.menu #patients {
+  color: #0069FF;
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  position: relative;
+}
+
+.menu #patients::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #0069FF;
+}

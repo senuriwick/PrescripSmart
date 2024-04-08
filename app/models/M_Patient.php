@@ -196,6 +196,14 @@ class M_Patient
         return $result;
     }
 
+    public function searchDoctor_byID($docID)
+    {
+        $this->db->query('SELECT * FROM doctors WHERE doctor_ID = :docID');
+        $this->db->bind('docID', $docID);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function docSession($doctor_ID)
     {
         $currentDate = date('Y-m-d');
@@ -311,10 +319,18 @@ class M_Patient
         $this->db->execute();
     }
 
-    public function patientInfo($userID)
+    public function patientInfo()
     {
-        $this->db->query('SELECT * FROM patients WHERE patient_ID = :userID');
-        $this->db->bind(':userID', $userID);
+        $this->db->query('SELECT * FROM users WHERE user_ID = :userID');
+        $this->db->bind(':userID', $_SESSION['USER_DATA']->user_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function patientDetails()
+    {
+        $this->db->query('SELECT * FROM patients WHERE patient_ID = :patientID');
+        $this->db->bind(':patientID', $_SESSION['USER_DATA']->user_ID);
         $result = $this->db->single();
         return $result;
     }

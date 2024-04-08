@@ -22,10 +22,11 @@
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
+                <?php $user = $data['user'] ?>
 
                     <div class="profile-pic-container">
-                        <?php if ($_SESSION['USER_DATA']->profile_photo): ?>
-                            <img src="<?php echo URLROOT?>\public\uploads\profile_images\<?php echo $_SESSION['USER_DATA']->profile_photo?>"
+                        <?php if ($user->profile_photo): ?>
+                            <img src="<?php echo URLROOT?>\public\uploads\profile_images\<?php echo $user->profile_photo?>"
                                 alt="profile-pic" id="profile-pic">
                         <?php else: ?>
                             <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" 

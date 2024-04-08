@@ -93,6 +93,21 @@ body {
   background-color: #0069FF;
 }
 
+.prescriptions {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.prescriptions::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px; 
+  background-color: #0069FF; 
+}
+
 /* Modal */
 .prescriptionsDiv .modal {
   position: fixed;
@@ -226,21 +241,4 @@ body {
   border-radius: 10%;
   border-color: #0069FF;
   margin-top: -10px;
-}
-
-.menu #prescriptions {
-  color: #0069FF;
-  border-color: #0069FF;
-  border-spacing: 2cm;
-  position: relative;
-}
-
-.menu #prescriptions::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background-color: #0069FF;
 }

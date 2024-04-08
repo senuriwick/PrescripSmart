@@ -34,7 +34,7 @@ class M_Nurse
     public function currentSession()
     {
         $this->db->query('SELECT * FROM sessions WHERE sessionDate = CURRENT_DATE AND start_time <= CURRENT_TIME AND end_time >= CURRENT_TIME AND nurse_ID = :nurseID');
-        $this->db->bind(':nurseID', 1254638);
+        $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
 
         $result = $this->db->single();
         return $result;
@@ -45,7 +45,7 @@ class M_Nurse
         $this->db->query('SELECT s.*, d.fName, d.lName, d.specialization FROM sessions s
         INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID
         WHERE s.sessionDate >= CURRENT_DATE AND s.nurse_ID = :nurseID');
-        $this->db->bind(':nurseID', 1254638);
+        $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
 
         $result = $this->db->resultSet();
         return $result;
@@ -87,8 +87,8 @@ class M_Nurse
 
     public function nurseInfo()
     {
-        // $this->db->query('SELECT * FROM nurses WHERE nurse_ID = 1254638');
-        $this->db->query('SELECT user_ID,username,email_phone,password FROM users WHERE user_ID = 1254638');
+        $this->db->query('SELECT * FROM users WHERE user_ID = :nurseID');
+        $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
         $result = $this->db->single();
         return $result;
     }
@@ -96,9 +96,9 @@ class M_Nurse
     public function updateAccInfo($username)
     {
         $this->db->query('UPDATE users SET username = :username 
-        WHERE user_ID = 1254638');
+        WHERE user_ID = :nurseID');
         $this->db->bind(':username', $username);
-        // $this->db->bind(':password', $newpassword);
+        $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
 
         $this->db->execute();
     }
@@ -106,14 +106,16 @@ class M_Nurse
     public function resetPassword($newpassword)
     {
         $this->db->query('UPDATE users SET password = :newpassword 
-        WHERE user_ID = 1254638');
+        WHERE user_ID = :nurseID');
         $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+        $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
         $this->db->execute();
     }
 
     public function nurseDetails()
     {
-        $this->db->query('SELECT * FROM nurses WHERE nurse_ID = 1254638');
+        $this->db->query('SELECT * FROM nurses WHERE nurse_ID = :nurseID');
+        $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
         $result = $this->db->single();
         return $result;
     }
@@ -123,7 +125,7 @@ class M_Nurse
         $this->db->query('UPDATE nurses SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
             home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
             specializations = :spec
-            WHERE nurse_ID = 1254638');
+            WHERE nurse_ID = :nurseID');
 
         $this->db->bind(':fname', $fname);
         $this->db->bind(':lname', $lname);
@@ -134,6 +136,7 @@ class M_Nurse
         $this->db->bind(':regno', $regno);
         $this->db->bind(':qual', $qual);
         $this->db->bind(':spec', $spec);
+        $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
 
         $this->db->execute();
     }
@@ -152,5 +155,19 @@ class M_Nurse
         $this->db->bind(':TFA', $toggleState);
         $this->db->bind(':userID', $userID);
         $this->db->execute();
+    }
+
+    public function updateProfilePicture($filename, $userID)
+    {
+        try {
+            $this->db->query('UPDATE users SET profile_photo = :profile_picture WHERE user_ID = :user_id');
+            $this->db->bind(':profile_picture', $filename);
+            $this->db->bind(':user_id', $userID);
+            $this->db->execute();
+            return true; 
+        } catch (PDOException $e) {
+            error_log("Database error: " . $e->getMessage());
+            return false; 
+        }
     }
 }
