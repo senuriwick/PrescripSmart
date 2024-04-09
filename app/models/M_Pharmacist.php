@@ -39,6 +39,16 @@
         
             return $this->db->resultSet();
         }
+
+        public function getSearchedPatientsPaginated($itemsPerPage, $offset,$patientName){
+            $this->db->query('SELECT * FROM patients WHERE patients.name = :patientName LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':patientName', $patientName);
+            $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+            $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+        
+            return $this->db->resultSet();
+        }
+        
         
 
         public function getTotalPatientsCount(){
@@ -50,6 +60,15 @@
 
         public function getMedicationsPaginated($itemsPerPage, $offset){
             $this->db->query('SELECT * FROM medication LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+            $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+        
+            return $this->db->resultSet();
+        }
+
+        public function getSearchedMedicationsPaginated($itemsPerPage, $offset,$medicineName){
+            $this->db->query('SELECT * FROM medication WHERE medication.name = :medicineName LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':medicineName', $medicineName);
             $this->db->bind(':offset', $offset, PDO::PARAM_INT);
             $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
         
