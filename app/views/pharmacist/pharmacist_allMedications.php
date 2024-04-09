@@ -56,11 +56,12 @@
                     <hr class="divider">
                     <div class="prescriptionsDiv">
                         <h2 class="heading">Search Medication</h2>
-                        <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchMedicine">
-                            <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield">
-                            <button type="submit" id="searchButton">SEARCH</button>
+                        <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchMedicine" onsubmit="return validateSearch()">
+                            <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield" oninput="toggleSearchButton()">
+                            <button type="submit" id="searchButton" disabled>SEARCH</button>
                         </form>
                     </div>
+
                     <hr class="divider">
         
                     <div class="allMed">
@@ -97,6 +98,16 @@
         $('#search').on('input', function () {
             // Get the current value of the search input
             var searchTerm = $(this).val();
+
+            // Select the search button
+            var searchButton = $('#searchButton');
+
+            // Disable the search button if the search term is empty
+            if (searchTerm.trim() === '') {
+                searchButton.prop('disabled', true);
+            } else {
+                searchButton.prop('disabled', false);
+            }
 
             // Perform AJAX request only if the search term is not empty
             if (searchTerm.trim() !== '') {

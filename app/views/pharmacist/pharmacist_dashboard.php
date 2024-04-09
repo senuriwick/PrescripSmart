@@ -63,7 +63,7 @@
                         <h2>Search Patient</h2>
                         <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchPatient">
                             <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield">
-                            <button type="submit" id="searchButton">SEARCH</button>
+                            <button type="submit" id="searchButton" disabled>SEARCH</button>
                         </form>
                     </div>
                     <hr class="divider">  
@@ -97,36 +97,53 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        // Attach input event handler to the search input field
-        $('#search').on('input', function () {
-            // Get the current value of the search input
-            var searchTerm = $(this).val();
+   $(document).ready(function () {
+    // Attach input event handler to the search input field
+    $('#search').on('input', function () {
+        // Get the current value of the search input
+        var searchTerm = $(this).val();
 
-            // Perform AJAX request only if the search term is not empty
-            if (searchTerm.trim() !== '') {
-                $.ajax({
-                    url: '<?php echo URLROOT; ?>/Pharmacist/searchPatientAjax',
-                    type: 'POST',
-                    data: { search: searchTerm },
-                    success: function (response) {
+        // Select the search button
+        var searchButton = $('#searchButton');
+
+        // Disable the search button if the search term is empty
+        if (searchTerm.trim() === '') {
+            searchButton.prop('disabled', true);
+        } else {
+            searchButton.prop('disabled', false);
+        }
+
+        // Perform AJAX request only if the search term is not empty
+        if (searchTerm.trim() !== '') {
+            $.ajax({
+                url: '<?php echo URLROOT; ?>/Pharmacist/searchPatientAjax',
+                type: 'POST',
+                data: { search: searchTerm },
+                success: function (response) {
+                    // Check if response is empty (no patient found)
+                    if (response.trim() === '') {
+                        // Display "Patient not found" message
+                        $('.patientFiles').html('<p>Patient not found</p>');
+                    } else {
                         // Update the HTML content of the element with the class "patientFiles"
                         $('.patientFiles').html(response);
 
                         // Hide the pagination div
                         $('.pagination').hide();
-                    },
-                    error: function () {
-                        // Handle errors
                     }
-                });
-            } else {
-                // Clear the results and show the pagination div if the search term is empty
-                // $('.patientFiles').html('');
-                $('.pagination').show();
-            }
-        });
+                },
+                error: function () {
+                    // Handle errors
+                }
+            });
+        } else {
+            // Clear the results and show the pagination div if the search term is empty
+            // $('.patientFiles').html('');
+            $('.pagination').show();
+        }
     });
+});
+
 </script>
 
 </body>

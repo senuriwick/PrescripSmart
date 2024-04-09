@@ -117,7 +117,7 @@ hr{
   justify-content: space-between;
 }
 
-.newRow p{
+.newRow p,option{
   color:#056BFE;
   font-weight: bold;
 }
