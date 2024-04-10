@@ -382,6 +382,14 @@ class M_Patient
         $this->db->execute();
     }
 
+    public function reset_password($password, $user)
+    {
+        $this->db->query('UPDATE users SET password = :password WHERE email_phone = :user');
+        $this->db->bind(':password', password_hash($password, PASSWORD_BCRYPT));
+        $this->db->bind(':user', $user);
+        $this->db->execute();
+    }
+
     public function manage2FA($toggleState, $userID)
     {
         $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_ID = :userID');

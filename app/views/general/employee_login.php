@@ -42,7 +42,7 @@
                     <button type="submit" class="loginButton">Log In</button>
                 </form>
                 <div id="userValidation"></div>
-                <a href="forgot_password.html" class="forgot-password">Forgot Password?</a>
+                <a href="<?php echo URLROOT?>/general/forgot_password" class="forgot-password">Forgotten Password?</a>
             </div>
 
         </div>
