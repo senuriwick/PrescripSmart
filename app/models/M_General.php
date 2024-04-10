@@ -30,4 +30,12 @@ class M_General
         $result = $this->db->single();
         return $result;
     }
+
+    public function reset_password($password, $user)
+    {
+        $this->db->query('UPDATE users SET password = :password WHERE email_phone = :user');
+        $this->db->bind(':password', password_hash($password, PASSWORD_BCRYPT));
+        $this->db->bind(':user', $user);
+        $this->db->execute();
+    }
 }

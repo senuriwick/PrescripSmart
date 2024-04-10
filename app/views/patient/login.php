@@ -41,7 +41,7 @@
           <button type="submit" class="loginButton">Log In</button>
         </form>
         <div id="userValidation"></div>
-        <a href="forgot_password.html" class="forgot-password">Forgot Password?</a>
+        <a href="<?php echo URLROOT?>/patient/forgot_password" class="forgot-password">Forgotten Password?</a>
       </div>
       <p class="dont-have-an-account-sign-up-here">
         <span class="dont-have-an-account-sign-up-here-sub-0">Don’t have an account? Sign up</span>

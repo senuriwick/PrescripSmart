@@ -172,4 +172,140 @@ class General extends Controller
         }
     }
 
+    //forgotton password functionality
+    public function forgot_password()
+    {
+        $this->view('general/forgot_password');
+    }
+
+    public function forgotten_password_reset()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email_phone = $_POST["email"];
+
+            $result = $this->generalModel->find_user_by_email($email_phone);
+
+            if(!empty($result)){
+                echo json_encode(["success" => true]);
+            } else {
+                echo json_encode(["error" => "Sorry! User not found."]);
+            }
+        }
+    }
+
+    public function reset_password()
+    {
+        $this->view('general/reset_password');
+    }
+
+    public function password_recovery()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email_phone = $_POST["email"];
+
+            $result = $this->generalModel->find_user_by_email($email_phone);
+
+            if(!empty($result)){
+                if($result->method_of_signin == "Email") 
+                {
+                    $this->send_recovery_email($result->email_phone);
+                    echo json_encode(["success" => true]);
+                } else {
+                    $this->send_recovery_message($result->email_phone);
+                    echo json_encode(["success" => true]);
+                }
+            } else {
+                echo json_encode(["error" => "Sorry! Please try again later."]);
+            }
+        }
+    }
+
+    public function send_recovery_email($email)
+    {
+        // create the recovery link
+        $recovery_link = "http://localhost/prescripsmart/general/resetPassword?user=$email";
+        $message = <<<MESSAGE
+            Hi,
+            Please use the following link to reset your password:
+            $recovery_link
+            MESSAGE;
+
+        require '../PHPMailerAutoload.php';
+
+        $mail = new PHPMailer;                   
+        $mail->isSMTP();                                      
+        $mail->Host = 'smtp.gmail.com';                       
+        $mail->SMTPAuth = true;                               
+        $mail->Username = 'prescripsmart@gmail.com';      
+        $mail->Password = 'fgpacxjdxjogzlwk';                 
+        $mail->SMTPSecure = 'tls';                            
+        $mail->Port = 587;                                 
+
+        $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
+        $mail->addAddress($email);     
+        $mail->isHTML(true);                                     
+
+        $mail->Subject = 'Reset Password of Prescripsmart Account';
+        $mail->Body = $message;
+
+        if (!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            //echo 'Message has been sent';
+        }
+    }
+
+    public function send_recovery_message($phone_number)
+    {
+        require '../vendor/autoload.php';
+        
+        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
+        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
+        $twilio_number = "+12674227302";
+
+        $client = new Client($account_sid, $auth_token);
+        $recovery_link = "http://localhost/prescripsmart/general/resetPassword?user=$phone_number";
+        $client->messages->create(
+            $phone_number,
+            array(
+                'from' => $twilio_number,
+                'body' => 'Please use the following link to reset your Prescripsmart account password: ' . $recovery_link
+            )
+        );
+    }
+
+    public function recovery_contd()
+    {
+        $this->view('general/recovery_contd');
+    }
+
+    public function resetPassword()
+    {
+        $user = $_GET['user'];
+        $this->view('general/resetPassword');
+    }
+
+    public function reset_user_password()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $user = $_POST['user'];
+            $newPassword = $_POST['new_password'];
+            $confirmPassword = $_POST['confirm_password'];
+
+            if($newPassword == $confirmPassword)
+            {
+                $this->generalModel->reset_password($newPassword, $user);
+                echo json_encode(["success" => true]);
+            } else {
+                echo json_encode(["error" => "An error occured. Please try again later."]);
+            }
+        }  
+    }
+
+    public function reset_successful()
+    {
+        $this->view('general/reset_successful');
+    }
+
 }
