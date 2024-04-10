@@ -19,51 +19,51 @@
 
 <?php require APPROOT .'/views/includes/navbar&sidemenu2.php'; ?>
 
-
-      <div class="details">
-        <div class="back" style="display: flex; margin-left: -38vh;">
-          <svg>
-            <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >
-          </svg>
-          <h1 >Nurse Registration</h1>
-        </div>
-        
-        <form action="<?php echo URLROOT; ?>/receptionist/regNurse" method="post">
-        <div class="top1">
-          <div class="firstname">
-              <h3>first name</h3>
-              <input type="text" placeholder="Enter first name">
+    <div class="details">
+          <div class="back" style="display: flex; margin-left: -38vh;">
+              <svg>
+                <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >
+              </svg>
+              <h1 >Nurse Registration</h1>
           </div>
-            <div class="lastname">
-              <h3>last name</h3>
-              <input type="text" placeholder="Enter last name">
-           </div>
+        
+          <form action="<?php echo URLROOT; ?>/receptionist/regNurse" method="post">
+          <div class="top1">
+                <div class="firstname">
+                    <h3>first name</h3>
+                    <input type="text" placeholder="Enter first name">
+                </div>
+                <div class="lastname">
+                  <h3>last name</h3>
+                  <input type="text" placeholder="Enter last name">
+                </div>
           </div>
           
   
           <div class="top2">
-              <div class="email">
-                  <h3>email address</h3>
-                  <input type="text" placeholder="Enter email address">
-              </div>
-                <div class="phone">
-                  <h3>phone number</h3>
-                  <input type="text" placeholder="Enter phone number">
-               </div>
+                  <div class="email">
+                      <h3>email address</h3>
+                      <input type="text" placeholder="Enter email address">
+                  </div>
+                  <div class="phone">
+                    <h3>contact number</h3>
+                    <input type="text" placeholder="Enter phone number">
+                </div>
           </div>
+
           <div class="top3">
-            <h3>Create password</h3>
-            
-              <input type="text" placeholder="Enter password">
-
-            
-
+                <h3>Create password</h3>            
+                <input type="text" placeholder="Enter password">           
           </div>
-
           <button type="submit"><b>Register</b></button>
-          </form>
-  
+          
+      </form>
+   </div>
 
-      </div>
-    </html>
+      <div class="popup">
+          <h2>Registration successful!</h2>
+          <a><button><b>Back to dashboard</b></button></a>
+        </div>
+
+</html>
         

@@ -10,21 +10,21 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700"/>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin/loginPage.css">
 </head>
+
 <body>
 <div class="loginPage">
   <div class="upperRectangle">
   </div>
 
   <div class="formContainer">
-    <div class="loginForm">
-      <?php //flash('register_success'); ?> 
+    <div class="loginForm"> 
       <p class="login-to-your-account">Login to your account</p>
 
-      <form action="<?php echo URLROOT; ?>/admin/searchdoctor" method="post">
+      <form action="<?php echo URLROOT; ?>/admin/login" method="post">
         <div class="emailContainer">
           <input type="text" id="email_address" name="email_address" placeholder="Enter your email/phone number" class="inputfield">
           <p class="inputLabel1">
-            <span class="inputLabel1-0">email/phone number </span>
+            <span class="inputLabel1-0">email/phone number</span>
             <span class="inputLabel1-1">*</span>
           </p>
         </div>

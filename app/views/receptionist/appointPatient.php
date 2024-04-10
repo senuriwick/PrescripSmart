@@ -19,82 +19,47 @@
 
 <?php require APPROOT .'/views/includes/navbar&sidemenu2.php'; ?>
 
-
         <div class="searchDiv">
-          <div class="back">
-          
-              <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >
-            
-            <h1>Add New Appointment</h1>
-          </div>
+                <div class="back">         
+                      <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >            
+                      <h1>Add New Appointment</h1>
+                </div>
 
-          <div class="sessions">
+                <div class="sessions">
+                      <h4><strong>Session #23233</strong></h4>
+                      <hr style="margin-top: -2vh; width: 25vh;">
+                      <p>Date: Sunday, 17th Sept, 2023</p>
+                      <p>Time: 06.00 A.M </p>
+                      <p>Dr. Asanka Sayakkara</p>
+                      <p>Token No - 12</p>
+                      <p>Channeling Fee: Rs.4000</p>   
+                </div>
+                <hr style="margin-bottom: 2vh; color:#445172BF;">
 
-            <h4><strong>Session #23233</strong></h4>
-            <hr style="margin-top: -2vh; width: 25vh;">
+                <div class="searchFiles">
+                      <input type="search" style="border-radius: 1vh;" placeholder="Enter patient name or ID here">
+                      <button type="search"><b>SEARCH</b></button>
+                </div>
 
-            <p>Date: Sunday, 17th Sept, 2023</p>
-            <p>Time: 06.00 A.M </p>
-            <p>Dr. Asanka Sayakkara</p>
-            <p>Token No - 12</p>
-            <p>Channeling Fee: Rs.4000</p>
-    
-          </div>
+                <tr class="row">                                                                           
+                    <div class="column">
 
-          <hr style="margin-bottom: 2vh; color:#445172BF;">
+                            <td >
+                                <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                <p class="name">Ms. Shenaya Perera</p>                                    
+                            </td>
+                                      
+                            <td>
+                                <p style="margin-left: 10vh;">Age - 22</p>
+                            </td>
 
-
-
-           <div class="searchFiles">
-            <input type="search" style="border-radius: 1vh;" placeholder="Enter patient name or ID here">
-            <button type="search"><b>SEARCH</b></button>
-           </div>
-
-           <tr class="row">
-                                                                           
-                                <div class="column">
-
-                                    <td >
-                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                                    <p class="name">
-                                    Ms. Shenaya Perera
-                                    </p> 
-                                    </td>
-
-                                    <td>
-                                    <p style="margin-left: 10vh;">Age - 22</p>
-                                    </td>
-
-                                    <td>
-                                    <p>
-                                        Patient ID #32562
-                                    </p>
-
-                                  
-                                    </td>
-                                               
-                                  </div>
-                                        
-                                </tr>
-
-                                <button type="submit" class="add-app"><b><strong>ADD APPOINTMENT</strong></b></button>
-
-
-        </div>
-
-
-        
-
+                            <td>
+                                <p>Patient ID #32562</p>                                  
+                            </td>
+                                                
+                      </div>                                        
+                    </tr>
+                    <button type="submit" class="add-app"><b><strong>ADD APPOINTMENT</strong></b></button>
 
       </div>
-
-
-      
-
-
-    </div>
-
-  </div>
-
-
-</body>
+  </body>

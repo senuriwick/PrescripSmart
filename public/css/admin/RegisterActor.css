@@ -6,13 +6,13 @@
   padding-top: 3vh;
  } 
 
-
 .back h1{
   
   margin-left: 2vh;
   font-size: 3vh;
   color: #445172;
 }
+
 .top1
 {
     display: flex;
@@ -22,12 +22,11 @@
     margin-top: 9vh;
 }
     
-    
-
 .firstname
 {
     margin-right: 20vh;
 }
+
 .top1 input
 {
     width:43vh;
@@ -38,10 +37,9 @@
     font-family: inter;
     color: black;
     border-radius: 0.9vh;
-    padding-left: 3vh;
-   
-    
+    padding-left: 3vh;  
 }
+
 .top2
 {
     display: flex;
@@ -49,9 +47,8 @@
     margin-top: 2vh;
     padding-left: 5vh;
     font-size: 1.7vh;
-    
-
 }
+
 .top2 input
 {
     width:43vh;
@@ -63,13 +60,13 @@
     font-family: inter;
     color: black;
     padding-left: 3vh;
-    border-color: #E3E8F4;
-    
+    border-color: #E3E8F4;   
 }
 .email
 {
     margin-right: 20vh;
 }
+
 .details
 {
     background-color: #EFF2FB;
@@ -79,9 +76,8 @@
     margin-top: 3vh;
     width:135vh;
     margin-bottom: 3vh;
-
-    
 }
+
 .details button
 {
     margin-left: 43vh;
@@ -94,16 +90,15 @@
     font-size: 2.5vh;
     font-family: inter;
     border: none;
-
 }
-.top3
-{
 
-    
+.top3
+{ 
     margin-top: 2vh;
     padding-left: 5vh;
     font-size: 1.7vh;
 }
+
 .top3 input
 {
     width:43vh;
@@ -115,12 +110,40 @@
     font-family: inter;
     color: black;
     padding-left: 3vh;
-    border-color: #E3E8F4;
-    
-
+    border-color: #E3E8F4; 
 }
+
 .req 
 {
   display: flex;
   
+}
+
+.popup
+{
+    background-color:floralwhite ;
+    width: 48vh;
+    height: 25vh;
+    border-radius: 1vh;
+    position: absolute;
+    top: 45%;
+    left: 33%;
+    text-align: center;
+    border-style: solid;
+    border-color:black;
+}
+
+.popup h2
+{
+    margin-top: 5vh;
+}
+
+.popup button
+{
+    border-radius: 1vh;
+    width: 90%;
+    background-color: #0069FF;
+    color: white;
+    border: none;
+    height: 5vh;
 }

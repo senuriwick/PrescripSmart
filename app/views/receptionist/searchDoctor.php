@@ -19,53 +19,79 @@
 
 <?php require APPROOT .'/views/includes/navbar&sidemenu2.php'; ?>
 
-
-        <div class="searchDiv">
+      <div class="searchDiv">
             <h1>Search Doctor</h1>
             <div class="searchFiles">
-              <input type="search" placeholder="Enter Doctor name/ID here">
-              <button type="search"><b>SEARCH</b></button> 
+                <form>
+                    <input type="search" id="searchinput" placeholder="Enter Doctor Name/ID here">
+                    <button type="search"><b>SEARCH</b></button> 
+                </form>
             </div>
-
-            <?php foreach($data['doctors'] as $post): ?>
-                              <tr class="row">
-                                                                           
-                                <div class="column">
-
+           <div class="details">
+                <table>
+                    <tbody>
+                    <?php foreach($data['doctors'] as $post): ?>
+                            <tr class="row">                                                                           
+                
                                     <td >
-                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                                    <p class="name">
-                                    <?php echo $post->last_name;?>
-                                    </p> 
+                                        <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                        <p class="name">
+                                        Mr. 
+                                        <?php echo $post->last_name;?>
+                                        </p> 
                                     </td>
 
                                     <td>
-                                    <p style="margin-left: 10vh;">Employee ID- <?php echo $post->doctor_id;?></p>
+                                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_id;?></p>
                                     </td>
 
                                     <td>
-                                    <button class="profileButton">
-                                       View profile
-                                    </button>
-
-                                  <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileDoc/<?php echo $post->doctor_id ?>">
-                                  <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                                  </form>
-
+                                        <button class="profileButton"><b>View Profile</b></button>
+                                                                            
+                                        <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileDoc/<?php echo $post->doctor_id ?>">
+                                            <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                        </form>
                                     </td>
-                                               
-                                  </div>
+                                                
+                                                                    
+                            </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <script>
+                      document.addEventListener("DOMContentLoaded", function () {
+                      const searchInput = document.getElementById("searchinput");//element
+
+                      searchInput.addEventListener("input", function ()
+                      {
+                      const searchTerm = searchInput.value.toLowerCase();//This line retrieves value of the search input field and converts it to lowercase.
+                      const regex = new RegExp(searchTerm, 'i'); 
+                      const Rows = document.querySelectorAll(".row");
+
+                          Rows.forEach(function (row) 
+                          {
+                                const Name = row.querySelector(".name").textContent.toLowerCase();
+                                if (regex.test(Name)) {
+                                        row.style.display = "";
                                         
-                                </tr>
-                                    <?php endforeach; ?>
-
+                                    } else {
+                                        row.style.display = "none";
+                                    
+                                    }
+                          });
+                        });
+                    });
+                  </script>
+            </div>
         </div>
+            
+
         <div class="addapp">
-          <div class="newapp">
-            <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
-            <a href="<?php echo URLROOT?>/receptionist/viewregDoctor">Register a new doctor</a>
-          </div>
+            <div class="newapp">
+                <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
+                <a href="<?php echo URLROOT?>/receptionist/viewregDoctor">Register a new doctor</a>
+            </div>
         </div>
 
       </body>
-      </html>
+  </html>

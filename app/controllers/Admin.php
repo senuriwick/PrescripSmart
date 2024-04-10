@@ -150,17 +150,12 @@
 
     public function login()
       {
-       //$this->view('admin/login');
+      
       // Check for POST
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
-         // Process form
-         // Sanitize POST data
-         //Then run the form
-         //define('FILTER_SANITIZE_STRING', 513);
-
          // Now, instead of using the constant, you can use the integer value directly
-                    $_POST = filter_input_array(INPUT_POST, 513);
+        $_POST = filter_input_array(INPUT_POST, 513);
         
         // Init data
         $data =[
@@ -240,7 +235,12 @@
     {
       $_SESSION['email_address'] = $user->email_address;
       $_SESSION['first_name'] = $user->first_name;
-      redirect('/admin/searchPatient');
+      $_SESSION['last_name'] = $user->last_name;
+
+
+    
+
+      redirect('/admin/searchDoctor');
     }
 
     public function logout()
@@ -250,55 +250,139 @@
       session_destroy();
       redirect('admin/login');
     }
-    public function searchPatient()
+    public function searchPatient($page = 1)
     {
-      $posts = $this->userModel->getPatients();
-      $num = mysqli_num_rows($posts);
-      $dataperPage = 3;
-      $totalPages = ceil($num/$dataperPage);
+      $perPage = 4;
+      $total_records = $this->userModel->getPatients();
+      $totalPages = ceil($total_records/$perPage);
+
+      //Validating the current page
+      if($page <1)
+      {
+        $page = 1;
+      }
+      elseif($page > $totalPages)
+      {
+        $page = $totalPages;
+      }
+
+      
+      $patients = $this->userModel->getPatient_set($page, $perPage);
       $data = [
-        'patients'=> $posts
+        'patients'=> $patients,
+        'currentPage' => $page,
+        'totalPages' => $totalPages
       ];
 
       $this->view('admin/searchPatient', $data);
     }
 
-    public function searchDoctor()
+    public function searchDoctor($page = 1)
     {
-      $posts = $this->userModel->getDoctors();
-      $data = [
-        'doctors'=> $posts
-      ];
+      $perPage = 2;
+      $total_records = $this->userModel->getDoctors();
+      $totalPages = ceil($total_records/$perPage);
+
+      //Validating the current page
+      if($page <1)
+      {
+        $page = 1;
+      }
+      elseif($page > $totalPages)
+      {
+        $page = $totalPages;
+      }
+
+      $doctors = $this->userModel->getDoctor_set($page, $perPage);
+      $alldoctors = $this->userModel->getalldoctors();
+      if($doctors)
+      {
+        $data = [
+          'doctors'=> $doctors,
+          'currentPage' => $page,
+          'totalPages' => $totalPages,
+          'doctorlist' => $alldoctors
+           
+        ];
+
+      }
+      
 
       $this->view('admin/searchDoctor', $data);
     }
 
-    public function searchHealthsup()
+    public function searchHealthsup($page = 1)
     {
 
-      $posts = $this->userModel->getHealthsups();
+      $perPage = 4;
+      $total_records = $this->userModel->getHealthsups();
+      $totalPages = ceil($total_records/$perPage);
+
+      //Validating the current page
+      if($page <1)
+      {
+        $page = 1;
+      }
+      elseif($page > $totalPages)
+      {
+        $page = $totalPages;
+      }
+
+      $healthsups = $this->userModel->getHealthsup_set($page, $perPage);
       $data = [
-        'healthsups'=> $posts
+        'healthsups'=> $healthsups,
+        'currentPage' => $page,
+        'totalPages' => $totalPages
       ];
       $this->view('admin/searchHealthsup', $data);
     }
 
-    public function searchLabtech()
+    public function searchLabtech($page = 1)
     {
-      $posts = $this->userModel->getLabtechs();
+      $perPage = 4;
+      $total_records = $this->userModel->getLabtechs();
+      $totalPages = ceil($total_records/$perPage);
+
+      //Validating the current page
+      if($page <1)
+      {
+        $page = 1;
+      }
+      elseif($page > $totalPages)
+      {
+        $page = $totalPages;
+      }
+      $labtechs = $this->userModel->getLabtech_set($page, $perPage);
       $data = [
-        'labtechs'=> $posts
+        'labtechs'=> $labtechs,
+        'currentPage' => $page,
+        'totalPages' => $totalPages
       ];
 
 
       $this->view('admin/searchLabtech', $data);
     }
 
-    public function searchNurse()
+    public function searchNurse($page = 1)
     {
-      $posts = $this->userModel->getNurses();
+      $perPage = 4;
+      $total_records = $this->userModel->getNurses();
+      $totalPages = ceil($total_records/$perPage);
+
+      //Validating the current page
+      if($page <1)
+      {
+        $page = 1;
+      }
+      elseif($page > $totalPages)
+      {
+        $page = $totalPages;
+      }
+      $nurses = $this->userModel->getNurse_set($page, $perPage);
       $data = [
-        'nurses'=> $posts
+        'nurses'=> $nurses,
+        'currentPage' => $page,
+        'totalPages' => $totalPages
       ];
 
 
@@ -306,25 +390,57 @@
     }
 
 
-    public function searchPharmacist()
+    public function searchPharmacist($page = 1)
     {
-      $posts = $this->userModel->getPharmacists();
+      $perPage = 4;
+      $total_records = $this->userModel->getPharmacists();
+      $totalPages = ceil($total_records/$perPage);
+
+      //Validating the current page
+      if($page <1)
+      {
+        $page = 1;
+      }
+      elseif($page > $totalPages)
+      {
+        $page = $totalPages;
+      }
+      $pharmacists = $this->userModel->getPharmacist_set($page, $perPage);
       $data = [
-        'pharmacists'=> $posts
+        'pharmacists'=> $pharmacists,
+        'currentPage' => $page,
+        'totalPages' => $totalPages
       ];
 
 
       $this->view('admin/searchPharmacist', $data);
     }
 
-    public function searchReceptionist()
+    public function searchReceptionist($page = 1)
     {
-      $posts = $this->userModel->getReceptionists();
-      $data = [
-        'receptionists'=> $posts
-      ];
+      $perPage = 4;
+      $total_records = $this->userModel->getReceptionists();
+      $totalPages = ceil($total_records/$perPage);
 
-
+      //Validating the current page
+      if($page <1)
+      {
+        $page = 1;
+      }
+      elseif($page > $totalPages)
+      {
+        $page = $totalPages;
+      }
+      $receptionists = $this->userModel->getReceptionist_set($page, $perPage);
+      if($receptionists)
+      {
+        $data = [
+          'receptionists'=> $receptionists,
+          'currentPage' => $page,
+          'totalPages' => $totalPages
+        ];
+      }
+      
       $this->view('admin/searchReceptionist', $data);
     }
 
@@ -1384,7 +1500,170 @@
         }
       }
     }
-    
+
+    public function showProfileDoc($id)
+    {
+      $table = 'doctors';
+      $doctor = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$doctor
+      ];
+      $this->view('admin/doctorProfile', $data);      
+
+    }
+    public function showProfileHealthsup($id)
+    {
+      $table = 'healthsupervisors';
+      $healthsup = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$healthsup
+      ];
+      $this->view('admin/healthsupProfile', $data);
+       
+    }
+
+    public function showProfileLabtech($id)
+    {
+      $table = 'labtechnicians';
+      $labtech = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$labtech
+      ];
+      $this->view('admin/labtechProfile', $data);
+       
+
+    }
+    public function showProfileNurse($id)
+    {
+      $table= 'nurses';
+      $nurse = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$nurse
+      ];
+      $this->view('admin/nurseProfile', $data);
+       
+
+    }
+    public function showProfilePatient($id)
+    {
+      $table = 'patients';
+      $patient = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$patient
+      ];
+      $this->view('admin/patientProfile', $data);
+       
+
+    }
+    public function showProfilePharmacist($id)
+    {
+      $table= 'pharmacists';
+      $pharmacist = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$pharmacist
+      ];
+      $this->view('admin/pharmacistProfile', $data);
+       
+
+    }
+    public function showProfileReceptionist($id)
+    {
+      $table = 'receptionists';
+      $receptionist = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$receptionist
+      ];
+      $this->view('admin/receptionistProfile', $data);
+       
+
+    }
+
+    public function updateProfile($id)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        $data = [
+          'id' => $id,
+          'first_name' => trim($_POST['first_name']),
+          'last_name' => trim($_POST['last_name']),
+          'email' => trim($_POST['email']),
+          'phone_number' => trim($_POST['phone_number']),
+          'password' => trim($_POST['password']),
+          'firstname_err' => '',
+          'lastname_err' => '',
+          'email_err' => '',
+          'phonenum_err' => '',
+          'password_err' => ''
+        ];
+
+        if(empty($data['email']))
+        {
+          $data['email_err'] = 'Please enter email address';
+        }
+
+        else 
+        {
+          // Check email
+          if($this->userModel->findUserByEmail($data['email']))
+          {
+        
+            $data['email_err'] = 'Email is already taken';
+          }
+        }
+
+        // Validate First Name
+        if(empty($data['first_name']))
+        {
+          $data['firstname_err'] = 'Please enter first name';
+        }
+
+        if(empty($data['last_name']))
+        {
+          $data['lastname_err'] = 'Please enter last name';
+        }
+
+        // Validate Email address
+        if(empty($data['email']))
+        {
+          $data['email_err'] = 'Please enter valid email address';
+
+        }
+        
+        if(empty($data['phone_number']))
+        {
+          $data['phonenum_err'] = 'Please enter valid email address';
+
+        }
+
+        else if(strlen($data['password']) < 6)
+        {
+          $data['password_err'] = 'Password must be at least 6 characters';
+        }
+
+        // Make sure errors are empty
+        if(empty($data['firstname_err']) && empty($data['lastname_err']) && empty($data['phonenum_err']) && empty($data['email_err']) && empty($data['password_err']))
+        {
+          if(empty($data['title_err']) && empty($data['body_err'])){
+            // Validation passed
+            //Execute
+            if($this->userModel->updatePost($data)){
+            // flash('post_message', 'Post Updated');
+            redirect('posts');
+            } else {
+              die('Something went wrong');
+            }
+          } 
+
+      }
+    }
+  }
 
     
     

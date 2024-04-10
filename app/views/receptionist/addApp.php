@@ -11,63 +11,36 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/RepAddApp.css"/>
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/navbar&sidemenu.css"/>
+  <script src="<?php echo URLROOT ?>/js/receptionist/script.js"></script>
+
 </head>
 <body>
 
   <?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
 
-
         <div class="searchDiv">
-          <h1>Add New Appointment</h1>
-          <div class="searchFiles">
-            <input type="search" placeholder="Enter doctor name or ID here">
-            <button type="search"><b>SEARCH</b></button>
+              <h1>Add New Appointment</h1>
+              <div class="searchFiles">
+                    <input type="search" placeholder="Enter doctor name or ID here">
+                    <button type="search"><b>SEARCH</b></button>
+                    <hr style="margin-bottom: 3vh;">        
+             </div>
 
-            <hr style="margin-bottom: 3vh;">
-    
-          </div>
+             <div class="app-doc">
+                    <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="profile-pic">
+                    <h3>DR. ASANKA SAYAKKARA</h3>
+             </div>          
+             <h4 class="doc-pos">Consultant Physician</h4>
 
-           <div class="app-doc">
-           <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="profile-pic">
-           <h3>DR. ASANKA SAYAKKARA</h3>
-           </div>
-          
-          <h4 class="doc-pos">Consultant Physician</h4>
-
-          <div class="sessions">
-
-
-          <h4><strong>Session #23233</strong></h4>
-          <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
-
-          <p>Date: Sunday, 17th Sept, 2023</p>
-          <p>Time: 06.00 A.M </p>
-
-          <button><strong>BOOK NOW</strong> </button>
-          
-        
-
-
-          </div>
+             <div class="sessions">
+                    <h4><strong>Session #23233</strong></h4>
+                    <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
+                    <p>Date: Sunday, 17th Sept, 2023</p>
+                    <p>Time: 06.00 A.M </p>
+                    <button><strong>BOOK NOW</strong> </button>
+             </div>
 
 
 
         </div>
-
-
-        
-
-
-      </div>
-
-
-      
-
-
-    </div>
-
-  </div>
-  <script src="<?php echo URLROOT ?>/js/receptionist/script.js"></script>
-
-
 </body>

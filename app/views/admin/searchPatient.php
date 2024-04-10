@@ -19,66 +19,90 @@
 <?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
 
         <div class="searchDiv">
-          <h1>Search Patient</h1>
-          <div class="searchFiles">
+            <h1>Search Patient</h1>
+            <div class="searchFiles">
+              <form>
+                <input type="text" id="searchinput" class="searchinput" placeholder="Enter Patients' Name/ID here">
+                <button type="search" class="searchButton"><b>SEARCH</b></button>
+              </form>          
+              <hr style="margin-bottom: 3vh;">
 
-          <form>
-          <input type="text" id="searchinput" class="searchinput" placeholder="Enter Patients' Name/ID here">
-          <button type="search" class="searchButton"><b>SEARCH</b></button>
-          </form>
+              <div class="details">
+                 <table>
+                   <tbody>
+                      <?php foreach($data['patients'] as $post): ?>
+                         <tr class="row">                                                                                         
+                            <td >
+                                <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                <p class= "name">
+                                  Mr.
+                                <?php echo ucwords($post->last_name);?>
+                                </p>
+                            </td>
+
+                            <td>
+                                <p style="margin-left: 10vh;" >Patient ID #<?php echo $post->patient_id;?></p>
+                            </td>
+
+                            <td>
+                            <a href="<?php echo URLROOT ?>/admin/showProfilePatient/<?php echo $post->emp_id ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->patient_id ?>">
+                                <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                </form>                                    
+                            </td> 
+                        </tr>  
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
+                <script>
+                      document.addEventListener("DOMContentLoaded", function () {
+                      const searchInput = document.getElementById("searchinput");//element
+
+                      searchInput.addEventListener("input", function ()
+                      {
+                      const searchTerm = searchInput.value.toLowerCase();//This line retrieves value of the search input field and converts it to lowercase.
+                      const regex = new RegExp(searchTerm, 'i'); 
+                      const Rows = document.querySelectorAll(".row");
+
+                          Rows.forEach(function (row) 
+                          {
+                                const Name = row.querySelector(".name").textContent.toLowerCase();
+                                if (regex.test(Name)) {
+                                        row.style.display = "";
+                                        
+                                    } else {
+                                        row.style.display = "none";
+                                    
+                                    }
+                          });
+                        });
+                    });
+                  </script>
+              </div>                       
+          </div> 
           
-            <hr style="margin-bottom: 3vh;">
+          <div class="pagination">
+          <?php echo"<"; ?>
+          <?php if($data['currentPage']>1): ?>
+            <a href="<?php echo URLROOT; ?>/admin/searchPatient/<?php echo ($data['currentPage']-1); ?>">Previous</a>
+          <?php endif; ?>
+         
+          <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+            <a href="<?php echo URLROOT; ?>/admin/searchPatient/<?php echo $i; ?>"> <?php if($i == $data['currentPage']) ?><?php echo $i; ?></a>
+          <?php endfor; ?>
 
-            <?php while($row= mysqli_fetch_assoc($data['patients']))
-            {
-              echo '<tr class="row">
-                                        
-                                        
-              <div class="column">
+          <?php if($data['currentPage'] < $data['totalPages']): ?>
+            <a href="<?php echo URLROOT ?>/admin/searchPatient/<?php echo ($data['currentPage'] + 1) ?>">Next</a>
+          <?php  endif; ?>
 
-                  <td >
-                  <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                  <div class= "name">
-                  <?php echo $post->last_name;?>
-                  </div>
-                  </td>
-
-                  <td>
-                  <p style="margin-left: 10vh;" >Patient ID- <?php echo $post->patient_id;?></p>
-                  </td>
-
-                  <td>
-                  <button class="profileButton">
-                     View profile
-                  </button>
-
-
-                <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->patient_id ?>">
-                <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                </form>                                    </td>
-                             
-                </div>
-                      
-              </tr>';
-            } ?>
-
-            <?php foreach($data['patients'] as $post): ?>
-                              
-           <?php endforeach; ?>
-
-         </div>
        </div>
-
+      </div>
+       
        <div class="addapp">
           <div class="newapp">
-            <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
-            <a href="<?php echo URLROOT?>/admin/viewRegpatient">Register a new Patient</a>
+              <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
+              <a href="<?php echo URLROOT?>/admin/viewRegpatient">Register a new Patient</a>
           </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</body>
-               
+        </div>       
+</body>               
 </html>

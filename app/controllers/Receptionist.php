@@ -15,7 +15,7 @@
     public function index()
     {
      
-      $this->view('receptionist/confirmApp');
+      $this->view('receptionist/addApp');
     }
 
     public function login()
