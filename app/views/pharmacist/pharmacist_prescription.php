@@ -86,52 +86,22 @@
                             <label>Prescriptions(4)</label>
                         </div>
                         <div class="prescription-table">
-                            <table>
-                                <tbody>
-                                    <tr class="">   
-                                        <td>
-                                            <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
-                                            </div>
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
-                                    </tr>
+                        <table>
+                            <tbody>
+                                <?php foreach ($data['prescriptions'] as $prescription): ?>
                                     <tr class="clickable-row">
                                         <td>
                                             <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
+                                                <img src="<?php echo URLROOT ?>/app/views/pharmacist/images/description.png" alt="download-icon">
+                                                <p><?php echo $prescription->prescription_text; ?></p>
                                             </div>
                                         </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
+                                        <td><?php echo $prescription    ->prescribing_doctor; ?></td>
+                                        <td><?php echo $prescription->prescribing_date; ?></td>
                                     </tr>
-                                    <tr class="clickable-row">
-                                        <td>
-                                            <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
-                                            </div>
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
-                                    </tr>
-                                    <tr class="clickable-row">
-                                        <td>
-                                            <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
-                                            </div>  
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
-                                    </tr>
-
-                                    </a>
-                                </tbody>
-                            </table>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                             <div id="popup">
                                 <div class="grid-container">
                                     <img id="qr" src="<?php echo URLROOT?>/app/views/pharmacist/images/qr-code.png" alt="">
@@ -152,40 +122,77 @@
                                 <div class="grid-container">
                                     <p>Referred by: Dr.<span>Asanka Rathnayke</span></p>
                                 </div>
-                                <div class="diagnosis">
-                                    <p>Diagnosis</p>
-                                </div>
-                                <div class="diagnosis">
-                                    <p>Medication</p>
-                                    <div class="med">
-                                        <div>
-                                            <p>Name</p>
-                                            <p>Dosage</p>
-                                            <p>Remarks</p>
-                                        </div>
-                                        <div>
-                                            <p>Name</p>
-                                            <p>Dosage</p>
-                                            <p>Remarks</p>
-                                        </div>
+                                <div class="diagnosis1">
+                                    <div class="diagnosis">
+                                        <p class="pres-header">Diagnosis</p>
+                                        <p>Common Cold</p>
+                                    </div>
+                                    <div class="diagnosis">
+                                        <p class="pres-header">Medication</p>
                                         
-                                    </div>
-                                </div>
-                                <div class="diagnosis">
-                                    <p>Lab Tests</p>
-                                    <div class="med">
-                                        <div class="lab">
-                                            <p>Name</p>
+                                        <div class="med">  
+                                            <p>Name</p> 
+                                            <p>Dosage</p>
                                             <p>Remarks</p>
+                                        </div>      
+                                        <div class="med">
+                                            <p>John</p>
+                                            <p>1 tablet every 6 hours</p>
+                                            <p>Take with food</p>
                                         </div>
+                                        <div class="med">
+                                            <p>John</p>
+                                            <p>1 tablet every 6 hours</p>
+                                            <p>Take with food</p>
+                                        </div>
+                                        <div class="med">
+                                            <p>John</p>
+                                            <p>1 tablet every 6 hours</p>
+                                            <p>Take with food</p>
+                                        </div>
+                                        <div class="med">
+                                            <p>John</p>
+                                            <p>1 tablet every 6 hours</p>
+                                            <p>Take with food</p>
+                                        </div>
+                                        <div class="med">
+                                            <p>John</p>
+                                            <p>1 tablet every 6 hours</p>
+                                            <p>Take with food</p>
+                                        </div>
+                                    
                                     </div>
+                                    <div class="diagnosis">
+                                        <p class="pres-header">Lab Tests</p>
+                                        <div class="med">
+                                            <p>Name</p>
+                                            <p>Remarks</p>   
+                                        </div>
+                                        <div class="med">
+                                            <p>Blood Test</p>
+                                            <p>Elevated white blood cell count</p>
+                                        </div>
+                                        <div class="med">
+                                            <p>Urine Analysis</p>
+                                            <p>Normal results</p>
+                                        </div>
+                                        <div class="med">
+                                            <p>X-Ray</p>
+                                            <p>Fracture detected</p>
+                                        </div>
+                                        <div class="med">
+                                            <p>MRI Scan</p>
+                                            <p>Suspected tumor found</p>
+                                        </div>
+  
+                                    </div>
+                                    <p>
+                                        (For view purposes only)
+                                    </p>
                                     
                                 </div>
-                                <p>
-                                    (For view purposes only)
-                                </p>
-                                
                             </div>
+                                
                         </div>
                     </div>
                 </div>

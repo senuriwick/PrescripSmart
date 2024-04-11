@@ -184,6 +184,31 @@
             $this->db->execute();  
 
         }
+
+        public function getAllPrescriptions() {
+            $this->db->query('SELECT * FROM prescriptions WHERE patient_id = :id');
+            $this->db->bind(':id',1);
+            return $this->db->resultSet();
+        }
+
+        public function getDiagnosisDetails(){
+            $this->db->query('SELECT * FROM diagnosis WHERE prescription_id = :id');
+            $this->db->bind(':id',1);
+            return $this->db->resultSet();
+        }
+
+        public function getMedicationDetails(){
+            $this->db->query('SELECT * FROM medications WHERE prescription_id = :id');
+            $this->db->bind(':id',1);
+            return $this->db->resultSet();
+        }
+
+        public function getLabDetails(){
+            $this->db->query('SELECT * FROM lab_tests WHERE prescription_id = :id');
+            $this->db->bind(':id',1);
+            return $this->db->resultSet();
+        }
+
     }
 ?>
 

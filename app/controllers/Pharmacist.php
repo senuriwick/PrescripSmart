@@ -304,10 +304,11 @@
                         'currentPage' => $page,
                         'totalPages' => $totalPages,
                     ];
-                    $this->view('pharmacist/pharmacist_dashboard', $data);
+                    $this->view('pharmacist/pharmacist_dashboard', $data);  
                 } else {
                     // Condition 3: If medicine not found, redirect to addNewMed page
-                    redirect('/pharmacist/addNewMed');
+                    $data = [];
+                    $this->view('pharmacist/pharmacist_dashboard', $data);
                     exit();
                 }
             }
@@ -362,8 +363,24 @@
             $this->view('pharmacist/pharmacist_newMed');
         }
 
-        public function allPrescriptions(){
-            $this->view('pharmacist/pharmacist_prescription');
+        // public function allPrescriptions(){
+        //     $this->view('pharmacist/pharmacist_prescription');
+        // }
+
+        public function allPrescriptions() {
+
+            $prescriptions = $this->pharmacistModel->getAllPrescriptions();
+            $diagnoses = $this->pharmacistModel->getDiagnosisDetails();
+            $medications = $this->pharmacistModel->getMedicationDetails();
+            $labtests = $this->pharmacistModel->getLabDetails();
+
+            $data = [
+                'prescriptions' => $prescriptions,
+                'diagnoses' =>$diagnoses,
+                'medications' => $medications,
+                'labtests' => $labtests
+            ];
+            $this->view('pharmacist/pharmacist_prescription', $data);
         }
         
         

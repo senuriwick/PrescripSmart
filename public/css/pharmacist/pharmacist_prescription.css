@@ -150,17 +150,18 @@ td:hover {
 
 #popup{
     display: none;
-    width: 600px;
-    height: 600px;
+    width: 650px;
+    height:700px;
     background: #fff;
     border-radius: 6px;
     position: absolute;
-    top:50%;
-    left:50%;
+    top:55%;
+    left:50%;   
     transform: translate(-50%, -50%);
     text-align: center;
     padding: 0 30px 30px;
     color:#333;
+    overflow: auto;
 
 }
 
@@ -183,9 +184,10 @@ td:hover {
 .close{
     width: 25px;
     height: 25px;
-    margin-top: 1rem;
-    cursor: pointer;
-    margin-left:100px;
+    position:absolute;
+    top:20px;
+    right: 20px;
+    cursor:pointer;
 }
 
 .grid-container h2{
@@ -216,28 +218,71 @@ td:hover {
     margin-left: -94px;
 }
 
+.diagnosis1{
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: auto;
+    max-height: 500px; */
+}
 .diagnosis {
     display: flex;
     border: 1px solid #000; /* Set border properties */
-    padding: 38px; /* Set padding to create some space inside the box */
+    padding: 0px 38px 50px; /* Set padding to create some space inside the box */
     margin: 20px auto; /* Set margin to create space outside the box */
     border-radius: 5px;
-    flex-direction: row;
+    flex-direction: column;
+    width:500px;
+    height:100px;
+    align-items: flex-start;
+    overflow: auto;
 }
 
-.diagnosis > p:first-child {
-    margin-left: -30px;
-    margin-top: -35px ;
+.diagnosis:nth-child(2) {
+    height: 200px; /* Set a greater height for the second .diagnosis div */
+}
+
+.pres-header{
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .med{
     display: flex;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+}
+
+.med:first-of-type {
+    text-decoration: underline;
+}
+
+
+.med p{
+    width:180px;
+}
+
+.med p:first-child {
+    margin-left: -52px;
+  
+}
+
+
+
+/* .diagnosis > p:first-child {
+    margin-left: -30px;
+    margin-top: -35px ;
+    text-decoration: underline;
+} */
+
+
+/* .med{
+    display: flex;
     flex-direction: column;
     margin-left: -84px;
     margin-top: -18px;
-}
+} */
 
-.med > div > p {
+/* .med > div > p {
     display: inline-block;
     margin-right: 100px;
     margin-bottom: 10px;
@@ -249,7 +294,9 @@ td:hover {
 
 .lab p:last-child{
     margin-left: 154px;
-}
+} */
+
+
 
 
 
