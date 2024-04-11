@@ -33,7 +33,7 @@
 
                 <div class="searchDiv">
                         <div id = "confirmation" class="confirmationOptionsContent">
-                            <h2>Appointment Scheduled</h2>
+                            <h1>Appointment Scheduled</h1>
                             <p>Your appointment has been scheduled.</p>
                             <button id="viewAppointmentButton"
                                 class="customConfirmationButton viewAppointmentButton">View Appointment</button>

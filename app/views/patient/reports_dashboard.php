@@ -32,16 +32,15 @@
               <div class="file">
                 <div class="desDiv">
                   <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
-                  <p class="description">Report #
-                    <?php echo $report->report_ID; ?>
+                  <p class="description">Report #<?php echo $report->report_ID; ?>
                   </p>
                 </div>
-                <p>Issued on:
-                  <?php echo $report->report_Date; ?>
-                </p>
                 <p>Referred by Dr.
                   <?php echo $report->fName; ?>
                   <?php echo $report->lName; ?>
+                </p>
+                <p>Issued on:
+                  <?php echo $report->report_Date; ?>
                 </p>
                 <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
                   data-container-pid="<?= $report->report_ID ?>">
@@ -68,19 +67,19 @@
                 <span class="close">&times;</span>
                 <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
-                  <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" />
+                <div>P</div>
+                  <!-- <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                   <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
                 <div class="model-details">
-                  <div>Prescription ID: #
-                    <?php echo $report->prescription_ID; ?>
+                  <div>Report ID: #<?php echo $report->report_ID; ?>
                   </div>
-                  <div>Patient: S.Perera</div>
-                  <div>Pres Date & Time:
+                  <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
+                  <div>Report Date & Time:
                     <?php echo $report->prescription_Date; ?> 10:00 AM
                   </div>
-                  <div>Age: 22 Yrs</div>
+                  <div>Age: <?php echo $report->age?> Yrs</div>
                   <div>Referred by: Dr.
                     <?php echo $report->fName; ?>
                     <?php echo $report->lName; ?>

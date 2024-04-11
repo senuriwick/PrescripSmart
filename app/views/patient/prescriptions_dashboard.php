@@ -13,7 +13,6 @@
 </head>
 
 <body>
-<!-- <pre><?=print_r($_SESSION)?></pre> -->
   <div class="content">
   <?php include 'side_navigation_panel.php'; ?>
 
@@ -32,15 +31,13 @@
               <div class="file">
                 <div class="desDiv">
                   <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
-                  <p class="description">Prescription #
-                    <?php echo $prescription->prescription_ID; ?>
-                  </p>
+                  <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
                 </div>
-                <p>Dr.
+                <p>Issued by: Dr.
                   <?php echo $prescription->fName; ?>
                   <?php echo $prescription->lName; ?>
                 </p>
-                <p>
+                <p>Issued on:
                   <?php echo $prescription->prescription_Date; ?>
                 </p>
                 <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
@@ -56,7 +53,8 @@
                 <span class="close">&times;</span>
                 <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
-                  <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" />
+                  <!-- <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" /> -->
+                  <div>P</div>
                   <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
@@ -64,7 +62,7 @@
                   <div>Prescription ID: #
                     <?php echo $prescription->prescription_ID; ?>
                   </div>
-                  <div>Patient: S.Perera</div>
+                  <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
                   <div>Pres Date & Time:
                     <?php echo $prescription->prescription_Date; ?> 10:00 AM
                   </div>
