@@ -62,14 +62,20 @@
                     <div class="prescriptionsDiv">
                         <h2>Search Patient</h2>
                         <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchPatient">
-                            <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield">
+                            <input type="text" id="search" name="search" placeholder="Enter patient name" class="inputfield">
                             <button type="submit" id="searchButton" disabled>SEARCH</button>
                         </form>
                     </div>
                     <hr class="divider">  
+
                     <div class="patientFiles">
-                        <?php foreach($data['patients'] as $patient): ?>
-                            <div class="patientFile">
+                        <?php if (empty($data['patients'])): ?>
+                            <div class="center-content">
+                            <p class="grey-text">Sorry, Not Found</p>
+                        </div>
+                        <?php else: ?>
+                            <?php foreach($data['patients'] as $patient): ?>
+                                <div class="patientFile">
                                 <div class="fileInfo">
                                     <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
                                     <p><?php echo $patient->name; ?></p>
@@ -77,15 +83,19 @@
                                 <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
                                 <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>" id="viewButton"><button>View Prescriptions</button></a>
                             </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Pagination Links -->
                     <div class="pagination">
-                        <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                            <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                        <?php endfor; ?>
+                        <?php if (isset($data['totalPages'])): ?>
+                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php endfor; ?>
+                        <?php endif; ?>
                     </div>
+
         </div>
 
                     
