@@ -87,6 +87,7 @@
 
                 backIconContainer.addEventListener('click', function () {
                   window.history.back();
+                  window.location.href = "<?php echo URLROOT?>/patient/appointments_dashboard"
                 });
 
                 cancelButton.addEventListener('click', function () {
@@ -103,10 +104,6 @@
                   confirmationPopup.style.display = 'none';
                   // successPopup.style.display = 'block';
                 });
-
-                // goToDashboardButton.addEventListener('click', function () {
-                //   window.location.href = 'appointments_dashboard.html';
-                // });
 
                 document.getElementById("closePolicy").addEventListener("click", function () {
                   document.getElementById("policyPopup").style.display = "none";
