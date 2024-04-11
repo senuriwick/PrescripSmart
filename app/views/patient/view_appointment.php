@@ -24,13 +24,19 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
+        <?php $appointment_ID = $_GET['appointment_id']; ?>
+        <?php $appointment = $data['appointment']; ?>
+        <?php
+        $date = new DateTime($appointment->date);
+        $formatted_date = $date->format("D, jS M, Y");
+        $time = date("h:i A", strtotime($appointment->time));
+        ?>
+
         <div class="prescriptionsDiv">
           <div>
             <div class="section-header">
-              <?php $appointment_ID = $_GET['appointment_id']; ?>
-              <?php $appointment = $data['appointment']; ?>
-              <h1>Appointment (#
-                <?php echo $appointment->appointment_ID; ?>)
+              <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" id="back">
+              <h1>Appointment (#<?php echo $appointment->appointment_ID; ?>)
               </h1>
               <button id="cancelButton" class="buttonstyle">Cancel Appointment</button>
             </div>
@@ -38,7 +44,17 @@
             <div id="policyPopup" class="popup">
               <div class="popup-content">
                 <h2>Cancellation Policy</h2>
-                <p>Your cancellation policy message goes here.</p>
+                <p><span class="bold">1.1 Appointment Notification</span><br>If you cannot make your scheduled appointment, please inform the
+                  Healthcare Establishment promptly.<br><br><span class="bold">1.2 
+                  Rescheduling</span><br>If you need to reschedule, contact the Healthcare Establishment directly. They have
+                  the sole discretion to approve rescheduling.
+                  Rescheduling may incur an additional fee determined by the Healthcare Establishment.<br><br><span class="bold">1.3 Cancellation
+                  by Medical Practitioner</span><br>If the medical practitioner cancels the appointment, the Healthcare
+                  Establishment will:<br>
+                  Provide a new appointment, or<br>Refund the Healthcare Establishment's fee and the medical
+                  practitioner's fee, as per their rules and regulations.<br><br><span class="bold">1.4 Refund Policy</span><br>Refunds for rescheduled
+                  or cancelled appointments are subject to the Healthcare Establishment's discretion and policies.
+                </p>
                 <button id="closePolicy" class="buttonstyle">Close</button>
               </div>
             </div>
@@ -46,8 +62,8 @@
             <div id="confirmationPopup" class="popup">
               <div class="popup-content">
                 <p>Are you sure you want to cancel this appointment?</p>
-                <button id="confirmYesButton">Yes</button>
-                <button id="confirmNoButton">No</button>
+                <button id="confirmYesButton" class="confirm yes">Yes</button>
+                <button id="confirmNoButton" class="confirm no">No</button>
               </div>
             </div>
 
@@ -66,7 +82,12 @@
                 const confirmYesButton = document.getElementById('confirmYesButton');
                 const confirmNoButton = document.getElementById('confirmNoButton');
                 const policyPopup = document.getElementById('policyPopup');
+                const backIconContainer = document.getElementById('back');
 
+
+                backIconContainer.addEventListener('click', function () {
+                  window.history.back();
+                });
 
                 cancelButton.addEventListener('click', function () {
                   policyPopup.style.display = 'block';
@@ -116,20 +137,21 @@
               </div>
 
               <div class="text">
-                <div class="auto-group-oxxo-Sau">
-                  <p>Time:
-                    <?php echo $appointment->time; ?><br>Date:
-                    <?php echo $appointment->date; ?><br>Patient:
-                    <?php echo $appointment->patient_ID; ?><br>Doctor:
-                    <?php echo $appointment->doctor_ID; ?><br>Payment Status:
-                  </p>
-                  <div class="auto-group-ppa1-jrq">
-                    <p class="paid-fkV" style="color: red; font-weight: 800;">
-                      <?php echo $appointment->payment_status ?>
+                <div class="auto-group">
+                  <p><span class="bold">Time:</span> <?php echo $time; ?> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="bold">Date:</span> <?php echo $formatted_date; ?><br>
+                    <span class="bold">Doctor:</span> Dr.<?php echo $appointment->fName; ?>
+                    <?php echo $appointment->lName; ?><br>
+                    <span class="bold">Payment Status:</span>
+                  <div class="payment-status-box <?php echo strtolower($appointment->payment_status); ?>">
+                    <p class="paid">
+                      <?php echo $appointment->payment_status; ?>
                     </p>
-                    <!-- <img class="checksquare-h4u" src="CheckSquare.png"/> -->
                   </div>
+                  </p>
                 </div>
+
+
               </div>
             </div>
           </div>
@@ -140,4 +162,5 @@
   </div>
   </div>
 </body>
+
 </html>

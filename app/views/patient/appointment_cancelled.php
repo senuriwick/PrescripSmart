@@ -25,6 +25,7 @@
             <?php include 'in_page_navigation.php'; ?>
 
                 <div class="prescriptionsDiv">
+                    <h1>Appointment Cancelled</h1>
                     <div>
                         <div id="successPopup">
                             <div>

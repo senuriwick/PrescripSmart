@@ -25,7 +25,7 @@
         </div>
 
         <div class="menu">
-          <a href="new_appointment.html" id="appointments">New Appointment</a>
+          <a href="<?php echo URLROOT?>/patient/new_appointment" id="appointments">New Appointment</a>
         </div>
 
         <div class="searchDiv">
@@ -36,6 +36,53 @@
               <!-- <button type="search" id="search"><b>SEARCH</b></button> -->
             </form>
 
+            <?php
+
+          $specializations = array();
+          $genders = array();
+
+          foreach ($data['doctors'] as $doctor) {
+            if (!in_array($doctor->specialization, $specializations)) {
+              $specializations[] = $doctor->specialization;
+            }
+          }
+
+          foreach ($data['doctors'] as $doctor) {
+            if (!in_array($doctor->gender, $genders)) {
+              $genders[] = $doctor->gender;
+            }
+          }
+
+          ?>
+          
+            <div class="searchFilter">
+            <!-- <div class="searchFilterLine"></div> -->
+            <select class="filterSelect" id="specializationSelect" >
+              <option value="" disabled selected>Select Specialization</option>
+              <?php foreach ($specializations as $specialization): ?>
+                <option value="<?php echo $specialization; ?>">
+                  <?php echo $specialization; ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
+
+            <select class="filterSelect" id="genderSelect">
+              <option value="" disabled selected>Select Gender</option>
+              <?php foreach ($genders as $gender): ?>
+                <option value="<?php echo $gender; ?>">
+                  <?php echo $gender; ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
+
+            <!-- <button type="search" id="advsearch"><b>ADVANCED SEARCH</b></button> -->
+            <!-- <script>
+              document.getElementById("advsearch").addEventListener("click", function () {
+                window.location.href = "new_appointment_2.html";
+              });
+            </script> -->
+          </div>
+
             <div class="patient-details">
               <table>
                 <tbody>
@@ -45,14 +92,15 @@
                         <div class="desDiv">
                           <a href="<?php echo URLROOT; ?>/patient/doctor_sessions?doctor_ID=<?php echo $doctor->doctor_ID; ?>"
                             class="doctor-link">
-                            <p class="patientName">
+                            <img src = "<?php echo URLROOT?>/public/uploads/profile_images/<?php echo $doctor->profile_photo?>" alt = "profImage">
+                            <p class="patientName">Dr.
                               <?php echo $doctor->fName; ?>
                               <?php echo $doctor->lName; ?>
                             </p>
                             <p class="patientSpecialization">
                               <?php echo $doctor->specialization; ?>
                             </p>
-                            <p class="patientGender">
+                            <p class="patientGender" style="display:none">
                               <?php echo $doctor->gender; ?>
                             </p>
                         </div>
@@ -122,53 +170,7 @@
             </script>
 
           </div>
-
-          <?php
-
-          $specializations = array();
-          $genders = array();
-
-          foreach ($data['doctors'] as $doctor) {
-            if (!in_array($doctor->specialization, $specializations)) {
-              $specializations[] = $doctor->specialization;
-            }
-          }
-
-          foreach ($data['doctors'] as $doctor) {
-            if (!in_array($doctor->gender, $genders)) {
-              $genders[] = $doctor->gender;
-            }
-          }
-
-          ?>
-
-          <div class="searchFilter">
-            <div class="searchFilterLine"></div>
-            <select class="filterSelect" id="specializationSelect">
-              <option value="" disabled selected>Select Specialization</option>
-              <?php foreach ($specializations as $specialization): ?>
-                <option value="<?php echo $specialization; ?>">
-                  <?php echo $specialization; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-
-            <select class="filterSelect" id="genderSelect">
-              <option value="" disabled selected>Select Gender</option>
-              <?php foreach ($genders as $gender): ?>
-                <option value="<?php echo $gender; ?>">
-                  <?php echo $gender; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-
-            <!-- <button type="search" id="advsearch"><b>ADVANCED SEARCH</b></button> -->
-            <!-- <script>
-              document.getElementById("advsearch").addEventListener("click", function () {
-                window.location.href = "new_appointment_2.html";
-              });
-            </script> -->
-          </div>
+          
         </div>
       </div>
     </div>

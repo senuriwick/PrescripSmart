@@ -9,6 +9,7 @@
 .prescriptionsDiv h1 {
   font-weight: bold;
   color: rgba(68, 81, 114, 1);
+  font-size: 24px;
 }
 
 
@@ -16,9 +17,9 @@
   display: flex;
   justify-content: space-between;
   background-color: #ffffff;
-  border-style: solid;
+  /* border-style: solid;
   border-width: 0.1vh;
-  border-color: rgba(68, 81, 114, 0.5);
+  border-color: rgba(68, 81, 114, 0.5); */
   border-radius: 5px;
   margin-bottom: 1vh;
 }
@@ -30,12 +31,14 @@
 
 .file .description {
   color: rgba(0, 105, 255, 1);
+  font-weight: 500;
 }
 
 
 .file .desDiv {
   display: flex;
 }
+
 
 .file .desDiv img {
   height: 3vh;
@@ -120,7 +123,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
 .prescriptionsDiv .modal-content {
   background-color: #fff;
   margin: 8% auto;
@@ -157,6 +159,24 @@ body {
   height: 40px;
   margin-top: 4px;
   gap: 8px;
+  margin-bottom: 10px;
+
+  >div {
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: #ff8100;
+    margin-right: 5px;
+    margin-left: 0px;
+  }
 }
 
 .prescriptionsDiv .modal-content .model-head img {

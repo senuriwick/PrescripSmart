@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\new_appointment_2.css" />
-    <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\doctor\sideMenu&navBar.css" /> -->
 </head>
 
 <body>
@@ -30,7 +29,8 @@
 
                 <div>
                     <?php $doctor_ID = $_GET['doctor_ID']; ?>
-                    <?php $session = $data['session']; ?>
+                    <?php $session = $data['session'];
+                    $docImage = $data['image']; ?>
 
                     <?php
                     $doctorname = '';
@@ -53,42 +53,51 @@
                 </div>
 
                 <div class="searchDiv">
-                    <?php if (!empty($data['session'])): ?>
-                        <h1 style="font-size: 24px; color:  #0069FF;">DR.
+                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" id="back"> -->
+                    <!-- <?php if (!empty($data['session'])): ?> -->
+                        <img src="<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $docImage->profile_photo ?>"
+                            alt="profImage">
+                        <h1 style="font-size: 24px; color:  #0069FF;">Dr.
                             <?php echo $doctorname; ?>
                         </h1>
-                        <p style="line-height: 0.4;">
+                        <p class="spec" style="line-height: 0.4;">
                             <?php echo $doctorspec; ?>
                         </p>
                         <div class="line1"></div>
-                    <?php endif; ?>
+                        <!-- <?php endif; ?> -->
 
                     <div class="boxes-container">
 
                         <?php
                         if (!empty($data['session'])) {
                             foreach ($data['session'] as $session): ?>
+                                <?php
+                                $date = new DateTime($session->sessionDate);
+                                $formatted_date = $date->format("D, jS M, Y");
+                                $start_time = date("h:i A", strtotime($session->start_time));
+                                $end_time = date("h:i A", strtotime($session->end_time));
+                                ?>
                                 <div class="box1">
                                     <p class="sessionname">Session #
                                         <?php echo $session->session_ID; ?>
                                     </p>
                                     <p class="text">
                                         Date:
-                                        <?php echo $session->sessionDate; ?>
+                                        <?php echo $formatted_date; ?>
                                         <br />
                                         Time:
-                                        <?php echo $session->start_time; ?>-
-                                        <?php echo $session->end_time; ?>
+                                        <?php echo $start_time; ?>-
+                                        <?php echo $end_time; ?>
                                         <br />
                                         Appointment No:
-                                        <?php echo $session->current_appointment; ?>
+                                        <strong><?php echo $session->current_appointment; ?></strong>
                                     </p>
                                     <div class="line2"></div>
                                     <button type="button" class="rectangle-70-mtM"
                                         onclick="bookNow(<?php echo $session->session_ID; ?>)">
                                         BOOK NOW
                                     </button>
-                                    
+
                                     <script>
                                         function bookNow(sessionID) {
                                             var confirmationURL = "<?php echo URLROOT; ?>/patient/appointment_confirmation";
@@ -109,4 +118,5 @@
         </div>
     </div>
 </body>
+
 </html>

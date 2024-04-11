@@ -67,7 +67,7 @@ body {
 
 
 .group {
-  margin: 1.5rem 5rem 2.8rem 1.5rem;
+  margin: 1.5rem 3rem 2.8rem 1.5rem;
   box-sizing: border-box;
   padding: 0.1rem 3.5rem 0.1rem 3rem;
   height: calc(100% - 5.1rem);
@@ -87,7 +87,7 @@ body {
   color: #000000;
   font-family: Inter, 'Source Sans Pro';
   font-size: 18px;
-  margin-right: 3rem;
+  /* margin-right: 3rem; */
 }
 
 .number .number-sub-0 {
@@ -109,66 +109,14 @@ body {
   flex-shrink: 0;
 }
 
-.text .auto-group-oxxo-Sau {
-  margin-left: 1rem;
+.text .auto-group {
+  /* margin-left: 1rem; */
   width: calc(100% - 2rem);
-  align-items: center;
+  align-items: left;
   flex-shrink: 0;
   line-height: 2;
+  color: rgba(68, 81, 114, 1);
 }
-
-.text .auto-group-htaz-4Vo .payment-status--oCV {
-  margin-right: 1.9rem;
-  font-size: 2.4rem;
-  font-weight: 400;
-  line-height: 1;
-  color: #445172;
-  font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.text .auto-group-htaz-4Vo .auto-group-ppa1-jrq {
-  box-sizing: border-box;
-  padding: 0.5rem 3.227rem 0.3rem 3.4rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  background-color: #397a49;
-  border-radius: 1rem;
-  flex-shrink: 0;
-}
-
-.text .auto-group-htaz-4Vo .auto-group-ppa1-jrq .paid-fkV {
-  margin-right: 1.0915rem;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.2125;
-  color: red;
-  font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.text .auto-group-htaz-4Vo .auto-group-ppa1-jrq .checksquare-h4u {
-  margin-bottom: 0.1995rem;
-  width: 1.5815rem;
-  height: 1.34rem;
-  object-fit: contain;
-  vertical-align: top;
-  flex-shrink: 0;
-}
-
-.rectangle-13-Nk9 {
-  width: 16.9rem;
-  height: 0.2rem;
-  border: solid 1.5rem #0069ff;
-  box-sizing: border-box;
-  background-color: #0069ff;
-}
-
-
 
 .align-button {
   display: flex;
@@ -186,6 +134,11 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.popup p {
+  text-align: left;
+  color: (68, 81, 114, 1);
+}
+
 .popup-content {
   position: absolute;
   top: 50%;
@@ -198,7 +151,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.popup button {
+.popup button.confirm {
   margin: 10px;
   padding: 10px 20px;
   background-color: #0069FF;
@@ -208,17 +161,48 @@ body {
   cursor: pointer;
 }
 
+.popup button.confirm.yes {
+  background-color: red;
+}
+
+.popup button.confirm.no {
+  background-color: #0069FF;
+}
+
+.popup button.buttonstyle {
+  /* margin: 10px; */
+  /* padding: 10px 20px; */
+  background-color: #0069FF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
 .prescriptionsDiv .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.prescriptionsDiv .section-header h1 {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+}
+
+.prescriptionsDiv .section-header img{
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+}
+
 .prescriptionsDiv h1 {
   font-weight: bold;
   color: rgba(68, 81, 114, 1);
   margin-right: 20px;
-  /* Adjust the margin as needed */
 }
 
 .buttonstyle {
@@ -231,6 +215,7 @@ body {
   font-family: 'Source Sans Pro';
   border: none;
   cursor: pointer;
+  margin-left: auto;
 }
 
 
@@ -238,12 +223,12 @@ body {
   display: flex;
   justify-content: space-between;
   background-color: #ffffff;
-  border-style: solid;
+  /* border-style: solid;
   border-width: 0.1vh;
-  border-color: rgba(68, 81, 114, 0.5);
-  border-radius: 5px;
+  border-color: rgba(68, 81, 114, 0.5); */
+  border-radius: 10px;
   margin-bottom: 1vh;
-  width: 50%;
+  width: 55%;
 }
 
 .file p {
@@ -332,3 +317,27 @@ body {
   width: 5px;
   background-color: #0069FF;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.payment-status-box {
+  width: 5rem; 
+  height: 2rem;
+  border-radius: 5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.payment-status-box.paid {
+  background-color: green;
+}
+
+.payment-status-box.unpaid {
+  background-color: red;
+}
+

@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\patient\appointments_dashboard.css" />
-  <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu&navBar.css" /> -->
 </head>
 
 <body>
@@ -30,17 +29,16 @@
 
           <?php foreach ($data['appointments'] as $appointment): ?>
             <div class="file">
-              <div class="desDiv">
-                <p class="time">Time:
+            <div class="desDiv">
+                  <img src="<?php echo URLROOT; ?>\public\img\patient\app_icon.png" alt="description-icon">
+                  <p class="description">Appointment #<?php echo $appointment->appointment_ID; ?></p>
+              </div>
+              <p>Dr Name:
+                <?php echo $appointment->fName; ?> <?php echo $appointment->lName; ?>
+              </p>
+              <p class="time">Time:
                   <?php echo $appointment->time; ?>
                 </p>
-              </div>
-              <p>No.
-                <?php echo $appointment->appointment_ID; ?>
-              </p>
-              <p>Dr Name:
-                <?php echo $appointment->doctor_ID; ?>
-              </p>
               <p>Date:
                 <?php echo $appointment->date; ?>
               </p>

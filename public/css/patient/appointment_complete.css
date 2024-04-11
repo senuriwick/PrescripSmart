@@ -74,7 +74,7 @@ body {
   font-family: inter;
 
   color: rgba(68, 81, 114, 1);
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .line1 {
@@ -184,49 +184,6 @@ but :active {
 
 }
 
-.policy {
-  position: absolute;
-  left: 19rem;
-  top: 32rem;
-  text-align: left;
-  font-size: 16px;
-  line-height: 1.2125;
-  color: red;
-  font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.policyPopup {
-  display: none;
-  position: relative;
-  top: 0;
-  left: 20rem;
-  width: 20rem;
-  height: 12rem;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.policyContent {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-.closeButton {
-  background-color: #0069FF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .customConfirmation {
   display: none;
   position: absolute;
@@ -245,7 +202,7 @@ but :active {
 }
 
 .customConfirmationButton {
-  display: inline;
+  display: inline-block;
   padding: 10px 20px;
   margin: 10px;
   cursor: pointer;

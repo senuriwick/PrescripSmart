@@ -690,6 +690,7 @@ class Patient extends Controller
         }
     }
     
+    //APPOINTMENTS
     public function appointments_dashboard()
     {
         $appointments = $this->patientModel->getAppointments($_SESSION['USER_DATA']->user_ID);
@@ -744,8 +745,10 @@ class Patient extends Controller
 
         if ($doctor_ID !== null) {
             $session = $this->patientModel->docSession($doctor_ID);
+            $doctorImage = $this->patientModel->docImage($doctor_ID);
             $data = [
-                'session' => $session
+                'session' => $session,
+                'image' => $doctorImage
             ];
             $this->view('patient/doctor_sessions', $data);
         } else {
@@ -905,6 +908,7 @@ class Patient extends Controller
         $this->view('patient/appointment_cancelled');
     }
 
+    //PRESCRIPTIONS
     public function prescriptions_dashboard()
     {
         $prescriptions = $this->patientModel->prescriptions($_SESSION['USER_DATA']->user_ID);
@@ -912,20 +916,6 @@ class Patient extends Controller
             'prescriptions' => $prescriptions
         ];
         $this->view('patient/prescriptions_dashboard', $data);
-    }
-
-    public function reports_dashboard()
-    {
-        $reports = $this->patientModel->labreports($_SESSION['USER_DATA']->user_ID);
-        $data = [
-            'reports' => $reports
-        ];
-        $this->view('patient/reports_dashboard', $data);
-    }
-
-    public function qr_download()
-    {
-        $this->view('patient/qr_download');
     }
 
     public function public_prescriptionView()
@@ -937,6 +927,21 @@ class Patient extends Controller
         ];
 
         $this->view('patient/public_prescriptionView', $data);
+    }
+
+    public function qr_download()
+    {
+        $this->view('patient/qr_download');
+    }
+
+    //REPORTS
+    public function reports_dashboard()
+    {
+        $reports = $this->patientModel->labreports($_SESSION['USER_DATA']->user_ID);
+        $data = [
+            'reports' => $reports
+        ];
+        $this->view('patient/reports_dashboard', $data);
     }
 
     public function updateDownloadCount($reportId)

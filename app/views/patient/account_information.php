@@ -42,13 +42,8 @@
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Associated Email Address/Phone Number</label>
-                                    <?php if ($patient->sign_in_method == "Email"): ?>
                                         <input type="text" id="email" class="input" name="email" readonly
                                             value="<?php echo $patient->email_phone ?>" style="display: inline-block;">
-                                    <?php else: ?>
-                                        <input type="text" id="phone" class="input" name="phone" readonly
-                                            value="<?php echo $patient->email_phone ?>" style="display: inline-block;">
-                                    <?php endif; ?>
                                 </div>
 
                             </div>
