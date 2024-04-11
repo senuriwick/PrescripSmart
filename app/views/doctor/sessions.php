@@ -80,7 +80,7 @@
                                 <hr>
                                 <div><?php echo formatCustomDate($sessionData->session_date);?></div>
                                 <div><?php echo formatCustomTime($sessionData->session_time);?></div>
-                                <button>VIEW SESSION</button>
+                                <button sessionID="<?php echo $sessionData->session_id;?>">VIEW SESSION</button>
                             </div>
                             <?php endforeach; ?>
                         </div>
@@ -125,15 +125,8 @@
     <div id="session-modal" class="session-modal">
         <div class="session-content">
             <span class="close">&times;</span>
-            <div class="modal-head"><b>Session #1254</b></div>
             <div class="session-modal-content">
-                <div class="doctor-data">
-                    <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="user-icon">
-                    <div class="doctor-data1">
-                        <div class="name"><b>DR.ASANKA RATHNAYAKE</b></div>
-                        <div class="role">Consultant Physician</div>
-                    </div>
-                </div>
+            <div class="modal-head"><b>Session #1254</b></div>
                 <hr />
                 <div>Date: Sunday, 17th Sept,2023</div>
                 <div>Time: 08.00 AM</div>
@@ -160,9 +153,11 @@
 
 
             viewSessionButtons.forEach(button => {
+                const sessionID = button.getAttribute("sessionID");
                 button.addEventListener("click", () => {
                     sessionModal.style.display = "block";
-                    
+                    sessionModal.setAttribute("sessionid",sessionID);
+                    console.log(sessionID);
 
                 });
             });

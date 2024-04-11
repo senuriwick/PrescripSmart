@@ -201,6 +201,16 @@ p a:active{
     border-radius: 10px;
 }
 
+td form input{
+    background-color: rgba(239, 242, 251, 1);
+    /* padding: 10px 10px; */
+    /* font-size: 2vh; */
+    font-weight: 500;
+    /* color: gray; */
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+}
+
 .test .test-added table .test-delete{
     width: 20px;
     text-align: center;

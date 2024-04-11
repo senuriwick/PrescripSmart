@@ -15,11 +15,31 @@ class Doctor extends Controller{
     }
 
     public function addPrescription($id){
-        $patient = $this->dpModel->getonePatient($id);
-        $data = [
-            'patient' => $patient
-        ];
-        $this->view('doctor/add_prescription',$data);
+
+        $searchTerm = isset($_GET['query']) ? $_GET['query'] : '';
+
+            $patient = $this->dpModel->getonePatient($id);
+            $medications = $this->dpModel->searchMedications($searchTerm);
+            $this->dpModel->addPrescriptionTableforId($id);
+            $data = [
+                'patient' => $patient,
+                'medications'=> $medications
+            ];
+            $this->view('doctor/add_prescription',$data);
+       
+    }
+
+    public function searchMedication(){
+        if(isset($_GET['query'])){
+            $searchTerm = $_GET['query'];
+            $medications = $this->dpModel->searchMedications($searchTerm);
+            $data = [
+                'medications' =>$medications
+            ];
+            $this->view('doctor/add_prescription',$data);
+        }
+
+
     }
 
     public function viewPrescriptions($id){

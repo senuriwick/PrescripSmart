@@ -46,4 +46,21 @@ class LabTechnician extends Controller{
         ];
         $this->view('lab_tech/reports',$data);
     }
+
+    public function markedRead(){
+        if(isset($_GET['testno'])){
+            $testno = $_GET['testno'];
+            $this->dpModel->markedTest($testno);
+            echo "done";
+
+            // header("Location: /prescripsmart/LabTechnician/reports");
+            // exit();
+        }
+        
+
+    }
+
+    public function uploadReport($testid){
+        echo $testid;
+    }
 }
