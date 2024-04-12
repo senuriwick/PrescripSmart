@@ -140,8 +140,22 @@
             });
 
             markbutton.addEventListener("click",()=>{
-                console.log("done");
-                var test_no = uploadbutton.getAttribute("testid");
+                var test_no = markbutton.getAttribute("testid");
+
+                fetch('<?php echo URLROOT;?>/LabTechnician/markedRead',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':'application/x-www-form-urlencoded',
+                    },
+                    body:'testid='+test_no
+                })
+                .then(response=>response.text())
+                .then(data =>{
+                    console.log('success:',data);
+                })
+                .catch((error)=>{
+                    console.log('Error:',error);
+                });
                 
             });
 

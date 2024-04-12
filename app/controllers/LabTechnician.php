@@ -48,16 +48,14 @@ class LabTechnician extends Controller{
     }
 
     public function markedRead(){
-        if(isset($_GET['testno'])){
-            $testno = $_GET['testno'];
-            $this->dpModel->markedTest($testno);
-            echo "done";
-
-            // header("Location: /prescripsmart/LabTechnician/reports");
-            // exit();
+        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['testid'])){
+            $testid = $_POST['testid'];
+            $this->dpModel->markedTest($testid);
+            redirect("lab_tech/reports");
+            exit();
+        }else{
+            echo "Error";
         }
-        
-
     }
 
     public function uploadReport($testid){
