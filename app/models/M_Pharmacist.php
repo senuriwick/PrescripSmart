@@ -185,27 +185,42 @@
 
         }
 
-        public function getAllPrescriptions() {
+        public function getAllPrescriptions($patientId) {
             $this->db->query('SELECT * FROM prescriptions WHERE patient_id = :id');
-            $this->db->bind(':id',1);
+            $this->db->bind(':id', $patientId);
             return $this->db->resultSet();
         }
 
-        public function getDiagnosisDetails(){
+        public function getPrescriptionCount($patientId) {
+            $this->db->query('SELECT COUNT(*) AS count FROM prescriptions WHERE patient_id = :id');
+            $this->db->bind(':id', $patientId);
+            $result = $this->db->single();
+            return $result->count;
+        }
+
+        public function getPatientDetails($prescriptionId){
+            $this->db->query('SELECT * FROM prescriptions WHERE id = :id');
+            $this->db->bind(':id', $prescriptionId);
+            $result = $this->db->single();
+            return $result;
+        }
+        
+
+        public function getDiagnosisDetails($prescriptionId){
             $this->db->query('SELECT * FROM diagnosis WHERE prescription_id = :id');
-            $this->db->bind(':id',1);
+            $this->db->bind(':id', $prescriptionId);
             return $this->db->resultSet();
         }
 
-        public function getMedicationDetails(){
+        public function getMedicationDetails($prescriptionId){
             $this->db->query('SELECT * FROM medications WHERE prescription_id = :id');
-            $this->db->bind(':id',1);
+            $this->db->bind(':id', $prescriptionId);
             return $this->db->resultSet();
         }
 
-        public function getLabDetails(){
+        public function getLabDetails($prescriptionId){
             $this->db->query('SELECT * FROM lab_tests WHERE prescription_id = :id');
-            $this->db->bind(':id',1);
+            $this->db->bind(':id', $prescriptionId);
             return $this->db->resultSet();
         }
 

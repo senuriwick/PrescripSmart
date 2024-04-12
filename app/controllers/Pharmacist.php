@@ -368,20 +368,37 @@
         // }
 
         public function allPrescriptions() {
+            $patientId = $_GET['patient_id'];
 
-            $prescriptions = $this->pharmacistModel->getAllPrescriptions();
-            $diagnoses = $this->pharmacistModel->getDiagnosisDetails();
-            $medications = $this->pharmacistModel->getMedicationDetails();
-            $labtests = $this->pharmacistModel->getLabDetails();
+            $prescriptions = $this->pharmacistModel->getAllPrescriptions($patientId);
+            $prescriptionCount = $this->pharmacistModel->getPrescriptionCount($patientId);
 
             $data = [
                 'prescriptions' => $prescriptions,
+                'prescriptionCount' => $prescriptionCount
+            ];
+            $this->view('pharmacist/pharmacist_prescription', $data);
+        }
+
+        public function getPrescriptionDetails(){
+            $prescriptionId = $_GET['prescription_id']; // Retrieve the prescription ID from the GET parameter
+            // Now you can use $prescriptionId to fetch the specific prescription details from your model
+            $patient = $this->pharmacistModel->getPatientDetails($prescriptionId);
+            $diagnoses = $this->pharmacistModel->getDiagnosisDetails($prescriptionId);
+            $medications = $this->pharmacistModel->getMedicationDetails($prescriptionId);
+            $labtests = $this->pharmacistModel->getLabDetails($prescriptionId);
+        
+            // Then you can pass this data to your view
+            $data = [
+                'patient' => $patient,
                 'diagnoses' =>$diagnoses,
                 'medications' => $medications,
                 'labtests' => $labtests
             ];
-            $this->view('pharmacist/pharmacist_prescription', $data);
+        
+            $this->view('pharmacist/pharmacist_prescriptionPopup', $data);
         }
+        
         
         
     }
