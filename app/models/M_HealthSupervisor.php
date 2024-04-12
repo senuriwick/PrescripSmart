@@ -1,5 +1,5 @@
 <?php
-    class M_Pharmacist{
+    class M_HealthSupervisor{
         private $db;
 
         public function __construct(){
@@ -10,6 +10,15 @@
             $this->db->query('SELECT * FROM inquiries');
             return $this->db->resultSet();
         }
+
+        public function getInquiryDetailsById($inquiry_id){
+            $this->db->query('SELECT * FROM inquiries WHERE inquiry_ID = :id');
+            $this->db->bind(':id', $inquiry_id);
+            return $this->db->single();
+
+        }
+
+        
 
         // public function getMedications(){
         //     $this->db->query('SELECT * FROM Medication');
