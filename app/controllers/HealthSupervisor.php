@@ -13,15 +13,27 @@
             $data = [
                 'inquiries' => $inquiries
             ];
-            $this->view('healthSupervisor/healthSupervisor_dash');
+            $this->view('healthSupervisor/healthSupervisor_dash', $data);
         }
 
+
+        public function inquiryDetails(){
+            if(isset($_GET['id'])) {
+                $inquiry_id = $_GET['id'];
+                $inquiryDetails = $this->healthSupervisorModel->getInquiryDetailsById($inquiry_id);
+                $data = [
+                    'inquiry' =>$inquiryDetails
+                ];
+                $this->view('healthSupervisor/healthSupervisor_oneInquiry', $data);
+            }
+            else{
+                echo "nothing";
+            }
+        }
+        
         public function history(){
+            $readInquiries = $this->healthSupervisorModel->
             $this->view('healthSupervisor/healthSupervisor_History');
-        }
-
-        public function oneInquiry(){
-            $this->view('healthSupervisor/healthSupervisor_oneInquiry');
         }
 
         public function profile(){
