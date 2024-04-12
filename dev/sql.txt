@@ -19,6 +19,43 @@ INSERT INTO patients (id, name, dob, gender) VALUES
 (6, 'David Brown', '1980-07-28', 'Male'),
 (7, 'Sophia Miller', '1992-12-15', 'Female');
 
+-- Add the new column "age" to the "patients" table
+ALTER TABLE patients
+ADD COLUMN age INT;
+
+-- Update existing records with the calculated age based on the date of birth
+UPDATE patients SET age = YEAR(CURDATE()) - YEAR(dob) - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT(dob, '%m%d'));
+
+
+
+//DID NOT UPDATE BELOW DUE TO FOREIGN KEY PROBLEM
+
+
+        -- Create the patients table with the "age" column
+        CREATE TABLE patients (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            name VARCHAR(255),
+            dob DATE,
+            gender VARCHAR(10),
+            age INT
+        );
+
+        -- Insert 10 entries into the patients table
+        INSERT INTO patients (name, dob, gender, age) VALUES
+        ('John Doe', '1990-05-15', 'Male', YEAR(CURDATE()) - YEAR('1990-05-15') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1990-05-15', '%m%d'))),
+        ('Jane Smith', '1985-08-22', 'Female', YEAR(CURDATE()) - YEAR('1985-08-22') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1985-08-22', '%m%d'))),
+        ('Emily Johnson', '1988-11-03', 'Female', YEAR(CURDATE()) - YEAR('1988-11-03') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1988-11-03', '%m%d'))),
+        ('Michael Williams', '1975-09-20', 'Male', YEAR(CURDATE()) - YEAR('1975-09-20') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1975-09-20', '%m%d'))),
+        ('Olivia Davis', '1995-04-12', 'Female', YEAR(CURDATE()) - YEAR('1995-04-12') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1995-04-12', '%m%d'))),
+        ('David Brown', '1980-07-28', 'Male', YEAR(CURDATE()) - YEAR('1980-07-28') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1980-07-28', '%m%d'))),
+        ('Sophia Miller', '1992-12-15', 'Female', YEAR(CURDATE()) - YEAR('1992-12-15') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1992-12-15', '%m%d'))),
+        ('William Taylor', '1982-03-18', 'Male', YEAR(CURDATE()) - YEAR('1982-03-18') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1982-03-18', '%m%d'))),
+        ('Emma Wilson', '1993-06-25', 'Female', YEAR(CURDATE()) - YEAR('1993-06-25') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1993-06-25', '%m%d'))),
+        ('Daniel Martinez', '1987-10-05', 'Male', YEAR(CURDATE()) - YEAR('1987-10-05') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1987-10-05', '%m%d')));
+
+
+
+
 
 CREATE TABLE prescriptions (
     id INT PRIMARY KEY AUTO_INCREMENT,
