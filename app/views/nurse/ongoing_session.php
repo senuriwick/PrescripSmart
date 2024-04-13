@@ -15,39 +15,33 @@
 <body>
 
   <div class="content">
-  <?php include 'side_navigation_panel.php'; ?>
+    <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
-    <?php include 'top_navigation_panel.php'; ?>
+      <?php include 'top_navigation_panel.php'; ?>
 
       <div class="patientInfoContainer">
-      <?php include 'information_container.php'; ?>
-      <?php include 'in_page_navigation.php'; ?>
-
-        <div class="sessionDetails">
-          <?php if (empty($data['session'])): ?>
-            <p>You currently have no on-going sessions. Thank you!</p>
-          <?php else: ?>
-            <?php $session = $data['session'] ?>
-            <?php $doctor = $data['doctor'] ?>
-
-            <p id="sessionNo">Session #
-              <?php echo $session->session_ID ?>
-            </p>
-            <p>
-              Dr.
-              <?php echo $doctor->fName ?>
-              <?php echo $doctor->lName ?>
-              <br>
-              Room 0<?php echo $session->room_no ?>
-            </p>
-          <?php endif ?>
-        </div>
-
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
         <div class="ongoingDiv">
+          <div class="sessionDetails">
+            <?php if (empty($data['session'])): ?>
+              <p>You currently have no on-going sessions. Thank you!</p>
+            <?php else: ?>
+              <?php $session = $data['session'] ?>
+              <?php $doctor = $data['doctor'] ?>
 
-          <?php if (empty($data['appointments'])): ?>
+              <h1>Session #<?php echo $session->session_ID ?>
+              </h1>
+              <p>
+                Dr.
+                <?php echo $doctor->fName ?>
+                <?php echo $doctor->lName ?>
+                <br>
+                Room <?php echo $session->room_no ?>
+              </p>
+              <?php if (empty($data['appointments'])): ?>
             <p>No appointments found.</p>
           <?php else: ?>
 
@@ -63,37 +57,40 @@
             }
             ?>
 
-            <div class="noPatients">
-              <div class="patientsLeft">
-                <p><span>
-                    <?php echo $activeAppointments ?>
-                  </span><br>Patients left</p>
+            <div class="ongoingContent">
+              <div class="noPatients">
+                <div class="patientsLeft">
+                  <p><span>
+                      <?php echo $activeAppointments ?>
+                    </span><br>Patients left</p>
+                </div>
+                <div class="allPatients">
+                  <p>All patients:
+                    <?php echo $totalAppointments ?>
+                  </p>
+                </div>
               </div>
-              <div class="allPatients">
-                <p>All patients:
-                  <?php echo $totalAppointments ?>
-                </p>
-              </div>
-            </div>
 
-            <?php
-            function sortByStatus($a, $b)
-            {
-              if ($a->status == $b->status) {
-                return 0;
+              <?php
+              function sortByStatus($a, $b)
+              {
+                if ($a->status == $b->status) {
+                  return 0;
+                }
+                return ($a->status == 'active') ? -1 : 1;
               }
-              return ($a->status == 'waiting') ? -1 : 1;
-            }
 
-            usort($data['appointments'], 'sortByStatus');
-            ?>
+              usort($data['appointments'], 'sortByStatus');
+              ?>
 
-            <div class="sessionAppointments">
-              <?php foreach ($data['appointments'] as $appointment): ?>
-                <div class="appointmentDiv">
-                  <div class="done <?php echo strtolower($appointment->status); ?>">
-                    <p>No
+              <div class="sessionAppointments">
+                <?php foreach ($data['appointments'] as $appointment): ?>
+                  <div class="appointmentDiv <?php echo strtolower($appointment->status); ?>">
+                    <!-- <div class="done <?php echo strtolower($appointment->status); ?>"> -->
+                    <p class = "desDiv">No
                       <?php echo $appointment->appointment_No ?>.
+                    </p>
+                    <p>
                       <?php echo $appointment->display_Name ?>
                     </p>
                     <p>Time:
@@ -104,19 +101,20 @@
                         <p>DONE</p>
                       <?php elseif ($appointment->status == "active"): ?>
                         <p>WAITING</p>
-
-                      <?php else: ?>
+                      <?php elseif ($appointment->status == "cancelled"): ?>
                         <p>CANCELLED</p>
                       <?php endif ?>
                     </div>
-
                   </div>
-                </div>
-              <?php endforeach ?>
-            <?php endif ?>
+                <?php endforeach ?>
+              <?php endif ?>
+
+            </div>
 
           </div>
 
+            <?php endif ?>
+          </div>
         </div>
       </div>
     </div>

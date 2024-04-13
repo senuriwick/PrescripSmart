@@ -14,7 +14,7 @@
 
 <body>
     <div class="menu">
-        <a href="<?php echo URLROOT; ?>/nurse/patients_dashbaord" id="patients">Patients</a>
+        <a href="<?php echo URLROOT; ?>/nurse/patients_dashboard" id="patients">Patients</a>
         <a href="<?php echo URLROOT; ?>/nurse/ongoing_session" id="on-going">On-going session</a>
         <a href="<?php echo URLROOT; ?>/nurse/sessions" id="sessions">Sessions</a>
         <a href="<?php echo URLROOT; ?>/nurse/appointments" id="appointments">Appointments</a>

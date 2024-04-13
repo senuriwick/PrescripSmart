@@ -14,53 +14,38 @@
 
 <body>
     <div class="content">
-    <?php include 'side_navigation_panel.php'; ?>
+        <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-        <?php include 'top_navigation_panel.php'; ?>
+            <?php include 'top_navigation_panel.php'; ?>
 
             <div class="adminInfoContainer">
-            <?php include 'information_container.php'; ?>
-            <?php include 'in_page_navigation.php'; ?>
+                <?php include 'information_container.php'; ?>
+                <?php include 'in_page_navigation.php'; ?>
 
-                <?php $sessions = $data['sessions']; ?>
+                <?php $groupedSessions = $data['groupedSessions']; ?>
 
-                <?php if (!empty($sessions)): ?>
-                    <div>
-                        <p style="font-size: medium; color: gray;">You have been assigned to the following sessions.</p>
-                    </div>
-
-                    <?php
-                    // Group sessions by doctor
-                    $sessionsByDoctor = [];
-                    foreach ($sessions as $session) {
-                        $doctorName = $session->doctorName; // Accessing object property
-                        if (!isset($sessionsByDoctor[$doctorName])) {
-                            $sessionsByDoctor[$doctorName] = [];
-                        }
-                        $sessionsByDoctor[$doctorName][] = $session;
-                    }
-                    ?>
-
-                    <?php foreach ($sessionsByDoctor as $doctorName => $doctorSessions): ?>
+                <?php if (!empty($groupedSessions)): ?>
+                    <?php foreach ($groupedSessions as $doctorID => $doctorData): ?>
                         <div class="searchDiv">
-                            <h1 style="font-size: 24px; color: #0069FF;">Dr.
-                                <?php echo $doctorName; ?>
-                            </h1>
-                            <!-- <p style="line-height: 0.4;"><?php echo $sessions[0]->$specialization ?></p> -->
+                            <div class="info">
+                                <img src="<?php echo URLROOT; ?>/public/uploads/profile_images/<?php echo $doctorData['photo']; ?>"
+                                    alt="pic">
+                                <div class="doctor-info">
+                                    <h1>Dr. <?php echo $doctorData['doctorName']; ?></h1>
+                                    <p><?php echo $doctorData['specialization']; ?></p>
+                                </div>
+                            </div>
                             <div class="line1"></div>
 
-                            <?php foreach ($doctorSessions as $session): ?>
+                            <?php foreach ($doctorData['sessions'] as $session): ?>
                                 <div class="boxes-container">
                                     <div class="box1">
                                         <p class="sessionname">Session #<?php echo $session->session_ID; ?></p>
                                         <p class="text">
-                                            Date:
-                                            <?php echo $session->sessionDate; ?>
-                                            <br />
-                                            Time:
-                                            <?php echo $session->start_time ?> -
-                                            <?php echo $session->end_time ?>
+                                            Date: <?php echo $session->sessionDate; ?> <br />
+                                            Time: <?php echo $session->start_time; ?> -
+                                            <?php echo $session->end_time; ?>
                                         </p>
                                         <div class="line2"></div>
                                         <button type="button" class="rectangle-70-mtM">ROOM
@@ -81,4 +66,5 @@
         </div>
     </div>
 </body>
+
 </html>

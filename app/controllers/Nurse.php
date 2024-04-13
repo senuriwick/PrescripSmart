@@ -110,12 +110,13 @@ class Nurse extends Controller
 
     public function sessions()
     {
-        $sessions = $this->nurseModel->sessions();
+        $groupedSessions = $this->nurseModel->sessions();
         $data = [
-            'sessions' => $sessions
+            'groupedSessions' => $groupedSessions
         ];
         $this->view('nurse/sessions', $data);
     }
+    
 
     public function account_information()
     {

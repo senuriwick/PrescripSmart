@@ -31,6 +31,7 @@ body {
 .prescriptionsDiv h1 {
   margin-left: 0.2vw;
   margin-bottom: 1.5vh;
+  font-size: 24px;
 }
 
 #searchBar {
@@ -109,15 +110,30 @@ body {
 }
 
 
-.patientFileExt img {
-  height: 3rem;
+.patientFileExt img.patient-pic {
+  display: inline-block;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1vw;
 }
+
+.patientFileExt img.back-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 20px;
+  align-self: center;
+  cursor: pointer;
+}
+
 
 .patientFileExt .fileInfo p {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
-  margin-left: 1vw;
+  margin-left: 0.5vw;
+  padding-top: 2px;
 }
 
 .patientFileExt .fileInfo .patientIdClass {
@@ -139,9 +155,9 @@ body {
 }
 
 .detailDiv div {
-  border-color: rgba(68, 81, 114, 0.5);
-  border-style: solid;
-  border-width: 0.1vh;
+  /* border-color: rgba(68, 81, 114, 0.5); */
+  /* border-style: solid; */
+  /* border-width: 0.1vh; */
   background-color: white;
   width: 20vw;
   padding: 0.01vh 1.2vw;

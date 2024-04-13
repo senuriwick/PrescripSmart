@@ -30,11 +30,10 @@
                     <?php else: ?>
                         <?php $session = $data['session']; ?>
                         <?php $doctor = $data['doctor']; ?>
-                        <h1>Appointments (Current Session) #
-                            <?php echo $session->session_ID ?>
+                        <h1>Appointments (Current Session) #<?php echo $session->session_ID ?>
                         </h1>
-                        <p>DR.
-                            <?php echo $session->doctorName ?><br>
+                        <p class = "doctorName"><strong>Dr.
+                            <?php echo $session->doctorName ?></strong><br>
                             <?php echo $doctor->specialization ?><br>
                             Room 04
                         </p>
@@ -47,21 +46,21 @@
                                     <div class="file">
                                         <div class="file2"
                                             onclick="redirectToAppointment(<?php echo $appointment->appointment_ID ?>)">
-                                            <div class="desDiv">
-                                                <p class="description">Time:
-                                                    <?php echo $appointment->time ?>
-                                                </p>
-                                            </div>
-                                            <p>Referrence No: #
-                                                <?php echo $appointment->appointment_ID ?>
+                                            
+                                            <p>Referrence No: #<?php echo $appointment->appointment_ID ?>
                                             </p>
-                                            <p>Appointment No:
-                                                <?php echo $appointment->appointment_No ?>
-                                            </p>
-                                            <p>
+                                            <strong><p >
                                                 <?php echo ($appointment->gender == 'male') ? 'Mr.' : 'Ms.' ?>
                                                 <?php echo $appointment->display_Name ?>
+                                            </p></strong>
+                                            <div class="desDiv">
+                                                <p>Time:
+                                                <?php echo date('h.i A', strtotime($appointment->time)) ?>
+                                                </p>
+                                            </div>
+                                            <p class="description">No: <?php echo $appointment->appointment_No ?>
                                             </p>
+                                            
                                         </div>
 
                                         <form method="POST">

@@ -15,19 +15,23 @@
 <body>
 
   <div class="content">
-  <?php include 'side_navigation_panel.php'; ?>
+    <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
-    <?php include 'top_navigation_panel.php'; ?>
+      <?php include 'top_navigation_panel.php'; ?>
 
       <div class="patientInfoContainer">
-      <?php include 'information_container.php'; ?>
-      <?php include 'in_page_navigation.php'; ?>
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
         <div class="patientFileBack">
           <?php $patient = $data['patient']; ?>
           <div class="patientFileExt">
-            <img src="<?php echo URLROOT; ?>\public\img\nurse\PersonCircle.png" alt="patient-pic">
+            <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon"
+              id="back-icon">
+            <img src="<?php echo URLROOT; ?>\public\uploads\profile_images\<?php echo $patient->profile_photo ?>"
+              alt="patient-pic" class="patient-pic">
+
             <div class="fileInfo">
               <?php if ($patient->gender == "male"): ?>
                 <p>Mr.
@@ -79,3 +83,11 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('back-icon').addEventListener("click", function () {
+      window.history.back();
+    });
+  </script>
+
+</body>
