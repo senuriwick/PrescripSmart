@@ -1,6 +1,7 @@
 body {
   font-family: inter;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 .content {
@@ -22,19 +23,23 @@ body {
 .sessionDetails {
   font-weight: bold;
   font-size: 1.1rem;
+
 }
 
-.sessionDetails p {
-  margin: 0vh;
-  margin-left: 1vw;
-}
-
-.sessionDetails #sessionNo {
-  color: #0069FF;
-  font-size: 2rem;
+.sessionDetails h1 {
+  font-size: 24px;
+  color: rgba(68, 81, 114, 1);
   margin-top: 2vh;
   margin-bottom: 0.5vh;
   padding-bottom: 0vh;
+  white-space: nowrap;
+}
+
+.sessionDetails p {
+  margin-top: 1vh;
+  font-size: 16px;
+  color: rgba(164, 174, 199, 1);
+  white-space: nowrap;
 }
 
 .ongoingDiv {
@@ -44,28 +49,39 @@ body {
   display: flex;
   padding-bottom: 4rem;
   border-radius: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.ongoingContent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ongoingDiv .noPatients {
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .patientsLeft {
-  margin-top: 2vh;
   background-color: white;
-  padding: 1.5vh 0vw;
-  width: 12rem;
+  padding: 1.5vh 1vw;
+  width: auto;
   border-radius: 10px;
 }
 
 .patientsLeft p {
   text-align: center;
-  padding: 0vh;
+  padding: 0;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 24px;
 }
 
 .patientsLeft span {
-  font-size: 5rem;
+  font-size: 64px;
   color: #0069FF;
 }
-
 
 .allPatients {
   background-color: white;
@@ -73,7 +89,7 @@ body {
   margin-top: 0.7rem;
   padding: 0.01rem 0rem;
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 1.1rem;
   border-radius: 10px;
 }
@@ -83,12 +99,14 @@ body {
   border-radius: 10px;
   padding: 1.5rem;
   padding-bottom: 4rem;
-  width: 80%;
-  margin: 1rem;
-
+  width: 700px;
+  margin-left: 2rem;
+  margin-top: 0;
 }
 
-.sessionAppointments .appointmentDiv {
+.sessionAppointments .appointmentDiv.active,
+.sessionAppointments .appointmentDiv.completed,
+.sessionAppointments .appointmentDiv.cancelled {
   border-style: solid;
   border-width: 0.1vh;
   border-radius: 10px;
@@ -96,96 +114,70 @@ body {
   border-color: rgba(164, 174, 199, 1);
   display: flex;
   justify-content: space-between;
+  height: 40px;
+  align-items: center;
 }
 
+.sessionAppointments .appointmentDiv.active p,
+.sessionAppointments .appointmentDiv.completed p,
+.sessionAppointments .appointmentDiv.cancelled p {
+
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 16px;
+  color: rgba(68, 81, 114, 0.75);
+  white-space: nowrap;
+}
+
+/* Update the font color of "No:" to blue */
+.sessionAppointments .appointmentDiv p.desDiv {
+  color: #0069FF;
+  font-weight: 500;
+}
+
+/* Remove the bold font weight from the text inside the .sessionAppointments div */
 .sessionAppointments .appointmentDiv p {
-  margin: 1rem 1.5rem;
-  font-size: 1.2rem;
-  color: #0069FF;
-}
-
-.sessionAppointments .done {
-  /* border-style: solid; */
-  /* border-width: 0.1vh; */
-  border-radius: 10px;
-  /* margin-top: 0.8rem; */
-  /* border-color: rgba(164, 174, 199, 1); */
-  display: flex;
-  justify-content: space-between;
-}
-
-.sessionAppointments .done p {
-  margin: 1rem 1.5rem;
-  font-size: 1.2rem;
-  color: #0069FF;
-}
-
-.sessionAppointments .done .status {
-  margin: 0.7rem 1rem;
-  padding: 0.1vh;
-  height: 2rem;
-  width: 7rem;
-  background-color: rgba(57, 122, 73, 1);
-  border-radius: 10px;
-}
-
-.sessionAppointments .done .status p {
-  text-align: center;
-  margin: 0.3rem;
-  color: white;
-}
-
-.sessionAppointments .waiting {
-  background-color: rgba(0, 105, 255, 0.2);
-  border-width: 0.1vh;
-  border-radius: 10px;
-  margin-top: 0.8rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.sessionAppointments .waiting p {
-  margin: 1rem 1.5rem;
-  font-size: 1.2rem;
-  color: #0069FF;
-  font-weight: bold;
-}
-
-.sessionAppointments .waiting .status {
-  margin: 0.7rem 1rem;
-  padding: 0.1vh;
-  height: 2rem;
-  width: 7rem;
-  background-color: rgba(255, 0, 46, 1);
-  border-radius: 10px;
-}
-
-.sessionAppointments .waiting .status p {
-  text-align: center;
-  margin: 0.3rem;
-  color: white;
   font-weight: normal;
+  text-align: center;
 }
 
-.sessionAppointments .appointmentDiv .done.active {
+
+.sessionAppointments .appointmentDiv.active {
   background-color: rgba(0, 105, 255, 0.2);
   border-color: rgba(0, 105, 255, 0.2);
-  width: 100%;
 }
 
-.sessionAppointments .appointmentDiv .done.completed {
-  width: 100%;
+.sessionAppointments .appointmentDiv .status {
+  margin: 1rem 1rem;
+  padding: 0.1vh;
+  height: 22px;
+  width: 100px;
+  background-color: rgba(57, 122, 73, 1);
+  border-radius: 10px;
+  margin-left: auto;
+  justify-self: center;
 }
 
-.sessionAppointments .done .status.cancelled {
+.sessionAppointments .appointmentDiv .status p {
+  text-align: center;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.sessionAppointments .appointmentDiv .status.cancelled {
   background-color: gray;
 }
 
-.sessionAppointments .done .status.active {
+.sessionAppointments .appointmentDiv .status.active {
   background-color: rgba(255, 0, 46, 1);
 }
 
-.sessionAppointments .done .status.completed {
+.sessionAppointments .appointmentDiv .status.completed {
   background-color: rgba(57, 122, 73, 1);
 }
 

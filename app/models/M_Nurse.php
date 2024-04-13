@@ -10,7 +10,7 @@ class M_Nurse
 
     public function patients()
     {
-        $this->db->query('SELECT * FROM patients');
+        $this->db->query('SELECT p. *, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID');
         $result = $this->db->resultSet();
         return $result;
     }
@@ -25,7 +25,7 @@ class M_Nurse
 
     public function patientdetails($patientID)
     {
-        $this->db->query('SELECT patient_ID, display_Name, age, weight, height, gender FROM patients WHERE patient_ID = :patientID');
+        $this->db->query('SELECT p.patient_ID, p.display_Name, p.age, p.weight, p.height, p.gender, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID WHERE patient_ID = :patientID');
         $this->db->bind(':patientID', $patientID);
         $result = $this->db->single();
         return $result;
@@ -39,18 +39,34 @@ class M_Nurse
         $result = $this->db->single();
         return $result;
     }
-
     public function sessions()
     {
-        $this->db->query('SELECT s.*, d.fName, d.lName, d.specialization FROM sessions s
-        INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID
-        WHERE s.sessionDate >= CURRENT_DATE AND s.nurse_ID = :nurseID');
+        $groupedSessions = [];
+    
+        $this->db->query('SELECT s.*, d.fName, d.lName, d.specialization, u.profile_photo
+                          FROM sessions s
+                          INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID INNER JOIN users u ON u.user_ID = d.doctor_ID
+                          WHERE s.sessionDate >= CURRENT_DATE AND s.nurse_ID = :nurseID');
         $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
-
-        $result = $this->db->resultSet();
-        return $result;
+    
+        $results = $this->db->resultSet();
+    
+        foreach ($results as $session) {
+            $doctorID = $session->doctor_ID;
+            if (!isset($groupedSessions[$doctorID])) {
+                $groupedSessions[$doctorID] = [
+                    'doctorName' => $session->fName . ' ' . $session->lName,
+                    'specialization' => $session->specialization,
+                    'photo' => $session->profile_photo,
+                    'sessions' => []
+                ];
+            }
+            $groupedSessions[$doctorID]['sessions'][] = $session;
+        }
+    
+        return $groupedSessions;
     }
-
+    
     public function appointments($sessionID)
     {
         $this->db->query('SELECT a.*, p.display_Name, p.gender FROM appointments a

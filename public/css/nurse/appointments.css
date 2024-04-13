@@ -8,15 +8,25 @@
   .prescriptionsDiv h1 {
     font-weight: bold;
     color: rgba(68, 81, 114, 1);
+    font-size: 24px;
+  }
+
+  .patientInfoContainer .prescriptionsDiv .doctorName {
+    font-size: 16px;
+    color: #0069FF;
+  }
+
+  .prescriptionsDiv p {
+    color: rgba(68, 81, 114, 0.75);
   }
   
   .file {
     display: flex;
     justify-content: space-between;
     background-color: #ffffff;
-    border-style: solid;
+    /* border-style: solid;
     border-width: 0.1vh;
-    border-color: rgba(68, 81, 114, 0.5);
+    border-color: rgba(68, 81, 114, 0.5); */
     border-radius: 5px;
     margin-bottom: 1vh;
 
@@ -27,7 +37,7 @@
     display: grid;
     width: 100%;
     grid-template-columns: repeat(4, 1fr);
-    justify-content: space-between;
+    /* justify-content: space-between; */
   }
   .file p {
     padding: 0vh 2vh;
@@ -85,12 +95,23 @@
   
   input[type="checkbox"] {
     display: none;
+    border-radius: 50%;
+  }
+  
+  input[type="checkbox"] + label {
+    display: inline-block;
+    width: 20px; /* Set the width and height to adjust the size of the checkbox */
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50%; /* Make the checkbox appear as a circle */
+    cursor: pointer;
   }
   
   input[type="checkbox"]:checked + label {
     background-color: #0069FF;
     border-color: #0069FF;
   }
+  
 
   .appointments {
     background-color: rgba(68, 81, 114, 1);

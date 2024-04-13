@@ -32,12 +32,12 @@
                     <div class="parallel">
                             <div class="input-group">
                                 <label for="name">Method of Sign-In</label>
-                                <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $user->method_of_signin ?> readonly>
+                                <input type="text" id="method" class="input" style="display: inline-block;" value="<?php echo $user->method_of_signin ?>" readonly>
                             </div>
                             <div class="input-group">
                                 <label for="email">Email/Phone Number</label>
                                 <input type="text" id="email_phone" class="input" style="display: inline-block;"
-                                    value=<?php echo $user->email_phone ?> readonly>
+                                    value="<?php echo $user->email_phone ?>" readonly>
                             </div>
                         </div>
                     </div>

@@ -30,23 +30,50 @@ body {
   background-color: rgba(239, 242, 251, 1);
   border-radius: 10px;
   padding: 1vh 3vh 2vh;
-  height: 50vh;
+  display: flex;
+  flex-direction: column; 
+}
+
+.searchDiv .info {
+  margin: 1vh 0.5vw;
+  display: flex;
+  align-items: center;
+}
+
+.searchDiv .info img {
+  display: inline-block;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1vw;
+  margin-top: 2vh;
+}
+
+.searchDiv .doctor-info {
+  flex-grow: 1; /* Expand to fill remaining space */
+}
+
+.searchDiv .doctor-info p {
+  line-height: 0;
+  margin-left: 3px;
 }
 
 .searchDiv h1 {
   font-weight: bold;
   font-family: inter;
-
   color: rgba(68, 81, 114, 1);
-  font-size: 22px;
+  font-size: 24px;
+  margin-left: 3px;
 }
+
 
 .line1 {
   width: 53rem;
   height: 0.05rem;
   left: 17.5rem;
   top: 23.5rem;
-  background-color: rgba(68, 81, 114, 0.75);
+  background-color: rgba(217, 217, 217, 1);
 
 }
 
@@ -96,9 +123,9 @@ body {
 
 .boxes-container {
   display: flex;
-  /* flex-direction: row; */
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-grow: 1; /* Expand to fill remaining space */
 }
 
 .box1 {
@@ -106,9 +133,15 @@ body {
   /* Adjust width as needed with a gap */
   border-radius: 1.7vh;
   margin-top: 2.5vh;
+  margin-right: 5px;
   padding: 1vh 0vh;
   background-color: white;
   text-align: center;
+  height: 150px;
+}
+
+.box1 p {
+  margin-top: 2vh;
 }
 
 .reg {
