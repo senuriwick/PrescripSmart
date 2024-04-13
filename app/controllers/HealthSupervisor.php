@@ -9,9 +9,11 @@
         }
 
         public function dashboard(){
-            $inquiries = $this->healthSupervisorModel->getInquiries();
+            $inquiries = $this->healthSupervisorModel->getNewInquiries();
+            $newInquiriesCount = $this->healthSupervisorModel->getNewInquiriesCount();
             $data = [
-                'inquiries' => $inquiries
+                'inquiries' => $inquiries,
+                'count' => $newInquiriesCount
             ];
             $this->view('healthSupervisor/healthSupervisor_dash', $data);
         }
@@ -32,8 +34,21 @@
         }
         
         public function history(){
-            $readInquiries = $this->healthSupervisorModel->
-            $this->view('healthSupervisor/healthSupervisor_History');
+            $readInquiries = $this->healthSupervisorModel->getReadInquiries();
+            $readInquiriesCount = $this->healthSupervisorModel->getReadInquiriesCount();
+            $data = [
+                'inquiries' => $readInquiries,
+                'count' => $readInquiriesCount
+            ];
+            $this->view('healthSupervisor/healthSupervisor_History', $data);
+        }
+
+        public function markAsRead(){
+            if(isset($_GET['id'])){
+                $inquiry_id = $_GET['id'];
+                $result = $this->healthSupervisorModel->markAsRead($inquiry_id);
+                redirect('/healthSupervisor/dashboard');
+            }
         }
 
         public function profile(){

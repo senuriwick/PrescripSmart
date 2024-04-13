@@ -60,7 +60,7 @@
                     </div>
                     <hr class="divider">
                     <div class="patientFile">
-                        <h2>Inquiries(5)</h2>
+                        <h2>Inquiries(<?php echo $data['count'] ?>)</h2>
                         <?php foreach($data['inquiries'] as $inquiry): ?>
                         <div class="inquiry">
                           <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">

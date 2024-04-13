@@ -92,7 +92,8 @@
                         <?php else : ?>
                          <p>No inquiry details found.</p>
                         <?php endif; ?>
-                        <button class="reply">Reply</button>
+                        
+                        <a href="<?php echo URLROOT ?>/HealthSupervisor/markAsRead?id=<?php echo $inquiry -> inquiry_ID; ?>"><button class="reply">Reply</button>
                        
                     </div>
                 </div>
