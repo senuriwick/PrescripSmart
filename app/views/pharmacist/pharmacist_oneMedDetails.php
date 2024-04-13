@@ -76,7 +76,26 @@
                                 />
                             </a>
                             <p class="med"><?php echo isset($_GET['name']) ? $_GET['name']:''; ?></p>
-                            <p class="status">Status: <span class="stock"><?php echo isset($_GET['status']) ? $_GET['status']:''; ?></span></p>
+                            <p class="status">Status: <span class="stock" style="color: 
+                            <?php 
+                                $status = isset($_GET['status']) ? $_GET['status'] : '';
+                                switch($status) {
+                                    case 'Out of Stock':
+                                        echo 'red'; // Change color for 'Out of Stock' status
+                                        break;
+                                    case 'Inactive':
+                                        echo 'grey'; // Change color for 'Inactive' status
+                                        break;
+                                    case 'Active':
+                                        echo 'green'; // Change color for 'Active' status
+                                        break;
+                                    default:
+                                        echo 'black'; // Default color
+                                }
+                            ?>
+                        "><?php echo $status; ?></span>
+                            </p>
+
                         </div>  
                         <div>
                     
@@ -87,17 +106,54 @@
                             <p>Expiry Date: <span><?php echo isset($_GET['expiry_date']) ? $_GET['expiry_date'] : '12/05/2024'; ?></span></p>
                         </div>
                         <div class="quantity">
-                            <p>Qty in Stock: </p>
-                            <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/minus.png" alt=""></button>
-                            <input type="text" id="searchBar" name="search" value="<?php echo isset($_GET['quantity']) ? $_GET['quantity']:''; ?>">
-                            <button><img src="<?php echo URLROOT?>/app/views/pharmacist/images/plus.png" alt=""></button>
+                            <p>Qty in Stock : </p>
+                            <!-- <button class="quantity-btn" data-action="decrease"><img src="<?php echo URLROOT?>/app/views/pharmacist/images/minus.png" alt=""></button> -->
+                            <input type="text" id="searchBar" name="search" value="<?php echo isset($_GET['quantity']) ? $_GET['quantity']:''; ?>" onblur="updateQuantity(this.value)">
+                            <!-- <button class="quantity-btn" data-action="increase"><img src="<?php echo URLROOT?>/app/views/pharmacist/images/plus.png" alt=""></button> -->
                         </div>
-                        <button id="outOfStock"><a href="<?php echo URLROOT; ?>/Pharmacist/markOutOfStock?id=<?php echo isset($_GET['id'])?$_GET['id']:''; ?>">Mark as Out of Stock</a></button>
+                        <button id="outOfStock"><a href="<?php echo URLROOT; ?>/Pharmacist/markOutOfStock?id=<?php echo isset($_GET['id'])?$_GET['id']:''; ?>">Set Out of Stock</a></button>
                     </div>
                     
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const quantityInput = document.getElementById('searchBar');
+        const decreaseBtn = document.querySelector('.quantity-btn[data-action="decrease"]');
+        const increaseBtn = document.querySelector('.quantity-btn[data-action="increase"]');
+
+        decreaseBtn.addEventListener('click', function() {
+            const currentValue = parseInt(quantityInput.value) || 0;
+            if (currentValue > 0) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+
+        increaseBtn.addEventListener('click', function() {
+            const currentValue = parseInt(quantityInput.value) || 0;
+            quantityInput.value = currentValue + 1;
+        });
+    });
+
+    function updateQuantity(quantity) {
+    var medicationId = <?php echo isset($_GET['id']) ? $_GET['id'] : 'null'; ?>;
+    if (medicationId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT; ?>/Pharmacist/updateMedicationQuantity', true); // Update URL to point to the correct controller method
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Quantity updated successfully');
+            } else {
+                console.error('Error updating quantity');
+            }
+        };
+        xhr.send('medication_id=' + medicationId + '&quantity=' + quantity); // Update parameters to match controller method
+    }
+}
+
+    </script>
     <script type="text/javascript" src="<?php echo URL_ROOT; ?>public/javascripts/testerjs/oneMedDetails.js"></script>
 </body>

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_prescription.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
-    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- <script src="main.js"></script> -->
 </head>
 
 <body>
@@ -77,121 +79,69 @@
                             </a>
                             <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
                             <div class="patient-desc">
-                                <p>Sheneya Perera</p>
-                                <p>Patient Id 12345</p>
-                                <p>22 Years</p>
+                                <p><?php echo $_GET['patient_name']; ?></p>
+                                <p>Patient ID <?php echo $_GET['patient_id']; ?></p>
+                                <p><?php echo $_GET['patient_age']; ?> Years</p>
                             </div>
                         </div>
                         <div class="topic">
-                            <label>Prescriptions(4)</label>
+                            <label>Prescriptions(<?php echo $data['prescriptionCount'] ?>)</label>
                         </div>
                         <div class="prescription-table">
-                            <table>
-                                <tbody>
-                                    <tr class="">   
-                                        <td>
-                                            <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
-                                            </div>
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
-                                    </tr>
+                        <table>
+                            <tbody>
+                                <?php foreach ($data['prescriptions'] as $prescription): ?>
                                     <tr class="clickable-row">
                                         <td>
-                                            <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
+                                        <div class="presDiv" data-prescription-id="<?php echo $prescription->id; ?>">
+                                                <img src="<?php echo URLROOT ?>/app/views/pharmacist/images/description.png" alt="download-icon">
+                                                <p><?php echo $prescription->prescription_text; ?></p>
                                             </div>
                                         </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
+                                        <td><?php echo $prescription->prescribing_doctor; ?></td>
+                                        <td><?php echo $prescription->prescribing_date; ?></td>
                                     </tr>
-                                    <tr class="clickable-row">
-                                        <td>
-                                            <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
-                                            </div>
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
-                                    </tr>
-                                    <tr class="clickable-row">
-                                        <td>
-                                            <div class="presDiv" onclick="openPopup()">
-                                                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p>Pres. Description</p>
-                                            </div>  
-                                        </td>
-                                        <td>Dr.Doctor Name</td>
-                                        <td>DD-MM-YYYY</td>
-                                    </tr>
-
-                                    </a>
-                                </tbody>
-                            </table>
-                            <div id="popup">
-                                <div class="grid-container">
-                                    <img id="qr" src="<?php echo URLROOT?>/app/views/pharmacist/images/qr-code.png" alt="">
-                                
-                                    <h2>CONFIDENTIAL PRESCRIPTION</h2>
-                                    <img onclick="closePopup()" class="close" src="<?php echo URLROOT?>/app/views/pharmacist/images/close-button.png" alt="">
-                            
-                                    
-                                </div>
-                                <div class="grid-container">
-                                    <p>Reception ID: <span>#2155675</span></p>
-                                    <p class="patient">patient: <span>Ms. S Perera</span></p>
-                                </div>
-                                <div class="grid-container">
-                                    <p>Pres. Date & Time: <span>10.20A.M 12/09/23 </span></p>
-                                    <p id="age">Age: <span>22</span>Yrs</p>
-                                </div>
-                                <div class="grid-container">
-                                    <p>Referred by: Dr.<span>Asanka Rathnayke</span></p>
-                                </div>
-                                <div class="diagnosis">
-                                    <p>Diagnosis</p>
-                                </div>
-                                <div class="diagnosis">
-                                    <p>Medication</p>
-                                    <div class="med">
-                                        <div>
-                                            <p>Name</p>
-                                            <p>Dosage</p>
-                                            <p>Remarks</p>
-                                        </div>
-                                        <div>
-                                            <p>Name</p>
-                                            <p>Dosage</p>
-                                            <p>Remarks</p>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="diagnosis">
-                                    <p>Lab Tests</p>
-                                    <div class="med">
-                                        <div class="lab">
-                                            <p>Name</p>
-                                            <p>Remarks</p>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <p>
-                                    (For view purposes only)
-                                </p>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                            <div id="content">
                                 
                             </div>
+                                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+    // Attach click event listener to prescription div elements
+    $('.presDiv').on('click', function() {
+        var prescriptionId = $(this).data('prescription-id');
+        var patientName = '<?php echo $_GET['patient_name']; ?>';
+        var patientAge = '<?php echo $_GET['patient_age']; ?>';
+        // Make AJAX request to fetch prescription details
+        $.ajax({
+            url: '<?php echo URLROOT; ?>/Pharmacist/getPrescriptionDetails',
+            method: 'GET',
+            data: { 
+                prescription_id: prescriptionId,
+                patient_name: patientName,
+                patient_age: patientAge
+             },
+            success: function(response) {
+                // Handle the response and display details in the popup
+                $('#content').html(response);
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(error);
+            }
+        });
+    });
+});
+    </script>
     <script src="<?php echo URLROOT?>/app/views/pharmacist/javascripts/pharmcist_prescription.js"></script>
 </body>
 </html>

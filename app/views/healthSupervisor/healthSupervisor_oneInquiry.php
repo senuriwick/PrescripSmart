@@ -71,21 +71,29 @@
                             <h2>Inquiries(5)</h2>
                             <button id="mark">Mark As Read</button>
                         </div>  
+
+                        <?php if (isset($data['inquiry'])) : ?>
+                        <?php $inquiry = $data['inquiry'] ?>
                         <div class="row">
                             <div>
                                 <p class="label">Email Address</p>
-                                <input type="text" id="searchBar" name="name" placeholder="Email" class="inputfield">
+                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry -> email ?>" class="inputfield">
                             </div>
                             <div>
                                 <p class="label">Name</p>
-                                <input type="text" id="searchBar" name="name" placeholder="Name" class="inputfield">
+                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry -> name ?>" class="inputfield">
                             </div>
                         </div>
                         <div>
                             <p class="label">Message</p>
-                            <textarea id="searchBar" name="name" placeholder="Message" class="inputfield"></textarea>
+                            <textarea id="searchBar" name="name" placeholder="<?php echo $inquiry -> message ?>" class="inputfield"></textarea>
                         </div>
-                        <button class="reply">Reply</button>
+
+                        <?php else : ?>
+                         <p>No inquiry details found.</p>
+                        <?php endif; ?>
+                        
+                        <a href="<?php echo URLROOT ?>/HealthSupervisor/markAsRead?id=<?php echo $inquiry -> inquiry_ID; ?>"><button class="reply">Reply</button>
                        
                     </div>
                 </div>

@@ -90,14 +90,22 @@
                                         <p>Dosage<span class="important">*</span></p>
                                         <input type="text" id="searchBar" name="dosage" placeholder="Enter Dosage" class="inputfield">
                                     </div>
+
                                     <div>
                                         <p>Batch Number<span class="important">*</span></p>
-                                        <input type="text" id="searchBar" name="batch" placeholder="Enter Batch Number" class="inputfield">
+                                        <input type="text" id="searchBar" name="batch" placeholder="Enter Batch Number">
                                     </div>
+
                                     <div>
                                         <p>Status<span class="important">*</span></p>
-                                        <input type="text" id="searchBar" name="status" placeholder="Enter Status" class="inputfield">
+                                        <select id="searchBar" name="status">
+                                            <option value="Inactive">Inactive</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Out of Stock">Out of Stock</option>
+                                        </select>
                                     </div>
+
+
                                     
                                 </div>
                         

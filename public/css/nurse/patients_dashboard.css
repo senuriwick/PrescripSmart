@@ -1,12 +1,5 @@
-
-.menu .selectedMenu {
-  color: black;
-  font-weight: bold;
-}
-
-
 body {
-  font-family: inter ;
+  font-family: inter;
   margin: 0;
 }
 
@@ -16,139 +9,18 @@ body {
 }
 
 
-.sideMenu {
-  min-width: 14vw;
-  height: 100vh;
-  background-color: rgba(7, 28, 74, 1);
-}
-
-
-.sideMenuTexts {
-  font-size: 1.7vh;
-  color: #ffffff;
-  line-height: 1.5vh;
-  font-family: inter;
-}
-
-.logoDiv {
-  align-items: center;
-  margin-bottom: 4vh;
-}
-
-.logoImg {
-  display: block;
-  margin: auto;
-  height: 8vh;
-  padding-top: 3vh;
-}
-
-
-.mainOptions {
-  color: white;
-  font-size: 2.2vh;
-  font-weight: bold;
-  font-family: inter;
-}
-
-
-.sideMenu p {
-  padding-left: 3vh;
-}
-
-
-.patientDiv {
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-}
-
-
-.profile {
-  background-color: rgba(53, 70, 109, 1);
-  padding: 0.2vh;
-  margin-bottom: 2.5vh;
-}
-
-
-.profile p
-{
-  color: #ffffff;
-  font-size: 1.8vh;
-  font-weight: bold;
-  font-family: inter;
-}
-
-
-
-.manageDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 9vh;
-}
-
-.manageDiv .mainOptions
-{
-  margin-bottom: 5vh;
-}
-
-.manageDiv a
-{
-    display:block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.othersDiv {
-  padding-top: 3vh;
-  border-bottom: solid;
-  border-color: rgba(217, 217, 217, 0.75);
-  border-width: 0.1vh;
-  padding-bottom: 3vh;
-  color: white;
-}
-
-.othersDiv a
-{
-    display:block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-
-
 .main {
   flex: 1;
-
+  margin-left: 220px;
+  margin-bottom: 3%;
 }
 
-.navBar {
-  background-color: rgba(138, 150, 181, 1);
-  height: 7vh;
-}
-
-.navBar p {
-  margin: 0;
-  float: right;
-  padding: 2.5vh 0vw;
-  color: #ffffff;
-  font-size: 1.7vh;
-  font-family: inter;
-}
-
-.navBar img {
-  float: right;
-  padding: 1.3vh 2vw;
-  height: 4vh;
+.inquiriesDiv {
+  margin-top: 4vh;
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  padding: 1vh 3vh 2vh;
+  position: relative;
 }
 
 .patientInfoContainer {
@@ -158,112 +30,60 @@ body {
 }
 
 
-.patientInfo {
-  display: flex;
-}
-
-
-.patientInfo img {
-  height: 10vh;
-  margin-right: 1.5vw;
-}
-
-
-.patientNameDiv {
-  padding: 0.01vh 0;
-}
-
-
-.patientInfo .name {
-  font-size: 2.5vh;
-  font-weight: bold;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  color: rgba(68, 81, 114, 1);
-  font-family: inter;
-}
-
-.patientInfo .role {
-  font-size: 1.8vh;
-  margin-top: 0vh;
-  padding-top: 0;
-}
-
-
-.menu {
-  margin-top: 2vh;
-  display: flex;
-  border-bottom: solid;
-  padding-bottom: 0.1vh;
-  border-width: 0.1vh;
-  border-color: rgba(164, 174, 199, 1);
-}
-
-.menu a {
-  margin-right: 6.5vh;
-  font-size: 2vh;
-  font-family: inter;
-  margin-bottom: 1vh;
-  color: rgba(164, 174, 199, 1);
-  text-decoration: none;
-}
-menu a:active
-{
-  color: #0069FF;
-}
- a:hover
-{
-  color:#17058aee;
-}
-
-
-
-
-
 .prescriptionsDiv {
   margin-top: 3vh;
-  border-bottom: solid;
+  /* border-bottom: solid; */
   padding-bottom: 5vh;
   border-width: 0.1vh;
   border-color: rgba(164, 174, 199, 1);
 }
 
-.prescriptionsDiv h1{
+.prescriptionsDiv h1 {
   margin-left: 0.2vw;
   margin-bottom: 1.5vh;
+  font-size: 24px;
+  color: rgba(68, 81, 114, 1);
 }
 
 #searchBar {
   padding: 1.6vh 35vw 1.8vh 1vw;
   border-radius: 0.5rem;
   border-style: none;
-  background-color: rgba(239, 242, 251, 1);
+  background-color: white;
   font-size: 1.1rem;
+  margin-top: 2vh;
 }
 
 #searchButton {
   padding: 1.6vh 3vw;
   margin-left: 0.5vw;
+  margin-bottom: 2vh;
   border-style: none;
   border-radius: 0.5rem;
   background-color: #0069FF;
   color: white;
   font-size: 1rem;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .patientFile {
-  background-color: rgba(239, 242, 251, 1);
+  background-color: white;
   margin-top: 3vh;
   padding: 2vh 1.2vw;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
+  height: 3vh;
+  width: 90%
 }
 
 .patientFile p {
-  margin: 1.2vh;
+  margin: 0.5vh;
   font-size: 1.1rem;
+  color: rgba(68, 81, 114, 0.75);
+  margin-right: 4vh;
+
 }
 
 .patientFile #patientId {
@@ -276,90 +96,53 @@ menu a:active
   background-color: #0069FF;
   color: white;
   font-size: 1rem;
-  padding: 1vh 2.5vw;
-  
+  padding: 0.5vh 2.5vw;
+  height: fit-content;
+  cursor: pointer;
 }
 
 .patientFile .fileInfo {
   display: flex;
+  align-items: center;
 }
 
 .fileInfo img {
+  display: inline-block;
+  width: 5vh;
   height: 5vh;
+  border-radius: 50%;
+  overflow: hidden;
   margin-right: 1vw;
 }
 
-
-
-
-.patientFileBack {
-  background-color: rgba(239, 242, 251, 1);
-  margin-top: 3vh;
-  padding: 2vh 1.2vw;
-  padding-bottom: 7vh;
-  border-radius: 5px;
-  margin-bottom: 10vh;
+.patients {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
 }
 
-.patientFileExt {
-  margin: 1vh 0.5vw;
-  display: flex;
-  border-bottom: solid;
-  padding-bottom: 1.8vh;
-  border-width: 0.1vh;
-  border-color: rgba(164, 174, 199, 1);
+.patients::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #0069FF;
 }
 
-
-.patientFileExt img {
-  height: 3rem;
-}
-
-.patientFileExt .fileInfo p {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0;
-  margin-left: 1vw;
-}
-
-.patientFileExt .fileInfo .patientIdClass {
-  font-size: 1rem;
-  font-weight: 400;
+.menu #patients {
   color: #0069FF;
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  position: relative;
 }
 
-
-.detailDiv {
-  margin-right: 3vw;
+.menu #patients::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #0069FF;
 }
-
-.detailDiv .detailHeading{
-  font-weight: bold;
-  margin-bottom: 1vh;
-  margin-top: 3vh;
-  margin-left: 0.5vw;
-}
-
-.detailDiv div {
-  border-color: rgba(68, 81, 114, 0.5);
-  border-style: solid;
-  border-width: 0.1vh;
-  background-color: white;
-  width: 20vw;
-  padding: 0.01vh 1.2vw;
-  border-radius: 10px;
-  margin-top: 0vh;
-}
-
-
-.detailDiv div p {
-  color: rgb(68, 81, 114);
-  font-weight: normal;
-}
-
-.weightAndHeight {
-  display: flex;
-}
-
-
-

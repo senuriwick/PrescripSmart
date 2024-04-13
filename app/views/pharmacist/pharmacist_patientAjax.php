@@ -6,7 +6,9 @@
                 <p><?php echo $patient->name; ?></p>
             </div>
             <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
-            <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>" id="viewButton"><button>View Prescriptions</button></a>
+            <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>
+                                &patient_name=<?php echo urlencode($patient->name); ?>
+                                &patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
         </div>
     <?php endforeach; ?>
 

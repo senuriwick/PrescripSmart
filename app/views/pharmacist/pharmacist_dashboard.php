@@ -62,30 +62,43 @@
                     <div class="prescriptionsDiv">
                         <h2>Search Patient</h2>
                         <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchPatient">
-                            <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield">
-                            <button type="submit" id="searchButton">SEARCH</button>
+                            <input type="text" id="search" name="search" placeholder="Enter patient name" class="inputfield">
+                            <button type="submit" id="searchButton" disabled>SEARCH</button>
                         </form>
                     </div>
                     <hr class="divider">  
+
                     <div class="patientFiles">
-                        <?php foreach($data['patients'] as $patient): ?>
-                            <div class="patientFile">
+                        <?php if (empty($data['patients'])): ?>
+                            <div class="center-content">
+                            <p class="grey-text">Sorry, Not Found</p>
+                        </div>
+                        <?php else: ?>
+                            <?php foreach($data['patients'] as $patient): ?>
+                                <div class="patientFile">
                                 <div class="fileInfo">
                                     <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
                                     <p><?php echo $patient->name; ?></p>
                                 </div>
                                 <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
-                                <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>" id="viewButton"><button>View Prescriptions</button></a>
+                                <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>
+                                &patient_name=<?php echo urlencode($patient->name); ?>
+                                &patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
+
                             </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Pagination Links -->
                     <div class="pagination">
-                        <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                            <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                        <?php endfor; ?>
+                        <?php if (isset($data['totalPages'])): ?>
+                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php endfor; ?>
+                        <?php endif; ?>
                     </div>
+
         </div>
 
                     
@@ -97,36 +110,53 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        // Attach input event handler to the search input field
-        $('#search').on('input', function () {
-            // Get the current value of the search input
-            var searchTerm = $(this).val();
+   $(document).ready(function () {
+    // Attach input event handler to the search input field
+    $('#search').on('input', function () {
+        // Get the current value of the search input
+        var searchTerm = $(this).val();
 
-            // Perform AJAX request only if the search term is not empty
-            if (searchTerm.trim() !== '') {
-                $.ajax({
-                    url: '<?php echo URLROOT; ?>/Pharmacist/searchPatientAjax',
-                    type: 'POST',
-                    data: { search: searchTerm },
-                    success: function (response) {
+        // Select the search button
+        var searchButton = $('#searchButton');
+
+        // Disable the search button if the search term is empty
+        if (searchTerm.trim() === '') {
+            searchButton.prop('disabled', true);
+        } else {
+            searchButton.prop('disabled', false);
+        }
+
+        // Perform AJAX request only if the search term is not empty
+        if (searchTerm.trim() !== '') {
+            $.ajax({
+                url: '<?php echo URLROOT; ?>/Pharmacist/searchPatientAjax',
+                type: 'POST',
+                data: { search: searchTerm },
+                success: function (response) {
+                    // Check if response is empty (no patient found)
+                    if (response.trim() === '') {
+                        // Display "Patient not found" message
+                        $('.patientFiles').html('<p>Patient not found</p>');
+                    } else {
                         // Update the HTML content of the element with the class "patientFiles"
                         $('.patientFiles').html(response);
 
                         // Hide the pagination div
                         $('.pagination').hide();
-                    },
-                    error: function () {
-                        // Handle errors
                     }
-                });
-            } else {
-                // Clear the results and show the pagination div if the search term is empty
-                // $('.patientFiles').html('');
-                $('.pagination').show();
-            }
-        });
+                },
+                error: function () {
+                    // Handle errors
+                }
+            });
+        } else {
+            // Clear the results and show the pagination div if the search term is empty
+            // $('.patientFiles').html('');
+            $('.pagination').show();
+        }
     });
+});
+
 </script>
 
 </body>

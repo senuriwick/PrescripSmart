@@ -35,14 +35,14 @@
     <div class="main">
       <div class="navBar">
         <img src="<?php echo URLROOT ?>/img/admin/user.png" alt="user-icon">
-        <p>SAMPLE USERNAME HERE</p>
+        <p><?php echo ucwords($_SESSION['first_name']); ?></p>
       </div>  
 
       <div class="adminInfoContainer">
         <div class="adminInfo">
           <img src="<?php echo URLROOT ?>/img/admin/profile.png" alt="profile-pic">
           <div class="adminNameDiv">
-            <p class="name">Administrator Name</p>
+            <p class="name"><?php echo ucwords($_SESSION['first_name']); ?> <?php echo ucwords($_SESSION['last_name']); ?></p>
             <p class="role">Admin</p>
           </div>
         </div>

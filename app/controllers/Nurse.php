@@ -110,10 +110,156 @@ class Nurse extends Controller
 
     public function sessions()
     {
-        $sessions = $this->nurseModel->sessions();
+        $groupedSessions = $this->nurseModel->sessions();
         $data = [
-            'sessions' => $sessions
+            'groupedSessions' => $groupedSessions
         ];
         $this->view('nurse/sessions', $data);
     }
+    
+
+    public function account_information()
+    {
+        $nurse = $this->nurseModel->nurseInfo();
+        $data = [
+            'nurse' => $nurse
+        ];
+        $this->view('nurse/account_information', $data);
+    }
+
+    public function accountInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["username"];
+            // $password = $_POST["password"];
+            // $newpassword = $_POST["newpassword"];
+
+            $this->nurseModel->updateAccInfo($username);
+
+            header("Location: /prescripsmart/nurse/account_information");
+            exit();
+        }
+    }
+
+    public function passwordReset()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $newpassword = $_POST["newpassword"];
+
+            $this->nurseModel->resetPassword($newpassword);
+
+            header("Location: /prescripsmart/nurse/account_information");
+            exit();
+        }
+    }
+
+    public function personal_information()
+    {
+        $nurse = $this->nurseModel->nurseDetails();
+        $user = $this->nurseModel->nurseInfo();
+        $data = [
+            'nurse' => $nurse,
+            'user' => $user
+        ];
+        $this->view('nurse/personal_information', $data);
+    }
+
+    public function personalInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $dname = $_POST["dname"];
+            $haddress = $_POST["haddress"];
+            $nic = $_POST["nic"];
+            $cno = $_POST["cno"];
+            $regno = $_POST["regno"];
+            $qual = $_POST["qual"];
+            $spec = $_POST["spec"];
+
+            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec);
+
+            header("Location: /prescripsmart/nurse/personal_information");
+            exit();
+        }
+    }
+
+    public function security()
+    {
+        $userID = $_SESSION['USER_DATA']->user_ID;
+        $user = $this->nurseModel->find_user_by_id($userID);
+        $data = [
+            'user' => $user
+        ];
+        $this->view('nurse/security', $data);
+    }
+
+    public function toggle2FA()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['toggle_state'])) {
+                $toggleState = $_POST['toggle_state'];
+                $userID = $_POST['userID'];
+        
+                if ($toggleState == 'on') {
+                    $this->nurseModel->manage2FA($toggleState, $userID);
+                } else if ($toggleState == 'off') {
+                    $this->nurseModel->manage2FA($toggleState, $userID);
+                }
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+        }
+
+    }
+
+    public function updateProfilePicture()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+            $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/profile_images/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    
+           
+            // Check file size
+            // if ($_FILES["image"]["size"] > 500000) {
+            //     echo "Sorry, your file is too large.";
+            //     $uploadOk = 0;
+            // }
+    
+            //Allow only certain file formats
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif") {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+    
+
+            if ($uploadOk == 0) {
+                // echo "Sorry, your file was not uploaded.";
+            } else {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+    
+                    $image = basename($_FILES["image"]["name"]);
+    
+                    $userID = $_SESSION['USER_DATA']->user_ID;
+                    $result = $this->nurseModel->updateProfilePicture($image, $userID);
+    
+                    if ($result) {
+                        echo json_encode(array("success" => true));
+                    } else {
+                        echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
+                    }
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }
+        }
+    }
+    
 }

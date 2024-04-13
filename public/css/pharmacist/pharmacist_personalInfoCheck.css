@@ -1,0 +1,252 @@
+.menu {
+    margin-top: 2vh;
+    display: flex;
+    border-bottom: solid;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
+  
+  .menu p a{
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    color: rgba(164, 174, 199, 1);
+    text-decoration: none;
+  }
+
+  .menu p a{
+    text-decoration: none;
+    color: rgba(164, 174, 199, 1);
+
+}
+
+p a:active{
+    color: black;
+}
+  
+  .pharmacist_profile {
+    margin-top: 2vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh 2vh;
+   
+  }
+  
+  .pharmacist_profile .empid {
+    font-size: 3vh;
+    font-weight: bold;
+    color: #0069FF;
+  }
+
+  .pharmacist_profile .accountinfotext{
+    font-size: 1.9vh;
+    text-align:right;
+    color:#445172 ;
+  }
+  
+  .pharmacist_profile .details{
+    display: flex;
+    justify-content: space-between;
+    margin-top: inherit;
+  }
+
+  .pharmacist_profile p{
+    font-size: 1.5vh;
+    margin-top: auto;
+  }
+
+  .pharmacist_profile .details form{
+    width: 100%;
+  }
+
+  .details form label{
+    font-size: 1.8vh;
+    font-weight: bold;
+  }
+
+  .pharmacist_profile .details button{
+    background-color: #0069FFBF;
+    border: 1px solid #0069FFBF;
+    color: #ffffff;
+    padding: 10px 100px;
+    font-size: 1.5vh;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 550;
+    font-size: 1rem;
+
+  }
+
+  .pharmacist_profile .details button:hover{
+    background-color: rgba(0, 80, 200, 1); 
+    cursor: pointer;
+  }
+
+  .pharmacist_profile .details form input{
+    width: 85%;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1.5vh;
+    font-weight: 500;
+    color:#445172BF;
+    border: 1px solid #44517280;
+    border-radius:5px;
+    margin-top: 5px;
+  }
+
+  .pat{
+    width: 32px;
+    height: 32px;
+    margin-bottom: -7px;
+    margin-right: 5px;
+  }
+
+  
+
+
+
+.inquiriesDiv {
+    margin-top: 2vh;
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    padding: 1vh 3vh 2vh;
+    position: relative;
+}
+
+
+.inquiriesDiv h1 {
+    margin-top: 2vh;
+    font-weight: bold;
+    color: #0069ff;
+    font-size: 24px;
+}
+
+.accInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.sub1 {
+    color: rgba(68, 81, 114, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 80px; 
+    margin-right: 20px;
+}
+
+.sub2 {
+    color: rgba(68, 81, 114, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 625px; 
+    margin-right: 20px;
+}
+
+.sub3 {
+    color: rgba(68, 81, 114, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 865px; 
+    margin-right: 20px;
+}
+
+.accInfo {
+    border-top: 1px solid rgba(68, 81, 114, 0.75);
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+.parallel {
+    display: flex;
+    flex-direction: row;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-right: 50px; 
+}
+
+
+.input {
+    width: 28rem;
+    height: 2.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2125;
+    color: rgba(68, 81, 114, 0.75);
+    font-family: Inter, 'Source Sans Pro';
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 0.2rem #e3e8f4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+}
+
+.input2 {
+    width: 59rem;
+    height: 2.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2125;
+    color: rgba(68, 81, 114, 0.75);
+    font-family: Inter, 'Source Sans Pro';
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 0.2rem #e3e8f4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+}
+
+.text {
+    font-size: 12px;
+    font: italic;
+}
+
+.inquiriesDiv button {
+    width: 15rem;
+    height: 2rem;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2125;
+    color: #ffffff;
+    font-family: Inter, 'Source Sans Pro';
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: grey;
+    border-radius: 0.5rem;
+    border-color: grey;
+    flex-shrink: 0;
+    margin-top: 15px;
+}
+
+.input-group img[alt="edit-icon"] {
+    height: 2vh;
+    width: 2vh;
+    position: absolute;
+    object-fit: contain;
+    vertical-align: top;
+}
