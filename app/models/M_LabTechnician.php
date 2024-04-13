@@ -23,7 +23,7 @@ class M_LabTechnician {
 
     public function getTests($patientID){
         $this->db->query('SELECT test.* , doctordetails.* FROM `test` LEFT JOIN `doctordetails` 
-        ON test.doctor_id=doctordetails.doctor_id WHERE test.patient_id=:id AND test.report_id=""');
+        ON test.doctor_id=doctordetails.doctor_id WHERE test.patient_id=:id AND test.marked=""');
         $this->db->bind(':id',$patientID);
         $results = $this->db->resultSet();
         return $results;
@@ -34,5 +34,11 @@ class M_LabTechnician {
         $this->db->bind(':id',$patientID);
         $results=$this->db->resultSet();
         return $this->db->rowCount();
+    }
+
+    public function markedTest($testNo){
+        $this->db->query('UPDATE test SET marked="1" WHERE test_no=:num');
+        $this->db->bind(':num',$testNo);
+        $this->db->execute();
     }
 }

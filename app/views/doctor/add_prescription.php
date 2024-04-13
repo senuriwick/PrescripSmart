@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/add_prescription.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/sideMenu_navBar.css" />
     <script src="<?php echo URLROOT;?>/public/js/doctor/main.js"></script>
 </head>
 
@@ -78,7 +78,7 @@
                         </div>
                         <hr />
                         <div class="diagnosis">
-                            <form>
+                            <form  method="post">
                                 <label><b>Diagnosis</b></label>
                                 <input type="textbox" class="searchBar" placeholder="Enter diagnosis here....." />
                             </form>
@@ -91,17 +91,14 @@
                             </div>
                             <div class="medication-form">
                                 <form>
-                                    <input type="text" class="search-medication"
+                                    <input type="text" oninput="getsearchResults(this.value)" id="searchtext" class="search-medication" 
                                         placeholder="Search medication name here" />
                                     <hr />
-                                    <div class="medication-suggetions">
-                                        <p>Medication Suggetion 01</p>
+                                    <div class="medication-suggetions" id="medication-suggetions">
+                                        <p></p>
                                         <button>Add</button>
                                     </div>
-                                    <div class="medication-suggetions">
-                                        <p>Medication Suggetion 02</p>
-                                        <button>Add</button>
-                                    </div>
+                                    
                                 </form>
                                 <hr />
                                 <div class="medication-added">
@@ -156,7 +153,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Test Added 1</td>
-                                                <td>Remarks</td>
+                                                <td><form action=""><input type="text" placeholder="Remarks"/></form></td>
                                                 <td class="test-delete"><i class="fa-solid fa-trash"></i></td>
                                             </tr>
                                             <tr>
@@ -183,4 +180,74 @@
             </div>
         </div>
     </div>
+    <script>
+        //  document.addEventListener("DOMContentLoaded", function () {
+        //     const searchInput = document.getElementById("searchtext");
+        //     const medicationSuggestions = document.querySelector(".medication-suggestions");
+
+        //     searchInput.addEventListener("input", function () {
+        //         if (searchInput.value.trim() !== "") {
+        //             medicationSuggestions.style.display = "block";
+        //         } else {
+        //             medicationSuggestions.style.display = "none";
+        //         }
+        //     });
+    // });
+        // document.addEventListener("DOMContentLoaded",function(){
+        //     const searchInput = document.getElementById("searchtext");
+        //     searchInput.addEventListener("input",function(){
+        //         const searchTerm = searchInput.value.toLowerCase();
+        //         const regex = new RegExp(searchTerm, 'i');
+        //         const medicationRows = document.querySelectorAll(".medication-suggetions");
+        //         medicationRows.foreach(function(div){
+        //             const medicationName = div.getElementById("medication-name").textContent.toLowerCase();
+        //             if(regex.test(medicationName)){
+        //                 div.style.display = "div";
+        //             }else{
+        //                 div.style.display="none";
+        //             }
+
+        //         });
+
+        //     });
+        // });
+            function getsearchResults(query){
+                if(query.length >=1){
+                    fetch(`<?php URLROOT;?>/doctor/searchMedication?query=${query}`)
+                    .then(response => response.json())
+                    .then(data => showsearchResults(data))
+                    .catch(error => .console.error('Error:',error));
+                }else {
+                    hidesearchResults();
+                }
+            }
+
+            function showsearchResults(results){
+                const resultsContainer = document.getElementById('medication-suggetions');
+                resultsContainer.innerHTML = '';
+
+                if(results.length >0){
+                    results.forEach(result => {
+                        const item = document.createElement('div');
+                        item.classList.add('medication-suggetions-item');
+                        item.textContent = result.value;
+
+                        item.addEventListner('click' ,() => {
+                            document.getElementById('searchtext').value = result.value;
+                            hidesearchResults();
+
+                    });
+                    resultsContainer.appendChild(item);
+
+                    });
+                    resultsContainer.style.display = 'block';
+                }else{
+                    hidesearchResults();
+                }
+            }
+
+            function hidesearchResults(){
+                documnet.getElementById('medication-suggetions').style.display = 'none';
+            }
+    </script>    
 </body>

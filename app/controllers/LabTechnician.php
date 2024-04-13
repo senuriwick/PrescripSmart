@@ -46,4 +46,19 @@ class LabTechnician extends Controller{
         ];
         $this->view('lab_tech/reports',$data);
     }
+
+    public function markedRead(){
+        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['testid'])){
+            $testid = $_POST['testid'];
+            $this->dpModel->markedTest($testid);
+            redirect("lab_tech/reports");
+            exit();
+        }else{
+            echo "Error";
+        }
+    }
+
+    public function uploadReport($testid){
+        echo $testid;
+    }
 }
