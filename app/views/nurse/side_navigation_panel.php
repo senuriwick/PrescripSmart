@@ -46,17 +46,17 @@
 
 
         <div class="othersDiv">
-            <div class="sub-menu-item billing">
-                <img src="<?php echo URLROOT ?>/public/img/general/billing_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/general/billing.html" id="billing">Billing</a>
-            </div>
             <div class="sub-menu-item terms">
                 <img src="<?php echo URLROOT ?>/public/img/general/terms_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/general/terms_of_service.html" id="terms">Terms of Service</a>
+                <a href="<?php echo URLROOT; ?>/general/terms_of_service" id="terms">Terms of Service</a>
             </div>
             <div class="sub-menu-item privacy">
                 <img src="<?php echo URLROOT ?>/public/img/general/privacy_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/general/privacy_policy.html" id="privacy">Privacy Policy</a>
+                <a href="<?php echo URLROOT; ?>/general/privacy_policy" id="privacy">Privacy Policy</a>
+            </div>
+            <div class="sub-menu-item billing">
+                <img src="<?php echo URLROOT ?>/public/img/general/contact_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/general/contact_us" id="contact">Contact Us</a>
             </div>
         </div>
     </div>
