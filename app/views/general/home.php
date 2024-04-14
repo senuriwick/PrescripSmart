@@ -30,6 +30,11 @@
     </div>
   </div>
 
+  <div class="terms-privacy-container">
+    <a href="<?php echo URLROOT; ?>/general/terms_of_service">Terms and Conditions</a>
+    <a href="<?php echo URLROOT; ?>/general/privacy_policy">Privacy Policy</a>
+  </div>
+
   <script>
     document.getElementById("patient").addEventListener("click", function () {
       window.location.href = "<?php echo URLROOT; ?>/patient/login";

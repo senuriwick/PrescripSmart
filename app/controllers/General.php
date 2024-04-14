@@ -308,4 +308,19 @@ class General extends Controller
         $this->view('general/reset_successful');
     }
 
+    public function privacy_policy()
+    {
+        $this->view('general/privacy_policy');
+    }
+
+    public function terms_of_service()
+    {
+        $this->view('general/terms_of_service');
+    }
+
+    public function contact_us()
+    {
+        $this->view('general/contact_us');
+    }
+
 }
