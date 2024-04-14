@@ -31,9 +31,7 @@
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['user_id'] = $user->user_id;
-                    $_SESSION['username'] = $user->username;
-                    $_SESSION['role'] = $user->role;
+                    $_SESSION['data'] = $user;
                     redirect("/Pharmacist/dashboard");
                     exit();
                 } else {
@@ -45,6 +43,7 @@
             
         }
         public function dashboard($page = 1){
+            $user = $_SESSION['data'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
 
@@ -54,6 +53,7 @@
             $totalPages = ceil($totalPatients/$itemsPerPage);
 
             $data = [
+                'user' => $user,
                 'patients' => $patients,
                 'totalPatients' => $totalPatients,
                 'currentPage' => $page,
@@ -344,7 +344,12 @@
 
         
         public function security(){
-            $this->view('pharmacist/pharmacist_2factor');
+            $user = $_SESSION['data'];
+
+            $data = [
+                'user' => $user
+            ];
+            $this->view('pharmacist/pharmacist_2factor', $data);
         }
 
         public function pharmacistMedication(){
