@@ -20,7 +20,7 @@
             <div class="confirmationForm">
 
                 <form action='<?php echo URLROOT ?>/general/forgotten_password_reset' method="POST" id="send">
-                    <p class="confirmEmail">Find Your Account</p>
+                    <h1>Find Your Account</h1>
                     <p class="sampleEmail">
                         Please enter your email address or mobile number to search for your account.
                     </p>

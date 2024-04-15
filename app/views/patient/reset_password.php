@@ -6,7 +6,7 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Sign Up page 3</title>
+  <title>Recovery Link</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/general/reset_password.css" />
@@ -20,17 +20,18 @@
       <div class="confirmationForm">
 
         <form action='<?php echo URLROOT ?>/patient/password_recovery' method="POST" id="send">
-          <p class="confirmEmail">Recover Password</p>
+          <h1>Recover Password</h1>
           <p class="sampleEmail">
             We can send a recovery link to: <span id="emailDisplay"></span>
           </p>
 
           <input type="hidden" id="email" name="email" class="userInput">
           
-          <a href="<?php echo URLROOT ?>/patient/login">Log in with password</a>
+          
           <button type="button" class="box1" id="continue">Continue</button>
         </form>
       </div>
+      <br><a href="<?php echo URLROOT ?>/patient/login" class = "login">Log in with password</a>
     </div>
   </div>
 

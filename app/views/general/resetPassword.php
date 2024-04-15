@@ -20,7 +20,7 @@
     <div class="formContainer">
 
       <div class="loginForm">
-        <p class="login-to-your-account">Reset your password</p>
+        <h1>Reset your password</h1>
         <form action='<?php echo URLROOT ?>/general/reset_user_password' method="POST" id="send">
 
           <input type="hidden" id="user" name="user" value="<?php echo $user; ?>">
@@ -41,58 +41,76 @@
           <div class="error-msg" id="password_error"></div> 
         </form>
       </div>
+      <p class="criteria">
+        <strong>Note:</strong>&nbsp;Password must be at least 8 characters long,<br>&nbsp;contain at least one uppercase letter, one lowercase letter,<br>&nbsp;one number, and one special character.</span>
+      </p>
     </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-    $(document).ready(function() {
-      $('#send').submit(function(event) {
-        event.preventDefault();
-        var newPassword = $('#new_password').val();
-        var confirmPassword = $('#confirm_password').val();
+  $(document).ready(function() {
+    function clearPasswordError() {
+      $('#password_error').text('').css({
+        'color': '',
+        'font-size': ''
+      });
+    }
 
-        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    $('#new_password').on('input', function() {
+      clearPasswordError();
+    });
 
-        if (!passwordRegex.test(newPassword)) {
-          $('#password_error').text('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.').css({
-            'color': 'red',
-            'font-size': '14px'
-          });
-          return;
-        }
+    $('#confirm_password').on('input', function() {
+      clearPasswordError();
+    });
 
-        if (newPassword !== confirmPassword) {
-          $('#password_error').text('Passwords do not match.').css({
-            'color': 'red',
-            'font-size': '14px'
-          });
-          return;
-        }
+    $('#send').submit(function(event) {
+      event.preventDefault();
+      var newPassword = $('#new_password').val();
+      var confirmPassword = $('#confirm_password').val();
 
-        var formData = $(this).serialize();
+      var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-        $('#password_error').text('');
-
-        $.ajax({
-          type: 'POST',
-          url: $(this).attr('action'),
-          data: formData,
-          dataType: 'json',
-          success: function(data) {
-            if (data.success) {
-              window.location.href = '<?php echo URLROOT ?>/general/reset_successful';
-            } else {
-              // Handle error here
-            }
-          },
-          error: function(xhr, status, error) {
-            console.error('Error:', error);
-          }
+      if (!passwordRegex.test(newPassword)) {
+        $('#password_error').text('Password Strength: Low').css({
+          'color': 'red',
+          'font-size': '14px'
         });
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        $('#password_error').text('Passwords do not match.').css({
+          'color': 'red',
+          'font-size': '14px'
+        });
+        return;
+      }
+
+      var formData = $(this).serialize();
+
+      clearPasswordError();
+
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: formData,
+        dataType: 'json',
+        success: function(data) {
+          if (data.success) {
+            window.location.href = '<?php echo URLROOT ?>/general/reset_successful';
+          } else {
+            // Handle error here
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error:', error);
+        }
       });
     });
-  </script>
+  });
+</script>
 </body>
 
 </html>

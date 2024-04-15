@@ -9,7 +9,7 @@
   <title>Sign Up page 3</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/general/reset_password.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/general/recovery_contd.css" />
 </head>
 
 <body>
@@ -20,14 +20,13 @@
       <div class="confirmationForm">
 
         <form action='<?php echo URLROOT ?>/general/password_recovery' method="POST" id="send">
-          <p class="confirmEmail">Recover Password</p>
+          <h1>Recover Password</h1>
           <p class="sampleEmail">
             Please use the link we sent you to reset your password. Thank you.
           </p>
-
-          <a href="<?php echo URLROOT ?>/general/employee_login">Log in with old password</a>
         </form>
       </div>
+      <br><a href="<?php echo URLROOT ?>/general/employee_login" class="login">Log in with old password</a>
     </div>
   </div>
 </body>
