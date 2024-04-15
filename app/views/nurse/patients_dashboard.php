@@ -13,92 +13,57 @@
 </head>
 
 <body>
-
   <div class="content">
-    <div class="sideMenu">
-      <div class="logoDiv">
-        <img class="logoImg" src="<?php echo URLROOT ?>\public\img\nurse\Untitled design (5) copy 2.png" />
-      </div>
-
-      <!-- <div class="patientDiv">
-        <p class="mainOptions">NURSE</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div> -->
-
-
-      <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
-
-        <a href="patients_dashboard.html" id="patients">Patients</a>
-        <a href="ongoing.html" id="On-going">On-going session</a>
-        <a href="sessions.html" id="sessions">Sessions</a>
-        <a href="appointments.html" id="appointments">Appoinments</a>
-        <a href="profile.html" id="profile">Profile</a>
-      </div>
-
-
-      <div class="othersDiv">
-        <a href="billing.html" id="billing">Terms of Service</a>
-        <a href="terms_of_service.html" id="terms">Privacy Policy</a>
-        <a href="privacy_policy.html" id="privacy">Settings</a>
-      </div>
-
-    </div>
+    <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
-      <div class="navBar">
-        <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
-        <p>SAMPLE USERNAME HERE</p>
-      </div>
+      <?php include 'top_navigation_panel.php'; ?>
 
       <div class="patientInfoContainer">
-        <div class="patientInfo">
-          <img src="<?php echo URLROOT ?>\public\img\nurse\profile.png" alt="profile-pic">
-          <div class="patientNameDiv">
-            <p class="name">Nurse Name</p>
-            <p class="role">Nurse</p>
-          </div>
-        </div>
-
-        <div class="menu">
-          <a href="patients_dashboard.html" id="patients">Patients</a>
-          <a href="ongoing.html" id="On-going">On-going session</a>
-          <a href="sessions.html" id="sessions">Sessions</a>
-          <a href="appointments.html" id="appointments">Appoinments</a>
-        </div>
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
         <div class="prescriptionsDiv">
-          <h1>Search Patient</h1>
-          <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
-          <button id="searchButton">SEARCH</button>
+          <div class="inquiriesDiv">
+            <h1>Search Patient</h1>
+            <input type="text" id="searchBar" name="search" placeholder="Enter patient's name or ID" class="inputfield">
+            <button id="searchButton">SEARCH</button>
 
-          <div class="patient-details">
-            <table>
-              <tbody>
-                <?php foreach ($data['patients'] as $patient): ?>
-                  <div class="patientFile">
-                    <div class="fileInfo">
-                      <img src="\public\img\nurse\PersonCircle.png" alt="patient-pic">
-                      <?php if ($patient->gender == "male"): ?>
-                        <p>Mr.
-                          <?php echo $patient->display_Name; ?>
-                        </p>
-                      <?php else: ?>
-                        <p>Ms.
-                          <?php echo $patient->display_Name; ?>
-                        </p>
-                      <?php endif; ?>
+            <div class="patient-details">
+              <table>
+                <tbody>
+                  <?php foreach ($data['patients'] as $patient): ?>
+                    <?php
+                    $address = $patient->home_Address;
+                    $parts = explode(", ", $address);
+                    $city = end($parts);
+                    ?>
 
+                    <div class="patientFile">
+                      <div class="fileInfo">
+                        <img
+                          src="<?php echo URLROOT ?>\public\uploads\profile_images\<?php echo $patient->profile_photo ?>"
+                          alt="patient-pic">
+                        <?php if ($patient->gender == "male"): ?>
+                          <strong>
+                            <p>Mr.
+                              <?php echo $patient->display_Name; ?>
+                            </p>
+                          </strong>
+                        <?php else: ?>
+                          <strong>
+                            <p>Ms.
+                              <?php echo $patient->display_Name; ?>
+                            </p>
+                          </strong>
+                        <?php endif; ?>
+                        <p class="patientId"><?php echo $city; ?></p>
+
+                      </div>
+                      <button class="viewButton" value="<?php echo $patient->patient_ID; ?>">View Profile</button>
                     </div>
-                    <p class="patientId">Patient ID #
-                      <?php echo $patient->patient_ID; ?>
-                    </p>
-                    <button class="viewButton" value="<?php echo $patient->patient_ID; ?>">View Profile</button>
-                  </div>
-                <?php endforeach; ?>
+                  <?php endforeach; ?>
+            </div>
           </div>
         </div>
       </div>
@@ -106,19 +71,29 @@
   </div>
 
   <script>
+    document.getElementById("searchButton").addEventListener("click", function () {
+      filterPatients();
+    });
+
     document.getElementById("searchBar").addEventListener("input", function () {
-      var searchQuery = this.value.toLowerCase();
+      filterPatients();
+    });
+
+    function filterPatients() {
+      var searchQuery = document.getElementById("searchBar").value.toLowerCase();
       var patientDetails = document.querySelectorAll(".patientFile");
+
       patientDetails.forEach(function (patient) {
         var patientName = patient.querySelector("p").textContent.toLowerCase();
 
-        if (patientName.includes(searchQuery)) {
-          patient.style.display = "block";
+        if (patientName.includes(searchQuery) || searchQuery === "") {
+          patient.style.display = "flex";
         } else {
           patient.style.display = "none";
         }
       });
-    });
+    }
+
   </script>
 
   <script>
@@ -131,6 +106,5 @@
       });
     });
   </script>
-
 
 </body>

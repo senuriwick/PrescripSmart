@@ -60,47 +60,28 @@
                     </div>
                     <hr class="divider">
                     <div class="patientFile">
-                        <h2>Inquiries(5)</h2>
-                        <?php foreach($data['inquiries'] as $inquiry): ?>
+                        <h2>Inquiries(<?php echo $data['totalNewInquiries'] ?>)</h2>
+                        <?php foreach($data['newInquiries'] as $inquiry): ?>
                         <div class="inquiry">
                           <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
-                          <p id="idNO"><?php echo $inquiry->id; ?></p>
-                          <p><?php echo $inquiry->patient_name; ?></p>
-                          <p><?php echo $inquiry->inquiry_date; ?></p>
-                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
+                          <p id="idNO"><?php echo $inquiry->inquiry_ID; ?></p>
+                          <p><?php echo $inquiry->name; ?></p>
+                          <p><?php echo $inquiry->Date; ?></p>
+                          <a href="<?php echo URLROOT ?>/HealthSupervisor/inquiryDetails?id=<?php echo $inquiry->inquiry_ID; ?>"><button>View</button></a>
+
                         </div>
-                        <?php endforeach; ?>
-                        <!-- <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
-                        </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
-                        </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
-                        </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <a href="<?php echo URLROOT ?>/HealthSupervisor/oneInquiry"><button>view</button></a>
-                        </div> -->
-                    
+                        <?php endforeach; ?>  
+                    </div>
+
+                    <div class="pagination">
+                        <?php if (isset($data['totalPages'])): ?>
+                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                                <a href="<?php echo URLROOT; ?>/healthSupervisor/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php endfor; ?>
+                        <?php endif; ?>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-</body>

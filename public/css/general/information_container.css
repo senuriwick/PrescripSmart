@@ -1,0 +1,45 @@
+.patientInfo {
+    display: flex;
+  }
+  
+  .patientInfo img {
+    height: 10vh;
+    margin-right: 1.5vw;
+  }
+  
+  
+  .patientNameDiv {
+    padding: 0.01vh 0;
+    margin-left: 20px; 
+  }
+  
+  
+  .patientInfo .name {
+    font-size: 2.5vh;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: rgba(68, 81, 114, 1);
+    font-family: inter;
+  }
+  
+  .patientInfo .role {
+    font-size: 2.2vh;
+    margin-top: 0vh;
+    padding-top: 0;
+  }
+
+  .profile-pic-container {
+    position: relative;
+    display: inline-block;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%; 
+    overflow: hidden; 
+}
+
+.profile-pic-container img {
+    width: 100%; 
+    height: auto;
+}
+  

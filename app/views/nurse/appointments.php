@@ -15,60 +15,14 @@
 <body>
 
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT ?>\public\img\nurse\Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="patientDiv">
-                <p class="mainOptions">PATIENT</p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="patients_dashboard.html" id="patients">Patients</a>
-                <a href="ongoing.html" id="On-going">On-going session</a>
-                <a href="sessions.html" id="sessions">Sessions</a>
-                <a href="appointments.html" id="appointments">Appoinments</a>
-                <a href="profile.html" id="profile">Profile</a>
-            </div>
-
-
-            <div class="othersDiv">
-                <a href="billing.html" id="billing">Billing</a>
-                <a href="terms_of_service.html" id="terms">Terms of Service</a>
-                <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-            </div>
-
-        </div>
+        <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-            <div class="navBar">
-                <img src="<?php echo URLROOT ?>\public\img\nurse\user.png" alt="user-icon">
-                <p>SAMPLE USERNAME HERE</p>
-            </div>
+            <?php include 'top_navigation_panel.php'; ?>
 
             <div class="patientInfoContainer">
-                <div class="patientInfo">
-                    <img src="<?php echo URLROOT ?>\public\img\nurse\profile.png" alt="profile-pic">
-                    <div class="patientNameDiv">
-                        <p class="name">Nurse Name</p>
-                        <p class="role">Nurse</p>
-                    </div>
-                </div>
-
-                <div class="menu">
-                    <a href="patients_dashboard.html" id="patients">Patients</a>
-                    <a href="ongoing.html" id="On-going">On-going session</a>
-                    <a href="sessions.html" id="sessions">Sessions</a>
-                    <a href="appointments.html" id="appointments">Appoinments</a>
-                </div>
+                <?php include 'information_container.php'; ?>
+                <?php include 'in_page_navigation.php'; ?>
 
                 <div class="prescriptionsDiv">
                     <?php if (empty($data['session'])): ?>
@@ -76,11 +30,10 @@
                     <?php else: ?>
                         <?php $session = $data['session']; ?>
                         <?php $doctor = $data['doctor']; ?>
-                        <h1>Appointments (Current Session) #
-                            <?php echo $session->session_ID ?>
+                        <h1>Appointments (Current Session) #<?php echo $session->session_ID ?>
                         </h1>
-                        <p>DR.
-                            <?php echo $session->doctorName ?><br>
+                        <p class = "doctorName"><strong>Dr.
+                            <?php echo $session->doctorName ?></strong><br>
                             <?php echo $doctor->specialization ?><br>
                             Room 04
                         </p>
@@ -93,21 +46,21 @@
                                     <div class="file">
                                         <div class="file2"
                                             onclick="redirectToAppointment(<?php echo $appointment->appointment_ID ?>)">
-                                            <div class="desDiv">
-                                                <p class="description">Time:
-                                                    <?php echo $appointment->time ?>
-                                                </p>
-                                            </div>
-                                            <p>Referrence No: #
-                                                <?php echo $appointment->appointment_ID ?>
+                                            
+                                            <p>Referrence No: #<?php echo $appointment->appointment_ID ?>
                                             </p>
-                                            <p>Appointment No:
-                                                <?php echo $appointment->appointment_No ?>
-                                            </p>
-                                            <p>
+                                            <strong><p >
                                                 <?php echo ($appointment->gender == 'male') ? 'Mr.' : 'Ms.' ?>
                                                 <?php echo $appointment->display_Name ?>
+                                            </p></strong>
+                                            <div class="desDiv">
+                                                <p>Time:
+                                                <?php echo date('h.i A', strtotime($appointment->time)) ?>
+                                                </p>
+                                            </div>
+                                            <p class="description">No: <?php echo $appointment->appointment_No ?>
                                             </p>
+                                            
                                         </div>
 
                                         <form method="POST">
@@ -161,9 +114,6 @@
                 });
             });
         });
-
     </script>
-
 </body>
-
 </html>

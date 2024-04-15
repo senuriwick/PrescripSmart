@@ -1,12 +1,8 @@
 To be completed :
 ~ Patient 
-Appointment payment gateaway
-Forgot password
-Two factor authentication
-Patient profile picture upload
-Appointment email
-Current session patient ID
-
+reports dashboard : download and eye icon style adjust
+appointments dashbaord: appointment view/app number box style adjust
+appointment completed two buttons.
 
 set TWILIO_ACCOUNT_SID=ACb18f4915d6508e8c112c8f304f009608
 set TWILIO_AUTH_TOKEN=b3aa1aebe6000a185c26365bf692a85b

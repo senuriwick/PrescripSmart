@@ -56,11 +56,12 @@
                     <hr class="divider">
                     <div class="prescriptionsDiv">
                         <h2 class="heading">Search Medication</h2>
-                        <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchMedicine">
-                            <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield">
-                            <button type="submit" id="searchButton">SEARCH</button>
+                        <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchMedicine" onsubmit="return validateSearch()">
+                            <input type="text" id="search" name="search" placeholder="Enter medicine name" class="inputfield" oninput="toggleSearchButton()">
+                            <button type="submit" id="searchButton" disabled>SEARCH</button>
                         </form>
                     </div>
+
                     <hr class="divider">
         
                     <div class="allMed">
@@ -71,7 +72,9 @@
                                     <p class="id"><?php echo $medication->batch_number; ?></p>
                                     <p><?php echo $medication->name; ?></p>
                                     <p id="patientId"><?php echo $medication->dosage; ?></p>
-                                    <a href="<?php echo URLROOT ?>/Pharmacist/oneMedDetails?batch_number=<?php echo $medication->batch_number; ?>&name=<?php echo $medication->name; ?>&dosage=<?php echo $medication->dosage; ?>&id=<?php echo $medication->id; ?>&expiry_date=<?php echo $medication->expiry_date; ?>&quantity=<?php echo $medication->quantity; ?>&status=<?php echo $medication->status; ?>" id="viewButton"><button>Manage</button></a>
+                                    <a href="<?php echo URLROOT ?>/Pharmacist/oneMedDetails?batch_number=<?php echo $medication->batch_number; ?>&name=<?php echo $medication->name; ?>
+                                    &dosage=<?php echo $medication->dosage; ?>&id=<?php echo $medication->id; ?>&expiry_date=<?php echo $medication->expiry_date; ?>
+                                    &quantity=<?php echo $medication->quantity; ?>&status=<?php echo $medication->status; ?>" id="viewButton"><button>Manage</button></a>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -95,6 +98,16 @@
         $('#search').on('input', function () {
             // Get the current value of the search input
             var searchTerm = $(this).val();
+
+            // Select the search button
+            var searchButton = $('#searchButton');
+
+            // Disable the search button if the search term is empty
+            if (searchTerm.trim() === '') {
+                searchButton.prop('disabled', true);
+            } else {
+                searchButton.prop('disabled', false);
+            }
 
             // Perform AJAX request only if the search term is not empty
             if (searchTerm.trim() !== '') {

@@ -177,6 +177,7 @@
                 });
                 
             });
+<<<<<<< HEAD
 
             deleteicon.addEventListener("click",()=>{
                 var test_no = deleteicon.getAttribute("testid");
@@ -203,6 +204,8 @@
         });
 
 
+=======
+>>>>>>> 06aa3777d83f0266e7eecbe4eb3b7d7c39726437
     </script>
 </body>
 </html>

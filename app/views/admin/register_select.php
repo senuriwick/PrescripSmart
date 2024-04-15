@@ -14,43 +14,39 @@
 
 <body>
     <div class="sign-up-page">
-        <div class="upperRectangle">
-        </div>
-        <div class="container">
-            <div class="sign-up-form">
-                <p class="create-your-account">Create your account</p>
-                <form action="your_signUp_action.php" method="post"></form>
-                <p class="all-your-prescriptions-in-one-place">All your prescriptions. In one place.</p>
-                <button type="button" class="sign-up-email" id="continue">Sign Up with Email</button>
+          <div class="container">
+              <div class="sign-up-form">
+                    <p class="create-your-account">Create your account</p>
+                    <form action="your_signUp_action.php" method="post"></form>
+                    <p class="all-your-prescriptions-in-one-place">All your prescriptions. In one place.</p>
+                    <button type="button" class="sign-up-email" id="continue">Sign Up with Email</button>
 
-                <script>
+                    <script>
                     document.getElementById("continue").addEventListener("click", function () {
-                        window.location.href = "<?php echo URLROOT ?>/admin/register_email";
+                    window.location.href = "<?php echo URLROOT ?>/admin/register_email";
                     });
-                </script>
+                    </script>
 
-                <button type="submit" class="sign-up-phone" id="phoneSignUpButton">Sign Up with Phone Number</button>
+                    <button type="submit" class="sign-up-phone" id="phoneSignUpButton">Sign Up with Phone Number</button>
 
-                <script>
+                    <script>
                     document.getElementById("phoneSignUpButton").addEventListener("click", function () {
-                        window.location.href = "<?php echo URLROOT ?>/admin/register_phone";
-                    });
-                </script>
+                    window.location.href = "<?php echo URLROOT ?>/admin/register_phone";
+                     });
+                    </script>
 
-                <div class="line">
-                </div>
-                <p class="already-have-an-account-sign-in-here">
-                    <span class="already-have-an-account-sign-in-here-0">Already have an account? Sign in</span>
-                    <span class="already-have-an-account-sign-in-here-1">&nbsp;</span>
-                    <a href='<?php echo URLROOT ?>/admin/login'; class="already-have-an-account-sign-in-here-2">here</a>
-                </p>
-            </div>
-            <p class="terms-and-conditions">
+                    <p class="already-have-an-account-sign-in-here">
+                        <span class="already-have-an-account-sign-in-here-0">Already have an account? Sign in</span>
+                        <span class="already-have-an-account-sign-in-here-1">&nbsp;</span>
+                        <a href='<?php echo URLROOT ?>/admin/login'; class="already-have-an-account-sign-in-here-2">here</a>
+                    </p>
+             </div>
+             <p class="terms-and-conditions">
                 <span class="terms-and-conditions-0">By signing up you agree to the&nbsp; </span>
                 <a href="termsAndConditions.html" class="terms-and-conditions-1">Terms of Service</a>
-                    <span class="terms-and-conditions-2">&nbsp;and&nbsp; </span>
-                    <a href="privacyPolicy.html" class="terms-and-conditions-3">Privacy Policy</a>
-            </p>
+                <span class="terms-and-conditions-2">&nbsp;and&nbsp; </span>
+                <a href="privacyPolicy.html" class="terms-and-conditions-3">Privacy Policy</a>
+             </p>
         </div>
     </div>
 </body>

@@ -16,13 +16,6 @@
 <body>
 
     <div class="content">
-        <!-- <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (1).png" />
-            </div>
-        </div> -->
-
-        <!-- <div class="main"> -->
             <div class="prescriptionsDiv">
 
                 <?php $prescription = $data['prescription']; ?>

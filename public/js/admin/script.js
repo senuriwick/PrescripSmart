@@ -13,17 +13,18 @@ function toggleSubmenu(submenus)
 }
 
 
-function toggleCaret() {
+function toggleCaret() 
+{
   var caretIcon = document.getElementById("caret");
-
   if (caretIcon.classList.contains("fa-caret-down")) 
   {
-      caretIcon.classList.remove("fa-caret-down");
-      caretIcon.classList.add("fa-caret-up");
-  } else
+    caretIcon.classList.remove("fa-caret-down");
+    caretIcon.classList.add("fa-caret-up");
+  } 
+  else
    {
-      caretIcon.classList.remove("fa-caret-up");
-      caretIcon.classList.add("fa-caret-down");
+    caretIcon.classList.remove("fa-caret-up");
+    caretIcon.classList.add("fa-caret-down");
    }
 }
 
@@ -33,14 +34,15 @@ document.addEventListener("DOMContentLoaded",
       var menuItems = document.querySelectorAll('.appointments');
       menuItems.forEach(function (item) 
       {
-          item.addEventListener('click', function () 
-          {
-              menuItems.forEach(function (otherItem) 
-              {
-                  otherItem.classList.remove('active');
-              });
-              this.classList.add('active');
-          });
+          
+      item.addEventListener('click', function () 
+    {
+      menuItems.forEach(function (otherItem) 
+        {
+          otherItem.classList.remove('active');
+        });
+          this.classList.add('active');
+        });
       });
   });
 
@@ -57,28 +59,36 @@ document.addEventListener("DOMContentLoaded",
   })
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.getElementById("searchinput");//element
-
+document.addEventListener("DOMContentLoaded", function () 
+{
+  const searchInput = document.getElementById("searchinput");
   searchInput.addEventListener("input", function () {
-    const searchTerm = searchInput.value.toLowerCase();
-    const regex = new RegExp(searchTerm, 'i'); 
-    const Rows = document.querySelectorAll(".row");
+  const searchTerm = searchInput.value.toLowerCase();
+  const regex = new RegExp(searchTerm, 'i'); 
+  const Rows = document.querySelectorAll(".row");
 
         Rows.forEach(function (row) {
-            const Name = row.querySelector(".name").textContent.toLowerCase();
-        //   if (Name.includes(searchTerm)) {
-        //     row.style.display = "table-row";
-        //   } else {
-        //     row.style.display = "none";
-
-            if (regex.test(Name)) {
-                    row.style.display = "table-row";
+          const Name = row.querySelector(".name").textContent.toLowerCase();
+      
+          if (regex.test(Name)) {
+              row.style.display = "";
                 } else {
                     row.style.display = "none";
                 }
       });
     });
+  });
+
+  function showRegistrationSuccessMessage() 
+  {
+    alert("Registration successful!");
+  }
+
+  document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    showRegistrationSuccessMessage();
+
   });
 
 

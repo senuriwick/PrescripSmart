@@ -60,42 +60,25 @@
                     </div>
                     <hr class="divider">
                     <div class="patientFile">
-                        <h2>Inquiries History(5)</h2>
+                        <h2>Inquiries History(<?php echo $data['totalReadInquiries'] ?>)</h2>
+                        <?php foreach($data['readInquiries'] as $readInquiry): ?>
                         <div class="inquiry">
                           <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
+                          <p id="idNO"><?php echo $readInquiry->inquiry_ID ?></p>
+                          <p><?php echo $readInquiry->name ?></p>
+                          <p><?php echo $readInquiry->Date ?></p>
                           <input type="checkbox" id="scales" name="scales" checked />
                         </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <input type="checkbox" id="scales" name="scales" checked />
-                        </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <input type="checkbox" id="scales" name="scales" checked />
-                        </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <input type="checkbox" id="scales" name="scales" checked />
-                        </div>
-                        <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png"  alt="">
-                          <p id="idNO">#1343553</p>
-                          <p>Patient Name</p>
-                          <p>DD-MM-YYYY</p>
-                          <input type="checkbox" id="scales" name="scales" checked />
-                        </div>
+                        <?php endforeach ?>
+                    </div>
+
+                    <div class="pagination">
+                        <?php if (isset($data['totalPages'])): ?>
+                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php endfor; ?>
+                        <?php endif; ?>
+                    </div>
                     
                 </div>
             </div>

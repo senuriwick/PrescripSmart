@@ -71,7 +71,4 @@ public function strtoarray($string): array
   return $array;
 }
 
-  
-
-
   }

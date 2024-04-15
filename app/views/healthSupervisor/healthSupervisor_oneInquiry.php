@@ -68,28 +68,62 @@
                                 alt="Sample Image"
                                 />
                             </a>
+                            <?php if (isset($data['inquiry'])) : ?>
+                            <?php $inquiry = $data['inquiry'] ?>
                             <h2>Inquiries(5)</h2>
-                            <button id="mark">Mark As Read</button>
+                            <a href="<?php echo URLROOT ?>/healthSupervisor/markAsRead?id=<?php echo $inquiry->inquiry_ID; ?>" class="mark_button">Mark As Read</a>
+
+
+   
                         </div>  
+
                         <div class="row">
                             <div>
                                 <p class="label">Email Address</p>
-                                <input type="text" id="searchBar" name="name" placeholder="Email" class="inputfield">
+                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry -> email ?>" class="inputfield">
                             </div>
                             <div>
                                 <p class="label">Name</p>
-                                <input type="text" id="searchBar" name="name" placeholder="Name" class="inputfield">
+                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry -> name ?>" class="inputfield">
                             </div>
                         </div>
                         <div>
                             <p class="label">Message</p>
-                            <textarea id="searchBar" name="name" placeholder="Message" class="inputfield"></textarea>
+                            <textarea id="searchBar" name="name" placeholder="<?php echo $inquiry -> message ?>" class="inputfield"></textarea>
                         </div>
-                        <button class="reply">Reply</button>
+
+                        <?php else : ?>
+                         <p>No inquiry details found.</p>
+                        <?php endif; ?>
+                        
+                        <button class="reply" onclick="openPopup()">Reply</button>
                        
                     </div>
+
+                    <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <!-- Close button for the popup -->
+                        <span class="close" onclick="closePopup()">&times;</span>
+                        <!-- Email form -->
+                        <form action="<?php echo URLROOT ?>/healthSupervisor/sendEmail" method="post">
+                        <input type="hidden" name="inquiry_id" value="<?php echo $inquiry->inquiry_ID; ?>">
+                        <input type="hidden" name="inquiry_email" value="<?php echo $inquiry->email; ?>">
+                        <label for="message">Message:</label><br>
+                        <textarea id="message" name="message_content" rows="4" cols="50" required></textarea>
+                        <br><br>
+                        <input class="mark" type="submit" value="Send Email">
+                    </form>
+                    </div>
+
+                       
+                    
+
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    <script src="<?php echo URLROOT; ?>/public/js/healthSupervisor/oneInquiry.js"></script>
 </body>

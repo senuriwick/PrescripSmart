@@ -1,10 +1,10 @@
 
 PHARMACIST
 
--- Corrected patients table
+
 CREATE TABLE patients (
     id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255),
     dob DATE,
     gender VARCHAR(10)
 );
@@ -19,9 +19,46 @@ INSERT INTO patients (id, name, dob, gender) VALUES
 (6, 'David Brown', '1980-07-28', 'Male'),
 (7, 'Sophia Miller', '1992-12-15', 'Female');
 
--- Corrected prescriptions table
+-- Add the new column "age" to the "patients" table
+ALTER TABLE patients
+ADD COLUMN age INT;
+
+-- Update existing records with the calculated age based on the date of birth
+UPDATE patients SET age = YEAR(CURDATE()) - YEAR(dob) - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT(dob, '%m%d'));
+
+
+
+//DID NOT UPDATE BELOW DUE TO FOREIGN KEY PROBLEM
+
+
+        -- Create the patients table with the "age" column
+        CREATE TABLE patients (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            name VARCHAR(255),
+            dob DATE,
+            gender VARCHAR(10),
+            age INT
+        );
+
+        -- Insert 10 entries into the patients table
+        INSERT INTO patients (name, dob, gender, age) VALUES
+        ('John Doe', '1990-05-15', 'Male', YEAR(CURDATE()) - YEAR('1990-05-15') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1990-05-15', '%m%d'))),
+        ('Jane Smith', '1985-08-22', 'Female', YEAR(CURDATE()) - YEAR('1985-08-22') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1985-08-22', '%m%d'))),
+        ('Emily Johnson', '1988-11-03', 'Female', YEAR(CURDATE()) - YEAR('1988-11-03') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1988-11-03', '%m%d'))),
+        ('Michael Williams', '1975-09-20', 'Male', YEAR(CURDATE()) - YEAR('1975-09-20') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1975-09-20', '%m%d'))),
+        ('Olivia Davis', '1995-04-12', 'Female', YEAR(CURDATE()) - YEAR('1995-04-12') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1995-04-12', '%m%d'))),
+        ('David Brown', '1980-07-28', 'Male', YEAR(CURDATE()) - YEAR('1980-07-28') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1980-07-28', '%m%d'))),
+        ('Sophia Miller', '1992-12-15', 'Female', YEAR(CURDATE()) - YEAR('1992-12-15') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1992-12-15', '%m%d'))),
+        ('William Taylor', '1982-03-18', 'Male', YEAR(CURDATE()) - YEAR('1982-03-18') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1982-03-18', '%m%d'))),
+        ('Emma Wilson', '1993-06-25', 'Female', YEAR(CURDATE()) - YEAR('1993-06-25') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1993-06-25', '%m%d'))),
+        ('Daniel Martinez', '1987-10-05', 'Male', YEAR(CURDATE()) - YEAR('1987-10-05') - (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT('1987-10-05', '%m%d')));
+
+
+
+
+
 CREATE TABLE prescriptions (
-    prescription_id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     patient_id INT,
     prescription_text TEXT,
     prescribing_date DATE,
@@ -29,11 +66,56 @@ CREATE TABLE prescriptions (
     FOREIGN KEY (patient_id) REFERENCES patients(id)
 );
 
--- Add sample prescription data
-INSERT INTO prescriptions (prescription_id, patient_id, prescription_text, prescribing_date, prescribing_doctor) VALUES
-(101, 1, 'Take medication X twice a day', '2023-01-15', 'Dr. Johnson'),
-(102, 1, 'Prescription for pain relief', '2023-02-01', 'Dr. Smith'),
-(103, 2, 'Allergy medication', '2023-03-10', 'Dr. Davis');
+INSERT INTO prescriptions (patient_id, prescription_text, prescribing_date, prescribing_doctor) VALUES
+(1, 'Take medication X twice a day', '2023-01-15', 'Dr. Johnson'),
+(1, 'Prescription for pain relief', '2023-02-01', 'Dr. Smith'),
+(2, 'Allergy medication', '2023-03-10', 'Dr. Davis');
+
+
+CREATE TABLE diagnosis (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    prescription_id INT,
+    diagnosis_description TEXT,
+    FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
+);
+
+INSERT INTO diagnosis (prescription_id, diagnosis_description)
+VALUES
+    (1, 'Common cold'),
+    (2, 'Hypertension'),
+    (3, 'Allergic reaction'),
+
+CREATE TABLE medications (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    prescription_id INT,
+    name VARCHAR(255),
+    dosage VARCHAR(50),
+    remarks TEXT,
+    FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
+);
+
+INSERT INTO medications (prescription_id, name, dosage, remarks)
+VALUES
+    (1, 'ColdEx', '1 tablet every 6 hours', 'Take with food'),
+    (2, 'Lisinopril', '10 mg daily', 'Monitor blood pressure regularly'),
+    (3, 'Antihistamine', 'As directed', 'Avoid alcohol'),
+   
+
+CREATE TABLE lab_tests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    prescription_id INT,
+    name VARCHAR(255),
+    remarks TEXT,
+    FOREIGN KEY (prescription_id) REFERENCES prescriptions(id)
+);
+
+INSERT INTO lab_tests (prescription_id, name, remarks)
+VALUES
+    (1, 'Blood Count', 'Check for infection'),
+    (2, 'Cholesterol Level', 'Monitor lipid profile'),
+    (3, 'Allergy Test', 'Identify allergens')
+   
+    
 
 -- Corrected medication table
 CREATE TABLE medication (
@@ -91,8 +173,30 @@ CREATE TABLE pharmacist_profiles (
 INSERT INTO pharmacist_profiles (employee_id, username, email_phone, password) 
 VALUES ('#123456', 'sampleUsername', 'sample@email.com', 'hashed_password');
 
+
+
 HEALTHSUPERVISOR
 
+CREATE TABLE `inquiries` (
+  `inquiry_ID` int(11) NOT NULL,
+  `patient_ID` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `message` varchar(512) NOT NULL,
+  `reply` varchar(512) NOT NULL,
+  `supervisor_ID` int(11) NOT NULL,
+  `status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `inquiries` (`inquiry_ID`, `patient_ID`, `email`, `name`, `message`, `reply`, `supervisor_ID`, `status`) VALUES
+(1, 12368, 'mashawickramasinghe04@gmail.com', 'Masha Wickramasinghe', 'Hi. This is a test message', '', 0, 'awaiting reply');
+
+ALTER TABLE `inquiries`
+  ADD PRIMARY KEY (`inquiry_ID`);
+
+ALTER TABLE `inquiries`
+  MODIFY `inquiry_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
 
 
 
@@ -114,7 +218,45 @@ ADMIN
 
 
 
-~Nurse 
+NURSE
 INSERT INTO `nurses` (`nurse_ID`, `first_Name`, `last_Name`) VALUES ('1254638', 'Senali', 'De Silva');
+
+
+
+USERS
+CREATE TABLE `users` (
+  `user_ID` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email_phone` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `first_Name` varchar(255) NOT NULL,
+  `last_Name` varchar(255) NOT NULL,
+  `role` varchar(25) NOT NULL,
+  `active` tinyint(1) DEFAULT 0,
+  `activation_code` varchar(255) NOT NULL,
+  `activation_expiry` datetime NOT NULL,
+  `activated_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `method_of_signin` varchar(10) NOT NULL,
+  `two_factor_auth` varchar(5) NOT NULL DEFAULT 'off',
+  `otp_code` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `users` (`user_ID`, `username`, `email_phone`, `password`, `first_Name`, `last_Name`, `role`, `active`, `activation_code`, `activation_expiry`, `activated_at`, `created_at`, `updated_at`, `method_of_signin`, `two_factor_auth`, `otp_code`) VALUES
+(12355, 'Annabeth_Walker', 'annabethwalker22@gmail.com', '$2y$10$T1TMljhn8mc1y2eD10kX3uiATtLt6DWjzsC2ay2y1DZAvHKomYQVK', 'Annabeth', 'Walker', 'Nurse', 1, '316204', '2024-01-31 08:29:17', '2024-01-30 13:00:09', '2024-01-30 07:29:17', '2024-02-24 19:38:15', 'Email', 'on', '$2y$10$vhpfjBp0I4QNvZEf.ir4iOynla2fyA6DCXU2BbMVfSt/7CBQ2OKDW'),
+(12356, 'Sanjani_Wickramasinghe', '+94774936420', '$2y$10$T1TMljhn8mc1y2eD10kX3uiATtLt6DWjzsC2ay2y1DZAvHKomYQVK', 'Sanjani', 'Wickramasinghe', 'Doctor', 0, '316204', '2024-01-31 08:31:34', NULL, '2024-01-30 07:31:34', '2024-02-24 19:41:27', 'Phone', 'on', '$2y$10$vM2CQ9tch8qpZinstcQ0beCyxyDGim0aPkBcHbMJIxECVPe.v1Vgy'),
+(12359, 'Saumya_Sewwandi', 'saumyasewwandi05@gmail.com', '$2y$10$LxvtTNCIH7KLaiZbKD1lluRxE5Ul8h/b7ZdMD1gVkzRR.6MIbXV6e', 'Saumya', 'Sewwandi', 'Patient', 0, '316204', '2024-01-31 12:53:29', NULL, '2024-01-30 11:53:29', '2024-02-23 09:55:32', '', '', ''),
+(12368, 'Masha_Wickramasinghe', 'mashawickramasinghe04@gmail.com', '$2y$10$wyqKt/7g69chUd6soDdrQebBY28j53i5GjNSxuu6uixHKByWuKwyy', 'Masha', 'Wickramasinghe', 'Patient', 1, '316204', '2024-01-31 17:22:48', '2024-01-30 21:54:20', '2024-01-30 16:22:48', '2024-02-24 13:39:47', 'Email', 'on', '$2y$10$3iBU1I5ug51rJJUkUPrngeuA8KACRfap2.eTpwxU6UnBR60DDkAeG'),
+(1254638, 'Senali_De_Silva', 'senali123@gmail.com', '$2y$10$GiP/tK0xV3MjKa2wAePlw.nQiFNP8visVOqsxLLOzsRFMDW1/beYS', 'Senali', 'De Silva', 'Nurse', 1, '316204', '2024-02-17 16:09:54', '2024-02-17 20:39:55', '2024-02-17 15:10:55', '2024-02-24 19:11:54', 'Email', 'on', ''),
+(1254659, 'Rusara_Wimalasena', '+94774936420', '$2y$10$T1TMljhn8mc1y2eD10kX3uiATtLt6DWjzsC2ay2y1DZAvHKomYQVK', 'Rusara', 'Wimalasena', 'Patient', 1, '$2y$10$LCHHL5J5I6sJ/TJlURdQJObS22jhypfH.15sCElP01NZFuH0QLvpu', '2024-02-24 05:45:29', '2024-02-23 10:19:48', '2024-02-23 04:45:29', '2024-02-24 19:41:27', 'Phone', 'on', '$2y$10$vM2CQ9tch8qpZinstcQ0beCyxyDGim0aPkBcHbMJIxECVPe.v1Vgy');
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_ID`);
+
+ALTER TABLE `users`
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1254660;
+COMMIT;
+
 
 
