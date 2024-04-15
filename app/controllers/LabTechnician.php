@@ -51,14 +51,42 @@ class LabTechnician extends Controller{
         if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['testid'])){
             $testid = $_POST['testid'];
             $this->dpModel->markedTest($testid);
-            redirect("lab_tech/reports");
-            exit();
         }else{
             echo "Error";
         }
     }
 
-    public function uploadReport($testid){
-        echo $testid;
+    public function reportUpload($id,$testid){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if(isset($_POST['upload'])){
+                $reportname = $_FILES['file']['name'];
+                $reporttype = $_FILES['file']['type'];
+                $reportTemp = $_FILES['file']['tmp_name'];
+                $destination = 'C:/xampp/htdocs/PrescripSmart/public/uploads/reports/'.$reportname;
+                if(is_uploaded_file($reportTemp)){
+                    if($reporttype=='application/pdf'){
+                        if(move_uploaded_file($reportTemp,$destination)){
+                            echo "Uploaded succes";
+                            $this->dpModel->uploadReport($testid,$reportname,$id);
+                        }
+                    }else{
+                        echo "Please select only pdf file";
+                    }
+                }else{
+                    echo "No file selected";
+
+                }        
+        }
+        // redirect('LabTechnician/reports');
+        // exit();
+        }
     }
+
+    public function deletereport(){
+        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['testid'])){
+            $testid = $_POST['testid'];
+            $reportid = $this->dpModel->getReportid($testid);
+        }
+    }
+
 }

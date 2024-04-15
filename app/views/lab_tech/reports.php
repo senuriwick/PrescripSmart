@@ -86,7 +86,7 @@
                                 <?php if ($test->remarks!=""){?><p class="rest-data">Remarks : <?php echo $test->remarks;}?></p>
                             </div>
                             <div method="POST" class="buttons">
-                                <button  style="background-color:#397A49;" testid="<?php echo $test->test_no;?>">Uploads Report</button><?php if($test->report_id==""){?><i class="fa-regular fa-trash-can"></i><?php } ?>
+                                <button  style="background-color:#397A49;" testid="<?php echo $test->test_no;?>"><?php $testid = $test->test_no;?> Upload Report</button><?php if($test->report_id!=0){?><i id="delete" testid="<?php echo $test->test_no;?>" class="fa-regular fa-trash-can"></i><?php } ?>
                                 <button  style="background-color: #0069FF;" testid="<?php echo $test->test_no;?>">Mark As Done</button>
                             </div>
                             <?php endforeach;?>
@@ -95,9 +95,9 @@
                     <div class="upload-model" id="upload-model" style="display: none;">
                         <div class="model-content">
                             <span class="close">&times;</span>
-                            <form method="post" action="<?php echo URLROOT;?>/doctor/uploadReport/<?php echo $testid;?>">
-                                <input type="file" placeholder="Uplode Report">
-                                <button type="submit">Upload</button>
+                            <form method="POST" action="<?php echo URLROOT;?>/LAbTechnician/reportUpload/<?php echo $data['patientDetails']->patient_id;?>/<?php echo $testid;?>" enctype="multipart/form-data">
+                                <input type="file" name="file" placeholder="Uplode Report">
+                                <button type="submit" name="upload" >Upload</button>
                             </form>
                             
                         </div>
@@ -111,9 +111,10 @@
             const patienttestdata=document.getElementById("patient-test-data");
             const buttons = patienttestdata.querySelector(".buttons");
             const uploadbutton = buttons.children[0];
-            const markbutton = buttons.children[1];
+            const markbutton = buttons.children[2];
+            const deleteicon = buttons.children[1];
             const uploadmodel=document.getElementById("upload-model");
-            const patientid = uploadbutton.getAttribute("name");
+            // const patientid = uploadbutton.getAttribute("name");
             const closebutton=uploadmodel.querySelector(".close");
 
             const modeluploadbutton=uploadmodel.querySelector(".model-content button");
@@ -122,6 +123,9 @@
             uploadbutton.addEventListener("click",()=>{
                 patienttestdata.style.display="block";
                 uploadmodel.style.display="block";
+                // var test_no = uploadbutton.getAttribute("testid");
+                // uploadmodel.setAttribute("testId",test_no);
+                // console.log(test_no);
             });
 
             closebutton.addEventListener("click",()=>{
@@ -136,7 +140,22 @@
 
             modeluploadbutton.addEventListener("click",()=>{
                 uploadmodel.style.display="none";
+                // var test_no = uploadbutton.getAttribute("testid");
                 
+                // fetch('<?php echo URLROOT;?>/LabTechnician/reportUpload',{
+                //     method : 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded',
+                //     },
+                //     body : 'testid='+test_no
+                // })
+                // .then(response=>response.text())
+                // .then(data =>{
+                //     console.log('uploaded',data);
+                // })
+                // .catch((error)=>{
+                //     console.log('Error:',error);
+                // });
             });
 
             markbutton.addEventListener("click",()=>{
@@ -159,6 +178,25 @@
                 
             });
 
+            deleteicon.addEventListener("click",()=>{
+                var test_no = deleteicon.getAttribute("testid");
+                // console.log(test_no);
+
+                fetch('<?php echo URLROOT;?>/LabTechnician/deletereport',{
+                    method:'POST',
+                    headers: {
+                        'Content-Type':'application/x-www-form-urlencoded',
+                    },
+                    body:'testid='+test_no
+                })
+                .then(response=>response.text())
+                .then(data =>{
+                    console.log('report deleted:',data);
+                })
+                .catch((error)=>{
+                    console.log('Error:',error);
+                });
+            });
             
 
             
