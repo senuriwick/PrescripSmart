@@ -8,6 +8,32 @@
 
         }
 
+        public function login(){
+            $this->view('healthSupervisor/login');
+        }
+
+        public function loginCheck(){
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+    
+                $user = $this->healthSupervisorModel->getUserByUsername($username);
+    
+                if ($user && password_verify($password, $user->password)) {
+                    // Password is correct
+                    session_start();
+                    $_SESSION['data'] = $user;
+                    redirect("/healthSupervisor/dashboard");
+                    exit();
+                } else {
+                    // Password is incorrect
+                    $error = "Invalid username or password";
+                }
+            }
+    
+            
+        }
+
         public function dashboard($page = 1){
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
@@ -125,8 +151,17 @@
             $this->view('healthSupervisor/healthSupervisor_personalInfo');
         }
 
+        // public function security(){
+        //     $this->view('healthSupervisor/healthSupervisor_2factor');
+        // }
+
         public function security(){
-            $this->view('healthSupervisor/healthSupervisor_2factor');
+            $user = $_SESSION['data'];
+
+            $data = [
+                'user' => $user
+            ];
+            $this->view('healthSupervisor/healthSupervisor_2factor', $data);
         }
     }
 ?>
