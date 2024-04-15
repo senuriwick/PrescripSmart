@@ -5,6 +5,7 @@ html {
 body {
     margin: 0px;
     overflow: hidden;
+    font-family: inter;
 }
 .sign-up-page {
   width: 100%;
@@ -23,12 +24,12 @@ body {
 }
 .sign-up-page .container {
   box-sizing: border-box;
-  padding: 19.8rem 64.4rem 25.6rem 64.5rem;
+  padding: 10rem 64.4rem 25.6rem 64.5rem;
   width: 100%;
   align-items: center;
   display: flex;
   flex-direction: column;
-  border: solid 0.1rem #000000;
+  border: solid 0.1rem rgba(0, 105, 255, 0.75);
   background-color: #e3e8f4;
   flex-shrink: 0;
 }
@@ -45,10 +46,10 @@ body {
   border-radius: 2.7rem;
   flex-shrink: 0;
 }
-.sign-up-page .container .sign-up-form .create-your-account {
-  margin: 0rem 0.1rem 1.7rem 0rem;
+
+.sign-up-page .container .sign-up-form h1 {
   text-align: center;
-  font-size: 4.8rem;
+  font-size: 4rem;
   font-weight: 700;
   line-height: 1.2125;
   color: #000000;
@@ -56,7 +57,8 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
-.sign-up-page .container .sign-up-form .all-your-prescriptions-in-one-place {
+
+.sign-up-page .container .sign-up-form p {
   margin: 0rem 1.5rem 6.9rem 0rem;
   text-align: center;
   font-size: 2rem;
@@ -67,6 +69,7 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
+
 .sign-up-page .container .sign-up-form .sign-up-email {
   margin: 0rem 0.1rem 2.2rem 0rem;
   width: 52.5rem;
@@ -111,11 +114,13 @@ body {
 .sign-up-page .container .sign-up-form .sign-up-email:hover {
   background-color: #0069ff; 
   color: #ffffff;
+  cursor: pointer;
 }
 
 .sign-up-page .container .sign-up-form .sign-up-phone:hover {
   background-color: #0069ff; 
   color: #ffffff; 
+  cursor: pointer;
 }
 
 .sign-up-page .container .sign-up-form .line {

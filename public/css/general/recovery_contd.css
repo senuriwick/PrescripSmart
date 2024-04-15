@@ -32,6 +32,7 @@ body {
   height: 100rem;
   background-color: #e3e8f4;
   flex-shrink: 0;
+  justify-content: center;
 }
 .forgotPassPage .container .confirmationForm {
   box-sizing: border-box;
@@ -48,7 +49,8 @@ body {
   margin-top: 4rem;
 }
 .forgotPassPage .container .confirmationForm h1 {
-  margin-bottom: 4.4rem;
+  margin-bottom: 4rem;
+  margin-top: 4rem;
   text-align: center;
   font-size: 4rem;
   font-weight: 700;
@@ -59,7 +61,7 @@ body {
   flex-shrink: 0;
 }
 .forgotPassPage .container .confirmationForm .sampleEmail {
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
   margin-top: 6rem;
   text-align: center;
   font-size: 2rem;

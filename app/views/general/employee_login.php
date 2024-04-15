@@ -19,7 +19,7 @@
         <div class="formContainer">
 
             <div class="loginForm">
-                <p class="login-to-your-account">Login to your account</p>
+            <h1>Login to your account</h1>
                 <form id="loginForm">
                     <div class="emailContainer">
                         <input type="text" id="email_address" name="email_address"
@@ -28,7 +28,7 @@
                             <span class="inputLabel1-0">email/phone number </span>
                             <span class="inputLabel1-1">*</span>
                         </p>
-                        <div class="error-msg" id="email_error"></div>
+                        <div class="error-msg-email" id="email_error"></div>
                     </div>
                     <div class="passwordContainer">
                         <input type="password" id="password" name="password" placeholder="Enter your password"
@@ -37,7 +37,7 @@
                             <span class="inputLabel2-0">password </span>
                             <span class="inputLabel2-1">*</span>
                         </p>
-                        <div class="error-msg" id="password_error"></div>
+                        <div class="error-msg-password" id="password_error"></div>
                     </div>
                     <button type="submit" class="loginButton">Log In</button>
                 </form>

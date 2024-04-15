@@ -6,7 +6,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Sign Up page 3</title>
+    <title>Forgotten Password</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/general/forgot_password.css" />
@@ -20,7 +20,7 @@
             <div class="confirmationForm">
 
                 <form action='<?php echo URLROOT ?>/patient/forgotten_password_reset' method="POST" id="send">
-                    <p class="confirmEmail">Find Your Account</p>
+                    <h1>Find Your Account</h1>
                     <p class="sampleEmail">
                         Please enter your email address or mobile number to search for your account.
                     </p>

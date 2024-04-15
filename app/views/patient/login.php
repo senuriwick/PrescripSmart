@@ -9,7 +9,7 @@
   <title>Login Page</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
-  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/patient/loginPage.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/general/loginPage.css">
 </head>
 
 <body>
@@ -19,24 +19,24 @@
     <div class="formContainer">
 
       <div class="loginForm">
-        <p class="login-to-your-account">Login to your account</p>
+        <h1>Login to your account</h1>
         <form id="loginForm">
           <div class="emailContainer">
             <input type="text" id="email_address" name="email_address" placeholder="Enter your email/phone number"
-              class="inputfield">
+              class="inputfield" required>
             <p class="inputLabel1">
               <span class="inputLabel1-0">email/phone number </span>
               <span class="inputLabel1-1">*</span>
             </p>
-            <div class="error-msg" id="email_error"></div>
+            <div class="error-msg-email" id="email_error"></div>
           </div>
           <div class="passwordContainer">
-            <input type="password" id="password" name="password" placeholder="Enter your password" class="inputfield">
+            <input type="password" id="password" name="password" placeholder="Enter your password" class="inputfield" required>
             <p class="inputLabel2">
               <span class="inputLabel2-0">password </span>
               <span class="inputLabel2-1">*</span>
             </p>
-            <div class="error-msg" id="password_error"></div>
+            <div class="error-msg-password" id="password_error"></div>
           </div>
           <button type="submit" class="loginButton">Log In</button>
         </form>
@@ -54,42 +54,44 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $('#loginForm').submit(function (event) {
-        event.preventDefault();
-        var formData = $(this).serialize(); // Serialize form data
+  $('#loginForm').submit(function (event) {
+    event.preventDefault();
+    var formData = $(this).serialize();
 
-        $('.error-msg').text('');
+    $('.error-msg-email').text('');
+    $('.error-msg-password').text('');
 
-        $.ajax({
-          type: 'POST',
-          url: '<?php echo URLROOT ?>/patient/authenticate',
-          data: formData,
-          dataType: 'json',
+    $.ajax({
+      type: 'POST',
+      url: '<?php echo URLROOT ?>/patient/authenticate',
+      data: formData,
+      dataType: 'json',
 
-          success: function (response) {
-            if (response.success) {
-              if (response.two_factor_required) {
-                var emailOrPhone = $('#email_address').val();
-                window.location.href = '/prescripsmart/patient/two_factor_authentication?user=' + encodeURIComponent(emailOrPhone);
-              } else {
-                window.location.href = '/prescripsmart/patient/prescriptions_dashboard';
-              }
-            } else if (response.error) {
-              if (response.error === 'Email/Phone Number does not exist') {
-                $('#email_error').text(response.error).css({ 'color': 'red' });
-              } else if (response.error === 'Invalid password') {
-                $('#password_error').text(response.error).css({ 'color': 'red' });
-              }
-            } else {
-              console.log('Unexpected response:', response);
-            }
-          },
-          error: function () {
-            console.log('Error occurred during AJAX request.');
+      success: function (response) {
+        if (response.success) {
+          if (response.two_factor_required) {
+            var emailOrPhone = $('#email_address').val();
+            window.location.href = '/prescripsmart/patient/two_factor_authentication?user=' + encodeURIComponent(emailOrPhone);
+          } else {
+            window.location.href = '/prescripsmart/patient/prescriptions_dashboard';
           }
-        });
-      });
+        } else if (response.error) {
+          if (response.error === 'Email/Phone Number does not exist') {
+            $('#email_error').text(response.error).css({ 'color': 'red' });
+          } else if (response.error === 'Invalid password') {
+            $('#password_error').text(response.error).css({ 'color': 'red' });
+          }
+        } else {
+          console.log('Unexpected response:', response);
+        }
+      },
+      error: function () {
+        console.log('Error occurred during AJAX request.');
+      }
     });
+  });
+});
+
   </script>
 </body>
 

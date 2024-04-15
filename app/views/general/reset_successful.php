@@ -20,7 +20,7 @@
       <div class="confirmationForm">
 
         <form action='<?php echo URLROOT ?>/general/password_recover' method="POST" id="send">
-          <p class="confirmEmail">Password Changed</p>
+          <h1>Password Changed</h1>
           <p class="sampleEmail">Please use your new password to login to your account. Thank you.
           </p>
           <button type="button" class="box1" id="continue">Login Now</button>

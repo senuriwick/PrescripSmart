@@ -20,17 +20,16 @@
       <div class="confirmationForm">
 
         <form action='<?php echo URLROOT ?>/general/password_recovery' method="POST" id="send">
-          <p class="confirmEmail">Recover Password</p>
+          <h1>Recover Password</h1>
           <p class="sampleEmail">
             We can send a recovery link to: <span id="emailDisplay"></span>
           </p>
 
           <input type="hidden" id="email" name="email" class="userInput">
-          
-          <a href="<?php echo URLROOT ?>/general/employee_login">Log in with password</a>
           <button type="button" class="box1" id="continue">Continue</button>
         </form>
       </div>
+      <br><a href="<?php echo URLROOT ?>/general/employee_login" class="login">Log in with password</a>
     </div>
   </div>
 
