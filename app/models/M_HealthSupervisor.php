@@ -12,14 +12,6 @@
             return $this->db->resultSet();
         }
 
-        public function getNewInquiriesCount(){
-            $this->db->query('SELECT COUNT(*) as Count FROM inquiries WHERE status = :status');
-            $this->db->bind(':status','Open');
-            $result = $this->db->Single();
-            return $result->Count;
-            
-        }
-
         public function getInquiryDetailsById($inquiry_id){
             $this->db->query('SELECT * FROM inquiries WHERE inquiry_ID = :id');
             $this->db->bind(':id', $inquiry_id);
@@ -33,14 +25,6 @@
             return $this->db->resultSet();
         }
 
-        public function getReadInquiriesCount(){
-            $this->db->query('SELECT COUNT(*) as Count FROM inquiries WHERE status = :status');
-            $this->db->bind(':status','Closed');
-            $result = $this->db->Single();
-            return $result->Count;
-            
-        }
-
         public function markAsRead($inquiry_id){
             $this->db->query('UPDATE inquiries SET status = :status WHERE inquiry_ID = :inquiry_id');
             $this->db->bind(':status', 'Closed');
@@ -48,7 +32,41 @@
             return $this->db->execute();
         }
 
+        public function getNewInquiriesPaginated($itemsPerPage, $offset){
+            $this->db->query('SELECT * FROM inquiries WHERE status= :status LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':status','Open');
+            $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+            $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
         
+            return $this->db->resultSet();
+        }
+
+        
+        public function getNewInquiriesCount(){
+            $this->db->query('SELECT COUNT(*) as Count FROM inquiries WHERE status = :status');
+            $this->db->bind(':status','Open');
+            $result = $this->db->Single();
+            return $result->Count;
+            
+        }
+
+        public function getReadInquiriesPaginated($itemsPerPage,$offset){
+            $this->db->query('SELECT * FROM inquiries WHERE status = :status LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':status','Closed');
+            $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+            $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+
+            return $this->db->resultSet();
+
+        }
+
+        public function getReadInquiriesCount(){
+            $this->db->query('SELECT COUNT(*) as Count FROM inquiries WHERE status = :status');
+            $this->db->bind(':status','Closed');
+            $result = $this->db->Single();
+            return $result->Count;   
+        }
+
 
         // public function getMedications(){
         //     $this->db->query('SELECT * FROM Medication');

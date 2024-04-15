@@ -68,12 +68,15 @@
                                 alt="Sample Image"
                                 />
                             </a>
+                            <?php if (isset($data['inquiry'])) : ?>
+                            <?php $inquiry = $data['inquiry'] ?>
                             <h2>Inquiries(5)</h2>
-                            <button id="mark">Mark As Read</button>
+                            <a href="<?php echo URLROOT ?>/healthSupervisor/markAsRead?id=<?php echo $inquiry->inquiry_ID; ?>" class="mark_button">Mark As Read</a>
+
+
+   
                         </div>  
 
-                        <?php if (isset($data['inquiry'])) : ?>
-                        <?php $inquiry = $data['inquiry'] ?>
                         <div class="row">
                             <div>
                                 <p class="label">Email Address</p>
@@ -93,11 +96,31 @@
                          <p>No inquiry details found.</p>
                         <?php endif; ?>
                         
-                        <a href="<?php echo URLROOT ?>/HealthSupervisor/markAsRead?id=<?php echo $inquiry -> inquiry_ID; ?>"><button class="reply">Reply</button>
+                        <button class="reply" onclick="openPopup()">Reply</button>
                        
                     </div>
+
+                    <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <!-- Close button for the popup -->
+                        <span class="close" onclick="closePopup()">&times;</span>
+                        <h2>Compose Email</h2>
+                        <!-- Email form -->
+                        <form action="send_email.php" method="post">
+                            <!-- Message input -->
+                            <label for="message">Message:</label><br>
+                            <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+                            <br><br>
+                            <!-- Send Email button -->
+                            <input class="mark" type="submit" value="Send Email">
+                        </form>
+                    </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    <script src="<?php echo URLROOT; ?>/public/js/healthSupervisor/oneInquiry.js"></script>
 </body>
