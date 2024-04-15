@@ -79,6 +79,44 @@
             }
         }
 
+        public function sendEmail(){
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Retrieve the values from the $_POST superglobal
+                $inquiry_id = $_POST["inquiry_id"];
+                $inquiry_email = $_POST["inquiry_email"];
+                $message_content = $_POST["message_content"];
+                $result = $this->healthSupervisorModel->markAsRead($inquiry_id);
+
+                require '../PHPMailerAutoload.php';
+
+                $mail = new PHPMailer;
+                $mail->isSMTP();                                      
+                $mail->Host = 'smtp.gmail.com';                       
+                $mail->SMTPAuth = true;                               
+                $mail->Username = 'prescripsmart@gmail.com';       
+                $mail->Password = 'fgpacxjdxjogzlwk';                  
+                $mail->SMTPSecure = 'tls';                            
+                $mail->Port = 587;                                    
+
+                $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
+                $mail->addAddress($inquiry_email);     
+                $mail->isHTML(true);
+
+                $mail->Subject = 'Reply to your Inquiry';
+                $mail->Body = $message_content;
+
+                if (!$mail->send()) {
+                    echo 'Message could not be sent.';
+                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                } else {
+                    //echo 'Message has been sent';
+                }
+
+                redirect('/healthSupervisor/dashboard');
+            }
+        }
+
         public function profile(){
             $this->view('healthSupervisor/healthSupervisor_profile');
         }
