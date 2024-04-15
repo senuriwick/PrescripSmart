@@ -104,17 +104,20 @@
                     <div class="popup-content">
                         <!-- Close button for the popup -->
                         <span class="close" onclick="closePopup()">&times;</span>
-                        <h2>Compose Email</h2>
                         <!-- Email form -->
-                        <form action="send_email.php" method="post">
-                            <!-- Message input -->
-                            <label for="message">Message:</label><br>
-                            <textarea id="message" name="message" rows="4" cols="50" required></textarea>
-                            <br><br>
-                            <!-- Send Email button -->
-                            <input class="mark" type="submit" value="Send Email">
-                        </form>
+                        <form action="<?php echo URLROOT ?>/healthSupervisor/sendEmail" method="post">
+                        <input type="hidden" name="inquiry_id" value="<?php echo $inquiry->inquiry_ID; ?>">
+                        <input type="hidden" name="inquiry_email" value="<?php echo $inquiry->email; ?>">
+                        <label for="message">Message:</label><br>
+                        <textarea id="message" name="message_content" rows="4" cols="50" required></textarea>
+                        <br><br>
+                        <input class="mark" type="submit" value="Send Email">
+                    </form>
                     </div>
+
+                       
+                    
+
 
                     </div>
 
