@@ -8,13 +8,22 @@
 
         }
 
-        public function dashboard(){
-            $inquiries = $this->healthSupervisorModel->getNewInquiries();
-            $newInquiriesCount = $this->healthSupervisorModel->getNewInquiriesCount();
+        public function dashboard($page = 1){
+            $itemsPerPage =5;
+            $offset = ($page - 1) * $itemsPerPage;
+
+            $newInquiries = $this->healthSupervisorModel->getNewInquiriesPaginated($itemsPerPage,$offset);
+            $totalNewInquiries = $this->healthSupervisorModel->getNewInquiriesCount();
+
+            $totalPages = ceil($totalNewInquiries/$itemsPerPage);
+
             $data = [
-                'inquiries' => $inquiries,
-                'count' => $newInquiriesCount
+                'newInquiries' => $newInquiries,
+                'totalNewInquiries' => $totalNewInquiries,
+                'currentPage' => $page,
+                'totalPages' => $totalPages,
             ];
+
             $this->view('healthSupervisor/healthSupervisor_dash', $data);
         }
 
@@ -33,13 +42,32 @@
             }
         }
         
-        public function history(){
-            $readInquiries = $this->healthSupervisorModel->getReadInquiries();
-            $readInquiriesCount = $this->healthSupervisorModel->getReadInquiriesCount();
+        // public function historry(){
+        //     $readInquiries = $this->healthSupervisorModel->getReadInquiries();
+        //     $readInquiriesCount = $this->healthSupervisorModel->getReadInquiriesCount();
+        //     $data = [
+        //         'inquiries' => $readInquiries,
+        //         'count' => $readInquiriesCount
+        //     ];
+        //     $this->view('healthSupervisor/healthSupervisor_History', $data);
+        // }
+
+        public function history($page = 1){
+            $itemsPerPage =5;
+            $offset = ($page - 1) * $itemsPerPage;
+
+            $readInquiries = $this->healthSupervisorModel->getReadInquiriesPaginated($itemsPerPage,$offset);
+            $totalReadInquiries = $this->healthSupervisorModel->getReadInquiriesCount();
+
+            $totalPages = ceil($totalReadInquiries/$itemsPerPage);
+
             $data = [
-                'inquiries' => $readInquiries,
-                'count' => $readInquiriesCount
+                'readInquiries' => $readInquiries,
+                'totalReadInquiries' => $totalReadInquiries,
+                'currentPage' => $page,
+                'totalPages' => $totalPages,
             ];
+
             $this->view('healthSupervisor/healthSupervisor_History', $data);
         }
 
