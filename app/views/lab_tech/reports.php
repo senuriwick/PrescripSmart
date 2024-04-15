@@ -123,9 +123,6 @@
             uploadbutton.addEventListener("click",()=>{
                 patienttestdata.style.display="block";
                 uploadmodel.style.display="block";
-                // var test_no = uploadbutton.getAttribute("testid");
-                // uploadmodel.setAttribute("testId",test_no);
-                // console.log(test_no);
             });
 
             closebutton.addEventListener("click",()=>{
@@ -140,22 +137,6 @@
 
             modeluploadbutton.addEventListener("click",()=>{
                 uploadmodel.style.display="none";
-                // var test_no = uploadbutton.getAttribute("testid");
-                
-                // fetch('<?php echo URLROOT;?>/LabTechnician/reportUpload',{
-                //     method : 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/x-www-form-urlencoded',
-                //     },
-                //     body : 'testid='+test_no
-                // })
-                // .then(response=>response.text())
-                // .then(data =>{
-                //     console.log('uploaded',data);
-                // })
-                // .catch((error)=>{
-                //     console.log('Error:',error);
-                // });
             });
 
             markbutton.addEventListener("click",()=>{
@@ -177,7 +158,6 @@
                 });
                 
             });
-<<<<<<< HEAD
 
             deleteicon.addEventListener("click",()=>{
                 var test_no = deleteicon.getAttribute("testid");
@@ -204,8 +184,6 @@
         });
 
 
-=======
->>>>>>> 06aa3777d83f0266e7eecbe4eb3b7d7c39726437
     </script>
 </body>
 </html>

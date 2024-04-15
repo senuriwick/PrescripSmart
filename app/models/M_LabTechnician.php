@@ -43,7 +43,10 @@ class M_LabTechnician {
     }
 
     public function getReportid($testno){
-        //
+        $this->db->query('SELECT report_id FROM test WHERE test_no=:testid');
+        $this->db->bind(':testid',$testno);
+        $results = $this->db->single();
+        return $results;
     }
 
     public function uploadReport($testid,$reportname,$patientid){
@@ -51,6 +54,18 @@ class M_LabTechnician {
         $this->db->bind(':testid',$testid);
         $this->db->bind(':patientid',$patientid);
         $this->db->bind(':reportname',$reportname);
+        $this->db->execute();
+    }
+
+    public function deleteReport($reportid){
+        $this->db->query('DELETE FROM reports WHERE report_id=:reportid');
+        $this->db->bind(':reportid',$reportid);
+        $this->db->execute();
+    }
+
+    public function removeReport($testid){
+        $this->db->query('UPDATE test SET report_id=0 WHERE test_no=:testid');
+        $this->db->bind(':testid',$testid);
         $this->db->execute();
     }
 }
