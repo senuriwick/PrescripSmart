@@ -264,25 +264,6 @@
                 echo json_encode(array('success' => false, 'message' => 'Invalid request or missing parameters'));
             }
         }
-        
-        public function dashboardd($page = 1){
-            $itemsPerPage =5;
-            $offset = ($page - 1) * $itemsPerPage;
-
-            $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
-            $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
-
-            $totalPages = ceil($totalPatients/$itemsPerPage);
-
-            $data = [
-                'patients' => $patients,
-                'totalPatients' => $totalPatients,
-                'currentPage' => $page,
-                'totalPages' => $totalPages,
-            ];
-
-            $this->view('pharmacist/pharmacist_dashboard', $data);
-        }
 
         public function searchPatient($page = 1){
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {

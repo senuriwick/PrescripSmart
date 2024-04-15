@@ -44,6 +44,8 @@
             </div>
 
         </div>
+
+        <?php $user = $data['user']; ?>
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
@@ -76,12 +78,12 @@
                             <div>
                                 <form>
                                     <label>Method of Sign In</label><br>
-                                    <input type="text" placeholder="email">
+                                    <input type="text" placeholder="<?php echo $user->signIn_method; ?>">
                                 </form>
                             </div>
                             <div>
                                 <form class="sample_username">
-                                    <input type="text" placeholder="sample email/phoneNumber">
+                                    <input type="text" placeholder="<?php echo $user->email_phone; ?>">
                                 </form>
                             </div>
                        
@@ -94,9 +96,13 @@
                                     <label>Two-Factor Authentication</label><br>
                                 </form>
                                 <p class="text">Add an extra layer of security to your account. To sign in, you'll need to provide a code along with your username and password</p>
+
+                                <label class="switch">
+                                <input type="checkbox" id="toggleTwoFactorAuth" <?php echo $user->two_factor_auth == 'ON' ? 'checked' : ''; ?> >
+                                <span class="slider round"></span>
+                            </label>
                             </div>  
                         </div>
-                        <div><button>SETUP 2FA</button></div>
                     </div>
                 </div>
             </div>
