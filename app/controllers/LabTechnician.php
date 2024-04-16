@@ -83,12 +83,15 @@ class LabTechnician extends Controller{
     }
 
     public function deletereport(){
-        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['delete'])){
+        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['testid'])){
             $testid = $_POST['testid'];
-            $reportid = $this->dpModel->getReportid($testid);
+            $report = $this->dpModel->getReportid($testid);
+             if($report){
+                $reportid = $report->report_id;
+                $this->dpModel->deleteReport($reportid);
+                $this->dpModel->removeReport($testid);
 
-            $this->dpModel->deleteReport($reportid);
-            $this->dpModel->removeReport($testid);
+             }
         }
     }
 
