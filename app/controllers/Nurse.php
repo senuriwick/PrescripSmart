@@ -181,6 +181,8 @@ class Nurse extends Controller
 
             header("Location: /prescripsmart/nurse/personal_information");
             exit();
+        } else {
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -256,7 +258,7 @@ class Nurse extends Controller
                         echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
                     }
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    header("Location: /prescripsmart/general/error_page");
                 }
             }
         }

@@ -70,6 +70,7 @@
                             window.location.href = '/prescripsmart/patient/prescriptions_dashboard';
                         } else if (response.error) {
                             $('#error-message').text(response.error);
+                            
                         }
                     },
                     error: function () {

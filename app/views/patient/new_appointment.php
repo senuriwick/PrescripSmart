@@ -163,6 +163,7 @@
                       window.location.href = `<?php echo URLROOT; ?>/patient/doctor_sessions?doctor_ID=${doctorID}`;
                     } else {
                       console.error("Doctor ID not found in the href attribute");
+                      header("Location: /prescripsmart/general/error_page");
                     }
                   });
                 });
