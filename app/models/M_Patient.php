@@ -317,7 +317,7 @@ class M_Patient
         INNER JOIN prescriptions p ON l.prescription_ID = p.prescription_ID
         INNER JOIN patients pa ON l.patient_ID = pa.patient_ID
         WHERE l.patient_ID = :userID
-        ORDER BY l.report_Date ASC');
+        ORDER BY l.date_of_report ASC');
 
         $this->db->bind(':userID', $userID);
         $result = $this->db->resultSet();

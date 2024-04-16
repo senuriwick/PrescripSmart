@@ -3,116 +3,121 @@ body {
   margin: 0;
 }
 
-
 .content {
   display: flex;
 }
 
-
 .main {
   flex: 1;
-  margin-left: 220px;
   margin-bottom: 3%;
+  margin-left: 220px;
 }
 
 .inquiriesDiv {
-  margin-top: 4vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 10px;
+  margin-top: 4vh;
   padding: 1vh 3vh 2vh;
   position: relative;
 }
 
 .patientInfoContainer {
-  width: 80%;
-  margin-top: 5vh;
   margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
 }
 
-
 .prescriptionsDiv {
-  margin-top: 3vh;
   /* border-bottom: solid; */
-  padding-bottom: 5vh;
-  border-width: 0.1vh;
   border-color: rgba(164, 174, 199, 1);
+  border-width: 0.1vh;
+  margin-top: 3vh;
+  padding-bottom: 5vh;
 }
 
 .prescriptionsDiv h1 {
-  margin-left: 0.2vw;
-  margin-bottom: 1.5vh;
-  font-size: 24px;
   color: rgba(68, 81, 114, 1);
+  font-size: 24px;
+  margin-bottom: 1.5vh;
+  margin-left: 0.2vw;
 }
 
 #searchBar {
-  padding: 1.6vh 35vw 1.8vh 1vw;
+  background-color: white;
   border-radius: 0.5rem;
   border-style: none;
-  background-color: white;
   font-size: 1.1rem;
   margin-top: 2vh;
+  padding: 1.6vh 35vw 1.8vh 1vw;
 }
 
 #searchButton {
-  padding: 1.6vh 3vw;
-  margin-left: 0.5vw;
-  margin-bottom: 2vh;
-  border-style: none;
-  border-radius: 0.5rem;
   background-color: #0069FF;
+  border-radius: 0.5rem;
+  border-style: none;
   color: white;
+  cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  cursor: pointer;
+  margin-bottom: 2vh;
+  margin-left: 0.5vw;
+  padding: 1.6vh 3vw;
 }
 
 .patientFile {
   background-color: white;
-  margin-top: 3vh;
-  padding: 2vh 1.2vw;
   border-radius: 5px;
   display: flex;
-  justify-content: space-between;
   height: 3vh;
+  justify-content: space-between;
+  margin-top: 3vh;
+  padding: 2vh 1.2vw;
   width: 90%
 }
 
 .patientFile p {
-  margin: 0.5vh;
-  font-size: 1.1rem;
   color: rgba(68, 81, 114, 0.75);
+  font-size: 1.1rem;
   margin-right: 4vh;
+  margin: 0.5vh;
 
 }
 
-.patientFile #patientId {
+.patientFile .city {
   color: rgba(68, 81, 114, 0.75);
+  text-align: left;
+  width: 15rem;
+}
+
+.patientFile .name {
+  margin-left: 5px;
+  text-align: left;
+  width: 20rem;
 }
 
 .patientFile button {
-  border-style: none;
-  border-radius: 0.5rem;
   background-color: #0069FF;
+  border-radius: 0.5rem;
+  border-style: none;
   color: white;
-  font-size: 1rem;
-  padding: 0.5vh 2.5vw;
-  height: fit-content;
   cursor: pointer;
+  font-size: 1rem;
+  height: fit-content;
+  padding: 0.5vh 2.5vw;
 }
 
 .patientFile .fileInfo {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .fileInfo img {
-  display: inline-block;
-  width: 5vh;
-  height: 5vh;
   border-radius: 50%;
-  overflow: hidden;
+  display: inline-block;
+  height: 5vh;
   margin-right: 1vw;
+  overflow: hidden;
+  width: 5vh;
 }
 
 .patients {
@@ -121,28 +126,28 @@ body {
 }
 
 .patients::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 5px;
   background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
 }
 
 .menu #patients {
-  color: #0069FF;
   border-color: #0069FF;
   border-spacing: 2cm;
+  color: #0069FF;
   position: relative;
 }
 
 .menu #patients::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 4px;
   background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }

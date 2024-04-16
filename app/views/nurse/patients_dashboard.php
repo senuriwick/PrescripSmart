@@ -46,18 +46,18 @@
                           alt="patient-pic">
                         <?php if ($patient->gender == "male"): ?>
                           <strong>
-                            <p>Mr.
+                            <p class = "name">Mr.
                               <?php echo $patient->display_Name; ?>
                             </p>
                           </strong>
                         <?php else: ?>
                           <strong>
-                            <p>Ms.
+                            <p class = "name">Ms.
                               <?php echo $patient->display_Name; ?>
                             </p>
                           </strong>
                         <?php endif; ?>
-                        <p class="patientId"><?php echo $city; ?></p>
+                        <p class="city"><?php echo $city; ?></p>
 
                       </div>
                       <button class="viewButton" value="<?php echo $patient->patient_ID; ?>">View Profile</button>

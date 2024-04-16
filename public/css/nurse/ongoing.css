@@ -36,7 +36,7 @@ body {
 }
 
 .sessionDetails p {
-  margin-top: 1vh;
+  /* margin-top: 1vh; */
   font-size: 16px;
   color: rgba(164, 174, 199, 1);
   white-space: nowrap;
@@ -133,6 +133,19 @@ body {
 .sessionAppointments .appointmentDiv p.desDiv {
   color: #0069FF;
   font-weight: 500;
+  width: 3rem;
+  margin-right: 50px;
+  text-align: left;
+}
+
+.sessionAppointments .appointmentDiv .nameClass{
+  width: 15rem;
+  text-align: left;
+}
+
+.sessionAppointments .appointmentDiv .timeClass {
+  width: 7rem;
+  text-align: left;
 }
 
 /* Remove the bold font weight from the text inside the .sessionAppointments div */
@@ -155,15 +168,16 @@ body {
   background-color: rgba(57, 122, 73, 1);
   border-radius: 10px;
   margin-left: auto;
-  justify-self: center;
+  /* justify-self: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sessionAppointments .appointmentDiv .status p {
   text-align: center;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
   color: white;
   font-weight: normal;
   font-size: 12px;
