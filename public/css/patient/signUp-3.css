@@ -98,12 +98,12 @@ body {
   flex-direction: column;
   flex-shrink: 0;
 }
-.signUp-page-3 .container .detailsForm .container2 .group2 .text1 {
+.signUp-page-3 .container .detailsForm .container2 .group2 h1 {
   margin-bottom: 2.5rem;
   margin-top: 1.0rem;
   width: 100%;
   text-align: center;
-  font-size: 4.8rem;
+  font-size: 4rem;
   font-weight: 700;
   line-height: 1.0;
   color: #000000;
@@ -129,6 +129,15 @@ body {
   font-family: Inter, 'Source Sans Pro';
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+.signUp-page-3 .container .detailsForm .container2 .group2 .box1 .gender-options {
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: rgba(68, 81, 114, 0.75);
+  margin-bottom: 2px;
+  margin-top: 2px;
 }
 .signUp-page-3 .container .detailsForm .container2 .group2 .box1 .input1 {
   width: 100%;

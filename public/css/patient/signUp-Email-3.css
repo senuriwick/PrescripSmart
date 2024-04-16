@@ -35,15 +35,16 @@ body {
 }
 .signUp-Email-2 .container .confirmationForm {
   box-sizing: border-box;
-  padding: 4.4rem 8.5rem 9.3rem 8.4rem;
-  width: 90%;
-  height: 85%;
+  padding: 4.4rem 8.5rem 9rem 8.4rem;
+  width: 100%;
+  height: 70%;
   align-items: center;
   display: flex;
   flex-direction: column;
   border: solid 0.1rem #e3e8f4;
   background-color: #ffffff;
   border-radius: 2.7rem;
+  margin-top: 25px;
 }
 .signUp-Email-2 .container .confirmationForm h1 {
   margin-bottom: 4.4rem;
@@ -88,9 +89,10 @@ body {
   color: rgba(68, 81, 114, 0.75);
   font-family: Inter, 'Source Sans Pro';
   flex-shrink: 0;
-  margin-left: 40px;
+  margin-left: 25px;
 }
-.signUp-Email-2 .container .confirmationForm .box1 {
+.signUp-Email-2 .container .confirmationForm .box1.disabled,
+.signUp-Email-2 .container .confirmationForm .box1.box1.enabled {
   margin: 0 6.1rem;
   width: calc(100% - 12.2rem);
   height: 6rem;
@@ -104,16 +106,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0069ff;
   border-radius: 1rem;
-  border-color: #0069ff;
   flex-shrink: 0;
 }
 
-.box1:disabled {
-  background-color: grey; 
-  color: grey; 
-  cursor: not-allowed; 
-}
+.signUp-Email-2 .container .confirmationForm .box1.disabled {
+    background-color: grey; 
+    background-color: grey; 
+    border-color: grey;
+    color: white; 
+    cursor: not-allowed; 
+  }
+  
+  .signUp-Email-2 .container .confirmationForm .box1.enabled {
+    background-color: #0069ff; 
+    background-color: #0069ff;
+    border-color: #0069ff;
+    color: white; 
+    cursor: pointer; 
+  }
+  
 
 

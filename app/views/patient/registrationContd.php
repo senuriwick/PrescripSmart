@@ -12,11 +12,11 @@
 </head>
 <body>
 <div class="signUp-page-3">
+<?php $user = $data['user'] ?>
   <div class="upperRectangle">
-    <p class="sample-user-name-here">SAMPLE USER NAME HERE </p>
+    <p class="sample-user-name-here"><?php echo $user->username?></p>
     <div class="line">
     </div>
-    <img class="vector-nZP" src="./assets/vector-JAD.png"/>
   </div>
   <div class="container">
     <div class="detailsForm">
@@ -24,15 +24,17 @@
       </div>
       <div class="container2">
 
-      <?php $user = $data['user'] ?>
+      
         <form action = "<?php echo URLROOT?>/patient/emailregistrationContd" method = "POST">
+        
         <div class="group2">
-          <p class="text1">Few more things...</p>
+          <h1>Few more things...</h1>
           <div class="box1">
             <p class="nic">NIC<span class="required">*</span></p>
             <input type="number" id="nic" name="nic" placeholder="Enter your national identity card number" class="input1" required>
           </div>
         </div>
+
         <div class="container3">
           <div class="group3">
             <p class="dob">
@@ -67,12 +69,12 @@
 
     <div class="group8">
       <p class="terms-of-service-HBw">
-        <a href="termsAndConditions.html" class="terms-of-service-HBw-sub-0">Terms of Service</a>
+        <a href="<?php echo URLROOT; ?>/general/terms_of_service" class="terms-of-service-HBw-sub-0">Terms of Service</a>
         <span class="terms-of-service-HBw-sub-1"> </span>
       </p>
       <p class="privacy-policy-wZK">
         <span class="privacy-policy-wZK-sub-0"> </span>
-        <a href="termsAndConditions.html" class="privacy-policy-wZK-sub-1">Privacy Policy</a>
+        <a href="<?php echo URLROOT; ?>/general/privacy_policy" class="privacy-policy-wZK-sub-1">Privacy Policy</a>
       </p>
     </div>
 
