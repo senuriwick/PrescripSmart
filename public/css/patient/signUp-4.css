@@ -87,10 +87,10 @@ body {
   background-color: #ffffff;
   border-radius: 2.7rem;
 }
-.signUp-page-4 .group .textForm .text2 {
+.signUp-page-4 .group .textForm h1 {
   margin: 0rem 0.008rem 3.6rem 0rem;
   text-align: center;
-  font-size: 4.8rem;
+  font-size: 4rem;
   font-weight: 700;
   line-height: 1.2125;
   color: #000000;
@@ -115,6 +115,7 @@ body {
   border-radius: 1rem;
   border-color: #0069ff;
   flex-shrink: 0;
+  cursor: pointer;
 }
 .signUp-page-4 .group .group8 {
     margin-left: 116.9rem;

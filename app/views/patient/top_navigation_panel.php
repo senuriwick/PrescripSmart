@@ -13,13 +13,13 @@
 </head>
 
 <body>
-  <div class="navBar">
+<div class="navBar">
     <img src="<?php echo URLROOT; ?>\public\img\general\user_icon.png" alt="user-icon" id="userIcon">
     <p>
       <?php echo $_SESSION['USER_DATA']->username ?>
     </p>
 
-    <div id="logoutOption" style="display: none;">
+    <div id="logoutOption">
       <a href="#" id="logoutButton">Logout</a>
     </div>
   </div>
