@@ -66,10 +66,39 @@ class Patient extends Controller
         // create the activation link
         $activation_link = "http://localhost/prescripsmart/patient/activate?email=$email&activation_code=$activation_code";
         $message = <<<MESSAGE
-            Hi,
-            Please click the following link to activate your account:
-            $activation_link
-            MESSAGE;
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                }
+                .header {
+                    background-color: #0069ff;
+                    color: white;
+                    padding: 20px;
+                    text-align: center;
+                }
+                .content {
+                    padding: 20px;
+                    background-color: #f2f2f2;
+                }
+                .activation-link {
+                    color: #0069ff;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h2>Welcome to Prescripsmart</h2>
+            </div>
+            <div class="content">
+                <p>Hi,</p>
+                <p>Please click the following link to activate your account:</p>
+                <p><a href="$activation_link" class="activation-link">$activation_link</a></p>
+            </div>
+        </body>
+        </html>
+        MESSAGE;
 
         require '../PHPMailerAutoload.php';
 
@@ -219,7 +248,7 @@ class Patient extends Controller
             $this->view('patient/registrationContd', $data);
             exit;
         } else {
-            echo "User ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -235,7 +264,7 @@ class Patient extends Controller
             $this->view('patient/registrationContd_02', $data);
             exit;
         } else {
-            echo "User ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -296,7 +325,7 @@ class Patient extends Controller
             //$this->send_activation_email($user->email_phone, $user->activation_code);
             $this->view('patient/emailverification', $data);
         } else {
-            echo "User ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -351,7 +380,7 @@ class Patient extends Controller
             //$this->send_activation_email($user->email_phone, $user->activation_code);
             $this->view('patient/phoneverification', $data);
         } else {
-            echo "User ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -386,7 +415,7 @@ class Patient extends Controller
             $this->view('patient/registrationContd_', $data);
             exit;
         } else {
-            echo "User ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -711,7 +740,7 @@ class Patient extends Controller
             ];
             $this->view('patient/view_appointment', $data);
         } else {
-            echo "Appointment ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
 
         // $this->patientModel->deleteAppointment();
@@ -752,7 +781,7 @@ class Patient extends Controller
             ];
             $this->view('patient/doctor_sessions', $data);
         } else {
-            echo "Doctor ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -769,12 +798,8 @@ class Patient extends Controller
             $this->view('patient/appointment_confirmation', $data);
             // $referrence = $this->patientModel->confirmAppointment();
         } else {
-            echo "Session ID not provided";
+            header("Location: /prescripsmart/general/error_page");
         }
-
-        // // var_dump($_POST);
-        // $referrence = $this->patientModel->confirmAppointment(); 
-        // header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
 
     public function appointment_complete()
@@ -1099,7 +1124,7 @@ class Patient extends Controller
     
 
             if ($uploadOk == 0) {
-                // echo "Sorry, your file was not uploaded.";
+                echo "Sorry, your file was not uploaded.";
             } else {
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
@@ -1115,7 +1140,7 @@ class Patient extends Controller
                         echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
                     }
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    header("Location: /prescripsmart/general/error_page");
                 }
             }
         }

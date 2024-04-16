@@ -83,6 +83,7 @@
           }
         } else {
           console.log('Unexpected response:', response);
+          header("Location: /prescripsmart/general/error_page");
         }
       },
       error: function () {

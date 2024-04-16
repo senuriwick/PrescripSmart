@@ -57,7 +57,7 @@
                     if (data.success) {
                         window.location.href = '<?php echo URLROOT ?>/general/recovery_contd';
                     } else {
-                        // document.getElementById('email_error').textContent = data.error;
+                      header("Location: /prescripsmart/general/error_page");
                     }
                 })
                 .catch(error => {
