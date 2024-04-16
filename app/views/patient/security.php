@@ -15,71 +15,29 @@
 <body>
 
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT ?>\public\img\patient\Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="patientDiv">
-                <p class="mainOptions">PATIENT</p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-                <a href="reports_dashboard.html" id="reports">Reports</a>
-                <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-                <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
-                <a href="profile_dashboard.html" id="profile">Profile</a>
-            </div>
-
-            <div class="othersDiv">
-                <a href="billing.html" id="billing">Billing</a>
-                <a href="terms_of_service.html" id="terms">Terms of Service</a>
-                <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-            </div>
-        </div>
+    <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-            <div class="navBar">
-                <img src="<?php echo URLROOT ?>\public\img\patient\user.png" alt="user-icon">
-                <p>SAMPLE USERNAME HERE</p>
-            </div>
+        <?php include 'top_navigation_panel.php'; ?>
 
             <div class="patientInfoContainer">
-                <div class="patientInfo">
-                    <img src="<?php echo URLROOT ?>\public\img\patient\profile.png" alt="profile-pic">
-                    <div class="patientNameDiv">
-                        <p class="name">Patient Name</p>
-                        <p class="role">Patient</p>
-                    </div>
-                </div>
-
-                <div class="menu">
-                    <a href="profile_dashboard.html" id="account">Account</a>
-                    <a href="profile_dashboard_2.html" id="personalinfo">Personal Info</a>
-                    <a href="profile_dashboard_3.html" id="security">Security</a>
-                </div>
+            <?php include 'information_container.php'; ?>
+            <?php include 'in_page_navigation_account.php'; ?>
 
                 <div class="inquiriesDiv">
                     <?php $user = $data['user'] ?>
-                    <h1>Patient ID: #<?php echo $user->user_ID ?></h1>
+                    <h1>Patient ID: #<?php echo $_SESSION['USER_DATA']->user_ID ?></h1>
                     <p class="sub1" style="font-weight: bold;">Security Information</p>
                     <div class="accInfo">
                         <div class="parallel">
                             <div class="input-group">
                                 <label for="name">Method of Sign-In</label>
-                                <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $user->method_of_signin ?>>
+                                <input type="text" id="method" class="input" style="display: inline-block;" value=<?php echo $_SESSION['USER_DATA']->method_of_signin ?>>
                             </div>
                             <div class="input-group">
                                 <label for="email">Email/Phone Number</label>
                                 <input type="text" id="email_phone" class="input" style="display: inline-block;"
-                                    value=<?php echo $user->email_phone ?>>
+                                    value=<?php echo $_SESSION['USER_DATA']->email_phone ?>>
                             </div>
                         </div>
                     </div>
@@ -108,7 +66,7 @@
     $(document).ready(function () {
         $('#toggleTwoFactorAuth').change(function () {
             var toggleState = $(this).is(':checked') ? 'on' : 'off';
-            var user = '<?php echo $user->user_ID?>';
+            var user = '<?php echo $_SESSION['USER_DATA']->user_ID?>';
             var user_ID = user;
 
             $.ajax({

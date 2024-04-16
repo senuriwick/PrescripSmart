@@ -36,8 +36,8 @@ body {
 .signUp-Email-2 .container .confirmationForm {
   box-sizing: border-box;
   padding: 4.4rem 8.5rem 9.3rem 8.4rem;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 85%;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -45,10 +45,10 @@ body {
   background-color: #ffffff;
   border-radius: 2.7rem;
 }
-.signUp-Email-2 .container .confirmationForm .confirmEmail {
+.signUp-Email-2 .container .confirmationForm h1 {
   margin-bottom: 4.4rem;
   text-align: center;
-  font-size: 4.8rem;
+  font-size: 4rem;
   font-weight: 700;
   line-height: 0.5;
   color: #000000;
@@ -56,32 +56,27 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
+
 .signUp-Email-2 .container .confirmationForm .sampleEmail {
   margin-bottom: 4rem;
   max-width: 38.5rem;
   text-align: center;
   font-size: 2rem;
   font-weight: 500;
-  line-height: 1.2125;
+  line-height: 1.5;
   color: rgba(68, 81, 114, 0.75);
   font-family: Inter, 'Source Sans Pro';
   flex-shrink: 0;
+  margin-left: 50px;
 }
-.signUp-Email-2 .container .confirmationForm .sampleEmail .sampleEmail-sub-0 {
-}
-.signUp-Email-2 .container .confirmationForm .sampleEmail .sampleEmail-sub-1 {
-  font-size: 2.6rem;
-  font-weight: 500;
-  line-height: 1.2125;
-  color: #000000;
-  font-family: Inter, 'Source Sans Pro';
-}
+
 .signUp-Email-2 .container .confirmationForm .line1 {
-  margin: 0rem 10.9rem 3.2rem 10.9rem;
-  width: calc(100% - 21.8rem);
+  /* margin: 0rem 10.9rem 3.2rem 10.9rem; */
+  width: 430px;
   height: 0.1rem;
   background-color: rgba(68, 81, 114, 0.75);
   flex-shrink: 0;
+  margin-bottom: 3.2rem;
 }
 .signUp-Email-2 .container .confirmationForm .text1 {
   margin-bottom: 3.8rem;
@@ -93,6 +88,7 @@ body {
   color: rgba(68, 81, 114, 0.75);
   font-family: Inter, 'Source Sans Pro';
   flex-shrink: 0;
+  margin-left: 40px;
 }
 .signUp-Email-2 .container .confirmationForm .box1 {
   margin: 0 6.1rem;
@@ -113,3 +109,11 @@ body {
   border-color: #0069ff;
   flex-shrink: 0;
 }
+
+.box1:disabled {
+  background-color: grey; 
+  color: grey; 
+  cursor: not-allowed; 
+}
+
+

@@ -52,5 +52,25 @@ class M_Doctor {
         return $results;
     }
 
+    public function searchMedications($term){
+        $this->db->query('SELECT * FROM medications WHERE Material_Description LIKE :term');
+        $this->db->bind(':term',$term);
+        $results = $this->db->resultSet();
+        return json_encode($results);
+        // return $results;
+    }
+
+    public function addPrescriptionTableforId($patientid){
+        $this->db->query('CREATE TABLE prescriptionfor (
+            medication_id INT PRIMARY KEY,
+            medication_name VARCHAR(50),
+            dosage VARCHAR(50),
+            remarks VARCHAR(50))');
+        $this->db->bind(':id',$patientid);
+    }
+
+    public function addMedi(){
+        $this->db->query('CREATE ');
+    }
     
 }

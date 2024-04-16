@@ -46,10 +46,10 @@ body {
   border-radius: 2.7rem;
   flex-shrink: 0;
 }
-.signUp-Phone .container .register-form .sign-up-with-phone-number {
-  margin: 4rem 0rem 1.6rem 0.1rem;
+.signUp-Phone .container .register-form h1 {
+  margin: 3rem 0rem 1.8rem 0.1rem;
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 700;
   line-height: 1.2125;
   color: #000000;
@@ -111,9 +111,8 @@ body {
   display: flex;
   align-items: baseline;
 }
-.signUp-Phone .container .register-form .box1 .first-name  .first-name-sub-0 {
-}
-signUp-Phone .container .register-form .box1 .first-name  .first-name-sub-1 {
+
+.signUp-Phone .container .register-form .box1 .first-name  .first-name-sub-1 {
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
@@ -135,7 +134,7 @@ signUp-Phone .container .register-form .box1 .first-name  .first-name-sub-1 {
   border-radius: 1rem;
 }
 .signUp-Phone .container .register-form .box2 {
-  margin: -2rem 0rem 2.4rem 0.2rem;
+  margin: -1rem 0rem 2.4rem 0.2rem;
   width: 52.5rem;
   border-radius: 1rem;
   flex-shrink: 0;
@@ -153,8 +152,7 @@ signUp-Phone .container .register-form .box1 .first-name  .first-name-sub-1 {
   display: flex;
   align-items: baseline;
 }
-.signUp-Phone .container .register-form .box2 .last-name  .last-name-sub-0 {
-}
+
 .signUp-Phone .container .register-form .box2 .last-name  .last-name-sub-1 {
   font-size: 2rem;
   font-weight: 500;
@@ -177,7 +175,7 @@ signUp-Phone .container .register-form .box1 .first-name  .first-name-sub-1 {
   border-radius: 1rem;
 }
 .signUp-Phone .container .register-form .box3 {
-  margin: -3rem 0rem 2.7rem 0.2rem;
+  margin: -1rem 0rem 2.7rem 0.2rem;
   width: 52.5rem;
   border-radius: 1rem;
   flex-shrink: 0;
@@ -195,9 +193,8 @@ signUp-Phone .container .register-form .box1 .first-name  .first-name-sub-1 {
   display: flex;
   align-items: baseline;
 }
-.signUp-Phone .container .register-form .box3 .phone-number .phone-number-sub-0 {
-}
-signUp-Phone .container .register-form .box3 .phone-number .phone-number-sub-1 {
+
+.signUp-Phone .container .register-form .box3 .phone-number .phone-number-sub-1 {
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
@@ -219,10 +216,10 @@ signUp-Phone .container .register-form .box3 .phone-number .phone-number-sub-1 {
   border-radius: 1rem;
 }
 .signUp-Phone .container .register-form .box4 {
-    margin: -4rem 0rem 2.7rem 0.2rem;
-    width: 52.5rem;
-    border-radius: 1rem;
-    flex-shrink: 0;
+  margin: -1rem 0rem 2.7rem 0.2rem;
+  width: 52.5rem;
+  border-radius: 1rem;
+  flex-shrink: 0;
 }
 .signUp-Phone .container .register-form .box4 .password {
   margin-bottom: 0.3rem;
@@ -238,9 +235,8 @@ signUp-Phone .container .register-form .box3 .phone-number .phone-number-sub-1 {
   align-items: baseline;
   flex-shrink: 0;
 }
-.signUp-Phone .container .register-form .box4 .password .password-sub-0 {
-}
-signUp-Phone .container .register-form .box4 .password .password-sub-1 {
+
+.signUp-Phone .container .register-form .box4 .password .password-sub-1 {
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
@@ -334,4 +330,11 @@ signUp-Phone .container .register-form .box4 .password .password-sub-1 {
   line-height: 1.2125;
   color: #0069ff;
   font-family: Inter, 'Source Sans Pro';
+}
+
+.error-msg {
+  font-family: Inter, 'Source Sans Pro';
+  color: 'red';
+  font-size: '18px';
+  margin-top: 1px;
 }

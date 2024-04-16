@@ -15,62 +15,46 @@
 <body>
 
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="patientDiv">
-                <p class="mainOptions">PATIENT</p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-                <a href="reports_dashboard.html" id="reports">Reports</a>
-                <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-                <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
-                <a href="profile_dashboard.html" id="profile">Profile</a>
-            </div>
-
-            <div class="othersDiv">
-                <a href="billing.html" id="billing">Billing</a>
-                <a href="terms_of_service.html" id="terms">Terms of Service</a>
-                <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-            </div>
-        </div>
+    <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-            <div class="navBar">
-                <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
-                <p>SAMPLE USERNAME HERE</p>
-            </div>
+        <?php include 'top_navigation_panel.php'; ?>
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
-                    <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
-                    <div class="patientNameDiv">
-                        <p class="name">Patient Name</p>
-                        <p class="role">Patient</p>
+                <?php $user = $data['user'] ?>
+
+                    <div class="profile-pic-container">
+                        <?php if ($user->profile_photo): ?>
+                            <img src="<?php echo URLROOT?>\public\uploads\profile_images\<?php echo $user->profile_photo?>"
+                                alt="profile-pic" id="profile-pic">
+                        <?php else: ?>
+                            <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" 
+                                alt="default-profile-pic" id="profile-pic">
+                        <?php endif; ?>
+                        <img src="<?php echo URLROOT ?>\public\img\patient\editicon.png" alt="edit-icon"
+                            class="edit-icon" id="edit-icon">
+                        <label for="file-upload" class="edit-icon" id="edit-icon"></label>
+                        <input type="file" id="file-upload" style="display: none;" name="image">
+                        
                     </div>
+
+                    <div class="patientNameDiv">
+                        <p class="name"><?php echo $_SESSION['USER_DATA']->first_Name ?>
+                <?php echo $_SESSION['USER_DATA']->last_Name ?></p>
+                        <p class="role"><?php echo $_SESSION['USER_DATA']->role ?></p>
+                    </div>
+
                 </div>
 
-                <div class="menu">
-                    <a href="profile_dashboard.html" id="account">Account</a>
-                    <a href="profile_dashboard_2.html" id="personalinfo">Personal Info</a>
-                    <a href="profile_dashboard_3.html" id="security">Security</a>
-                </div>
+                <?php include 'in_page_navigation_account.php'; ?>
 
                 <?php $patient = $data['patient'] ?>
 
                 <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/patient/personalInfoUpdate" method="POST">
-                        <h1>Patient ID: #<?php echo $patient->patient_ID ?>
+                        <h1>Patient ID: #
+                            <?php echo $patient->patient_ID ?>
                         </h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">
@@ -164,12 +148,6 @@
                                     <label for="relationship">Relationship</label>
                                     <input type="text" id="relationship" name="relationship" class="input"
                                         style="display: inline-block;" value="<?php echo $patient->relationship; ?>">
-                                    <!-- <select class="input">
-                                        <option value="" disabled selected>Select Relationship</option>
-                                        <option value="option1">Option 1</option>
-                                        <option value="option2">Option 2</option>
-                                         Add more specialization options as needed -->
-                                    <!-- </select> -->
                                 </div>
                             </div>
                         </div>
@@ -177,7 +155,7 @@
                         <button type="submit" id="submit" name="submit">SAVE CHANGES</button>
                     </form>
                 </div>
-                
+
             </div>
 
         </div>
@@ -195,13 +173,55 @@
 
             inputFields.forEach(function (input) {
                 input.addEventListener('input', function () {
-                    submitBtn.style.backgroundColor = "#0069FF" ;
-                    submitBtn.style.borderColor = "#0069FF" ;
+                    submitBtn.style.backgroundColor = "#0069FF";
+                    submitBtn.style.borderColor = "#0069FF";
                 });
             });
         });
     </script>
 
-</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var editIcon = document.getElementById('edit-icon');
+    var fileInput = document.getElementById('file-upload');
+    var profilePic = document.getElementById('profile-pic');
 
+    editIcon.addEventListener('click', function () {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                profilePic.src = e.target.result;
+                updateProfilePicture(e.target.result);
+            }
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
+
+    function updateProfilePicture(imageData) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT; ?>/patient/updateProfilePicture', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log('Profile picture updated successfully');
+            } else {
+                console.error('Error updating profile picture:', xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+        var formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        xhr.send(formData);
+    }
+});
+
+</script>
+</body>
 </html>

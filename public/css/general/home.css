@@ -3,100 +3,154 @@ html {
 }
 
 body {
-  margin: 0px;
+  margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
 .welcomePage {
-  background-color: rgba(239, 242, 251, 1);
-  padding-top: 1.2vh;
-  padding-bottom: 40vh;
-  height: 60vh;
-}
-
-.container {
-  margin: 0vh 15vw;
-}
-
-.mainTitle {
-  margin-top: 40vh;
-  margin-bottom: 0vh;
-  font-size: 12vh;
-  font-family: Inter, 'Source Sans Pro';
-  font-weight: 1000;
-}
-
-.smart {
-  color: rgba(138, 150, 181, 1);
-  font-family: Inter, 'Source Sans Pro';
-}
-
-#selectRoleButton {
-  background-color: rgba(0, 105, 255, 1);
-  color: white;
-  font-size: 3vh;
-  border: none;
-  padding: 1.7vh 2vw;
-  border-radius: 5vh;
-}
-
-#selectRole {
-  background-color: rgba(0, 105, 255, 1);
-  color: white;
-  font-size: 3vh;
-  border: none;
-  padding: 1.7vh 2vw;
-}
-
-#selectRolePage {
+  background-color: #3076F8;
   height: 100vh;
-  max-width: 60vw;
-  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-#iam {
-  font-size: 8vh;
-  font-family: Inter, 'Source Sans Pro';
-  font-weight: 500;
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+.mainTitle {
+  margin: 0;
+  font-size: 64px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  color: white;
+  padding-bottom: 1vh;
+  animation: slideIn 1s ease forwards;
+}
+
 
 #options {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3vw;
-  row-gap: 4vh;
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-.optionButton {
-  flex: row;
-  width: 60%;
-  background-color:  white;
-  color: rgba(0, 105, 255, 1);
-  font-size: 3vh;
+#options img {
+  padding-right: 1vh;
+}
+
+.optionButton1 {
+  width: 300px;
+  height: 80px;
+  background-color: white;
+  color: #00318C;
+  font-size: 24px;
   font-weight: bold;
-  border: 1vh;
-  border-color: white;
-  padding: 1.7vh 2vw;
-  border-radius: 5vh;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.optionButton:hover {
-  background-color: black;
+.optionButton2 {
+  width: 300px;
+  height: 80px;
+  background-color: #00318C;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  padding: 1.5rem 2.5rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+.optionButton1:hover {
+  box-shadow: 0 4px 8px #00318C;
+  /* Adjust the shadow color and size as needed */
+}
+
+.optionButton2:hover {
+  box-shadow: 0 4px 8px white;
+  /* Adjust the shadow color and size as needed */
+}
+
+
 .optionIcon {
-  width: 50px;
-  height: 50px;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+}
+
+.logoDiv {
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.logoDiv>div {
+  width: 35px;
+  min-width: 35px;
+  height: 35px;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  background-color: #ff8100;
   margin-right: 10px;
+}
+
+.logoDiv>h5 {
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 24px;
+  line-height: 30px;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.terms-privacy-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.terms-privacy-container a {
+  color: white;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 14px;
 }

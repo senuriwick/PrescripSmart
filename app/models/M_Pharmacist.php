@@ -39,6 +39,16 @@
         
             return $this->db->resultSet();
         }
+
+        public function getSearchedPatientsPaginated($itemsPerPage, $offset,$patientName){
+            $this->db->query('SELECT * FROM patients WHERE patients.name = :patientName LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':patientName', $patientName);
+            $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+            $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+        
+            return $this->db->resultSet();
+        }
+        
         
 
         public function getTotalPatientsCount(){
@@ -50,6 +60,15 @@
 
         public function getMedicationsPaginated($itemsPerPage, $offset){
             $this->db->query('SELECT * FROM medication LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':offset', $offset, PDO::PARAM_INT);
+            $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+        
+            return $this->db->resultSet();
+        }
+
+        public function getSearchedMedicationsPaginated($itemsPerPage, $offset,$medicineName){
+            $this->db->query('SELECT * FROM medication WHERE medication.name = :medicineName LIMIT :offset, :itemsPerPage');
+            $this->db->bind(':medicineName', $medicineName);
             $this->db->bind(':offset', $offset, PDO::PARAM_INT);
             $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
         
@@ -99,9 +118,17 @@
         public function searchMedicine($medicineName){
             $this->db->query('SELECT * FROM medication WHERE name LIKE :medicineName');
             $this->db->bind(':medicineName', '%' . $medicineName . '%'); // Use '%' for partial matches
-        
             return $this->db->resultSet();
         }
+
+        public function updateMedicationQuantity($medicationId, $quantity){
+            $this->db->query('UPDATE medication SET quantity = :quantity WHERE id = :id');
+            $this->db->bind(':id', $medicationId);
+            $this->db->bind(':quantity', $quantity);
+            
+            return $this->db->execute();
+        }
+    
 
         // public function getPharmacistProfileDetails($employeeId) {
         //     $this->db->query('SELECT * FROM pharmacist_profiles WHERE employee_id = :employeeId');
@@ -157,6 +184,46 @@
             $this->db->execute();  
 
         }
+
+        public function getAllPrescriptions($patientId) {
+            $this->db->query('SELECT * FROM prescriptions WHERE patient_id = :id');
+            $this->db->bind(':id', $patientId);
+            return $this->db->resultSet();
+        }
+
+        public function getPrescriptionCount($patientId) {
+            $this->db->query('SELECT COUNT(*) AS count FROM prescriptions WHERE patient_id = :id');
+            $this->db->bind(':id', $patientId);
+            $result = $this->db->single();
+            return $result->count;
+        }
+
+        public function getPatientDetails($prescriptionId){
+            $this->db->query('SELECT * FROM prescriptions WHERE id = :id');
+            $this->db->bind(':id', $prescriptionId);
+            $result = $this->db->single();
+            return $result;
+        }
+        
+
+        public function getDiagnosisDetails($prescriptionId){
+            $this->db->query('SELECT * FROM diagnosis WHERE prescription_id = :id');
+            $this->db->bind(':id', $prescriptionId);
+            return $this->db->resultSet();
+        }
+
+        public function getMedicationDetails($prescriptionId){
+            $this->db->query('SELECT * FROM medications WHERE prescription_id = :id');
+            $this->db->bind(':id', $prescriptionId);
+            return $this->db->resultSet();
+        }
+
+        public function getLabDetails($prescriptionId){
+            $this->db->query('SELECT * FROM lab_tests WHERE prescription_id = :id');
+            $this->db->bind(':id', $prescriptionId);
+            return $this->db->resultSet();
+        }
+
     }
 ?>
 

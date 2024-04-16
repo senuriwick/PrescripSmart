@@ -6,7 +6,7 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Sign Up page 3</title>
+  <title>Email Verification</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/patient/signUp-Email-2.css" />
@@ -21,16 +21,11 @@
 
         <?php $user = $data['user']; ?>
         <form action = '<?php echo URLROOT?>/patient/resend_activation_email' method = "POST" id = "resend">
-        <p class="confirmEmail">Confirm your email address</p>
+        <h1>Confirm your email address</h1>
         <p class="sampleEmail">
-          <span class="sampleEmail-sub-0">
             We sent an email to
             <br />
-
-          </span>
-          <span class="sampleEmail-sub-1">
-            <?php echo $user->email_phone ?>
-          </span>
+            <strong><?php echo $user->email_phone ?></strong>
         </p>
         <div class="line1">
         </div>

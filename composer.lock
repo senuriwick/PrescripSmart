@@ -112,16 +112,16 @@
         },
         {
             "name": "endroid/qr-code",
-            "version": "5.0.4",
+            "version": "5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/endroid/qr-code.git",
-                "reference": "0efd071a3640af323e23c94122fe92cfd5199833"
+                "reference": "0cc00f0626b73bc71a1ea17af01387d0ac75e046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/endroid/qr-code/zipball/0efd071a3640af323e23c94122fe92cfd5199833",
-                "reference": "0efd071a3640af323e23c94122fe92cfd5199833",
+                "url": "https://api.github.com/repos/endroid/qr-code/zipball/0cc00f0626b73bc71a1ea17af01387d0ac75e046",
+                "reference": "0cc00f0626b73bc71a1ea17af01387d0ac75e046",
                 "shasum": ""
             },
             "require": {
@@ -175,7 +175,7 @@
             ],
             "support": {
                 "issues": "https://github.com/endroid/qr-code/issues",
-                "source": "https://github.com/endroid/qr-code/tree/5.0.4"
+                "source": "https://github.com/endroid/qr-code/tree/5.0.7"
             },
             "funding": [
                 {
@@ -183,7 +183,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-24T13:47:07+00:00"
+            "time": "2024-03-08T11:24:40+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -268,16 +268,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "7.14.0",
+            "version": "8.0.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:twilio/twilio-php.git",
-                "reference": "823f2630c14a67e904e1bf63f9b0d7053812d751"
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "750ecf56e1a8627823d182ed3b3d6e7f79e41820"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/823f2630c14a67e904e1bf63f9b0d7053812d751",
-                "reference": "823f2630c14a67e904e1bf63f9b0d7053812d751",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/750ecf56e1a8627823d182ed3b3d6e7f79e41820",
+                "reference": "750ecf56e1a8627823d182ed3b3d6e7f79e41820",
                 "shasum": ""
             },
             "require": {
@@ -313,7 +313,11 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2024-01-25T11:51:56+00:00"
+            "support": {
+                "issues": "https://github.com/twilio/twilio-php/issues",
+                "source": "https://github.com/twilio/twilio-php/tree/8.0.0"
+            },
+            "time": "2024-04-04T14:57:48+00:00"
         }
     ],
     "packages-dev": [],

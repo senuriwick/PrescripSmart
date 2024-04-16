@@ -4,7 +4,7 @@ html {
  
 body {
     margin: 0px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .signUp-Email {
   width: 100%;
@@ -46,8 +46,8 @@ body {
   border-radius: 2.7rem;
   flex-shrink: 0;
 }
-.signUp-Email .container .register-form .sign-up-with-email {
-  margin: 2.5rem 0rem 1.6rem 0.1rem;
+.signUp-Email .container .register-form h1 {
+  margin: 2.5rem 0rem 2rem 0.1rem;
   text-align: center;
   font-size: 4rem;
   font-weight: 700;
@@ -336,4 +336,11 @@ body {
   background-color: green;
   border-color: green;
   color: white;
+}
+
+.error-msg {
+  font-family: Inter, 'Source Sans Pro';
+  color: 'red';
+  font-size: '18px';
+  margin-top: 1px;
 }

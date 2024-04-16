@@ -67,8 +67,9 @@
                         <p><a href="" style="color: black; font-weight: 500;">Security</a></p>
                     </div>
 
+                    <?php $user = $data['user']; ?>
                     <div class="pharmacistprofile">
-                        <div class="empid">Employee Id :#123456
+                        <div class="empid">Employee Id : <?php echo $user->user_id; ?>
                             <div class="accountinfotext">Security Information</div>
                         </div>
                         <hr />
@@ -76,12 +77,12 @@
                             <div>
                                 <form>
                                     <label>Method of Sign In</label><br>
-                                    <input type="text" placeholder="email">
+                                    <input type="text" placeholder="<?php echo $user->signIn_method; ?>">
                                 </form>
                             </div>
                             <div>
                                 <form class="sample_username">
-                                    <input type="text" placeholder="sample email/phoneNumber">
+                                    <input type="text" placeholder="<?php echo $user->email_phone; ?>">
                                 </form>
                             </div>
                        
@@ -94,10 +95,24 @@
                                     <label>Two-Factor Authentication</label><br>
                                 </form>
                                 <p class="text">Add an extra layer of security to your account. To sign in, you'll need to provide a code along with your username and password</p>
+
+                                <label class="switch">
+                                <input type="checkbox" id="toggleTwoFactorAuth" <?php echo $user->two_factor_auth == 'ON' ? 'checked' : ''; ?> >
+                                <span class="slider round"></span>
+                            </label>
                             </div>  
                         </div>
-                        <div><button>SETUP 2FA</button></div>
                     </div>
+                    
+                    <!-- <div>
+                        <h4>Two-factor Authentication</h3>
+                            <p class="para">Add an extra layer of security to your account. To sign in, you'll need to
+                                provide a code along with your username and password.</p>
+                            <label class="switch">
+                                <input type="checkbox" id="toggleTwoFactorAuth" <?php echo $user->two_factor_auth == 'on' ? 'checked' : ''; ?>>
+                                <span class="slider round"></span>
+                            </label>
+                    </div> -->
                 </div>
             </div>
         </div>

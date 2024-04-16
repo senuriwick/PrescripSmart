@@ -15,59 +15,14 @@
 <body>
 
   <div class="content">
-    <div class="sideMenu">
-      <div class="logoDiv">
-        <img class="logoImg" src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (5) copy 2.png" />
-      </div>
-
-      <!-- <div class="patientDiv">
-        <p class="mainOptions">PATIENT</p>
-
-        <div class="profile">
-          <p>username</p>
-        </div>
-      </div> -->
-
-
-      <div class="manageDiv">
-        <p class="mainOptions">MANAGE</p>
-
-        <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-        <a href="reports_dashboard.html" id="reports">Reports</a>
-        <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-        <a href="inquiries_dashboard.html" id="inquiries">Inquiries</a>
-        <a href="prescriptions_dashboard.html" id="profile">Profile</a>
-      </div>
-
-
-      <div class="othersDiv">
-        <a href="billing.html" id="billing">Billing</a>
-        <a href="terms_of_service.html" id="terms">Terms of Service</a>
-        <a href="privacy_policy.html" id="privacy">Privacy Policy</a>
-      </div>
-
-    </div>
+   <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
-      <div class="navBar">
-        <img src="<?php echo URLROOT; ?>\public\img\patient\user.png" alt="user-icon">
-        <p>SAMPLE USERNAME HERE</p>
-      </div>
+    <?php include 'top_navigation_panel.php'; ?>
 
       <div class="patientInfoContainer">
-        <div class="patientInfo">
-          <img src="<?php echo URLROOT; ?>\public\img\patient\profile.png" alt="profile-pic">
-          <div class="patientNameDiv">
-            <p class="name">Patient Name</p>
-            <p class="role">Patient</p>
-          </div>
-        </div>
-
-        <div class="menu">
-          <a href="prescriptions_dashboard.html" id="prescriptions">Prescriptions</a>
-          <a href="reports_dashboard.html" id="reports">Reports</a>
-          <a href="appointments_dashboard.html" id="appointments">Appointments</a>
-        </div>
+      <?php include 'information_container.php'; ?>
+      <?php include 'in_page_navigation.php'; ?>
 
         <div class="reportsDiv">
           <h1>Reports</h1>
@@ -77,33 +32,27 @@
               <div class="file">
                 <div class="desDiv">
                   <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
-                  <p class="description">Report #
-                    <?php echo $report->report_ID; ?>
+                  <p class="description">Report #<?php echo $report->report_ID; ?>
                   </p>
                 </div>
-                <p>Issued on:
-                  <?php echo $report->report_Date; ?>
-                </p>
                 <p>Referred by Dr.
                   <?php echo $report->fName; ?>
                   <?php echo $report->lName; ?>
                 </p>
-                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
-                  data-container-pid="<?= $report->report_ID ?>">
-                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon"> -->
+                <p>Issued on:
+                  <?php echo $report->date_of_report; ?>
+                </p>
 
-                <!-- <?php if ($report->downloads <= 5): ?>
-                  <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>" download>
-                    <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
-                  </a>
-                <?php endif; ?> -->
-
+                <div class = "imgclass">
                 <?php if ($report->downloads <= 5): ?>
                   <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>"
                     class="download-link" data-report-id="<?= $report->report_ID ?>">
                     <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
                   </a>
                 <?php endif; ?>
+                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
+                  data-container-pid="<?= $report->report_ID ?>">
+                </div>
 
               </div>
             </div>
@@ -113,19 +62,19 @@
                 <span class="close">&times;</span>
                 <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
-                  <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" />
+                <div>P</div>
+                  <!-- <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                   <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
                 <div class="model-details">
-                  <div>Prescription ID: #
-                    <?php echo $report->prescription_ID; ?>
+                  <div>Report ID: #<?php echo $report->report_ID; ?>
                   </div>
-                  <div>Patient: S.Perera</div>
-                  <div>Pres Date & Time:
+                  <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
+                  <div>Report Date & Time:
                     <?php echo $report->prescription_Date; ?> 10:00 AM
                   </div>
-                  <div>Age: 22 Yrs</div>
+                  <div>Age: <?php echo $report->age?> Yrs</div>
                   <div>Referred by: Dr.
                     <?php echo $report->fName; ?>
                     <?php echo $report->lName; ?>
@@ -164,31 +113,7 @@
           <?php endforeach; ?>
         </div>
 
-
-        <p class="addnewHeading">Add new</p>
-        <div class="addnew">
-
-          <div class="appointment">
-            <div>
-              <img src="<?php echo URLROOT; ?>\public\img\patient\appointment.png" alt="appointment-icon">
-              <p>
-                <a href="new_appointment.html" id="appointments">Schedule an Appointment</a>
-                <span class="details">The modern way to schedule and meet with convenience</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="inquiry">
-            <div>
-              <img src="<?php echo URLROOT; ?>\public\img\patient\message.png" alt="chat-icon">
-              <p>
-                <a href="inquiries_dashboard.html" id="inquiries">Make an Inquiry</a>
-                <span class="details">Initiate an online inquiry with a health supervisor</span>
-              </p>
-            </div>
-          </div>
-
-        </div>
+        <?php include 'add_new_container.php'; ?>
       </div>
     </div>
   </div>

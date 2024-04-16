@@ -1,11 +1,10 @@
 .inquiriesDiv {
-    margin-top: 2vh;
+    margin-top: 4vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
     padding: 1vh 3vh 2vh;
     position: relative;
 }
-
 
 .inquiriesDiv h1 {
     margin-top: 2vh;
@@ -14,214 +13,26 @@
     font-size: 24px;
 }
 
-
 body {
     font-family: inter;
     margin: 0;
     scroll-behavior: smooth;
 }
 
-
 .content {
     display: flex;
 }
 
-
-.sideMenu {
-    min-width: 14vw;
-    height: 135vh;
-    background-color: rgba(7, 28, 74, 1);
-}
-
-
-.sideMenuTexts {
-    font-size: 1.7vh;
-    color: #ffffff;
-    line-height: 1.5vh;
-    font-family: inter;
-}
-
-.logoDiv {
-    align-items: center;
-    margin-bottom: 4vh;
-}
-
-.logoImg {
-    display: block;
-    margin: auto;
-    height: 8vh;
-    padding-top: 3vh;
-}
-
-
-.mainOptions {
-    color: white;
-    font-size: 2.2vh;
-    font-weight: bold;
-    font-family: inter;
-}
-
-
-.sideMenu p {
-    padding-left: 3vh;
-}
-
-
-.patientDiv {
-    border-bottom: solid;
-    border-color: rgba(217, 217, 217, 0.75);
-    border-width: 0.1vh;
-}
-
-
-.profile {
-    background-color: rgba(53, 70, 109, 1);
-    padding: 0.2vh;
-    margin-bottom: 2.5vh;
-}
-
-
-.profile p {
-    color: #ffffff;
-    font-size: 1.8vh;
-    font-weight: bold;
-    font-family: inter;
-}
-
-
-
-.manageDiv {
-    padding-top: 3vh;
-    border-bottom: solid;
-    border-top: solid;
-    border-color: rgba(217, 217, 217, 0.75);
-    border-width: 0.1vh;
-    padding-bottom: 9vh;
-}
-
-.manageDiv .mainOptions {
-    margin-bottom: 5vh;
-}
-
-.manageDiv a {
-    display: block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.othersDiv {
-    padding-top: 3vh;
-    border-bottom: solid;
-    border-color: rgba(217, 217, 217, 0.75);
-    border-width: 0.1vh;
-    padding-bottom: 3vh;
-    color: white;
-}
-
-.othersDiv a {
-    display: block;
-    padding-left: 3vh;
-    line-height: 3vh;
-    font-size: 1.7vh;
-    font-family: inter;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-
-
 .main {
     flex: 1;
-
-}
-
-.navBar {
-    background-color: rgba(138, 150, 181, 1);
-    height: 7vh;
-}
-
-.navBar p {
-    margin: 0;
-    float: right;
-    padding: 2.5vh 0vw;
-    color: #ffffff;
-    font-size: 1.7vh;
-    font-family: inter;
-}
-
-.navBar img {
-    float: right;
-    padding: 1.3vh 2vw;
-    height: 4vh;
+    margin-left: 220px;
+    margin-bottom: 3%;
 }
 
 .patientInfoContainer {
     width: 80%;
     margin-top: 5vh;
     margin-left: 3vw;
-}
-
-
-.patientInfo {
-    display: flex;
-}
-
-
-.patientInfo img {
-    height: 10vh;
-    margin-right: 1.5vw;
-}
-
-
-.patientNameDiv {
-    padding: 0.01vh 0;
-}
-
-
-.patientInfo .name {
-    font-size: 2.5vh;
-    font-weight: bold;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    color: rgba(68, 81, 114, 1);
-    font-family: inter;
-}
-
-.patientInfo .role {
-    font-size: 1.8vh;
-    margin-top: 0vh;
-    padding-top: 0;
-}
-
-
-.menu {
-    margin-top: 2vh;
-    display: flex;
-    border-bottom: solid;
-    padding-bottom: 0.1vh;
-    border-width: 0.1vh;
-    border-color: rgba(164, 174, 199, 1);
-}
-
-.menu a {
-    margin-right: 6.5vh;
-    font-size: 2vh;
-    font-family: inter;
-    margin-bottom: 1vh;
-    color: rgba(164, 174, 199, 1);
-    text-decoration: none;
-}
-
-menu a:active {
-    color: #0069FF;
-}
-
-a:hover {
-    color: #17058aee;
 }
 
 .accInfo {
@@ -240,7 +51,7 @@ a:hover {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 80px; 
+    margin-top: 80px;
     margin-right: 20px;
 }
 
@@ -249,7 +60,7 @@ a:hover {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 625px; 
+    margin-top: 625px;
     margin-right: 20px;
 }
 
@@ -258,7 +69,7 @@ a:hover {
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: 865px; 
+    margin-top: 865px;
     margin-right: 20px;
 }
 
@@ -268,18 +79,19 @@ a:hover {
     display: flex;
     flex-direction: column;
 }
+
 .parallel {
     display: flex;
     flex-direction: row;
 }
+
 .input-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
     margin-top: 15px;
-    margin-right: 50px; 
+    margin-right: 50px;
 }
-
 
 .input {
     width: 28rem;
@@ -350,4 +162,90 @@ a:hover {
     position: absolute;
     object-fit: contain;
     vertical-align: top;
-  }
+}
+
+.menu #personalinfo {
+    color: #0069FF;
+    border-color: #0069FF;
+    border-spacing: 2cm;
+    position: relative;
+}
+
+.menu #personalinfo::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #0069FF;
+}
+
+.profile {
+    background-color: rgba(68, 81, 114, 1);
+    position: relative;
+}
+
+.profile::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #0069FF;
+}
+
+.profile-pic-container {
+    position: relative;
+    display: inline-block;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-pic-container img {
+    width: 100%;
+    height: auto;
+}
+
+.profile-pic-container:hover .edit-icon {
+    display: block;
+}
+
+.profile-pic-container .edit-icon {
+    position: absolute;
+    top: 55%;
+    left: 45%;
+    height: 5vh;
+    width: 5vh;
+    transform: translate(-50%, -50%);
+    display: none;
+    cursor: pointer;
+}
+
+.patientInfo {
+    display: flex;
+}
+
+
+.patientNameDiv {
+    padding: 0.01vh 0;
+    margin-left: 20px;
+}
+
+.patientInfo .name {
+    font-size: 2.5vh;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: rgba(68, 81, 114, 1);
+    font-family: inter;
+}
+
+.patientInfo .role {
+    font-size: 1.8vh;
+    margin-top: 0vh;
+    padding-top: 0;
+}

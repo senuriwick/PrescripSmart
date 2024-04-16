@@ -12,35 +12,37 @@
 <body>
   <div class="welcomePage" id="welcomePage">
     <div class="container">
-        <p class="mainTitle">Prescrip<span class="smart">Smart</span></p>
-        <a href="#selectRole"><button id="selectRoleButton">Select role</button></a>
-    </div>
-  </div>
-
-  <div id="selectRole">
-    <div id="selectRolePage">
-      <p id="iam">I'm a/an ...</p>
+      <div class="logoDiv">
+        <div>P</div>
+        <h5>PrescripSmart</h5>
+      </div>
+      <p class="mainTitle">Your paperless <br>prescription partner.</p>
       <div id="options">
-        <button id="patient" class="optionButton">
-          <img src="<?php echo URLROOT; ?>\public\img\general\mdi_patient-outline.png" alt="Patient" class="optionIcon">
+        <button id="patient" class="optionButton1">
+          <img src="<?php echo URLROOT; ?>\public\img\general\bed (1).png" alt="Patient" class="optionIcon">
           Patient
         </button>
-        <button id="employee" class="optionButton">
-          <img src="<?php echo URLROOT; ?>\public\img\general\clarity_employee-line.png" alt="Employee" class="optionIcon">
+        <button id="employee" class="optionButton2">
+          <img src="<?php echo URLROOT; ?>\public\img\general\medical-team (1).png" alt="Employee" class="optionIcon">
           Employee
         </button>
       </div>
     </div>
   </div>
 
-  <script>
-          document.getElementById("patient").addEventListener("click", function () {
-              window.location.href = "<?php echo URLROOT; ?>/patient/login";
-          });
+  <div class="terms-privacy-container">
+    <a href="<?php echo URLROOT; ?>/general/terms_of_service">Terms and Conditions</a>
+    <a href="<?php echo URLROOT; ?>/general/privacy_policy">Privacy Policy</a>
+  </div>
 
-          document.getElementById("employee").addEventListener("click", function () {
-              window.location.href = "<?php echo URLROOT; ?>/general/employee_login";
-          });
+  <script>
+    document.getElementById("patient").addEventListener("click", function () {
+      window.location.href = "<?php echo URLROOT; ?>/patient/login";
+    });
+
+    document.getElementById("employee").addEventListener("click", function () {
+      window.location.href = "<?php echo URLROOT; ?>/general/employee_login";
+    });
   </script>
 
 </body>

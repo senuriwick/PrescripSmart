@@ -107,6 +107,17 @@ p a:active{
   display: flex;
 }
 
+.center-content {
+  margin-left: 25%;
+  margin-top: 30px; 
+}
+
+.grey-text {
+  color:rgba(164, 174, 199, 1);
+  font-size: 1.5rem;
+  font-style:italic;
+}
+
 .person-circle{
   width:40px;
   height:40px;
