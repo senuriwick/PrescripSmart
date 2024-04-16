@@ -38,6 +38,7 @@
                             </div>
                             <div class="line1"></div>
 
+                            <div class = "sessionBox">
                             <?php foreach ($doctorData['sessions'] as $session): ?>
                                 <div class="boxes-container">
                                     <div class="box1">
@@ -54,6 +55,7 @@
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                        </div>
                         </div>
                     <?php endforeach; ?>
 

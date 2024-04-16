@@ -40,24 +40,19 @@
                   <?php echo $report->lName; ?>
                 </p>
                 <p>Issued on:
-                  <?php echo $report->report_Date; ?>
+                  <?php echo $report->date_of_report; ?>
                 </p>
-                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
-                  data-container-pid="<?= $report->report_ID ?>">
-                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon"> -->
 
-                <!-- <?php if ($report->downloads <= 5): ?>
-                  <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>" download>
-                    <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
-                  </a>
-                <?php endif; ?> -->
-
+                <div class = "imgclass">
                 <?php if ($report->downloads <= 5): ?>
                   <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>"
                     class="download-link" data-report-id="<?= $report->report_ID ?>">
                     <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
                   </a>
                 <?php endif; ?>
+                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
+                  data-container-pid="<?= $report->report_ID ?>">
+                </div>
 
               </div>
             </div>

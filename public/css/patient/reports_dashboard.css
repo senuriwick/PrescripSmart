@@ -54,6 +54,16 @@
   padding: 1.75vh 1.5vh 1vh 1.5vh;
 }
 
+.file .imgclass img{
+  height: 3vh;
+  padding: 1.75vh 1.5vh 1vh 1.5vh;
+}
+
+.file .imgclass{
+  width: 6vw;
+  display: flex;
+  justify-content: flex-end;
+}
 
 body {
   font-family: inter;
