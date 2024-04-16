@@ -41,7 +41,7 @@
                                   </td>
                                                                    
                                   <td>
-                                      <p style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_id;?></p>
+                                      <p style="margin-left: 10vh;">Employee ID #<?php echo $post->emp_id;?></p>
                                   </td>
 
                                   <td>

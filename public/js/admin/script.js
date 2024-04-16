@@ -1,3 +1,8 @@
+   function goback() 
+  {
+    window.history.back();
+  }
+
 
 function toggleSubmenu(submenus) 
 {
@@ -90,6 +95,10 @@ document.addEventListener("DOMContentLoaded", function ()
     showRegistrationSuccessMessage();
 
   });
+
+  
+
+
 
 
 

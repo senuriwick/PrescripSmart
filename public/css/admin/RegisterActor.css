@@ -121,9 +121,9 @@
 
 .popup
 {
-    background-color:floralwhite ;
-    width: 48vh;
-    height: 25vh;
+    background-color:white ;
+    width: 45vh;
+    height: 30vh;
     border-radius: 1vh;
     position: absolute;
     top: 45%;
@@ -135,15 +135,16 @@
 
 .popup h2
 {
-    margin-top: 5vh;
+    margin-top: 8vh;
 }
 
 .popup button
 {
     border-radius: 1vh;
-    width: 90%;
+    width: 75%;
     background-color: #0069FF;
     color: white;
     border: none;
     height: 5vh;
+    margin-top: 5vh;
 }
