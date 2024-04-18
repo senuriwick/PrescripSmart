@@ -147,17 +147,22 @@
 
         public function profile(){
             $user = $_SESSION['data'];
+            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
             $data = [
-                'user' => $user
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_profile', $data);
         }
 
         public function personal(){
+            $user = $_SESSION['data'];
             $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
+
             $data = [
+                'user' => $user,
                 'healthSupervisor' => $healthSupervisor
             ];
             $this->view('healthSupervisor/healthSupervisor_personalInfo',$data);
@@ -169,11 +174,36 @@
 
         public function security(){
             $user = $_SESSION['data'];
+            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
             $data = [
-                'user' => $user
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
+
             ];
             $this->view('healthSupervisor/healthSupervisor_2factor', $data);
+        }
+
+        public function toggle2FA()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['toggle_state'])) {
+                    $toggleState = $_POST['toggle_state'];
+                    $userID = $_POST['userID'];
+            
+                    if ($toggleState == 'ON') { 
+                        $this->healthSupervisorModel->manage2FA($toggleState, $userID);
+                    } else if ($toggleState == 'OFF') {
+                        $this->healthSupervisorModel->manage2FA($toggleState, $userID);
+                    }
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+            }
+
         }
 
         public function accountInfoUpdate()
@@ -223,6 +253,8 @@
 
         public function personalInfoUpdate()
         {
+            $user_id = $_SESSION['data']->user_id;
+
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $fname = $_POST["fName"];
                 $lname = $_POST["lName"];
@@ -233,7 +265,7 @@
                 $regNo = $_POST["regNo"];
                 $qualification = $_POST["qualification"];
     
-                $this->pharmacistModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
+                $this->healthSupervisorModel->updateInfo($user_id, $fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
                 redirect("/healthSupervisor/personal");
                 exit();
             }

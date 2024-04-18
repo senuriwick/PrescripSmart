@@ -6,11 +6,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>pharmacist personalDetails</title>
+    <title>HealthSupervisor Personal Details</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_personalInfo.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_personalInfoCheck.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -50,13 +50,16 @@
                     <p>USERNAME</p>
                 </div>
             </div>
+
+            <?php $healthSupervisor = $data['healthSupervisor'] ?>
+            <?php $user = $data['user'] ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Health Supervisor Name</p>
-                            <p class="role">Health Supervisor</p>
+                            <p class="name"><?php echo $healthSupervisor->display_name ?></p>
+                            <p class="role"><?php echo $user->role ?></p>
                         </div>
                     </div>
 
@@ -66,12 +69,10 @@
                         <p><a href="<?php echo URLROOT ?>/HealthSupervisor/security">Security</a></p>
                     </div>
 
-                    <?php $healthSupervisor = $data['healthSupervisor'] ?>
-
                     <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/healthSupervisor/personalInfoUpdate" method="POST">
                         <h1>Pharmacist ID: #
-                            <!-- <?php echo $healthSupervisor->healthSupervisor_id ?> -->
+                            <?php echo $healthSupervisor->healthSupervisor_id ?>
                         </h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">
@@ -104,7 +105,7 @@
                                 <div class="input-group">
                                     <label for="nic">National Identity Card No.</label>
                                     <input type="text" id="nic" name="nic" class="input"
-                                        style="display: inline-block;" value="<?php echo $healthSupervisor->nic; ?>">
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->nic_number; ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="contactno">Contact Number</label>
@@ -114,9 +115,9 @@
                             </div>
                             <div class="parallel">
                                 <div class="input-group">
-                                    <label for="nic">Pharmacist Registration NO</label>
+                                    <label for="nic">Health Supervisor Registration NO</label>
                                     <input type="text" id="regNo" name="regNo" class="input"
-                                        style="display: inline-block;" value="<?php echo $healthSupervisor->healthSupervisor_registrationNo; ?>">
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->healthSupervisor_registration_number; ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="address">Qualifications</label>
@@ -132,4 +133,27 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all input elements
+            var inputs = document.querySelectorAll('input');
+
+            // Function to handle input change event
+            function handleInputChange() {
+                // Check if any input field has changed
+                var anyChanged = Array.from(inputs).some(function (input) {
+                    return input.value !== input.getAttribute('value');
+                });
+
+                // If any input field has changed, add 'blue' class to button; otherwise, remove it
+                document.getElementById('submit').classList.toggle('blue', anyChanged);
+            }
+
+            // Add event listener for input change event to each input field
+            inputs.forEach(function (input) {
+                input.addEventListener('input', handleInputChange);
+            });
+        });
+    </script>
 </body>

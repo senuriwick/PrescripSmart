@@ -101,10 +101,10 @@
             return $this->db->single();
         }
 
-        public function updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification)
+        public function updateInfo($user_id, $fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification)
         {
             $this->db->query('UPDATE healthSupervisors SET first_name = :fname, last_name = :lname, display_name = :dname, 
-                home_address = :address, nic = :nic, contact_number = :contact,pharmacist_registrationNo = :regNo,qualifications = :qualification WHERE pharmacist_id = 1'); 
+                home_address = :address, nic_number = :nic, contact_number = :contact,healthSupervisor_registration_number = :regNo,qualification = :qualification WHERE user_id = :user_id'); 
             $this->db->bind(':fname', $fname);
             $this->db->bind(':lname', $lname);
             $this->db->bind(':dname', $dname);
@@ -113,6 +113,7 @@
             $this->db->bind(':contact', $contact);
             $this->db->bind(':regNo',$regNo);
             $this->db->bind(':qualification',$qualification);
+            $this->db->bind(':user_id',  $user_id);
     
             $this->db->execute();  
 
@@ -123,6 +124,14 @@
             $result = $this->db->single();
             return $result;
         }
+
+        public function manage2FA($toggleState, $userID)
+    {
+        $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_ID = :userID');
+        $this->db->bind(':TFA', $toggleState);
+        $this->db->bind(':userID', $userID);
+        $this->db->execute();
+    }
 
 
 
