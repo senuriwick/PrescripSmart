@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/add_prescription.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/sideMenu_navBar.css" />
-    <script src="<?php echo URLROOT;?>/public/js/doctor/main.js"></script>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/add_prescription.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu_navBar.css" />
+    <script src="<?php echo URLROOT; ?>/public/js/doctor/main.js"></script>
 </head>
 
 <body>
     <div class="content">
         <div class="sideMenu">
             <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT;?>/public/img/doctor/Untitled design (5) copy 2.png" />
+                <img class="logoImg" src="<?php echo URLROOT; ?>/public/img/doctor/Untitled design (5) copy 2.png" />
             </div>
 
             <!-- <div class="userDiv">
@@ -32,14 +32,13 @@
                 </div>
             </div> -->
 
-
             <div class="manageDiv">
                 <p class="mainOptions">MANAGE</p>
 
-                <a href="<?php echo URLROOT;?>/doctor/patients" class="active">Patients</a>
-                <a href="<?php echo URLROOT;?>/doctor/viewOngoingSession">Ongoing Sessions</a>
-                <a href="<?php echo URLROOT;?>/doctor/sessions">Sessions</a>
-                <a href="<?php echo URLROOT;?>/doctor/profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/doctor/patients" class="active">Patients</a>
+                <a href="<?php echo URLROOT; ?>/doctor/viewOngoingSession">Ongoing Sessions</a>
+                <a href="<?php echo URLROOT; ?>/doctor/sessions">Sessions</a>
+                <a href="<?php echo URLROOT; ?>/doctor/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -52,23 +51,23 @@
         <div class="container">
             <div class="navBar">
                 <div class="navBar">
-                    <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
+                    <img src="<?php echo URLROOT; ?>/public/img/doctor/user.png" alt="user-icon">
                     <p>USERNAME</p>
                 </div>
             </div>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
-                        <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="profile-pic">
+                        <img src="<?php echo URLROOT; ?>/public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name"><?php echo $data['patient']->patient_name;?></p>
+                            <p class="name"><?php echo $data['patient']->patient_name; ?></p>
                             <p class="role">Patient</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_id;?>">Prescription</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewReports/<?php echo $data['patient']->patient_id;?> ">Reports</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_id; ?>">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_id; ?> ">Reports</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -77,177 +76,253 @@
                             <label>Patient Prescription</label>
                         </div>
                         <hr />
-                        <div class="diagnosis">
-                            <form  method="post">
+                        <form action="<?php echo URLROOT; ?>/doctor/addMedication" method="POST" autocomplete="off">
+                            <div class="diagnosis">
                                 <label><b>Diagnosis</b></label>
-                                <input type="textbox" class="searchBar" placeholder="Enter diagnosis here....." />
-                            </form>
-                        </div>
+                                <input type="textbox" name="diagnosis" class="searchBar" placeholder="Enter diagnosis here....." />
+                            </div>
 
-                        <div class="medication">
-                            <div class="medication-head">
-                                <lable><b>+ Medication</b></lable>
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </div>
-                            <div class="medication-form">
-                                <form>
-                                    <input type="text" oninput="getsearchResults(this.value)" id="searchtext" class="search-medication" 
-                                        placeholder="Search medication name here" />
-                                    <hr />
-                                    <div class="medication-suggetions" id="medication-suggetions">
-                                        <p></p>
-                                        <button>Add</button>
-                                    </div>
-                                    
-                                </form>
-                                <hr />
-                                <div class="medication-added">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>Medication Added 1</td>
-                                                <td>Dosage</td>
-                                                <td>Remarks</td>
-                                                <td class="medication-delete"><i class="fa-solid fa-trash"></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Medication Added 1</td>
-                                                <td>Dosage</td>
-                                                <td>Remarks</td>
-                                                <td class="medication-delete"><i class="fa-solid fa-trash"></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Medication Added 1</td>
-                                                <td>Dosage</td>
-                                                <td>Remarks</td>
-                                                <td class="medication-delete"><i class="fa-solid fa-trash"></i></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="medication">
+                                <div class="medication-head">
+                                    <lable><b>Medication</b></lable>
                                 </div>
-                            </div>
-                            
-                        </div>
-                        <div class="test">
-                            <div class="test-head">
-                                <lable><b>+ Add Lab Sessions</b></lable>
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </div>
-                            <div class="test-form">
-                                <form>
-                                    <input type="text" class="search-test"
-                                        placeholder="Search test name here" />
+                                <div class="medication-form">
+                                    <input type="text" id="searchtext" class="search-medication" oninput="getSearchResults(this.value)" placeholder="Search medication name here">
+                                    <div id="searchResults" class="search-results"></div>
+                                    <select id="remarks" class="remarks" name="remarks">
+                                        <option value="">Select a remark</option>
+                                        <option value="52/1">52/1</option>
+                                        <option value="12/1">12/1</option>
+                                        <option value="42/1">42/1</option>
+                                        <option value="52/2">52/2</option>
+                                    </select>
+                                    <button id="btn-medication-add" class="btn-medication-add" onclick="addMedication(event);">Add</button>
                                     <hr />
-                                    <div class="test-suggetions">
-                                        <p>Test Suggetion 01</p>
-                                        <button>Add</button>
+                                    <div class="medication-added">
+                                        <table id="medication-table" class="medication-table">
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="test-suggetions">
-                                        <p>Test Suggetion 02</p>
-                                        <button>Add</button>
-                                    </div>
-                                </form>
-                                <hr />
-                                <div class="test-added">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>Test Added 1</td>
-                                                <td><form action=""><input type="text" placeholder="Remarks"/></form></td>
-                                                <td class="test-delete"><i class="fa-solid fa-trash"></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Test Added 1</td>
-                                                <td>Remarks</td>
-                                                <td class="test-delete"><i class="fa-solid fa-trash"></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Test Added 1</td>
-                                                <td>Remarks</td>
-                                                <td class="test-delete"><i class="fa-solid fa-trash"></i></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
+
                             </div>
-                            
-                        </div>
-                        <div class="save-Btn">
-                            <button>Save And Continue</button>
-                        </div>
+                            <div class="test">
+                                <div class="test-head">
+                                    <lable><b>Add Lab Sessions</b></lable>
+                                    <i id="toggleIcon" class="fa-solid fa-chevron-down" style="cursor: pointer;" onclick="toggleTestForm();"></i>
+                                </div>
+                                <div class="test-form" id="testForm" style="display:none;">
+                                    <input type="text" id="searchtest" class="search-test" oninput="getSearchTest(this.value)" placeholder="Search test name here" />
+                                    <div id="testResults" class="test-results"></div>
+                                    <input type="text" id=testremarks class="remarks" placeholder="Remarks">
+                                    <button id="btn-test-add" class="btn-test-add" onclick="addTest(event);">Add</button>
+                                    <hr />
+                                    <div class="test-added">
+                                        <table id="test-table">
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="patientId" value="<?php echo $data['patient']->patient_id ?>" />
+                            </div>
+                            <div class="save-Btn">
+                                <button type="submit">Save And Continue</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        //  document.addEventListener("DOMContentLoaded", function () {
-        //     const searchInput = document.getElementById("searchtext");
-        //     const medicationSuggestions = document.querySelector(".medication-suggestions");
-
-        //     searchInput.addEventListener("input", function () {
-        //         if (searchInput.value.trim() !== "") {
-        //             medicationSuggestions.style.display = "block";
-        //         } else {
-        //             medicationSuggestions.style.display = "none";
-        //         }
-        //     });
-    // });
-        // document.addEventListener("DOMContentLoaded",function(){
-        //     const searchInput = document.getElementById("searchtext");
-        //     searchInput.addEventListener("input",function(){
-        //         const searchTerm = searchInput.value.toLowerCase();
-        //         const regex = new RegExp(searchTerm, 'i');
-        //         const medicationRows = document.querySelectorAll(".medication-suggetions");
-        //         medicationRows.foreach(function(div){
-        //             const medicationName = div.getElementById("medication-name").textContent.toLowerCase();
-        //             if(regex.test(medicationName)){
-        //                 div.style.display = "div";
-        //             }else{
-        //                 div.style.display="none";
-        //             }
-
-        //         });
-
-        //     });
-        // });
-            function getsearchResults(query){
-                if(query.length >=1){
-                    fetch(`<?php URLROOT;?>/doctor/searchMedication?query=${query}`)
-                    .then(response => response.json())
-                    .then(data => showsearchResults(data))
-                    .catch(error => .console.error('Error:',error));
-                }else {
-                    hidesearchResults();
-                }
+        function getSearchResults(query) {
+            if (query.length >= 1) {
+                fetch(`http://localhost/Prescripsmart/doctor/searchMedication?query=${query}`)
+                    .then(response => {
+                        console.log(response);
+                        return response.json();
+                    })
+                    .then(data => {
+                        showSearchResults(data);
+                        console.log(data);
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                hideSearchResults();
             }
+        }
 
-            function showsearchResults(results){
-                const resultsContainer = document.getElementById('medication-suggetions');
-                resultsContainer.innerHTML = '';
+        function showSearchResults(results) {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
 
-                if(results.length >0){
-                    results.forEach(result => {
-                        const item = document.createElement('div');
-                        item.classList.add('medication-suggetions-item');
-                        item.textContent = result.value;
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const item = document.createElement('div');
+                    item.classList.add('search-results-item');
+                    item.textContent = result.Material_Description;
 
-                        item.addEventListner('click' ,() => {
-                            document.getElementById('searchtext').value = result.value;
-                            hidesearchResults();
-
+                    item.addEventListener('click', () => {
+                        document.getElementById('searchtext').value = result.Material_Description;
+                        hideSearchResults();
                     });
+
                     resultsContainer.appendChild(item);
+                });
 
+                resultsContainer.style.display = 'block';
+            } else {
+                hideSearchResults();
+            }
+        }
+
+        function hideSearchResults() {
+            document.getElementById('searchResults').style.display = 'none';
+        }
+
+        function addMedication(event) {
+            event.preventDefault();
+
+            var table = document.getElementById("medication-table");
+            var rowCount = table.rows.length;
+
+            var medications = document.getElementById("searchtext").value;
+            var remarks = document.getElementById("remarks").value;
+            if (!medications) {
+                alert("Please enter the medications");
+                return;
+            } else if (!remarks) {
+                alert("Please enter the remarks");
+                return;
+            }
+            if (medications && remarks) {
+                var newRow = table.insertRow(rowCount);
+                var medicationCell = newRow.insertCell(0);
+                var remarkCell = newRow.insertCell(1);
+                var deleteCell = newRow.insertCell(2);
+                medicationCell.innerHTML = `<input type="text" name="medications[]" value="${medications}" readonly>`;
+                remarkCell.innerHTML = `<input type="text" name="remarks[]" value="${remarks}" readonly>`;
+
+
+                var deleteBtn = document.createElement('i');
+                deleteBtn.className = 'fa-solid fa-trash';
+                deleteBtn.style.cursor = 'pointer';
+                deleteBtn.onclick = function() {
+                    removeRow(this);
+                };
+                deleteCell.appendChild(deleteBtn);
+            }
+
+            deleteCell.classList.add("medication-delete");
+            document.getElementById("searchtext").value = "";
+            document.getElementById("remarks").value = "";
+        }
+
+        function removeRow(deleteBtn) {
+            var row = deleteBtn.parentNode.parentNode;
+            var table = row.parentNode;
+            table.removeChild(row);
+        }
+
+        function toggleTestForm() {
+            var testForm = document.getElementById("testForm");
+            var toggleIcon = document.getElementById("toggleIcon");
+
+            if (testForm.style.display === "none") {
+                testForm.style.display = "block";
+                toggleIcon.className = "fa-solid fa-chevron-up";
+            } else {
+                testForm.style.display = "none";
+                toggleIcon.className = "fa-solid fa-chevron-down";
+            }
+        }
+
+        function getSearchTest(query){
+            if(query.length>=1){
+
+                fetch(`http://localhost/Prescripsmart/doctor/searchTest?query=${query}`)
+                .then(response =>{
+                    console.log(response);
+                    return response.json();
+                })
+                .then(data =>{
+                    showTestResults(data);
+                    console.log(data);
+                })
+                .catch(error =>console.error('Error:',error));
+            }else{
+                hideTestResults();
+            }
+        }
+
+        function showTestResults(results){
+            const resultsContent = document.getElementById('testResults');
+            resultsContent.innerHTML = '';
+
+            if(results.length > 0) {
+                results.forEach(results => {
+                    const item = document.createElement('div');
+                    item.classList.add('test-results-item');
+                    item.textContent = results.name;
+
+                    item.addEventListener('click',() =>{
+                        document.getElementById('searchtest').value = results.name;
+                        hideTestResults();
                     });
-                    resultsContainer.style.display = 'block';
-                }else{
-                    hidesearchResults();
-                }
+                    resultsContent.appendChild(item);
+                });
+
+                resultsContent.style.display = 'block';
+            }else{
+                hideTestResults();
+            }
+        }
+
+        function hideTestResults(){
+            document.getElementById('testResults').style.display = 'none';
+        }
+
+        function addTest(event){
+            event.preventDefault();
+
+            var table = document.getElementById("test-table");
+            var rowCount = table.rows.length;
+
+            var tests = document.getElementById("searchtest").value;
+            var testremarks = document.getElementById("testremarks").value;
+            if(!tests){
+                alert("Please enter the test");
+                return;
             }
 
-            function hidesearchResults(){
-                documnet.getElementById('medication-suggetions').style.display = 'none';
+            if(tests){
+                var newRow = table.insertRow(rowCount);
+                var testCell = newRow.insertCell(0);
+                var testremarkCell = newRow.insertCell(1);
+                var deleteCell = newRow.insertCell(2);
+                testCell.innerHTML = `<input type="text" name="tests[]" value="${tests}" readonly>`;
+                testremarkCell.innerHTML = `<input type="text" name="testremarks[]" value="${testremarks}" readonly>`;
+
+                var deleteBtn = document.createElement('i');
+                deleteBtn.className = 'fa-solid fa-trash';
+                deleteBtn.style.cursor = 'pointer';
+                deleteBtn.onclick = function(){
+                    removeRow(this);
+                };
+                deleteCell.appendChild(deleteBtn);
             }
-    </script>    
+
+            deleteCell.classList.add("test-delete");
+            documnet.getElementById("searchtest").value = "";
+            documnet.getElementById("testremarks").value ="";
+        }
+
+        function removeRow(deleteBtn){
+            var row = deleteBtn.parentNode.parentNode;
+            var table = row.parentNode;
+            table.removeChild(row);
+        }
+    </script>
 </body>
