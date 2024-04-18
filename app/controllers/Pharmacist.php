@@ -204,7 +204,7 @@
                 $regNo = $_POST["regNo"];
                 $qualification = $_POST["qualification"];
     
-                $this->pharmacistModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
+                $this->healthSupervisorModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
                 redirect("/Pharmacist/personal");
                 exit();
             }

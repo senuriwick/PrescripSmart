@@ -76,35 +76,56 @@
             return $result->Count;   
         }
 
+        public function updateAccInfo($username)
+        {
+            $this->db->query('UPDATE users SET username = :username 
+            WHERE user_id = 1');
+            $this->db->bind(':username', $username);
+            // $this->db->bind(':password', $newpassword);
 
-        // public function getMedications(){
-        //     $this->db->query('SELECT * FROM Medication');
-        //     return $this->db->resultSet();
-        // }
+            $this->db->execute();
+        }
 
-        // public function insertMedication($data){
-        //     $this->db->query('INSERT INTO Medication (name, expiry_date, quantity, dosage, batch_number,status)
-        //     VALUES
-        //     (:name, :expiry_date, :quantity, :dosage, :batch_number, :status)');
+        public function resetPassword($newpassword)
+        {
+            $this->db->query('UPDATE users SET password = :newpassword 
+            WHERE user_id = 1');
+            $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+            $this->db->execute();
+        }
 
-        //     $this->db->bind(':name', $data['name']);
-        //     $this->db->bind(':expiry_date', $data['expiry_date']);
-        //     $this->db->bind(':quantity', $data['quantity']);
-        //     $this->db->bind(':dosage', $data['dosage']);
-        //     $this->db->bind(':batch_number',$data['batch']);
-        //     $this->db->bind(':status', $data['status']);
+        public function getUserDetails($userId) {
+            $this->db->query('SELECT * FROM users WHERE user_id = :userId');
+            $this->db->bind(':userId', $userId);
+        
+            return $this->db->single();
+        }
 
-        //     return $this->db->execute();
-        // }
+        public function updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification)
+        {
+            $this->db->query('UPDATE healthSupervisors SET first_name = :fname, last_name = :lname, display_name = :dname, 
+                home_address = :address, nic = :nic, contact_number = :contact,pharmacist_registrationNo = :regNo,qualifications = :qualification WHERE pharmacist_id = 1'); 
+            $this->db->bind(':fname', $fname);
+            $this->db->bind(':lname', $lname);
+            $this->db->bind(':dname', $dname);
+            $this->db->bind(':address', $address);
+            $this->db->bind(':nic', $nic);
+            $this->db->bind(':contact', $contact);
+            $this->db->bind(':regNo',$regNo);
+            $this->db->bind(':qualification',$qualification);
+    
+            $this->db->execute();  
 
-        // public function markMedicationOutOfStock($medicationId){
-        //     $this->db->query('UPDATE Medication SET status = :status WHERE id =:id');
+        }
 
-        //     $this->db->bind(':status', 'Out of Stock');
-        //     $this->db->bind(':id', $medicationId);
+        public function healthSupervisorInfo(){
+            $this->db->query('SELECT * FROM healthSupervisors WHERE user_id = 3');
+            $result = $this->db->single();
+            return $result;
+        }
 
-        //     return $this->db->execute();
-        // }
+
+
 
     }
 ?>
