@@ -51,13 +51,16 @@
                     <p>USERNAME</p>
                 </div>
             </div>
+
+            <?php $user = $data['user'] ?>
+            <?php $pharmacist = $data['pharmacist'] ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name"><?php echo $pharmacist-> display_name ?></p>
+                            <p class="role"><?php echo $user->role ?></p>
                         </div>
                     </div>
 
@@ -67,11 +70,9 @@
                         <p><a href="<?php echo URLROOT ?>/Pharmacist/security">Security</a></p>
                     </div>
 
-                <?php $patient = $data['userPharm'] ?>
-
                 <div class="inquiriesDiv">
                     <h1>Patient ID: #
-                        <?php echo $patient->user_id ?>
+                        <?php echo $user->user_id ?>
                     </h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
@@ -81,16 +82,16 @@
                                 <div class="input-group">
                                     <label for="name">Username</label>
                                     <input type="text" id="username" class="input" name="username"
-                                        value="<?php echo $patient->username ?>" style="display: inline-block;">
+                                        value="<?php echo $user->username ?>" style="display: inline-block;">
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Associated Email Address/Phone Number</label>
-                                    <?php if ($patient->signIn_method == "email"): ?>
+                                    <?php if ($user->signIn_method == "email"): ?>
                                         <input type="text" id="email" class="input" name="email" readonly
-                                            value="<?php echo $patient->email ?>" style="display: inline-block;">
+                                            value="<?php echo $user->email_phone ?>" style="display: inline-block;">
                                     <?php else: ?>
                                         <input type="text" id="phone" class="input" name="phone" readonly
-                                            value="<?php echo $patient->phoneNumber ?>" style="display: inline-block;">
+                                            value="<?php echo $user->email_phone ?>" style="display: inline-block;">
                                     <?php endif; ?>
                                 </div>
 

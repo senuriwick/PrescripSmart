@@ -110,41 +110,22 @@
         }
         
         public function profile() {
-            // Assume $employeeId is the identifier for the logged-in pharmacist
-            $userId = "1"; // Replace with actual employee ID retrieval logic
-    
-            // Fetch pharmacist profile details
-            $pharmacistProfile = $this->pharmacistModel->getUserDetails($userId);
-    
-            // Pass the details to the view
+            $user = $_SESSION['data'];
+            $user_id = $user->user_id;
+            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
+
             $data = [
-                'userPharm' => $pharmacistProfile,
+                'user' => $user,
+                'pharmacist' => $pharmacist
             ];
     
             $this->view('pharmacist/pharmacist_profileCheck', $data);
-        }
-
-        public function profileCheck() {
-            // Assume $employeeId is the identifier for the logged-in pharmacist
-            $userId = "1"; // Replace with actual employee ID retrieval logic
-    
-            // Fetch pharmacist profile details
-            $pharmacistProfile = $this->pharmacistModel->getUserDetails($userId);
-    
-            // Pass the details to the view
-            $data = [
-                'userPharm' => $pharmacistProfile,
-            ];
-    
-            $this->view('pharmacist/pharmacist_profile', $data);
         }
 
         public function accountInfoUpdate()
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST["username"];
-                // $password = $_POST["password"];
-                // $newpassword = $_POST["newpassword"];
 
                 $this->pharmacistModel->updateAccInfo($username);
 
@@ -170,7 +151,7 @@
                 $currentPassword = $_POST['currentPassword'];
     
                 // Assume $user is the object representing the logged-in user
-                $user_id = 1;
+                $user_id = $_SESSION['data']->user_id;
                 $user = $this->pharmacistModel->getUserDetails($user_id);
     
                 if ($user && password_verify($currentPassword, $user->password)) {
@@ -185,8 +166,11 @@
         }
 
         public function personal(){
-            $pharmacist = $this->pharmacistModel->pharmacistInfo();
+            $user = $_SESSION['data'];
+            $user_id = $user->user_id;
+            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
             $data = [
+                'user'=>$user,
                 'pharmacist' => $pharmacist
             ];
             $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
@@ -204,7 +188,7 @@
                 $regNo = $_POST["regNo"];
                 $qualification = $_POST["qualification"];
     
-                $this->healthSupervisorModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
+                $this->pharmacistModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
                 redirect("/Pharmacist/personal");
                 exit();
             }
@@ -326,11 +310,35 @@
         
         public function security(){
             $user = $_SESSION['data'];
-
+            $user_id = $user->user_id;
+            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
             $data = [
-                'user' => $user
+                'user'=>$user,
+                'pharmacist' => $pharmacist
             ];
             $this->view('pharmacist/pharmacist_2factor', $data);
+        }
+
+        public function toggle2FA()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['toggle_state'])) {
+                    $toggleState = $_POST['toggle_state'];
+                    $userID = $_POST['userID'];
+            
+                    if ($toggleState == 'ON') {
+                        $this->pharmacistModel->manage2FA($toggleState, $userID);
+                    } else if ($toggleState == 'OFF') {
+                        $this->pharmacistModel->manage2FA($toggleState, $userID);
+                    }
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+            }
+
         }
 
         public function pharmacistMedication(){

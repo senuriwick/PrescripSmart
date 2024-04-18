@@ -241,6 +241,12 @@ p a:active{
     border-color: grey;
     flex-shrink: 0;
     margin-top: 15px;
+    cursor: pointer;
+}
+
+.inquiriesDiv button.blue {
+  background-color: blue; /* Change button color to blue */
+  border-color: blue;
 }
 
 .input-group img[alt="edit-icon"] {
