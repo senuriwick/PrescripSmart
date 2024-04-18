@@ -75,7 +75,7 @@
                     <div class="pagination">
                         <?php if (isset($data['totalPages'])): ?>
                             <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                                <a href="<?php echo URLROOT; ?>/healthSupervisor/history/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
                             <?php endfor; ?>
                         <?php endif; ?>
                     </div>

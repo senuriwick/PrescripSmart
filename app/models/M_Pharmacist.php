@@ -157,7 +157,7 @@
         public function resetPassword($newpassword)
         {
             $this->db->query('UPDATE users SET password = :newpassword 
-            WHERE user_id = 1');
+            WHERE user_id = 3');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
             $this->db->execute();
         }
