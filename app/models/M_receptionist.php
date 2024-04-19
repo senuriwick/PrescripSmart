@@ -27,7 +27,7 @@ class M_receptionist
         {
           return false;
         }
-      }
+    }
 
       public function findUserByEmail($email)
       {
@@ -95,17 +95,41 @@ class M_receptionist
     {
       $sql = "SELECT sessions.*, doctors.*
               FROM sessions
-              JOIN doctors ON sessions.doctor_id = doctors.doctor_id";
+              INNER JOIN doctors ON sessions.doctor_id = doctors.doctor_id";
                 
       $this->db->query($sql);
       $rows = $this->db->resultSet(); 
       return $rows;
     }
 
+    public function getSessionDetails($session_ID)
+    {
+        $this->db->query('SELECT * FROM sessions WHERE session_id = :session_id');
+        $this->db->bind(':session_id', $session_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getDoctorDetails($doctor_ID)
+    {
+        $this->db->query('SELECT * FROM doctors WHERE doctor_id = :doctor_id');
+        $this->db->bind(':doctor_id', $doctor_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function getNurses()
     {
         $this->db->query('SELECT * FROM nurses');
         $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function getPatientDetails($patient_ID)
+    {
+        $this->db->query('SELECT * FROM patients WHERE patient_id = :patient_ID');
+        $this->db->bind(':patient_ID', $patient_ID);
+        $result = $this->db->single();
         return $result;
     }
 
@@ -231,8 +255,17 @@ class M_receptionist
 
     }
 
-    public function getSessions()
-    {
-      
-    }
+    public function getuserbyID($id, $table)
+      {
+        $sql = "SELECT e.*, d.*
+                FROM employees e
+                JOIN $table d ON e.emp_id = d.emp_id
+                WHERE e.emp_id = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
 }

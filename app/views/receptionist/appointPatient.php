@@ -21,45 +21,62 @@
 
         <div class="searchDiv">
                 <div class="back">         
-                      <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >            
+                      <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >            
                       <h1>Add New Appointment</h1>
                 </div>
 
                 <div class="sessions">
-                      <h4><strong>Session #23233</strong></h4>
+                      <h4><strong>Session #<?php echo $data['selectedSession']->session_id ?></strong></h4>
                       <hr style="margin-top: -2vh; width: 25vh;">
                       <p>Date: Sunday, 17th Sept, 2023</p>
-                      <p>Time: 06.00 A.M </p>
-                      <p>Dr. Asanka Sayakkara</p>
+                      <p>Time: <?php echo $data['selectedSession']->start_time .'-'. $data['selectedSession']->end_time ?> </p>
+                      <p>Dr. <?php echo $data['selectedDoctor']->first_name ;?> <?php echo $data['selectedDoctor']->last_name ;?></p>
                       <p>Token No - 12</p>
-                      <p>Channeling Fee: Rs.4000</p>   
+                      <p>Channeling Fee: <?php echo $data['selectedDoctor']->visit_price ;?></p>   
                 </div>
                 <hr style="margin-bottom: 2vh; color:#445172BF;">
 
                 <div class="searchFiles">
-                      <input type="search" style="border-radius: 1vh;" placeholder="Enter patient name or ID here">
+                      <form>
+                      <input type="search" id="searchinput" style="border-radius: 1vh;" placeholder="Enter patient name or ID here">
                       <button type="search"><b>SEARCH</b></button>
+                      </form>
                 </div>
 
-                <tr class="row">                                                                           
-                    <div class="column">
-
-                            <td >
-                                <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                                <p class="name">Ms. Shenaya Perera</p>                                    
-                            </td>
-                                      
+        <table>
+            <tbody>
+                 <?php foreach($data['patients'] as $post): ?>
+                    <tr class="row">                                                                           
                             <td>
-                                <p style="margin-left: 10vh;">Age - 22</p>
+                                 <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png"  alt="profile-pic">
+                                <p class= "name">
+                                     Mr.
+                                     <?php echo $post->last_name;?>
+                                </p>
                             </td>
 
                             <td>
-                                <p>Patient ID #32562</p>                                  
+                                <a href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->patient_id ?>" style="margin-left: 10vh;" >Patient ID #<?php echo $post->patient_id;?></a>
                             </td>
-                                                
-                      </div>                                        
+
+                            <td>
+                                <button type="submit" class="add-app" onclick="selectPatient(<?php echo $post->patient_id; ?>)">
+                                <strong>ADD APPOINTMENT</strong>
+                                </button>                           
+                            </td>                                               
                     </tr>
-                    <button type="submit" class="add-app"><b><strong>ADD APPOINTMENT</strong></b></button>
-
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+                
       </div>
   </body>
+  <script>
+    function selectPatient(patient_id) 
+        {
+        var confirmationURL = "<?php echo URLROOT; ?>/receptionist/confirm_patient";
+        confirmationURL += "?patientID=" + encodeURIComponent(patient_id);
+
+        window.location.href = confirmationURL;
+         }
+  </script>

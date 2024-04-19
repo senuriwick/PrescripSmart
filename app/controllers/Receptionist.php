@@ -105,7 +105,7 @@
       }
 
 
-    }
+   }
 
     public function searchAppointment()
     {
@@ -129,14 +129,49 @@
       $this->view('receptionist/addApp', $data);
     }
 
-    public function appointPatient()
+    public function confirm_appointment()
     {
-      $posts = $this->userModel->getPatients();
-      $data = [
-        'patients' => $posts
+        $session_ID = $_GET['sessionID'] ?? null;
 
-      ];
-      $this->view('receptionist/appointPatient',$data);
+        if ($session_ID != null) {
+
+            $selectedSession = $this->userModel->getSessionDetails($session_ID);
+            $posts = $this->userModel->getPatients();
+            $selectedDoctor = $this->userModel->getDoctorDetails($selectedSession->doctor_id);
+
+            $data = [
+                'selectedSession' => $selectedSession,
+                'patients' => $posts,
+                'selectedDoctor'=> $selectedDoctor
+            ];
+            $this->view('receptionist/appointPatient', $data);
+            
+        } else {
+            echo "Session ID not provided";
+        }
+
+    }
+
+    public function confirm_patient()
+    {
+        $session_ID = $_GET['sessionID'] ?? null;
+
+        if ($session_ID != null) {
+
+            $selectedSession = $this->userModel->getSessionDetails($session_ID);
+            $posts = $this->userModel->getPatients();
+            $selectedDoctor = $this->userModel->getDoctorDetails($selectedSession->doctor_id);
+
+            $data = [
+                'selectedSession' => $selectedSession,
+                'patients' => $posts,
+                'selectedDoctor'=> $selectedDoctor
+            ];
+            $this->view('receptionist/confirmApp', $data);
+            
+        } else {
+            echo " ";
+        }
 
     }
 
@@ -631,8 +666,6 @@
         // Load view
         $this->view('receptionist/register_email', $data);
       }
-      
-
 
     }
 
@@ -643,5 +676,40 @@
       redirect('/receptionist/searchApp');
     }
 
+    public function showProfileDoc($id)
+    {
+      $table = 'doctors';
+      $doctor = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$doctor
+      ];
+      $this->view('receptionist/doctorProfile', $data);      
+
+    }
+
+    public function showProfileNurse($id)
+    {
+      $table= 'nurses';
+      $nurse = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$nurse
+      ];
+      $this->view('receptionist/nurseProfile', $data);
+       
+    }
+
+    public function showProfilePatient($id)
+    {
+      $table = 'patients';
+      $patient = $this->userModel->getuserbyID($id,$table);
+
+      $data= [
+        'doctor'=>$patient
+      ];
+      $this->view('receptionist/patientProfile', $data);
+ 
+    }
 
   }

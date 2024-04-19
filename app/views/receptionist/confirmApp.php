@@ -20,7 +20,7 @@
 
 <div class="app-div">
       <div class="header">
-            <img src="<?php echo URLROOT ?>/img/admin/Vector.svg">           
+            <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg">           
             <h2>Add New Appointment</h2>
       </div>
       <h4>Appointment #24232</h4>

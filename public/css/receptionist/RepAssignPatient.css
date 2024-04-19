@@ -151,6 +151,71 @@
   border: none;
   margin-top: 1.5vh;
 }
+.row
+{
+    background-color: #ffffff;
+    display: flex;
+    border-radius: 1vh;
+    margin-bottom: 2vh;
+    height:8vh;
+    width: 100%;
+}
+.row p
+{
+  color: #445172BF;
+  cursor: pointer; 
+  width: 20vh;
+  font-size: 2vh;
+}
+
+.person-circle
+{
+  padding-left: 1vh;
+  padding-right: 1vh;
+  padding-top: 1vh;
+  width: 5vh;
+  height: 5vh;
+}
+.row .name
+{
+  width: 20vh;
+  color: #000000;
+}
+
+td
+{
+  display: flex;
+}
+.trash-image
+{
+  width: 4vh;
+  height: 4vh;
+  padding-top: 1.5vh;
+  padding-right: 2vh;
+  margin-left: 2vh;
+}
+.profileButton
+{
+  margin-left:27vh;
+  Width:25vh;
+  margin-top: 1vh;
+  border-radius:1vh;
+  background-color: #0069FF;
+  color: white;
+  font-family: inter;
+  font-weight: 10vh;
+  font-size: 1.5vh;
+  width: 12vw;
+  height: 5vh;
+  border: none;
+  cursor: pointer;    
+}
+.details table
+{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1vh;
+}
   
   
   

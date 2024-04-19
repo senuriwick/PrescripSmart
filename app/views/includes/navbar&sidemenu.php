@@ -6,7 +6,7 @@
 
 
       <div class="manageDiv">
-        <button class="mainOptions" onclick="toggleSubmenu('submenus'),toggleCaret()">MANAGE <i id="caret" class="fa fa-angle-right dropdown" style="padding-left: 4vh;"></i></button>
+        <button class="mainOptions">Manage</button>
         <div class="submenus" id="submenus">
         <a href="<?php echo URLROOT ?>/admin/searchPatient" id="appointments">Patients</a>
         <a href="<?php echo URLROOT ?>/admin/searchDoctor" id="appointments">Doctors</a>
