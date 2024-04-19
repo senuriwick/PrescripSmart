@@ -91,6 +91,17 @@ class M_receptionist
         return $result;
     }
 
+    public function getdocSessions()
+    {
+      $sql = "SELECT sessions.*, doctors.*
+              FROM sessions
+              JOIN doctors ON sessions.doctor_id = doctors.doctor_id";
+                
+      $this->db->query($sql);
+      $rows = $this->db->resultSet(); 
+      return $rows;
+    }
+
     public function getNurses()
     {
         $this->db->query('SELECT * FROM nurses');
@@ -210,5 +221,18 @@ class M_receptionist
         {
           return false;
         }
-      }
+    }
+
+    public function getAppointments()
+    {
+      $this->db->query('SELECT * FROM appointments');
+      $results = $this->db->resultSet();
+      return $results;
+
+    }
+
+    public function getSessions()
+    {
+      
+    }
 }

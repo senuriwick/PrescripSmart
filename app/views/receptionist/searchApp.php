@@ -40,9 +40,9 @@
               </div>
 
               <div class="app-info">
-                  <h4>Patient:   Mr. Perera </h4>
-                  <h4>Doctor:   Dr. Peiris </h4>
-                  <h4>Payment Status:  <button>MARK AS PAID</button></h4>
+                  <h4>Patient:      Mr. Perera </h4>
+                  <h4>Doctor:       Dr. Peiris </h4>
+                  <h4>Payment Status:  <button style="margin-top: -1vh;"><b>MARK AS PAID</b></button></h4>
               </div>
 
           </div>
@@ -52,7 +52,7 @@
         <div class="addapp">
             <div class="newapp">
                 <img src="<?php echo URLROOT ?>/img/receptionist/Calendar3.png"">
-                <a>Schedule an appointment</a>
+                <a href="<?php echo URLROOT ?>/receptionist/addAppointment">Schedule an appointment</a>
             </div>
             <p>The modern way schedule and meet with convenience</p>
         </div>

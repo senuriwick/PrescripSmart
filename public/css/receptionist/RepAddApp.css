@@ -32,10 +32,9 @@
 .searchDiv h1 
 {
   font-weight: bold;
-  font-family: inter;
-  
+  font-family: inter; 
   color: rgba(68, 81, 114, 1);
-  font-size: 3.6vh;
+  font-size: 3.5vh;
 }
 
 .searchFiles
@@ -176,6 +175,7 @@ but :active
 {
   color: #0069FF;
   margin-left: 3vh;
+  font-size: 2.5vh;
   margin-block-start: auto;
 }
 .doc-pos
@@ -186,8 +186,8 @@ but :active
 
 .sessions
 {
-  width: 35vh;
-  height: 30vh;
+  width: 33vh;
+  height: 29vh;
   background-color: white;
   border-radius: 1vh;
 }
@@ -195,11 +195,11 @@ but :active
 {
   padding-left: 7vh;
   padding-top: 3vh;
-  font-size: 2.5vh;
+  font-size: 2.4vh;
 }
 .sessions p
 {
-  font-size: 2.4vh;
+  font-size: 2.3vh;
   padding-left: 2.5vh;
 }
 .sessions button
@@ -208,9 +208,9 @@ but :active
   color: white;
   border-radius: 1vh;
   border: none;
-  width: 20vh;
+  width: 25vh;
   height: 4vh;
-  margin-left: 6vh;
+  margin-left: 3.5vh;
 }
 
 

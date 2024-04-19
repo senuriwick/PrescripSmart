@@ -21,7 +21,7 @@
 
     <div class="details">
           <div class="back" style="display: flex;">         
-                <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >       
+                <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" onclick="goback()">       
                 <h1 >Doctor Registration</h1>
           </div>
 

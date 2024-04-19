@@ -16,29 +16,49 @@
 </head>
 <body>
 
-  <?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
+  <?php require APPROOT .'/views/includes/navbar&sidemenu2.php'; ?>
 
         <div class="searchDiv">
               <h1>Add New Appointment</h1>
               <div class="searchFiles">
-                    <input type="search" placeholder="Enter doctor name or ID here">
+                    <input type="search" id="searchinput" placeholder="Enter doctor name or ID here">
                     <button type="search"><b>SEARCH</b></button>
-                    <hr style="margin-bottom: 3vh;">        
+                    <hr style="margin-bottom: 3vh; margin-top:-0.5vh">        
              </div>
 
-             <div class="app-doc">
-                    <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="profile-pic">
-                    <h3>DR. ASANKA SAYAKKARA</h3>
-             </div>          
-             <h4 class="doc-pos">Consultant Physician</h4>
+             <div class="details">
+    <table>
+        <tbody>
+            <?php foreach($data['doctors'] as $post): ?>
+                <tr>
+                    <td>                       
+                        <?php foreach ($data['sessions'] as $session): ?>
+                            <?php if ($session->doctor_id == $post->doctor_id): ?>
+                                   <div class="app-doc">
+                                          <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="profile-pic">
+                                          <h3><?php echo ucwords($post->last_name); ?></h3>
+                                   </div>
+                                <h4 class="doc-pos"><?php // echo ucwords($session->position); ?></h4>
+                                <div class="sessions">
+                                    <h4><strong>Session #<?php echo $session->session_id; ?></strong></h4>
+                                    <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
+                                    <p>Date: <?php //echo $session->date; ?></p>
+                                    <p>Time: <?php // echo $session->time; ?></p>
+                                    <button><strong>BOOK NOW</strong></button>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
-             <div class="sessions">
-                    <h4><strong>Session #23233</strong></h4>
-                    <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
-                    <p>Date: Sunday, 17th Sept, 2023</p>
-                    <p>Time: 06.00 A.M </p>
-                    <button><strong>BOOK NOW</strong> </button>
-             </div>
+                      
+              
+
+            
 
 
 

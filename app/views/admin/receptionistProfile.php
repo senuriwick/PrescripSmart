@@ -40,18 +40,18 @@
             <div class="row1">                   
                     <div class="firstname">
                             <h2>First Name</h2>
-                            <input type="text" value="<?php echo $data['doctor']->first_name ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->first_name) ?>">
                      </div>
                      <div class="lastname">
                             <h2>Last Name</h2>
-                            <input type="text" value="<?php echo $data['doctor']->last_name ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->last_name) ?>">
                      </div> 
             </div>
 
             <div class="row2">
                     <div class="firstname">
                           <h2>Display Name</h2>
-                          <input type="text" value="<?php echo $data['doctor']->display_name ?>">
+                          <input type="text" value="<?php echo ucwords($data['doctor']->display_name) ?>">
                     </div>                    
                   
                     <div class="firstname">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="lastname">
                         <h2>Qualifications</h2>
-                        <input type="text" value="<?php echo $data['doctor']->Qualifications ?>">
+                        <input type="text" value="<?php echo ucwords($data['doctor']->Qualifications) ?>">
                 </div> 
             </div>
 

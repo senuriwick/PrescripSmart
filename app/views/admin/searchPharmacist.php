@@ -40,7 +40,7 @@
                                         </p> 
                                     </td>
                                     <td>
-                                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->pharmacist_id;?></p>
+                                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->emp_id;?></p>
                                     </td>
 
                                     <td>

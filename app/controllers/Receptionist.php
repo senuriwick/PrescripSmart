@@ -8,7 +8,7 @@
       // {
       //   redirect('receptionist/login');
       // }
-      $this->userModel = $this->model('M_receptionist');
+      $this->userModel = $this->model('M_Receptionist');
 
     }
 
@@ -114,8 +114,42 @@
         'appointments'=> $posts
       ];
 
+      $this->view('receptionist/searchApp', $data);
+    }
+
+    public function addAppointment()
+    {
+      $posts = $this->userModel->getDoctors();
+      $ses_info = $this->userModel->getdocSessions();
+      $data = [
+        'doctors'=> $posts,
+        'sessions'=> $ses_info
+      ];
+
       $this->view('receptionist/addApp', $data);
     }
+
+    public function appointPatient()
+    {
+      $posts = $this->userModel->getPatients();
+      $data = [
+        'patients' => $posts
+
+      ];
+      $this->view('receptionist/appointPatient',$data);
+
+    }
+
+    public function sessionManage()
+    {
+      $posts = $this->userModel->getSessions();
+      $data = [
+          'sessions' => $posts
+      ];
+
+      $this->view('receptionist/manageSessions',$data);
+    }
+
 
     public function searchPatient()
     {

@@ -307,7 +307,6 @@
 
       }
       
-
       $this->view('admin/searchDoctor', $data);
     }
 
@@ -490,9 +489,8 @@
          //define('FILTER_SANITIZE_STRING', 513);
 
         // Now, instead of using the constant, you can use the integer value directly
-                    $_POST = filter_input_array(INPUT_POST, 513);
+        $_POST = filter_input_array(INPUT_POST, 513);
         // Init data
-
 
         $data = [
           'first_name' => trim($_POST['first_name']),
@@ -504,7 +502,8 @@
           'lastname_err' => '',
           'email_err' => '',
           'phonenum_err' => '',
-          'password_err' => ''
+          'password_err' => '',
+          'user_reg'=> 0 
         ];
 
 
@@ -575,6 +574,7 @@
           if($this->userModel->regDoctor($data))
           {
             // flash('register_success', 'You are registered and can log in');
+            $data['user_reg'] = 1;
             redirect('/admin/searchDoctor');
            
           }
@@ -1512,6 +1512,7 @@
       $this->view('admin/doctorProfile', $data);      
 
     }
+
     public function showProfileHealthsup($id)
     {
       $table = 'healthsupervisors';
