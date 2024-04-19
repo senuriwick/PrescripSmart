@@ -174,11 +174,12 @@ td:hover {
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
 }
 
-.grid-container{
+.grid-container {
     display: flex;
     flex-direction: row;
-    margin-bottom: -20px;
+    /* align-items: baseline; Align items at the baseline */
 }
+
 
 .close{
     width: 25px;
@@ -204,14 +205,10 @@ td:hover {
 }
 
 .grid-container > p{
-    margin-right: 118px;  
+    margin-right: 140px;  
     font-weight: 500;
     font-size:1rem
 }
-
-.patient{
-    margin-left:1rem;
-    }
 
 #age{
     margin-left: -94px;
