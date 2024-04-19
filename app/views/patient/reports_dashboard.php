@@ -36,8 +36,8 @@
                   </p>
                 </div>
                 <p>Referred by Dr.
-                  <?php echo $report->fName; ?>
-                  <?php echo $report->lName; ?>
+                  <?php echo $report->first_Name; ?>
+                  <?php echo $report->last_Name; ?>
                 </p>
                 <p>Issued on:
                   <?php echo $report->date_of_report; ?>
@@ -76,8 +76,8 @@
                   </div>
                   <div>Age: <?php echo $report->age?> Yrs</div>
                   <div>Referred by: Dr.
-                    <?php echo $report->fName; ?>
-                    <?php echo $report->lName; ?>
+                    <?php echo $report->first_Name; ?>
+                    <?php echo $report->last_Name; ?>
                   </div>
                 </div>
                 <div class="test-box">

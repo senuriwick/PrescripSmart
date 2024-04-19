@@ -36,8 +36,8 @@
               </h1>
               <p>
                 Dr.
-                <?php echo $doctor->fName ?>
-                <?php echo $doctor->lName ?>
+                <?php echo $doctor->first_Name ?>
+                <?php echo $doctor->last_Name ?>
                 <br>
                 Room <?php echo $session->room_no ?>
               </p>

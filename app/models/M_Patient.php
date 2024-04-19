@@ -159,7 +159,7 @@ class M_Patient
     //APPOINTMENTS
     public function getAppointments($userID)
     {
-        $this->db->query('SELECT a. *, d.fName, d.lName FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE a.patient_ID = :patientID AND status = "active"');
+        $this->db->query('SELECT a. *, d.first_Name, d.last_Name FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE a.patient_ID = :patientID AND status = "active"');
         $this->db->bind(':patientID', $userID);
         $result = $this->db->resultSet();
         return $result;
@@ -175,7 +175,7 @@ class M_Patient
 
     public function viewAppointment($appointment_ID, $userID)
     {
-        $this->db->query('SELECT a. *, d.fName, d.lName FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE patient_ID = :user_id  AND appointment_ID = :appointment_id AND status="active"');
+        $this->db->query('SELECT a. *, d.first_Name, d.last_Name FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE patient_ID = :user_id  AND appointment_ID = :appointment_id AND status="active"');
         $this->db->bind(':appointment_id', $appointment_ID);
         $this->db->bind(':user_id', $userID);
         $result = $this->db->single();
@@ -208,7 +208,7 @@ class M_Patient
     public function docSession($doctor_ID)
     {
         $currentDate = date('Y-m-d');
-        $this->db->query('SELECT s. *, d.fName, d.lName, d.specialization FROM sessions s 
+        $this->db->query('SELECT s. *, d.first_Name, d.last_Name, d.specialization FROM sessions s 
         INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID
         WHERE s.doctor_ID = :doctor_id 
         AND s.sessionDate >= :current_date 
@@ -287,7 +287,7 @@ class M_Patient
     //PRESCRIPTIONS
     public function prescriptions($userID)
     {
-        $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
         INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
         WHERE p.patient_ID = :userID
         ORDER BY p.prescription_Date ASC');
@@ -299,7 +299,7 @@ class M_Patient
 
     public function viewPrescription($prescription_ID, $userID)
     {
-        $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
         INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
         WHERE p.patient_ID = :userID AND p.prescription_ID = :prescription_id');
         $this->db->bind(':prescription_id', $prescription_ID);
@@ -311,7 +311,7 @@ class M_Patient
     //REPORTS
     public function labreports($userID)
     {
-        $this->db->query('SELECT l.*, d.fName, d.lName, p.prescription_Date, pa.age 
+        $this->db->query('SELECT l.*, d.first_Name, d.last_Name, p.prescription_Date, pa.age 
         FROM lab_reports l
         INNER JOIN doctors d ON l.doctor_ID = d.doctor_ID 
         INNER JOIN prescriptions p ON l.prescription_ID = p.prescription_ID

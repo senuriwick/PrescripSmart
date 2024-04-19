@@ -93,8 +93,10 @@ class Patient extends Controller
             </div>
             <div class="content">
                 <p>Hi,</p>
-                <p>Please click the following link to activate your account:</p>
-                <p><a href="$activation_link" class="activation-link">$activation_link</a></p>
+                <p>Thank you for joining PrescripSmart! To activate your account and start exploring, please click the verification link below:</p>
+                <p><a href="$activation_link" class="activation-link">$activation_link</a></p><br>
+                <p>Best Regards,</p>
+                <p>Team PrescripSmart</p>
             </div>
         </body>
         </html>
@@ -141,15 +143,21 @@ class Patient extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = $_POST["email"];
+            $user = $this->patientModel->find_user_by_email($email);
             $activation_code = $this->generate_activation_code();
 
 
             // create the activation link
             $activation_link = "http://localhost/prescripsmart/patient/activate?email=$email&activation_code=$activation_code";
             $message = <<<MESSAGE
-            Hi,
-            Please click the following link to activate your account:
+            Hey $user->first_Name $user->last_Name,
+
+            Thank you for joining PrescripSmart! To activate your account and start exploring, please click the verification link below:
+
             $activation_link
+
+            Best Regards,
+            Team PrescripSmart
             MESSAGE;
 
             require '../PHPMailerAutoload.php';
@@ -806,10 +814,10 @@ class Patient extends Controller
     {
         $referrence = $_GET['referrence'] ?? null;
         $appointment = $this->patientModel->appointment($referrence);
-        $patient = $this->patientModel->patientInfo($appointment->patient_ID);
+        $patient = $this->patientModel->patientDetails($appointment->patient_ID);
         $doctor = $this->patientModel->searchDoctor_byID($appointment->doctor_ID);
         $merchant_id = 1226371;
-        $order_id = $appointment->appointment_ID;
+        $order_id = "$appointment->appointment_ID";
         $amount = "$appointment->amount";
         $currency = "LKR";
         $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
@@ -830,9 +838,9 @@ class Patient extends Controller
         ];
 
         if ($_SESSION['USER_DATA']->method_of_signin == "Email"){
-            $this->appointment_email($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->fName, $doctor->lName);
+            $this->appointment_email($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
         } else {
-            $this->appointment_message($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->fName, $doctor->lName);
+            $this->appointment_message($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
         }
         $this->view('patient/appointment_complete', $data);
     }
@@ -841,7 +849,7 @@ class Patient extends Controller
     {
         $message = <<<MESSAGE
             Dear Mr/Ms. $firstName $lastName;
-            Your appointment for Dr.$doctorF $doctorL has been confirmed. Please login to view more details.
+            Your appointment with Dr.$doctorF $doctorL has been confirmed. Please login to view more details.
             Thank You!
             MESSAGE;
 

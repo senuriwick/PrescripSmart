@@ -176,8 +176,9 @@ class Nurse extends Controller
             $regno = $_POST["regno"];
             $qual = $_POST["qual"];
             $spec = $_POST["spec"];
+            $dep = $_POST["dep"];
 
-            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec);
+            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
 
             header("Location: /prescripsmart/nurse/personal_information");
             exit();

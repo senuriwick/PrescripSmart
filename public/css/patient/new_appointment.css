@@ -285,6 +285,11 @@ td {
 td .patientName {
   color: rgba(0, 105, 255, 1);
   text-align: left;
+  width: 250px;
+}
+
+td .patientSpecialization {
+  color: black;
 }
 
 td i {
