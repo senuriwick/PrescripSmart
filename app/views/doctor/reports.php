@@ -61,14 +61,14 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name"><?php echo $data['patient']->patient_name;?></p>
+                            <p class="name"><?php echo $data['patient']->display_Name;?></p>
                             <p class="role">Patient</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_id;?>">Prescription</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewReports/<?php echo $data['patient']->patient_id;?>">Reports</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_ID;?>">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT;?>/doctor/viewReports/<?php echo $data['patient']->patient_ID;?>">Reports</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -83,10 +83,10 @@
                                         <td>
                                             <div class="presDiv">
                                                 <img src="<?php echo URLROOT;?>/public/img/doctor/description.png" alt="download-icon">
-                                                <p><?php echo $reportData->report_descript; ?></p>
+                                                <p><?php echo $reportData->name; ?></p>
                                             </div>
                                         </td>
-                                        <td><?php echo $reportData->doctor_name; ?></td>
+                                        <td><?php echo $reportData->fName; ?></td>
                                         <td></td>
                                     </tr>
                                     <?php endforeach; ?>    

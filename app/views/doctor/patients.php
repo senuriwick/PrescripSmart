@@ -88,22 +88,22 @@
                                         <td>
                                             <div class="desDiv">
                                                 <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="user-icon">
-                                                <p class="patientName"><?php echo $patientData->patient_name; ?></p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patientData->patient_id; ?>" onclick="show(this)"></i>                                            
+                                                <p class="patientName"><?php echo $patientData->display_Name; ?></p>
+                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patientData->patient_ID; ?>" onclick="show(this)"></i>                                            
                                             </div>
                                         </td>
                                         
-                                        <td>Patient ID - <?php echo $patientData->patient_id ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_id;?>"><button>Add Prescription</button></a></td>
+                                        <td>Patient ID - <?php echo $patientData->patient_ID ?></td>
+                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_ID;?>"><button>Add Prescription</button></a></td>
                                     </tr>
                                     
                                     <tr>
                                         <td colspan="3">
-                                            <div id="content<?php echo $patientData->patient_id; ?>" class="patient-data" style="display: none;">
-                                                <p>Age: <?php echo $patientData->Age; ?></p>
+                                            <div id="content<?php echo $patientData->patient_ID; ?>" class="patient-data" style="display: none;">
+                                                <p>Age: <?php echo $patientData->age; ?></p>
                                                 <p>Height: <?php echo $patientData->height; ?> cm</p>
                                                 <p>Weight: <?php echo $patientData->weight; ?> kg</p>
-                                                <a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_id;?>"><button>Add prescription</button></a>
+                                                <a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_ID;?>"><button>Add prescription</button></a>
                                             </div>
                                         </td>
                                     </tr>

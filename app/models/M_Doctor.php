@@ -7,34 +7,35 @@ class M_Doctor {
     }
 
     public function getPatientsDetails(){
-        $this->db->query('SELECT * FROM patientDetails');
+        $this->db->query('SELECT * FROM patients');
         $results = $this->db->resultSet();
         return $results;
     }
 
     public function getPrescriptionDetails($patientid){
-        $this->db->query('SELECT * FROM prescriptions WHERE patient_id=:id');
+        $this->db->query('SELECT * FROM patients_diagnosis WHERE patient_id=:id');
         $this->db->bind(':id',$patientid);
         $results = $this->db->resultSet();
         return $results;
     }
 
     public function getPrescriptionCount($patientid){
-        $this->db->query('SELECT * FROM prescriptions WHERE patient_id=:id');
+        $this->db->query('SELECT * FROM patients_diagnosis WHERE patient_id=:id');
         $this->db->bind(':id',$patientid);
         $this->db->resultSet();
         return $this->db->rowCount();
     }
 
     public function getReportDetails($patientid){
-        $this->db->query('SELECT * FROM reports WHERE patient_id=:id');
+        $this->db->query('SELECT lab_reports.* , doctors.*, tests.* FROM `lab_reports` LEFT JOIN `doctors` ON lab_reports.doctor_ID=doctors.doctor_ID LEFT JOIN `tests` ON lab_reports.test_ID=tests.test_ID WHERE lab_reports.patient_ID=:id');
         $this->db->bind(':id',$patientid);
         $results = $this->db->resultSet();
         return $results;
     }
 
-    public function getReportCount(){
-        $this->db->query('SELECT * FROM reports');
+    public function getReportCount($patientid){
+        $this->db->query('SELECT lab_reports.* , doctors.*, tests.* FROM `lab_reports` LEFT JOIN `doctors` ON lab_reports.doctor_ID=doctors.doctor_ID LEFT JOIN `tests` ON lab_reports.test_ID=tests.test_ID WHERE lab_reports.patient_ID=:id');
+        $this->db->bind(':id',$patientid);
         $this->db->resultSet();
         return $this->db->rowCount();
     }
@@ -46,7 +47,7 @@ class M_Doctor {
     }
 
     public function getonePatient($patientid){
-        $this->db->query('SELECT * FROM patientDetails WHERE patient_id=:id');
+        $this->db->query('SELECT * FROM patients WHERE patient_ID=:id');
         $this->db->bind(':id',$patientid);
         $results = $this->db->single();
         return $results;

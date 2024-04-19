@@ -60,14 +60,14 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT; ?>/public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name"><?php echo $data['patient']->patient_name; ?></p>
+                            <p class="name"><?php echo $data['patient']->display_Name; ?></p>
                             <p class="role">Patient</p>
                         </div>
                     </div>
 
                     <div class="menu">
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_id; ?>">Prescription</a></p>
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_id; ?> ">Reports</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_ID; ?>">Prescription</a></p>
+                        <p><a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_ID; ?> ">Reports</a></p>
                     </div>
 
                     <div class="patientSearch">
@@ -109,7 +109,7 @@
                             </div>
                             <div class="test">
                                 <div class="test-head">
-                                    <lable><b>Add Lab Sessions</b></lable>
+                                    <lable><b>Add Lab Sessions</b></lable> 
                                     <i id="toggleIcon" class="fa-solid fa-chevron-down" style="cursor: pointer;" onclick="toggleTestForm();"></i>
                                 </div>
                                 <div class="test-form" id="testForm" style="display:none;">
@@ -125,7 +125,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <input type="hidden" name="patientId" value="<?php echo $data['patient']->patient_id ?>" />
+                                <input type="hidden" name="patientId" value="<?php echo $data['patient']->patient_ID ?>" />
                             </div>
                             <div class="save-Btn">
                                 <button type="submit">Save And Continue</button>
