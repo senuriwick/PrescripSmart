@@ -79,14 +79,14 @@
                             <table>
                                 <tbody>
                                     <?php foreach($data['prescriptionsData'] as $prescriptionData): ?>
-                                    <tr class="clickable-row">
+                                    <tr class="clickable-row" diagnosisid="<?php echo $prescriptionData->diagnosis_id; ?>">
                                         <td>
                                             <div class="presDiv">
                                                 <img src="<?php echo URLROOT;?>/public/img/doctor/description.png" alt="download-icon">
-                                                <p><?php echo $prescriptionData->pres_descript;?></p>
+                                                <p><?php echo $prescriptionData->diagnosis;?></p>
                                             </div>
                                         </td>
-                                        <td><?php echo $prescriptionData->doctor_name; ?></td>
+                                        <td>DR. <?php echo $prescriptionData->fName; ?></td>
                                         <td><?php echo $prescriptionData->date; ?></td>
                                     </tr>
                                     <?php endforeach;?>
@@ -114,48 +114,26 @@
                 <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                 <i class="fa-solid fa-circle-arrow-up"></i>
             </div>
-            <div class="model-details">
-                <div>Prescription ID: #12345</div>
-                <div>Patient: S.Perera</div>
-                <div>Pres Date & Time: 12/09/23 10:00 AM</div>
-                <div>Age: 22 Yrs</div>
-                <div>Referred by: Dr.Asanka Rathnayake</div>
+            <div class="model-details" id="model-details">
+                <!-- load from the script -->
             </div>
             <div class="pres-box">
                 <label>Diagnosis</label>
-                <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </div>
+                <div id="diagnosis"></div>
             </div>
             <div class="pres-box">
                 <label>Medication</label>
-                <table>
+                <table id="medications">
                     <tbody>
-                        <tr>
-                            <td>Med name</td>
-                            <td>Dosage</td>
-                            <td>Remarks</td>
-                        </tr>
-                        <tr>
-                            <td>Med Name</td>
-                            <td>Dosage</td>
-                            <td>Remarks</td>
-                        </tr>
+                    <!-- load from the script -->
                     </tbody>
                 </table>
             </div>
             <div class="pres-box">
                 <label>Lab Tests</label>
-                <table>
+                <table id="tests">
                     <tbody>
-                        <tr>
-                            <td>Test name</td>
-                            <td>Remarks</td>
-                        </tr>
-                        <tr>
-                            <td>Test Name</td>
-                            <td>Remarks</td>
-                        </tr>
+                        <!-- load from the script -->
                     </tbody>
                 </table>
             </div>
@@ -169,9 +147,14 @@
             const modal = document.getElementById("myModal");
             const closeButton = modal.querySelector(".close");
 
+
             rows.forEach(row => {
                 row.addEventListener("click", () => {
                     modal.style.display = "block";
+                    var diagnosisid = row.getAttribute("diagnosisid");
+                    showDiagnosis(diagnosisid);
+                    showMedications(diagnosisid);
+                    showTests(diagnosisid);
                 });
             });
 
@@ -184,6 +167,95 @@
                     modal.style.display = "none";
                 }
             });
+
+            function showDiagnosis(diagnosisid){
+                fetch(`http://localhost/Prescripsmart/doctor/showDiagnosis?diagnosisid=${diagnosisid}`)
+                    .then(response =>{
+                        console.log(response);
+                        return response.json();
+                    })
+                    .then(data =>{
+                        showDiagnosisDetails(data);
+                        console.log(data);
+                    })
+                    .catch(error => console.error('Error:',error));
+            }
+
+            function showDiagnosisDetails(result){
+                const diagnosisContent = document.getElementById('diagnosis');
+                const modelhead = document.getElementById('model-details');
+
+                modelhead.innerHTML = `
+                <div>Prescription ID: ${result.diagnosis_id}</div>
+                <div>Patient: ${result.display_Name}</div>
+                <div>Pres Date & Time: ${result.date}</div>
+                <div>Age: ${result.age}</div>
+                <div>Referred by: Dr.${result.fName}</div>`;
+
+                diagnosisContent.innerHTML = '';
+                diagnosisContent.textContent = result.diagnosis;
+            }
+
+            function showMedications(diagnosisid){
+                fetch(`http://localhost/Prescripsmart/doctor/showMedications?diagnosisid=${diagnosisid}`)
+                    .then(response =>{
+                        console.log(response);
+                        return response.json();
+                    })
+                    .then(data =>{
+                        showMedicationsDetails(data);
+                        console.log(data);
+                    })
+                    .catch(error => console.error('Error',error));
+            }
+
+            function showMedicationsDetails(results){
+
+                var table = document.getElementById('medications');
+                table.innerHTML = '';
+                var rowCount = table.rows.length;
+
+
+                results.forEach(result =>{
+                    var newRow = table.insertRow(rowCount);
+                    var medicationCell = newRow.insertCell(0);
+                    var remarksCell = newRow.insertCell(1);
+                    medicationCell.textContent = result.medication;
+                    remarksCell.textContent = result.remark;
+                });
+            }
+
+            function showTests(diagnosisid){
+                fetch(`http://localhost/Prescripsmart/doctor/showTests?diagnosisid=${diagnosisid}`)
+                    .then(response =>{
+                        console.log(response);
+                        return response.json();
+                    })
+                    .then(data =>{
+                        console.log(data);
+                        showTestDetails(data);
+                    })
+                    .catch(error => console.error('Error',error));
+            }
+
+            function showTestDetails(results){
+                table = document.getElementById('tests');
+                table.innerHTML ='';
+                var rowCount = table.rows.length;
+
+                if(results){
+                    results.forEach(result =>{
+                    var newRow = table.insertRow(rowCount);
+                    var testCell = newRow.insertCell(0);
+                    var testremarkCell = newRow.insertCell(1);
+                    testCell.textContent = result.name;
+                    testremarkCell.textContent = result.remarks;
+                })
+                }else{
+                    var newRow = table.insertRow(rowCount);
+                    newRow.textContent = "No test recomended";
+                }
+            }
         });
     </script>
 </body>
