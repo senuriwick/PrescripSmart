@@ -45,12 +45,13 @@ p a:active{
     color: rgba(68, 81, 114, 1);
 }
 
-.diagnosis form input {
-    width: 95%;
+.diagnosis .searchBar {
+    width: 97%;
     padding: 2vh;
     border: none;
     border-radius: 10px;
     margin-top: 10px;
+    outline: none;
 }
 
 .medication {
@@ -71,12 +72,60 @@ p a:active{
 }
 
 .medication .medication-form .search-medication {
-    width: 95%;
+    width: 45%;
     background-color: rgba(239, 242, 251, 1);
     padding: 10px;
     border: none;
     border-radius: 10px;
     margin-top: 12px;
+    outline: none;
+}
+
+.medication .medication-form .remarks {
+    width: 25%;
+    background-color: rgba(239, 242, 251, 1);
+    color: gray;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 12px;
+    outline: none;
+}
+.medication .medication-form .btn-medication-add {
+    width: 10%;
+    background-color: green;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.medication .medication-form .medication-table td input{
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.medication .medication-form .search-results {
+    top: 100%;
+    left: 0;
+    width: 40%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    color: gray;
+}
+
+.medication .medication-form .search-results-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.medication .medication-form .search-results-item:last-child {
+    border-bottom: none;
 }
 
 .medication .medication-form .medication-suggetions {
@@ -95,16 +144,6 @@ p a:active{
     font-size: 2vh;
     font-weight: 500;
     color: gray;
-}
-
-.medication .medication-form .medication-suggetions button {
-    width: 100px;
-    background-color: green;
-    color: #ffffff;
-    border-radius: 10px;
-    border: none;
-    padding: 2px 0;
-    cursor: pointer;
 }
 
 .medication .medication-added table {
@@ -151,12 +190,30 @@ p a:active{
 }
 
 .test .test-form .search-test {
-    width: 95%;
+    width: 45%;
     background-color: rgba(239, 242, 251, 1);
     padding: 10px;
     border: none;
     border-radius: 10px;
     margin-top: 12px;
+    outline: none;
+}
+
+.test .test-form .test-results-item{
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.test .test-form .remarks{
+    width: 25%;
+    background-color: rgba(239, 242, 251, 1);
+    color: gray;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 12px;
+    outline: none;
 }
 
 .test .test-form .test-suggetions {
@@ -177,19 +234,20 @@ p a:active{
     color: gray;
 }
 
-.test .test-form .test-suggetions button {
-    width: 100px;
+.test .test-form .btn-test-add {
+    width: 10%;
     background-color: green;
     color: #ffffff;
-    border-radius: 10px;
+    padding: 10px;
     border: none;
-    padding: 2px 0;
+    border-radius: 10px;
+    margin-top: 12px;
     cursor: pointer;
 }
 
-.test .test-added table {
+/* .test .test-added table {
     width: 70%;
-}
+} */
 
 .test .test-added table td {
     background-color: rgba(239, 242, 251, 1);
@@ -201,14 +259,10 @@ p a:active{
     border-radius: 10px;
 }
 
-td form input{
-    background-color: rgba(239, 242, 251, 1);
-    /* padding: 10px 10px; */
-    /* font-size: 2vh; */
-    font-weight: 500;
-    /* color: gray; */
-    border: 2px solid #ffffff;
-    border-radius: 10px;
+.test .test-added table td input{
+    border: none;
+    background: transparent;
+    outline: none;
 }
 
 .test .test-added table .test-delete{

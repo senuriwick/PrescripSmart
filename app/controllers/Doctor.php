@@ -16,30 +16,68 @@ class Doctor extends Controller{
 
     public function addPrescription($id){
 
-        $searchTerm = isset($_GET['query']) ? $_GET['query'] : '';
-
             $patient = $this->dpModel->getonePatient($id);
-            $medications = $this->dpModel->searchMedications($searchTerm);
-            $this->dpModel->addPrescriptionTableforId($id);
             $data = [
                 'patient' => $patient,
-                'medications'=> $medications
+            
             ];
             $this->view('doctor/add_prescription',$data);
        
     }
 
-    public function searchMedication(){
-        if(isset($_GET['query'])){
-            $searchTerm = $_GET['query'];
-            $medications = $this->dpModel->searchMedications($searchTerm);
-            $data = [
-                'medications' =>$medications
-            ];
-            $this->view('doctor/add_prescription',$data);
+    public function addMedication()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $diagnosis = $_POST['diagnosis'];
+            $medications = $_POST['medications'];
+            $remarks = $_POST['remarks'];
+            $patient_id = $_POST['patientId'];
+            $this->dpModel->addDiagnosis($patient_id, $diagnosis);
+            // Process each medication and its corresponding remark
+            for ($i = 0; $i < count($medications); $i++) {
+                $medication = $medications[$i];
+                $remark = $remarks[$i];
+                $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
+
+                // Insert into database
+                // Your DB insertion code here
+                $this->dpModel->addMedication($patient_id, $diagnosisID->diagnosis_id, $medication, $remark);
+            }
+
+            if($_POST['tests']){
+                $tests = $_POST['tests'];
+                $testremarks = $_POST['testremarks']?? '';
+                for($i =0;$i<count($tests);$i++){
+                    $test = $tests[$i];
+                    $testremark = $testremarks[$i];
+                    $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
+                    $testid = $this->dpModel->getTestId($test);
+                    $this->dpModel->addTest($patient_id,$testid->test_ID,$diagnosisID->diagnosis_id, $testremark);
+                }
+            }
+            // After processing
+            // Redirect or inform the user of success/failure
+            redirect('/doctor/patients');
         }
+        
+    }
 
+    public function searchMedication(){
+        $query = $_GET['query'] ?? '';
+        if (!empty($query)) {
+            $results = $this->dpModel->searchMedications($query);
+            header('Content-Type: application/json');
+            echo json_encode($results);
+        }
+    }
 
+    public function searchTest(){
+        $query = $_GET['query']?? '';
+        if(!empty($query)){
+            $results = $this->dpModel->searchTests($query);
+            header('Content-Type: application/json');
+            echo json_encode($results);
+        }
     }
 
     public function viewPrescriptions($id){
