@@ -43,7 +43,7 @@ class M_Nurse
     {
         $groupedSessions = [];
     
-        $this->db->query('SELECT s.*, d.fName, d.lName, d.specialization, u.profile_photo
+        $this->db->query('SELECT s.*, d.first_Name, d.last_Name, d.specialization, u.profile_photo
                           FROM sessions s
                           INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID INNER JOIN users u ON u.user_ID = d.doctor_ID
                           WHERE s.sessionDate >= CURRENT_DATE AND s.nurse_ID = :nurseID');
@@ -55,7 +55,7 @@ class M_Nurse
             $doctorID = $session->doctor_ID;
             if (!isset($groupedSessions[$doctorID])) {
                 $groupedSessions[$doctorID] = [
-                    'doctorName' => $session->fName . ' ' . $session->lName,
+                    'doctorName' => $session->first_Name . ' ' . $session->last_Name,
                     'specialization' => $session->specialization,
                     'photo' => $session->profile_photo,
                     'sessions' => []
@@ -136,11 +136,11 @@ class M_Nurse
         return $result;
     }
 
-    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec)
+    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep)
     {
         $this->db->query('UPDATE nurses SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
             home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
-            specializations = :spec
+            specializations = :spec, department = :dep
             WHERE nurse_ID = :nurseID');
 
         $this->db->bind(':fname', $fname);
@@ -152,6 +152,7 @@ class M_Nurse
         $this->db->bind(':regno', $regno);
         $this->db->bind(':qual', $qual);
         $this->db->bind(':spec', $spec);
+        $this->db->bind(':dep', $dep);
         $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
 
         $this->db->execute();

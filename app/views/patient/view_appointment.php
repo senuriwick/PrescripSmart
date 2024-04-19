@@ -137,8 +137,8 @@
                 <div class="auto-group">
                   <p><span class="bold">Time:</span> <?php echo $time; ?> &nbsp;&nbsp;&nbsp;&nbsp;
                     <span class="bold">Date:</span> <?php echo $formatted_date; ?><br>
-                    <span class="bold">Doctor:</span> Dr.<?php echo $appointment->fName; ?>
-                    <?php echo $appointment->lName; ?><br>
+                    <span class="bold">Doctor:</span> Dr.<?php echo $appointment->first_Name; ?>
+                    <?php echo $appointment->last_Name; ?><br>
                     <span class="bold">Payment Status:</span>
                   <div class="payment-status-box <?php echo strtolower($appointment->payment_status); ?>">
                     <p class="paid">

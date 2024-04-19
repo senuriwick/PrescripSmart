@@ -34,8 +34,8 @@
                   <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
                 </div>
                 <p>Issued by: Dr.
-                  <?php echo $prescription->fName; ?>
-                  <?php echo $prescription->lName; ?>
+                  <?php echo $prescription->first_Name; ?>
+                  <?php echo $prescription->last_Name; ?>
                 </p>
                 <p>Issued on:
                   <?php echo $prescription->prescription_Date; ?>
@@ -68,8 +68,8 @@
                   </div>
                   <div>Age: 22 Yrs</div>
                   <div>Referred by: Dr.
-                    <?php echo $prescription->fName; ?>
-                    <?php echo $prescription->lName; ?>
+                    <?php echo $prescription->first_Name; ?>
+                    <?php echo $prescription->last_Name; ?>
                   </div>
                 </div>
                 <div class="pres-box">
