@@ -13,7 +13,7 @@ class M_Doctor {
     }
 
     public function getPrescriptionDetails($patientid){
-        $this->db->query('SELECT * FROM patients_diagnosis WHERE patient_id=:id');
+        $this->db->query('SELECT patients_diagnosis.*, doctors.* FROM `patients_diagnosis` LEFT JOIN `doctors` ON patients_diagnosis.doctor_id=doctors.doctor_ID WHERE patient_id=:id');
         $this->db->bind(':id',$patientid);
         $results = $this->db->resultSet();
         return $results;
@@ -24,6 +24,27 @@ class M_Doctor {
         $this->db->bind(':id',$patientid);
         $this->db->resultSet();
         return $this->db->rowCount();
+    }
+
+    public function getDiagnosis($diagnosisId){
+        $this->db->query('SELECT patients_diagnosis.*, doctors.* ,patients.* FROM `patients_diagnosis` LEFT JOIN `patients` ON patients.patient_ID=patients_diagnosis.patient_id LEFT JOIN `doctors` ON patients_diagnosis.doctor_id=doctors.doctor_ID WHERE diagnosis_ID=:id');
+        $this->db->bind(':id',$diagnosisId);
+        $results = $this->db->single();
+        return $results;
+    }
+
+    public function getMedications($diagnosisId){
+        $this->db->query('SELECT * FROM patients_medications WHERE diagnosis_id=:id');
+        $this->db->bind(':id',$diagnosisId);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getTests($diagnosisId){
+        $this->db->query('SELECT lab_reports.*, tests.* FROM `lab_reports` LEFT JOIN `tests` ON lab_reports.test_ID=tests.test_ID WHERE prescription_ID=:id');
+        $this->db->bind(':id',$diagnosisId);
+        $results = $this->db->resultSet();
+        return $results;
     }
 
     public function getReportDetails($patientid){

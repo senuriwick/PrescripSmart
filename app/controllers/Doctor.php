@@ -93,6 +93,33 @@ class Doctor extends Controller{
         $this->view('doctor/prescriptions',$data);
     }
 
+    public function showDiagnosis(){
+        $diagnosisid = $_GET['diagnosisid']?? '';
+        if(!empty($diagnosisid)){
+            $result = $this->dpModel->getDiagnosis($diagnosisid);
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        }
+    }
+
+    public function showMedications(){
+        $diagnosisid = $_GET['diagnosisid']?? '';
+        if(!empty($diagnosisid)){
+            $result = $this->dpModel->getMedications($diagnosisid);
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        }
+    }
+
+    public function showTests(){
+        $diagnosisid = $_GET['diagnosisid']?? '';
+        if(!empty($diagnosisid)){
+            $result = $this->dpModel->getTests($diagnosisid);
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        }
+    }
+
     public function viewReports($id){
         $reportDetails = $this->dpModel->getReportDetails($id);
         $reportCount = $this->dpModel->getReportCount($id);
