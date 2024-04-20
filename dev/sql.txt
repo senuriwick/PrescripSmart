@@ -115,31 +115,23 @@ VALUES
     (2, 'Cholesterol Level', 'Monitor lipid profile'),
     (3, 'Allergy Test', 'Identify allergens')
    
+
+
+CREATE TABLE `medication` (
+  `id` int(11) NOT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `Generic Name` varchar(40) DEFAULT NULL,
+  `dosage` varchar(8) DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `batch_number` varchar(10) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `quantity` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
     
-
--- Corrected medication table
-CREATE TABLE medication (
-    id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    batch_number VARCHAR(50) NOT NULL,
-    dosage VARCHAR(50) NOT NULL,
-    expiry_date DATE NOT NULL,
-    quantity INT NOT NULL,
-    status VARCHAR(20) NOT NULL
-);
-
--- Add sample medication data
-INSERT INTO medication (id, name, batch_number, dosage, expiry_date, quantity, status) VALUES
-(1, 'Aspirin', 'ABC123', '100mg', '2024-06-30', 50, 'Active'),
-(2, 'Ibuprofen', 'XYZ456', '200mg', '2023-12-15', 75, 'Active'),
-(3, 'Amoxicillin', 'PQR789', '500mg', '2024-08-20', 30, 'Active'),
-(4, 'Lisinopril', 'LMN101', '10mg', '2024-04-25', 40, 'Inactive'),
-(5, 'Simvastatin', 'JKL202', '20mg', '2024-09-10', 25, 'Active'),
-(6, 'Metformin', 'XYZ987', '850mg', '2024-11-05', 60, 'Active'),
-(7, 'Levothyroxine', 'ABC456', '50mcg', '2023-10-22', 20, 'Inactive'),
-(8, 'Omeprazole', 'DEF789', '40mg', '2024-07-18', 35, 'Active'),
-(9, 'Losartan', 'PQR202', '50mg', '2023-09-30', 15, 'Active'),
-(10, 'Atorvastatin', 'LMN303', '40mg', '2023-11-15', 10, 'Active');
+SET @prefix = 'B12';
+SET @counter = 0;
+UPDATE `medication`
+SET `batch_number` = CONCAT(@prefix, LPAD(@counter := @counter + 1, 4, '0'));
 
 -- Corrected inquiries table
 CREATE TABLE inquiries (

@@ -92,13 +92,31 @@
 
                     <!-- Pagination Links -->
                     <div class="pagination">
-                        <?php if (isset($data['totalPages'])): ?>
-                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php endfor; ?>
-                        <?php endif; ?>
-                    </div>
+                            <?php 
+                            $totalPages = $data['totalPages'];
+                            $currentPage = $data['currentPage'];
+                            
+                            // Define the number of pagination links to display before showing the arrow
+                            $paginationThreshold = 10;
 
+                            // Determine the start and end points for pagination links
+                            $start = max($currentPage - floor($paginationThreshold / 2), 1);
+                            $end = min($start + $paginationThreshold - 1, $totalPages);
+                            $start = max($end - $paginationThreshold + 1, 1);
+
+                            // Display the pagination links
+                            for ($i = $start; $i <= $end; $i++):
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $currentPage) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php 
+                            endfor;
+
+                            // Display the arrow to the right if there are more pages after the displayed links
+                            if ($end < $totalPages): 
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo min($currentPage + 1, $totalPages); ?>">➡️</a>
+                            <?php endif; ?>
+                        </div>
         </div>
 
                     
