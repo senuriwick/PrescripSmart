@@ -28,9 +28,9 @@
 
                 $sessionDate = new DateTime($appInfo->sessionDate);
                 $formattedDate = $sessionDate->format('l, jS F, Y');
-                $sessionTime = new DateTime($appInfo->start_time);
+                $sessionTime = new DateTime($appInfo->current_appointment_time);
                 $formattedTime = $sessionTime->format('h:i A');
-                $dateTimeString = $formattedDate . ' At ' . $formattedTime;
+                $dateTimeString = $formattedDate . ' at ' . $formattedTime;
                 ?>
 
 
@@ -45,12 +45,10 @@
                 </div>
 
                 <div class="searchDiv">
-                    <!-- <h1 style="font-size: 18px; color:  #0069FF;">Monday, 18th September, 2023 At 19.00 P.M </h1> -->
                     <h1 style="font-size: 18px; color:  #0069FF;">
                     <?php echo $dateTimeString; ?>
                     </h1>
-                    <p style="line-height: 0.4;">Session #
-                        <?php echo $appInfo->session_ID ?>
+                    <p style="line-height: 0.4;">Session #<?php echo $appInfo->session_ID ?>
                     </p>
                     <div class="line1"></div>
                     <div class="smallrect">
@@ -117,13 +115,14 @@
 
                     <div style="display:none">
                         <form
-                            action="<?php echo URLROOT; ?>/Patient/appointment_reservation/<?= $appInfo->doctor_ID ?>/<?= $appInfo->session_ID ?>/<?= $appInfo->start_time ?>/<?= $appInfo->sessionDate ?>/<?= $appInfo->sessionCharge ?>"
+                            action="<?php echo URLROOT; ?>/Patient/appointment_reservation"
                             method="POST" id="addapp">
                             <input type="hidden" name="doctor_ID" value="<?php echo $appInfo->doctor_ID ?>">
                             <input type="hidden" name="session_ID" value="<?php echo $appInfo->session_ID ?>">
-                            <input type="hidden" name="time" value="<?php echo $appInfo->start_time ?>">
+                            <input type="hidden" name="time" value="<?php echo $appInfo->current_appointment_time ?>">
                             <input type="hidden" name="date" value="<?php echo $appInfo->sessionDate ?>">
                             <input type="hidden" name="charge" value="<?php echo $appInfo->sessionCharge ?>">
+                            <input type="hidden" name="number" value="<?php echo $appInfo->current_appointment?>">
                             <input type="submit" style="display:none" id="insertapp">
                         </form>
                     </div>
@@ -145,7 +144,6 @@
                             let addapp = document.getElementById("addapp");
                             let insertapp = document.getElementById("insertapp");
 
-                            // Trigger the form submission
                             insertapp.click();
 
                             document.getElementById("customConfirmation").style.display = "none";

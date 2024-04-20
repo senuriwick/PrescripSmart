@@ -63,18 +63,13 @@
                                     </p>
                                     <div class="auto-group-ppa1-jrq">
                                         <p class="paid-fkV" style="color: red; font-weight: 800;">PAID</p>
-                                        <!-- <img class="checksquare-h4u" src="CheckSquare.png"/> -->
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
-    </div>
+</div>

@@ -22,7 +22,6 @@
                 <div id="myModal" class="modal" style="display: block;">
 
                     <div class="modal-content">
-                        <!-- <span class="close">&times;</span> -->
                         <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                         <div class="model-head">
                         <img src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (4).png" alt="qr-img" />

@@ -63,7 +63,6 @@
                 <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
                 <div>P</div>
-                  <!-- <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                   <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>

@@ -64,7 +64,6 @@
                                     <label for="fname">First Name</label>
                                     <input type="text" id="fname" name="fname" class="input"
                                         style="display: inline-block;" value="<?php echo $patient->first_Name; ?>">
-                                    <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\pencilsquare-6QZ.png" alt="edit-icon"> -->
                                 </div>
                                 <div class="input-group">
                                     <label for="lname">Last Name</label>

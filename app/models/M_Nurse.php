@@ -42,15 +42,15 @@ class M_Nurse
     public function sessions()
     {
         $groupedSessions = [];
-    
+
         $this->db->query('SELECT s.*, d.first_Name, d.last_Name, d.specialization, u.profile_photo
                           FROM sessions s
                           INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID INNER JOIN users u ON u.user_ID = d.doctor_ID
                           WHERE s.sessionDate >= CURRENT_DATE AND s.nurse_ID = :nurseID');
         $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
-    
+
         $results = $this->db->resultSet();
-    
+
         foreach ($results as $session) {
             $doctorID = $session->doctor_ID;
             if (!isset($groupedSessions[$doctorID])) {
@@ -63,17 +63,16 @@ class M_Nurse
             }
             $groupedSessions[$doctorID]['sessions'][] = $session;
         }
-    
+
         return $groupedSessions;
     }
-    
+
     public function appointments($sessionID)
     {
         $this->db->query('SELECT a.*, p.display_Name, p.gender FROM appointments a
         INNER JOIN patients p ON a.patient_ID = p.patient_ID
         WHERE a.session_ID = :sessionID');
         $this->db->bind(':sessionID', $sessionID);
-        //$this->db->bind(':nurseID', 1254638);
         $result = $this->db->resultSet();
         return $result;
     }
@@ -181,10 +180,10 @@ class M_Nurse
             $this->db->bind(':profile_picture', $filename);
             $this->db->bind(':user_id', $userID);
             $this->db->execute();
-            return true; 
+            return true;
         } catch (PDOException $e) {
             error_log("Database error: " . $e->getMessage());
-            return false; 
+            return false;
         }
     }
 }
