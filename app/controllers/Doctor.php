@@ -41,7 +41,7 @@ class Doctor extends Controller{
 
                 // Insert into database
                 // Your DB insertion code here
-                $this->dpModel->addMedication($patient_id, $diagnosisID->diagnosis_id, $medication, $remark);
+                $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID, $medication, $remark);
             }
 
             if($_POST['tests']){
@@ -52,7 +52,7 @@ class Doctor extends Controller{
                     $testremark = $testremarks[$i];
                     $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
                     $testid = $this->dpModel->getTestId($test);
-                    $this->dpModel->addTest($patient_id,$testid->test_ID,$diagnosisID->diagnosis_id, $testremark);
+                    $this->dpModel->addTest($patient_id,$testid->test_ID,$diagnosisID->prescription_ID, $testremark);
                 }
             }
             // After processing
@@ -94,27 +94,27 @@ class Doctor extends Controller{
     }
 
     public function showDiagnosis(){
-        $diagnosisid = $_GET['diagnosisid']?? '';
-        if(!empty($diagnosisid)){
-            $result = $this->dpModel->getDiagnosis($diagnosisid);
+        $prescriptionid = $_GET['prescriptionid']?? '';
+        if(!empty($prescriptionid)){
+            $result = $this->dpModel->getDiagnosis($prescriptionid);
             header('Content-Type: application/json');
             echo json_encode($result);
         }
     }
 
     public function showMedications(){
-        $diagnosisid = $_GET['diagnosisid']?? '';
-        if(!empty($diagnosisid)){
-            $result = $this->dpModel->getMedications($diagnosisid);
+        $prescriptionid = $_GET['prescriptionid']?? '';
+        if(!empty($prescriptionid)){
+            $result = $this->dpModel->getMedications($prescriptionid);
             header('Content-Type: application/json');
             echo json_encode($result);
         }
     }
 
     public function showTests(){
-        $diagnosisid = $_GET['diagnosisid']?? '';
-        if(!empty($diagnosisid)){
-            $result = $this->dpModel->getTests($diagnosisid);
+        $prescriptionid = $_GET['prescriptionid']?? '';
+        if(!empty($prescriptionid)){
+            $result = $this->dpModel->getTests($prescriptionid);
             header('Content-Type: application/json');
             echo json_encode($result);
         }

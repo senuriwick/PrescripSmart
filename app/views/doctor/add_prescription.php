@@ -162,10 +162,10 @@
                 results.forEach(result => {
                     const item = document.createElement('div');
                     item.classList.add('search-results-item');
-                    item.textContent = result.Material_Description;
+                    item.textContent = result.material_Description;
 
                     item.addEventListener('click', () => {
-                        document.getElementById('searchtext').value = result.Material_Description;
+                        document.getElementById('searchtext').value = result.material_Description;
                         hideSearchResults();
                     });
 
