@@ -92,9 +92,7 @@
 
                 cancelButton.addEventListener('click', function () {
                   policyPopup.style.display = 'block';
-                  // confirmationPopup.style.display = 'block';
                 });
-
 
                 confirmNoButton.addEventListener('click', function () {
                   confirmationPopup.style.display = 'none';
@@ -102,7 +100,6 @@
 
                 confirmYesButton.addEventListener('click', function () {
                   confirmationPopup.style.display = 'none';
-                  // successPopup.style.display = 'block';
                 });
 
                 document.getElementById("closePolicy").addEventListener("click", function () {
@@ -115,7 +112,6 @@
                   let addapp = document.getElementById("addapp");
                   let insertapp = document.getElementById("insertapp");
 
-                  // Trigger the form submission
                   insertapp.click();
                 })
               });
@@ -128,7 +124,7 @@
                 <div class="number">
                   <span class="number-sub-0">
                     NO.<br>
-                    <?php echo $appointment->appointment_ID; ?>
+                    <?php echo $appointment->appointment_No; ?>
                   </span>
                 </div>
               </div>

@@ -6,7 +6,7 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Sign Up page 3</title>
+  <title>Sign Up</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/patient/signUp-3.css" />
@@ -51,14 +51,12 @@
               <div class="group3">
                 <p class="weight">
                   <span class="weight-sub-0">weight </span>
-                  <!-- <span class="weight-sub-1">*</span> -->
                 </p>
                 <input type="number" id="weight" name="weight" placeholder="e.g: 45 kg" class="weight1">
               </div>
               <div class="group4">
                 <p class="height">
                   <span class="height-sub-0">height </span>
-                  <!-- <span class="height-sub-1">*</span> -->
                 </p>
                 <input type="number" id="height" name="height" placeholder="e.g: 155cm" class="height1">
               </div>

@@ -236,25 +236,26 @@ class M_Patient
         return $result;
     }
 
-    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date, $charge)
+    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number)
     {
         try {
             $this->db->beginTransaction();
 
-            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status) 
-                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active", :charge, "UNPAID")');
+            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status, appointment_No) 
+                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active", :charge, "UNPAID", :current_appointment)');
             $this->db->bind(':patient_id', $patient_ID);
             $this->db->bind(':session_id', $session_ID);
             $this->db->bind(':doctor_id', $doctor_ID);
             $this->db->bind(':sessionTime', $time);
             $this->db->bind(':session_date', $date);
             $this->db->bind(':charge', $charge);
+            $this->db->bind(':current_appointment', $number);
             $this->db->execute();
 
             // Get the last inserted ID
             $reference = $this->db->lastInsertId();
 
-            $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1 
+            $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1, current_appointment_time = ADDTIME(current_appointment_time, "00:10:00")
                           WHERE session_ID = :session_id');
             $this->db->bind(':session_id', $session_ID);
             $this->db->execute();
@@ -263,7 +264,6 @@ class M_Patient
 
             return $reference;
         } catch (Exception $e) {
-            // An error occurred, rollback the transaction
             $this->db->rollBack();
             echo "Error: " . $e->getMessage();
             return false;
@@ -380,7 +380,6 @@ class M_Patient
         WHERE user_ID = :userID');
         $this->db->bind(':username', $username);
         $this->db->bind(':userID', $userID);
-        // $this->db->bind(':password', $newpassword);
 
         $this->db->execute();
     }
@@ -440,11 +439,11 @@ class M_Patient
             $this->db->bind(':profile_picture', $filename);
             $this->db->bind(':user_id', $userID);
             $this->db->execute();
-            return true; 
+            return true;
         } catch (PDOException $e) {
             error_log("Database error: " . $e->getMessage());
-            return false; 
+            return false;
         }
     }
-    
+
 }

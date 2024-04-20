@@ -12,7 +12,7 @@ class Patient extends Controller
 
     public function index()
     {
-        // $this->view('doctor/patients');
+
     }
 
     public function generate_activation_code()
@@ -34,7 +34,7 @@ class Patient extends Controller
     public function send_otp($phone_number, $otp)
     {
         require '../vendor/autoload.php';
-        
+
         $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
         $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
         $twilio_number = "+12674227302";
@@ -63,7 +63,6 @@ class Patient extends Controller
 
     public function send_activation_email($email, $activation_code)
     {
-        // create the activation link
         $activation_link = "http://localhost/prescripsmart/patient/activate?email=$email&activation_code=$activation_code";
         $message = <<<MESSAGE
         <html>
@@ -146,8 +145,6 @@ class Patient extends Controller
             $user = $this->patientModel->find_user_by_email($email);
             $activation_code = $this->generate_activation_code();
 
-
-            // create the activation link
             $activation_link = "http://localhost/prescripsmart/patient/activate?email=$email&activation_code=$activation_code";
             $message = <<<MESSAGE
             Hey $user->first_Name $user->last_Name,
@@ -236,7 +233,6 @@ class Patient extends Controller
                 }
             }
         } catch (Exception $e) {
-            // Log or handle the exception
             error_log($e->getMessage());
             echo json_encode(["error" => "An error occurred. Please try again later."]);
         }
@@ -330,7 +326,6 @@ class Patient extends Controller
             $data = [
                 'user' => $user
             ];
-            //$this->send_activation_email($user->email_phone, $user->activation_code);
             $this->view('patient/emailverification', $data);
         } else {
             header("Location: /prescripsmart/general/error_page");
@@ -362,14 +357,12 @@ class Patient extends Controller
                     echo json_encode(["error" => "User already exists!"]);
                 } else {
                     $otp = $this->generate_OTP(6);
-                    //$expiry = 1 * 24 * 60 * 60;
                     $reference = $this->patientModel->registerPhone($first_name, $last_name, $phone_number, $password, $otp);
                     $this->send_otp($phone_number, $otp);
                     echo json_encode(["success" => true, "reference" => $reference]);
                 }
             }
         } catch (Exception $e) {
-            // Log or handle the exception
             error_log($e->getMessage());
             echo json_encode(["error" => "An error occurred. Please try again later."]);
         }
@@ -385,7 +378,6 @@ class Patient extends Controller
             $data = [
                 'user' => $user
             ];
-            //$this->send_activation_email($user->email_phone, $user->activation_code);
             $this->view('patient/phoneverification', $data);
         } else {
             header("Location: /prescripsmart/general/error_page");
@@ -438,8 +430,6 @@ class Patient extends Controller
                 $email = $_POST['email'];
                 $id = $_POST['id'];
 
-                //$user = $this->patientModel->find_user_by_id($id);
-                //$this->patientModel->patientRegistration($user->user_ID, $user->first_Name, $user->last_Name, $user->email_phone);
                 $this->patientModel->patientRegistration_02Phone($NIC, $DOB, $age, $address, $email, $id);
                 header("Location: /prescripsmart/patient/registrationContd_02?id=$id");
                 exit;
@@ -456,8 +446,7 @@ class Patient extends Controller
 
     public function logout()
     {
-        if(!empty($_SESSION['USER_DATA'])) 
-        {
+        if (!empty($_SESSION['USER_DATA'])) {
             unset($_SESSION['USER_DATA']);
         }
     }
@@ -474,7 +463,7 @@ class Patient extends Controller
 
             $result = $this->patientModel->find_user_by_email($email_phone);
 
-            if(!empty($result)){
+            if (!empty($result)) {
                 echo json_encode(["success" => true]);
             } else {
                 echo json_encode(["error" => "Sorry! User not found."]);
@@ -494,9 +483,8 @@ class Patient extends Controller
 
             $result = $this->patientModel->find_user_by_email($email_phone);
 
-            if(!empty($result)){
-                if($result->method_of_signin == "Email") 
-                {
+            if (!empty($result)) {
+                if ($result->method_of_signin == "Email") {
                     $this->send_recovery_email($result->email_phone);
                     echo json_encode(["success" => true]);
                 } else {
@@ -511,7 +499,6 @@ class Patient extends Controller
 
     public function send_recovery_email($email)
     {
-        // create the recovery link
         $recovery_link = "http://localhost/prescripsmart/patient/resetPassword?user=$email";
         $message = <<<MESSAGE
             Hi,
@@ -521,18 +508,18 @@ class Patient extends Controller
 
         require '../PHPMailerAutoload.php';
 
-        $mail = new PHPMailer;                   
-        $mail->isSMTP();                                      
-        $mail->Host = 'smtp.gmail.com';                       
-        $mail->SMTPAuth = true;                               
-        $mail->Username = 'prescripsmart@gmail.com';      
-        $mail->Password = 'fgpacxjdxjogzlwk';                 
-        $mail->SMTPSecure = 'tls';                            
-        $mail->Port = 587;                                 
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'prescripsmart@gmail.com';
+        $mail->Password = 'fgpacxjdxjogzlwk';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
 
         $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
-        $mail->addAddress($email);     
-        $mail->isHTML(true);                                     
+        $mail->addAddress($email);
+        $mail->isHTML(true);
 
         $mail->Subject = 'Reset Password of Prescripsmart Account';
         $mail->Body = $message;
@@ -548,7 +535,7 @@ class Patient extends Controller
     public function send_recovery_message($phone_number)
     {
         require '../vendor/autoload.php';
-        
+
         $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
         $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
         $twilio_number = "+12674227302";
@@ -582,14 +569,13 @@ class Patient extends Controller
             $newPassword = $_POST['new_password'];
             $confirmPassword = $_POST['confirm_password'];
 
-            if($newPassword == $confirmPassword)
-            {
+            if ($newPassword == $confirmPassword) {
                 $this->patientModel->reset_password($newPassword, $user);
                 echo json_encode(["success" => true]);
             } else {
                 echo json_encode(["error" => "An error occured. Please try again later."]);
             }
-        }  
+        }
     }
 
     public function reset_successful()
@@ -608,8 +594,8 @@ class Patient extends Controller
             if ($result) {
                 $_SESSION['USER_DATA'] = $result;
                 if (password_verify($password, $result->password)) {
-                    if($result->two_factor_auth == "on"){
-                        if($result->method_of_signin == "Email"){
+                    if ($result->two_factor_auth == "on") {
+                        if ($result->method_of_signin == "Email") {
                             $security_code = $this->generate_OTP(6);
                             $this->patientModel->updateCode($security_code, $result->user_ID);
                             $this->send_security_email($result->email_phone, $security_code);
@@ -622,8 +608,6 @@ class Patient extends Controller
                     } else {
                         echo json_encode(["success" => true, "two_factor_required" => false]);
                     }
-                    //session_start();
-                    //$_SESSION['user_ID'] = $result->user_ID;
                 } else {
                     echo json_encode(["error" => "Invalid password"]);
                 }
@@ -644,16 +628,16 @@ class Patient extends Controller
         require '../PHPMailerAutoload.php';
 
         $mail = new PHPMailer;
-        $mail->isSMTP();                                      
-        $mail->Host = 'smtp.gmail.com';                       
-        $mail->SMTPAuth = true;                               
-        $mail->Username = 'prescripsmart@gmail.com';       
-        $mail->Password = 'fgpacxjdxjogzlwk';                 
-        $mail->SMTPSecure = 'tls';                            
-        $mail->Port = 587;                                    
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'prescripsmart@gmail.com';
+        $mail->Password = 'fgpacxjdxjogzlwk';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
 
         $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
-        $mail->addAddress($email);     
+        $mail->addAddress($email);
         $mail->isHTML(true);
 
         $mail->Subject = 'Security Login';
@@ -714,19 +698,19 @@ class Patient extends Controller
             $email = $_POST["email"];
             $name = $_POST["name"];
             $message = $_POST["message"];
-            
+
             $inquirySaved = $this->patientModel->inquiries($_SESSION['USER_DATA']->user_ID, $email, $name, $message);
-    
+
             if ($inquirySaved) {
                 echo json_encode(array("success" => true));
             } else {
                 echo json_encode(array("success" => false, "message" => "Failed to save the inquiry."));
             }
-            
+
             exit();
         }
     }
-    
+
     //APPOINTMENTS
     public function appointments_dashboard()
     {
@@ -750,9 +734,6 @@ class Patient extends Controller
         } else {
             header("Location: /prescripsmart/general/error_page");
         }
-
-        // $this->patientModel->deleteAppointment();
-        // header("Location: /prescripsmart/patient/appointment_cancelled");
     }
 
     public function delete_appointment(int $appointment_ID)
@@ -770,9 +751,15 @@ class Patient extends Controller
         $this->view('patient/new_appointment', $data);
     }
 
-    public function appointment_reservation(int $doctor_ID, int $session_ID, $time, $date, int $charge)
+    public function appointment_reservation()
     {
-        $referrence = $this->patientModel->confirmAppointment($_SESSION['USER_DATA']->user_ID, $doctor_ID, $session_ID, $time, $date, $charge);
+        $doctor_ID = $_POST['doctor_ID'];
+        $session_ID = $_POST['session_ID'];
+        $time = $_POST['time'];
+        $date = $_POST['date'];
+        $charge = $_POST['charge'];
+        $number = $_POST['number'];
+        $referrence = $this->patientModel->confirmAppointment($_SESSION['USER_DATA']->user_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number);
         header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
 
@@ -804,7 +791,6 @@ class Patient extends Controller
                 'selectedSession' => $selectedSession
             ];
             $this->view('patient/appointment_confirmation', $data);
-            // $referrence = $this->patientModel->confirmAppointment();
         } else {
             header("Location: /prescripsmart/general/error_page");
         }
@@ -824,12 +810,12 @@ class Patient extends Controller
 
         $hash = strtoupper(
             md5(
-                $merchant_id . 
-                $order_id . 
-                number_format($amount, 2, '.', '') . 
-                $currency .  
-                strtoupper(md5($merchant_secret)) 
-            ) 
+                $merchant_id .
+                $order_id .
+                number_format($amount, 2, '.', '') .
+                $currency .
+                strtoupper(md5($merchant_secret))
+            )
         );
         $data = [
             'appointment' => $appointment,
@@ -837,7 +823,7 @@ class Patient extends Controller
             'patient' => $patient
         ];
 
-        if ($_SESSION['USER_DATA']->method_of_signin == "Email"){
+        if ($_SESSION['USER_DATA']->method_of_signin == "Email") {
             $this->appointment_email($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
         } else {
             $this->appointment_message($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
@@ -856,16 +842,16 @@ class Patient extends Controller
         require '../PHPMailerAutoload.php';
 
         $mail = new PHPMailer;
-        $mail->isSMTP();                                      
-        $mail->Host = 'smtp.gmail.com';                       
-        $mail->SMTPAuth = true;                               
-        $mail->Username = 'prescripsmart@gmail.com';       
-        $mail->Password = 'fgpacxjdxjogzlwk';                 
-        $mail->SMTPSecure = 'tls';                            
-        $mail->Port = 587;                                    
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'prescripsmart@gmail.com';
+        $mail->Password = 'fgpacxjdxjogzlwk';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
 
         $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
-        $mail->addAddress($email);     
+        $mail->addAddress($email);
         $mail->isHTML(true);
 
         $mail->Subject = 'Appointment Confirmation';
@@ -882,7 +868,7 @@ class Patient extends Controller
     public function appointment_message($phone_number, $firstName, $lastName, $doctorF, $doctorL)
     {
         require '../vendor/autoload.php';
-        
+
         $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
         $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
         $twilio_number = "+12674227302";
@@ -894,7 +880,7 @@ class Patient extends Controller
                 'from' => $twilio_number,
                 'body' => 'Dear Mr/Ms. ' . $firstName . ' ' . $lastName . ';
                 Your appointment for Dr. ' . $doctorF . ' ' . $doctorL . ' has been confirmed. Please login to view more details.
-                Thank You!'                
+                Thank You!'
             )
         );
     }
@@ -909,7 +895,7 @@ class Patient extends Controller
         $payhere_currency = $_POST['payhere_currency'];
         $status_code = $_POST['status_code'];
         $md5sig = $_POST['md5sig'];
-        
+
 
         $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
 
@@ -995,9 +981,6 @@ class Patient extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = $_POST["username"];
-            // $password = $_POST["password"];
-            // $newpassword = $_POST["newpassword"];
-
             $this->patientModel->updateAccInfo($username, $_SESSION['USER_DATA']->user_ID);
 
             header("Location: /prescripsmart/patient/account_information");
@@ -1062,7 +1045,7 @@ class Patient extends Controller
         ];
         $this->view('patient/security', $data);
     }
-    
+
     public function two_factor_authentication()
     {
         $userCred = $_GET['user'];
@@ -1079,7 +1062,7 @@ class Patient extends Controller
             if (isset($_POST['toggle_state'])) {
                 $toggleState = $_POST['toggle_state'];
                 $userID = $_POST['userID'];
-        
+
                 if ($toggleState == 'on') {
                     $this->patientModel->manage2FA($toggleState, $userID);
                 } else if ($toggleState == 'off') {
@@ -1102,7 +1085,7 @@ class Patient extends Controller
 
         $user = $this->patientModel->find_user_by_email($emailphone);
 
-        if($user->two_factor_auth == "on" && password_verify($code, $user->otp_code)){
+        if ($user->two_factor_auth == "on" && password_verify($code, $user->otp_code)) {
             echo json_encode(["success" => true]);
         } else {
             echo json_encode(["error" => "Incorrect code"]);
@@ -1115,33 +1098,35 @@ class Patient extends Controller
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    
-           
+
+
             // Check file size
             // if ($_FILES["image"]["size"] > 500000) {
             //     echo "Sorry, your file is too large.";
             //     $uploadOk = 0;
             // }
-    
+
             //Allow only certain file formats
-            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif") {
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
                 echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
-    
+
 
             if ($uploadOk == 0) {
                 echo "Sorry, your file was not uploaded.";
             } else {
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
-    
+
                     $image = basename($_FILES["image"]["name"]);
-    
+
                     $userID = $_SESSION['USER_DATA']->user_ID;
                     $result = $this->patientModel->updateProfilePicture($image, $userID);
-    
+
                     if ($result) {
                         echo json_encode(array("success" => true));
                     } else {
@@ -1153,5 +1138,5 @@ class Patient extends Controller
             }
         }
     }
-    
+
 }
