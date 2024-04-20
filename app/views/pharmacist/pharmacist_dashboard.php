@@ -75,11 +75,10 @@
                         </div>
                         <?php else: ?>
                             <?php foreach($data['patients'] as $patient): ?>
-                                <div class="patientFile">
-                                <div class="fileInfo">
+                            <div class="patientFile">
                                     <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
                                     <p><?php echo $patient->name; ?></p>
-                                </div>
+                              
                                 <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
                                 <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>
                                 &patient_name=<?php echo urlencode($patient->name); ?>
