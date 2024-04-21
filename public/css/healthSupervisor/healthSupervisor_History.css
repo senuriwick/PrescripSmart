@@ -42,21 +42,20 @@ color:rgba(164, 174, 199, 1);
 .patientFile {    
   background-color: rgba(239, 242, 251, 1);
   margin-top: 3vh;
-  padding: 110px 1.5vw;
+  padding: 50px 1.5vw;
   border-radius: 5px;
   width: 87%;
 }
 
 .patientFile h2{
   color: rgba(68, 81, 114, 1);
-  margin-top: -100px;
+  margin-top: -40px;
   padding: 0;
 }
 
 .inquiry{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   background-color: white;
   padding-left: 10px;
   padding-right: 10px;
@@ -90,7 +89,8 @@ color:rgba(164, 174, 199, 1);
 
 .inquiry p{
   color: rgba(68, 81, 114, 1);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  width: 35%;
 }
 
 #idNO{
