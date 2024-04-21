@@ -46,12 +46,13 @@
             </div>
 
             <?php $user = $data['user'] ?>
+            <?php $healthSupervisor = $data['healthSupervisor'] ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/public/img/healthSupervisor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name"><?php echo $user->username ?></p>
+                            <p class="name"><?php echo $healthSupervisor->display_name ?></p>
                             <p class="role"><?php echo $user->role ?></p>
                         </div>
                     </div>

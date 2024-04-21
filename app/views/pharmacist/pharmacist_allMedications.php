@@ -39,13 +39,16 @@
                     <p>USERNAME</p>
                 </div>
             </div>
+
+            <?php $user = $data['user']; ?>
+            <?php $pharmacist = $pharmacist['pharmacist']; ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name"><?php echo $pharmacist->display_name; ?></p>
+                            <p class="role"><?php echo $user->role; ?></p>
                         </div>
                     </div>
 
