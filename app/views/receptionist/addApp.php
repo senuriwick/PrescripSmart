@@ -45,15 +45,16 @@
 
                         <div class="session-details">
                         <?php foreach ($data['sessions'] as $sessions): ?>
-                               <?php
-                                $dateString = date_create_from_format('d/m/Y', $sessions->date);
-                                $formatted_date = $dateString->format("D, jS M, Y");
-                                $start_time = date("h:i A", strtotime($sessions->start_time));
-                                $end_time = date("h:i A", strtotime($sessions->end_time));
-                                ?>
+                               
 
                             <?php if ($post->doctor_id == $sessions->doctor_id): ?>
-                                <div class="sessions"> 
+                                <div class="sessions">
+                                <?php
+                                $dateString = date_create_from_format('Y-m-d', $sessions->date);
+                                $formatted_date = $dateString->format("Y, jS M, D");
+                                $start_time = date("h:i A", strtotime($sessions->start_time));
+                                $end_time = date("h:i A", strtotime($sessions->end_time));
+                                ?> 
                                     <h4><strong>Session #<?php echo $sessions->session_id; ?></strong></h4>
                                     <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
                                     <p>Date: <?php echo $formatted_date; ?></p> 
@@ -99,7 +100,7 @@
 
         function bookNow(sessionID) 
         {
-        var confirmationURL = "<?php echo URLROOT; ?>/receptionist/confirm_appointment";
+        var confirmationURL = "<?php echo URLROOT; ?>/receptionist/create_appointment";
         confirmationURL += "?sessionID=" + encodeURIComponent(sessionID);
 
         window.location.href = confirmationURL;

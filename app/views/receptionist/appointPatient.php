@@ -25,11 +25,18 @@
                       <h1>Add New Appointment</h1>
                 </div>
 
+        <?php
+            $dateString = date_create_from_format('Y-m-d', $data['selectedSession']->date);
+            $formatted_date = $dateString->format("Y, jS M, D");
+            $start_time = date("h:i A", strtotime($data['selectedSession']->start_time));
+            $end_time = date("h:i A", strtotime($data['selectedSession']->end_time));
+        ?>
+
                 <div class="sessions">
                       <h4><strong>Session #<?php echo $data['selectedSession']->session_id ?></strong></h4>
                       <hr style="margin-top: -2vh; width: 25vh;">
-                      <p>Date: Sunday, 17th Sept, 2023</p>
-                      <p>Time: <?php echo $data['selectedSession']->start_time .'-'. $data['selectedSession']->end_time ?> </p>
+                      <!-- <p>Date: <?php echo $formatted_date ?></p> -->
+                      <p>Time: <?php echo $start_time .'-'. $end_time ?> </p>
                       <p>Dr. <?php echo $data['selectedDoctor']->first_name ;?> <?php echo $data['selectedDoctor']->last_name ;?></p>
                       <p>Token No - 12</p>
                       <p>Channeling Fee: <?php echo $data['selectedDoctor']->visit_price ;?></p>   
@@ -60,7 +67,7 @@
                             </td>
 
                             <td>
-                                <button type="submit" class="add-app" onclick="selectPatient(<?php echo $post->patient_id; ?>)">
+                                <button type="submit" class="add-app" onclick="selectPatient(<?php echo $post->patient_id ?>,<?php echo $data['selectedSession']->session_id ?>,<?php echo $data['selectedDoctor']->doctor_id ?>)">
                                 <strong>ADD APPOINTMENT</strong>
                                 </button>                           
                             </td>                                               
@@ -72,11 +79,14 @@
       </div>
   </body>
   <script>
-    function selectPatient(patient_id) 
-        {
-        var confirmationURL = "<?php echo URLROOT; ?>/receptionist/confirm_patient";
-        confirmationURL += "?patientID=" + encodeURIComponent(patient_id);
+    function selectPatient(patient_id,session_id,doctor_id) {
+    var confirmationURL = "<?php echo URLROOT; ?>/receptionist/confirm_patient";
+    confirmationURL += "?patientID=" + encodeURIComponent(patient_id);
+    confirmationURL += "&sessionID=" + encodeURIComponent(session_id);
+    confirmationURL += "&doctorID=" + encodeURIComponent(doctor_id);
 
-        window.location.href = confirmationURL;
-         }
+
+    window.location.href = confirmationURL;
+}
+
   </script>

@@ -256,7 +256,7 @@ class M_receptionist
     }
 
     public function getuserbyID($id, $table)
-      {
+    {
         $sql = "SELECT e.*, d.*
                 FROM employees e
                 JOIN $table d ON e.emp_id = d.emp_id
@@ -267,5 +267,28 @@ class M_receptionist
         $row = $this->db->single();
 
         return $row;
-      }
+    }
+
+    public function confirm_appointment($data)
+    {
+      $this->db->query('INSERT INTO appointments (patient_id, doctor_id, date, time, amount) VALUES(:patient_id, :doctor_id, :app_date, :app_time, :amount)');
+      $this->db->bind(':patient_id', $data['patient_id']);
+      $this->db->bind(':doctor_id', $data['doctor_id']);
+      $this->db->bind(':app_date', $data['app_date']);
+      $this->db->bind(':app_time', $data['app_time']);
+      $this->db->bind(':amount', $data['amount']);
+
+        if($this->db->execute())
+        {
+          return true;
+        }
+         else
+        {
+          return false;
+        }
+  
+
+
+
+    }
 }

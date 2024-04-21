@@ -129,7 +129,7 @@
       $this->view('receptionist/addApp', $data);
     }
 
-    public function confirm_appointment()
+    public function create_appointment()
     {
         $session_ID = $_GET['sessionID'] ?? null;
 
@@ -144,8 +144,9 @@
                 'patients' => $posts,
                 'selectedDoctor'=> $selectedDoctor
             ];
-            $this->view('receptionist/appointPatient', $data);
             
+            
+
         } else {
             echo "Session ID not provided";
         }
@@ -155,23 +156,81 @@
     public function confirm_patient()
     {
         $session_ID = $_GET['sessionID'] ?? null;
+        $patient_ID = $_GET['patientID'] ?? null;
+        $doctor_ID = $_GET['doctorID'] ?? null;
 
-        if ($session_ID != null) {
+        if($patient_ID != null)
+        {
+          if ($session_ID != null) {
 
             $selectedSession = $this->userModel->getSessionDetails($session_ID);
-            $posts = $this->userModel->getPatients();
-            $selectedDoctor = $this->userModel->getDoctorDetails($selectedSession->doctor_id);
+            $posts = $this->userModel->getPatientDetails($patient_ID);
+            $selectedDoctor = $this->userModel->getDoctorDetails($doctor_ID);
 
             $data = [
                 'selectedSession' => $selectedSession,
-                'patients' => $posts,
+                'selectedPatient' => $posts,
                 'selectedDoctor'=> $selectedDoctor
             ];
             $this->view('receptionist/confirmApp', $data);
             
-        } else {
-            echo " ";
+            } else {
+                echo "Session not found";
+            }
+
         }
+        else{
+          echo"Patient not found";
+        }
+
+    }
+
+    public function confirm_appointment()
+    {
+      $session_ID = $_GET['sessionID'] ?? null;
+      $patient_ID = $_GET['patientID'] ?? null;
+      $doctor_ID = $_GET['doctorID'] ?? null;
+
+
+      if($patient_ID != null)
+        {
+          if ($session_ID != null) {
+
+            $selectedSession = $this->userModel->getSessionDetails($session_ID);
+            $posts = $this->userModel->getPatientDetails($patient_ID);
+            $selectedDoctor = $this->userModel->getDoctorDetails($doctor_ID);
+
+            $data = [
+                'patient_id' => $patient_ID,
+                'doctor_id' => $doctor_ID,
+                'app_date'=> $selectedSession->date,
+                'app_time'=> $selectedSession->start_time,
+                'amount'=> $selectedDoctor->visit_price
+            ];
+
+            $Appointment = $this->userModel->confirm_appointment($data);
+
+            if($Appointment)
+            {
+              echo "Appointment fixed successfully";
+            }
+            else
+            {
+              echo "Something went wrong";
+            }
+            
+            
+            } else {
+                echo "Session not found";
+            }
+
+        }
+        else{
+          echo"Patient not found";
+        }
+
+      
+
 
     }
 
