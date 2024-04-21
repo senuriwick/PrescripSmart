@@ -43,13 +43,16 @@
                 <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
                 <p>USERNAME</p>  
             </div>
+
+            <?php $user  = $data['user']; ?>
+            <?php $pharmacist = $data['pharmacist']; ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name"><?php echo $pharmacist->display_name; ?></p>
+                            <p class="role"><?php echo $user->role; ?></p>
                         </div>
                     </div>
 
@@ -154,7 +157,6 @@
                     if (response.trim() === '') {
                         // Display "Patient not found" message
                         $('.patientFiles').html('<p>Patient not found</p>');
-                        $('.pagination').hide();
                     } else {
                         // Update the HTML content of the element with the class "patientFiles"
                         $('.patientFiles').html(response);

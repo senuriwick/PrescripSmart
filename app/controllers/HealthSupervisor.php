@@ -18,11 +18,13 @@
                 $password = $_POST["password"];
     
                 $user = $this->healthSupervisorModel->getUserByUsername($username);
+                $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo($user->user_id);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['data'] = $user;
+                    $_SESSION['user'] = $user;
+                    $_SESSION['healthSupervisor'] = $healthSupervisor;
                     redirect("/healthSupervisor/dashboard");
                     exit();
                 } else {
@@ -35,13 +37,12 @@
         }
 
         public function dashboard($page = 1){
-            $user = $_SESSION['data'];
+            $user = $_SESSION['user'];
+            $healthSupervisor = $_SESSION['healthSupervisor'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
-
             $newInquiries = $this->healthSupervisorModel->getNewInquiriesPaginated($itemsPerPage,$offset);
             $totalNewInquiries = $this->healthSupervisorModel->getNewInquiriesCount();
-
             $totalPages = ceil($totalNewInquiries/$itemsPerPage);
 
             $data = [
@@ -49,7 +50,8 @@
                 'totalNewInquiries' => $totalNewInquiries,
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
-                'user' => $user
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_dash', $data);
@@ -81,9 +83,11 @@
         // }
 
         public function history($page = 1){
+
+            $user = $_SESSION['user'];
+            $healthSupervisor = $_SESSION['healthSupervisor'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
-
             $readInquiries = $this->healthSupervisorModel->getReadInquiriesPaginated($itemsPerPage,$offset);
             $totalReadInquiries = $this->healthSupervisorModel->getReadInquiriesCount();
 
@@ -94,6 +98,8 @@
                 'totalReadInquiries' => $totalReadInquiries,
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_History', $data);

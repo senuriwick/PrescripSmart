@@ -27,11 +27,13 @@
                 $password = $_POST["password"];
     
                 $user = $this->pharmacistModel->getUserByUsername($username);
+                $pharmacist = $this->pharmacistModel->pharmacistInfo($user->user_id);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['data'] = $user;
+                    $_SESSION['user'] = $user;
+                    $_SESSION['pharmacist'] = $pharmacist;
                     redirect("/Pharmacist/dashboard");
                     exit();
                 } else {
@@ -43,17 +45,17 @@
             
         }
         public function dashboard($page = 1){
-            $user = $_SESSION['data'];
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
-
             $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
             $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
-
             $totalPages = ceil($totalPatients/$itemsPerPage);
 
             $data = [
                 'user' => $user,
+                'pharmacist' => $pharmacist,
                 'patients' => $patients,
                 'totalPatients' => $totalPatients,
                 'currentPage' => $page,
@@ -64,15 +66,18 @@
         }
 
         public function medications($page = 1){
+
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $itemsPerPage = 4;
             $offset = ($page - 1) * $itemsPerPage;
-        
             $medications = $this->pharmacistModel->getMedicationsPaginated($itemsPerPage, $offset);
-            $totalMedications = $this->pharmacistModel->getTotalMedicationsCount();
-        
+            $totalMedications = $this->pharmacistModel->getTotalMedicationsCount(); 
             $totalPages = ceil($totalMedications / $itemsPerPage);
         
             $data = [
+                'user' => $user,
+                'pharmacist' => $pharmacist,
                 'medications' => $medications,
                 'totalMedications' => $totalMedications,
                 'currentPage' => $page,
@@ -110,9 +115,8 @@
         }
         
         public function profile() {
-            $user = $_SESSION['data'];
-            $user_id = $user->user_id;
-            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
 
             $data = [
                 'user' => $user,
@@ -151,7 +155,7 @@
                 $currentPassword = $_POST['currentPassword'];
     
                 // Assume $user is the object representing the logged-in user
-                $user_id = $_SESSION['data']->user_id;
+                $user_id = $_SESSION['user']->user_id;
                 $user = $this->pharmacistModel->getUserDetails($user_id);
     
                 if ($user && password_verify($currentPassword, $user->password)) {
@@ -166,9 +170,8 @@
         }
 
         public function personal(){
-            $user = $_SESSION['data'];
-            $user_id = $user->user_id;
-            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $data = [
                 'user'=>$user,
                 'pharmacist' => $pharmacist
@@ -253,13 +256,10 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
 
                 $patientName = $_POST['search'];
-
                 $itemsPerPage =5;
                 $offset = ($page - 1) * $itemsPerPage;
-
                 $patients = $this->pharmacistModel->getSearchedPatientsPaginated($itemsPerPage,$offset, $patientName);
                 $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
-
                 $totalPages = ceil($totalPatients/$itemsPerPage);
         
                 if (!empty($patients)) {
@@ -283,7 +283,6 @@
         public function searchMedicine($page = 1) {
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                 $medicineName = $_POST['search'];
-                
                 $itemsPerPage = 4;
                 $offset = ($page - 1) * $itemsPerPage;
                 $medications = $this->pharmacistModel->getSearchedMedicationsPaginated($itemsPerPage, $offset, $medicineName);
@@ -309,9 +308,8 @@
 
         
         public function security(){
-            $user = $_SESSION['data'];
-            $user_id = $user->user_id;
-            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $data = [
                 'user'=>$user,
                 'pharmacist' => $pharmacist
