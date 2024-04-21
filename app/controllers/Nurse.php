@@ -137,7 +137,20 @@ class Nurse extends Controller
             exit();
         }
     }
+    
+    public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
 
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
+            } else {
+                echo json_encode(array("match" => false));
+            }
+        }
+    }
     public function passwordReset()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
