@@ -57,8 +57,15 @@ color:rgba(164, 174, 199, 1);
 .patient-div {
   display: flex;
   flex-direction: row;
+  justify-content: space-between; /* Align items with space between them */
+  align-items: center; /* Center items vertically */
 }
 
+/* Remove .patient-div .mark_button CSS as it's not necessary */
+
+.patient-div .content {
+  flex-grow: 1; /* This will make the content take up remaining space */
+}
 .row{
   display: flex;
   flex-direction: row;
@@ -80,7 +87,7 @@ textarea{
   width: auto;
   margin-top: 12px;
   margin-left: auto;
-  padding:0 10px;
+  padding: 1px 10px;
   cursor: pointer;
 }
 

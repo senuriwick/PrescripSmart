@@ -76,14 +76,12 @@
                         <?php else: ?>
                             <?php foreach($data['patients'] as $patient): ?>
                             <div class="patientFile">
-                                    <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
-                                    <p><?php echo $patient->name; ?></p>
-                              
+                                <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
+                                <p><?php echo $patient->name; ?></p>
                                 <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
                                 <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>
                                 &patient_name=<?php echo urlencode($patient->name); ?>
                                 &patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
-
                             </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -91,7 +89,8 @@
 
                     <!-- Pagination Links -->
                     <div class="pagination">
-                            <?php 
+                    <?php 
+                        if (!empty($data['totalPages']) && !empty($data['currentPage'])) {
                             $totalPages = $data['totalPages'];
                             $currentPage = $data['currentPage'];
                             
@@ -114,8 +113,9 @@
                             if ($end < $totalPages): 
                             ?>
                                 <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo min($currentPage + 1, $totalPages); ?>">➡️</a>
-                            <?php endif; ?>
-                        </div>
+                            <?php endif; 
+                        }
+                        ?>
         </div>
 
                     
@@ -154,6 +154,7 @@
                     if (response.trim() === '') {
                         // Display "Patient not found" message
                         $('.patientFiles').html('<p>Patient not found</p>');
+                        $('.pagination').hide();
                     } else {
                         // Update the HTML content of the element with the class "patientFiles"
                         $('.patientFiles').html(response);

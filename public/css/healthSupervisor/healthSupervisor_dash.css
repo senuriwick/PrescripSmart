@@ -45,6 +45,7 @@ p a:active{
     padding: 110px 1.5vw;
     border-radius: 5px;
     width: 87%;
+    height: 25%;
   }
   
   .patientFile h2{
@@ -56,7 +57,6 @@ p a:active{
   .inquiry{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     background-color: white;
     padding-left: 10px;
     padding-right: 10px;
@@ -90,7 +90,8 @@ p a:active{
   
   .inquiry p{
     color: rgba(68, 81, 114, 1);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    width: 33%;
   }
   
   #idNO{
