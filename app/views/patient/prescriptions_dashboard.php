@@ -33,11 +33,11 @@
                   <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
                   <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
                 </div>
-                <p>Issued by: Dr.
+                <p class = "doctor">Issued by: Dr.
                   <?php echo $prescription->first_Name; ?>
                   <?php echo $prescription->last_Name; ?>
                 </p>
-                <p>Issued on:
+                <p class = "date">Issued on:
                   <?php echo $prescription->prescription_Date; ?>
                 </p>
                 <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"

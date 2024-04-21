@@ -11,7 +11,7 @@ class General extends Controller
 
     public function index()
     {
-        // $this->view('doctor/patients');
+        
     }
 
     public function home()
@@ -222,7 +222,6 @@ class General extends Controller
 
     public function send_recovery_email($email)
     {
-        // create the recovery link
         $recovery_link = "http://localhost/prescripsmart/general/resetPassword?user=$email";
         $message = <<<MESSAGE
             Hi,

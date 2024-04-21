@@ -32,8 +32,16 @@
 .file .description {
   color: rgba(0, 105, 255, 1);
   font-weight: 500;
+  width: 150px;
 }
 
+.file .doctor {
+  width: 300px;
+}
+
+.file .date {
+  width: 200px;
+}
 
 .file .desDiv {
   display: flex;

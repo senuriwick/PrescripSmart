@@ -762,7 +762,6 @@ class Patient extends Controller
         $referrence = $this->patientModel->confirmAppointment($_SESSION['USER_DATA']->user_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number);
         header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
-
     public function doctor_sessions()
     {
         $doctor_ID = $_GET['doctor_ID'] ?? null;
@@ -770,9 +769,11 @@ class Patient extends Controller
         if ($doctor_ID !== null) {
             $session = $this->patientModel->docSession($doctor_ID);
             $doctorImage = $this->patientModel->docImage($doctor_ID);
+            $doctorDetails = $this->patientModel->searchDoctor_byID($doctor_ID);
             $data = [
                 'session' => $session,
-                'image' => $doctorImage
+                'image' => $doctorImage,
+                'doctor' => $doctorDetails
             ];
             $this->view('patient/doctor_sessions', $data);
         } else {
@@ -985,6 +986,20 @@ class Patient extends Controller
 
             header("Location: /prescripsmart/patient/account_information");
             exit();
+        }
+    }
+
+    public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
+
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
+            } else {
+                echo json_encode(array("match" => false));
+            }
         }
     }
 
