@@ -9,7 +9,7 @@ class Nurse extends Controller
 
     public function index()
     {
-        // $this->view('doctor/patients');
+
     }
 
     public function patients_dashboard()
@@ -116,7 +116,7 @@ class Nurse extends Controller
         ];
         $this->view('nurse/sessions', $data);
     }
-    
+
 
     public function account_information()
     {
@@ -131,9 +131,6 @@ class Nurse extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = $_POST["username"];
-            // $password = $_POST["password"];
-            // $newpassword = $_POST["newpassword"];
-
             $this->nurseModel->updateAccInfo($username);
 
             header("Location: /prescripsmart/nurse/account_information");
@@ -176,11 +173,14 @@ class Nurse extends Controller
             $regno = $_POST["regno"];
             $qual = $_POST["qual"];
             $spec = $_POST["spec"];
+            $dep = $_POST["dep"];
 
-            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec);
+            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
 
             header("Location: /prescripsmart/nurse/personal_information");
             exit();
+        } else {
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
@@ -200,7 +200,7 @@ class Nurse extends Controller
             if (isset($_POST['toggle_state'])) {
                 $toggleState = $_POST['toggle_state'];
                 $userID = $_POST['userID'];
-        
+
                 if ($toggleState == 'on') {
                     $this->nurseModel->manage2FA($toggleState, $userID);
                 } else if ($toggleState == 'off') {
@@ -223,43 +223,45 @@ class Nurse extends Controller
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    
-           
+
+
             // Check file size
             // if ($_FILES["image"]["size"] > 500000) {
             //     echo "Sorry, your file is too large.";
             //     $uploadOk = 0;
             // }
-    
+
             //Allow only certain file formats
-            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif") {
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
                 echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
-    
+
 
             if ($uploadOk == 0) {
                 // echo "Sorry, your file was not uploaded.";
             } else {
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
-    
+
                     $image = basename($_FILES["image"]["name"]);
-    
+
                     $userID = $_SESSION['USER_DATA']->user_ID;
                     $result = $this->nurseModel->updateProfilePicture($image, $userID);
-    
+
                     if ($result) {
                         echo json_encode(array("success" => true));
                     } else {
                         echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
                     }
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    header("Location: /prescripsmart/general/error_page");
                 }
             }
         }
     }
-    
+
 }

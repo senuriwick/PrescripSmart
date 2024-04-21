@@ -36,8 +36,8 @@
                   </p>
                 </div>
                 <p>Referred by Dr.
-                  <?php echo $report->fName; ?>
-                  <?php echo $report->lName; ?>
+                  <?php echo $report->first_Name; ?>
+                  <?php echo $report->last_Name; ?>
                 </p>
                 <p>Issued on:
                   <?php echo $report->date_of_report; ?>
@@ -63,7 +63,6 @@
                 <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
                 <div>P</div>
-                  <!-- <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                   <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
@@ -76,8 +75,8 @@
                   </div>
                   <div>Age: <?php echo $report->age?> Yrs</div>
                   <div>Referred by: Dr.
-                    <?php echo $report->fName; ?>
-                    <?php echo $report->lName; ?>
+                    <?php echo $report->first_Name; ?>
+                    <?php echo $report->last_Name; ?>
                   </div>
                 </div>
                 <div class="test-box">

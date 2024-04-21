@@ -42,20 +42,20 @@ class M_Nurse
     public function sessions()
     {
         $groupedSessions = [];
-    
-        $this->db->query('SELECT s.*, d.fName, d.lName, d.specialization, u.profile_photo
+
+        $this->db->query('SELECT s.*, d.first_Name, d.last_Name, d.specialization, u.profile_photo
                           FROM sessions s
                           INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID INNER JOIN users u ON u.user_ID = d.doctor_ID
                           WHERE s.sessionDate >= CURRENT_DATE AND s.nurse_ID = :nurseID');
         $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
-    
+
         $results = $this->db->resultSet();
-    
+
         foreach ($results as $session) {
             $doctorID = $session->doctor_ID;
             if (!isset($groupedSessions[$doctorID])) {
                 $groupedSessions[$doctorID] = [
-                    'doctorName' => $session->fName . ' ' . $session->lName,
+                    'doctorName' => $session->first_Name . ' ' . $session->last_Name,
                     'specialization' => $session->specialization,
                     'photo' => $session->profile_photo,
                     'sessions' => []
@@ -63,17 +63,16 @@ class M_Nurse
             }
             $groupedSessions[$doctorID]['sessions'][] = $session;
         }
-    
+
         return $groupedSessions;
     }
-    
+
     public function appointments($sessionID)
     {
         $this->db->query('SELECT a.*, p.display_Name, p.gender FROM appointments a
         INNER JOIN patients p ON a.patient_ID = p.patient_ID
         WHERE a.session_ID = :sessionID');
         $this->db->bind(':sessionID', $sessionID);
-        //$this->db->bind(':nurseID', 1254638);
         $result = $this->db->resultSet();
         return $result;
     }
@@ -136,11 +135,11 @@ class M_Nurse
         return $result;
     }
 
-    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec)
+    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep)
     {
         $this->db->query('UPDATE nurses SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
             home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
-            specializations = :spec
+            specializations = :spec, department = :dep
             WHERE nurse_ID = :nurseID');
 
         $this->db->bind(':fname', $fname);
@@ -152,6 +151,7 @@ class M_Nurse
         $this->db->bind(':regno', $regno);
         $this->db->bind(':qual', $qual);
         $this->db->bind(':spec', $spec);
+        $this->db->bind(':dep', $dep);
         $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
 
         $this->db->execute();
@@ -180,10 +180,10 @@ class M_Nurse
             $this->db->bind(':profile_picture', $filename);
             $this->db->bind(':user_id', $userID);
             $this->db->execute();
-            return true; 
+            return true;
         } catch (PDOException $e) {
             error_log("Database error: " . $e->getMessage());
-            return false; 
+            return false;
         }
     }
 }

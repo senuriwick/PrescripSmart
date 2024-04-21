@@ -72,7 +72,7 @@ body {
 .searchDiv h1 {
   font-weight: bold;
   font-family: inter;
-
+  margin-top: 40px;
   color: rgba(68, 81, 114, 1);
   font-size: 24px;
 }
@@ -245,7 +245,17 @@ but :active {
   font-family: 'Source Sans Pro';
   width: 10rem;
   height: 2.5rem;
-  border-color: blue;
+  border-color: #0069FF
+}
+
+.viewAppointmentButton2 {
+  background-color: #0069FF;
+  color: #fff;
+  font-family: 'Source Sans Pro';
+  width: 10rem;
+  height: 2.5rem;
+  border-color: #0069FF;
+  margin-left: 350px;
 }
 
 .payNowButton {
@@ -314,4 +324,21 @@ but :active {
   bottom: 0;
   width: 5px; 
   background-color: #0069FF; 
+}
+
+.searchDiv .confirmationOptionsContent .buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.searchDiv .success {
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 65px;
+  font-weight: bold;
+  justify-items: center;
+  color: rgba(68, 81, 114, 1);;
 }

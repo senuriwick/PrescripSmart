@@ -323,4 +323,9 @@ class General extends Controller
         $this->view('general/contact_us');
     }
 
+    public function error_page()
+    {
+        $this->view('general/error_page');
+    }
+
 }

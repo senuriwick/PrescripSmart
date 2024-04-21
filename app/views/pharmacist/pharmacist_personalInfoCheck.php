@@ -51,13 +51,18 @@
                     <p>USERNAME</p>
                 </div>
             </div>
+
+            <?php $pharmacist = $data['pharmacist'] ?>
+            <?php $user = $data['user'] ?>
+
+
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name"><?php echo $pharmacist->display_name ?></p>
+                            <p class="role"><?php echo $user->role ?></p>
                         </div>
                     </div>
 
@@ -67,12 +72,11 @@
                         <p><a href="<?php echo URLROOT ?>/Pharmacist/security">Security</a></p>
                     </div>
 
-                    <?php $pharmacist = $data['pharmacist'] ?>
-
+                    
                     <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/pharmacist/personalInfoUpdate" method="POST">
                         <h1>Pharmacist ID: #
-                            <!-- <?php echo $patient->patient_ID ?> -->
+                            <?php echo $pharmacist->pharmacist_id ?>
                         </h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">

@@ -101,7 +101,7 @@
           if (data.success) {
             window.location.href = '<?php echo URLROOT ?>/general/reset_successful';
           } else {
-            // Handle error here
+            header("Location: /prescripsmart/general/error_page");
           }
         },
         error: function(xhr, status, error) {

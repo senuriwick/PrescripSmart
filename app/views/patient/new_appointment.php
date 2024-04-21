@@ -25,7 +25,7 @@
         </div>
 
         <div class="menu">
-          <a href="<?php echo URLROOT?>/patient/new_appointment" id="appointments">New Appointment</a>
+          <a href="<?php echo URLROOT ?>/patient/new_appointment" id="appointments">New Appointment</a>
         </div>
 
         <div class="searchDiv">
@@ -33,55 +33,48 @@
           <div class="searchFiles">
             <form>
               <input type="text" name="search" id="searchInput" placeholder="Enter doctor's name here">
-              <!-- <button type="search" id="search"><b>SEARCH</b></button> -->
             </form>
 
             <?php
 
-          $specializations = array();
-          $genders = array();
+            $specializations = array();
+            $genders = array();
 
-          foreach ($data['doctors'] as $doctor) {
-            if (!in_array($doctor->specialization, $specializations)) {
-              $specializations[] = $doctor->specialization;
+            foreach ($data['doctors'] as $doctor) {
+              if (!in_array($doctor->specialization, $specializations)) {
+                $specializations[] = $doctor->specialization;
+              }
             }
-          }
 
-          foreach ($data['doctors'] as $doctor) {
-            if (!in_array($doctor->gender, $genders)) {
-              $genders[] = $doctor->gender;
+            foreach ($data['doctors'] as $doctor) {
+              if (!in_array($doctor->gender, $genders)) {
+                $genders[] = $doctor->gender;
+              }
             }
-          }
 
-          ?>
-          
+            ?>
+
             <div class="searchFilter">
-            <!-- <div class="searchFilterLine"></div> -->
-            <select class="filterSelect" id="specializationSelect" >
-              <option value="" disabled selected>Select Specialization</option>
-              <?php foreach ($specializations as $specialization): ?>
-                <option value="<?php echo $specialization; ?>">
-                  <?php echo $specialization; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
+              <select class="filterSelect" id="specializationSelect">
+                <option value="">Select Specialization</option>
+                <option value="clear">Clear Specialization</option>
+                <?php foreach ($specializations as $specialization): ?>
+                  <option value="<?php echo $specialization; ?>">
+                    <?php echo $specialization; ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
 
-            <select class="filterSelect" id="genderSelect">
-              <option value="" disabled selected>Select Gender</option>
-              <?php foreach ($genders as $gender): ?>
-                <option value="<?php echo $gender; ?>">
-                  <?php echo $gender; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-
-            <!-- <button type="search" id="advsearch"><b>ADVANCED SEARCH</b></button> -->
-            <!-- <script>
-              document.getElementById("advsearch").addEventListener("click", function () {
-                window.location.href = "new_appointment_2.html";
-              });
-            </script> -->
-          </div>
+              <select class="filterSelect" id="genderSelect">
+                <option value="">Select Gender</option>
+                <option value="clear">Clear Gender</option>
+                <?php foreach ($genders as $gender): ?>
+                  <option value="<?php echo $gender; ?>">
+                    <?php echo $gender; ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
 
             <div class="patient-details">
               <table>
@@ -92,10 +85,12 @@
                         <div class="desDiv">
                           <a href="<?php echo URLROOT; ?>/patient/doctor_sessions?doctor_ID=<?php echo $doctor->doctor_ID; ?>"
                             class="doctor-link">
-                            <img src = "<?php echo URLROOT?>/public/uploads/profile_images/<?php echo $doctor->profile_photo?>" alt = "profImage">
-                            <p class="patientName">Dr.
-                              <?php echo $doctor->fName; ?>
-                              <?php echo $doctor->lName; ?>
+                            <img
+                              src="<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $doctor->profile_photo ?>"
+                              alt="profImage">
+                            <p class="patientName"><strong>Dr.
+                                <?php echo $doctor->first_Name; ?>
+                                <?php echo $doctor->last_Name; ?></strong>
                             </p>
                             <p class="patientSpecialization">
                               <?php echo $doctor->specialization; ?>
@@ -142,6 +137,20 @@
                       }
                     });
                   }
+
+                  specializationSelect.addEventListener("change", function () {
+                    if (specializationSelect.value === "clear") {
+                      specializationSelect.value = "";
+                      updateDoctorList();
+                    }
+                  });
+
+                  genderSelect.addEventListener("change", function () {
+                    if (genderSelect.value === "clear") {
+                      genderSelect.value = "";
+                      updateDoctorList();
+                    }
+                  });
                 });
               </script>
             </div>
@@ -163,16 +172,17 @@
                       window.location.href = `<?php echo URLROOT; ?>/patient/doctor_sessions?doctor_ID=${doctorID}`;
                     } else {
                       console.error("Doctor ID not found in the href attribute");
+                      header("Location: /prescripsmart/general/error_page");
                     }
                   });
                 });
               });
             </script>
-
           </div>
-          
+
         </div>
       </div>
     </div>
 </body>
+
 </html>

@@ -75,16 +75,13 @@
                         </div>
                         <?php else: ?>
                             <?php foreach($data['patients'] as $patient): ?>
-                                <div class="patientFile">
-                                <div class="fileInfo">
-                                    <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
-                                    <p><?php echo $patient->name; ?></p>
-                                </div>
+                            <div class="patientFile">
+                                <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
+                                <p><?php echo $patient->name; ?></p>
                                 <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
                                 <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>
                                 &patient_name=<?php echo urlencode($patient->name); ?>
                                 &patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
-
                             </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -92,13 +89,33 @@
 
                     <!-- Pagination Links -->
                     <div class="pagination">
-                        <?php if (isset($data['totalPages'])): ?>
-                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php endfor; ?>
-                        <?php endif; ?>
-                    </div>
+                    <?php 
+                        if (!empty($data['totalPages']) && !empty($data['currentPage'])) {
+                            $totalPages = $data['totalPages'];
+                            $currentPage = $data['currentPage'];
+                            
+                            // Define the number of pagination links to display before showing the arrow
+                            $paginationThreshold = 10;
 
+                            // Determine the start and end points for pagination links
+                            $start = max($currentPage - floor($paginationThreshold / 2), 1);
+                            $end = min($start + $paginationThreshold - 1, $totalPages);
+                            $start = max($end - $paginationThreshold + 1, 1);
+
+                            // Display the pagination links
+                            for ($i = $start; $i <= $end; $i++):
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $currentPage) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php 
+                            endfor;
+
+                            // Display the arrow to the right if there are more pages after the displayed links
+                            if ($end < $totalPages): 
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo min($currentPage + 1, $totalPages); ?>">➡️</a>
+                            <?php endif; 
+                        }
+                        ?>
         </div>
 
                     
@@ -137,6 +154,7 @@
                     if (response.trim() === '') {
                         // Display "Patient not found" message
                         $('.patientFiles').html('<p>Patient not found</p>');
+                        $('.pagination').hide();
                     } else {
                         // Update the HTML content of the element with the class "patientFiles"
                         $('.patientFiles').html(response);

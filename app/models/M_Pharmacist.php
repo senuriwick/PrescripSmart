@@ -157,16 +157,25 @@
         public function resetPassword($newpassword)
         {
             $this->db->query('UPDATE users SET password = :newpassword 
-            WHERE user_id = 1');
+            WHERE user_id = 3');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
             $this->db->execute();
         }
 
-        public function pharmacistInfo(){
-            $this->db->query('SELECT * FROM pharmacists WHERE user_id = 1');
+        public function pharmacistInfo($user_id){
+            $this->db->query('SELECT * FROM pharmacists WHERE user_id = :user_id');
+            $this->db->bind(':user_id', $user_id);
             $result = $this->db->single();
             return $result;
         }
+
+        public function manage2FA($toggleState, $userID)
+    {
+        $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_id = :userID');
+        $this->db->bind(':TFA', $toggleState);
+        $this->db->bind(':userID', $userID);
+        $this->db->execute();
+    }
 
         public function updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification)
         {

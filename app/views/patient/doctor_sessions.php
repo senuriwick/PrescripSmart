@@ -41,9 +41,6 @@
                         $doctorspec = $data['session'][0]->specialization;
                     }
                     ?>
-                    <!-- <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.
-                        <?php echo $doctorname; ?>
-                    </p> -->
 
                     <?php if (!empty($data['session'])): ?>
                         <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.
@@ -53,8 +50,6 @@
                 </div>
 
                 <div class="searchDiv">
-                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" id="back"> -->
-                    <!-- <?php if (!empty($data['session'])): ?> -->
                         <img src="<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $docImage->profile_photo ?>"
                             alt="profImage">
                         <h1 style="font-size: 24px; color:  #0069FF;">Dr.
@@ -64,7 +59,6 @@
                             <?php echo $doctorspec; ?>
                         </p>
                         <div class="line1"></div>
-                        <!-- <?php endif; ?> -->
 
                     <div class="boxes-container">
 

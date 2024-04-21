@@ -30,7 +30,7 @@ class M_LabTechnician {
     }
 
     public function getTestCount($patientID){
-        $this->db->query('SELECT * FROM test WHERE patient_id=:id AND report_id=""');
+        $this->db->query('SELECT * FROM test WHERE patient_id=:id AND marked=""');
         $this->db->bind(':id',$patientID);
         $results=$this->db->resultSet();
         return $this->db->rowCount();
@@ -39,6 +39,33 @@ class M_LabTechnician {
     public function markedTest($testNo){
         $this->db->query('UPDATE test SET marked="1" WHERE test_no=:num');
         $this->db->bind(':num',$testNo);
+        $this->db->execute();
+    }
+
+    public function getReportid($testno){
+        $this->db->query('SELECT report_id FROM test WHERE test_no=:testid');
+        $this->db->bind(':testid',$testno);
+        $results = $this->db->single();
+        return $results;
+    }
+
+    public function uploadReport($testid,$reportname,$patientid){
+        $this->db->query('INSERT INTO reports (test_id,patient_id,file_name) VALUES (:testid,:patientid,:reportname)');
+        $this->db->bind(':testid',$testid);
+        $this->db->bind(':patientid',$patientid);
+        $this->db->bind(':reportname',$reportname);
+        $this->db->execute();
+    }
+
+    public function deleteReport($reportid){
+        $this->db->query('DELETE FROM reports WHERE report_id=:reportid');
+        $this->db->bind(':reportid',$reportid);
+        $this->db->execute();
+    }
+
+    public function removeReport($testid){
+        $this->db->query('UPDATE test SET report_id=0 WHERE test_no=:testid');
+        $this->db->bind(':testid',$testid);
         $this->db->execute();
     }
 }

@@ -113,6 +113,7 @@
                     successMessage.style.display = 'block';
                 } else {
                     throw new Error('Failed to send the form data.');
+                    header("Location: /prescripsmart/general/error_page");
                 }
             })
             .catch(error => {

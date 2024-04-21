@@ -34,15 +34,14 @@
                   <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
                 </div>
                 <p>Issued by: Dr.
-                  <?php echo $prescription->fName; ?>
-                  <?php echo $prescription->lName; ?>
+                  <?php echo $prescription->first_Name; ?>
+                  <?php echo $prescription->last_Name; ?>
                 </p>
                 <p>Issued on:
                   <?php echo $prescription->prescription_Date; ?>
                 </p>
                 <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
                   data-container-pid="<?= $prescription->prescription_ID ?>">
-                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon"> -->
               </div>
 
             </div>
@@ -53,7 +52,6 @@
                 <span class="close">&times;</span>
                 <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
-                  <!-- <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                   <div>P</div>
                   <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
@@ -68,8 +66,8 @@
                   </div>
                   <div>Age: 22 Yrs</div>
                   <div>Referred by: Dr.
-                    <?php echo $prescription->fName; ?>
-                    <?php echo $prescription->lName; ?>
+                    <?php echo $prescription->first_Name; ?>
+                    <?php echo $prescription->last_Name; ?>
                   </div>
                 </div>
                 <div class="pres-box">
