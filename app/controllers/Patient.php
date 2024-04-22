@@ -1141,6 +1141,7 @@ class Patient extends Controller
 
                     $userID = $_SESSION['USER_DATA']->user_ID;
                     $result = $this->patientModel->updateProfilePicture($image, $userID);
+                    $_SESSION['USER_DATA']->profile_photo = $image;
 
                     if ($result) {
                         echo json_encode(array("success" => true));

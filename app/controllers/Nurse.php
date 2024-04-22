@@ -12,13 +12,31 @@ class Nurse extends Controller
 
     }
 
-    public function patients_dashboard()
+    public function patients_dashboard($page = 1)
     {
-        $patients = $this->nurseModel->patients();
+        $allPatients = $this->nurseModel->getAllPatients();
+        $recordsPerPage = 10;
+        $totalPatients = count($allPatients);
+        $totalPages = ceil($totalPatients / $recordsPerPage);
+
+        $offset = ($page - 1) * $recordsPerPage;
+        $patients = array_slice($allPatients, $offset, $recordsPerPage);
+
         $data = [
-            'patients' => $patients
+            'patients' => $patients,
+            'allPatients' => $allPatients,
+            'currentPage' => $page,
+            'totalPages' => $totalPages
         ];
+
         $this->view('nurse/patients_dashboard', $data);
+    }
+
+    public function filterPatients()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->nurseModel->filterPatients($searchQuery);
+        echo json_encode($filteredPatients);
     }
 
     public function patient_profile()
@@ -137,7 +155,7 @@ class Nurse extends Controller
             exit();
         }
     }
-    
+
     public function checkPassword()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
