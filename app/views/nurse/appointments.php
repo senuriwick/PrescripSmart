@@ -49,7 +49,7 @@
                                             
                                             <p>Referrence No: #<?php echo $appointment->appointment_ID ?>
                                             </p>
-                                            <strong><p >
+                                            <strong><p class = "name">
                                                 <?php echo ($appointment->gender == 'male') ? 'Mr.' : 'Ms.' ?>
                                                 <?php echo $appointment->display_Name ?>
                                             </p></strong>

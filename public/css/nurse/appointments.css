@@ -46,6 +46,10 @@
   .file .description {
     color: rgba(0, 105, 255, 1);
   }
+
+  .file2 .name {
+    width: 275px;
+  }
   
   .file .desDiv {
     display: flex;

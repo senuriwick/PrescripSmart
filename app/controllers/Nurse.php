@@ -264,6 +264,7 @@ class Nurse extends Controller
 
                     $userID = $_SESSION['USER_DATA']->user_ID;
                     $result = $this->nurseModel->updateProfilePicture($image, $userID);
+                    $_SESSION['USER_DATA']->profile_photo = $image;
 
                     if ($result) {
                         echo json_encode(array("success" => true));
