@@ -79,7 +79,7 @@
                             <table>
                                 <tbody>
                                     <?php foreach($data['prescriptionsData'] as $prescriptionData): ?>
-                                    <tr class="clickable-row" diagnosisid="<?php echo $prescriptionData->diagnosis_id; ?>">
+                                    <tr class="clickable-row" prescriptionid="<?php echo $prescriptionData->prescription_ID; ?>">
                                         <td>
                                             <div class="presDiv">
                                                 <img src="<?php echo URLROOT;?>/public/img/doctor/description.png" alt="download-icon">
@@ -87,7 +87,7 @@
                                             </div>
                                         </td>
                                         <td>DR. <?php echo $prescriptionData->fName; ?></td>
-                                        <td><?php echo $prescriptionData->date; ?></td>
+                                        <td><?php echo $prescriptionData->prescription_Date; ?></td>
                                     </tr>
                                     <?php endforeach;?>
                                     <tr>
@@ -151,10 +151,10 @@
             rows.forEach(row => {
                 row.addEventListener("click", () => {
                     modal.style.display = "block";
-                    var diagnosisid = row.getAttribute("diagnosisid");
-                    showDiagnosis(diagnosisid);
-                    showMedications(diagnosisid);
-                    showTests(diagnosisid);
+                    var prescriptionid = row.getAttribute("prescriptionid");
+                    showDiagnosis(prescriptionid);
+                    showMedications(prescriptionid);
+                    showTests(prescriptionid);
                 });
             });
 
@@ -168,8 +168,8 @@
                 }
             });
 
-            function showDiagnosis(diagnosisid){
-                fetch(`http://localhost/Prescripsmart/doctor/showDiagnosis?diagnosisid=${diagnosisid}`)
+            function showDiagnosis(prescriptionid){
+                fetch(`http://localhost/Prescripsmart/doctor/showDiagnosis?prescriptionid=${prescriptionid}`)
                     .then(response =>{
                         console.log(response);
                         return response.json();
@@ -186,9 +186,9 @@
                 const modelhead = document.getElementById('model-details');
 
                 modelhead.innerHTML = `
-                <div>Prescription ID: ${result.diagnosis_id}</div>
+                <div>Prescription ID: ${result.prescription_ID}</div>
                 <div>Patient: ${result.display_Name}</div>
-                <div>Pres Date & Time: ${result.date}</div>
+                <div>Pres Date & Time: ${result.prescription_Date}</div>
                 <div>Age: ${result.age}</div>
                 <div>Referred by: Dr.${result.fName}</div>`;
 
@@ -196,8 +196,8 @@
                 diagnosisContent.textContent = result.diagnosis;
             }
 
-            function showMedications(diagnosisid){
-                fetch(`http://localhost/Prescripsmart/doctor/showMedications?diagnosisid=${diagnosisid}`)
+            function showMedications(prescriptionid){
+                fetch(`http://localhost/Prescripsmart/doctor/showMedications?prescriptionid=${prescriptionid}`)
                     .then(response =>{
                         console.log(response);
                         return response.json();
@@ -225,8 +225,8 @@
                 });
             }
 
-            function showTests(diagnosisid){
-                fetch(`http://localhost/Prescripsmart/doctor/showTests?diagnosisid=${diagnosisid}`)
+            function showTests(prescriptionid){
+                fetch(`http://localhost/Prescripsmart/doctor/showTests?prescriptionid=${prescriptionid}`)
                     .then(response =>{
                         console.log(response);
                         return response.json();
