@@ -131,7 +131,6 @@
       </div>
     </div>
   </div>
-  <!-- <script src="<?php echo URLROOT; ?>/public/js/prescriptions.js"></script> -->
 </body>
 
 <script>
