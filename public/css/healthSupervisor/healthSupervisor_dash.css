@@ -62,18 +62,16 @@ p a:active{
     padding-right: 10px;
     height: 50px;
     margin-bottom: 10px;
+    align-items: center;
   }
   
   .inquiry button {
     border-style: none;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: green;
     color: white;
-    font-size: 1rem;
-    height: 25px;
-    width: 88px;
-    margin-top: 12px;
-    
+    height: 28px;
+    width: 88px;    
   }
   
   .inquiry button:hover {
@@ -82,15 +80,14 @@ p a:active{
   }
   
   .inquiry img{
-    width:40px;
-    height: 40px; 
-    margin-top: 12px;
+    width:35px;
+    height: 35px; 
     margin-right:-150px;
   }
   
   .inquiry p{
     color: rgba(68, 81, 114, 1);
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
     width: 33%;
   }
   
@@ -103,6 +100,7 @@ p a:active{
     list-style: none;
     padding: 0;
     margin: 20px 0;
+    justify-content: center;
   }
   
   /* Pagination link styles */

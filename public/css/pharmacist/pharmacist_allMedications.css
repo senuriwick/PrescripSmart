@@ -68,20 +68,22 @@ cursor: pointer;
 }
 
 .patientFile {
-background-color: rgba(239, 242, 251, 1);
-margin-top: 2vh;
-padding: 0vh 1vw;
-border-radius: 5px;
-display: flex;
-justify-content: space-between;
-width: 75%;
-align-items: baseline;
+  background-color: rgba(239, 242, 251, 1);
+  margin-top: 2vh;
+  padding: 0vh 1vw;
+  border-radius: 5px;
+  display: flex;
+  width: 75%;
+  align-items: baseline;
 }
 
 .patientFile p {
-/* padding: 0.5vh 1vw; */
-font-size: 1.1rem;
-/* width:34%; */
+  font-size: 1.1rem;
+  width: 26%;
+}
+
+.patientFile p:nth-child(2) {
+  width: 34%; /* Adjust the width as needed */
 }
 
 .patientFile #patientId {
