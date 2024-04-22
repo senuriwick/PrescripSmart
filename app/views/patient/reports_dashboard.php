@@ -71,7 +71,7 @@
                   </div>
                   <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
                   <div>Report Date & Time:
-                    <?php echo $report->prescription_Date; ?> 10:00 AM
+                    <?php echo $report->prescription_Date; ?>
                   </div>
                   <div>Age: <?php echo $report->age?> Yrs</div>
                   <div>Referred by: Dr.
@@ -82,20 +82,14 @@
                 <div class="test-box">
                   <table>
                     <tbody>
+                      <th>TEST</th>
+                      <th>FLAG REFERENCE VALUE</th>
+                      <th>RESULT</th>
+                      
                       <tr>
-                        <td>TEST</td>
-                        <td>RESULT</td>
-                        <td>FLAG REFERENCE VALUE</td>
-                      </tr>
-                      <tr>
-                        <td>Test 1</td>
-                        <td>Result 1</td>
-                        <td>Value 1</td>
-                      </tr>
-                      <tr>
-                        <td>Test 2</td>
-                        <td>Result 2</td>
-                        <td>Value 2</td>
+                        <td><?php echo $report->name?></td>
+                        <td><?php echo $report->reference_range?></td>
+                        <td class = "status <?php echo $report->status?>"><?php echo $report->status?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -106,7 +100,15 @@
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                   </div>
                 </div>
+                
                 <div class="notice">(For viewing purpose only)</div>
+                <?php if ($report->status == "Ready"): ?>
+                <button type="button" id="report" class="report-button">View Report</button>
+
+                <script>
+                  
+                </script>
+                <?php endif; ?>
               </div>
             </div>
           <?php endforeach; ?>
@@ -152,16 +154,23 @@
         });
       });
 
+      const reportButtons = document.querySelectorAll('.report-button');
+
+    reportButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const reportId = button.parentNode.parentNode.id.replace('myModal', '');
+        window.open(`<?php echo URLROOT; ?>/public/uploads/reports/${reportId}.pdf`);
+      });
+    });
+
       // const modal = document.getElementById("myModal");
       // const closeButton = modal.querySelector(".close");
 
       function updateDownloadCount(reportId) {
-        // Send an AJAX request to update the download count
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "<?php echo URLROOT; ?>/patient/updateDownloadCount/" + reportId, true);
         xhr.send();
 
-        // You can handle the response if needed
         xhr.onload = function () {
           if (xhr.status == 200) {
             console.log("Download count updated successfully");

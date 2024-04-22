@@ -297,10 +297,26 @@ class M_Patient
         return $result;
     }
 
+    public function prescriptionMedicines($prescription_ID)
+    {
+        $this->db->query('SELECT * FROM patients_medications WHERE prescription_ID = :prescriptionID');
+        $this->db->bind(':prescriptionID', $prescription_ID);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function labTests($prescription_ID)
+    {
+        $this->db->query('SELECT l .*, t.* FROM lab_reports l INNER JOIN tests t ON l.test_ID = t.test_ID WHERE prescription_ID = :prescriptionID');
+        $this->db->bind(':prescriptionID', $prescription_ID);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
     public function viewPrescription($prescription_ID, $userID)
     {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
-        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name, pa.first_Name, pa.last_Name, pa.age FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pa ON p.patient_ID = pa.patient_ID
         WHERE p.patient_ID = :userID AND p.prescription_ID = :prescription_id');
         $this->db->bind(':prescription_id', $prescription_ID);
         $this->db->bind(':userID', $userID);
@@ -311,11 +327,12 @@ class M_Patient
     //REPORTS
     public function labreports($userID)
     {
-        $this->db->query('SELECT l.*, d.first_Name, d.last_Name, p.prescription_Date, pa.age 
+        $this->db->query('SELECT l.*, d.first_Name, d.last_Name, p.prescription_Date, pa.age, t.name, t.reference_range
         FROM lab_reports l
         INNER JOIN doctors d ON l.doctor_ID = d.doctor_ID 
         INNER JOIN prescriptions p ON l.prescription_ID = p.prescription_ID
         INNER JOIN patients pa ON l.patient_ID = pa.patient_ID
+        INNER JOIN tests t ON l.test_ID = t.test_ID
         WHERE l.patient_ID = :userID
         ORDER BY l.date_of_report ASC');
 

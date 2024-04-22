@@ -931,9 +931,22 @@ class Patient extends Controller
     //PRESCRIPTIONS
     public function prescriptions_dashboard()
     {
-        $prescriptions = $this->patientModel->prescriptions($_SESSION['USER_DATA']->user_ID);
+        $userID = $_SESSION['USER_DATA']->user_ID;
+        $prescriptions = $this->patientModel->prescriptions($userID);
+        $prescriptionDetails = [];
+        $labDetails = [];
+        foreach ($prescriptions as $prescription) {
+            $prescriptionID = $prescription->prescription_ID;
+            $medicineData = $this->patientModel->prescriptionMedicines($prescriptionID);
+            $labTests = $this->patientModel->labTests($prescriptionID);
+            $prescriptionDetails[$prescriptionID] = $medicineData;
+            $labDetails[$prescriptionID] = $labTests;
+        }
+
         $data = [
-            'prescriptions' => $prescriptions
+            'prescriptions' => $prescriptions,
+            'prescriptionDetails' => $prescriptionDetails,
+            'labDetails' => $labDetails
         ];
         $this->view('patient/prescriptions_dashboard', $data);
     }
@@ -942,8 +955,16 @@ class Patient extends Controller
     {
         $prescription_ID = $_GET['prescription'] ?? null;
         $prescriptions = $this->patientModel->viewPrescription($prescription_ID, $_SESSION['USER_DATA']->user_ID);
+        $prescriptionDetails = [];
+        $labDetails = [];
+        $medicineData = $this->patientModel->prescriptionMedicines($prescription_ID);
+        $labTests = $this->patientModel->labTests($prescription_ID);
+        $prescriptionDetails[$prescription_ID] = $medicineData;
+        $labDetails[$prescription_ID] = $labTests;
         $data = [
-            'prescription' => $prescriptions
+            'prescription' => $prescriptions,
+            'prescriptionDetails' => $prescriptionDetails,
+            'labDetails' => $labDetails
         ];
 
         $this->view('patient/public_prescriptionView', $data);

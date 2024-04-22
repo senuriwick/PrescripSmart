@@ -235,6 +235,11 @@ body {
   font-size: 12px;
 }
 
+.prescriptionsDiv .modal-content .pres-box table th {
+  font-size: 12px;
+  text-align: left;
+}
+
 .prescriptionsDiv .modal-content .test-box {
   min-height: 20px;
   margin-top: 10px;
