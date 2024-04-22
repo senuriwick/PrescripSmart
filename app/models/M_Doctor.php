@@ -107,7 +107,7 @@ class M_Doctor {
 
     public function addDiagnosis($patientId, $diagnosis)
     {
-        $this->db->query('INSERT INTO prescriptions (patient_ID, diagnosis) VALUES (:patient_id, :diagnosis)');
+        $this->db->query('INSERT INTO prescriptions (patient_ID, diagnosis, prescription_Date) VALUES (:patient_id, :diagnosis, CURDATE())');
         $this->db->bind(':patient_id', $patientId);
         $this->db->bind(':diagnosis', $diagnosis);
 

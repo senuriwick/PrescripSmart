@@ -48,26 +48,36 @@ class LabTechnician extends Controller{
     }
 
     public function markedRead(){
-        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['testid'])){
-            $testid = $_POST['testid'];
-            $this->dpModel->markedTest($testid);
+        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['reportid'])){
+            $reportid = $_POST['reportid'];
+            
+            $this->dpModel->markedTest($reportid);
+            $patient = $this->dpModel->checkReport($reportid);
+            echo $patient->patient_ID;
+
+            header('Location:'.URLROOT.'/LabTechnician/reports/'.$patient->patient_ID);
+            exit;
         }else{
             echo "Error";
         }
+        
     }
 
-    public function reportUpload($id,$testid){
+    public function reportUpload(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
             if(isset($_POST['upload'])){
+                $patientid = $_POST['patientid'];
+                $reportid = $_POST['reportid'];
                 $reportname = $_FILES['file']['name'];
                 $reporttype = $_FILES['file']['type'];
                 $reportTemp = $_FILES['file']['tmp_name'];
+                $reportsize = $_FILES['file']['size'];
                 $destination = 'C:/xampp/htdocs/PrescripSmart/public/uploads/reports/'.$reportname;
                 if(is_uploaded_file($reportTemp)){
                     if($reporttype=='application/pdf'){
                         if(move_uploaded_file($reportTemp,$destination)){
                             echo "Uploaded succes";
-                            $this->dpModel->uploadReport($testid,$reportname,$id);
+                            $this->dpModel->uploadReport($reportid,$reportname,$reportsize);
                         }
                     }else{
                         echo "Please select only pdf file";
@@ -77,21 +87,16 @@ class LabTechnician extends Controller{
 
                 }        
         }
-        // redirect('LabTechnician/reports');
-        // exit();
+        header('Location:'.URLROOT.'/LabTechnician/reports/'.$patientid);
+        exit;
         }
     }
 
     public function deletereport(){
-        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['testid'])){
-            $testid = $_POST['testid'];
-            $report = $this->dpModel->getReportid($testid);
-             if($report){
-                $reportid = $report->report_id;
+        if($_SERVER['REQUEST_METHOD']=='POST'&&isset($_POST['reportid'])){
+            $reportid = $_POST['reportid'];
                 $this->dpModel->deleteReport($reportid);
-                $this->dpModel->removeReport($testid);
 
-             }
         }
     }
 

@@ -81,12 +81,12 @@
                                         <td>
                                             <div class="desDiv">
                                                 <img src="../public/img/lab_tech/profile.png" alt="user-icon">
-                                                <p class="patientName"><?php echo $reportToUpload->patient_name;?></p>
+                                                <p class="patientName"><?php echo $reportToUpload->display_Name;?></p>
                                             </div>
                                         </td>
                                         
-                                        <td>Patient ID-<?php echo $reportToUpload->patient_id;?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/LabTechnician/reports/<?php echo $reportToUpload->patient_id;?>"><button >View Test</button></a></td>
+                                        <td>Patient ID-<?php echo $reportToUpload->patient_ID;?></td>
+                                        <td><a href="<?php echo URLROOT; ?>/LabTechnician/reports/<?php echo $reportToUpload->patient_ID;?>"><button >View Test</button></a></td>
                                     </tr>
                                     
                                     <?php endforeach;?>
