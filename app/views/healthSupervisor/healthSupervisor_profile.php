@@ -6,11 +6,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Pharmacist profile</title>
+    <title>Health Supervisor profile</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_profile.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/healthSupervisor/healthSupervisor_profile.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
@@ -73,9 +73,9 @@
                 <?php $user = $data['user'] ?>
 
                 <div class="inquiriesDiv">
-                    <h1>Patient ID: #
+                    <p class="healthSupervisorId">Patient ID: #
                         <?php echo $user->user_id ?>
-                    </h1>
+                    </p>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
                     <div class="accInfo">

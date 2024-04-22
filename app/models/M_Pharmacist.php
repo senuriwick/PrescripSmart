@@ -85,16 +85,18 @@
         
 
         public function insertMedication($data){
-            $this->db->query('INSERT INTO medication (name, expiry_date, quantity, dosage, batch_number,status)
+            $this->db->query('INSERT INTO medication (id, name, expiry_date, quantity, dosage, batch_number,status,`Generic Name`)
             VALUES
-            (:name, :expiry_date, :quantity, :dosage, :batch_number, :status)');
+            (:id, :name, :expiry_date, :quantity, :dosage, :batch_number, :status, :GenericName)');
 
+            $this->db->bind(':id', 310);
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':expiry_date', $data['expiry_date']);
             $this->db->bind(':quantity', $data['quantity']);
             $this->db->bind(':dosage', $data['dosage']);
             $this->db->bind(':batch_number',$data['batch']);
             $this->db->bind(':status', $data['status']);
+            $this->db->bind(':GenericName', 'Salbetamol');
 
             return $this->db->execute();
         }

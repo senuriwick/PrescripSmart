@@ -75,7 +75,7 @@
                         </div>
                         <?php endforeach; ?>  
                     </div>
-
+ 
                     <div class="pagination">
                         <?php if (isset($data['totalPages'])): ?>
                             <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
@@ -83,7 +83,7 @@
                             <?php endfor; ?>
                         <?php endif; ?>
                     </div>
-
+                
                 </div>
             </div>
         </div>

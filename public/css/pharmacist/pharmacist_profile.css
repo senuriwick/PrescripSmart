@@ -35,11 +35,11 @@
   color:#445172 ;
 }
 
-.inquiriesDiv h1 {
+.inquiriesDiv h6 {
   margin-top: 2vh;
-  font-weight: bold;
+  font-weight: 400;
   color: #0069ff;
-  font-size: 24px;
+  font-size: 1rem;
 }
 
 .inquiriesDiv button {

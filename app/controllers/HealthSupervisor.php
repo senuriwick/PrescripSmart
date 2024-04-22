@@ -152,7 +152,7 @@
         }
 
         public function profile(){
-            $user = $_SESSION['data'];
+            $user = $_SESSION['user'];
             $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
             $data = [
@@ -164,7 +164,7 @@
         }
 
         public function personal(){
-            $user = $_SESSION['data'];
+            $user = $_SESSION['user'];
             $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
             $data = [
@@ -179,7 +179,7 @@
         // }
 
         public function security(){
-            $user = $_SESSION['data'];
+            $user = $_SESSION['user'];
             $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
             $data = [

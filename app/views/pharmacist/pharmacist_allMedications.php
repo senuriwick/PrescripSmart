@@ -41,7 +41,7 @@
             </div>
 
             <?php $user = $data['user']; ?>
-            <?php $pharmacist = $pharmacist['pharmacist']; ?>
+            <?php $pharmacist = $data['pharmacist']; ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">

@@ -99,8 +99,7 @@
                                     <div>
                                         <p>Status<span class="important">*</span></p>
                                         <select id="searchBar" name="status">
-                                            <option value="Inactive">Inactive</option>
-                                            <option value="Active">Active</option>
+                                            <option value="Inactive">In Stock</option>
                                             <option value="Out of Stock">Out of Stock</option>
                                         </select>
                                     </div>

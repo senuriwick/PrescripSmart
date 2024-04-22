@@ -83,10 +83,7 @@
                                     case 'Out of Stock':
                                         echo 'red'; // Change color for 'Out of Stock' status
                                         break;
-                                    case 'Inactive':
-                                        echo 'grey'; // Change color for 'Inactive' status
-                                        break;
-                                    case 'Active':
+                                    case 'In Stock':
                                         echo 'green'; // Change color for 'Active' status
                                         break;
                                     default:

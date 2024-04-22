@@ -265,7 +265,7 @@
                 if (!empty($patients)) {
                     $data = [
                         'patients' => $patients,
-                        'totalMedications' => $totalMedications,
+                        'totalPatients' => $totalPatients,
                         'currentPage' => $page,
                         'totalPages' => $totalPages,
                     ];
