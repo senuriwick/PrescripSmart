@@ -72,24 +72,23 @@
                 </div>
                 <div class="pres-box">
                   <label>Diagnosis</label>
-                  <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  <div><?php echo $prescription->diagnosis?>
                   </div>
                 </div>
                 <div class="pres-box">
-                  <label>Medication</label>
+                  <label>Medications</label>
                   <table>
                     <tbody>
+                    <th>Name</th>
+                    <th>Dosage</th>
+                    <th>Remarks</th>
+                    <?php foreach ($data['prescriptionDetails'][$prescription->prescription_ID] as $medicine): ?>
                       <tr>
-                        <td>Med name</td>
-                        <td>Dosage</td>
-                        <td>Remarks</td>
+                        <td><?php echo $medicine->medication; ?></td>
+                        <!-- <td><?php echo $medicine->dosage; ?></td> -->
+                        <td><?php echo $medicine->remark; ?></td>
                       </tr>
-                      <tr>
-                        <td>Med Name</td>
-                        <td>Dosage</td>
-                        <td>Remarks</td>
-                      </tr>
+                    <?php endforeach ?>
                     </tbody>
                   </table>
                 </div>
@@ -97,14 +96,12 @@
                   <label>Lab Tests</label>
                   <table>
                     <tbody>
+                    <?php foreach ($data['labDetails'][$prescription->prescription_ID] as $labTest): ?>
                       <tr>
-                        <td>Test name</td>
-                        <td>Remarks</td>
+                        <td><?php echo $labTest->name?></td>
+                        <td><?php echo $labTest->remarks?></td>
                       </tr>
-                      <tr>
-                        <td>Test Name</td>
-                        <td>Remarks</td>
-                      </tr>
+                    <?php endforeach ?>
                     </tbody>
                   </table>
                 </div>
