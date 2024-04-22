@@ -31,6 +31,28 @@ class M_Nurse
         return $result;
     }
 
+    public function getAllPatients()
+    {
+        $this->db->query('SELECT p.patient_ID, p.display_Name, p.age, p.weight, p.height, p.gender, p.home_Address, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID');
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function filterPatients($searchQuery) {
+        $searchQuery = '%' . $searchQuery . '%'; 
+        $this->db->query('SELECT p .*, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+        $this->db->bind(':searchQuery', $searchQuery);
+        $filteredPatients = $this->db->resultSet();
+
+        foreach ($filteredPatients as &$patient) {
+            $address = $patient->home_Address;
+            $parts = explode(", ", $address);
+            $patient->city = end($parts);
+        }
+        
+        return $filteredPatients;
+    }
+    
     public function currentSession()
     {
         $this->db->query('SELECT * FROM sessions WHERE sessionDate = CURRENT_DATE AND start_time <= CURRENT_TIME AND end_time >= CURRENT_TIME AND nurse_ID = :nurseID');
