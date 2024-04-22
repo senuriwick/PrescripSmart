@@ -42,12 +42,6 @@ class M_LabTechnician {
         $this->db->execute();
     }
 
-    // public function getReportid($testno){
-    //     $this->db->query('SELECT report_ID FROM lab_reports WHERE report_ID=:testid');
-    //     $this->db->bind(':testid',$testno);
-    //     $results = $this->db->single();
-    //     return $results;
-    // }
 
     public function uploadReport($testid,$reportname,$filesize){
         $this->db->query('UPDATE lab_reports SET report=:reportname, size=:filesize, date_of_report=NOW() WHERE report_ID=:testid');
