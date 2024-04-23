@@ -1,135 +1,141 @@
 html {
-	font-size:50%;
+  font-size: 50%;
 }
- 
+
 body {
-    margin: 0px;
-    overflow: hidden;
+  margin: 0px;
+  overflow: hidden;
 }
+
 .forgotPassPage {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-}
-.forgotPassPage .upperRectangle {
-  box-sizing: border-box;
-  padding: 2.8rem 3rem 2.7rem 143.25rem;
-  width: 100%;
+  align-items: center;
+  background-color: #ffffff;
   display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.forgotPassPage .upperRectangle {
   align-items: center;
   background-color: rgba(0, 105, 255, 0.75);
-  flex-shrink: 0;
-}
-.forgotPassPage .container {
-  margin-left: 0.1rem;
   box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  padding: 2.8rem 3rem 2.7rem 143.25rem;
+  width: 100%;
+}
+
+.forgotPassPage .container {
+  background-color: #e3e8f4;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 100rem;
+  margin-left: 0.1rem;
   padding: 19.4rem 53.8rem 26.7rem 56.6rem;
   width: calc(100% - 0.5rem);
-  height: 100rem;
-  background-color: #e3e8f4;
-  flex-shrink: 0;
 }
+
 .forgotPassPage .container .confirmationForm {
-  box-sizing: border-box;
-  padding: 5.5rem 8.5rem 8rem 8.4rem;
-  width: 80%;
-  height: 60%;
   align-items: center;
-  border: solid 0.1rem #e3e8f4;
   background-color: #ffffff;
+  border: solid 0.1rem #e3e8f4;
   border-radius: 2.7rem;
+  box-sizing: border-box;
   display: flex;
+  height: 60%;
   justify-content: center;
   margin-left: 5.5rem;
   margin-top: 4rem;
+  padding: 5.5rem 8.5rem 8rem 8.4rem;
+  width: 80%;
 }
+
 .forgotPassPage .container .confirmationForm h1 {
-  margin-bottom: 4rem;
-  margin-top: 4rem;
-  text-align: center;
+  color: #000000;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 4rem;
   font-weight: 700;
   line-height: 0.5;
-  color: #000000;
-  font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.forgotPassPage .container .confirmationForm .sampleEmail {
   margin-bottom: 4rem;
-  margin-top: 6rem;
+  margin-top: 4rem;
   text-align: center;
+  white-space: nowrap;
+}
+
+.forgotPassPage .container .confirmationForm .sampleEmail {
+  color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: rgba(68, 81, 114, 0.75);
-  font-family: Inter, 'Source Sans Pro';
-  flex-shrink: 0;
+  margin-bottom: 4rem;
+  margin-top: 6rem;
+  text-align: center;
 }
 
 .forgotPassPage .container .confirmationForm .box1 {
-  margin: 0 18rem;
-  width: 20rem;
-  height: 4rem;
-  text-align: center;
-  font-size: 2.4rem;
-  line-height: 1.2125;
-  color: #ffffff;
-  font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  display: flex;
   align-items: center;
-  justify-content: center;
   background-color: #0069ff;
-  border-radius: 1rem;
   border-color: #0069ff;
-  flex: 1;
-  display: inline-block;
+  border-radius: 1rem;
+  color: #ffffff;
   cursor: pointer;
+  display: flex;
+  display: inline-block;
+  flex: 1;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2.4rem;
+  height: 4rem;
+  justify-content: center;
+  line-height: 1.2125;
+  margin: 0 18rem;
+  text-align: center;
+  white-space: nowrap;
+  width: 20rem;
 }
 
 .forgotPassPage .container .confirmationForm .box2 {
-    margin: 0 1rem;
-    width: 20rem;
-    height: 4rem;
-    text-align: center;
-    font-size: 2.4rem;
-    line-height: 1.2125;
-    color: #ffffff;
-    font-family: Inter, 'Source Sans Pro';
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(68, 81, 114, 0.75);
-    border-radius: 1rem;
-    border-color: rgba(68, 81, 114, 0.75);
-    flex: 1;
-    display: inline-block;
-    margin-left: 11rem;
-  }
+  align-items: center;
+  background-color: rgba(68, 81, 114, 0.75);
+  border-color: rgba(68, 81, 114, 0.75);
+  border-radius: 1rem;
+  color: #ffffff;
+  display: flex;
+  display: inline-block;
+  flex: 1;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2.4rem;
+  height: 4rem;
+  justify-content: center;
+  line-height: 1.2125;
+  margin: 0 1rem;
+  margin-left: 11rem;
+  text-align: center;
+  white-space: nowrap;
+  width: 20rem;
+}
 
 .userInput {
-    margin: 0rem 6.8rem 4.2rem 6.8rem;
-    width: 50rem;
-    height: 6rem;
-    text-align: center;
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 1.2125;
-    color: #737d95;
-    font-family: Inter, 'Source Sans Pro';
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: solid 0.3rem #e3e8f4;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border-radius: 1rem;
-    flex-shrink: 0;
-  }
+  align-items: center;
+  background-color: #ffffff;
+  border: solid 0.3rem #e3e8f4;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  color: #737d95;
+  display: flex;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2.4rem;
+  font-weight: 500;
+  height: 6rem;
+  justify-content: center;
+  line-height: 1.2125;
+  margin: 0rem 6.8rem 4.2rem 6.8rem;
+  text-align: center;
+  white-space: nowrap;
+  width: 50rem;
+}

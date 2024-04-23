@@ -3,26 +3,26 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
 }
 
 .welcomePage {
+  align-items: center;
   background-color: #3076F8;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
   justify-content: center;
-  align-items: center;
   text-align: center;
 }
-
 
 @keyframes slideIn {
   0% {
     opacity: 0;
     transform: translateY(-50px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -30,21 +30,20 @@ body {
 }
 
 .mainTitle {
-  margin: 0;
-  font-size: 64px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  color: white;
-  padding-bottom: 1vh;
   animation: slideIn 1s ease forwards;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 64px;
+  font-weight: 900;
+  margin: 0;
+  padding-bottom: 1vh;
 }
-
 
 #options {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 2rem;
+  justify-content: center;
   margin-top: 3rem;
 }
 
@@ -53,104 +52,105 @@ body {
 }
 
 .optionButton1 {
-  width: 300px;
-  height: 80px;
+  align-items: center;
   background-color: white;
+  border: none;
+  border-radius: 1rem;
   color: #00318C;
+  cursor: pointer;
+  display: flex;
   font-size: 24px;
   font-weight: bold;
-  border: none;
-  padding: 1rem 2.5rem;
-  border-radius: 1rem;
-  display: flex;
+  height: 80px;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  padding: 1rem 2.5rem;
   transition: background-color 0.3s ease;
+  width: 300px;
 }
 
 .optionButton2 {
-  width: 300px;
-  height: 80px;
+  align-items: center;
   background-color: #00318C;
+  border: none;
+  border-radius: 1rem;
   color: white;
+  cursor: pointer;
+  display: flex;
   font-size: 24px;
   font-weight: bold;
-  border: none;
-  padding: 1.5rem 2.5rem;
-  border-radius: 1rem;
-  display: flex;
+  height: 80px;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  padding: 1.5rem 2.5rem;
   transition: background-color 0.3s ease;
+  width: 300px;
 }
 
 .optionButton1:hover {
   box-shadow: 0 4px 8px #00318C;
+
   /* Adjust the shadow color and size as needed */
 }
 
 .optionButton2:hover {
   box-shadow: 0 4px 8px white;
+
   /* Adjust the shadow color and size as needed */
 }
 
-
 .optionIcon {
-  width: 2.5rem;
   height: 2.5rem;
   margin-right: 1rem;
+  width: 2.5rem;
 }
 
 .logoDiv {
+  align-items: center;
+  display: flex;
+  left: 25px;
   position: absolute;
   top: 0px;
-  left: 25px;
-  display: flex;
-  align-items: center;
 }
 
 .logoDiv>div {
-  width: 35px;
-  min-width: 35px;
-  height: 35px;
-  min-height: 35px;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  background-color: #ff8100;
   border-radius: 8px;
   color: white;
+  display: flex;
   font-size: 24px;
   font-weight: 700;
-  background-color: #ff8100;
+  height: 35px;
+  justify-content: center;
   margin-right: 10px;
+  min-height: 35px;
+  min-width: 35px;
+  width: 35px;
 }
 
 .logoDiv>h5 {
   color: white;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   font-size: 24px;
   line-height: 30px;
-  transition: opacity 0.3s;
   opacity: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.3s;
+  white-space: nowrap;
 }
 
 .terms-privacy-container {
-  position: fixed;
+  align-items: flex-end;
   bottom: 20px;
-  right: 20px;
   display: inline-block;
   flex-direction: column;
-  align-items: flex-end;
+  position: fixed;
+  right: 20px;
 }
 
 .terms-privacy-container a {
   color: white;
+  font-size: 14px;
   margin-bottom: 10px;
   margin-left: 20px;
   text-decoration: none;
-  font-size: 14px;
 }
