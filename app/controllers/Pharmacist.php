@@ -255,6 +255,8 @@
         public function searchPatient($page = 1){
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
 
+                $user = $_SESSION['user'];
+                $pharmacist = $_SESSION['pharmacist'];
                 $patientName = $_POST['search'];
                 $itemsPerPage =5;
                 $offset = ($page - 1) * $itemsPerPage;
@@ -264,6 +266,8 @@
         
                 if (!empty($patients)) {
                     $data = [
+                        'user' => $user,
+                        'pharmacist' => $pharmacist,
                         'patients' => $patients,
                         'totalPatients' => $totalPatients,
                         'currentPage' => $page,
@@ -272,7 +276,10 @@
                     $this->view('pharmacist/pharmacist_dashboard', $data);  
                 } else {
                     // Condition 3: If medicine not found, redirect to addNewMed page
-                    $data = [];
+                    $data = [
+                        'user' => $user,
+                        'pharmacist' => $pharmacist
+                    ];
                     $this->view('pharmacist/pharmacist_dashboard', $data);
                     exit();
                 }

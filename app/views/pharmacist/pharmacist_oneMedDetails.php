@@ -108,7 +108,14 @@
                             <input type="text" id="searchBar" name="search" value="<?php echo isset($_GET['quantity']) ? $_GET['quantity']:''; ?>" onblur="updateQuantity(this.value)">
                             <!-- <button class="quantity-btn" data-action="increase"><img src="<?php echo URLROOT?>/app/views/pharmacist/images/plus.png" alt=""></button> -->
                         </div>
-                        <button id="outOfStock"><a href="<?php echo URLROOT; ?>/Pharmacist/markOutOfStock?id=<?php echo isset($_GET['id'])?$_GET['id']:''; ?>">Set Out of Stock</a></button>
+                        <?php if(isset($_GET['status']) && $_GET['status'] === 'In Stock'): ?>
+                            <!-- Button is shown when status is 'In Stock' -->
+                            <button id="outOfStock">
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/markOutOfStock?id=<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">Set Out of Stock</a>
+                            </button>
+                        <?php endif; ?>
+
+
                     </div>
                     
                 </div>
@@ -152,5 +159,26 @@
 }
 
     </script>
+    <script>
+    // JavaScript to prevent the link from being followed when disabled
+    document.getElementById("outOfStock").addEventListener("click", function(event) {
+        if (this.disabled) {
+            event.preventDefault();
+        }
+    });
+
+    // Disable the link when the button is disabled
+    document.getElementById("outOfStock").addEventListener("change", function() {
+        var link = document.getElementById("outOfStockLink");
+        link.disabled = this.disabled;
+        if (this.disabled) {
+            link.style.pointerEvents = "none";
+            link.style.color = "grey"; // Optional: Change link color when disabled
+        } else {
+            link.style.pointerEvents = "auto";
+            link.style.color = ""; // Optional: Reset link color
+        }
+    });
+</script>
     <script type="text/javascript" src="<?php echo URL_ROOT; ?>public/javascripts/testerjs/oneMedDetails.js"></script>
 </body>
