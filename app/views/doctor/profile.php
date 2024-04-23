@@ -61,7 +61,7 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Doctor Name</p>
+                            <p class="name"><?php echo $_SESSION['USER_DATA']->username?></p>
                             <p class="role">Doctor</p>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="doctorprofile">
-                        <div class="empid">Employee Id :#123456
+                        <div class="empid">Employee Id :<?php echo $_SESSION['USER_DATA']->user_ID;?>
                             <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />

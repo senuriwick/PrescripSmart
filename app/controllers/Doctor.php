@@ -156,7 +156,8 @@ class Doctor extends Controller{
     }
 
     public function sessions(){
-        $sessionsDetails = $this->dpModel->getSessionsDetails();
+        $userid = $_SESSION['USER_DATA']->user_ID;
+        $sessionsDetails = $this->dpModel->getSessionsDetails($userid);
         $data = [
             'sessionsData' => $sessionsDetails
         ];

@@ -68,8 +68,9 @@ class M_Doctor {
         return $result;
     }
 
-    public function getSessionsDetails(){
-        $this->db->query('SELECT * FROM doctorSessions');
+    public function getSessionsDetails($userid){
+        $this->db->query('SELECT * FROM sessions WHERE doctor_ID=:id');
+        $this->db->bind(':id',$userid);
         $results = $this->db->resultSet();
         return $results;
     }
