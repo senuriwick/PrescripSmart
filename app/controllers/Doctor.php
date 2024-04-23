@@ -133,6 +133,28 @@ class Doctor extends Controller{
         $this->view('doctor/reports',$data);
     }
 
+    public function loadReport(){
+        $reportid = $_GET['reportid']?? '';
+        if(!empty($reportid)){
+            $report = $this->dpModel->getReport($reportid);
+            $filename = $report->report;
+            $filepath = 'C:/xampp/htdocs/PrescripSmart/public/uploads/reports/'.$filename;
+            if(file_exists($filepath)){
+                header('Content-Type: application/pdf');
+                header('Content-Disposition: inline; filename="' .$filepath . '"');
+                header('Content-Length:'.filesize($filepath));
+
+                ob_clean();
+                flush();
+
+                readfile($filepath);
+                exit;
+            }else{
+                echo 'Report not found or not uploaded';
+            }
+        }
+    }
+
     public function sessions(){
         $sessionsDetails = $this->dpModel->getSessionsDetails();
         $data = [

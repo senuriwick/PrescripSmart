@@ -61,6 +61,13 @@ class M_Doctor {
         return $this->db->rowCount();
     }
 
+    public function getReport($reportid){
+        $this->db->query('SELECT * FROM lab_reports WHERE report_ID=:id');
+        $this->db->bind(':id',$reportid);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function getSessionsDetails(){
         $this->db->query('SELECT * FROM doctorSessions');
         $results = $this->db->resultSet();
