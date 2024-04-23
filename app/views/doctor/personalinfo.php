@@ -53,7 +53,7 @@
             <div class="navBar">
                 <div class="navBar">
                     <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
                 </div>
             </div>
             <div class="main">
@@ -73,61 +73,61 @@
                     </div>
 
                     <div class="doctorprofile">
-                        <div class="empid">Employee Id :#123456
+                        <div class="empid">Employee Id :<?php echo $data['user']->doctor_ID;?>
                             <div class="accountinfotext">Account Information</div>
                         </div>
                         <hr />
                         <div class="details">
                             <form>
                                 <label for="">First Name</label><br>
-                                <input type="text" placeholder="First name">
+                                <input type="text" placeholder="First name" value="<?php echo $data['user']->first_Name;?>">
                             </form>
                             <form>
                                 <label for="">Last Name</label><br>
-                                <input type="text" placeholder="Last name">
+                                <input type="text" placeholder="Last name" value="<?php echo $data['user']->last_Name;?>">
                             </form>
                         </div>
                         <div class="details">
                             <form>
                                 <label for="">Display Name</label><br>
-                                <input type="text" placeholder="Display name">
+                                <input type="text" placeholder="Display name" value="<?php echo $data['user']->display_Name;?>">
                             </form>
                         </div>
                         <p>This will be how your name will be displayed in the dashboard.</p>
                         <div class="details">
                             <form>
                                 <label for="">Home Address</label><br>
-                                <input type="text" placeholder="Home Address">
+                                <input type="text" placeholder="Home Address" value="<?php echo $data['user']->home_Address;?>">
                             </form>
                         </div>
                         <div class="details">
                             <form>
                                 <label for="">NIC  Number</label><br>
-                                <input type="number" placeholder="200045465455">
+                                <input type="number" placeholder="200045465455" value="<?php echo $data['user']->NIC;?>">
                             </form>
                             <form>
                                 <label for="">Contact Number</label><br>
-                                <input type="tel" placeholder="0214569889">
+                                <input type="tel" placeholder="0214569889" value="<?php echo $data['user']->contact_Number;?>">
                             </form>
                         </div>
                         <div class="details">
                             <form>
                                 <label for="">Doctor Registration Number</label><br>
-                                <input type="number" placeholder="548968451">
+                                <input type="number" placeholder="548968451" vlaue="<?php echo $data['user']->registration_No;?>">
                             </form>
                             <form>
                                 <label for="">Qualification</label><br>
-                                <input type="text" placeholder="Qualification">
+                                <input type="text" placeholder="Qualification" value="<?php echo $data['user']->qualifications;?>">
                             </form>
                         </div>
                         <div class="details">
                             <form>
                                 <label for="">Department</label><br>
-                                <input type="text" placeholder="Department">
+                                <input type="text" placeholder="Department" value="<?php echo $data['user']->department;?>">
                             </form>
                             <form>
                                 <label for="">Specialization</label><br>
-                                <input type="text" placeholder="Specialization">
+                                <input type="text" placeholder="Specialization" value="<?php echo $data['user']->specialization;?>">
                             </form>
                         </div>
                         <div class="details">

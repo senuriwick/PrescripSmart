@@ -147,11 +147,25 @@ class M_Doctor {
         return $results;
     }
 
-    public function getTestId($testname){
-        $this->db->query("SELECT * FROM tests WHERE name=:testname");
-        $this->db->bind(':testname',$testname);
-        $results = $this->db->single();
-        return $results;
+    // public function getTestId($testname){
+    //     $this->db->query("SELECT * FROM tests WHERE name=:testname");
+    //     $this->db->bind(':testname',$testname);
+    //     $results = $this->db->single();
+    //     return $results;
+    // }
+
+    public function getProfileDetails($id){
+        $this->db->query('SELECT * FROM users WHERE user_ID=:id');
+        $this->db->bind(':id',$id);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getPersonalInfo($id){
+        $this->db->query('SELECT * FROM doctors WHERE doctor_ID=:id');
+        $this->db->bind(':id',$id);
+        $result = $this->db->single();
+        return $result;
     }
     
 }

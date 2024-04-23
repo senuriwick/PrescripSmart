@@ -169,11 +169,32 @@ class Doctor extends Controller{
     }
 
     public function Profile(){
-        $this->view('doctor/profile');
+        $userid = $_SESSION['USER_DATA']->user_ID;
+        $user = $this->dpModel->getProfileDetails($userid);
+        $data = [
+            'user' => $user
+        ];
+        $this->view('doctor/profile',$data);
+    }
+
+    public function changePassword(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if($_POST['submit']){
+                $newpw = $_POST['newpw'];
+                $confirmpw = $_POST['confirmPW'];
+                
+
+            }
+        }
     }
 
     public function personalInfo(){
-        $this->view('doctor/personalinfo');
+        $userid = $_SESSION['USER_DATA']->user_ID;
+        $user = $this->dpModel->getPersonalInfo($userid);
+        $data = [
+            'user' =>$user
+        ];
+        $this->view('doctor/personalinfo',$data);
     }
     
     public function security(){

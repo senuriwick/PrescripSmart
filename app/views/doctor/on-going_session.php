@@ -53,7 +53,7 @@
             <div class="navBar">
                 <div class="navBar">
                     <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
                 </div>
             </div>
             <div class="main">

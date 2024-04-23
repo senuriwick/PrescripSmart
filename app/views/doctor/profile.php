@@ -53,7 +53,7 @@
             <div class="navBar">
                 <div class="navBar">
                     <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
                 </div>
             </div>
             <div class="main">
@@ -81,13 +81,13 @@
                             <div>Username
                                 <div class="test-box">
                                     <div class="test-box-data">
-                                        Shanika Ayasmanthi<i class="fa-solid fa-pen"></i>
+                                        <?php echo $data['user']->username;?><i class="fa-solid fa-pen"></i>
                                     </div>
                                 </div>
                             </div>
                             <div>Associated Email Address/ Phone Number
                                 <div class="test-box">
-                                    011456875
+                                    <?php echo $data['user']->email_phone;?>
                                 </div>
                             </div>
                             <div>Current password
@@ -99,22 +99,41 @@
                         <hr/>
                         <div class="detail">
                             <div>
-                                <form>
+                                <form method="POST" >
                                     <label>New password</label><br>
-                                    <input type="password" placeholder="********">
+                                    <input type="password" id="new" placeholder="********">
                                 </form>
                             </div>
                             <div>
                                 <form>
                                     <label>Confirm password</label><br>
-                                    <input type="password" placeholder="**********">
+                                    <input type="password" id="confirm" placeholder="**********">
                                 </form>
                             </div>
-                            <div><button>SAVE CHANGES</button></div>
+                            <div><button type="submit" onclick="checkInputs()">SAVE CHANGES</button></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function checkInputs() {
+            var newpw = document.getElementById("new").value;
+            var confirmpw = document.getElementById("confirm").value;
+
+            if(newpw&&confirmpw){
+                if(newpw!==confirmpw){
+                    alert("confirm password doesn't match with new password");
+                }
+            }else if(!newpw){
+                alert("Enter a new password to change");
+            }else{
+                alert("Confirm your password");
+            }
+            
+        }
+    </script>
+
 </body>
