@@ -170,6 +170,7 @@ p a:active{
   list-style: none;
   padding: 0;
   margin: 20px 0;
+  justify-content: center;
 }
 
 /* Pagination link styles */

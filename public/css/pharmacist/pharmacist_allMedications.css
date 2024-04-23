@@ -115,6 +115,7 @@ color: rgba(0, 105, 255, 1);
   list-style: none;
   padding: 0;
   margin: 20px 0;
+  justify-content: center;
 }
 
 /* Pagination link styles */

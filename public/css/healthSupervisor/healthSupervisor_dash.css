@@ -32,22 +32,23 @@ p a:active{
   margin-left: 0;
   color:rgba(164, 174, 199, 1);
 }
-.ash-box {
-    width: 200px;
-    height: 200px;
-    background-color: #b2beb5; /* Ash color */
-    border: 1px solid #666; /* Optional: Add a border */
-  }
-  
-  .patientFile {    
-    background-color: rgba(239, 242, 251, 1);
-    margin-top: 3vh;
-    padding: 110px 1.5vw;
-    border-radius: 5px;
-    width: 87%;
-    height: 25%;
-  }
-  
+          .ash-box {
+              width: 200px;
+              height: 200px;
+              background-color: #b2beb5; /* Ash color */
+              border: 1px solid #666; /* Optional: Add a border */
+            }
+            
+.patientFile {    
+  background-color: rgba(239, 242, 251, 1);
+  padding: 110px 1.5vw;
+  border-radius: 5px;
+  width: 87%;
+  min-height: 240px; /* Set a minimum height */
+  position: relative; /* Make the parent element of the pagination */
+  margin-top:20px;
+}
+
   .patientFile h2{
     color: rgba(68, 81, 114, 1);
     margin-top: -100px;
@@ -79,11 +80,16 @@ p a:active{
     cursor: pointer;
   }
   
-  .inquiry img{
-    width:35px;
-    height: 35px; 
-    margin-right:-150px;
-  }
+.inquiry #idNO {
+  margin-left: -250px;
+}
+
+
+.inquiry img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px; /* Adjust the margin to control the spacing */
+}
   
   .inquiry p{
     color: rgba(68, 81, 114, 1);
@@ -96,12 +102,17 @@ p a:active{
   }
 
   .pagination {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     list-style: none;
     padding: 0;
-    margin: 20px 0;
     justify-content: center;
-  }
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
   
   /* Pagination link styles */
   .pagination a {
