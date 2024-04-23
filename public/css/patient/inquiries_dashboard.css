@@ -1,31 +1,28 @@
 .inquiriesDiv {
-    margin-top: 4vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
+    margin-top: 4vh;
     padding: 1vh 3vh 2vh;
 }
 
-
 .inquiriesDiv h1 {
-    margin-top: 2.5vh;
-    font-weight: bold;
     color: rgba(68, 81, 114, 1);
     font-size: 24px;
+    font-weight: bold;
+    margin-top: 2.5vh;
 }
-
 
 body {
     font-family: inter;
     margin: 0;
     scroll-behavior: smooth;
+
     /* overflow: hidden; */
 }
-
 
 .content {
     display: flex;
 }
-
 
 .patientDiv {
     border-bottom: solid;
@@ -35,31 +32,31 @@ body {
 
 .main {
     flex: 1;
-    margin-left: 220px;
     margin-bottom: 3%;
+    margin-left: 220px;
 }
 
 .patientInfoContainer {
-    width: 80%;
-    margin-top: 5vh;
     margin-left: 3vw;
+    margin-top: 5vh;
+    width: 80%;
 }
 
 .menu {
-    margin-top: 2vh;
-    display: flex;
     border-bottom: solid;
-    padding-bottom: 0.1vh;
-    border-width: 0.1vh;
     border-color: rgba(164, 174, 199, 1);
+    border-width: 0.1vh;
+    display: flex;
+    margin-top: 2vh;
+    padding-bottom: 0.1vh;
 }
 
 .menu a {
-    margin-right: 6.5vh;
-    font-size: 2vh;
-    font-family: inter;
-    margin-bottom: 1vh;
     color: rgba(164, 174, 199, 1);
+    font-family: inter;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    margin-right: 6.5vh;
     text-decoration: none;
 }
 
@@ -101,78 +98,77 @@ a:hover {
 }
 
 .Input {
-    width: 16rem;
-    height: 3rem;
+    align-items: center;
+    background-color: #ffffff;
+    border: solid 0.2rem #e3e8f4;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: rgba(68, 81, 114, 0.75);
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
     font-size: 16px;
     font-weight: 500;
-    line-height: 1.2125;
-    color: rgba(68, 81, 114, 0.75);
-    font-family: Inter, 'Source Sans Pro';
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+    height: 3rem;
     justify-content: center;
-    border: solid 0.2rem #e3e8f4;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    flex-shrink: 0;
+    line-height: 1.2125;
+    white-space: nowrap;
+    width: 16rem;
 }
 
-
 .messageInput {
-    width: 80%;
-    height: 8rem;
+    align-items: center;
+    background-color: #ffffff;
+    border: solid 0.2rem #e3e8f4;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: rgba(68, 81, 114, 0.75);
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
     font-size: 16px;
     font-weight: 500;
-    line-height: 1.2125;
-    color: rgba(68, 81, 114, 0.75);
-    font-family: Inter, 'Source Sans Pro';
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+    height: 8rem;
     justify-content: center;
-    border: solid 0.2rem #e3e8f4;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    flex-shrink: 0;
+    line-height: 1.2125;
+    white-space: nowrap;
+    width: 80%;
 }
 
 .inquiriesDiv button {
-    width: 5rem;
-    height: 2rem;
-    text-align: center;
+    align-items: center;
+    background-color: #0069ff;
+    border-color: #0069ff;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
     font-size: 16px;
     font-weight: 500;
-    line-height: 1.2125;
-    color: #ffffff;
-    font-family: Inter, 'Source Sans Pro';
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+    height: 2rem;
     justify-content: center;
-    background-color: #0069ff;
-    border-radius: 0.5rem;
-    border-color: #0069ff;
-    flex-shrink: 0;
+    line-height: 1.2125;
+    text-align: center;
+    white-space: nowrap;
+    width: 5rem;
 }
 
 .menu #inquiries {
-    color: #0069FF;
     border-color: #0069FF;
     border-spacing: 2cm;
+    color: #0069FF;
     position: relative;
 }
 
 .menu #inquiries::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 100%;
-    height: 4px;
     background-color: #0069FF;
+    bottom: -8px;
+    content: '';
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
 }
 
 .inquiries {
@@ -181,11 +177,11 @@ a:hover {
 }
 
 .inquiries::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 5px;
     background-color: #0069FF;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 5px;
 }

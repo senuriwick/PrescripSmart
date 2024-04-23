@@ -3,16 +3,16 @@ html {
 }
 
 body {
-    margin: 0;
-    font-family: 'Inter',sans-serif;
     background-color: #e3e8f4;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
 }
 
 .blueArea {
     background-color: #3076F8;
+    height: 50px;
     padding: 20px 0;
     text-align: center;
-    height: 50px;
 }
 
 .welcomePage {
@@ -20,57 +20,57 @@ body {
 }
 
 .logoDiv {
+    align-items: center;
+    display: flex;
+    left: 25px;
     position: absolute;
     top: 0px;
-    left: 25px;
-    display: flex;
-    align-items: center;
 }
 
 .logoDiv>div {
-    width: 35px;
-    min-width: 35px;
-    height: 35px;
-    min-height: 35px;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    background-color: #ff8100;
     border-radius: 8px;
     color: white;
+    display: flex;
     font-size: 24px;
     font-weight: 700;
-    background-color: #ff8100;
+    height: 35px;
+    justify-content: center;
     margin-right: 10px;
+    min-height: 35px;
+    min-width: 35px;
+    width: 35px;
 }
 
 .logoDiv>h5 {
     color: white;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     font-size: 24px;
     line-height: 30px;
-    transition: opacity 0.3s;
     opacity: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.3s;
+    white-space: nowrap;
 }
 
 .container {
-    padding: 20px;
+    color: rgba(68, 81, 114, 1);
     margin-left: 200px;
     margin-right: 200px;
     max-width: calc(100% - 200px);
-    color: rgba(68, 81, 114, 1);
+    padding: 20px;
 }
-  
+
 .content {
-    line-height: 1.6;
     font-style: normal;
     font-weight: lighter;
+    line-height: 1.6;
 }
 
 #map {
     height: 400px;
-    width: 100%; 
+    width: 100%;
 }
 
 html {
@@ -78,15 +78,15 @@ html {
 }
 
 body {
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    font-family: 'Inter',sans-serif;
 }
 
 .blueArea {
     background-color: #3076F8;
+    height: 50px;
     padding: 20px 0;
     text-align: center;
-    height: 50px;
 }
 
 .welcomePage {
@@ -94,59 +94,60 @@ body {
 }
 
 .logoDiv {
+    align-items: center;
+    display: flex;
+    left: 25px;
     position: absolute;
     top: 0px;
-    left: 25px;
-    display: flex;
-    align-items: center;
 }
 
 .logoDiv>div {
-    width: 35px;
-    min-width: 35px;
-    height: 35px;
-    min-height: 35px;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    background-color: #ff8100;
     border-radius: 8px;
     color: white;
+    display: flex;
     font-size: 24px;
     font-weight: 700;
-    background-color: #ff8100;
+    height: 35px;
+    justify-content: center;
     margin-right: 10px;
+    min-height: 35px;
+    min-width: 35px;
+    width: 35px;
 }
 
 .logoDiv>h5 {
     color: white;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     font-size: 24px;
     line-height: 30px;
-    transition: opacity 0.3s;
     opacity: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.3s;
+    white-space: nowrap;
 }
 
 .container {
-    padding: 20px;
+    color: rgba(68, 81, 114, 1);
     margin-left: 200px;
     margin-right: 200px;
     max-width: calc(100% - 200px);
-    color: rgba(68, 81, 114, 1);
+    padding: 20px;
 }
-  
+
 .content {
-    line-height: 1.6;
     font-style: normal;
     font-weight: lighter;
+    line-height: 1.6;
 }
 
 #map {
     height: 400px;
-    width: 100%; 
+    width: 100%;
 }
 
-h3,p{
-    display:inline;
-    }
+h3,
+p {
+    display: inline;
+}

@@ -4,45 +4,45 @@
 }
 
 .navBar p {
-  margin: 0;
-  float: right;
-  padding: 2.0vh 0.5vw 1vw;
   color: #ffffff;
-  font-size: 2.0vh;
+  float: right;
   font-family: inter;
+  font-size: 2.0vh;
   font-weight: bold;
+  margin: 0;
+  padding: 2.0vh 0.5vw 1vw;
 }
 
 .navBar img {
   float: right;
-  padding: 1.3vh 1vw;
   height: 4vh;
+  padding: 1.3vh 1vw;
 }
 
 .navBar #logoutOption {
-  display: none;
-  position: absolute;
-  top: 10vh;
-  right: 2vw;
-  width: 150px;
-  height: 25px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  padding: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+  height: 25px;
+  padding: 5px;
+  position: absolute;
+  right: 2vw;
   text-align: center;
+  top: 10vh;
+  width: 150px;
 }
 
 .navBar #logoutButton {
-  color: #fff;
   background-color: #ff0000;
-  padding: 5px 40px;
   border-radius: 3px;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+  color: #fff;
   display: inline-block;
+  font-size: 14px;
+  padding: 5px 40px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .navBar #logoutButton:hover {
