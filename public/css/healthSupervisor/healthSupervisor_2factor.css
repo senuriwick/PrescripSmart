@@ -24,9 +24,10 @@
 }
 
 .pharmacistprofile .empid {
-  font-size: 3vh;
+  margin-top: 2vh;
   font-weight: bold;
-  color: #0069FF;
+  color: #0069ff;
+  font-size: 24px;
 }
 
 .pharmacistprofile .accountinfotext{

@@ -18,14 +18,19 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-
             <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
+            </div>
+
+            <div class="userDiv">
+                <p class="mainOptions">
+                    <Datag>PHARMACIST</Datag>
+                </p>
+            </div>
+
 
             <div class="manageDiv">
-                <p class="mainOptions">Health Supervisor Tools</p>
+                <p class="mainOptions">MANAGE</p>
 
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
@@ -68,45 +73,37 @@
                         <p><a href="" style="color: black; font-weight: 500;">Security</a></p>
                     </div>
 
-                    <div class="pharmacistprofile">
-                        <div class="empid">Employee Id :<?php echo $user->user_id ?>
-                            <div class="accountinfotext">Security Information</div>
-                        </div>
-                        <hr />
-                        <div class="detail">
-                            <div>
-                                <form>
-                                    <label>Method of Sign In</label><br>
-                                    <input type="text" placeholder="<?php echo $user->signIn_method; ?>" readonly>
-                                </form>
+                    <div class="inquiriesDiv">
+                <?php $user = $data['user'] ?>
+                    <h1>Employee ID: #<?php echo $user->user_ID ?></h1>
+                    <p class="sub1" style="font-weight: bold;">Security Information</p>
+                    <div class="accInfo">
+                    <div class="parallel">
+                            <div class="input-group">
+                                <label for="name">Method of Sign-In</label>
+                                <input type="text" id="method" class="input" style="display: inline-block;" value="<?php echo $user->method_of_signin ?>" readonly>
                             </div>
-                            <div>
-                                <form class="sample_username">
-                                    <input type="text" placeholder="<?php echo $user->email_phone; ?>" readonly>
-                                </form>
+                            <div class="input-group">
+                                <label for="email">Email/Phone Number</label>
+                                <input type="text" id="email_phone" class="input" style="display: inline-block;"
+                                    value="<?php echo $user->email_phone ?>" readonly>
                             </div>
-                       
-                        </div>
-                        
-                        <hr/>
-                        <div class="detail">
-                            <div>
-                                <form>
-                                    <label>Two-Factor Authentication</label><br>
-                                </form>
-                                <p class="text">Add an extra layer of security to your account. To sign in, you'll need to provide a code along with your username and password</p>
-
-                                <label class="switch">
-                                <input type="checkbox" id="toggleTwoFactorAuth" <?php echo $user->two_factor_auth == 'ON' ? 'checked' : ''; ?> >
-                                <span class="slider round"></span>
-                            </label>
-                            </div>  
                         </div>
                     </div>
+                    <div>
+                        <h4>Two-factor Authentication</h3>
+                            <p class="para">Add an extra layer of security to your account. To sign in, you'll need to
+                                provide a code along with your username and password.</p>
+                            <label class="switch">
+                                <input type="checkbox" id="toggleTwoFactorAuth" <?php echo $user->two_factor_auth == 'on' ? 'checked' : ''; ?>>
+                                <span class="slider round"></span>
+                            </label>
+                    </div>
                 </div>
+                
             </div>
-        </div>
-    </div>
+                    
+                    
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js">
