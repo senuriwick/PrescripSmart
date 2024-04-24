@@ -26,6 +26,8 @@
 
         <?php $appointment_ID = $_GET['appointment_id']; ?>
         <?php $appointment = $data['appointment']; ?>
+        <?php $hash = $data['hash']; ?>
+        <?php $patient = $data['patient'] ?>
         <?php
         $date = new DateTime($appointment->date);
         $formatted_date = $date->format("D, jS M, Y");
@@ -124,7 +126,7 @@
                 <div class="number">
                   <span class="number-sub-0">
                     NO.<br>
-                    <?php echo $appointment->appointment_No; ?>
+                    <?php echo $appointment->token_No; ?>
                   </span>
                 </div>
               </div>
@@ -141,10 +143,11 @@
                       <?php echo $appointment->payment_status; ?>
                     </p>
                   </div>
+                  <?php if ($appointment->payment_status == "UNPAID"):?>
+                    <button type ="submit" id="payhere-payment" class = "paymentButton">Pay Now</button>
+                    <?php endif ;?>
                   </p>
                 </div>
-
-
               </div>
             </div>
           </div>
@@ -154,6 +157,70 @@
     </div>
   </div>
   </div>
+
+
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+
+<script>
+    payhere.onCompleted = function onCompleted(orderId) {
+        console.log("Payment completed. OrderID:" + orderId);
+        updateDatabase(orderId);
+        window.location.reload();
+    };
+
+    payhere.onDismissed = function onDismissed() {
+        console.log("Payment dismissed");
+    };
+
+    payhere.onError = function onError(error) {
+        console.log("Error:"  + error);
+    };
+
+    var payment = {
+        "sandbox": true,
+        "merchant_id": "1226371", 
+        "return_url": "<?php echo URLROOT?>/patient/appointments_dashboard",   
+        "cancel_url": "<?php echo URLROOT?>/patient/appointments_dashboard",  
+        "notify_url": "<?php echo URLROOT?>/patient/notify_url",
+        "order_id": "<?php echo $appointment->appointment_ID; ?>",
+        "items": "New channeling appointment",
+        "amount": "<?php echo $appointment->amount; ?>",
+        "currency": "LKR",
+        "hash": "<?php echo $hash?>",
+        "first_name": "<?php echo $patient->first_Name ?>",
+        "last_name": "<?php echo $patient->last_Name ?>",
+        "email": "<?php echo $patient->email_address?>",
+        "phone" : "<?php echo $patient->contact_Number?>",
+        "address": "<?php echo $patient->home_Address?>",
+        "city": "Colombo",
+        "country": "Sri Lanka"
+    };
+
+    document.getElementById("payhere-payment").onclick = function (e) {
+        payhere.startPayment(payment);
+    };
+
+
+    function updateDatabase(orderId) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '<?php echo URLROOT?>/patient/update_payment', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                if (xhr.status == 200) {
+                    console.log('Database updated successfully');
+                } else {
+                    console.error('Error updating database');
+                }
+            }
+        };
+        xhr.send('orderId=' + encodeURIComponent(orderId));
+    }
+
+</script>
+
 </body>
 
 </html>

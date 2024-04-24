@@ -58,7 +58,7 @@
                                                 <?php echo date('h.i A', strtotime($appointment->time)) ?>
                                                 </p>
                                             </div>
-                                            <p class="description">No: <?php echo $appointment->appointment_No ?>
+                                            <p class="description">No: <?php echo $appointment->token_No ?>
                                             </p>
                                             
                                         </div>

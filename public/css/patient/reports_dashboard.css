@@ -60,6 +60,7 @@
   display: flex;
   justify-content: flex-end;
   width: 6vw;
+  cursor: pointer;
 }
 
 body {

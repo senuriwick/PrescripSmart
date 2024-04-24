@@ -33,19 +33,9 @@
                     $docImage = $data['image'];
                     $doctor = $data['doctor']; ?>
 
-                    <?php
-                    $doctorname = $doctor->display_Name;
-                    $doctorspec = $doctor->specialization;
-
-                    // if (!empty($data['session'])) {
-                    //     $doctorname = $data['session'][0]->doctorName;
-                    //     $doctorspec = $data['session'][0]->specialization;
-                    // }
-                    // ?>
-
-
+                    
                     <p style="font-size: small; color: gray;">Search Results (1)<br>Dr.
-                        <?php echo $doctorname; ?>
+                        <?php echo $doctor->display_Name; ?>
                     </p>
 
                 </div>
@@ -54,10 +44,10 @@
                     <img src="<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $docImage->profile_photo ?>"
                         alt="profImage">
                     <h1 style="font-size: 24px; color:  #0069FF;">Dr.
-                        <?php echo $doctorname; ?>
+                        <?php echo $doctor->display_Name; ?>
                     </h1>
                     <p class="spec" style="line-height: 0.4;">
-                        <?php echo $doctorspec; ?>
+                        <?php echo $doctor->specialization; ?>
                     </p>
                     <div class="line1"></div>
 
@@ -84,7 +74,7 @@
                                         <?php echo $start_time; ?>-
                                         <?php echo $end_time; ?>
                                         <br />
-                                        Appointment No:
+                                        Token No:
                                         <strong><?php echo $session->current_appointment; ?></strong>
                                     </p>
                                     <div class="line2"></div>

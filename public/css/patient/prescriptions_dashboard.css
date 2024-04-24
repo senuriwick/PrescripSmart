@@ -58,6 +58,7 @@
 .file img[alt="eye-icon"] {
   height: 3vh;
   padding: 1.75vh 1.5vh 1vh 1.5vh;
+  cursor: pointer;
 }
 
 body {

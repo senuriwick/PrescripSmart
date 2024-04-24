@@ -117,7 +117,7 @@
                                 <div class="input-group">
                                     <label for="specialization">Specialization (If Any)</label>
                                     <input type="text" id="spec" name="spec" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->specializations; ?>">
+                                        style="display: inline-block;" value="<?php echo $nurse->specialization; ?>">
                                 </div>
                             </div>
                         </div>
