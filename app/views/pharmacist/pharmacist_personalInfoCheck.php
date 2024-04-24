@@ -18,23 +18,18 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
-            </div>
-
-            <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
-                </p>
-            </div>
+        <div class="logoDiv">
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+            <p class="mainOptions">Pharmacist Tools</p>
 
-                <a href="<?php echo URLROOT ?>/Pharmacist/dashboard" class="active"><img src="<?php echo URLROOT?>/app/views/pharmacist/images/patient2.png" alt="" class="pat">Patients</a>
-                <a href="<?php echo URLROOT ?>/Pharmacist/medications"><img src="<?php echo URLROOT?>/app/views/pharmacist/images/syringe.png" alt="" class="pat">Medications</a>
-                <a href="<?php echo URLROOT ?>/Pharmacist/profile"><img src="<?php echo URLROOT?>/app/views/pharmacist/images/man.png" alt="" class="pat">Profile</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/dashboard" class="active">Patients</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/medications">Medications</a>
+                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
             <div class="othersDiv">
                 <p class="sideMenuTexts">Billing</p>
@@ -51,13 +46,18 @@
                     <p>USERNAME</p>
                 </div>
             </div>
+
+            <?php $pharmacist = $data['pharmacist'] ?>
+            <?php $user = $data['user'] ?>
+
+
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name"><?php echo $pharmacist->display_name ?></p>
+                            <p class="role"><?php echo $user->role ?></p>
                         </div>
                     </div>
 
@@ -67,12 +67,11 @@
                         <p><a href="<?php echo URLROOT ?>/Pharmacist/security">Security</a></p>
                     </div>
 
-                    <?php $pharmacist = $data['pharmacist'] ?>
-
+                    
                     <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/pharmacist/personalInfoUpdate" method="POST">
                         <h1>Pharmacist ID: #
-                            <!-- <?php echo $patient->patient_ID ?> -->
+                            <?php echo $pharmacist->pharmacist_id ?>
                         </h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">

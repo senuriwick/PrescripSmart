@@ -10,47 +10,47 @@ body {
 
 .main {
   flex: 1;
-  margin-left: 220px;
   margin-bottom: 3%;
+  margin-left: 220px;
 }
 
 .patientInfoContainer {
-  width: 80%;
-  margin-top: 5vh;
   margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
 }
 
 .sessionDetails {
-  font-weight: bold;
   font-size: 1.1rem;
-
+  font-weight: bold;
 }
 
 .sessionDetails h1 {
-  font-size: 24px;
   color: rgba(68, 81, 114, 1);
-  margin-top: 2vh;
+  font-size: 24px;
   margin-bottom: 0.5vh;
+  margin-top: 2vh;
   padding-bottom: 0vh;
   white-space: nowrap;
 }
 
 .sessionDetails p {
-  margin-top: 1vh;
-  font-size: 16px;
   color: rgba(164, 174, 199, 1);
+  font-size: 16px;
   white-space: nowrap;
+
+  /* margin-top: 1vh; */
 }
 
 .ongoingDiv {
-  margin-top: 3vh;
-  background-color: rgba(239, 242, 251, 1);
-  padding: 1rem 2rem;
-  display: flex;
-  padding-bottom: 4rem;
-  border-radius: 10px;
   align-items: flex-start;
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  display: flex;
   flex-direction: column;
+  margin-top: 3vh;
+  padding: 1rem 2rem;
+  padding-bottom: 4rem;
 }
 
 .ongoingContent {
@@ -66,66 +66,66 @@ body {
 
 .patientsLeft {
   background-color: white;
+  border-radius: 10px;
   padding: 1.5vh 1vw;
   width: auto;
-  border-radius: 10px;
 }
 
 .patientsLeft p {
-  text-align: center;
-  padding: 0;
-  font-weight: bold;
   font-size: 24px;
+  font-weight: bold;
+  padding: 0;
+  text-align: center;
 }
 
 .patientsLeft span {
-  font-size: 64px;
   color: #0069FF;
+  font-size: 64px;
 }
 
 .allPatients {
   background-color: white;
-  width: 12rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
   margin-top: 0.7rem;
   padding: 0.01rem 0rem;
   text-align: center;
+  width: 12rem;
+
   /* font-weight: bold; */
-  font-size: 1.1rem;
-  border-radius: 10px;
 }
 
 .sessionAppointments {
   background-color: white;
   border-radius: 10px;
+  margin-left: 2rem;
+  margin-top: 0;
   padding: 1.5rem;
   padding-bottom: 4rem;
   width: 700px;
-  margin-left: 2rem;
-  margin-top: 0;
 }
 
 .sessionAppointments .appointmentDiv.active,
 .sessionAppointments .appointmentDiv.completed,
 .sessionAppointments .appointmentDiv.cancelled {
+  align-items: center;
+  border-color: rgba(164, 174, 199, 1);
+  border-radius: 10px;
   border-style: solid;
   border-width: 0.1vh;
-  border-radius: 10px;
-  margin-top: 0.8rem;
-  border-color: rgba(164, 174, 199, 1);
   display: flex;
-  justify-content: space-between;
   height: 40px;
-  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
 }
 
 .sessionAppointments .appointmentDiv.active p,
 .sessionAppointments .appointmentDiv.completed p,
 .sessionAppointments .appointmentDiv.cancelled p {
-
+  color: rgba(68, 81, 114, 0.75);
+  font-size: 16px;
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 16px;
-  color: rgba(68, 81, 114, 0.75);
   white-space: nowrap;
 }
 
@@ -133,6 +133,19 @@ body {
 .sessionAppointments .appointmentDiv p.desDiv {
   color: #0069FF;
   font-weight: 500;
+  margin-right: 50px;
+  text-align: left;
+  width: 3rem;
+}
+
+.sessionAppointments .appointmentDiv .nameClass {
+  text-align: left;
+  width: 15rem;
+}
+
+.sessionAppointments .appointmentDiv .timeClass {
+  text-align: left;
+  width: 7rem;
 }
 
 /* Remove the bold font weight from the text inside the .sessionAppointments div */
@@ -141,32 +154,32 @@ body {
   text-align: center;
 }
 
-
 .sessionAppointments .appointmentDiv.active {
   background-color: rgba(0, 105, 255, 0.2);
   border-color: rgba(0, 105, 255, 0.2);
 }
 
 .sessionAppointments .appointmentDiv .status {
-  margin: 1rem 1rem;
-  padding: 0.1vh;
-  height: 22px;
-  width: 100px;
+  align-items: center;
   background-color: rgba(57, 122, 73, 1);
   border-radius: 10px;
+  display: flex;
+  height: 22px;
+  justify-content: center;
+  margin: 1rem 1rem;
   margin-left: auto;
-  justify-self: center;
+  padding: 0.1vh;
+  width: 100px;
+
+  /* justify-self: center; */
 }
 
 .sessionAppointments .appointmentDiv .status p {
-  text-align: center;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
-  font-weight: normal;
   font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+  text-align: center;
 }
 
 .sessionAppointments .appointmentDiv .status.cancelled {
@@ -187,28 +200,28 @@ body {
 }
 
 .on-going::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 5px;
   background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
 }
 
 .menu #on-going {
-  color: #0069FF;
   border-color: #0069FF;
   border-spacing: 2cm;
+  color: #0069FF;
   position: relative;
 }
 
 .menu #on-going::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 4px;
   background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }

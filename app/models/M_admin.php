@@ -217,7 +217,7 @@ class M_admin
     }
 
     public function regDoctor($data)
-      {
+    {
         $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
             $this->db->bind(':first_name', $data['first_name']);
             $this->db->bind(':last_name', $data['last_name']);
@@ -226,7 +226,9 @@ class M_admin
     
           $employeeInserted = $this->db->execute();
 
-         $this->db->query('INSERT INTO doctors (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+         $emp_id = $this->db->lastInsertId();
+         $this->db->query('INSERT INTO doctors (emp_id,first_name, last_name, email_address, phone_number, password) VALUES(:emp_id, :first_name, :last_name, :email_address, :phone_number, :password)');
+            $this->db->bind(':emp_id', $emp_id);
             $this->db->bind(':first_name', $data['first_name']);
             $this->db->bind(':last_name', $data['last_name']);
             $this->db->bind(':email_address', $data['email']);
@@ -247,7 +249,7 @@ class M_admin
           {
             return false;
           }
-      }
+    }
 
       public function regHealthsup($data)
       {
@@ -262,7 +264,11 @@ class M_admin
     
           $healthsupInserted = $this->db->execute();
 
-          $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+          $emp_id = $this->db->lastInsertId();
+
+          $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number)');
+              $this->db->bind(':emp_id', $emp_id);
+              $this->db->bind(':emp_id', $emp_id);
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -292,9 +298,11 @@ class M_admin
               $this->db->bind(':phone_number', $data['phone_number']);
           
           $employeeInserted = $this->db->execute();
-          
-          $this->db->query('INSERT INTO labtechnicians (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+          $emp_id = $this->db->lastInsertId();
+
+          $this->db->query('INSERT INTO labtechnicians (emp_id,first_name, last_name, email_address, phone_number, password) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number, :password)');
           // Bind values
+          $this->db->bind(':emp_id', $emp_id);
           $this->db->bind(':first_name', $data['first_name']);
           $this->db->bind(':last_name', $data['last_name']);
           $this->db->bind(':email_address', $data['email']);
@@ -328,7 +336,10 @@ class M_admin
     
           $nurseInserted = $this->db->execute();
 
-          $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+          $emp_id = $this->db->lastInsertId();
+
+          $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+              $this->db->bind(':emp_id', $emp_id);
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -383,7 +394,10 @@ class M_admin
     
           $pharmacistInserted = $this->db->execute();
 
-          $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+          $emp_id = $this->db->lastInsertId();
+
+          $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number)');
+              $this->db->bind(':emp_id', $emp_id);
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -416,7 +430,10 @@ class M_admin
       
             $receptionistInserted = $this->db->execute();
 
-            $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+            $emp_id = $this->db->lastInsertId();
+
+            $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number)');
+                $this->db->bind(':emp_id', $emp_id);
                 $this->db->bind(':first_name', $data['first_name']);
                 $this->db->bind(':last_name', $data['last_name']);
                 $this->db->bind(':email_address', $data['email']);
@@ -579,7 +596,7 @@ class M_admin
         } else {
           return false;
         }
-      }
+      } 
 
 
        

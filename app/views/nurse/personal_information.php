@@ -111,17 +111,13 @@
                             <div class="parallel">
                                 <div class="input-group">
                                     <label for="department">Department</label>
-                                    <select class="input">
-                                        <option value="" disabled selected>Select Department</option>
-                                        <option value="option1">Option 01</option>
-                                        <option value="option2">Option 02</option>
-                                        <!-- Add more specialization options as needed -->
-                                    </select>
+                                    <input type="text" id="dep" name="dep" class="input"
+                                        style="display: inline-block;" value="<?php echo $nurse->department; ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="specialization">Specialization (If Any)</label>
                                     <input type="text" id="spec" name="spec" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->specializations; ?>">
+                                        style="display: inline-block;" value="<?php echo $nurse->specialization; ?>">
                                 </div>
                             </div>
                         </div>

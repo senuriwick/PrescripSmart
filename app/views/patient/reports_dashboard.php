@@ -36,28 +36,23 @@
                   </p>
                 </div>
                 <p>Referred by Dr.
-                  <?php echo $report->fName; ?>
-                  <?php echo $report->lName; ?>
+                  <?php echo $report->first_Name; ?>
+                  <?php echo $report->last_Name; ?>
                 </p>
                 <p>Issued on:
-                  <?php echo $report->report_Date; ?>
+                  <?php echo $report->date_of_report; ?>
                 </p>
-                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
-                  data-container-pid="<?= $report->report_ID ?>">
-                <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\download.png" alt="download-icon"> -->
 
-                <!-- <?php if ($report->downloads <= 5): ?>
-                  <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>" download>
-                    <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
-                  </a>
-                <?php endif; ?> -->
-
+                <div class = "imgclass">
                 <?php if ($report->downloads <= 5): ?>
                   <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>"
                     class="download-link" data-report-id="<?= $report->report_ID ?>">
                     <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
                   </a>
                 <?php endif; ?>
+                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
+                  data-container-pid="<?= $report->report_ID ?>">
+                </div>
 
               </div>
             </div>
@@ -68,7 +63,6 @@
                 <a href="www.prescripsmart.com">www.prescripsmart.com</a>
                 <div class="model-head">
                 <div>P</div>
-                  <!-- <img src="<?php echo URLROOT; ?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                   <h4><u>CONFIDENTIAL LAB REPORT</u></h4>
                   <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
@@ -77,31 +71,25 @@
                   </div>
                   <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
                   <div>Report Date & Time:
-                    <?php echo $report->prescription_Date; ?> 10:00 AM
+                    <?php echo $report->prescription_Date; ?>
                   </div>
                   <div>Age: <?php echo $report->age?> Yrs</div>
                   <div>Referred by: Dr.
-                    <?php echo $report->fName; ?>
-                    <?php echo $report->lName; ?>
+                    <?php echo $report->first_Name; ?>
+                    <?php echo $report->last_Name; ?>
                   </div>
                 </div>
                 <div class="test-box">
                   <table>
                     <tbody>
+                      <th>TEST</th>
+                      <th>FLAG REFERENCE VALUE</th>
+                      <th>RESULT</th>
+                      
                       <tr>
-                        <td>TEST</td>
-                        <td>RESULT</td>
-                        <td>FLAG REFERENCE VALUE</td>
-                      </tr>
-                      <tr>
-                        <td>Test 1</td>
-                        <td>Result 1</td>
-                        <td>Value 1</td>
-                      </tr>
-                      <tr>
-                        <td>Test 2</td>
-                        <td>Result 2</td>
-                        <td>Value 2</td>
+                        <td><?php echo $report->name?></td>
+                        <td><?php echo $report->reference_range?></td>
+                        <td class = "status <?php echo $report->status?>"><?php echo $report->status?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -112,7 +100,15 @@
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                   </div>
                 </div>
+                
                 <div class="notice">(For viewing purpose only)</div>
+                <?php if ($report->status == "Ready"): ?>
+                <button type="button" id="report" class="report-button">View Report</button>
+
+                <script>
+                  
+                </script>
+                <?php endif; ?>
               </div>
             </div>
           <?php endforeach; ?>
@@ -158,16 +154,23 @@
         });
       });
 
+      const reportButtons = document.querySelectorAll('.report-button');
+
+    reportButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const reportId = button.parentNode.parentNode.id.replace('myModal', '');
+        window.open(`<?php echo URLROOT; ?>/public/uploads/reports/${reportId}.pdf`);
+      });
+    });
+
       // const modal = document.getElementById("myModal");
       // const closeButton = modal.querySelector(".close");
 
       function updateDownloadCount(reportId) {
-        // Send an AJAX request to update the download count
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "<?php echo URLROOT; ?>/patient/updateDownloadCount/" + reportId, true);
         xhr.send();
 
-        // You can handle the response if needed
         xhr.onload = function () {
           if (xhr.status == 200) {
             console.log("Download count updated successfully");

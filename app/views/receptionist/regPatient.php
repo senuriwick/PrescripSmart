@@ -20,7 +20,7 @@
 
     <div class="details">
         <div class="back" style="display: flex;">          
-            <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >         
+            <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" onclick="goback()">         
             <h1 >Patient Registration</h1>
         </div>
         <form action="<?php echo URLROOT; ?>/receptionist/regPatient" method="post">

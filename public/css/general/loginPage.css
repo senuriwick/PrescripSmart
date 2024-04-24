@@ -9,233 +9,233 @@ body {
 
 .loginPage {
   background-color: rgba(239, 242, 251, 1);
-  padding-top: 0vh;
-  padding-bottom: 40vh;
   height: 40vh;
+  padding-bottom: 40vh;
+  padding-top: 0vh;
 }
 
 .loginPage .upperRectangle {
-  width: 100%;
-  height: 5.5rem;
   background-color: rgba(0, 105, 255, 0.75);
   flex-shrink: 0;
+  height: 5.5rem;
+  width: 100%;
 }
 
 .loginPage .formContainer {
-  box-sizing: border-box;
-  padding: 15rem 66.3rem 20rem 66.2rem;
-  width: 100%;
   align-items: center;
+  background-color: #e3e8f4;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background-color: #e3e8f4;
   flex-shrink: 0;
+  padding: 15rem 66.3rem 20rem 66.2rem;
+  width: 100%;
 }
 
 .loginPage .formContainer .loginForm {
-  margin-bottom: 1.4rem;
-  width: 96%;
-  height: 55rem;
-  position: relative;
-  border: solid 0.1rem #e3e8f4;
-  box-sizing: border-box;
   background-color: #ffffff;
+  border: solid 0.1rem #e3e8f4;
   border-radius: 2.7rem;
+  box-sizing: border-box;
   flex-shrink: 0;
+  height: 55rem;
+  margin-bottom: 1.4rem;
+  position: relative;
+  width: 96%;
 }
 
 .loginPage .formContainer .loginForm h1 {
-  width: 51rem;
-  height: 5.9rem;
-  position: absolute;
-  left: 3.0rem;
-  top: 1.5rem;
-  text-align: center;
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 1.2125;
   color: #000000;
   font-family: Inter, 'Source Sans Pro';
+  font-size: 4rem;
+  font-weight: 700;
+  height: 5.9rem;
+  left: 3.0rem;
+  line-height: 1.2125;
+  position: absolute;
+  text-align: center;
+  top: 1.5rem;
   white-space: nowrap;
+  width: 51rem;
 }
 
 .loginPage .formContainer .loginForm .emailContainer .inputLabel1 {
-  width: 21.3rem;
-  height: 2.5rem;
-  position: absolute;
-  left: 4.3rem;
-  top: 14rem;
-  text-align: center;
+  align-items: baseline;
+  color: #0069ff;
+  display: flex;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
+  height: 2.5rem;
+  left: 4.3rem;
   line-height: 1.2125;
-  color: #0069ff;
-  font-family: Inter, 'Source Sans Pro';
+  position: absolute;
+  text-align: center;
+  top: 14rem;
   white-space: nowrap;
-  display: flex;
-  align-items: baseline;
+  width: 21.3rem;
 }
 
 .loginPage .formContainer .loginForm .emailContainer .inputLabel1 .inputLabel1-1 {
+  color: #ff002d;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: #ff002d;
-  font-family: Inter, 'Source Sans Pro';
 }
 
 .loginPage .formContainer .loginForm .emailContainer .inputfield {
+  background-color: #ffffff;
+  border: solid 0.3rem #e3e8f4;
+  border-radius: 1rem;
   box-sizing: border-box;
-  padding: 1.808rem 2.7rem 2.271rem 2.7rem;
-  width: 50rem;
-  height: 6rem;
-  position: absolute;
-  font-size: 2.2rem;
-  font-weight: 500;
-  line-height: 1.2125;
   color: rgba(68, 81, 114, 0.75);
   font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  border: solid 0.3rem #e3e8f4;
-  background-color: #ffffff;
-  border-radius: 1rem;
+  font-size: 2.2rem;
+  font-weight: 500;
+  height: 6rem;
   left: 2.8rem;
+  line-height: 1.2125;
+  padding: 1.808rem 2.7rem 2.271rem 2.7rem;
+  position: absolute;
   top: 19rem;
+  white-space: nowrap;
+  width: 50rem;
 }
 
 .loginPage .formContainer .loginForm .passwordContainer .inputLabel2 {
-  width: 10.9rem;
-  height: 2.5rem;
-  position: absolute;
-  left: 4.3rem;
-  top: 26rem;
-  text-align: center;
+  align-items: baseline;
+  color: #0069ff;
+  display: flex;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
+  height: 2.5rem;
+  left: 4.3rem;
   line-height: 1.2125;
-  color: #0069ff;
-  font-family: Inter, 'Source Sans Pro';
+  position: absolute;
+  text-align: center;
+  top: 26rem;
   white-space: nowrap;
-  display: flex;
-  align-items: baseline;
+  width: 10.9rem;
 }
 
 .loginPage .formContainer .loginForm .passwordContainer .inputLabel2 .inputLabel2-1 {
+  color: #ff002d;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: #ff002d;
-  font-family: Inter, 'Source Sans Pro';
 }
 
 .loginPage .formContainer .loginForm .passwordContainer .inputfield {
+  background-color: #ffffff;
+  border: solid 0.3rem #e3e8f4;
+  border-radius: 1rem;
   box-sizing: border-box;
-  padding: 1.6rem 2.7rem 1.7rem 2.7rem;
-  width: 50rem;
-  height: 6rem;
-  position: absolute;
-  left: 2.8rem;
-  top: 31rem;
-  font-size: 2.2rem;
-  font-weight: 500;
-  line-height: 1.2125;
   color: rgba(68, 81, 114, 0.75);
   font-family: Inter, 'Source Sans Pro';
+  font-size: 2.2rem;
+  font-weight: 500;
+  height: 6rem;
+  left: 2.8rem;
+  line-height: 1.2125;
+  padding: 1.6rem 2.7rem 1.7rem 2.7rem;
+  position: absolute;
+  top: 31rem;
   white-space: nowrap;
-  border: solid 0.3rem #e3e8f4;
-  background-color: #ffffff;
-  border-radius: 1rem;
+  width: 50rem;
 }
 
 .loginPage .formContainer .loginForm .loginButton {
-  width: 50rem;
-  height: 6rem;
-  position: absolute;
-  left: 2.8rem;
-  top: 42rem;
-  text-align: center;
+  align-items: center;
+  background-color: #0069ff;
+  border-color: #0069ff;
+  border-radius: 1rem;
+  color: #ffffff;
+  display: flex;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2.4rem;
   font-weight: 500;
-  line-height: 1.2125;
-  color: #ffffff;
-  font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
+  height: 6rem;
   justify-content: center;
-  background-color: #0069ff;
-  border-radius: 1rem;
-  border-color: #0069ff;
+  left: 2.8rem;
+  line-height: 1.2125;
+  position: absolute;
+  text-align: center;
+  top: 42rem;
+  white-space: nowrap;
+  width: 50rem;
 }
 
 .loginPage .formContainer .loginForm .forgot-password {
-  width: 17.2rem;
-  height: 2.5rem;
-  position: absolute;
-  left: 3.9rem;
-  top: 49rem;
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 500;
-  line-height: 1.2125;
-  text-decoration-line: underline;
   color: #0069ff;
   font-family: Inter, 'Source Sans Pro';
+  font-size: 1.8rem;
+  font-weight: 500;
+  height: 2.5rem;
+  left: 3.9rem;
+  line-height: 1.2125;
+  position: absolute;
+  text-align: center;
+  text-decoration-line: underline;
+  top: 49rem;
   white-space: nowrap;
+  width: 17.2rem;
 }
 
 .loginPage .formContainer .dont-have-an-account-sign-up-here {
-  text-align: center;
+  align-items: baseline;
+  color: #000000;
+  display: flex;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2102272034;
-  color: #000000;
-  font-family: Inter, 'Source Sans Pro';
+  text-align: center;
   white-space: nowrap;
-  display: flex;
-  align-items: baseline;
-  flex-shrink: 0;
 }
 
 .loginPage .formContainer .dont-have-an-account-sign-up-here .dont-have-an-account-sign-up-here-sub-0 {
+  color: #445172;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: #445172;
-  font-family: Inter, 'Source Sans Pro';
 }
 
 .loginPage .formContainer .dont-have-an-account-sign-up-here .dont-have-an-account-sign-up-here-sub-1 {
+  color: #000000;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: #000000;
-  font-family: Inter, 'Source Sans Pro';
 }
 
 .loginPage .formContainer .dont-have-an-account-sign-up-here .dont-have-an-account-sign-up-here-sub-2 {
+  color: #0069ff;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
   text-decoration-line: underline;
-  color: #0069ff;
-  font-family: Inter, 'Source Sans Pro';
 }
 
 .loginForm .error-msg-email {
-  font-size: 14px;
   color: red;
-  position: absolute;
-  left: 3.2rem;
-  top: 25rem;
   font-family: Inter, 'Source Sans Pro';
+  font-size: 14px;
+  left: 3.2rem;
+  position: absolute;
+  top: 25rem;
 }
 
 .loginForm .error-msg-password {
-  font-size: 14px;
   color: red;
-  position: absolute;
-  left: 3.2rem;
-  top: 38rem;
   font-family: Inter, 'Source Sans Pro';
+  font-size: 14px;
+  left: 3.2rem;
+  position: absolute;
+  top: 38rem;
 }

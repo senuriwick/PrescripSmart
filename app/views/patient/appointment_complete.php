@@ -35,12 +35,14 @@
                         <div id = "confirmation" class="confirmationOptionsContent">
                             <h1>Appointment Scheduled</h1>
                             <p>Your appointment has been scheduled.</p>
+                            <div class = "buttons">
                             <button id="viewAppointmentButton"
                                 class="customConfirmationButton viewAppointmentButton">View Appointment</button>
                             <button type ="submit" id="payhere-payment" class="customConfirmationButton payNowButton">Pay Now</button>
+                            </div>
                         </div>
-                        <div id = "successfulpayment" style="display:none; color: #0069ff;">Payment Successful. Thank You!</div>
-                        <button id="viewAppointmentButton2" style="display:none;" class="customConfirmationButton viewAppointmentButton">View Appointment</button>
+                        <div id = "successfulpayment" class = "success" style="display:none;">Payment Successful. Thank You!</div>
+                        <button id="viewAppointmentButton2" style="display:none;" class="customConfirmationButton viewAppointmentButton2">View Appointment</button>
                     </div>
                 </div>
             </div>
@@ -74,7 +76,6 @@
         successMessage.style.display = 'block';
         viewAppointment.style.display = 'block';
 
-        //update payment status
         updateDatabase(orderId);
 
         viewAppointment.addEventListener("click", function () {
@@ -99,19 +100,15 @@
         "order_id": "<?php echo $appointment->appointment_ID; ?>",
         "items": "New channeling appointment",
         "amount": "<?php echo $appointment->amount; ?>",
-        // "amount" : "1000",
         "currency": "LKR",
         "hash": "<?php echo $hash?>",
-        "first_name": "<?php $_SESSION['USER_DATA']->first_Name ?>",
-        // "first_name": "Masha",
-        // "last_name": "Wickramasinghe",
-        "last_name": "<?php $_SESSION['USER_DATA']->last_Name ?>",
+        "first_name": "<?php echo $patient->first_Name ?>",
+        "last_name": "<?php echo $patient->last_Name ?>",
         "email": "<?php echo $patient->email_address?>",
         "phone" : "<?php echo $patient->contact_Number?>",
         "address": "<?php echo $patient->home_Address?>",
         "city": "Colombo",
         "country": "Sri Lanka"
-        // "custom_2": ""
     };
 
     document.getElementById("payhere-payment").onclick = function (e) {

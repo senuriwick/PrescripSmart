@@ -22,40 +22,82 @@
           <h1>Search Appointment</h1>
           <div class="searchFiles">
               <form>
-                <input type="search" placeholder="Enter appointment reference number here">
+                <input type="search" id="searchinput" placeholder="Enter appointment reference number here">
                 <button type="search"><b>SEARCH</b></button>
               </form>
           </div>
 
           <div class="appointment">
-              <div class="app-id">
-                  <h2>Appointment(#5723)</h2>
-                  <button>Cancel Appointment</button>
-              </div>
-            
-              <div class="app-details">
-                  <h3>Time: 11:30pm</h3>
-                  <h3>Date: Wed, 10th August, 2022</h3>
-                  <h3>Token No: 15</h3>
-              </div>
+          <table>
+                <tbody>
+                    <?php foreach($data['appointments'] as $post): ?>
+                        <tr class="row">                        
+                            
+                            <td>
+                            <div class="app-id">
+                                <h2 class="identity">
+                                #
+                                <?php echo  $post->appointment_id ?>
+                                </h2>
+                                <button>Cancel Appointment</button>
+                            </div>
+                                                      
+                            <div class="app-details">
+                                <h3>Time: <?php echo $post -> time ?></h3>
+                                <h3>Date: <?php echo $post -> date ?></h3>
+                                <h3>Token No: 15</h3>
+                            </div>
+                                               
+                            <div class="app-info">
+                                <h4>Patient:      Mr. Perera </h4>
+                                <h4>Doctor:       Dr. Peiris </h4>
+                                <h4>Payment Status:  <button style="margin-top: -1vh;"><b>MARK AS PAID</b></button></h4>
+                            </div>
+                            </td>
+                    </tr>
+                         
+                            <?php endforeach; ?>
+                        </tbody>
+          </table>
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const searchInput = document.getElementById("searchinput");
 
-              <div class="app-info">
-                  <h4>Patient:   Mr. Perera </h4>
-                  <h4>Doctor:   Dr. Peiris </h4>
-                  <h4>Payment Status:  <button>MARK AS PAID</button></h4>
-              </div>
+                searchInput.addEventListener("input", function () {
+                    const searchTerm = searchInput.value;
+                    const regex = new RegExp(searchTerm, 'i'); 
+                    const Rows = document.querySelectorAll(".row");
 
-          </div>
+                    Rows.forEach(function (row) {
+                        const NameElement = row.querySelector(".identity");
+                        if (NameElement) { // Check if the element is not null
+                            const Name = NameElement.textContent.toLowerCase();
+                            if (regex.test(Name)) {
+                                row.style.display = "";
+                            } else {
+                                row.style.display = "none";
+                            }
+                        }
+                    });
+                });
+            });
+    </script>
+
+
+
+            </div>
       </div>
+      
       <h2 style="color: #445172; margin-left: 3vh; font-size: 2.2vh; margin-top:2vh;">Add new</h2>
 
         <div class="addapp">
             <div class="newapp">
                 <img src="<?php echo URLROOT ?>/img/receptionist/Calendar3.png"">
-                <a>Schedule an appointment</a>
+                <a href="<?php echo URLROOT ?>/receptionist/addAppointment">Schedule an appointment</a>
             </div>
             <p>The modern way schedule and meet with convenience</p>
         </div>
         
 </body>
+
 

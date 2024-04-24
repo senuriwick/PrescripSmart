@@ -1,0 +1,135 @@
+html {
+  font-size: 50%;
+}
+
+body {
+  margin: 0px;
+  overflow: hidden;
+}
+
+.signUp-Email-2 {
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.signUp-Email-2 .upperRectangle {
+  align-items: center;
+  background-color: rgba(0, 105, 255, 0.75);
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  padding: 2.8rem 3rem 2.7rem 143.25rem;
+  width: 100%;
+}
+
+.signUp-Email-2 .container {
+  background-color: #e3e8f4;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 100rem;
+  margin-left: 0.1rem;
+  padding: 19.4rem 53.8rem 26.7rem 56.6rem;
+  width: calc(100% - 0.5rem);
+}
+
+.signUp-Email-2 .container .confirmationForm {
+  align-items: center;
+  background-color: #ffffff;
+  border: solid 0.1rem #e3e8f4;
+  border-radius: 2.7rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  margin-top: 25px;
+  padding: 4.4rem 8.5rem 9rem 8.4rem;
+  width: 100%;
+}
+
+.signUp-Email-2 .container .confirmationForm h1 {
+  color: #000000;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 0.5;
+  margin-bottom: 4.4rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.signUp-Email-2 .container .confirmationForm .sampleEmail {
+  color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 4rem;
+  margin-left: 50px;
+  max-width: 38.5rem;
+  text-align: center;
+}
+
+.signUp-Email-2 .container .confirmationForm .line1 {
+  background-color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  height: 0.1rem;
+  margin-bottom: 3.2rem;
+  width: 430px;
+
+  /* margin: 0rem 10.9rem 3.2rem 10.9rem; */
+}
+
+.signUp-Email-2 .container .confirmationForm .text1 {
+  color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2125;
+  margin-bottom: 3.8rem;
+  margin-left: 25px;
+  max-width: 44.1rem;
+  text-align: center;
+}
+
+.signUp-Email-2 .container .confirmationForm .box1.disabled,
+.signUp-Email-2 .container .confirmationForm .box1.box1.enabled {
+  align-items: center;
+  border-radius: 1rem;
+  color: #ffffff;
+  display: flex;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2.4rem;
+  font-weight: 500;
+  height: 6rem;
+  justify-content: center;
+  line-height: 1.2125;
+  margin: 0 6.1rem;
+  text-align: center;
+  white-space: nowrap;
+  width: calc(100% - 12.2rem);
+}
+
+.signUp-Email-2 .container .confirmationForm .box1.disabled {
+  background-color: grey;
+  background-color: grey;
+  border-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+.signUp-Email-2 .container .confirmationForm .box1.enabled {
+  background-color: #0069ff;
+  background-color: #0069ff;
+  border-color: #0069ff;
+  color: white;
+  cursor: pointer;
+}

@@ -1,18 +1,17 @@
 .inquiriesDiv {
-    margin-top: 4vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
+    margin-top: 4vh;
     padding: 1vh 3vh 2vh;
     position: relative;
 }
 
 .inquiriesDiv h1 {
-    margin-top: 2vh;
-    font-weight: bold;
     color: #0069ff;
     font-size: 24px;
+    font-weight: bold;
+    margin-top: 2vh;
 }
-
 
 body {
     font-family: inter;
@@ -25,14 +24,14 @@ body {
 
 .main {
     flex: 1;
-    margin-left: 220px;
     margin-bottom: 3%;
+    margin-left: 220px;
 }
 
 .patientInfoContainer {
-    width: 80%;
-    margin-top: 5vh;
     margin-left: 3vw;
+    margin-top: 5vh;
+    width: 80%;
 }
 
 .accInfo {
@@ -49,83 +48,82 @@ body {
 .sub1 {
     color: rgba(68, 81, 114, 1);
     font-weight: 500;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 55px;
     margin-right: 20px;
+    margin-top: 55px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .sub2 {
     color: rgba(68, 81, 114, 1);
     font-weight: 500;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 280px;
     margin-right: 20px;
+    margin-top: 280px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .accInfo {
     border-top: 1px solid rgba(68, 81, 114, 0.75);
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
 }
 
 .parallel {
+    border-bottom: 1px solid rgba(68, 81, 114, 0.75);
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid rgba(68, 81, 114, 0.75);
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    margin-top: 25px;
     margin-right: 50px;
+    margin-top: 25px;
 }
 
 .input {
-    width: 28rem;
-    height: 2.5rem;
+    align-items: center;
+    background-color: #ffffff;
+    border: solid 0.2rem #e3e8f4;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: rgba(68, 81, 114, 0.75);
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
     font-size: 16px;
     font-weight: 500;
-    line-height: 1.2125;
-    color: rgba(68, 81, 114, 0.75);
-    font-family: Inter, 'Source Sans Pro';
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+    height: 2.5rem;
     justify-content: center;
-    border: solid 0.2rem #e3e8f4;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border-radius: 0.5rem;
-    flex-shrink: 0;
+    line-height: 1.2125;
     margin-bottom: 15px;
+    white-space: nowrap;
+    width: 28rem;
 }
 
-
 .inquiriesDiv button {
-    width: 15rem;
-    height: 2rem;
-    text-align: center;
+    align-items: center;
+    background-color: #0069ff;
+    border-color: #0069ff;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
     font-size: 16px;
     font-weight: 500;
-    line-height: 1.2125;
-    color: #ffffff;
-    font-family: Inter, 'Source Sans Pro';
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
+    height: 2rem;
     justify-content: center;
-    background-color: #0069ff;
-    border-radius: 0.5rem;
-    border-color: #0069ff;
-    flex-shrink: 0;
+    line-height: 1.2125;
     margin-top: 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 15rem;
 }
 
 .para {
@@ -133,40 +131,40 @@ body {
 }
 
 .patientInfoContainer .inquiriesDiv .switch {
-    position: relative;
     display: inline-block;
-    width: 60px;
     height: 34px;
+    position: relative;
+    width: 60px;
 }
 
 .inquiriesDiv .switch input {
+    height: 0;
     opacity: 0;
     width: 0;
-    height: 0;
 }
 
 .inquiriesDiv .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
     -webkit-transition: .4s;
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
     transition: .4s;
 }
 
 .inquiriesDiv .slider:before {
-    position: absolute;
+    -webkit-transition: .4s;
+    background-color: white;
+    bottom: 4px;
     content: "";
     height: 26px;
-    width: 26px;
     left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
+    position: absolute;
     transition: .4s;
+    width: 26px;
 }
 
 input:checked+.slider {
@@ -178,8 +176,8 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
+    -webkit-transform: translateX(26px);
     transform: translateX(26px);
 }
 
@@ -192,20 +190,20 @@ input:checked+.slider:before {
 }
 
 .menu #security {
-    color: #0069FF;
     border-color: #0069FF;
     border-spacing: 2cm;
+    color: #0069FF;
     position: relative;
 }
 
 .menu #security::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 100%;
-    height: 4px;
     background-color: #0069FF;
+    bottom: -8px;
+    content: '';
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
 }
 
 .profile {
@@ -214,11 +212,11 @@ input:checked+.slider:before {
 }
 
 .profile::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 5px;
     background-color: #0069FF;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 5px;
 }

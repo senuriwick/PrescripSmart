@@ -18,12 +18,13 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT?>/public/img/healthSupervisor/logo.png" />
-            </div>
+        <div class="logoDiv">
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+                <p class="mainOptions">Health Supervisor Tools</p>
 
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
@@ -70,11 +71,11 @@
                             </a>
                             <?php if (isset($data['inquiry'])) : ?>
                             <?php $inquiry = $data['inquiry'] ?>
-                            <h2>Inquiries(5)</h2>
-                            <a href="<?php echo URLROOT ?>/healthSupervisor/markAsRead?id=<?php echo $inquiry->inquiry_ID; ?>" class="mark_button">Mark As Read</a>
-
-
-   
+                            <h2>Inquiry NO:<?php echo $inquiry->inquiry_ID; ?></h2>
+                            <form action="<?php echo URLROOT ?>/healthSupervisor/markAsRead" method="GET">
+                                <input type="hidden" name="id" value="<?php echo $inquiry->inquiry_ID; ?>">
+                                <button type="submit" class="mark_button">Mark As Read</button>
+                            </form>
                         </div>  
 
                         <div class="row">

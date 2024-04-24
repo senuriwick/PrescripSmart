@@ -159,7 +159,7 @@ class M_Patient
     //APPOINTMENTS
     public function getAppointments($userID)
     {
-        $this->db->query('SELECT a. *, d.fName, d.lName FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE a.patient_ID = :patientID AND status = "active"');
+        $this->db->query('SELECT a. *, d.first_Name, d.last_Name FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE a.patient_ID = :patientID AND status = "active"');
         $this->db->bind(':patientID', $userID);
         $result = $this->db->resultSet();
         return $result;
@@ -175,7 +175,7 @@ class M_Patient
 
     public function viewAppointment($appointment_ID, $userID)
     {
-        $this->db->query('SELECT a. *, d.fName, d.lName FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE patient_ID = :user_id  AND appointment_ID = :appointment_id AND status="active"');
+        $this->db->query('SELECT a. *, d.first_Name, d.last_Name FROM appointments a INNER JOIN doctors d ON a.doctor_ID = d.doctor_ID WHERE patient_ID = :user_id  AND appointment_ID = :appointment_id AND status="active"');
         $this->db->bind(':appointment_id', $appointment_ID);
         $this->db->bind(':user_id', $userID);
         $result = $this->db->single();
@@ -208,7 +208,7 @@ class M_Patient
     public function docSession($doctor_ID)
     {
         $currentDate = date('Y-m-d');
-        $this->db->query('SELECT s. *, d.fName, d.lName, d.specialization FROM sessions s 
+        $this->db->query('SELECT s. *, d.first_Name, d.last_Name, d.specialization FROM sessions s 
         INNER JOIN doctors d ON s.doctor_ID = d.doctor_ID
         WHERE s.doctor_ID = :doctor_id 
         AND s.sessionDate >= :current_date 
@@ -236,25 +236,26 @@ class M_Patient
         return $result;
     }
 
-    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date, $charge)
+    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number)
     {
         try {
             $this->db->beginTransaction();
 
-            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status) 
-                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active", :charge, "UNPAID")');
+            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status, token_No) 
+                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active", :charge, "UNPAID", :current_appointment)');
             $this->db->bind(':patient_id', $patient_ID);
             $this->db->bind(':session_id', $session_ID);
             $this->db->bind(':doctor_id', $doctor_ID);
             $this->db->bind(':sessionTime', $time);
             $this->db->bind(':session_date', $date);
             $this->db->bind(':charge', $charge);
+            $this->db->bind(':current_appointment', $number);
             $this->db->execute();
 
             // Get the last inserted ID
             $reference = $this->db->lastInsertId();
 
-            $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1 
+            $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1, current_appointment_time = ADDTIME(current_appointment_time, "00:10:00")
                           WHERE session_ID = :session_id');
             $this->db->bind(':session_id', $session_ID);
             $this->db->execute();
@@ -263,7 +264,6 @@ class M_Patient
 
             return $reference;
         } catch (Exception $e) {
-            // An error occurred, rollback the transaction
             $this->db->rollBack();
             echo "Error: " . $e->getMessage();
             return false;
@@ -287,7 +287,7 @@ class M_Patient
     //PRESCRIPTIONS
     public function prescriptions($userID)
     {
-        $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
         INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
         WHERE p.patient_ID = :userID
         ORDER BY p.prescription_Date ASC');
@@ -297,10 +297,26 @@ class M_Patient
         return $result;
     }
 
+    public function prescriptionMedicines($prescription_ID)
+    {
+        $this->db->query('SELECT * FROM patients_medications WHERE prescription_ID = :prescriptionID');
+        $this->db->bind(':prescriptionID', $prescription_ID);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function labTests($prescription_ID)
+    {
+        $this->db->query('SELECT l .*, t.* FROM lab_reports l INNER JOIN tests t ON l.test_ID = t.test_ID WHERE prescription_ID = :prescriptionID');
+        $this->db->bind(':prescriptionID', $prescription_ID);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
     public function viewPrescription($prescription_ID, $userID)
     {
-        $this->db->query('SELECT p. *, d.fName, d.lName FROM prescriptions p 
-        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name, pa.first_Name, pa.last_Name, pa.age FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pa ON p.patient_ID = pa.patient_ID
         WHERE p.patient_ID = :userID AND p.prescription_ID = :prescription_id');
         $this->db->bind(':prescription_id', $prescription_ID);
         $this->db->bind(':userID', $userID);
@@ -311,13 +327,14 @@ class M_Patient
     //REPORTS
     public function labreports($userID)
     {
-        $this->db->query('SELECT l.*, d.fName, d.lName, p.prescription_Date, pa.age 
+        $this->db->query('SELECT l.*, d.first_Name, d.last_Name, p.prescription_Date, pa.age, t.name, t.reference_range
         FROM lab_reports l
         INNER JOIN doctors d ON l.doctor_ID = d.doctor_ID 
         INNER JOIN prescriptions p ON l.prescription_ID = p.prescription_ID
         INNER JOIN patients pa ON l.patient_ID = pa.patient_ID
+        INNER JOIN tests t ON l.test_ID = t.test_ID
         WHERE l.patient_ID = :userID
-        ORDER BY l.report_Date ASC');
+        ORDER BY l.date_of_report ASC');
 
         $this->db->bind(':userID', $userID);
         $result = $this->db->resultSet();
@@ -380,7 +397,6 @@ class M_Patient
         WHERE user_ID = :userID');
         $this->db->bind(':username', $username);
         $this->db->bind(':userID', $userID);
-        // $this->db->bind(':password', $newpassword);
 
         $this->db->execute();
     }
@@ -440,11 +456,11 @@ class M_Patient
             $this->db->bind(':profile_picture', $filename);
             $this->db->bind(':user_id', $userID);
             $this->db->execute();
-            return true; 
+            return true;
         } catch (PDOException $e) {
             error_log("Database error: " . $e->getMessage());
-            return false; 
+            return false;
         }
     }
-    
+
 }

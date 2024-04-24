@@ -1,115 +1,125 @@
 html {
-	font-size:50%;
+  font-size: 50%;
 }
- 
+
 body {
-    margin: 0px;
-    overflow: hidden;
+  margin: 0px;
+  overflow: hidden;
 }
+
 .signUp-Email-2 {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-}
-.signUp-Email-2 .upperRectangle {
-  box-sizing: border-box;
-  padding: 2.8rem 3rem 2.7rem 143.25rem;
-  width: 100%;
-  display: flex;
   align-items: center;
-  background-color: rgba(0, 105, 255, 0.75);
-  flex-shrink: 0;
-}
-.signUp-Email-2 .container {
-  margin-left: 0.1rem;
-  box-sizing: border-box;
-  padding: 19.4rem 53.8rem 26.7rem 56.6rem;
-  width: calc(100% - 0.5rem);
-  height: 100rem;
-  background-color: #e3e8f4;
-  flex-shrink: 0;
-}
-.signUp-Email-2 .container .confirmationForm {
-  box-sizing: border-box;
-  padding: 4.4rem 8.5rem 9.3rem 8.4rem;
-  width: 100%;
-  height: 100%;
-  align-items: center;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  border: solid 0.1rem #e3e8f4;
-  background-color: #ffffff;
-  border-radius: 2.7rem;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
-.signUp-Email-2 .container .confirmationForm .confirmEmail {
-  margin-bottom: 4.4rem;
-  text-align: center;
-  font-size: 4.8rem;
+
+.signUp-Email-2 .upperRectangle {
+  align-items: center;
+  background-color: rgba(0, 105, 255, 0.75);
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  padding: 2.8rem 3rem 2.7rem 143.25rem;
+  width: 100%;
+}
+
+.signUp-Email-2 .container {
+  background-color: #e3e8f4;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 100rem;
+  margin-left: 0.1rem;
+  padding: 19.4rem 53.8rem 26.7rem 56.6rem;
+  width: calc(100% - 0.5rem);
+}
+
+.signUp-Email-2 .container .confirmationForm {
+  align-items: center;
+  background-color: #ffffff;
+  border: solid 0.1rem #e3e8f4;
+  border-radius: 2.7rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  padding: 4.4rem 8.5rem 9.3rem 8.4rem;
+  width: 90%;
+}
+
+.signUp-Email-2 .container .confirmationForm h1 {
+  color: #000000;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 4rem;
   font-weight: 700;
   line-height: 0.5;
-  color: #000000;
-  font-family: Inter, 'Source Sans Pro';
+  margin-bottom: 4.4rem;
+  text-align: center;
   white-space: nowrap;
-  flex-shrink: 0;
 }
+
 .signUp-Email-2 .container .confirmationForm .sampleEmail {
+  color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.5;
   margin-bottom: 4rem;
+  margin-left: 50px;
   max-width: 38.5rem;
   text-align: center;
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.2125;
-  color: rgba(68, 81, 114, 0.75);
-  font-family: Inter, 'Source Sans Pro';
-  flex-shrink: 0;
 }
-.signUp-Email-2 .container .confirmationForm .sampleEmail .sampleEmail-sub-0 {
-}
-.signUp-Email-2 .container .confirmationForm .sampleEmail .sampleEmail-sub-1 {
-  font-size: 2.6rem;
-  font-weight: 500;
-  line-height: 1.2125;
-  color: #000000;
-  font-family: Inter, 'Source Sans Pro';
-}
+
 .signUp-Email-2 .container .confirmationForm .line1 {
-  margin: 0rem 10.9rem 3.2rem 10.9rem;
-  width: calc(100% - 21.8rem);
-  height: 0.1rem;
   background-color: rgba(68, 81, 114, 0.75);
   flex-shrink: 0;
+  height: 0.1rem;
+  margin-bottom: 3.2rem;
+  width: 430px;
+
+  /* margin: 0rem 10.9rem 3.2rem 10.9rem; */
 }
+
 .signUp-Email-2 .container .confirmationForm .text1 {
-  margin-bottom: 3.8rem;
-  max-width: 44.1rem;
-  text-align: center;
+  color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: rgba(68, 81, 114, 0.75);
-  font-family: Inter, 'Source Sans Pro';
-  flex-shrink: 0;
-}
-.signUp-Email-2 .container .confirmationForm .box1 {
-  margin: 0 6.1rem;
-  width: calc(100% - 12.2rem);
-  height: 6rem;
+  margin-bottom: 3.8rem;
+  margin-left: 40px;
+  max-width: 44.1rem;
   text-align: center;
+}
+
+.signUp-Email-2 .container .confirmationForm .box1 {
+  align-items: center;
+  background-color: #0069ff;
+  border-color: #0069ff;
+  border-radius: 1rem;
+  color: #ffffff;
+  display: flex;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
   font-size: 2.4rem;
   font-weight: 500;
-  line-height: 1.2125;
-  color: #ffffff;
-  font-family: Inter, 'Source Sans Pro';
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
+  height: 6rem;
   justify-content: center;
-  background-color: #0069ff;
-  border-radius: 1rem;
-  border-color: #0069ff;
-  flex-shrink: 0;
+  line-height: 1.2125;
+  margin: 0 6.1rem;
+  text-align: center;
+  white-space: nowrap;
+  width: calc(100% - 12.2rem);
+}
+
+.box1:disabled {
+  background-color: grey;
+  color: grey;
+  cursor: not-allowed;
 }

@@ -6,7 +6,7 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Login Page</title>
+  <title>Reset Password</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/general/passwordReset.css">
@@ -101,7 +101,7 @@
           if (data.success) {
             window.location.href = '<?php echo URLROOT ?>/general/reset_successful';
           } else {
-            // Handle error here
+            header("Location: /prescripsmart/general/error_page");
           }
         },
         error: function(xhr, status, error) {

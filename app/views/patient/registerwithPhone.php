@@ -6,7 +6,7 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Sign Up Page via Phone</title>
+  <title>Sign Up With Phone</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/patient/signUp-Phone.css" />
@@ -21,7 +21,7 @@
 
         <form action="<?php echo URLROOT ?>/patient/registrationPhone" method="POST" id="signup">
 
-          <p class="sign-up-with-phone-number">Sign up with phone number</p>
+          <h1>Sign up with phone number</h1>
           <p class="sign-up-with-email-instead">
             <span class="sign-up-with-email-instead-sub-0">Sign up with&nbsp;</span>
             <a href="<?php echo URLROOT ?>/patient/registerwithEmail" class="sign-up-with-email-instead-sub-1">email
@@ -74,10 +74,10 @@
         </form>
       </div>
       <p class="Conditions">
-        <span class="Conditions-sub-0">By signing up you agree to the </span>
-        <a href="termsAndConditions.html" class="Conditions-sub-1">Terms of Service</a>
+        <span class="Conditions-sub-0">By signing up you agree to the&nbsp;</span>
+        <a href="<?php echo URLROOT; ?>/general/terms_of_service" class="Conditions-sub-1">Terms of Service</a>
         <span class="Conditions-sub-2">&nbsp;and&nbsp;</span>
-        <a href="privacyPolicy.html" class="Conditions-sub-3">Privacy Policy</a>
+        <a href="<?php echo URLROOT; ?>/general/privacy_policy" class="Conditions-sub-3">Privacy Policy</a>
       </p>
     </div>
   </div>
@@ -87,11 +87,10 @@
     $(document).ready(function () {
       $('#signup').submit(function (event) {
         event.preventDefault();
-        var formData = $(this).serialize(); // Serialize form data
+        var formData = $(this).serialize(); 
 
         $('.error-msg').text('');
-
-        // Password validation criteria
+        
         var password = $('#password').val();
         var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 

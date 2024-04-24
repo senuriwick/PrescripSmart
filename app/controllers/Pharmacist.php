@@ -27,11 +27,13 @@
                 $password = $_POST["password"];
     
                 $user = $this->pharmacistModel->getUserByUsername($username);
+                $pharmacist = $this->pharmacistModel->pharmacistInfo($user->user_id);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['data'] = $user;
+                    $_SESSION['user'] = $user;
+                    $_SESSION['pharmacist'] = $pharmacist;
                     redirect("/Pharmacist/dashboard");
                     exit();
                 } else {
@@ -43,17 +45,17 @@
             
         }
         public function dashboard($page = 1){
-            $user = $_SESSION['data'];
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
-
             $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
             $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
-
             $totalPages = ceil($totalPatients/$itemsPerPage);
 
             $data = [
                 'user' => $user,
+                'pharmacist' => $pharmacist,
                 'patients' => $patients,
                 'totalPatients' => $totalPatients,
                 'currentPage' => $page,
@@ -64,15 +66,18 @@
         }
 
         public function medications($page = 1){
+
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $itemsPerPage = 4;
             $offset = ($page - 1) * $itemsPerPage;
-        
             $medications = $this->pharmacistModel->getMedicationsPaginated($itemsPerPage, $offset);
-            $totalMedications = $this->pharmacistModel->getTotalMedicationsCount();
-        
+            $totalMedications = $this->pharmacistModel->getTotalMedicationsCount(); 
             $totalPages = ceil($totalMedications / $itemsPerPage);
         
             $data = [
+                'user' => $user,
+                'pharmacist' => $pharmacist,
                 'medications' => $medications,
                 'totalMedications' => $totalMedications,
                 'currentPage' => $page,
@@ -110,41 +115,21 @@
         }
         
         public function profile() {
-            // Assume $employeeId is the identifier for the logged-in pharmacist
-            $userId = "1"; // Replace with actual employee ID retrieval logic
-    
-            // Fetch pharmacist profile details
-            $pharmacistProfile = $this->pharmacistModel->getUserDetails($userId);
-    
-            // Pass the details to the view
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
+
             $data = [
-                'userPharm' => $pharmacistProfile,
+                'user' => $user,
+                'pharmacist' => $pharmacist
             ];
     
             $this->view('pharmacist/pharmacist_profileCheck', $data);
-        }
-
-        public function profileCheck() {
-            // Assume $employeeId is the identifier for the logged-in pharmacist
-            $userId = "1"; // Replace with actual employee ID retrieval logic
-    
-            // Fetch pharmacist profile details
-            $pharmacistProfile = $this->pharmacistModel->getUserDetails($userId);
-    
-            // Pass the details to the view
-            $data = [
-                'userPharm' => $pharmacistProfile,
-            ];
-    
-            $this->view('pharmacist/pharmacist_profile', $data);
         }
 
         public function accountInfoUpdate()
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST["username"];
-                // $password = $_POST["password"];
-                // $newpassword = $_POST["newpassword"];
 
                 $this->pharmacistModel->updateAccInfo($username);
 
@@ -170,7 +155,7 @@
                 $currentPassword = $_POST['currentPassword'];
     
                 // Assume $user is the object representing the logged-in user
-                $user_id = 1;
+                $user_id = $_SESSION['user']->user_id;
                 $user = $this->pharmacistModel->getUserDetails($user_id);
     
                 if ($user && password_verify($currentPassword, $user->password)) {
@@ -185,8 +170,10 @@
         }
 
         public function personal(){
-            $pharmacist = $this->pharmacistModel->pharmacistInfo();
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $data = [
+                'user'=>$user,
                 'pharmacist' => $pharmacist
             ];
             $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
@@ -268,27 +255,31 @@
         public function searchPatient($page = 1){
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
 
+                $user = $_SESSION['user'];
+                $pharmacist = $_SESSION['pharmacist'];
                 $patientName = $_POST['search'];
-
                 $itemsPerPage =5;
                 $offset = ($page - 1) * $itemsPerPage;
-
                 $patients = $this->pharmacistModel->getSearchedPatientsPaginated($itemsPerPage,$offset, $patientName);
                 $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
-
                 $totalPages = ceil($totalPatients/$itemsPerPage);
         
                 if (!empty($patients)) {
                     $data = [
+                        'user' => $user,
+                        'pharmacist' => $pharmacist,
                         'patients' => $patients,
-                        'totalMedications' => $totalMedications,
+                        'totalPatients' => $totalPatients,
                         'currentPage' => $page,
                         'totalPages' => $totalPages,
                     ];
                     $this->view('pharmacist/pharmacist_dashboard', $data);  
                 } else {
                     // Condition 3: If medicine not found, redirect to addNewMed page
-                    $data = [];
+                    $data = [
+                        'user' => $user,
+                        'pharmacist' => $pharmacist
+                    ];
                     $this->view('pharmacist/pharmacist_dashboard', $data);
                     exit();
                 }
@@ -299,7 +290,6 @@
         public function searchMedicine($page = 1) {
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
                 $medicineName = $_POST['search'];
-                
                 $itemsPerPage = 4;
                 $offset = ($page - 1) * $itemsPerPage;
                 $medications = $this->pharmacistModel->getSearchedMedicationsPaginated($itemsPerPage, $offset, $medicineName);
@@ -325,12 +315,35 @@
 
         
         public function security(){
-            $user = $_SESSION['data'];
-
+            $user = $_SESSION['user'];
+            $pharmacist = $_SESSION['pharmacist'];
             $data = [
-                'user' => $user
+                'user'=>$user,
+                'pharmacist' => $pharmacist
             ];
             $this->view('pharmacist/pharmacist_2factor', $data);
+        }
+
+        public function toggle2FA()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['toggle_state'])) {
+                    $toggleState = $_POST['toggle_state'];
+                    $userID = $_POST['userID'];
+            
+                    if ($toggleState == 'ON') {
+                        $this->pharmacistModel->manage2FA($toggleState, $userID);
+                    } else if ($toggleState == 'OFF') {
+                        $this->pharmacistModel->manage2FA($toggleState, $userID);
+                    }
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+            }
+
         }
 
         public function pharmacistMedication(){

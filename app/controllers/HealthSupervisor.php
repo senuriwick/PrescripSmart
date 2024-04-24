@@ -18,11 +18,13 @@
                 $password = $_POST["password"];
     
                 $user = $this->healthSupervisorModel->getUserByUsername($username);
+                $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo($user->user_id);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['data'] = $user;
+                    $_SESSION['user'] = $user;
+                    $_SESSION['healthSupervisor'] = $healthSupervisor;
                     redirect("/healthSupervisor/dashboard");
                     exit();
                 } else {
@@ -35,12 +37,12 @@
         }
 
         public function dashboard($page = 1){
+            $user = $_SESSION['user'];
+            $healthSupervisor = $_SESSION['healthSupervisor'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
-
             $newInquiries = $this->healthSupervisorModel->getNewInquiriesPaginated($itemsPerPage,$offset);
             $totalNewInquiries = $this->healthSupervisorModel->getNewInquiriesCount();
-
             $totalPages = ceil($totalNewInquiries/$itemsPerPage);
 
             $data = [
@@ -48,6 +50,8 @@
                 'totalNewInquiries' => $totalNewInquiries,
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_dash', $data);
@@ -79,9 +83,11 @@
         // }
 
         public function history($page = 1){
+
+            $user = $_SESSION['user'];
+            $healthSupervisor = $_SESSION['healthSupervisor'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
-
             $readInquiries = $this->healthSupervisorModel->getReadInquiriesPaginated($itemsPerPage,$offset);
             $totalReadInquiries = $this->healthSupervisorModel->getReadInquiriesCount();
 
@@ -92,6 +98,8 @@
                 'totalReadInquiries' => $totalReadInquiries,
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_History', $data);
@@ -144,11 +152,26 @@
         }
 
         public function profile(){
-            $this->view('healthSupervisor/healthSupervisor_profile');
+            $user = $_SESSION['user'];
+            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
+
+            $data = [
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
+            ];
+
+            $this->view('healthSupervisor/healthSupervisor_profile', $data);
         }
 
         public function personal(){
-            $this->view('healthSupervisor/healthSupervisor_personalInfo');
+            $user = $_SESSION['user'];
+            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
+
+            $data = [
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
+            ];
+            $this->view('healthSupervisor/healthSupervisor_personalInfo',$data);
         }
 
         // public function security(){
@@ -156,12 +179,104 @@
         // }
 
         public function security(){
-            $user = $_SESSION['data'];
+            $user = $_SESSION['user'];
+            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
             $data = [
-                'user' => $user
+                'user' => $user,
+                'healthSupervisor' => $healthSupervisor
+
             ];
             $this->view('healthSupervisor/healthSupervisor_2factor', $data);
         }
+
+        public function toggle2FA()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['toggle_state'])) {
+                    $toggleState = $_POST['toggle_state'];
+                    $userID = $_POST['userID'];
+            
+                    if ($toggleState == 'ON') { 
+                        $this->healthSupervisorModel->manage2FA($toggleState, $userID);
+                    } else if ($toggleState == 'OFF') {
+                        $this->healthSupervisorModel->manage2FA($toggleState, $userID);
+                    }
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+            }
+
+        }
+
+        public function accountInfoUpdate()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = $_POST["username"];
+                // $password = $_POST["password"];
+                // $newpassword = $_POST["newpassword"];
+
+                $this->healthSupervisorModel->updateAccInfo($username);
+
+                redirect("/HealthSupervisor/profile");
+                exit();
+            }
+        }
+
+        public function passwordReset()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $newpassword = $_POST["newpassword"];
+    
+                $this->healthSupervisorModel->resetPassword($newpassword);
+    
+                redirect('/healthSupervisor/profile');
+                exit();
+            }
+        }
+
+        public function checkCurrentPassword() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
+                $currentPassword = $_POST['currentPassword'];
+    
+                // Assume $user is the object representing the logged-in user
+                $user_id = 3;
+                $user = $this->healthSupervisorModel->getUserDetails($user_id);
+    
+                if ($user && password_verify($currentPassword, $user->password)) {
+                    echo '<span style="color: green;">You\'re good to go!</span>';
+                } else {
+                    echo '<span style="color: red;">Incorrect password!</span>';
+                }
+            } else {
+                // Handle invalid or missing parameters
+                echo '<span style="color: red;">Error: Invalid request.</span>';
+            }
+        }
+
+        public function personalInfoUpdate()
+        {
+            $user_id = $_SESSION['data']->user_id;
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $fname = $_POST["fName"];
+                $lname = $_POST["lName"];
+                $dname = $_POST["displayName"];
+                $address = $_POST["address"];
+                $nic = $_POST["nic"];
+                $contact = $_POST["contact"];
+                $regNo = $_POST["regNo"];
+                $qualification = $_POST["qualification"];
+    
+                $this->healthSupervisorModel->updateInfo($user_id, $fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
+                redirect("/healthSupervisor/personal");
+                exit();
+            }
+        }
+
+
     }
 ?>

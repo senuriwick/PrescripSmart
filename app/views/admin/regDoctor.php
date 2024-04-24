@@ -20,9 +20,16 @@
    
       <div class="details">
           <div class="back" style="display: flex; ">         
-             <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >
+             <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" onclick="goback()" style="cursor: pointer;">
              <h1 >Doctor Registration</h1>
           </div>
+
+          <script>
+            function goback() 
+            {
+              window.history.back();
+            }
+          </script>
         <form action="<?php echo URLROOT; ?>/admin/regDoctor" method="post">
 
           <div class="top1">
@@ -41,7 +48,7 @@
                   <input type="text" name="last_name" placeholder="Enter Your last name">
                 </div>
           </div>
-      
+     
           <div class="top2">
               <div class="email">
                   <h3>email address</h3>
@@ -68,11 +75,29 @@
         </form>
              
     </div>
-    
-      <div class="popup">
-          <h2>Registration successful!</h2>
-          <a><button><b>Back to dashboard</b></button></a>
+ 
+        <div class="popup">
+            <h2>Registration successful!</h2>
+            <a><button onclick="popup()"><b>Back to dashboard</b></button></a>
         </div>
+
+
+<script>
+  function popup()
+  {
+      <?php if($data['user_reg'] == 1): ?>
+           document.getElementById('popup').style.display = block;
+     <?php else: ?>   
+          document.getElementById('popup').style.diplay = 'none';    
+     <?php endif ?>
+  }
+</script>   
+
+
+   
+      
+    
+      
 
       
       

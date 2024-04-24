@@ -6,7 +6,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Login Page</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/general/loginPage.css">
@@ -53,7 +53,7 @@
         $(document).ready(function () {
             $('#loginForm').submit(function (event) {
                 event.preventDefault();
-                var formData = $(this).serialize(); // Serialize form data
+                var formData = $(this).serialize(); 
 
                 $('.error-msg').text('');
 

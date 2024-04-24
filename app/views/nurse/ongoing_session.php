@@ -36,8 +36,8 @@
               </h1>
               <p>
                 Dr.
-                <?php echo $doctor->fName ?>
-                <?php echo $doctor->lName ?>
+                <?php echo $doctor->first_Name ?>
+                <?php echo $doctor->last_Name ?>
                 <br>
                 Room <?php echo $session->room_no ?>
               </p>
@@ -88,12 +88,12 @@
                   <div class="appointmentDiv <?php echo strtolower($appointment->status); ?>">
                     <!-- <div class="done <?php echo strtolower($appointment->status); ?>"> -->
                     <p class = "desDiv">No
-                      <?php echo $appointment->appointment_No ?>.
+                      <?php echo $appointment->token_No ?>.
                     </p>
-                    <p>
+                    <p class = "nameClass">
                       <?php echo $appointment->display_Name ?>
                     </p>
-                    <p>Time:
+                    <p class = "timeClass">Time:
                       <?php echo $appointment->time ?>
                     </p>
                     <div class="status <?php echo strtolower($appointment->status); ?>">

@@ -84,7 +84,7 @@
           </div>
         </div>
         
-  </body>   
+    </body>   
                 <script>
                       document.addEventListener("DOMContentLoaded", function () {
                       const searchInput = document.getElementById("searchinput");//element
@@ -115,12 +115,6 @@
                       
                       
                     }
-
                     
-
-
-                        
-                    
-
                 </script>          
 </html>

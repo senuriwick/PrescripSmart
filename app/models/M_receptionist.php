@@ -27,7 +27,7 @@ class M_receptionist
         {
           return false;
         }
-      }
+    }
 
       public function findUserByEmail($email)
       {
@@ -91,10 +91,45 @@ class M_receptionist
         return $result;
     }
 
+    public function getdocSessions()
+    {
+      $sql = "SELECT sessions.*, doctors.*
+              FROM sessions
+              INNER JOIN doctors ON sessions.doctor_id = doctors.doctor_id";
+                
+      $this->db->query($sql);
+      $rows = $this->db->resultSet(); 
+      return $rows;
+    }
+
+    public function getSessionDetails($session_ID)
+    {
+        $this->db->query('SELECT * FROM sessions WHERE session_id = :session_id');
+        $this->db->bind(':session_id', $session_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getDoctorDetails($doctor_ID)
+    {
+        $this->db->query('SELECT * FROM doctors WHERE doctor_id = :doctor_id');
+        $this->db->bind(':doctor_id', $doctor_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function getNurses()
     {
         $this->db->query('SELECT * FROM nurses');
         $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function getPatientDetails($patient_ID)
+    {
+        $this->db->query('SELECT * FROM patients WHERE patient_id = :patient_ID');
+        $this->db->bind(':patient_ID', $patient_ID);
+        $result = $this->db->single();
         return $result;
     }
 
@@ -210,5 +245,50 @@ class M_receptionist
         {
           return false;
         }
-      }
+    }
+
+    public function getAppointments()
+    {
+      $this->db->query('SELECT * FROM appointments');
+      $results = $this->db->resultSet();
+      return $results;
+
+    }
+
+    public function getuserbyID($id, $table)
+    {
+        $sql = "SELECT e.*, d.*
+                FROM employees e
+                JOIN $table d ON e.emp_id = d.emp_id
+                WHERE e.emp_id = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+    }
+
+    public function confirm_appointment($data)
+    {
+      $this->db->query('INSERT INTO appointments (patient_id, doctor_id, date, time, amount) VALUES(:patient_id, :doctor_id, :app_date, :app_time, :amount)');
+      $this->db->bind(':patient_id', $data['patient_id']);
+      $this->db->bind(':doctor_id', $data['doctor_id']);
+      $this->db->bind(':app_date', $data['app_date']);
+      $this->db->bind(':app_time', $data['app_time']);
+      $this->db->bind(':amount', $data['amount']);
+
+        if($this->db->execute())
+        {
+          return true;
+        }
+         else
+        {
+          return false;
+        }
+  
+
+
+
+    }
 }

@@ -68,7 +68,7 @@ p a:active{
   cursor: pointer;
 }
 
-.patientFile {
+/* .patientFile {
   background-color: rgba(239, 242, 251, 1);
   margin-top: 3vh;
   padding: 0.5vh 1vw;
@@ -105,7 +105,49 @@ p a:active{
 
 .patientFile .fileInfo {
   display: flex;
+} */
+
+.patientFile {
+  background-color: rgba(239, 242, 251, 1);
+  margin-top: 3vh;
+  padding: 0.5vh 1vw;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row; /* Change flex direction to column */
+  width: 80%;
+  margin-bottom: -0.5rem;
+  align-items: center;
 }
+
+.patientFile p {
+  margin: 0.5vh 1vw; /* Adjusted margin for better spacing */
+  font-size: 1.1rem;
+  width:34%;
+}
+
+.patientFile #patientId {
+  color: rgba(68, 81, 114, 0.75);
+}
+
+.patientFile button {
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #0069FF;
+  color: white;
+  font-size: 1rem;
+  padding: 1vh 2.5vw;
+}
+
+.patientFile button:hover {
+  background-color: rgba(0, 80, 200, 1); 
+  cursor: pointer;
+}
+/* 
+.patientFile .fileInfo {
+  display: flex;
+  align-items: center;
+} */
+
 
 .center-content {
   margin-left: 25%;
@@ -128,6 +170,7 @@ p a:active{
   list-style: none;
   padding: 0;
   margin: 20px 0;
+  justify-content: center;
 }
 
 /* Pagination link styles */

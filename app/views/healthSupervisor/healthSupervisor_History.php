@@ -18,12 +18,13 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT?>/public/img/healthSupervisor/logo.png" />
-            </div>
+        <div class="logoDiv">
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+                <p class="mainOptions">Health Supervisor Tools</p>
 
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
                 <a href="">History</a>
@@ -44,13 +45,16 @@
                     <p>USERNAME</p>
                 </div>
             </div>
+
+            <?php $user = $data['user']; ?>
+            <?php $healthSupervisor = $data['healthSupervisor']; ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/public/img/healthSupervisor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">HealthSupervisor Name</p>
-                            <p class="role">HealthSupervisor</p>
+                            <p class="name"><?php echo $healthSupervisor->display_name; ?></p>
+                            <p class="role"><?php echo $user->role; ?></p>
                         </div>
                     </div>
 
@@ -63,22 +67,22 @@
                         <h2>Inquiries History(<?php echo $data['totalReadInquiries'] ?>)</h2>
                         <?php foreach($data['readInquiries'] as $readInquiry): ?>
                         <div class="inquiry">
-                          <img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt="">
+                          <p><img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt=""></p>
                           <p id="idNO"><?php echo $readInquiry->inquiry_ID ?></p>
                           <p><?php echo $readInquiry->name ?></p>
                           <p><?php echo $readInquiry->Date ?></p>
                           <input type="checkbox" id="scales" name="scales" checked />
                         </div>
                         <?php endforeach ?>
-                    </div>
-
-                    <div class="pagination">
+                        <div class="pagination">
                         <?php if (isset($data['totalPages'])): ?>
                             <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                                <a href="<?php echo URLROOT; ?>/healthSupervisor/history/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
                             <?php endfor; ?>
                         <?php endif; ?>
                     </div>
+                    </div>
+
                     
                 </div>
             </div>

@@ -7,18 +7,13 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
-            </div>
-
-            <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
-                </p>
-            </div>
+        <div class="logoDiv">
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
             
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+            <p class="mainOptions">Pharmacist Tools</p>
 
                 <a href="<?php echo URLROOT ?>/Pharmacist/dashboard" class="active">Patients</a>
                 <a href="">Medications</a>
@@ -39,13 +34,16 @@
                     <p>USERNAME</p>
                 </div>
             </div>
+
+            <?php $user = $data['user']; ?>
+            <?php $pharmacist = $data['pharmacist']; ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name"><?php echo $pharmacist->display_name; ?></p>
+                            <p class="role"><?php echo $user->role; ?></p>
                         </div>
                     </div>
 
@@ -81,10 +79,32 @@
 
                         <!-- Pagination Links -->
                         <div class="pagination">
-                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/medications/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php endfor; ?>
+                            <?php 
+                            $totalPages = $data['totalPages'];
+                            $currentPage = $data['currentPage'];
+                            
+                            // Define the number of pagination links to display before showing the arrow
+                            $paginationThreshold = 10;
+
+                            // Determine the start and end points for pagination links
+                            $start = max($currentPage - floor($paginationThreshold / 2), 1);
+                            $end = min($start + $paginationThreshold - 1, $totalPages);
+                            $start = max($end - $paginationThreshold + 1, 1);
+
+                            // Display the pagination links
+                            for ($i = $start; $i <= $end; $i++):
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/medications/<?php echo $i; ?>" <?php echo ($i == $currentPage) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php 
+                            endfor;
+
+                            // Display the arrow to the right if there are more pages after the displayed links
+                            if ($end < $totalPages): 
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/medications/<?php echo min($currentPage + 1, $totalPages); ?>">➡️</a>
+                            <?php endif; ?>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -16,14 +16,14 @@
 <body>
 
     <div class="content">
-    <?php include 'side_navigation_panel.php'; ?>
+        <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-        <?php include 'top_navigation_panel.php'; ?>
+            <?php include 'top_navigation_panel.php'; ?>
 
             <div class="patientInfoContainer">
-            <?php include 'information_container.php'; ?>
-            <?php include 'in_page_navigation_account.php'; ?>
+                <?php include 'information_container.php'; ?>
+                <?php include 'in_page_navigation_account.php'; ?>
 
                 <?php $nurse = $data['nurse'] ?>
 
@@ -83,6 +83,7 @@
                                 </div>
                             </div>
                             <div id="newpasswordMatch"></div>
+                            <div id="weakPassword"></div>
                             <button type="submit" id="reset">RESET PASSWORD</button>
 
                         </form>
@@ -116,40 +117,71 @@
         $(document).ready(function () {
             function checkPasswords() {
                 var enteredPassword = $('#password').val();
-                var databasePassword = "<?php echo $patient->password ?>";
                 var newPassword = $('#newpassword').val();
                 var confirmPassword = $('#confirmpassword').val();
 
+                var uppercaseRegex = /[A-Z]/;
+                var lowercaseRegex = /[a-z]/;
+                var numberRegex = /[0-9]/;
+                var specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+
+                var hasUppercase = uppercaseRegex.test(newPassword);
+                var hasLowercase = lowercaseRegex.test(newPassword);
+                var hasNumber = numberRegex.test(newPassword);
+                var hasSpecialChar = specialCharRegex.test(newPassword);
+
+                console.log("Uppercase:", hasUppercase);
+                console.log("Lowercase:", hasLowercase);
+                console.log("Number:", hasNumber);
+                console.log("Special Char:", hasSpecialChar);
+
+                var isValidPassword = newPassword.length >= 8 && hasUppercase && hasLowercase && hasNumber && hasSpecialChar;
+
+                console.log("Is Valid Password:", isValidPassword);
+
                 if (newPassword !== '' && confirmPassword !== '') {
-                    if (enteredPassword === databasePassword) {
-                        $('#passwordMatch').text("You're good to go!").css({ 'color': 'green' });
+                    if (!isValidPassword) {
+                        $('#weakPassword').text("Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character").css({ 'color': 'red' });
                     } else {
-                        $('#passwordMatch').text("Incorrect password!").css({ 'color': 'red' });
+                        $('#weakPassword').text("");
                     }
 
-                    if (newPassword === confirmPassword) {
-                        $('#newpasswordMatch').text("Passwords match!").css({ 'color': 'green' });;
-                    } else {
-                        $('#newpasswordMatch').text("Passwords do not match!").css({ 'color': 'red' });;
-                    }
+                    $.ajax({
+                        url: '/prescripsmart/nurse/checkPassword',
+                        method: 'POST',
+                        data: { password: enteredPassword },
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.match) {
+                                $('#passwordMatch').text("You're good to go!").css({ 'color': 'green' });
+                            } else {
+                                $('#passwordMatch').text("Incorrect password!").css({ 'color': 'red' });
+                            }
+
+                            if (newPassword === confirmPassword) {
+                                $('#newpasswordMatch').text("Passwords match!").css({ 'color': 'green' });
+                            } else {
+                                $('#newpasswordMatch').text("Passwords do not match!").css({ 'color': 'red' });
+                            }
+
+                            if (newPassword === confirmPassword && isValidPassword && response.match) {
+                                $('#reset').prop('disabled', false).css({ 'background-color': 'green', 'border-color': 'green' });
+                            } else {
+                                $('#reset').prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
+                            }
+                        }
+                    });
                 } else {
                     $('#passwordMatch').text("");
                     $('#newpasswordMatch').text("");
                     $('#reset').prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
                 }
-
-                if (newPassword === confirmPassword && enteredPassword === databasePassword) {
-                    $('#reset').prop('disabled', false).css({ 'background-color': 'green', 'border-color': 'green' });
-                } else {
-                    $('#reset').prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
-                }
             }
+
             $('#password, #newpassword, #confirmpassword').on('input', checkPasswords);
         });
-
     </script>
 
 
 </body>
-
 </html>

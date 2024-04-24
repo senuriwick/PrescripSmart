@@ -11,30 +11,32 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-            <div class="logoDiv">
-
-                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
-
-            </div>
-
-            <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
-                </p>
-            </div>
+        <div class="logoDiv">
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+                <p class="mainOptions">Pharmacist Tools</p>
 
                 <a href="#">Patients</a>
                 <a href="<?php echo URLROOT; ?>/Pharmacist/medications">Medications</a>
                 <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
+            
             <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
+            <div class="sub-menu-item terms">
+                <img src="<?php echo URLROOT ?>/public/img/general/terms_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/general/terms_of_service" id="terms">Terms of Service</a>
+            </div>
+            <div class="sub-menu-item privacy">
+                <img src="<?php echo URLROOT ?>/public/img/general/privacy_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/general/privacy_policy" id="privacy">Privacy Policy</a>
+            </div>
+            <div class="sub-menu-item billing">
+                <img src="<?php echo URLROOT ?>/public/img/general/contact_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/general/contact_us" id="contact">Contact Us</a>
+            </div>
             </div>
 
         </div>
@@ -43,13 +45,16 @@
                 <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
                 <p>USERNAME</p>  
             </div>
+
+            <?php $user  = $data['user']; ?>
+            <?php $pharmacist = $data['pharmacist']; ?>
             <div class="main">
                 <div class="main-Container">
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Pharmacist Name</p>
-                            <p class="role">Pharmacist</p>
+                            <p class="name"><?php echo $pharmacist->display_name; ?></p>
+                            <p class="role"><?php echo $user->role; ?></p>
                         </div>
                     </div>
 
@@ -75,16 +80,13 @@
                         </div>
                         <?php else: ?>
                             <?php foreach($data['patients'] as $patient): ?>
-                                <div class="patientFile">
-                                <div class="fileInfo">
-                                    <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
-                                    <p><?php echo $patient->name; ?></p>
-                                </div>
+                            <div class="patientFile">
+                                <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
+                                <p><?php echo $patient->name; ?></p>
                                 <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
                                 <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>
                                 &patient_name=<?php echo urlencode($patient->name); ?>
                                 &patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
-
                             </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -92,13 +94,33 @@
 
                     <!-- Pagination Links -->
                     <div class="pagination">
-                        <?php if (isset($data['totalPages'])): ?>
-                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php endfor; ?>
-                        <?php endif; ?>
-                    </div>
+                    <?php 
+                        if (!empty($data['totalPages']) && !empty($data['currentPage'])) {
+                            $totalPages = $data['totalPages'];
+                            $currentPage = $data['currentPage'];
+                            
+                            // Define the number of pagination links to display before showing the arrow
+                            $paginationThreshold = 10;
 
+                            // Determine the start and end points for pagination links
+                            $start = max($currentPage - floor($paginationThreshold / 2), 1);
+                            $end = min($start + $paginationThreshold - 1, $totalPages);
+                            $start = max($end - $paginationThreshold + 1, 1);
+
+                            // Display the pagination links
+                            for ($i = $start; $i <= $end; $i++):
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $currentPage) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                            <?php 
+                            endfor;
+
+                            // Display the arrow to the right if there are more pages after the displayed links
+                            if ($end < $totalPages): 
+                            ?>
+                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo min($currentPage + 1, $totalPages); ?>">➡️</a>
+                            <?php endif; 
+                        }
+                        ?>
         </div>
 
                     

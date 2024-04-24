@@ -6,19 +6,10 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Sign Up page 3</title>
+  <title>Resend Verification Email</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A500%2C700" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A500%2C700" />
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/patient/signUp-Email-2.css" />
-
-  <style>
-    .box1:disabled {
-      background-color: grey; 
-      color: grey; 
-      cursor: not-allowed; 
-    }
-  </style>
-
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/patient/signUp-Email-3.css" />
 </head>
 
 <body>
@@ -28,16 +19,11 @@
     <div class="container">
       <div class="confirmationForm">
 
-        <!-- <p class="confirmEmail">Verification email has been re-sent.</p> -->
-        <div class="line1">
-        </div>
+        <h1>Verification email has been re-sent.</h1>
         <p class="text1">
-            Verification email has been re-sent.
-          <br />
-          Please check your inbox and try again. Thank you!
+          Please check your inbox and try again.<br>Thank you!
         </p>
-
-        <button type="submit" class="box1" id="ResendVerification" disabled >Resend Verification Email</button>
+        <button type="submit" class="box1 disabled" id="ResendVerification" disabled>Resend Verification Email</button>
       </div>
     </div>
   </div>
