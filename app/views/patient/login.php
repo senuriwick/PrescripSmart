@@ -91,6 +91,11 @@
       }
     });
   });
+
+  $('#password').on('input', function () {
+      $('.error-msg-password').text('');
+  });
+
 });
 
   </script>

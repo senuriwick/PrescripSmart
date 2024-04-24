@@ -19,12 +19,14 @@
         <div class="prescriptionsDiv">
 
             <?php $prescription = $data['prescription']; ?>
+            <?php $doctor = $data['doctor'] ?>
             <div id="myModal" class="modal" style="display: block;">
 
-                <div class="modal-content">
-                    <a href="www.prescripsmart.com">www.prescripsmart.com</a>
-                    <div class="model-head">
-                        <img src="<?php echo URLROOT; ?>\public\img\patient\Untitled design (4).png" alt="qr-img" />
+            <div class="modal-content">
+                <!-- <span class="close">&times;</span> -->
+                <a href="www.prescripsmart.com">www.prescripsmart.com</a>
+                <div class="model-head">
+                  <div>P</div>
                         <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                         <i class="fa-solid fa-circle-arrow-up"></i>
                     </div>
@@ -32,12 +34,12 @@
                         <div>Prescription ID: #<?php echo $prescription->prescription_ID; ?></div>
                         <div>Patient: <?php echo $prescription->first_Name?> <?php echo $prescription->last_Name?></div>
                         <div>Pres Date & Time:
-                            <?php echo $prescription->prescription_Date; ?> 10:00 AM
+                            <?php echo $prescription->prescription_Date; ?>
                         </div>
                         <div>Age: <?php echo $prescription->age?> Yrs</div>
                         <div>Referred by: Dr.
-                            <?php echo $prescription->first_Name; ?>
-                            <?php echo $prescription->last_Name; ?>
+                            <?php echo $doctor->first_Name; ?>
+                            <?php echo $doctor->last_Name; ?>
                         </div>
                     </div>
                     <div class="pres-box">
@@ -50,7 +52,7 @@
                         <table>
                             <tbody>
                             <th>Name</th>
-                            <th>Dosage</th>
+                            <!-- <th>Dosage</th> -->
                             <th>Remarks</th>
                                 <?php foreach ($data['prescriptionDetails'][$prescription->prescription_ID] as $medicine): ?>
                                     <tr>

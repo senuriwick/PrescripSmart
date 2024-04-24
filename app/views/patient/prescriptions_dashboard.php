@@ -62,7 +62,7 @@
                   </div>
                   <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
                   <div>Pres Date & Time:
-                    <?php echo $prescription->prescription_Date; ?> 10:00 AM
+                    <?php echo $prescription->prescription_Date; ?>
                   </div>
                   <div>Age: 22 Yrs</div>
                   <div>Referred by: Dr.
@@ -80,7 +80,7 @@
                   <table>
                     <tbody>
                     <th>Name</th>
-                    <th>Dosage</th>
+                    <!-- <th>Dosage</th> -->
                     <th>Remarks</th>
                     <?php foreach ($data['prescriptionDetails'][$prescription->prescription_ID] as $medicine): ?>
                       <tr>
