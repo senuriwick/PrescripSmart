@@ -43,7 +43,7 @@ body {
   border-color: rgba(164, 174, 199, 1);
   border-width: 0.1vh;
   display: flex;
-  margin-top: 2vh;
+  margin-top: 4vh;
   padding-bottom: 0.1vh;
 }
 
@@ -149,6 +149,7 @@ a:hover {
   top: 33rem;
   white-space: nowrap;
   width: 13.5rem;
+  cursor: pointer;
 }
 
 .reg {

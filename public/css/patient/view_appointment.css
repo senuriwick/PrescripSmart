@@ -16,6 +16,7 @@
 body {
   font-family: inter;
   margin: 0;
+  overflow: hidden;
 }
 
 .content {
@@ -190,6 +191,7 @@ body {
   height: 24px;
   margin-right: 10px;
   width: 24px;
+  cursor: pointer;
 }
 
 .prescriptionsDiv h1 {
@@ -331,4 +333,18 @@ body {
 
 .payment-status-box.unpaid {
   background-color: red;
+}
+
+.paymentButton {
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Source Sans Pro';
+  font-size: 16px;
+  height: 2rem;
+  margin-left: auto;
+  width: 5rem;
+  font-weight: bold;
 }

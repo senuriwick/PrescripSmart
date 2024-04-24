@@ -154,6 +154,7 @@ body {
     text-align: center;
     white-space: nowrap;
     width: 15rem;
+    cursor: pointer;
 }
 
 .input-group img[alt="edit-icon"] {

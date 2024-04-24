@@ -241,7 +241,7 @@ class M_Patient
         try {
             $this->db->beginTransaction();
 
-            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status, appointment_No) 
+            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status, token_No) 
                           VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active", :charge, "UNPAID", :current_appointment)');
             $this->db->bind(':patient_id', $patient_ID);
             $this->db->bind(':session_id', $session_ID);

@@ -724,11 +724,30 @@ class Patient extends Controller
     public function view_appointment()
     {
         $appointment_ID = $_GET['appointment_id'] ?? null;
+        $appointment = $this->patientModel->viewAppointment($appointment_ID, $_SESSION['USER_DATA']->user_ID);
+        $patient = $this->patientModel->patientDetails($appointment->patient_ID);
+        $merchant_id = 1226371;
+        $order_id = "$appointment->appointment_ID";
+        $amount = "$appointment->amount";
+        $currency = "LKR";
+        $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
+
+        $hash = strtoupper(
+            md5(
+                $merchant_id .
+                $order_id .
+                number_format($amount, 2, '.', '') .
+                $currency .
+                strtoupper(md5($merchant_secret))
+            )
+        );
 
         if ($appointment_ID !== null) {
-            $appointment = $this->patientModel->viewAppointment($appointment_ID, $_SESSION['USER_DATA']->user_ID);
+            
             $data = [
-                'appointment' => $appointment
+                'appointment' => $appointment,
+                'hash' => $hash,
+                'patient' => $patient
             ];
             $this->view('patient/view_appointment', $data);
         } else {
