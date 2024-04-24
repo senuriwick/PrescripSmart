@@ -61,8 +61,16 @@ class M_Doctor {
         return $this->db->rowCount();
     }
 
-    public function getSessionsDetails(){
-        $this->db->query('SELECT * FROM doctorSessions');
+    public function getReport($reportid){
+        $this->db->query('SELECT * FROM lab_reports WHERE report_ID=:id');
+        $this->db->bind(':id',$reportid);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getSessionsDetails($userid){
+        $this->db->query('SELECT * FROM sessions WHERE doctor_ID=:id');
+        $this->db->bind(':id',$userid);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -139,11 +147,25 @@ class M_Doctor {
         return $results;
     }
 
-    public function getTestId($testname){
-        $this->db->query("SELECT * FROM tests WHERE name=:testname");
-        $this->db->bind(':testname',$testname);
-        $results = $this->db->single();
-        return $results;
+    // public function getTestId($testname){
+    //     $this->db->query("SELECT * FROM tests WHERE name=:testname");
+    //     $this->db->bind(':testname',$testname);
+    //     $results = $this->db->single();
+    //     return $results;
+    // }
+
+    public function getProfileDetails($id){
+        $this->db->query('SELECT * FROM users WHERE user_ID=:id');
+        $this->db->bind(':id',$id);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getPersonalInfo($id){
+        $this->db->query('SELECT * FROM doctors WHERE doctor_ID=:id');
+        $this->db->bind(':id',$id);
+        $result = $this->db->single();
+        return $result;
     }
     
 }

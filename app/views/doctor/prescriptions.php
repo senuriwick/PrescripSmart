@@ -53,7 +53,7 @@
             <div class="navBar">
                 <div class="navBar">
                     <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
                 </div>
             </div>
             <div class="main">
@@ -86,7 +86,7 @@
                                                 <p><?php echo $prescriptionData->diagnosis;?></p>
                                             </div>
                                         </td>
-                                        <td>DR. <?php echo $prescriptionData->fName; ?></td>
+                                        <td>DR. <?php echo $prescriptionData->display_Name; ?></td>
                                         <td><?php echo $prescriptionData->prescription_Date; ?></td>
                                     </tr>
                                     <?php endforeach;?>
@@ -190,7 +190,7 @@
                 <div>Patient: ${result.display_Name}</div>
                 <div>Pres Date & Time: ${result.prescription_Date}</div>
                 <div>Age: ${result.age}</div>
-                <div>Referred by: Dr.${result.fName}</div>`;
+                <div>Referred by: Dr.${result.display_Name}</div>`;
 
                 diagnosisContent.innerHTML = '';
                 diagnosisContent.textContent = result.diagnosis;

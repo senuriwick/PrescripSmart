@@ -84,7 +84,7 @@
                             <div class="test-details">
                                 <p class="test-descript">Test Description : <span style="font-weight: normal;"><?php echo $test->name;?></span></p>
                                 <p class="rest-data">Date : <?php echo $test->date;?></p>
-                                <p class="rest-data">Refered by : DR. <?php echo $test->fName; echo " "; echo $test->lName;?></p>
+                                <p class="rest-data">Refered by : DR. <?php echo $test->display_Name;?></p>
                                 <?php if ($test->remarks!=""){?><p class="rest-data">Remarks : <?php echo $test->remarks;}?></p>
                             </div>
                             <div method="POST" class="buttons">

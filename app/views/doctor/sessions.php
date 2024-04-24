@@ -53,7 +53,7 @@
             <div class="navBar">
                 <div class="navBar">
                     <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
                 </div>
             </div>
             <div class="main">
@@ -61,7 +61,7 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name">Doctor Name</p>
+                            <p class="name"><?php echo $_SESSION['USER_DATA']->username?></p>
                             <p class="role">Doctor</p>
                         </div>
                     </div>
@@ -76,11 +76,11 @@
                         <div   id="session-details" class="sessions-box">
                         <?php foreach($data['sessionsData'] as $sessionData): ?>
                             <div class="session-card">
-                                <div><b><?php echo $sessionData->session_id; ?></b></div>
+                                <div><b>Session ID: <?php echo $sessionData->session_ID; ?></b></div>
                                 <hr>
-                                <div><?php echo formatCustomDate($sessionData->session_date);?></div>
-                                <div><?php echo formatCustomTime($sessionData->session_time);?></div>
-                                <button sessionID="<?php echo $sessionData->session_id;?>">VIEW SESSION</button>
+                                <div>Date: <?php echo formatCustomDate($sessionData->sessionDate);?></div>
+                                <div>Time: <?php echo formatCustomTime($sessionData->start_time);?></div>
+                                <button sessionID="<?php echo $sessionData->session_ID;?>">VIEW SESSION</button>
                             </div>
                             <?php endforeach; ?>
                         </div>
@@ -190,7 +190,7 @@
 <?php
     function formatCustomDate($dataString){
         $dateTime = new DateTime($dataString);
-        $formattedDate = $dateTime->format('d, M, Y');
+        $formattedDate = $dateTime->format('l, jS M, Y');
         return $formattedDate;
 }
 
