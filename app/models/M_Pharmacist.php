@@ -165,7 +165,7 @@
         }
 
         public function pharmacistInfo($user_id){
-            $this->db->query('SELECT * FROM pharmacists WHERE user_id = :user_id');
+            $this->db->query('SELECT * FROM pharmacists WHERE pharmacist_ID = :user_id');
             $this->db->bind(':user_id', $user_id);
             $result = $this->db->single();
             return $result;

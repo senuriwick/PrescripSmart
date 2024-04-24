@@ -53,7 +53,10 @@
                     <div class="userInfo">
                         <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
                         <div class="userNameDiv">
-                            <p class="name"><?php echo $pharmacist->display_name; ?></p>
+                            <p class="name">
+                                <?php echo $user->first_Name; ?>
+                                <?php echo $user->last_Name; ?>
+                            </p>
                             <p class="role"><?php echo $user->role; ?></p>
                         </div>
                     </div>
@@ -82,10 +85,10 @@
                             <?php foreach($data['patients'] as $patient): ?>
                             <div class="patientFile">
                                 <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
-                                <p><?php echo $patient->name; ?></p>
-                                <p id="patientId">Patient ID <span><?php echo $patient->id; ?></span></p>
-                                <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->id; ?>
-                                &patient_name=<?php echo urlencode($patient->name); ?>
+                                <p><?php echo $patient->display_Name; ?></p>
+                                <p id="patientId">Patient ID <span><?php echo $patient->patient_ID; ?></span></p>
+                                <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->patient_ID; ?>
+                                &patient_name=<?php echo urlencode($patient->display_Name); ?>
                                 &patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
                             </div>
                             <?php endforeach; ?>

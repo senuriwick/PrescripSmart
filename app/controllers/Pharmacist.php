@@ -27,7 +27,7 @@
                 $password = $_POST["password"];
     
                 $user = $this->pharmacistModel->getUserByUsername($username);
-                $pharmacist = $this->pharmacistModel->pharmacistInfo($user->user_id);
+                $pharmacist = $this->pharmacistModel->pharmacistInfo($user->user_ID);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
