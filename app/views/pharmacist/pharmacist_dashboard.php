@@ -11,30 +11,32 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-            <div class="logoDiv">
-
-                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
-
-            </div>
-
-            <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
-                </p>
-            </div>
+        <div class="logoDiv">
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+                <p class="mainOptions">Pharmacist Tools</p>
 
                 <a href="#">Patients</a>
                 <a href="<?php echo URLROOT; ?>/Pharmacist/medications">Medications</a>
                 <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
             </div>
+            
             <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
+            <div class="sub-menu-item terms">
+                <img src="<?php echo URLROOT ?>/public/img/general/terms_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/general/terms_of_service" id="terms">Terms of Service</a>
+            </div>
+            <div class="sub-menu-item privacy">
+                <img src="<?php echo URLROOT ?>/public/img/general/privacy_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/general/privacy_policy" id="privacy">Privacy Policy</a>
+            </div>
+            <div class="sub-menu-item billing">
+                <img src="<?php echo URLROOT ?>/public/img/general/contact_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/general/contact_us" id="contact">Contact Us</a>
+            </div>
             </div>
 
         </div>

@@ -99,6 +99,11 @@ color:rgba(164, 174, 199, 1);
     color:rgb(5, 83, 239);
   }
 
+  #scales{
+    width: 20px;
+    height: 20px;
+  }
+
 .pagination {
   position: absolute;
   bottom: 0;

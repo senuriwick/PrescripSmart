@@ -19,18 +19,13 @@
 <body>
     <div class="content">
         <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
-            </div>
-
-            <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
-                </p>
-            </div>
+        <div class="logoDiv">
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+                <p class="mainOptions">Pharmacist Tools</p>
 
                 <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a>
                 <a href="">Medications</a>

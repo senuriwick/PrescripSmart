@@ -19,18 +19,14 @@
 <body>
     <div class="content">
         <div class="sideMenu">
+            
             <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
-            </div>
-
-            <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
-                </p>
-            </div>
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+                <p class="mainOptions">Health Supervisor Tools</p>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Profile</a>
@@ -73,9 +69,9 @@
                 <?php $user = $data['user'] ?>
 
                 <div class="inquiriesDiv">
-                    <p class="healthSupervisorId">Patient ID: #
+                    <h1>Employee ID: #
                         <?php echo $user->user_id ?>
-                    </p>
+                    </h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
                     <div class="accInfo">
