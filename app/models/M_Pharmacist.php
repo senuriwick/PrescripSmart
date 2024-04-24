@@ -147,20 +147,21 @@
         }
 
         public function updateAccInfo($username)
-        {
-            $this->db->query('UPDATE users SET username = :username 
-            WHERE user_id = 1');
-            $this->db->bind(':username', $username);
-            // $this->db->bind(':password', $newpassword);
+    {
+        $this->db->query('UPDATE users SET username = :username 
+        WHERE user_ID = :pharmacistID');
+        $this->db->bind(':username', $username);
+        $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
 
-            $this->db->execute();
-        }
+        $this->db->execute();
+    }
 
         public function resetPassword($newpassword)
         {
             $this->db->query('UPDATE users SET password = :newpassword 
-            WHERE user_id = 3');
+            WHERE user_ID = :pharmacistID');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+            $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
             $this->db->execute();
         }
 

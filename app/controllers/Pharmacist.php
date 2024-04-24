@@ -32,7 +32,7 @@
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['user'] = $user;
+                    $_SESSION['USER_DATA'] = $user;
                     $_SESSION['pharmacist'] = $pharmacist;
                     redirect("/Pharmacist/dashboard");
                     exit();
@@ -115,14 +115,11 @@
         }
         
         public function profile() {
-            $user = $_SESSION['user'];
-            $pharmacist = $_SESSION['pharmacist'];
-
+            $user_id = $_SESSION['USER_DATA']->user_ID;
+            $pharmacist = $this->pharmacistModel->getUserDetails($user_id);
             $data = [
-                'user' => $user,
                 'pharmacist' => $pharmacist
             ];
-    
             $this->view('pharmacist/pharmacist_profileCheck', $data);
         }
 
@@ -137,7 +134,6 @@
                 exit();
             }
         }
-
         public function passwordReset()
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -155,7 +151,7 @@
                 $currentPassword = $_POST['currentPassword'];
     
                 // Assume $user is the object representing the logged-in user
-                $user_id = $_SESSION['user']->user_id;
+                $user_id = $_SESSION['USER_DATA']->user_id;
                 $user = $this->pharmacistModel->getUserDetails($user_id);
     
                 if ($user && password_verify($currentPassword, $user->password)) {
@@ -169,33 +165,51 @@
             }
         }
 
+        public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
+
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
+            } else {
+                echo json_encode(array("match" => false));
+            }
+        }
+    }
+
         public function personal(){
-            $user = $_SESSION['user'];
-            $pharmacist = $_SESSION['pharmacist'];
+            $user_id = $_SESSION['USER_DATA']->user_ID;
+            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
             $data = [
-                'user'=>$user,
                 'pharmacist' => $pharmacist
             ];
             $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
         }
 
-        public function personalInfoUpdate()
-        {
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $fname = $_POST["fName"];
-                $lname = $_POST["lName"];
-                $dname = $_POST["displayName"];
-                $address = $_POST["address"];
-                $nic = $_POST["nic"];
-                $contact = $_POST["contact"];
-                $regNo = $_POST["regNo"];
-                $qualification = $_POST["qualification"];
-    
-                $this->pharmacistModel->updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
-                redirect("/Pharmacist/personal");
-                exit();
-            }
+         public function personalInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $dname = $_POST["dname"];
+            $haddress = $_POST["haddress"];
+            $nic = $_POST["nic"];
+            $cno = $_POST["cno"];
+            $regno = $_POST["regno"];
+            $qual = $_POST["qual"];
+            $spec = $_POST["spec"];
+            $dep = $_POST["dep"];
+
+            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
+
+            redirect("/Pharmacist/personal");
+            exit();
+        } else {
+            redirect("/general/error_page");
         }
+    }
 
 
         public function insertNewMedication(){
@@ -397,8 +411,58 @@
         
             $this->view('pharmacist/pharmacist_prescriptionPopup', $data);
         }
+
+        public function updateProfilePicture()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+            $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/profile_images/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+            // Check file size
+            // if ($_FILES["image"]["size"] > 500000) {
+            //     echo "Sorry, your file is too large.";
+            //     $uploadOk = 0;
+            // }
+
+            //Allow only certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+
+
+            if ($uploadOk == 0) {
+                // echo "Sorry, your file was not uploaded.";
+            } else {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+
+                    $image = basename($_FILES["image"]["name"]);
+
+                    $userID = $_SESSION['USER_DATA']->user_ID;
+                    $result = $this->nurseModel->updateProfilePicture($image, $userID);
+                    $_SESSION['USER_DATA']->profile_photo = $image;
+
+                    if ($result) {
+                        echo json_encode(array("success" => true));
+                    } else {
+                        echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
+                    }
+                } else {
+                    header("Location: /prescripsmart/general/error_page");
+                }
+            }
+        }
+    }
         
         
         
     }
+    
 ?>

@@ -100,9 +100,9 @@ body {
 }
 
 
-.sideMenu a:hover {
+/* .sideMenu a:hover {
     background-color: rgba(53, 70, 109, 1);
-}
+} */
 
 .userDiv {
     border-bottom: solid;
@@ -110,11 +110,11 @@ body {
     border-width: 0.1vh;
 }
 
-.profile {
+/* .profile {
     background-color: rgba(53, 70, 109, 1);
     padding: 0.2vh;
     margin-bottom: 2.5vh;
-}
+} */
 
 .profile p {
     color: #ffffff;
@@ -163,13 +163,13 @@ body {
     background-color: #ffffff;
 } */
 
-.main
+/* .main
 {
   display: grid;
   background-color: #ffffff;
   width: 100%;
   margin-left:20px;
-}
+} */
 /* 
 .main-Container {
     width: 90%;

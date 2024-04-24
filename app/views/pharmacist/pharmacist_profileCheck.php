@@ -6,68 +6,29 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Pharmacist profile</title>
+    <title>Account</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_profile.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\pharmacist\pharmacist_profile.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
 </head>
 
 <body>
+
     <div class="content">
-        <div class="sideMenu">
-        <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+        <?php include 'side_navigation_panel.php'; ?>
 
-            <div class="manageDiv">
-                <p class="mainOptions">Pharmacist Tools</p>
+        <div class="main">
+            <?php include 'top_navigation_panel.php'; ?>
 
-                <a href="<?php echo URLROOT ?>/Pharmacist/dashboard">Patients</a>
-                <a href="<?php echo URLROOT ?>/Pharmacist/medications">Medications</a>
-                <a href="#">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
+            <div class="patientInfoContainer">
+                <?php include 'information_container.php'; ?>
+                <?php include 'in_page_navigation_account.php'; ?>
 
-        </div>
-        <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png"alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
-            </div>
-
-            <?php $user = $data['user'] ?>
-            <?php $pharmacist = $data['pharmacist'] ?>
-            <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name"><?php echo $pharmacist-> display_name ?></p>
-                            <p class="role"><?php echo $user->role ?></p>
-                        </div>
-                    </div>
-
-                    <div class="menu">
-                        <p><a href="" style="color: black;font-weight: 500;">Account</a></p>
-                        <p><a href="<?php echo URLROOT ?>/Pharmacist/personal">Personal Info</a></p>
-                        <p><a href="<?php echo URLROOT ?>/Pharmacist/security">Security</a></p>
-                    </div>
+                <?php $pharmacist = $data['pharmacist'] ?>
 
                 <div class="inquiriesDiv">
-                    <h1>Patient ID: #
-                        <?php echo $user->user_id ?>
+                    <h1>Employee ID: #<?php echo $pharmacist->user_ID ?>
                     </h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
@@ -77,16 +38,16 @@
                                 <div class="input-group">
                                     <label for="name">Username</label>
                                     <input type="text" id="username" class="input" name="username"
-                                        value="<?php echo $user->username ?>" style="display: inline-block;">
+                                        value="<?php echo $pharmacist->username ?>" style="display: inline-block;">
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Associated Email Address/Phone Number</label>
-                                    <?php if ($user->signIn_method == "email"): ?>
+                                    <?php if ($pharmacist->method_of_signin == "Email"): ?>
                                         <input type="text" id="email" class="input" name="email" readonly
-                                            value="<?php echo $user->email_phone ?>" style="display: inline-block;">
+                                            value="<?php echo $pharmacist->email_phone ?>" style="display: inline-block;">
                                     <?php else: ?>
                                         <input type="text" id="phone" class="input" name="phone" readonly
-                                            value="<?php echo $user->email_phone ?>" style="display: inline-block;">
+                                            value="<?php echo $pharmacist->email_phone ?>" style="display: inline-block;">
                                     <?php endif; ?>
                                 </div>
 
@@ -97,7 +58,7 @@
 
                     <p class="sub2" style="font-weight: bold;">Reset Password</p>
                     <div class="accInfo">
-                        <form action="<?php echo URLROOT; ?>/Pharmacist/passwordReset" method="POST">
+                        <form action="<?php echo URLROOT; ?>/pharmacist/passwordReset" method="POST">
                             <div class="input-group">
                                 <label for="password">Current Password</label>
                                 <input type="password" id="password" placeholder="Enter your current password here"
@@ -122,6 +83,7 @@
                                 </div>
                             </div>
                             <div id="newpasswordMatch"></div>
+                            <div id="weakPassword"></div>
                             <button type="submit" id="reset">RESET PASSWORD</button>
 
                         </form>
@@ -138,6 +100,7 @@
     </div>
 
     <script>
+        
         document.addEventListener("DOMContentLoaded", function () {
             var inputFields = document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]');
             var submitBtn = document.getElementById('submit');
@@ -151,84 +114,75 @@
         });
     </script>
 
-<script>
-   $(document).ready(function () {
-    // Attach input event handler to the current password input field
-    $('#password').on('input', function () {
-        checkCurrentPassword();
-    });
+    <script>
+        $(document).ready(function () {
+            function checkPasswords() {
+                var enteredPassword = $('#password').val();
+                var newPassword = $('#newpassword').val();
+                var confirmPassword = $('#confirmpassword').val();
 
-    // Attach input event handlers to new password and confirm password fields
-    $('#newpassword, #confirmpassword').on('input', function () {
-        checkPasswords();
-    });
+                var uppercaseRegex = /[A-Z]/;
+                var lowercaseRegex = /[a-z]/;
+                var numberRegex = /[0-9]/;
+                var specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
-    function checkCurrentPassword() {
-        var currentPassword = $('#password').val();
+                var hasUppercase = uppercaseRegex.test(newPassword);
+                var hasLowercase = lowercaseRegex.test(newPassword);
+                var hasNumber = numberRegex.test(newPassword);
+                var hasSpecialChar = specialCharRegex.test(newPassword);
 
-        $.ajax({
-            url: '<?php echo URLROOT; ?>/Pharmacist/checkCurrentPassword',
-            type: 'POST',
-            data: { currentPassword: currentPassword },
-            success: function (response) {
-                $('#passwordMatch').html(response);
+                console.log("Uppercase:", hasUppercase);
+                console.log("Lowercase:", hasLowercase);
+                console.log("Number:", hasNumber);
+                console.log("Special Char:", hasSpecialChar);
 
-                // If the current password is correct, re-run the checkPasswords function
-                if (response.trim().toLowerCase() === "you're good to go!") {
-                    checkPasswords();
+                var isValidPassword = newPassword.length >= 8 && hasUppercase && hasLowercase && hasNumber && hasSpecialChar;
+
+                console.log("Is Valid Password:", isValidPassword);
+
+                if (newPassword !== '' && confirmPassword !== '') {
+                    if (!isValidPassword) {
+                        $('#weakPassword').text("Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character").css({ 'color': 'red' });
+                    } else {
+                        $('#weakPassword').text("");
+                    }
+
+                    $.ajax({
+                        url: '/prescripsmart/Pharmacist/checkPassword',
+                        method: 'POST',
+                        data: { password: enteredPassword },
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.match) {
+                                $('#passwordMatch').text("You're good to go!").css({ 'color': 'green' });
+                            } else {
+                                $('#passwordMatch').text("Incorrect password!").css({ 'color': 'red' });
+                            }
+
+                            if (newPassword === confirmPassword) {
+                                $('#newpasswordMatch').text("Passwords match!").css({ 'color': 'green' });
+                            } else {
+                                $('#newpasswordMatch').text("Passwords do not match!").css({ 'color': 'red' });
+                            }
+
+                            if (newPassword === confirmPassword && isValidPassword && response.match) {
+                                $('#reset').prop('disabled', false).css({ 'background-color': 'green', 'border-color': 'green' });
+                            } else {
+                                $('#reset').prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
+                            }
+                        }
+                    });
+                } else {
+                    $('#passwordMatch').text("");
+                    $('#newpasswordMatch').text("");
+                    $('#reset').prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
                 }
-            },
-            error: function () {
-                // Handle errors
             }
+
+            $('#password, #newpassword, #confirmpassword').on('input', checkPasswords);
         });
-    }
-
-    function checkPasswords() {
-        var newPassword = $('#newpassword').val();
-        var confirmPassword = $('#confirmpassword').val();
-        var passwordMatchMessage = $('#newpasswordMatch');
-        var resetButton = $('#reset');
-
-        // Check if new password and confirm password match
-        if (newPassword === confirmPassword) {
-            passwordMatchMessage.text("Passwords match!").css({ 'color': 'green' });
-
-            // Enable the reset password button if new password and confirm password match
-            resetButton.prop('disabled', false).css({ 'background-color': 'green', 'border-color': 'green' });
-        } else {
-            passwordMatchMessage.text("Passwords do not match!").css({ 'color': 'red' });
-
-            // Disable the reset password button if new password and confirm password do not match
-            resetButton.prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
-        }
-
-        // If the current password is incorrect, disable the reset password button
-        var currentPasswordMessage = $('#passwordMatch');
-        if (currentPasswordMessage.text().trim().toLowerCase() !== "you're good to go!") {
-            resetButton.prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
-        }
-    }
-
-    // Disable form submission until the current password is checked
-    $('#reset').prop('disabled', true).css({ 'background-color': 'lightgrey', 'border-color': 'lightgrey' });
-
-    // Attach form submission handler
-    $('#passwordResetForm').on('submit', function (e) {
-        // Prevent the default form submission
-        e.preventDefault();
-
-        // Submit the form if everything is correct
-        if ($('#reset').prop('disabled') === false) {
-            this.submit();
-        }
-    });
-});
-
-</script>
-
+    </script>
 
 
 </body>
-
 </html>

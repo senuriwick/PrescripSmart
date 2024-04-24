@@ -10,63 +10,15 @@
 
 <body>
     <div class="content">
-        <div class="sideMenu">
-        <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+    <?php include 'side_navigation_panel.php'; ?>
 
-            <div class="manageDiv">
-                <p class="mainOptions">Pharmacist Tools</p>
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
 
-                <a href="#">Patients</a>
-                <a href="<?php echo URLROOT; ?>/Pharmacist/medications">Medications</a>
-                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
-            </div>
-            
-            <div class="othersDiv">
-            <div class="sub-menu-item terms">
-                <img src="<?php echo URLROOT ?>/public/img/general/terms_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/general/terms_of_service" id="terms">Terms of Service</a>
-            </div>
-            <div class="sub-menu-item privacy">
-                <img src="<?php echo URLROOT ?>/public/img/general/privacy_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/general/privacy_policy" id="privacy">Privacy Policy</a>
-            </div>
-            <div class="sub-menu-item billing">
-                <img src="<?php echo URLROOT ?>/public/img/general/contact_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/general/contact_us" id="contact">Contact Us</a>
-            </div>
-            </div>
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
-        </div>
-        <div class="container">
-            <div class="navBar">  
-                <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
-                <p>USERNAME</p>  
-            </div>
-
-            <?php $user  = $data['user']; ?>
-            <?php $pharmacist = $data['pharmacist']; ?>
-            <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name">
-                                <?php echo $user->first_Name; ?>
-                                <?php echo $user->last_Name; ?>
-                            </p>
-                            <p class="role"><?php echo $user->role; ?></p>
-                        </div>
-                    </div>
-
-                    <div class="menu">
-
-                        <p style="color:black">Patients</p>
-                        <p><a href="<?php echo URLROOT ?>/Pharmacist/medications">Medications</a></p>
-                    </div>
-                    <hr class="divider">
                     <div class="prescriptionsDiv">
                         <h2>Search Patient</h2>
                         <form method="post" action="<?php echo URLROOT; ?>/Pharmacist/searchPatient">
@@ -97,34 +49,34 @@
 
                     <!-- Pagination Links -->
                     <div class="pagination">
-                    <?php 
-                        if (!empty($data['totalPages']) && !empty($data['currentPage'])) {
-                            $totalPages = $data['totalPages'];
-                            $currentPage = $data['currentPage'];
-                            
-                            // Define the number of pagination links to display before showing the arrow
-                            $paginationThreshold = 10;
+                        <?php 
+                            if (!empty($data['totalPages']) && !empty($data['currentPage'])) {
+                                $totalPages = $data['totalPages'];
+                                $currentPage = $data['currentPage'];
+                                
+                                // Define the number of pagination links to display before showing the arrow
+                                $paginationThreshold = 10;
 
-                            // Determine the start and end points for pagination links
-                            $start = max($currentPage - floor($paginationThreshold / 2), 1);
-                            $end = min($start + $paginationThreshold - 1, $totalPages);
-                            $start = max($end - $paginationThreshold + 1, 1);
+                                // Determine the start and end points for pagination links
+                                $start = max($currentPage - floor($paginationThreshold / 2), 1);
+                                $end = min($start + $paginationThreshold - 1, $totalPages);
+                                $start = max($end - $paginationThreshold + 1, 1);
 
-                            // Display the pagination links
-                            for ($i = $start; $i <= $end; $i++):
+                                // Display the pagination links
+                                for ($i = $start; $i <= $end; $i++):
+                                ?>
+                                    <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $currentPage) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                                <?php 
+                                endfor;
+
+                                // Display the arrow to the right if there are more pages after the displayed links
+                                if ($end < $totalPages): 
+                                ?>
+                                    <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo min($currentPage + 1, $totalPages); ?>">➡️</a>
+                                <?php endif; 
+                            }
                             ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo $i; ?>" <?php echo ($i == $currentPage) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php 
-                            endfor;
-
-                            // Display the arrow to the right if there are more pages after the displayed links
-                            if ($end < $totalPages): 
-                            ?>
-                                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard/<?php echo min($currentPage + 1, $totalPages); ?>">➡️</a>
-                            <?php endif; 
-                        }
-                        ?>
-        </div>
+                    </div>
 
                     
                 </div>
