@@ -1,3 +1,8 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
 .menu {
   display: flex;
   padding-bottom: 0.1vh;
@@ -66,7 +71,7 @@ color:rgba(164, 174, 199, 1);
   }
 
   .inquiry #idNO {
-    margin-left: -270px;
+    margin-left: -210px;
   }
   
   .inquiry button {
@@ -141,5 +146,54 @@ color:rgba(164, 174, 199, 1);
   background-color: rgba(68, 81, 114, 1);
   position: relative;
 }
+
+  
+.pagination {
+  margin-top: 4vh;
+  text-align: center;
+}
+
+.pagination a {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #0069FF;
+  color: white;
+}
+
+.pagination a:hover {
+  background-color: #0069FF;
+  color: white;
+}
+
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 3%;
+  margin-left: 220px;
+}
+
+.patientInfoContainer {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
+}
+
+
+
+
   
   

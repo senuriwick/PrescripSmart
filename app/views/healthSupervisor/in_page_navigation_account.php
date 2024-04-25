@@ -17,7 +17,7 @@
 
     <div class="menu">
         <a href="<?php echo URLROOT; ?>/healthSupervisor/profile" id="account">Account</a>
-        <a href="<?php echo URLROOT; ?>/healthSupervisor/personal" id="personalinfo">Personal Info</a>
+        <a href="<?php echo URLROOT; ?>/healthSupervisor/personal_information" id="personalinfo">Personal Info</a>
         <a href="<?php echo URLROOT; ?>/healthSupervisor/security" id="security">Security</a>
     </div>
 

@@ -55,7 +55,7 @@
                 <?php $pharmacist = $data['pharmacist'] ?>
 
                 <div class="inquiriesDiv">
-                    <form action="<?php echo URLROOT; ?>/nurse/personalInfoUpdate" method="POST">
+                    <form action="<?php echo URLROOT; ?>/pharmacist/personalInfoUpdate" method="POST">
                         <h1>Employee ID: #
                             <?php echo $user->user_ID ?>
                         </h1>

@@ -1,4 +1,9 @@
 body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
+body {
   font-family: inter;
   margin: 0;
 }
@@ -126,6 +131,7 @@ body {
   text-align: center;
   white-space: nowrap;
   width: 15rem;
+  cursor: pointer;
 }
 
 .menu #account {

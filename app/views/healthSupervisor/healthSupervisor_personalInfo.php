@@ -6,149 +6,190 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>HealthSupervisor Personal Details</title>
+    <title>Personal Information</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/healthSupervisor/healthSupervisor_personalInfo.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\nurse\profile_dashboard_2.css" />
 </head>
 
 <body>
+
     <div class="content">
-        <div class="sideMenu">
-            
-            <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+        <?php include 'side_navigation_panel.php'; ?>
 
-            <div class="manageDiv">
-                <p class="mainOptions">Health Supervisor Tools</p>
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
+        <div class="main">
+            <?php include 'top_navigation_panel.php'; ?>
 
-        </div>
-        <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png"alt="user-icon">
-                    <p>USERNAME</p>
+            <div class="patientInfoContainer">
+                <div class="patientInfo">
+                <?php $user = $data['user'] ?>
+
+                    <div class="profile-pic-container">
+                        <?php if ($user->profile_photo): ?>
+                            <img src="<?php echo URLROOT ?>\public\uploads\profile_images\<?php echo $user->profile_photo ?>"
+                                alt="profile-pic" id="profile-pic">
+                        <?php else: ?>
+                            <img src="<?php echo URLROOT; ?>\public\img\general\profile.png" alt="default-profile-pic"
+                                id="profile-pic">
+                        <?php endif; ?>
+                        <img src="<?php echo URLROOT ?>\public\img\patient\editicon.png" alt="edit-icon"
+                            class="edit-icon" id="edit-icon">
+                        <label for="file-upload" class="edit-icon" id="edit-icon"></label>
+                        <input type="file" id="file-upload" style="display: none;" name="image">
+
+                    </div>
+
+                    <div class="patientNameDiv">
+                        <p class="name">
+                            <?php echo $_SESSION['USER_DATA']->first_Name ?>
+                            <?php echo $_SESSION['USER_DATA']->last_Name ?>
+                        </p>
+                        <p class="role">
+                            <?php echo $_SESSION['USER_DATA']->role ?>
+                        </p>
+                    </div>
+
                 </div>
-            </div>
+                <?php include 'in_page_navigation_account.php'; ?>
 
-            <?php $healthSupervisor = $data['healthSupervisor'] ?>
-            <?php $user = $data['user'] ?>
-            <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name"><?php echo $healthSupervisor->display_name ?></p>
-                            <p class="role"><?php echo $user->role ?></p>
-                        </div>
-                    </div>
+                <?php $healthSupervisor = $data['healthSupervisor'] ?>
 
-                    <div class="menu">
-                        <p><a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Account</a></p>
-                        <p><a href="" style="color: black;font-weight: 500;">Personal Info</a></p>
-                        <p><a href="<?php echo URLROOT ?>/HealthSupervisor/security">Security</a></p>
-                    </div>
-
-                    <div class="inquiriesDiv">
+                <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/healthSupervisor/personalInfoUpdate" method="POST">
-                        <h1>Pharmacist ID: #
-                            <?php echo $healthSupervisor->healthSupervisor_id ?>
+                        <h1>Employee ID: #
+                            <?php echo $_SESSION['USER_DATA']->user_ID ?>
                         </h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">
                             <div class="parallel">
-
                                 <div class="input-group">
                                     <label for="fname">First Name</label>
-                                    <input type="text" id="fName" name="fName" class="input"
-                                        style="display: inline-block;" value="<?php echo $healthSupervisor->first_name; ?>">
-                                    <!-- <img src="<?php echo URLROOT; ?>\public\img\patient\pencilsquare-6QZ.png" alt="edit-icon"> -->
+                                    <input type="text" id="fname" name="fname" class="input"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->first_Name; ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="lname">Last Name</label>
-                                    <input type="text" id="lName" name="lName" class="input"
-                                        style="display: inline-block;" value="<?php echo $healthSupervisor->last_name; ?>">
+                                    <input type="text" id="lname" class="input" name="lname"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->last_Name; ?>">
                                 </div>
                             </div>
                             <div class="input-group">
                                 <label for="displayname">Display Name</label>
-                                <input type="text" id="displayName" name="displayName" class="input"
-                                    value="<?php echo $healthSupervisor->display_name; ?>">
+                                <input type="text" id="dname" name="dname" class="input"
+                                    value="<?php echo $healthSupervisor->display_Name; ?>">
                                 <p class="text">*The name displayed on your dashboard</p>
                             </div>
                             <div class="input-group">
                                 <label for="address">Home Address</label>
-                                <input type="text" id="address" name="address" class="input2"
-                                    value=" <?php echo $healthSupervisor->home_address; ?>">
+                                <input type="text" id="haddress" name="haddress" class="input2"
+                                    value="<?php echo $healthSupervisor->home_Address; ?>">
                             </div>
                             <div class="parallel">
                                 <div class="input-group">
                                     <label for="nic">National Identity Card No.</label>
-                                    <input type="text" id="nic" name="nic" class="input"
-                                        style="display: inline-block;" value="<?php echo $healthSupervisor->nic_number; ?>">
+                                    <input type="number" id="nic" name="nic" class="input"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->NIC; ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="contactno">Contact Number</label>
-                                    <input type="text" id="contact" name="contact" class="input"
-                                        style="display: inline-block;" value="<?php echo $healthSupervisor->contact_number; ?>">
+                                    <input type="number" id="cno" name="cno" class="input"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->contact_Number; ?>">
                                 </div>
                             </div>
                             <div class="parallel">
                                 <div class="input-group">
-                                    <label for="nic">Health Supervisor Registration NO</label>
-                                    <input type="text" id="regNo" name="regNo" class="input"
-                                        style="display: inline-block;" value="<?php echo $healthSupervisor->healthSupervisor_registration_number; ?>">
+                                    <label for="nurseregno">Health Supervisor Registration Number</label>
+                                    <input type="text" id="regno" name="regno" class="input"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->registration_No; ?>">
                                 </div>
                                 <div class="input-group">
-                                    <label for="address">Qualifications</label>
-                                    <input type="text" id="qualification" name="qualification" class="input"
-                                        value=" <?php echo $healthSupervisor->qualification; ?>">
+                                    <label for="Qualification">Qualifications</label>
+                                    <input type="text" id="qual" name="qual" class="input"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->qualifications; ?>">
+                                </div>
+                            </div>
+                            <div class="parallel">
+                                <div class="input-group">
+                                    <label for="department">Department</label>
+                                    <input type="text" id="dep" name="dep" class="input"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->department; ?>">
+                                </div>
+                                <div class="input-group">
+                                    <label for="specialization">Specialization (If Any)</label>
+                                    <input type="text" id="spec" name="spec" class="input"
+                                        style="display: inline-block;" value="<?php echo $healthSupervisor->specialization; ?>">
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" id="submit" name="submit">SAVE CHANGES</button>
+                        <button type="submit" id="submit" name = "submit">SAVE CHANGES</button>
                     </form>
                 </div>
             </div>
+
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Select all input elements
-            var inputs = document.querySelectorAll('input');
+        document.addEventListener("DOMContentLoaded", function () {
+            var inputFields = document.querySelectorAll('input[type="text"], input[type="number"]');
+            var submitBtn = document.getElementById('submit');
 
-            // Function to handle input change event
-            function handleInputChange() {
-                // Check if any input field has changed
-                var anyChanged = Array.from(inputs).some(function (input) {
-                    return input.value !== input.getAttribute('value');
+            inputFields.forEach(function (input) {
+                input.addEventListener('input', function () {
+                    submitBtn.style.backgroundColor = "#0069FF";
+                    submitBtn.style.borderColor = "#0069FF";
                 });
-
-                // If any input field has changed, add 'blue' class to button; otherwise, remove it
-                document.getElementById('submit').classList.toggle('blue', anyChanged);
-            }
-
-            // Add event listener for input change event to each input field
-            inputs.forEach(function (input) {
-                input.addEventListener('input', handleInputChange);
             });
         });
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var editIcon = document.getElementById('edit-icon');
+    var fileInput = document.getElementById('file-upload');
+    var profilePic = document.getElementById('profile-pic');
+
+    editIcon.addEventListener('click', function () {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                profilePic.src = e.target.result;
+                updateProfilePicture(e.target.result);
+            }
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
+
+    function updateProfilePicture(imageData) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT; ?>/healthSupervisor/updateProfilePicture', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log('Profile picture updated successfully');
+            } else {
+                console.error('Error updating profile picture:', xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+        var formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        xhr.send(formData);
+    }
+});
+
+</script>
 </body>
+
+</html>
