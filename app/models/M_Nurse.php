@@ -161,7 +161,7 @@ class M_Nurse
     {
         $this->db->query('UPDATE nurses SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
             home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
-            specializations = :spec, department = :dep
+            specialization = :spec, department = :dep
             WHERE nurse_ID = :nurseID');
 
         $this->db->bind(':fname', $fname);

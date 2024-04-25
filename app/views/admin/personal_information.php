@@ -9,7 +9,7 @@
     <title>Personal Information</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\nurse\profile_dashboard_2.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\general\profile_dashboard_2.css" />
 </head>
 
 <body>
@@ -52,10 +52,10 @@
                 </div>
                 <?php include 'in_page_navigation_account.php'; ?>
 
-                <?php $nurse = $data['nurse'] ?>
+                <?php $admin = $data['admin'] ?>
 
                 <div class="inquiriesDiv">
-                    <form action="<?php echo URLROOT; ?>/nurse/personalInfoUpdate" method="POST">
+                    <form action="<?php echo URLROOT; ?>/admin/personalInfoUpdate" method="POST">
                         <h1>Employee ID: #
                             <?php echo $_SESSION['USER_DATA']->user_ID ?>
                         </h1>
@@ -65,59 +65,42 @@
                                 <div class="input-group">
                                     <label for="fname">First Name</label>
                                     <input type="text" id="fname" name="fname" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->first_Name; ?>">
+                                        style="display: inline-block;" value="<?php echo $admin->first_Name; ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="lname">Last Name</label>
                                     <input type="text" id="lname" class="input" name="lname"
-                                        style="display: inline-block;" value="<?php echo $nurse->last_Name; ?>">
+                                        style="display: inline-block;" value="<?php echo $admin->last_Name; ?>">
                                 </div>
                             </div>
                             <div class="input-group">
                                 <label for="displayname">Display Name</label>
                                 <input type="text" id="dname" name="dname" class="input"
-                                    value="<?php echo $nurse->display_Name; ?>">
+                                    value="<?php echo $admin->display_Name; ?>">
                                 <p class="text">*The name displayed on your dashboard</p>
                             </div>
                             <div class="input-group">
                                 <label for="address">Home Address</label>
                                 <input type="text" id="haddress" name="haddress" class="input2"
-                                    value="<?php echo $nurse->home_Address; ?>">
+                                    value="<?php echo $admin->home_Address; ?>">
                             </div>
                             <div class="parallel">
                                 <div class="input-group">
                                     <label for="nic">National Identity Card No.</label>
                                     <input type="number" id="nic" name="nic" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->NIC; ?>">
+                                        style="display: inline-block;" value="<?php echo $admin->NIC; ?>">
                                 </div>
                                 <div class="input-group">
                                     <label for="contactno">Contact Number</label>
                                     <input type="number" id="cno" name="cno" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->contact_Number; ?>">
-                                </div>
-                            </div>
-                            <div class="parallel">
-                                <div class="input-group">
-                                    <label for="nurseregno">Nurse Registration Number</label>
-                                    <input type="text" id="regno" name="regno" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->registration_No; ?>">
-                                </div>
-                                <div class="input-group">
-                                    <label for="Qualification">Qualifications</label>
-                                    <input type="text" id="qual" name="qual" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->qualifications; ?>">
+                                        style="display: inline-block;" value="<?php echo $admin->contact_Number; ?>">
                                 </div>
                             </div>
                             <div class="parallel">
                                 <div class="input-group">
                                     <label for="department">Department</label>
                                     <input type="text" id="dep" name="dep" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->department; ?>">
-                                </div>
-                                <div class="input-group">
-                                    <label for="specialization">Specialization (If Any)</label>
-                                    <input type="text" id="spec" name="spec" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->specialization; ?>">
+                                        style="display: inline-block;" value="<?php echo $admin->department; ?>">
                                 </div>
                             </div>
                         </div>
@@ -172,7 +155,7 @@
 
     function updateProfilePicture(imageData) {
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '<?php echo URLROOT; ?>/nurse/updateProfilePicture', true);
+        xhr.open('POST', '<?php echo URLROOT; ?>/admin/updateProfilePicture', true);
         xhr.onload = function () {
             if (xhr.status === 200) {
                 console.log('Profile picture updated successfully');

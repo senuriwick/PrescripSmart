@@ -14,8 +14,12 @@
 
 <body>
     <div class="menu">
-        <a href="<?php echo URLROOT; ?>/doctor/patients" id="patients">Patients</a>
-        <a href="<?php echo URLROOT; ?>/doctor/viewOngoingSession" id="on-going">On-going session</a>
-        <a href="<?php echo URLROOT; ?>/doctor/sessions" id="sessions">Sessions</a>
+        <a href="<?php echo URLROOT ?>/admin/searchPatient" id="patients">Patients</a>
+        <a href="<?php echo URLROOT ?>/admin/searchDoctor" id="doctors">Doctors</a>
+        <a href="<?php echo URLROOT ?>/admin/searchNurse" id="nurses">Nurses</a>
+        <a href="<?php echo URLROOT ?>/admin/searchLabtech" id="techs">Lab Technicians</a>
+        <a href="<?php echo URLROOT ?>/admin/searchHealthsup" id="supervisors">Health SV</a>
+        <a href="<?php echo URLROOT ?>/admin/searchPharmacist" id="pharmacists">Pharmacists</a>
+        <a href="<?php echo URLROOT ?>/admin/searchReceptionist" id="receptionists">Receptionists</a>
     </div>
 </body>
