@@ -36,15 +36,15 @@
                                         <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                                         <p class= "name">
                                             Mr.
-                                            <?php echo ucwords($post->last_name);?>
+                                            <?php echo ucwords($post->last_Name);?>
                                         </p> 
                                     </td>
                                     <td>
-                                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->emp_id;?></p>
+                                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->pharmacist_ID;?></p>
                                     </td>
 
                                     <td>
-                                    <a href="<?php echo URLROOT ?>/admin/showProfilePharmacist/<?php echo $post->emp_id ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                    <a href="<?php echo URLROOT ?>/admin/showProfilePharmacist/<?php echo $post->pharmacist_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
                                         <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->pharmacist_id ?>">
                                             <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                         </form>

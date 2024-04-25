@@ -30,6 +30,7 @@
   {
     if(isset($_SESSION['email_address']))
     {
+      
       return true;
     }
      else 

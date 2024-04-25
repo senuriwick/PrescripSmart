@@ -27,7 +27,7 @@
     {
       $this->view('admin/register_phone');
     }
-//
+
     public function register_email()
     {
       
@@ -203,7 +203,7 @@
           } 
           else 
           {
-            $this->view('admin/login', $data);
+            $this->view('admin/login',$data);
           }
         } 
         else
@@ -234,11 +234,8 @@
     public function createusersession($user)
     {
       $_SESSION['email_address'] = $user->email_address;
-      $_SESSION['first_name'] = $user->first_name;
-      $_SESSION['last_name'] = $user->last_name;
-
-
-    
+      $_SESSION['first_name'] = $user->first_Name;
+      $_SESSION['last_name'] = $user->last_Name;
 
       redirect('/admin/searchDoctor');
     }
@@ -580,8 +577,7 @@
           }
            else 
           {
-            die('Something went wrong');
-            
+            die('Something went wrong');           
           }
 
         } 
@@ -1503,8 +1499,7 @@
 
     public function showProfileDoc($id)
     {
-      $table = 'doctors';
-      $doctor = $this->userModel->getuserbyID($id,$table);
+      $doctor = $this->userModel->getDoctorbyID($id);
 
       $data= [
         'doctor'=>$doctor
@@ -1515,8 +1510,7 @@
 
     public function showProfileHealthsup($id)
     {
-      $table = 'healthsupervisors';
-      $healthsup = $this->userModel->getuserbyID($id,$table);
+      $healthsup = $this->userModel->getSupervisorbyID($id);
 
       $data= [
         'doctor'=>$healthsup
@@ -1527,8 +1521,7 @@
 
     public function showProfileLabtech($id)
     {
-      $table = 'labtechnicians';
-      $labtech = $this->userModel->getuserbyID($id,$table);
+      $labtech = $this->userModel->getLabtechbyID($id);
 
       $data= [
         'doctor'=>$labtech
@@ -1539,8 +1532,7 @@
     }
     public function showProfileNurse($id)
     {
-      $table= 'nurses';
-      $nurse = $this->userModel->getuserbyID($id,$table);
+      $nurse = $this->userModel->getNursebyID($id);
 
       $data= [
         'doctor'=>$nurse
@@ -1551,8 +1543,7 @@
     }
     public function showProfilePatient($id)
     {
-      $table = 'patients';
-      $patient = $this->userModel->getuserbyID($id,$table);
+      $patient = $this->userModel->getPatientbyID($id);
 
       $data= [
         'doctor'=>$patient
@@ -1563,8 +1554,7 @@
     }
     public function showProfilePharmacist($id)
     {
-      $table= 'pharmacists';
-      $pharmacist = $this->userModel->getuserbyID($id,$table);
+      $pharmacist = $this->userModel->getPharmacistbyID($id);
 
       $data= [
         'doctor'=>$pharmacist
@@ -1575,8 +1565,7 @@
     }
     public function showProfileReceptionist($id)
     {
-      $table = 'receptionists';
-      $receptionist = $this->userModel->getuserbyID($id,$table);
+      $receptionist = $this->userModel->getReceptionistbyID($id);
 
       $data= [
         'doctor'=>$receptionist

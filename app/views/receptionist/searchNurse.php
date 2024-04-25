@@ -37,12 +37,12 @@
                             <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                             <p class= "name">
                                 Mr.
-                                <?php echo $post->last_name;?>
+                                <?php echo $post->last_Name;?>
                             </p> 
                         </td>
                                                                    
                         <td>
-                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_id;?></p>
+                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_ID;?></p>
                         </td>
 
                         <td>

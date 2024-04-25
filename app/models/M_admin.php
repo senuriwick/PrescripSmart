@@ -5,13 +5,13 @@ class M_admin
 
     public function __construct()
     {
-        $this->db= new Database;
+      $this->db= new Database;
     }
 
     // Register user
     public function register($data)
     {
-        $this->db->query('INSERT INTO admins (first_name, last_name, email_address, password) VALUES(:first_name, :last_name, :email_address, :password)');
+        $this->db->query('INSERT INTO admins (first_Name, last_Name, email, password) VALUES(:first_name, :last_name, :email_address, :password)');
         // Bind values
         $this->db->bind(':first_name', $data['first_name']);
         $this->db->bind(':last_name', $data['last_name']);
@@ -34,7 +34,7 @@ class M_admin
       
       public function login($email, $password)
     {
-        $this->db->query('SELECT * FROM admins WHERE email_address = :email_address');
+        $this->db->query('SELECT * FROM users WHERE email = :email_address');
         $this->db->bind(':email_address', $email);
     
         $row = $this->db->single();
@@ -64,7 +64,7 @@ class M_admin
       // Find user by email
       public function findUserByEmail($email)
       {
-        $this->db->query('SELECT * FROM admins WHERE email_address = :email_address');
+        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address');
         // Bind value
         $this->db->bind(':email_address', $email);
   
@@ -72,11 +72,11 @@ class M_admin
   
         // Check row
         if($this->db->rowCount() > 0){
-          return true;
+          return $row;
         } 
         else
         {
-          return false;
+          echo "User not found";
         }
       }
 
@@ -218,22 +218,22 @@ class M_admin
 
     public function regDoctor($data)
     {
-        $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
             $this->db->bind(':first_name', $data['first_name']);
             $this->db->bind(':last_name', $data['last_name']);
             $this->db->bind(':email_address', $data['email']);
-            $this->db->bind(':phone_number', $data['phone_number']);
+            $this->db->bind(':password', $data['password']);
+
     
           $employeeInserted = $this->db->execute();
 
-         $emp_id = $this->db->lastInsertId();
-         $this->db->query('INSERT INTO doctors (emp_id,first_name, last_name, email_address, phone_number, password) VALUES(:emp_id, :first_name, :last_name, :email_address, :phone_number, :password)');
-            $this->db->bind(':emp_id', $emp_id);
+         $user_id = $this->db->lastInsertId();
+         $this->db->query('INSERT INTO doctors (doctor_ID,first_Name, last_Name, email, contact_Number, password) VALUES(:doctor_id, :first_name, :last_name, :email_address, :phone_number, :password)');
+            $this->db->bind(':doctor_id', $user_id);
             $this->db->bind(':first_name', $data['first_name']);
             $this->db->bind(':last_name', $data['last_name']);
             $this->db->bind(':email_address', $data['email']);
             $this->db->bind(':phone_number', $data['phone_number']);
-            $this->db->bind(':password', $data['password']);
 
           $doctorInserted = $this->db->execute();
 
@@ -253,28 +253,29 @@ class M_admin
 
       public function regHealthsup($data)
       {
-          $this->db->query('INSERT INTO healthsupervisors (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+              $this->db->bind(':first_name', $data['first_name']);
+              $this->db->bind(':last_name', $data['last_name']);
+              $this->db->bind(':email_address', $data['email']);
+              $this->db->bind(':password', $data['password']);
+          
+          $employeeInserted = $this->db->execute();
+
+          $user_id = $this->db->lastInsertId();
+
+          $this->db->query('INSERT INTO healthsupervisors (supervisor_ID,first_Name, last_Name, email, contact_Number) VALUES(:supervisor_ID,:first_name, :last_name, :email_address, :phone_number)');
           // Bind values
+          $this->db->bind(':supervisor_ID', $user_id);
           $this->db->bind(':first_name', $data['first_name']);
           $this->db->bind(':last_name', $data['last_name']);
           $this->db->bind(':email_address', $data['email']);
           $this->db->bind(':phone_number', $data['phone_number']);
-          $this->db->bind(':password', $data['password']);
     
     
           $healthsupInserted = $this->db->execute();
 
-          $emp_id = $this->db->lastInsertId();
 
-          $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number)');
-              $this->db->bind(':emp_id', $emp_id);
-              $this->db->bind(':emp_id', $emp_id);
-              $this->db->bind(':first_name', $data['first_name']);
-              $this->db->bind(':last_name', $data['last_name']);
-              $this->db->bind(':email_address', $data['email']);
-              $this->db->bind(':phone_number', $data['phone_number']);
           
-          $employeeInserted = $this->db->execute();
           
   
           // Execute
@@ -291,23 +292,23 @@ class M_admin
       public function regLabtech($data)
       {
 
-        $this->db->query('INSERT INTO employees (first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
-              $this->db->bind(':phone_number', $data['phone_number']);
+              $this->db->bind(':password', $data['password']);
+
           
           $employeeInserted = $this->db->execute();
-          $emp_id = $this->db->lastInsertId();
+          $user_id = $this->db->lastInsertId();
 
-          $this->db->query('INSERT INTO labtechnicians (emp_id,first_name, last_name, email_address, phone_number, password) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number, :password)');
+          $this->db->query('INSERT INTO labtechnicians (labtech_ID,first_Name, last_Name, email, contact_Number) VALUES(:labtech_ID,:first_name, :last_name, :email_address, :phone_number)');
           // Bind values
-          $this->db->bind(':emp_id', $emp_id);
+          $this->db->bind(':labtech_ID', $user_id);
           $this->db->bind(':first_name', $data['first_name']);
           $this->db->bind(':last_name', $data['last_name']);
           $this->db->bind(':email_address', $data['email']);
           $this->db->bind(':phone_number', $data['phone_number']);
-          $this->db->bind(':password', $data['password']);
     
     
           $labtechInserted = $this->db->execute();
@@ -325,29 +326,27 @@ class M_admin
 
       public function regNurse($data)
       {
-          $this->db->query('INSERT INTO nurses (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+
+        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');             
+              $this->db->bind(':first_name', $data['first_name']);
+              $this->db->bind(':last_name', $data['last_name']);
+              $this->db->bind(':email_address', $data['email']);
+              $this->db->bind(':password', $data['password']);
+          
+          $employeeInserted = $this->db->execute();
+
+          $user_id = $this->db->lastInsertId();
+
+          $this->db->query('INSERT INTO nurses (nurse_ID,first_name, last_name, email, contact_Number) VALUES(:user_id,:first_name, :last_name, :email_address, :phone_number)');
           // Bind values
+          $this->db->bind(':user_id', $user_id);
           $this->db->bind(':first_name', $data['first_name']);
           $this->db->bind(':last_name', $data['last_name']);
           $this->db->bind(':email_address', $data['email']);
           $this->db->bind(':phone_number', $data['phone_number']);
-          $this->db->bind(':password', $data['password']);
-    
-    
+       
           $nurseInserted = $this->db->execute();
 
-          $emp_id = $this->db->lastInsertId();
-
-          $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
-              $this->db->bind(':emp_id', $emp_id);
-              $this->db->bind(':first_name', $data['first_name']);
-              $this->db->bind(':last_name', $data['last_name']);
-              $this->db->bind(':email_address', $data['email']);
-              $this->db->bind(':phone_number', $data['phone_number']);
-          
-          $employeeInserted = $this->db->execute();
-          
-  
           // Execute
           if($employeeInserted && $nurseInserted )
           {
@@ -361,17 +360,29 @@ class M_admin
 
       public function regPatient($data)
       {
-          $this->db->query('INSERT INTO patients (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');             
+              $this->db->bind(':first_name', $data['first_name']);
+              $this->db->bind(':last_name', $data['last_name']);
+              $this->db->bind(':email_address', $data['email']);
+              $this->db->bind(':password', $data['password']);
+          
+          $employeeInserted = $this->db->execute();
+
+          $user_id = $this->db->lastInsertId();
+          $this->db->query('INSERT INTO patients (patient_ID,first_Name, last_Name, email_address, contact_Number) VALUES(:user_id, :first_name, :last_name, :email_address, :phone_number)');
           // Bind values
+          $this->db->bind(':user_id', $user_id);
           $this->db->bind(':first_name', $data['first_name']);
           $this->db->bind(':last_name', $data['last_name']);
           $this->db->bind(':email_address', $data['email']);
           $this->db->bind(':phone_number', $data['phone_number']);
-          $this->db->bind(':password', $data['password']);
-    
+
+          $patientInserted = $this->db->execute();
+
     
           // Execute
-          if($this->db->execute())
+          if($employeeInserted && $patientInserted )
           {
             return true;
           }
@@ -383,27 +394,30 @@ class M_admin
 
       public function regPharmacist($data)
       {
-          $this->db->query('INSERT INTO pharmacists (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-          // Bind values
-          $this->db->bind(':first_name', $data['first_name']);
-          $this->db->bind(':last_name', $data['last_name']);
-          $this->db->bind(':email_address', $data['email']);
-          $this->db->bind(':phone_number', $data['phone_number']);
-          $this->db->bind(':password', $data['password']);
-    
-    
-          $pharmacistInserted = $this->db->execute();
 
-          $emp_id = $this->db->lastInsertId();
-
-          $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number)');
-              $this->db->bind(':emp_id', $emp_id);
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
               $this->db->bind(':phone_number', $data['phone_number']);
           
           $employeeInserted = $this->db->execute();
+
+          $user_id = $this->db->lastInsertId();
+
+          $this->db->query('INSERT INTO pharmacists (pharmacist_ID, first_Name, last_Name, email, contact_Number) VALUES(:first_name, :last_name, :email_address, :phone_number)');
+          // Bind values
+          $this->db->bind(':user_id', $user_id);
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':phone_number', $data['phone_number']);
+    
+    
+          $pharmacistInserted = $this->db->execute();
+
+          
+          
           
   
           // Execute
@@ -419,29 +433,26 @@ class M_admin
 
       public function regReceptionist($data)
       {
-            $this->db->query('INSERT INTO receptionists (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
+                $this->db->bind(':first_name', $data['first_name']);
+                $this->db->bind(':last_name', $data['last_name']);
+                $this->db->bind(':email_address', $data['email']);
+                $this->db->bind(':password', $data['password']);
+            
+            $employeeInserted = $this->db->execute();
+
+            $user_id = $this->db->lastInsertId();
+            $this->db->query('INSERT INTO receptionists (receptionist_ID, first_name, last_name, email_address, phone_number) VALUES(:receptionist_ID, :first_name, :last_name, :email_address, :phone_number)');
             // Bind values
+            $this->db->bind(':receptionist_ID', $user_id);
             $this->db->bind(':first_name', $data['first_name']);
             $this->db->bind(':last_name', $data['last_name']);
             $this->db->bind(':email_address', $data['email']);
             $this->db->bind(':phone_number', $data['phone_number']);
-            $this->db->bind(':password', $data['password']);
-      
-      
+            
             $receptionistInserted = $this->db->execute();
-
-            $emp_id = $this->db->lastInsertId();
-
-            $this->db->query('INSERT INTO employees (emp_id,first_name, last_name, email_address, phone_number) VALUES(:emp_id,:first_name, :last_name, :email_address, :phone_number)');
-                $this->db->bind(':emp_id', $emp_id);
-                $this->db->bind(':first_name', $data['first_name']);
-                $this->db->bind(':last_name', $data['last_name']);
-                $this->db->bind(':email_address', $data['email']);
-                $this->db->bind(':phone_number', $data['phone_number']);
-            
-            $employeeInserted = $this->db->execute();
-            
-    
+  
             // Execute
             if($employeeInserted && $receptionistInserted )
             {
@@ -455,7 +466,7 @@ class M_admin
 
       public function deleteProfileDoc($id)
       {
-        $this->db->query('DELETE FROM doctors WHERE doctor_id = :id');
+        $this->db->query('DELETE FROM doctors WHERE doctor_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -472,7 +483,7 @@ class M_admin
 
       public function deleteProfileHealthsup($id)
       {
-        $this->db->query('DELETE FROM healthsupervisors WHERE healthsp_id = :id');
+        $this->db->query('DELETE FROM healthsupervisors WHERE supervisor_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -488,7 +499,7 @@ class M_admin
 
       public function deleteProfileLabtech($id)
       {
-        $this->db->query('DELETE FROM labtechnicians WHERE labtech_id = :id');
+        $this->db->query('DELETE FROM labtechnicians WHERE labtech_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -505,7 +516,7 @@ class M_admin
 
       public function deleteProfileNurse($id)
       {
-        $this->db->query('DELETE FROM nurses WHERE nurse_id = :id');
+        $this->db->query('DELETE FROM nurses WHERE nurse_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -521,7 +532,7 @@ class M_admin
 
       public function deleteProfilePatient($id)
       {
-        $this->db->query('DELETE FROM patients WHERE patient_id = :id');
+        $this->db->query('DELETE FROM patients WHERE patient_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -537,7 +548,7 @@ class M_admin
 
       public function deleteProfilePharmacist($id)
       {
-        $this->db->query('DELETE FROM pharmacists WHERE pharmacist_id = :id');
+        $this->db->query('DELETE FROM pharmacists WHERE pharmacist_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -553,7 +564,7 @@ class M_admin
 
       public function deleteProfileReceptionist($id)
       {
-        $this->db->query('DELETE FROM receptionists WHERE receptionist_id = :id');
+        $this->db->query('DELETE FROM receptionists WHERE receptionist_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -568,12 +579,90 @@ class M_admin
       }   
       
       
-        public function getuserbyID($id, $table)
+        public function getDoctorbyID($id)
       {
-        $sql = "SELECT e.*, d.*
-                FROM employees e
-                JOIN $table d ON e.emp_id = d.emp_id
-                WHERE e.emp_id = :id";
+        $sql = "SELECT users.*, doctors.*
+        FROM users 
+        JOIN doctors ON users.user_ID = doctors.doctor_ID
+        WHERE users.user_ID = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+      public function getPatientbyID($id)
+      {
+        $sql = "SELECT users.*, patients.*
+        FROM users 
+        INNER JOIN patients ON users.user_ID = patients.patient_ID
+        WHERE users.user_ID = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+      public function getNursebyID($id)
+      {
+        $sql = "SELECT users.*, nurses.*
+        FROM users 
+        INNER JOIN nurses ON users.user_ID = nurses.nurse_ID
+        WHERE users.user_ID = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+      public function getLabtechbyID($id)
+      {
+        $sql = "SELECT users.*, labtechnicians.*
+        FROM users 
+        INNER JOIN labtechnicians ON users.user_ID = labtechnicians.labtech_ID
+        WHERE users.user_ID = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+      public function getSupervisorbyID($id)
+      {
+        $sql = "SELECT users.*, healthsupervisors.*
+        FROM users 
+        INNER JOIN healthsupervisors ON users.user_ID = healthsupervisors.supervisor_ID
+        WHERE users.user_ID = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+      public function getReceptionistbyID($id)
+      {
+        $sql = "SELECT users.*, receptionists.*
+        FROM users 
+        INNER JOIN receptionists ON users.user_ID = receptionists.receptionist_ID
+        WHERE users.user_ID = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+      public function getPharmacistbyID($id)
+      {
+        $sql = "SELECT users.*, pharmacists.*
+        FROM users 
+        INNER JOIN pharmacists ON users.user_ID = pharmacists.pharmacist_ID
+        WHERE users.user_ID = :id";
 
         $this->db->query($sql);
         $this->db->bind(':id', $id);
@@ -587,8 +676,8 @@ class M_admin
         // Prepare Query
         $this->db->query('UPDATE posts SET title = :title, body = :body WHERE id = :id'); 
         $this->db->bind(':id', $data['id']);
-        $this->db->bind(':first_name', $data['title']);
-        $this->db->bind(':last_name', $data['body']);
+        $this->db->bind(':first_Name', $data['title']);
+        $this->db->bind(':last_Name', $data['body']);
         
         //Execute
         if($this->db->execute()){

@@ -18,7 +18,7 @@
     <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
-        <?php include 'top_navigation_panel.php'; ?>
+        <?php include 'top_navigation_panel.php';?>
 
             <div class="patientInfoContainer">
                 <div class="patientInfo">
