@@ -1,3 +1,4 @@
+
 body {
   font-family: inter;
   margin: 0;
@@ -51,17 +52,19 @@ body {
   height: 4px;
   background-color: #0069FF;
 }
-
 .searchDiv 
 {
   margin-top: 2vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 0.5vh;
   padding: 2vh 5vh 2vh;
-  height:48vh;
+  overflow-y: scroll;
   width:120vh;
 }
-
+.table
+{
+  height: 33vh;
+}
 
 .searchDiv h1 
 {
@@ -141,11 +144,10 @@ body {
 but :active
 {
   background-color:#006aff50 ;
-
 }
+
 .addapp
 {
-  
   margin-left: 2.5vh;
   background-color: #EFF2FB;
   width: 55vh;

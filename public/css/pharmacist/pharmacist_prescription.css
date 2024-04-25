@@ -262,4 +262,34 @@ td:hover {
   
 }
 
+.patientInfoContainer {
+    margin-left: 3vw;
+    margin-top: 5vh;
+    width: 80%;
+  }
+
+  .main {
+    flex: 1;
+    margin-bottom: 3%;
+    margin-left: 220px;
+  }
+
+  .menu #patients {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
+}
+
+.menu #patients::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+  
+
 

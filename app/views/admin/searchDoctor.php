@@ -66,6 +66,34 @@
               </table>
 
 
+              <hr style="margin-bottom: 3vh;">
+              <div class="details">
+                    <table>
+                      <tbody>
+                          <?php foreach($data['doctorlist'] as $post): ?>
+                            <tr class="row">                                                                         
+                              <td>
+                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png">
+                                    <p class="name">
+                                      Mr.
+                                    <?php echo ucwords($post->last_Name);?>
+                                    </p> 
+                              </td>
+                              <td>
+                                    <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_ID;?></p>
+                              </td>
+                              <td>
+                                    <a href="<?php echo URLROOT ?>/admin/showProfileDoc/<?php echo $post->doctor_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                     <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->emp_id ?>">  
+                                    <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" onclick="confirmDelete()">
+                                    </form>
+                              </td>                                                   
+                          </tr>
+                        <?php endforeach; ?>
+                      </tbody>
+                    </table>
+                  
+                  
             </div>
           </div>
 

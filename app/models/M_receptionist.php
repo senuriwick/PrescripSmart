@@ -42,23 +42,141 @@ class M_receptionist
     }
   }
 
+    public function authenticate($email_address, $password)
+    {
+        $this->db->query('SELECT * FROM employees WHERE email_phone = :email_address AND active = 1');
+        $this->db->bind(':email_address', $email_address);
+        $result = $this->db->single();
+        return $result;
+    }
 
+    public function employee_authentication($email_address, $password)
+    {
+        $this->db->query('SELECT * FROM employees WHERE email_phone = :email_address OR username = :email_address');
+        $this->db->bind(':email_address', $email_address);
+        $result = $this->db->single();
+        return $result;
+    }
 
-  public function login($email, $password)
-  {
-    $this->db->query('SELECT * FROM receptionists WHERE email_address = :email_address');
-    $this->db->bind(':email_address', $email);
+    public function updateCode($code, $user)
+    {
+        $this->db->query('UPDATE employees SET otp_code = :code WHERE email_phone = :user OR emp_id = :user');
+        $this->db->bind(':code', password_hash($code, PASSWORD_BCRYPT));
+        $this->db->bind(':user', $user);
+        $this->db->execute();
+    }
 
-    $row = $this->db->single();
+      public function findUserByEmail($email)
+      {
+        $this->db->query('SELECT * FROM employees WHERE email_address = :email_address');
+        // Bind value
+        $this->db->bind(':email_address', $email);
+  
+        $row = $this->db->single();
+  
+        // Check row
+        if($this->db->rowCount() > 0){
+          return true;
+        } 
+        else
+        {
+          return false;
+        }
+      }
 
-    if ($row) {
-      $hashed_password = $row->password;
-      if (password_verify($password, $hashed_password)) {
-        return $row;
-      } else {
-        return false;
-        // echo" Wrong password";
+      public function findUserByid($user_ID)
+    {
+        $this->db->query('SELECT * FROM employees WHERE user_ID = :user_ID');
+        $this->db->bind(':user_ID', $user_ID);
+        $result = $this->db->single();
+        return $result;
+    }
 
+      function deleteUserByid(int $id, int $active = 0)
+    {
+        $this->db->query('DELETE FROM employees WHERE user_ID =:id and active=:active');
+
+        $this->db->bind(':id', $id);
+        $this->db->bind(':active', $active);
+        $this->db->execute();
+    }
+
+    public function activate($email)
+    {
+        $this->db->query('UPDATE employees SET active = 1, activated_at = CURRENT_TIMESTAMP WHERE email_phone = :email');
+        $this->db->bind(':email', $email);
+        $this->db->execute();
+    }
+
+      
+
+      public function login($email, $password)
+      {
+          $this->db->query('SELECT * FROM employees WHERE email_address = :email_address');
+          $this->db->bind(':email_address', $email);
+      
+          $row = $this->db->single();
+      
+          if ($row) 
+          {
+              $hashed_password = $row->password;
+              if (password_verify($password, $hashed_password))
+              {
+                  return $row;
+              }
+               else 
+              {
+                  return false;
+                  // echo" Wrong password";
+
+              }
+          } 
+          else
+          {
+              return false;// Handle the case where the email address is not found 
+
+          }
+      }
+
+      public function receptionistRegistration($user_ID, $first_name, $last_name, $email_address)
+    {
+        $this->db->query('INSERT INTO receptionists (receptionist_ID, first_Name, last_Name, display_Name, email_address, signIn_Method, NIC) 
+        VALUES (:id, :fName, :lName, :dName, :email, "email", :id)');
+        $this->db->bind(':id', $user_ID);
+        $this->db->bind(':fName', $first_name);
+        $this->db->bind(':lName', $last_name);
+        $this->db->bind(':dName', $first_name . ' ' . $last_name);
+        $this->db->bind(':email', $email_address);
+
+        $this->db->execute();
+    }
+
+    public function receptionistRegistration_02Phone($NIC, $DOB, $age, $address, $email, $id)
+    {
+        $this->db->query('UPDATE receptionists SET NIC = :nic, DOB = :dob, age = :age, home_Address = :address, email_address = :email WHERE receptionist_ID = :id');
+        $this->db->bind(':nic', $NIC);
+        $this->db->bind(':dob', $DOB);
+        $this->db->bind(':age', $age);
+        $this->db->bind(':address', $address);
+        $this->db->bind(':email', $email);
+        $this->db->bind(':id', $id);
+
+        $this->db->execute();
+    }
+
+    public function receptionistInfo()
+    {
+        $this->db->query('SELECT * FROM employees WHERE emp_id = :userID');
+        $this->db->bind(':userID', $_SESSION['USER_DATA']->user_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+      public function getPatients()
+      {
+          $this->db->query('SELECT * FROM patients');
+          $result = $this->db->resultSet();
+          return $result;
       }
     } else {
       return false;// Handle the case where the email address is not found 
@@ -84,67 +202,27 @@ class M_receptionist
   {
     $sql = "SELECT sessions.*, doctors.*
               FROM sessions
-              INNER JOIN doctors ON sessions.doctor_id = doctors.doctor_id";
-
-    $this->db->query($sql);
-    $rows = $this->db->resultSet();
-    return $rows;
-  }
-
-  public function getSessionDetails($session_ID)
-  {
-    $this->db->query('SELECT * FROM sessions WHERE session_id = :session_id');
-    $this->db->bind(':session_id', $session_ID);
-    $result = $this->db->single();
-    return $result;
-  }
-
-  public function getDoctorDetails($doctor_ID)
-  {
-    $this->db->query('SELECT * FROM doctors WHERE doctor_id = :doctor_id');
-    $this->db->bind(':doctor_id', $doctor_ID);
-    $result = $this->db->single();
-    return $result;
-  }
-
-  public function getNurses()
-  {
-    $this->db->query('SELECT * FROM nurses');
-    $result = $this->db->resultSet();
-    return $result;
-  }
-
-  public function getPatientDetails($patient_ID)
-  {
-    $this->db->query('SELECT * FROM patients WHERE patient_id = :patient_ID');
-    $this->db->bind(':patient_ID', $patient_ID);
-    $result = $this->db->single();
-    return $result;
-  }
-
-  public function deleteProfilePatient($id)
-  {
-    $this->db->query('DELETE FROM patients WHERE patient_id = :id');
-    $this->db->bind(':id', $id);
-
-    // Execute
-    if ($this->db->execute()) {
-      return true;
-    } else {
-      return false;
+              INNER JOIN doctors ON sessions.doctor_ID = doctors.doctor_ID";
+                
+      $this->db->query($sql);
+      $rows = $this->db->resultSet(); 
+      return $rows;
     }
-  }
 
-  public function deleteProfileNurse($id)
-  {
-    $this->db->query('DELETE FROM nurses WHERE nurse_id = :id');
-    $this->db->bind(':id', $id);
+    public function getSessionDetails($session_ID)
+    {
+        $this->db->query('SELECT * FROM sessions WHERE session_ID = :session_id');
+        $this->db->bind(':session_id', $session_ID);
+        $result = $this->db->single();
+        return $result;
+    }
 
-    // Execute
-    if ($this->db->execute()) {
-      return true;
-    } else {
-      return false;
+    public function getDoctorDetails($doctor_ID)
+    {
+        $this->db->query('SELECT * FROM doctors WHERE doctor_ID = :doctor_id');
+        $this->db->bind(':doctor_id', $doctor_ID);
+        $result = $this->db->single();
+        return $result;
     }
   }
 
@@ -159,24 +237,14 @@ class M_receptionist
     } else {
       return false;
     }
-  }
-
-  public function regPatient($data)
-  {
-    $this->db->query('INSERT INTO patients (first_name, last_name, email_address, phone_number, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
-    // Bind values
-    $this->db->bind(':first_name', $data['first_name']);
-    $this->db->bind(':last_name', $data['last_name']);
-    $this->db->bind(':email_address', $data['email']);
-    $this->db->bind(':phone_number', $data['phone_number']);
-    $this->db->bind(':password', $data['password']);
 
 
-    // Execute
-    if ($this->db->execute()) {
-      return true;
-    } else {
-      return false;
+    public function getPatientDetails($patient_ID)
+    {
+        $this->db->query('SELECT * FROM patients WHERE patient_ID = :patient_ID');
+        $this->db->bind(':patient_ID', $patient_ID);
+        $result = $this->db->single();
+        return $result;
     }
   }
 
@@ -254,92 +322,38 @@ class M_receptionist
     } else {
       return false;
     }
-  }
 
-  public function receptionistInfo()
-  {
-    $this->db->query('SELECT * FROM users WHERE user_ID = :receptionistID');
-    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
-    $result = $this->db->single();
-    return $result;
-  }
 
-  public function updateAccInfo($username)
-  {
-    $this->db->query('UPDATE users SET username = :username 
-        WHERE user_ID = :receptionistID');
-    $this->db->bind(':username', $username);
-    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
+    public function confirm_appointment($data)
+    {
+      $this->db->query('INSERT INTO appointments (patient_ID,session_ID,doctor_ID, date, time, amount) VALUES(:patient_id,:session_id,:doctor_id, :app_date, :app_time, :amount)');
+      $this->db->bind(':patient_id', $data['patient_id']);
+      $this->db->bind(':session_id', $data['session_id']);
+      $this->db->bind(':doctor_id', $data['doctor_id']);
+      $this->db->bind(':app_date', $data['app_date']);
+      $this->db->bind(':app_time', $data['app_time']);
+      $this->db->bind(':amount', $data['amount']);
 
-    $this->db->execute();
-  }
+        if($this->db->execute())
+        {
+          return true;
+        }
+         else
+        {
+          return false;
+        }
 
-  public function resetPassword($newpassword)
-  {
-    $this->db->query('UPDATE users SET password = :newpassword 
-        WHERE user_ID = :receptionistID');
-    $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
-    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
-    $this->db->execute();
-  }
+    }
 
-  public function receptionistDetails()
-  {
-    $this->db->query('SELECT * FROM receptionists WHERE receptionist_ID = :receptionistID');
-    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
-    $result = $this->db->single();
-    return $result;
-  }
+    public function updateAccInfo($username, $userID)
+    {
+        $this->db->query('UPDATE employees SET username = :username 
+        WHERE emp_id = :userID');
+        $this->db->bind(':username', $username);
+        $this->db->bind(':userID', $userID);
 
-  public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep)
-  {
-    $this->db->query('UPDATE receptionists SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
-            home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
-            specialization = :spec, department = :dep
-            WHERE receptionist_ID = :receptionistID');
+        $this->db->execute();
 
-    $this->db->bind(':fname', $fname);
-    $this->db->bind(':lname', $lname);
-    $this->db->bind(':dname', $dname);
-    $this->db->bind(':haddress', $haddress);
-    $this->db->bind(':nic', $nic);
-    $this->db->bind(':cno', $cno);
-    $this->db->bind(':regno', $regno);
-    $this->db->bind(':qual', $qual);
-    $this->db->bind(':spec', $spec);
-    $this->db->bind(':dep', $dep);
-    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
-
-    $this->db->execute();
-  }
-
-  public function find_user_by_id($user_ID)
-  {
-    $this->db->query('SELECT * FROM users WHERE user_ID = :user_ID');
-    $this->db->bind(':user_ID', $user_ID);
-    $result = $this->db->single();
-    return $result;
-  }
-
-  public function manage2FA($toggleState, $userID)
-  {
-    $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_ID = :userID');
-    $this->db->bind(':TFA', $toggleState);
-    $this->db->bind(':userID', $userID);
-    $this->db->execute();
-  }
-
-  public function updateProfilePicture($filename, $userID)
-  {
-    try {
-      $this->db->query('UPDATE users SET profile_photo = :profile_picture WHERE user_ID = :user_id');
-      $this->db->bind(':profile_picture', $filename);
-      $this->db->bind(':user_id', $userID);
-      $this->db->execute();
-      return true;
-    } catch (PDOException $e) {
-      error_log("Database error: " . $e->getMessage());
-      return false;
     }
   }
 }

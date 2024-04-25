@@ -18,13 +18,11 @@
                 $password = $_POST["password"];
     
                 $user = $this->healthSupervisorModel->getUserByUsername($username);
-                $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo($user->user_id);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['user'] = $user;
-                    $_SESSION['healthSupervisor'] = $healthSupervisor;
+                    $_SESSION['USER_DATA'] = $user;
                     redirect("/healthSupervisor/dashboard");
                     exit();
                 } else {
@@ -37,8 +35,7 @@
         }
 
         public function dashboard($page = 1){
-            $user = $_SESSION['user'];
-            $healthSupervisor = $_SESSION['healthSupervisor'];
+            $user = $_SESSION['USER_DATA'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
             $newInquiries = $this->healthSupervisorModel->getNewInquiriesPaginated($itemsPerPage,$offset);
@@ -51,7 +48,6 @@
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
                 'user' => $user,
-                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_dash', $data);
@@ -84,8 +80,7 @@
 
         public function history($page = 1){
 
-            $user = $_SESSION['user'];
-            $healthSupervisor = $_SESSION['healthSupervisor'];
+            $user = $_SESSION['USER_DATA'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
             $readInquiries = $this->healthSupervisorModel->getReadInquiriesPaginated($itemsPerPage,$offset);
@@ -99,7 +94,6 @@
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
                 'user' => $user,
-                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_History', $data);
@@ -216,12 +210,11 @@
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST["username"];
-                // $password = $_POST["password"];
-                // $newpassword = $_POST["newpassword"];
+<<<<<<< HEAD
 
                 $this->healthSupervisorModel->updateAccInfo($username);
 
-                redirect("/HealthSupervisor/profile");
+                redirect("/healthSupervisor/profile");
                 exit();
             }
         }
@@ -232,30 +225,38 @@
                 $newpassword = $_POST["newpassword"];
     
                 $this->healthSupervisorModel->resetPassword($newpassword);
+=======
+                $this->healthSupervisorModel->updateAccInfo($username);
+>>>>>>> 8518232331a30ce64766164a40cd1a3daadc0254
     
                 redirect('/healthSupervisor/profile');
                 exit();
             }
         }
+        public function passwordReset()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $newpassword = $_POST["newpassword"];
+            $this->healthSupervisorModel->resetPassword($newpassword);
 
-        public function checkCurrentPassword() {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
-                $currentPassword = $_POST['currentPassword'];
-    
-                // Assume $user is the object representing the logged-in user
-                $user_id = 3;
-                $user = $this->healthSupervisorModel->getUserDetails($user_id);
-    
-                if ($user && password_verify($currentPassword, $user->password)) {
-                    echo '<span style="color: green;">You\'re good to go!</span>';
-                } else {
-                    echo '<span style="color: red;">Incorrect password!</span>';
-                }
+            redirect('/healthSupervisor/profile');
+            exit();
+        }
+    }
+
+    public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
+
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
             } else {
-                // Handle invalid or missing parameters
-                echo '<span style="color: red;">Error: Invalid request.</span>';
+                echo json_encode(array("match" => false));
             }
         }
+    }
 
         public function personalInfoUpdate()
         {

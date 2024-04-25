@@ -28,46 +28,42 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
-    <div class="searchDiv">
-        <h1>Search Doctor</h1>
-        <div class="searchFiles">
-            <form>
-                <input type="search" id="searchinput" placeholder="Enter Doctor Name/ID here">
-                <button type="search"><b>SEARCH</b></button>
-            </form>
-        </div>
-        <div class="details">
-            <table>
-                <tbody>
-                    <?php foreach ($data['doctors'] as $post): ?>
-                        <tr class="row">
+      <div class="searchDiv">
+            <h1>Search Doctor</h1>
+            <div class="searchFiles">
+                <form>
+                    <input type="search" id="searchinput" placeholder="Enter Doctor Name/ID here">
+                    <button type="search"><b>SEARCH</b></button> 
+                </form>
+            </div>
+           <div class="details">
+                <table>
+                    <tbody>
+                    <?php foreach($data['doctors'] as $post): ?>
+                            <tr class="row">                                                                           
+                
+                                    <td >
+                                        <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                        <p class="name">
+                                        Mr. 
+                                        <?php echo $post->last_Name;?>
+                                        </p> 
+                                    </td>
 
-                            <td>
-                                <img class="person-circle" src="<?php echo URLROOT ?>/img/admin/PersonCircle.png"
-                                    alt="profile-pic">
-                                <p class="name">
-                                    Mr.
-                                    <?php echo $post->last_name; ?>
-                                </p>
-                            </td>
+                                    <td>
+                                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_ID;?></p>
+                                    </td>
 
-                            <td>
-                                <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_id; ?></p>
-                            </td>
-
-                            <td>
-                                <a href="<?php echo URLROOT ?>/receptionist/showProfileDoc/<?php echo $post->emp_id ?>"><button
-                                        class="profileButton"><b>View Profile</b></button> </a>
-
-                                <form method="post"
-                                    action="<?php echo URLROOT; ?>/receptionist/deleteProfileDoc/<?php echo $post->doctor_id ?>">
-                                    <input type="image" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png"
-                                        alt="profile-pic">
-                                </form>
-                            </td>
-
-
-                        </tr>
+                                    <td>
+                                    <a href="<?php echo URLROOT ?>/receptionist/showProfileDoc/<?php echo $post->emp_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                                                            
+                                        <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileDoc/<?php echo $post->doctor_id ?>">
+                                            <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                        </form>
+                                    </td>
+                                                
+                                                                    
+                            </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

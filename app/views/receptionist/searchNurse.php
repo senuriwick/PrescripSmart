@@ -22,81 +22,68 @@
 
         <div class="main">
             <?php include 'top_navigation_panel.php'; ?>
-
-            <div class="patientInfoContainer">
+          
+          <div class="patientInfoContainer">
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation.php'; ?>
+            
+            <div class="details">
+                <table>
+                    <tbody>
+                    <?php foreach($data['nurses'] as $post): ?>
+                    <tr class="row">
+                                                                               
+                         <td >
+                            <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                            <p class= "name">
+                                Mr.
+                                <?php echo $post->last_Name;?>
+                            </p> 
+                        </td>
+                                                                   
+                        <td>
+                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_ID;?></p>
+                        </td>
 
+                        <td>
+                        <a href="<?php echo URLROOT ?>/admin/showProfileNurse/<?php echo $post->emp_id ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                            <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileNurse/<?php echo $post->nurse_id ?>">
+                                <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                            </form>
+                             </td>
+                                               
+                                                                  
+                      </tr>
+            <?php endforeach; ?>
 
-                <div class="searchDiv">
-                    <h1>Search Nurse</h1>
-                    <div class="searchFiles">
-                        <form>
-                            <input type="search" id="searchinput" placeholder="Enter Nurse Name/ID here">
-                            <button type="search"><b>SEARCH</b></button>
-                        </form>
-                    </div>
+                    </tbody>
+                </table>
+                <script>
+                      document.addEventListener("DOMContentLoaded", function () {
+                      const searchInput = document.getElementById("searchinput");//element
 
-                    <div class="details">
-                        <table>
-                            <tbody>
-                                <?php foreach ($data['nurses'] as $post): ?>
-                                    <tr class="row">
+                      searchInput.addEventListener("input", function ()
+                      {
+                      const searchTerm = searchInput.value.toLowerCase();//This line retrieves value of the search input field and converts it to lowercase.
+                      const regex = new RegExp(searchTerm, 'i'); 
+                      const Rows = document.querySelectorAll(".row");
 
-                                        <td>
-                                            <img class="person-circle"
-                                                src="<?php echo URLROOT ?>/img/admin/PersonCircle.png" alt="profile-pic">
-                                            <p class="name">
-                                                Mr.
-                                                <?php echo $post->last_name; ?>
-                                            </p>
-                                        </td>
-
-                                        <td>
-                                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_id; ?></p>
-                                        </td>
-
-                                        <td>
-                                            <a
-                                                href="<?php echo URLROOT ?>/admin/showProfileNurse/<?php echo $post->emp_id ?>"><button
-                                                    class="profileButton"><b>View Profile</b></button> </a>
-                                            <form method="post"
-                                                action="<?php echo URLROOT; ?>/admin/deleteProfileNurse/<?php echo $post->nurse_id ?>">
-                                                <input type="image" class="trash-image"
-                                                    src="<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                                            </form>
-                                        </td>
-
-
-                                    </tr>
-                                <?php endforeach; ?>
-
-                            </tbody>
-                        </table>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                const searchInput = document.getElementById("searchinput");//element
-
-                                searchInput.addEventListener("input", function () {
-                                    const searchTerm = searchInput.value.toLowerCase();//This line retrieves value of the search input field and converts it to lowercase.
-                                    const regex = new RegExp(searchTerm, 'i');
-                                    const Rows = document.querySelectorAll(".row");
-
-                                    Rows.forEach(function (row) {
-                                        const Name = row.querySelector(".name").textContent.toLowerCase();
-                                        if (regex.test(Name)) {
-                                            row.style.display = "";
-
-                                        } else {
-                                            row.style.display = "none";
-
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
-                    </div>
-                </div>
+                          Rows.forEach(function (row) 
+                          {
+                                const Name = row.querySelector(".name").textContent.toLowerCase();
+                                if (regex.test(Name)) {
+                                        row.style.display = "";
+                                        
+                                    } else {
+                                        row.style.display = "none";
+                                    
+                                    }
+                          });
+                        });
+                    });
+                  </script>
+            </div>
+        </div>
 
 
             </div>

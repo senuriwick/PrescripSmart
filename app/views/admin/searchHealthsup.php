@@ -39,20 +39,33 @@
             <div class="details">
               <table>
                 <tbody>
-                  <?php foreach ($data['healthsups'] as $post): ?>
-                    <tr class="row">
-                      <td>
-                        <img class="person-circle" src="<?php echo URLROOT ?>/img/admin/PersonCircle.png"
-                          alt="profile-pic">
-                        <p class="name">
-                          Mr.
-                          <?php echo ucwords($post->last_name); ?>
-                        </p>
-                      </td>
+                    <?php foreach($data['healthsups'] as $post): ?>
+                            <tr class="row">                                                                                                             
+                                <td >
+                                    <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                    <p class= "name">
+                                    Mr.
+                                    <?php echo ucwords($post->last_Name);?>
+                                    </p>  
+                                </td> 
+                                                                 
+                                <td>
+                                    <p style="margin-left: 10vh;">Employee ID #<?php echo $post->supervisor_ID;?></p>
+                                </td>
 
-                      <td>
-                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->emp_id; ?></p>
-                      </td>
+                                <td>
+                                <a href="<?php echo URLROOT ?>/admin/showProfileHealthsup/<?php echo $post->supervisor_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                    <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileHealthsup/<?php echo $post->user_ID ?>">
+                                       <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                    </form>
+                                </td>
+                            </tr>
+                    <?php endforeach; ?>
+              </tbody>
+        </table>
+        <script>
+                      document.addEventListener("DOMContentLoaded", function () {
+                      const searchInput = document.getElementById("searchinput");//element
 
                       <td>
                         <a href="<?php echo URLROOT ?>/admin/showProfileHealthsup/<?php echo $post->emp_id ?>"><button
