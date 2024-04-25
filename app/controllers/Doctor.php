@@ -275,7 +275,7 @@ class Doctor extends Controller{
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
-            $this->dpModel->resetPassword($newpassword);
+            $_SESSION['USER_DATA']->password = password_hash($newpassword, PASSWORD_BCRYPT);
             $this->dpModel->resetPassword($newpassword);
 
             header("Location: /prescripsmart/doctor/account_information");

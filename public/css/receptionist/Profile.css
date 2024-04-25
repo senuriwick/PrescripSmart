@@ -1,3 +1,25 @@
+body {
+  font-family: inter;
+  margin: 0;
+  /* overflow: hidden; */
+}
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-left: 220px;
+  margin-bottom: 3%;
+}
+
+.patientInfoContainer {
+  width: 80%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
+
 .back
  {
   padding-left: 5vh;
