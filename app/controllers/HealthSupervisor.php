@@ -18,13 +18,11 @@
                 $password = $_POST["password"];
     
                 $user = $this->healthSupervisorModel->getUserByUsername($username);
-                $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo($user->user_id);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
-                    $_SESSION['user'] = $user;
-                    $_SESSION['healthSupervisor'] = $healthSupervisor;
+                    $_SESSION['USER_DATA'] = $user;
                     redirect("/healthSupervisor/dashboard");
                     exit();
                 } else {
@@ -37,8 +35,7 @@
         }
 
         public function dashboard($page = 1){
-            $user = $_SESSION['user'];
-            $healthSupervisor = $_SESSION['healthSupervisor'];
+            $user = $_SESSION['USER_DATA'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
             $newInquiries = $this->healthSupervisorModel->getNewInquiriesPaginated($itemsPerPage,$offset);
@@ -51,7 +48,6 @@
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
                 'user' => $user,
-                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_dash', $data);
@@ -84,8 +80,7 @@
 
         public function history($page = 1){
 
-            $user = $_SESSION['user'];
-            $healthSupervisor = $_SESSION['healthSupervisor'];
+            $user = $_SESSION['USER_DATA'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
             $readInquiries = $this->healthSupervisorModel->getReadInquiriesPaginated($itemsPerPage,$offset);
@@ -99,7 +94,6 @@
                 'currentPage' => $page,
                 'totalPages' => $totalPages,
                 'user' => $user,
-                'healthSupervisor' => $healthSupervisor
             ];
 
             $this->view('healthSupervisor/healthSupervisor_History', $data);
@@ -216,7 +210,24 @@
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST["username"];
+<<<<<<< HEAD
+
                 $this->healthSupervisorModel->updateAccInfo($username);
+
+                redirect("/healthSupervisor/profile");
+                exit();
+            }
+        }
+
+        public function passwordReset()
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $newpassword = $_POST["newpassword"];
+    
+                $this->healthSupervisorModel->resetPassword($newpassword);
+=======
+                $this->healthSupervisorModel->updateAccInfo($username);
+>>>>>>> 8518232331a30ce64766164a40cd1a3daadc0254
     
                 redirect('/healthSupervisor/profile');
                 exit();

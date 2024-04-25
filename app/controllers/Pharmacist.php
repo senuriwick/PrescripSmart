@@ -116,9 +116,9 @@
             $data = [
                 'pharmacist' => $pharmacist
             ];
-            $this->view('pharmacist/pharmacist_profileCheck', $data);
-        }
 
+            $this->view('pharmacist/pharmacist_profile', $data);
+        }
         public function accountInfoUpdate()
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {

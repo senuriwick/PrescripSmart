@@ -20,31 +20,19 @@
         </div>
 
         <div class="manageDiv">
-            <p class="mainOptions">Patient Tools</p>
+            <p class="mainOptions">Health Supervisor Tools</p>
 
-            <div class="menu-item prescriptions">
-                <img src="<?php echo URLROOT; ?>/public/img/patient/prescription_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/prescriptions_dashboard" id="prescriptions">Prescriptions</a>
-            </div>
-            <div class="menu-item reports">
-                <img src="<?php echo URLROOT ?>/public/img/patient/reports_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/reports_dashboard" id="reports">Reports</a>
-            </div>
-            <div class="menu-item appointments">
-                <img src="<?php echo URLROOT ?>/public/img/patient/appointment_icon2.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/appointments_dashboard" id="appointments">Appointments</a>
-            </div>
-            <div class="menu-item sessions">
-                <img src="<?php echo URLROOT ?>/public/img/patient/session_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/new_appointment" id="sessions">Sessions</a>
-            </div>
             <div class="menu-item inquiries">
-                <img src="<?php echo URLROOT ?>/public/img/patient/inquiries_icon2.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/inquiries_dashboard" id="inquiries">Inquiries</a>
+                <img src="<?php echo URLROOT; ?>/public/img/healthSupervisor/inquiries_icon2.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/healthSupervisor/dashboard" id="inquiries">Inquiries</a>
+            </div>
+            <div class="menu-item history">
+                <img src="<?php echo URLROOT ?>/public/img/healthSupervisor/history_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/healthSupervisor/history" id="history">History</a>
             </div>
             <div class="menu-item profile">
                 <img src="<?php echo URLROOT ?>/public/img/patient/account_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/patient/personal_information" id="profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/pharmacist/profile" id="profile">Profile</a>
             </div>
         </div>
 
