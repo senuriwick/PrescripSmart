@@ -198,7 +198,7 @@
             $spec = $_POST["spec"];
             $dep = $_POST["dep"];
 
-            $this->nurseModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
+            $this->pharmacistModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
 
             redirect("/Pharmacist/personal");
             exit();
@@ -374,18 +374,18 @@
         //     $this->view('pharmacist/pharmacist_prescription');
         // }
 
-        public function allPrescriptions() {
-            $patientId = $_GET['patient_id'];
+        // public function allPrescriptions() {
+        //     $patientId = $_GET['patient_id'];
 
-            $prescriptions = $this->pharmacistModel->getAllPrescriptions($patientId);
-            $prescriptionCount = $this->pharmacistModel->getPrescriptionCount($patientId);
+        //     $prescriptions = $this->pharmacistModel->getAllPrescriptions($patientId);
+        //     $prescriptionCount = $this->pharmacistModel->getPrescriptionCount($patientId);
 
-            $data = [
-                'prescriptions' => $prescriptions,
-                'prescriptionCount' => $prescriptionCount
-            ];
-            $this->view('pharmacist/pharmacist_prescription', $data);
-        }
+        //     $data = [
+        //         'prescriptions' => $prescriptions,
+        //         'prescriptionCount' => $prescriptionCount
+        //     ];
+        //     $this->view('pharmacist/pharmacist_prescription', $data);
+        // }
 
         public function getPrescriptionDetails(){
             $prescriptionId = $_GET['prescription_id']; // Retrieve the prescription ID from the GET parameter
@@ -405,6 +405,25 @@
         
             $this->view('pharmacist/pharmacist_prescriptionPopup', $data);
         }
+
+        public function allPrescriptions()
+    {
+        $patientId = $_GET['patient_id'];
+        $prescriptions = $this->pharmacistModel->prescriptions($patientId);
+        $prescriptionDetails = [];
+
+        foreach ($prescriptions as $prescription) {
+            $prescriptionID = $prescription->prescription_ID;
+            $medicineData = $this->pharmacistModel->getMedicationDetails($prescriptionID);
+            $prescriptionDetails[$prescriptionID] = $medicineData;
+        }
+
+        $data = [
+            'prescriptions' => $prescriptions,
+            'prescriptionDetails' => $prescriptionDetails,
+        ];
+        $this->view('pharmacist/pharmacist_prescription', $data);
+    }
 
         public function updateProfilePicture()
     {

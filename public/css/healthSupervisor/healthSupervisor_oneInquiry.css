@@ -1,3 +1,8 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
 .menu {
     display: flex;
     padding-bottom: 0.1vh;
@@ -102,9 +107,9 @@ textarea{
   border: 1px solid #888;
   width: 50%;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 10px;
-}
+} 
 
 .popup-content h2 {
   color: rgba(68, 81, 114, 1);
@@ -148,9 +153,11 @@ textarea{
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
   cursor: pointer;
+  margin-right: -10px;
+  margin-top: -24px;
 }
 
 .close:hover,
@@ -214,31 +221,48 @@ textarea{
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.popup-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
-}
-
-/* Style for the close button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .patient-div a{
   text-decoration: none; /* Remove underline */
   /* color: inherit; */
 }
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 3%;
+  margin-left: 220px;
+}
+
+.patientInfoContainer {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
+}
+
+.menu #inquiries {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
+}
+
+.menu #inquiries::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.inquiries{
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+
 
