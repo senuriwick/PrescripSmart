@@ -80,7 +80,7 @@
                             </div>
                             <div id="newpasswordMatch"></div>
                             <div id="weakPassword"></div>
-                            <button type="button" id="reset" disabled>RESET PASSWORD</button>
+                            <button type="submit" id="reset" disabled>RESET PASSWORD</button>
 
                         </form>
                     </div>
@@ -107,14 +107,14 @@
                 var hasNumber = numberRegex.test(newPassword);
                 var hasSpecialChar = specialCharRegex.test(newPassword);
 
-                console.log("Uppercase:", hasUppercase);
-                console.log("Lowercase:", hasLowercase);
-                console.log("Number:", hasNumber);
-                console.log("Special Char:", hasSpecialChar);
+                // console.log("Uppercase:", hasUppercase);
+                // console.log("Lowercase:", hasLowercase);
+                // console.log("Number:", hasNumber);
+                // console.log("Special Char:", hasSpecialChar);
 
                 var isValidPassword = newPassword.length >= 8 && hasUppercase && hasLowercase && hasNumber && hasSpecialChar;
 
-                console.log("Is Valid Password:", isValidPassword);
+                // console.log("Is Valid Password:", isValidPassword);
 
                 if (newPassword !== '' && confirmPassword !== '') {
                     if (!isValidPassword) {

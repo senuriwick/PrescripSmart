@@ -315,11 +315,21 @@ class M_Patient
 
     public function viewPrescription($prescription_ID, $userID)
     {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name, pa.first_Name, pa.last_Name, pa.age FROM prescriptions p 
-        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pa ON p.patient_ID = pa.patient_ID
+        $this->db->query('SELECT p. *, pa.first_Name, pa.last_Name, pa.age FROM prescriptions p 
+        INNER JOIN patients pa ON p.patient_ID = pa.patient_ID
         WHERE p.patient_ID = :userID AND p.prescription_ID = :prescription_id');
         $this->db->bind(':prescription_id', $prescription_ID);
         $this->db->bind(':userID', $userID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function publicPrescriptionView($prescription_ID)
+    {
+        $this->db->query('SELECT p .*, d.first_Name, d.last_Name, pa.first_Name, pa.last_Name, pa.age FROM prescriptions p
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pa ON p.patient_ID = pa.patient_ID
+        WHERE p.prescription_ID = :prescription_id');
+        $this->db->bind(':prescription_id', $prescription_ID);
         $result = $this->db->single();
         return $result;
     }

@@ -973,17 +973,19 @@ class Patient extends Controller
     public function public_prescriptionView()
     {
         $prescription_ID = $_GET['prescription'] ?? null;
-        $prescriptions = $this->patientModel->viewPrescription($prescription_ID, $_SESSION['USER_DATA']->user_ID);
+        $prescriptions = $this->patientModel->publicPrescriptionView($prescription_ID);
         $prescriptionDetails = [];
         $labDetails = [];
         $medicineData = $this->patientModel->prescriptionMedicines($prescription_ID);
         $labTests = $this->patientModel->labTests($prescription_ID);
+        $doctor = $this->patientModel->searchDoctor_byID($prescriptions->doctor_ID);
         $prescriptionDetails[$prescription_ID] = $medicineData;
         $labDetails[$prescription_ID] = $labTests;
         $data = [
             'prescription' => $prescriptions,
             'prescriptionDetails' => $prescriptionDetails,
-            'labDetails' => $labDetails
+            'labDetails' => $labDetails,
+            'doctor' => $doctor
         ];
 
         $this->view('patient/public_prescriptionView', $data);
