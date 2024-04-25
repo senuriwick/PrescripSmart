@@ -27,13 +27,13 @@
                 $password = $_POST["password"];
     
                 $user = $this->pharmacistModel->getUserByUsername($username);
-                $pharmacist = $this->pharmacistModel->pharmacistInfo($user->user_ID);
+                // $pharmacist = $this->pharmacistModel->pharmacistInfo($user->user_ID);
     
                 if ($user && password_verify($password, $user->password)) {
                     // Password is correct
                     session_start();
                     $_SESSION['USER_DATA'] = $user;
-                    $_SESSION['pharmacist'] = $pharmacist;
+                    // $_SESSION['pharmacist'] = $pharmacist;
                     redirect("/Pharmacist/dashboard");
                     exit();
                 } else {
@@ -45,8 +45,7 @@
             
         }
         public function dashboard($page = 1){
-            $user = $_SESSION['user'];
-            $pharmacist = $_SESSION['pharmacist'];
+            $user = $_SESSION['USER_DATA'];
             $itemsPerPage =5;
             $offset = ($page - 1) * $itemsPerPage;
             $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
@@ -55,7 +54,6 @@
 
             $data = [
                 'user' => $user,
-                'pharmacist' => $pharmacist,
                 'patients' => $patients,
                 'totalPatients' => $totalPatients,
                 'currentPage' => $page,
@@ -67,8 +65,7 @@
 
         public function medications($page = 1){
 
-            $user = $_SESSION['user'];
-            $pharmacist = $_SESSION['pharmacist'];
+            $user = $_SESSION['USER_DATA'];
             $itemsPerPage = 4;
             $offset = ($page - 1) * $itemsPerPage;
             $medications = $this->pharmacistModel->getMedicationsPaginated($itemsPerPage, $offset);
@@ -77,7 +74,6 @@
         
             $data = [
                 'user' => $user,
-                'pharmacist' => $pharmacist,
                 'medications' => $medications,
                 'totalMedications' => $totalMedications,
                 'currentPage' => $page,
@@ -329,11 +325,9 @@
 
         
         public function security(){
-            $user = $_SESSION['user'];
-            $pharmacist = $_SESSION['pharmacist'];
+            $user = $_SESSION['USER_DATA'];
             $data = [
                 'user'=>$user,
-                'pharmacist' => $pharmacist
             ];
             $this->view('pharmacist/pharmacist_2factor', $data);
         }
