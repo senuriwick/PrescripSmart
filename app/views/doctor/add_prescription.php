@@ -11,69 +11,37 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/add_prescription.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu_navBar.css" />
+    <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/doctor/sideMenu_navBar.css" /> -->
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\general\in_page_navigation.css" />
     <script src="<?php echo URLROOT; ?>/public/js/doctor/main.js"></script>
 </head>
 
 <body>
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT; ?>/public/img/doctor/Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>DOCTOR</Datag>
-                </p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="<?php echo URLROOT; ?>/doctor/patients" class="active">Patients</a>
-                <a href="<?php echo URLROOT; ?>/doctor/viewOngoingSession">Ongoing Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctor/sessions">Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctor/profile">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
-
-        </div>
-        <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT; ?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
-            </div>
+    <?php include 'side_navigation_panel.php'; ?>
+        <!-- <div class="container"> -->
+            
+                <!-- <div class="navBar">
+                    <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
+                </div> -->
+            
             <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT; ?>/public/img/doctor/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name"><?php echo $data['patient']->display_Name; ?></p>
-                            <p class="role">Patient</p>
-                        </div>
-                    </div>
+                <!-- <div class="main-Container"> -->
+                <?php include 'top_navigation_panel.php'; ?>
 
-                    <div class="menu">
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_ID; ?>">Prescription</a></p>
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_ID; ?> ">Reports</a></p>
-                    </div>
+                <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <div class="menu">
+        <a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_ID;?>" id="prescriptions">Prescriptions</a>
+        <a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_ID;?>" id="reports">Reports</a>
+    </div>
 
                     <div class="patientSearch">
                         <div class="topic">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            <label>Patient Prescription</label>
+                        <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon"
+              id="back-icon">
+                            <h1>Patient Prescription</h1>
                         </div>
                         <hr />
                         <form action="<?php echo URLROOT; ?>/doctor/addMedication" method="POST" autocomplete="off">
@@ -162,10 +130,10 @@
                 results.forEach(result => {
                     const item = document.createElement('div');
                     item.classList.add('search-results-item');
-                    item.textContent = result.Material_Description;
+                    item.textContent = result.material_Description;
 
                     item.addEventListener('click', () => {
-                        document.getElementById('searchtext').value = result.Material_Description;
+                        document.getElementById('searchtext').value = result.material_Description;
                         hideSearchResults();
                     });
 

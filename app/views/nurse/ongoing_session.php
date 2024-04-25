@@ -88,7 +88,7 @@
                   <div class="appointmentDiv <?php echo strtolower($appointment->status); ?>">
                     <!-- <div class="done <?php echo strtolower($appointment->status); ?>"> -->
                     <p class = "desDiv">No
-                      <?php echo $appointment->appointment_No ?>.
+                      <?php echo $appointment->token_No ?>.
                     </p>
                     <p class = "nameClass">
                       <?php echo $appointment->display_Name ?>

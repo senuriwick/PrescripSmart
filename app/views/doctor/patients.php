@@ -11,66 +11,27 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/patients.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/sideMenu_navBar.css" />
+    <!-- <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/sideMenu_navBar.css" /> -->
     <script src="<?php echo URLROOT;?>/public/js/doctor/main.js"></script>
 </head>
 
 <body>
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT;?>/public/img/doctor/Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>DOCTOR</Datag>
-                </p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="<?php echo URLROOT; ?>/doctor/patients" class="active">Patients</a>
-                <a href="<?php echo URLROOT; ?>/doctor/viewOngoingSession">Ongoing Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctor/sessions">Sessions</a>
-                <a href="<?php echo URLROOT; ?>/doctor/profile">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
-
-        </div>
-        <div class="container">
+    <?php include 'side_navigation_panel.php'; ?>
+        <!-- <div class="container"> -->
             
-                <div class="navBar">
+                <!-- <div class="navBar">
                     <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
+                </div> -->
             
             <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name">Doctor Name</p>
-                            <p class="role">Doctor</p>
-                        </div>
-                    </div>
+                <!-- <div class="main-Container"> -->
+                <?php include 'top_navigation_panel.php'; ?>
 
-                    <div class="menu">
-                        <p><a href="<?php echo URLROOT;?>/doctor/patients">Patients</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewOngoingSession">On-going</a></p>
-                        <p><a href="<?php echo URLROOT;?>/doctor/sessions">Sessions</a></p>
-                    </div>
+                <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
                     <div class="patientSearch">
                         <h1>Search Patient</h1>

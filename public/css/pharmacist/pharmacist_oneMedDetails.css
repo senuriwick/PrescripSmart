@@ -44,13 +44,12 @@ p a:active{
 }
 
 .patient-div .status{
-    margin-left: auto;
+    margin-left: 24%;
 }
   
 .med{
     font-size: 1.5rem;
     font-weight: bold;
-    margin-right:20rem;
 }
 
 
@@ -132,4 +131,45 @@ p a:active{
     color: inherit;
 }
 
+.content {
+    display: flex;
+  }
+  
+  .main {
+    flex: 1;
+    margin-bottom: 3%;
+    margin-left: 220px;
+  }
+  
+  .patientInfoContainer {
+    margin-left: 3vw;
+    margin-top: 5vh;
+    width: 80%;
+  }
+  
+  .menu #medications {
+    border-color: #0069FF;
+    border-spacing: 2cm;
+    color: #0069FF;
+    position: relative;
+  }
+  
+  .menu #medications::after {
+    background-color: #0069FF;
+    bottom: -8px;
+    content: '';
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .medications {
+    background-color: rgba(68, 81, 114, 1);
+    position: relative;
+  }
+  
+  
+  
+  
 

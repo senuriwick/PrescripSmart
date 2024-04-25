@@ -70,33 +70,39 @@
                         <div class="patientInfo">
                             <img src="<?php echo URLROOT;?>/public/img/lab_tech/profile.png" alt="profile">
                             <div class="infoDetail">
-                                <p class="name"><?php echo $data['patientDetails']->patient_name;?></p>
-                                <p class="id">Patient ID-<?php echo $data['patientDetails']->patient_id;?></p>
-                                <p class="age"><?php echo $data['patientDetails']->Age;?> years</p>
+                                <p class="name"><?php echo $data['patientDetails']->display_Name;?></p>
+                                <p class="id">Patient ID-<?php echo $data['patientDetails']->patient_ID;?></p>
+                                <p class="age"><?php echo $data['patientDetails']->age;?> years</p>
                             </div>
                         </div>
                         <hr>
                         <h1>Test (<?php echo $data['testCount'];?>)</h1>
+
+                        <?php foreach($data['testData'] as $test):?>
+
                         <div class="test-details-box">
-                            <?php foreach($data['testData'] as $test):?>
                             <div class="test-details">
-                                <p class="test-descript">Test Description : <span style="font-weight: normal;"><?php echo $test->test_descript;?></span></p>
+                                <p class="test-descript">Test Description : <span style="font-weight: normal;"><?php echo $test->name;?></span></p>
                                 <p class="rest-data">Date : <?php echo $test->date;?></p>
-                                <p class="rest-data">Refered by : <?php echo $test->doctor_fname; echo " "; echo $test->doctor_lname;?></p>
+                                <p class="rest-data">Refered by : DR. <?php echo $test->display_Name;?></p>
                                 <?php if ($test->remarks!=""){?><p class="rest-data">Remarks : <?php echo $test->remarks;}?></p>
                             </div>
                             <div method="POST" class="buttons">
-                                <button  style="background-color:#397A49;" testid="<?php echo $test->test_no;?>"><?php $testid = $test->test_no;?> Upload Report</button><?php if($test->report_id!=0){?><i id="delete" testid="<?php echo $test->test_no;?>" class="fa-regular fa-trash-can"></i><?php } ?>
-                                <button  style="background-color: #0069FF;" testid="<?php echo $test->test_no;?>">Mark As Done</button>
+                                <button  style="background-color:#397A49;" value="<?php echo $test->report_ID;?>"> Upload Report</button><?php if($test->report!=""){?><i id="delete" value="<?php echo $test->report_ID;?>" class="fa-regular fa-trash-can"></i><?php } ?>
+                                <button  style="background-color: #0069FF;" value="<?php echo $test->report_ID;?>">Mark As Done</button>
                             </div>
-                            <?php endforeach;?>
+                            <br>
                         </div>
+                        <?php endforeach;?>
+
                     </div>
                     <div class="upload-model" id="upload-model" style="display: none;">
                         <div class="model-content">
                             <span class="close">&times;</span>
-                            <form method="POST" action="<?php echo URLROOT;?>/LAbTechnician/reportUpload/<?php echo $data['patientDetails']->patient_id;?>/<?php echo $testid;?>" enctype="multipart/form-data">
+                            <form method="POST" action="<?php echo URLROOT;?>/LAbTechnician/reportUpload" enctype="multipart/form-data">
                                 <input type="file" name="file" placeholder="Uplode Report">
+                                <input type="hidden" name="patientid" value="<?php echo $data['patientDetails']->patient_ID;?>">
+                                <input type="hidden" name="reportid" id="reportid">
                                 <button type="submit" name="upload" >Upload</button>
                             </form>
                             
@@ -109,77 +115,86 @@
     <script>
         document.addEventListener("DOMContentLoaded", function (){
             const patienttestdata=document.getElementById("patient-test-data");
-            const buttons = patienttestdata.querySelector(".buttons");
-            const uploadbutton = buttons.children[0];
-            const markbutton = buttons.children[2];
-            const deleteicon = buttons.children[1];
-            const uploadmodel=document.getElementById("upload-model");
-            // const patientid = uploadbutton.getAttribute("name");
-            const closebutton=uploadmodel.querySelector(".close");
+            const testboxs = patienttestdata.querySelectorAll(".test-details-box");
 
-            const modeluploadbutton=uploadmodel.querySelector(".model-content button");
-            const uploadedcontent=document.getElementById("upload-patient-test-data");
+            testboxs.forEach(testbox =>{
 
-            uploadbutton.addEventListener("click",()=>{
-                patienttestdata.style.display="block";
-                uploadmodel.style.display="block";
-            });
+                const buttons = testbox.querySelector(".buttons");
+                const uploadbutton = buttons.children[0];
+                const markbutton = buttons.children[2];
+                const deleteicon = buttons.children[1];
+                const uploadmodel=document.getElementById("upload-model");
+                // const patientid = uploadbutton.getAttribute("name");
+                const closebutton=uploadmodel.querySelector(".close");
 
-            closebutton.addEventListener("click",()=>{
-                uploadmodel.style.display="none";
-            });
+                const modeluploadbutton=uploadmodel.querySelector(".model-content button");
+                const uploadedcontent=document.getElementById("upload-patient-test-data");
+                const reportidInput = document.getElementById("reportid");
 
-            window.addEventListener("click",(event)=>{
-                if(event.target===uploadmodel){
+                uploadbutton.addEventListener("click",()=>{
+                    patienttestdata.style.display="block";
+                    uploadmodel.style.display="block";
+                    reportidInput.value = uploadbutton.value;
+
+                });
+
+                closebutton.addEventListener("click",()=>{
                     uploadmodel.style.display="none";
-                }
-            });
-
-            modeluploadbutton.addEventListener("click",()=>{
-                uploadmodel.style.display="none";
-            });
-
-            markbutton.addEventListener("click",()=>{
-                var test_no = markbutton.getAttribute("testid");
-
-                fetch('<?php echo URLROOT;?>/LabTechnician/markedRead',{
-                    method: 'POST',
-                    headers: {
-                        'Content-Type':'application/x-www-form-urlencoded',
-                    },
-                    body:'testid='+test_no
-                })
-                .then(response=>response.text())
-                .then(data =>{
-                    console.log('success:',data);
-                })
-                .catch((error)=>{
-                    console.log('Error:',error);
                 });
+
+                window.addEventListener("click",(event)=>{
+                    if(event.target===uploadmodel){
+                        uploadmodel.style.display="none";
+                    }
+                });
+
+                modeluploadbutton.addEventListener("click",()=>{
+                    uploadmodel.style.display="none";
+                });
+
+                markbutton.addEventListener("click",()=>{
+
+                    var report_id = markbutton.value;
+                    
+                    fetch('<?php echo URLROOT;?>/LabTechnician/markedRead',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type':'application/x-www-form-urlencoded',
+                        },
+                        body:'reportid='+report_id
+                    })
+                    .then(response=>response.text())
+                    .then(data =>{
+                        console.log('success:',data);
+                    })
+                    .catch((error)=>{
+                        console.log('Error:',error);
+                    });
                 
-            });
-
-            deleteicon.addEventListener("click",()=>{
-                var test_no = deleteicon.getAttribute("testid");
-                // console.log(test_no);
-
-                fetch('<?php echo URLROOT;?>/LabTechnician/deletereport',{
-                    method:'POST',
-                    headers: {
-                        'Content-Type':'application/x-www-form-urlencoded',
-                    },
-                    body:'testid='+test_no
-                })
-                .then(response=>response.text())
-                .then(data =>{
-                    console.log('report deleted:',data);
-                })
-                .catch((error)=>{
-                    console.log('Error:',error);
                 });
+
+                deleteicon.addEventListener("click",()=>{
+                    var report_id = markbutton.value;
+                    console.log(report_id);
+
+                    fetch('<?php echo URLROOT;?>/LabTechnician/deletereport',{
+                        method:'POST',
+                        headers: {
+                            'Content-Type':'application/x-www-form-urlencoded',
+                        },
+                        body:'reportid='+report_id
+                    })
+                    .then(response=>response.text())
+                    .then(data =>{
+                        console.log('report deleted:',data);
+                    })
+                    .catch((error)=>{
+                        console.log('Error:',error);
+                    });
+                });
+
             });
             
-
             
         });
 

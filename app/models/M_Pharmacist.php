@@ -85,16 +85,18 @@
         
 
         public function insertMedication($data){
-            $this->db->query('INSERT INTO medication (name, expiry_date, quantity, dosage, batch_number,status)
+            $this->db->query('INSERT INTO medication (id, name, expiry_date, quantity, dosage, batch_number,status,`Generic Name`)
             VALUES
-            (:name, :expiry_date, :quantity, :dosage, :batch_number, :status)');
+            (:id, :name, :expiry_date, :quantity, :dosage, :batch_number, :status, :GenericName)');
 
+            $this->db->bind(':id', 310);
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':expiry_date', $data['expiry_date']);
             $this->db->bind(':quantity', $data['quantity']);
             $this->db->bind(':dosage', $data['dosage']);
             $this->db->bind(':batch_number',$data['batch']);
             $this->db->bind(':status', $data['status']);
+            $this->db->bind(':GenericName', 'Salbetamol');
 
             return $this->db->execute();
         }
@@ -145,25 +147,26 @@
         }
 
         public function updateAccInfo($username)
-        {
-            $this->db->query('UPDATE users SET username = :username 
-            WHERE user_id = 1');
-            $this->db->bind(':username', $username);
-            // $this->db->bind(':password', $newpassword);
+    {
+        $this->db->query('UPDATE users SET username = :username 
+        WHERE user_ID = :pharmacistID');
+        $this->db->bind(':username', $username);
+        $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
 
-            $this->db->execute();
-        }
+        $this->db->execute();
+    }
 
         public function resetPassword($newpassword)
         {
             $this->db->query('UPDATE users SET password = :newpassword 
-            WHERE user_id = 3');
+            WHERE user_ID = :pharmacistID');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+            $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
             $this->db->execute();
         }
 
         public function pharmacistInfo($user_id){
-            $this->db->query('SELECT * FROM pharmacists WHERE user_id = :user_id');
+            $this->db->query('SELECT * FROM pharmacists WHERE pharmacist_ID = :user_id');
             $this->db->bind(':user_id', $user_id);
             $result = $this->db->single();
             return $result;

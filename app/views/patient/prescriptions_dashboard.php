@@ -33,11 +33,11 @@
                   <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
                   <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
                 </div>
-                <p>Issued by: Dr.
+                <p class = "doctor">Issued by: Dr.
                   <?php echo $prescription->first_Name; ?>
                   <?php echo $prescription->last_Name; ?>
                 </p>
-                <p>Issued on:
+                <p class = "date">Issued on:
                   <?php echo $prescription->prescription_Date; ?>
                 </p>
                 <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
@@ -62,7 +62,7 @@
                   </div>
                   <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
                   <div>Pres Date & Time:
-                    <?php echo $prescription->prescription_Date; ?> 10:00 AM
+                    <?php echo $prescription->prescription_Date; ?>
                   </div>
                   <div>Age: 22 Yrs</div>
                   <div>Referred by: Dr.
@@ -72,24 +72,23 @@
                 </div>
                 <div class="pres-box">
                   <label>Diagnosis</label>
-                  <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  <div><?php echo $prescription->diagnosis?>
                   </div>
                 </div>
                 <div class="pres-box">
-                  <label>Medication</label>
+                  <label>Medications</label>
                   <table>
                     <tbody>
+                    <th>Name</th>
+                    <!-- <th>Dosage</th> -->
+                    <th>Remarks</th>
+                    <?php foreach ($data['prescriptionDetails'][$prescription->prescription_ID] as $medicine): ?>
                       <tr>
-                        <td>Med name</td>
-                        <td>Dosage</td>
-                        <td>Remarks</td>
+                        <td><?php echo $medicine->medication; ?></td>
+                        <!-- <td><?php echo $medicine->dosage; ?></td> -->
+                        <td><?php echo $medicine->remark; ?></td>
                       </tr>
-                      <tr>
-                        <td>Med Name</td>
-                        <td>Dosage</td>
-                        <td>Remarks</td>
-                      </tr>
+                    <?php endforeach ?>
                     </tbody>
                   </table>
                 </div>
@@ -97,14 +96,12 @@
                   <label>Lab Tests</label>
                   <table>
                     <tbody>
+                    <?php foreach ($data['labDetails'][$prescription->prescription_ID] as $labTest): ?>
                       <tr>
-                        <td>Test name</td>
-                        <td>Remarks</td>
+                        <td><?php echo $labTest->name?></td>
+                        <td><?php echo $labTest->remarks?></td>
                       </tr>
-                      <tr>
-                        <td>Test Name</td>
-                        <td>Remarks</td>
-                      </tr>
+                    <?php endforeach ?>
                     </tbody>
                   </table>
                 </div>
@@ -131,7 +128,6 @@
       </div>
     </div>
   </div>
-  <!-- <script src="<?php echo URLROOT; ?>/public/js/prescriptions.js"></script> -->
 </body>
 
 <script>

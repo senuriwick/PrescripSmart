@@ -262,41 +262,34 @@ td:hover {
   
 }
 
+.patientInfoContainer {
+    margin-left: 3vw;
+    margin-top: 5vh;
+    width: 80%;
+  }
 
+  .main {
+    flex: 1;
+    margin-bottom: 3%;
+    margin-left: 220px;
+  }
 
-/* .diagnosis > p:first-child {
-    margin-left: -30px;
-    margin-top: -35px ;
-    text-decoration: underline;
-} */
-
-
-/* .med{
-    display: flex;
-    flex-direction: column;
-    margin-left: -84px;
-    margin-top: -18px;
-} */
-
-/* .med > div > p {
-    display: inline-block;
-    margin-right: 100px;
-    margin-bottom: 10px;
+  .menu #patients {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
 }
 
-.lab p:first-child{
-    margin-left: 10px;
+.menu #patients::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }
-
-.lab p:last-child{
-    margin-left: 154px;
-} */
-
-
-
-
-
-
-
   
+
 

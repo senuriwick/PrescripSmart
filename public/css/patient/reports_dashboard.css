@@ -1,39 +1,36 @@
 .reportsDiv {
-  margin-top: 4vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 10px;
+  margin-top: 4vh;
   padding: 1vh 3vh 2vh;
 }
 
-
 .reportsDiv h1 {
-  font-weight: bold;
   color: rgba(68, 81, 114, 1);
   font-size: 24px;
+  font-weight: bold;
 }
 
-
 .file {
+  background-color: #ffffff;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  background-color: #ffffff;
+  margin-bottom: 1vh;
+
   /* border-style: solid;
   border-width: 0.1vh;
   border-color: rgba(68, 81, 114, 0.5); */
-  border-radius: 5px;
-  margin-bottom: 1vh;
 }
 
 .file p {
   padding: 0vh 2vh;
 }
 
-
 .file .description {
   color: rgba(0, 105, 255, 1);
   font-weight: 500;
 }
-
 
 .file .desDiv {
   display: flex;
@@ -54,15 +51,16 @@
   padding: 1.75vh 1.5vh 1vh 1.5vh;
 }
 
-.file .imgclass img{
+.file .imgclass img {
   height: 3vh;
   padding: 1.75vh 1.5vh 1vh 1.5vh;
 }
 
-.file .imgclass{
-  width: 6vw;
+.file .imgclass {
   display: flex;
   justify-content: flex-end;
+  width: 6vw;
+  cursor: pointer;
 }
 
 body {
@@ -70,63 +68,60 @@ body {
   margin: 0;
 }
 
-
 .content {
   display: flex;
 }
 
-
 .main {
   flex: 1;
-  margin-left: 220px;
   margin-bottom: 3%;
+  margin-left: 220px;
 }
 
-
 .patientInfoContainer {
-  width: 80%;
-  margin-top: 5vh;
   margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
 }
 
 /* Modal */
 .reportsDiv .modal {
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
-  position: fixed;
-  z-index: 1;
+  height: 100%;
   left: 0;
+  overflow: auto;
+  position: fixed;
   top: 0;
   width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
-
 
 .reportsDiv .modal-content {
   background-color: #fff;
-  margin: 8% auto;
-  padding: 20px;
   border: 1px solid #888;
   border-radius: 10px;
-  width: 35%;
+  height: 315px;
+  margin: 8% auto;
+  padding: 20px;
   position: relative;
+  width: 35%;
 }
 
 .reportsDiv .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
   cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .reportsDiv .close1 {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
   cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .reportsDiv .modal-content a {
@@ -134,34 +129,34 @@ body {
 }
 
 .reportsDiv .modal-content .model-head {
-  display: flex;
   align-items: center;
-  height: 40px;
-  margin-top: 4px;
+  display: flex;
   gap: 8px;
+  height: 40px;
   margin-bottom: 10px;
+  margin-top: 4px;
 
   >div {
-    width: 35px;
-    min-width: 35px;
-    height: 35px;
-    min-height: 35px;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    background-color: #ff8100;
     border-radius: 8px;
     color: white;
+    display: flex;
     font-size: 24px;
     font-weight: 700;
-    background-color: #ff8100;
-    margin-right: 5px;
+    height: 35px;
+    justify-content: center;
     margin-left: 0px;
+    margin-right: 5px;
+    min-height: 35px;
+    min-width: 35px;
+    width: 35px;
   }
 }
 
 .reportsDiv .modal-content .model-head img {
-  width: 40px;
   height: 40px;
+  width: 40px;
 }
 
 .reportsDiv .modal-content .model-details {
@@ -175,11 +170,11 @@ body {
 }
 
 .reportsDiv .modal-content .pres-box {
-  margin-top: 10px;
-  padding: 5px 10px 10px 10px;
   border: 0.7px solid rgb(128, 123, 123);
-  min-height: 20px;
   border-radius: 10px;
+  margin-top: 10px;
+  min-height: 20px;
+  padding: 5px 10px 10px 10px;
 }
 
 .reportsDiv .modal-content label {
@@ -187,16 +182,16 @@ body {
 }
 
 .reportsDiv .modal-content .pres-box div {
-  margin-top: 3px;
   font-size: 12px;
+  margin-top: 3px;
 }
 
 .reportsDiv .modal-content .pres-box table {
   border-collapse: collapse;
-  width: 100%;
   border-top: 1px solid #ddd;
-  margin-top: 6px;
   margin-bottom: 6px;
+  margin-top: 6px;
+  width: 100%;
 }
 
 .reportsDiv .modal-content .pres-box table tr {
@@ -208,16 +203,16 @@ body {
 }
 
 .reportsDiv .modal-content .test-box {
-  min-height: 20px;
   margin-top: 10px;
+  min-height: 20px;
 }
 
 .reportsDiv .modal-content .test-box table {
   border-collapse: collapse;
-  width: 100%;
   border-top: 1px solid #ddd;
-  margin-top: 6px;
   margin-bottom: 20px;
+  margin-top: 6px;
+  width: 100%;
 }
 
 .reportsDiv .modal-content .test-box table td {
@@ -228,6 +223,21 @@ body {
   font-size: 12px;
 }
 
+.status.Pending {
+  color: red;
+  font-weight: bold;
+}
+
+.status.Ready {
+  color: green;
+  font-weight: bold;
+}
+
+.reportsDiv .modal-content .test-box table th {
+  font-size: 12px;
+  text-align: left;
+}
+
 .reportsDiv .modal-content .notice {
   font-size: 10px;
   margin-top: 6px;
@@ -235,20 +245,20 @@ body {
 }
 
 .menu #reports {
-  color: #0069FF;
   border-color: #0069FF;
   border-spacing: 2cm;
+  color: #0069FF;
   position: relative;
 }
 
 .menu #reports::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 4px;
   background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .reports {
@@ -257,11 +267,23 @@ body {
 }
 
 .reports::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
+  background-color: #0069FF;
   bottom: 0;
-  width: 5px; 
-  background-color: #0069FF; 
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
+}
+
+.modal-content .report-button {
+  background-color: #0069FF;
+  border-color: #0069FF;
+  border-radius: 10%;
+  color: white;
+  cursor: pointer;
+  float: right;
+  height: 20px;
+  margin-top: 10px;
+  width: 100px;
 }

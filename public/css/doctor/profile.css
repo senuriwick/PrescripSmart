@@ -1,99 +1,164 @@
-.menu {
-    margin-top: 2vh;
-    display: flex;
-    border-bottom: solid;
-    padding-bottom: 0.1vh;
-    border-width: 0.1vh;
-    border-color: rgba(164, 174, 199, 1);
-  }
-  
-  .menu p a{
-    margin-right: 4vh;
-    font-size: 2vh;
-    margin-bottom: 1vh;
-    color: rgba(164, 174, 199, 1);
-    text-decoration: none;
-  }
-  
-  .doctorprofile {
-    margin-top: 2vh;
-    background-color: rgba(239, 242, 251, 1);
-    border-radius: 10px;
-    padding: 1vh 3vh 2vh;
-   
-  }
-  
-  .doctorprofile .empid {
-    font-size: 3vh;
-    font-weight: bold;
-    color: #0069FF;
-  }
+body {
+  font-family: inter;
+  margin: 0;
+}
 
-  .doctorprofile .accountinfotext{
-    font-size: 1.9vh;
-    text-align:right;
-    color:#445172 ;
-  }
-  
-  .doctorprofile .detail{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    height: 20vh;
-    margin-top: 20px;
+.content {
+  display: flex;
+}
 
-    
-  }
 
-  .doctorprofile .detail>div{
-    padding: 0 5px;
-    font-weight: bold;
-    font-size: 1.8vh;
-  }
+.patientDiv {
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+}
 
-  .doctorprofile .detail .test-box{
-    background-color: #ffffff;
-    padding: 10px 20px;
-    font-size: 1.5vh;
-    font-weight: 500;
-    color:#445172BF;
-    border: 1px solid #44517280;
-    border-radius: 10px;
-    margin-top: 5px;
-    
-  }
+.main {
+  flex: 1;
+  margin-left: 220px;
+  margin-bottom: 3%;
+}
 
-  .doctorprofile .detail .test-box-data{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.patientInfoContainer {
+  width: 80%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
 
-  .doctorprofile .detail .test-box i{
-    color: #0069FF;
-    cursor: pointer;
-  }
+.accInfo {
+  display: flex;
+  flex-direction: row;
+}
 
-  .doctorprofile .detail button{
-    background-color: #0069FFBF;
-    border: 1px solid #0069FFBF;
-    color: #ffffff;
-    padding: 10px 20px;
-    font-size: 1.5vh;
-    font-weight: 500;
-    border-radius: 10px;
-    /* width: 250px; */
-    cursor: pointer;
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
 
-  }
-  .doctorprofile .detail form input{
-    width: 85%;
-    background-color: #ffffff;
-    padding: 10px 20px;
-    font-size: 1.5vh;
-    font-weight: 500;
-    color:#445172BF;
-    border: 1px solid #44517280;
-    border-radius: 10px;
-    margin-top: 5px;
-  }
+.sub1 {
+  color: rgba(68, 81, 114, 1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 60px;
+  margin-right: 20px;
+}
 
+.sub2 {
+  color: rgba(68, 81, 114, 1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 255px;
+  margin-right: 20px;
+}
+
+.accInfo {
+  border-top: 1px solid rgba(68, 81, 114, 0.75);
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+}
+
+.parallel {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  margin-right: 50px;
+}
+
+
+.input {
+  width: 28rem;
+  height: 2.5rem;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: rgba(68, 81, 114, 0.75);
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.2rem #e3e8f4;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.inquiriesDiv {
+  margin-top: 4vh;
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  padding: 1vh 3vh 2vh;
+  position: relative;
+}
+
+
+.inquiriesDiv h1 {
+  margin-top: 2vh;
+  font-weight: bold;
+  color: #0069ff;
+  font-size: 24px;
+}
+
+.inquiriesDiv button {
+  width: 15rem;
+  height: 2rem;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: #ffffff;
+  font-family: Inter, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(68, 81, 114, 0.75);
+  border-radius: 0.5rem;
+  border-color: rgba(68, 81, 114, 0.75);
+  flex-shrink: 0;
+  margin-top: 15px;
+}
+
+.menu #account {
+  color: #0069FF;
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  position: relative;
+}
+
+.menu #account::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #0069FF;
+}
+
+.profile {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.profile::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #0069FF;
+}

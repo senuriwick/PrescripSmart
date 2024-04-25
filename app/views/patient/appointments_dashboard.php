@@ -33,13 +33,13 @@
                   <img src="<?php echo URLROOT; ?>\public\img\patient\app_icon.png" alt="description-icon">
                   <p class="description">Appointment #<?php echo $appointment->appointment_ID; ?></p>
               </div>
-              <p>Name: Dr.
+              <p class = "name">Name: Dr.
                 <?php echo $appointment->first_Name; ?> <?php echo $appointment->last_Name; ?>
               </p>
               <p class="time">Time:
                   <?php echo $appointment->time; ?>
                 </p>
-              <p>Date:
+              <p class = "date">Date:
                 <?php echo $appointment->date; ?>
               </p>
               <a href="view_appointment?appointment_id=<?php echo $appointment->appointment_ID; ?>">

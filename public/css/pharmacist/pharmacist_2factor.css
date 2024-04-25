@@ -1,133 +1,170 @@
-.menu {
-    margin-top: 2vh;
-    display: flex;
-    border-bottom: solid;
-    padding-bottom: 0.1vh;
-    border-width: 0.1vh;
-    border-color: rgba(164, 174, 199, 1);
-}
-
-.menu p a{
-  margin-right: 4vh;
-  font-size: 2vh;
-  margin-bottom: 1vh;
-  color: rgba(164, 174, 199, 1);
-  text-decoration: none;
-}
-
-.pharmacistprofile {
-  margin-top: 2vh;
+.inquiriesDiv {
   background-color: rgba(239, 242, 251, 1);
   border-radius: 10px;
+  margin-top: 4vh;
   padding: 1vh 3vh 2vh;
-  
-}
-
-.pharmacistprofile .empid {
-  font-size: 3vh;
-  font-weight: bold;
-  color: #0069FF;
-}
-
-.pharmacistprofile .accountinfotext{
-  font-size: 1.9vh;
-  text-align:right;
-  color:#445172 ;
-}
-
-.pharmacistprofile .detail{
-  display: grid;
-  grid-template-columns: 50% 50%;
-  height: 15vh;
-  margin-top: 20px;
-
-  
-}
-
-.pharmacistprofile .detail>div{
-  padding: 0 5px;
-  font-weight: bold;
-  font-size: 2.5vh;
-}
-
-.text{
-  padding: 0 5px;
-  font-weight: normal;
-  font-size: 2.5vh;
-  color: rgba(164, 174, 199, 1);
-  display: block;
-  margin-top: 5px;
-}
-
-.pharmacistprofile div > button{
-  background-color: #0069FFBF;
-  border: 1px solid #0069FFBF;
-  color: #ffffff;
-  padding: 10px 100px;
-  font-size: 1.5vh;
-  font-weight: 500;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 550;
-  font-size: 1rem;
-
-}
-.pharmacistprofile .detail form input{
-  width: 85%;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  font-size: 1.5vh;
-  font-weight: 500;
-  color:#445172BF;
-  border: 1px solid #44517280;
-  border-radius: 5px;
-  margin-top: 5px;
-}
-
-.pharmacistprofile div > button:hover{
-  background-color: rgba(0, 80, 200, 1); 
-  cursor: pointer;
-}
-
-.sample_username{
-  margin-top: 1.3rem;
-}
-
-.switch {
   position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
 }
 
-.switch input {
+.inquiriesDiv h1 {
+  color: #0069ff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 2vh;
+}
+
+body {
+  font-family: inter;
+  margin: 0;
+}
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 3%;
+  margin-left: 220px;
+}
+
+.patientInfoContainer {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
+}
+
+.accInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.sub1 {
+  color: rgba(68, 81, 114, 1);
+  font-weight: 500;
+  margin-right: 20px;
+  margin-top: 55px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.sub2 {
+  color: rgba(68, 81, 114, 1);
+  font-weight: 500;
+  margin-right: 20px;
+  margin-top: 280px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.accInfo {
+  border-top: 1px solid rgba(68, 81, 114, 0.75);
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.parallel {
+  border-bottom: 1px solid rgba(68, 81, 114, 0.75);
+  display: flex;
+  flex-direction: row;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  margin-right: 50px;
+  margin-top: 25px;
+}
+
+.input {
+  align-items: center;
+  background-color: #ffffff;
+  border: solid 0.2rem #e3e8f4;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: rgba(68, 81, 114, 0.75);
+  display: flex;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 16px;
+  font-weight: 500;
+  height: 2.5rem;
+  justify-content: center;
+  line-height: 1.2125;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  width: 28rem;
+}
+
+.inquiriesDiv button {
+  align-items: center;
+  background-color: #0069ff;
+  border-color: #0069ff;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  display: flex;
+  flex-shrink: 0;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 16px;
+  font-weight: 500;
+  height: 2rem;
+  justify-content: center;
+  line-height: 1.2125;
+  margin-top: 15px;
+  text-align: center;
+  white-space: nowrap;
+  width: 15rem;
+}
+
+.para {
+  color: rgba(68, 81, 114, 0.75);
+}
+
+.patientInfoContainer .inquiriesDiv .switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.inquiriesDiv .switch input {
+  height: 0;
   opacity: 0;
   width: 0;
-  height: 0;
 }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
+.inquiriesDiv .slider {
   -webkit-transition: .4s;
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   transition: .4s;
 }
 
-.slider:before {
-  position: absolute;
+.inquiriesDiv .slider:before {
+  -webkit-transition: .4s;
+  background-color: white;
+  bottom: 4px;
   content: "";
   height: 26px;
-  width: 26px;
   left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
+  position: absolute;
   transition: .4s;
+  width: 26px;
 }
 
 input:checked+.slider {
@@ -139,8 +176,8 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-  -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
+  -webkit-transform: translateX(26px);
   transform: translateX(26px);
 }
 
@@ -150,4 +187,36 @@ input:checked+.slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.menu #security {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
+}
+
+.menu #security::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.profile {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.profile::before {
+  background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
 }

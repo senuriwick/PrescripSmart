@@ -10,11 +10,6 @@ body {
     grid-template-areas: "sideMenu container";
 }
 
-/* .container {
-    display: grid;
-    grid-template-rows: 7vh 1fr;
-} */
-
 .container
 {
   display: grid;
@@ -24,7 +19,7 @@ body {
 }
 
 .sideMenu {
-    width: 14vw;
+    width: 15vw;
     height: 100vh;
     background-color: rgba(7, 28, 74, 1);
     position: fixed;
@@ -35,7 +30,7 @@ body {
     color: #ffffff;
     line-height: 1.5vh;
 }
-
+/* 
 .logoDiv {
     align-items: center;
     margin-bottom: 4vh;
@@ -46,13 +41,50 @@ body {
     margin: auto;
     height: 5vh;
     padding-top: 3vh;
-}
+} */
 
-.mainOptions {
-    color: white;
-    font-size: 2.2vh;
-    font-weight: bold;
-}
+.logoDiv {
+    display: flex;
+    align-items: center;
+  
+    >div {
+      width: 35px;
+      min-width: 35px;
+      height: 35px;
+      min-height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      background-color: #ff8100;
+      margin-right: 10px;
+      margin-left: 20px;
+    }
+  
+    >h5 {
+      color: white;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 20px;
+      line-height: 30px;
+      transition: opacity 0.3s;
+      opacity: 1;
+    }
+  }
+
+  .mainOptions {
+    font-weight: 600;
+    padding: 15px 25px 0px;
+    font-size: 1.0em;
+    letter-spacing: 2px;
+    opacity: 1.0;
+    color: rgba(217, 217, 217, 0.75);
+    margin-bottom: 5vh;
+  }
 
 .sideMenu p {
     padding-left: 3vh;
@@ -67,13 +99,10 @@ body {
     text-decoration: none;
 }
 
-/* .sideMenu a.active{
-      background-color: rgba(53, 70, 109, 1);
-    } */
 
-.sideMenu a:hover {
+/* .sideMenu a:hover {
     background-color: rgba(53, 70, 109, 1);
-}
+} */
 
 .userDiv {
     border-bottom: solid;
@@ -81,11 +110,11 @@ body {
     border-width: 0.1vh;
 }
 
-.profile {
+/* .profile {
     background-color: rgba(53, 70, 109, 1);
     padding: 0.2vh;
     margin-bottom: 2.5vh;
-}
+} */
 
 .profile p {
     color: #ffffff;
@@ -98,8 +127,17 @@ body {
     border-bottom: solid;
     border-color: rgba(217, 217, 217, 0.75);
     border-width: 0.1vh;
-    padding-bottom: 3vh;
+    padding-bottom: 9vh;
 }
+
+.othersDiv {
+    padding-top: 3vh;
+    border-color: rgba(217, 217, 217, 0.75);
+    border-width: 0.1vh;
+    padding-bottom: 9vh;
+    padding-top: 20px;
+  }
+  
 
 .navBar {
     background-color: rgba(138, 150, 181, 1);
@@ -125,12 +163,13 @@ body {
     background-color: #ffffff;
 } */
 
-.main
+/* .main
 {
   display: grid;
   background-color: #ffffff;
   width: 100%;
-}
+  margin-left:20px;
+} */
 /* 
 .main-Container {
     width: 90%;
@@ -170,3 +209,38 @@ body {
     padding: 0px;
     margin: 0px;
 }
+
+
+/* newly added */
+
+
+.othersDiv .sub-menu-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+  }
+  
+  .othersDiv .sub-menu-item img {
+    margin-right: 0px;
+    margin-left: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .othersDiv a {
+    display: block;
+    color: #ffffff;
+    font-size: 1.7vh;
+    padding: 1vh 1vh;
+    padding-left: 3vh;
+    text-decoration: none;
+  }
+  
+  .othersDiv a:hover {
+    color: #ffffff;
+  }
+  
+  .sideMenu .othersDiv .sub-menu-item:hover {
+    background-color: #0069FF;
+  }

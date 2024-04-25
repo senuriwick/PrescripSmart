@@ -724,11 +724,30 @@ class Patient extends Controller
     public function view_appointment()
     {
         $appointment_ID = $_GET['appointment_id'] ?? null;
+        $appointment = $this->patientModel->viewAppointment($appointment_ID, $_SESSION['USER_DATA']->user_ID);
+        $patient = $this->patientModel->patientDetails($appointment->patient_ID);
+        $merchant_id = 1226371;
+        $order_id = "$appointment->appointment_ID";
+        $amount = "$appointment->amount";
+        $currency = "LKR";
+        $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
+
+        $hash = strtoupper(
+            md5(
+                $merchant_id .
+                $order_id .
+                number_format($amount, 2, '.', '') .
+                $currency .
+                strtoupper(md5($merchant_secret))
+            )
+        );
 
         if ($appointment_ID !== null) {
-            $appointment = $this->patientModel->viewAppointment($appointment_ID, $_SESSION['USER_DATA']->user_ID);
+            
             $data = [
-                'appointment' => $appointment
+                'appointment' => $appointment,
+                'hash' => $hash,
+                'patient' => $patient
             ];
             $this->view('patient/view_appointment', $data);
         } else {
@@ -762,7 +781,6 @@ class Patient extends Controller
         $referrence = $this->patientModel->confirmAppointment($_SESSION['USER_DATA']->user_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number);
         header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
     }
-
     public function doctor_sessions()
     {
         $doctor_ID = $_GET['doctor_ID'] ?? null;
@@ -770,9 +788,11 @@ class Patient extends Controller
         if ($doctor_ID !== null) {
             $session = $this->patientModel->docSession($doctor_ID);
             $doctorImage = $this->patientModel->docImage($doctor_ID);
+            $doctorDetails = $this->patientModel->searchDoctor_byID($doctor_ID);
             $data = [
                 'session' => $session,
-                'image' => $doctorImage
+                'image' => $doctorImage,
+                'doctor' => $doctorDetails
             ];
             $this->view('patient/doctor_sessions', $data);
         } else {
@@ -930,9 +950,22 @@ class Patient extends Controller
     //PRESCRIPTIONS
     public function prescriptions_dashboard()
     {
-        $prescriptions = $this->patientModel->prescriptions($_SESSION['USER_DATA']->user_ID);
+        $userID = $_SESSION['USER_DATA']->user_ID;
+        $prescriptions = $this->patientModel->prescriptions($userID);
+        $prescriptionDetails = [];
+        $labDetails = [];
+        foreach ($prescriptions as $prescription) {
+            $prescriptionID = $prescription->prescription_ID;
+            $medicineData = $this->patientModel->prescriptionMedicines($prescriptionID);
+            $labTests = $this->patientModel->labTests($prescriptionID);
+            $prescriptionDetails[$prescriptionID] = $medicineData;
+            $labDetails[$prescriptionID] = $labTests;
+        }
+
         $data = [
-            'prescriptions' => $prescriptions
+            'prescriptions' => $prescriptions,
+            'prescriptionDetails' => $prescriptionDetails,
+            'labDetails' => $labDetails
         ];
         $this->view('patient/prescriptions_dashboard', $data);
     }
@@ -940,9 +973,19 @@ class Patient extends Controller
     public function public_prescriptionView()
     {
         $prescription_ID = $_GET['prescription'] ?? null;
-        $prescriptions = $this->patientModel->viewPrescription($prescription_ID, $_SESSION['USER_DATA']->user_ID);
+        $prescriptions = $this->patientModel->publicPrescriptionView($prescription_ID);
+        $prescriptionDetails = [];
+        $labDetails = [];
+        $medicineData = $this->patientModel->prescriptionMedicines($prescription_ID);
+        $labTests = $this->patientModel->labTests($prescription_ID);
+        $doctor = $this->patientModel->searchDoctor_byID($prescriptions->doctor_ID);
+        $prescriptionDetails[$prescription_ID] = $medicineData;
+        $labDetails[$prescription_ID] = $labTests;
         $data = [
-            'prescription' => $prescriptions
+            'prescription' => $prescriptions,
+            'prescriptionDetails' => $prescriptionDetails,
+            'labDetails' => $labDetails,
+            'doctor' => $doctor
         ];
 
         $this->view('patient/public_prescriptionView', $data);
@@ -988,11 +1031,25 @@ class Patient extends Controller
         }
     }
 
+    public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
+
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
+            } else {
+                echo json_encode(array("match" => false));
+            }
+        }
+    }
+
     public function passwordReset()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
-
+            $this->patientModel->resetPassword($newpassword);
             $this->patientModel->resetPassword($newpassword, $_SESSION['USER_DATA']->user_ID);
 
             header("Location: /prescripsmart/patient/account_information");
@@ -1126,6 +1183,7 @@ class Patient extends Controller
 
                     $userID = $_SESSION['USER_DATA']->user_ID;
                     $result = $this->patientModel->updateProfilePicture($image, $userID);
+                    $_SESSION['USER_DATA']->profile_photo = $image;
 
                     if ($result) {
                         echo json_encode(array("success" => true));

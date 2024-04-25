@@ -117,12 +117,12 @@
                                 <div class="input-group">
                                     <label for="specialization">Specialization (If Any)</label>
                                     <input type="text" id="spec" name="spec" class="input"
-                                        style="display: inline-block;" value="<?php echo $nurse->specializations; ?>">
+                                        style="display: inline-block;" value="<?php echo $nurse->specialization; ?>">
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" id="submit">SAVE CHANGES</button>
+                        <button type="submit" id="submit" name = "submit">SAVE CHANGES</button>
                     </form>
                 </div>
             </div>

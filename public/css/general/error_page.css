@@ -1,88 +1,97 @@
 * {
     -webkit-box-sizing: border-box;
+
     box-sizing: border-box
 }
 
 body {
-    padding: 0;
-    margin: 0;
     font-family: Inter, 'Source Sans Pro';
+    margin: 0;
+    padding: 0;
 }
 
 #notfound {
     position: relative;
+
     height: 100vh
 }
 
 #notfound .notfound {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    left: 50%;
+    position: absolute;
+    top: 50%;
+
     transform: translate(-50%, -50%)
 }
 
 .notfound {
-    max-width: 920px;
-    width: 100%;
     line-height: 1.4;
-    text-align: center;
+    max-width: 920px;
     padding-left: 15px;
+    text-align: center;
+    width: 100%;
+
     padding-right: 15px
 }
 
 .notfound .notfound-404 {
-    position: absolute;
-    height: 100px;
-    top: 0;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    height: 100px;
+    left: 50%;
+    position: absolute;
+    top: 0;
     transform: translateX(-50%);
+
     z-index: -1
 }
 
 .notfound .notfound-404 h1 {
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     color: #ececec;
-    font-weight: 900;
     font-size: 276px;
+    font-weight: 900;
+    left: 50%;
     margin: 0;
     position: absolute;
-    left: 50%;
     top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+
     transform: translate(-50%, -50%)
 }
 
 .notfound h2 {
-    font-size: 46px;
     color: #000;
+    font-size: 46px;
     font-weight: 900;
     text-transform: uppercase;
+
     margin: 0
 }
 
 .notfound p {
-    font-size: 16px;
     color: #000;
+    font-size: 16px;
     font-weight: 400;
+
     margin-top: 15px
 }
 
 .notfound a {
-    font-size: 14px;
-    text-decoration: none;
-    text-transform: uppercase;
+    -webkit-transition: .2s all;
     background: #0069FF;
-    display: inline-block;
-    padding: 16px 38px;
     border: 2px solid transparent;
     border-radius: 40px;
     color: #fff;
+    display: inline-block;
+    font-size: 14px;
     font-weight: 400;
-    -webkit-transition: .2s all;
+    padding: 16px 38px;
+    text-decoration: none;
+    text-transform: uppercase;
+
     transition: .2s all
 }
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_2factor.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/healthSupervisor/healthSupervisor_2factor.css" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
     <script src="main.js"></script>
 </head>
@@ -18,19 +18,14 @@
 <body>
     <div class="content">
         <div class="sideMenu">
+
             <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
-            </div>
-
-            <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>PHARMACIST</Datag>
-                </p>
-            </div>
-
+            <div>P</div>
+            <h5>PrescripSmart</h5>
+        </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
+                <p class="mainOptions">Health Supervisor Tools</p>
 
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
                 <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
@@ -82,12 +77,12 @@
                             <div>
                                 <form>
                                     <label>Method of Sign In</label><br>
-                                    <input type="text" placeholder="<?php echo $user->signIn_method; ?>">
+                                    <input type="text" placeholder="<?php echo $user->signIn_method; ?>" readonly>
                                 </form>
                             </div>
                             <div>
                                 <form class="sample_username">
-                                    <input type="text" placeholder="<?php echo $user->email_phone; ?>">
+                                    <input type="text" placeholder="<?php echo $user->email_phone; ?>" readonly>
                                 </form>
                             </div>
                        

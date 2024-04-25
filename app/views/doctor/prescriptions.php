@@ -11,66 +11,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/prescriptions.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/sideMenu_navBar.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\general\in_page_navigation.css" />
+
+    <!-- <link rel="stylesheet" href="<?php echo URLROOT;?>/public/css/doctor/sideMenu_navBar.css" /> -->
     <script src="main.js"></script>
 </head>
 
 <body>
     <div class="content">
-        <div class="sideMenu">
-            <div class="logoDiv">
-                <img class="logoImg" src="<?php echo URLROOT;?>/public/img/doctor/Untitled design (5) copy 2.png" />
-            </div>
-
-            <!-- <div class="userDiv">
-                <p class="mainOptions">
-                    <Datag>DOCTOR</Datag>
-                </p>
-
-                <div class="profile">
-                    <p>username</p>
-                </div>
-            </div> -->
-
-
-            <div class="manageDiv">
-                <p class="mainOptions">MANAGE</p>
-
-                <a href="<?php echo URLROOT;?>/doctor/patients" class="active">Patients</a>
-                <a href="<?php echo URLROOT;?>/doctor/viewOngoingSession">Ongoing Sessions</a>
-                <a href="<?php echo URLROOT;?>/doctor/sessions">Sessions</a>
-                <a href="<?php echo URLROOT;?>/doctor/profile">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
-
-        </div>
-        <div class="container">
-            <div class="navBar">
-                <div class="navBar">
+    <?php include 'side_navigation_panel.php'; ?>
+        <!-- <div class="container"> -->
+            
+                <!-- <div class="navBar">
                     <img src="<?php echo URLROOT;?>/public/img/doctor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
-            </div>
+                    <p><?php echo $_SESSION['USER_DATA']->username?></p>
+                </div> -->
+            
             <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name"><?php echo $data['patient']->display_Name;?></p>
-                            <p class="role">Patient</p>
-                        </div>
-                    </div>
+                <!-- <div class="main-Container"> -->
+                <?php include 'top_navigation_panel.php'; ?>
 
-                    <div class="menu">
-                        <p><a href="<?php echo URLROOT;?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_ID;?>">Prescription</a></p>
-                        <p><a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_ID;?>">Reports</a></p>
-                    </div>
-
+                <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <div class="menu">
+        <a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_ID;?>" id="prescriptions">Prescriptions</a>
+        <a href="<?php echo URLROOT; ?>/doctor/viewReports/<?php echo $data['patient']->patient_ID;?>" id="reports">Reports</a>
+    </div>
                     <div class="patientSearch">
                         <div class="topic">
                             <label>Prescriptions(<?php echo $data['prescriptionsCount']; ?>)</label>
@@ -79,15 +45,15 @@
                             <table>
                                 <tbody>
                                     <?php foreach($data['prescriptionsData'] as $prescriptionData): ?>
-                                    <tr class="clickable-row" diagnosisid="<?php echo $prescriptionData->diagnosis_id; ?>">
+                                    <tr class="clickable-row" prescriptionid="<?php echo $prescriptionData->prescription_ID; ?>">
                                         <td>
                                             <div class="presDiv">
                                                 <img src="<?php echo URLROOT;?>/public/img/doctor/description.png" alt="download-icon">
                                                 <p><?php echo $prescriptionData->diagnosis;?></p>
                                             </div>
                                         </td>
-                                        <td>DR. <?php echo $prescriptionData->fName; ?></td>
-                                        <td><?php echo $prescriptionData->date; ?></td>
+                                        <td>DR. <?php echo $prescriptionData->display_Name; ?></td>
+                                        <td><?php echo $prescriptionData->prescription_Date; ?></td>
                                     </tr>
                                     <?php endforeach;?>
                                     <tr>
@@ -151,10 +117,10 @@
             rows.forEach(row => {
                 row.addEventListener("click", () => {
                     modal.style.display = "block";
-                    var diagnosisid = row.getAttribute("diagnosisid");
-                    showDiagnosis(diagnosisid);
-                    showMedications(diagnosisid);
-                    showTests(diagnosisid);
+                    var prescriptionid = row.getAttribute("prescriptionid");
+                    showDiagnosis(prescriptionid);
+                    showMedications(prescriptionid);
+                    showTests(prescriptionid);
                 });
             });
 
@@ -168,8 +134,8 @@
                 }
             });
 
-            function showDiagnosis(diagnosisid){
-                fetch(`http://localhost/Prescripsmart/doctor/showDiagnosis?diagnosisid=${diagnosisid}`)
+            function showDiagnosis(prescriptionid){
+                fetch(`http://localhost/Prescripsmart/doctor/showDiagnosis?prescriptionid=${prescriptionid}`)
                     .then(response =>{
                         console.log(response);
                         return response.json();
@@ -186,18 +152,18 @@
                 const modelhead = document.getElementById('model-details');
 
                 modelhead.innerHTML = `
-                <div>Prescription ID: ${result.diagnosis_id}</div>
+                <div>Prescription ID: ${result.prescription_ID}</div>
                 <div>Patient: ${result.display_Name}</div>
-                <div>Pres Date & Time: ${result.date}</div>
+                <div>Pres Date & Time: ${result.prescription_Date}</div>
                 <div>Age: ${result.age}</div>
-                <div>Referred by: Dr.${result.fName}</div>`;
+                <div>Referred by: Dr.${result.display_Name}</div>`;
 
                 diagnosisContent.innerHTML = '';
                 diagnosisContent.textContent = result.diagnosis;
             }
 
-            function showMedications(diagnosisid){
-                fetch(`http://localhost/Prescripsmart/doctor/showMedications?diagnosisid=${diagnosisid}`)
+            function showMedications(prescriptionid){
+                fetch(`http://localhost/Prescripsmart/doctor/showMedications?prescriptionid=${prescriptionid}`)
                     .then(response =>{
                         console.log(response);
                         return response.json();
@@ -225,8 +191,8 @@
                 });
             }
 
-            function showTests(diagnosisid){
-                fetch(`http://localhost/Prescripsmart/doctor/showTests?diagnosisid=${diagnosisid}`)
+            function showTests(prescriptionid){
+                fetch(`http://localhost/Prescripsmart/doctor/showTests?prescriptionid=${prescriptionid}`)
                     .then(response =>{
                         console.log(response);
                         return response.json();

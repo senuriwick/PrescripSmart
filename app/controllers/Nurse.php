@@ -12,13 +12,31 @@ class Nurse extends Controller
 
     }
 
-    public function patients_dashboard()
+    public function patients_dashboard($page = 1)
     {
-        $patients = $this->nurseModel->patients();
+        $allPatients = $this->nurseModel->getAllPatients();
+        $recordsPerPage = 10;
+        $totalPatients = count($allPatients);
+        $totalPages = ceil($totalPatients / $recordsPerPage);
+
+        $offset = ($page - 1) * $recordsPerPage;
+        $patients = array_slice($allPatients, $offset, $recordsPerPage);
+
         $data = [
-            'patients' => $patients
+            'patients' => $patients,
+            'allPatients' => $allPatients,
+            'currentPage' => $page,
+            'totalPages' => $totalPages
         ];
+
         $this->view('nurse/patients_dashboard', $data);
+    }
+
+    public function filterPatients()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->nurseModel->filterPatients($searchQuery);
+        echo json_encode($filteredPatients);
     }
 
     public function patient_profile()
@@ -138,10 +156,24 @@ class Nurse extends Controller
         }
     }
 
+    public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
+
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
+            } else {
+                echo json_encode(array("match" => false));
+            }
+        }
+    }
     public function passwordReset()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
+            $this->nurseModel->resetPassword($newpassword);
 
             $this->nurseModel->resetPassword($newpassword);
 
@@ -251,6 +283,7 @@ class Nurse extends Controller
 
                     $userID = $_SESSION['USER_DATA']->user_ID;
                     $result = $this->nurseModel->updateProfilePicture($image, $userID);
+                    $_SESSION['USER_DATA']->profile_photo = $image;
 
                     if ($result) {
                         echo json_encode(array("success" => true));

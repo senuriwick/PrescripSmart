@@ -28,11 +28,12 @@ body {
 }
 
 .prescriptionsDiv {
-  /* border-bottom: solid; */
   border-color: rgba(164, 174, 199, 1);
   border-width: 0.1vh;
   margin-top: 3vh;
   padding-bottom: 5vh;
+
+  /* border-bottom: solid; */
 }
 
 .prescriptionsDiv h1 {
@@ -72,15 +73,15 @@ body {
   justify-content: space-between;
   margin-top: 3vh;
   padding: 2vh 1.2vw;
+
   width: 90%
 }
 
 .patientFile p {
   color: rgba(68, 81, 114, 0.75);
   font-size: 1.1rem;
-  margin-right: 4vh;
   margin: 0.5vh;
-
+  margin-right: 4vh;
 }
 
 .patientFile .city {
@@ -150,4 +151,31 @@ body {
   left: 0;
   position: absolute;
   width: 100%;
+}
+
+.pagination {
+  margin-top: 4vh;
+  text-align: right;
+}
+
+.pagination a {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #0069FF;
+  color: white;
+}
+
+.pagination a:hover {
+  background-color: #0069FF;
+  color: white;
 }
