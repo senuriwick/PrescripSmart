@@ -173,6 +173,7 @@ class Nurse extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
+            $this->nurseModel->resetPassword($newpassword);
 
             $this->nurseModel->resetPassword($newpassword);
 

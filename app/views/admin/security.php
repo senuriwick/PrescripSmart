@@ -69,7 +69,7 @@
             var user_ID = user;
 
             $.ajax({
-                url: '<?php echo URLROOT?>/doctor/toggle2FA',
+                url: '<?php echo URLROOT?>/admin/toggle2FA',
                 method: 'POST',
                 dataType: 'json',
                 data: {

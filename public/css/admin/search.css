@@ -1,20 +1,20 @@
 
 .searchDiv {
-  margin-top: 2.5vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 0.5vh;
-  padding: 2vh 5vh 2vh;
   height:auto;
   width:120vh;
+  margin-top: 4vh;
+  padding: 1vh 3vh 2vh;
 }
 
 
 .searchDiv h1 {
   
   font-family: inter;
-  padding-left: 2vh;
+  padding-left: 0vh;
   color: rgba(68, 81, 114, 1);
-  font-size: 3.3vh;
+  font-size: 24px;
   padding-top: -3vh;
 }
 .searchFiles
@@ -259,6 +259,29 @@ td
   border-collapse: separate;
   border-spacing: 0 1vh;
 }
+
+body {
+  font-family: inter;
+  margin: 0;
+  /* overflow: hidden; */
+}
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-left: 220px;
+  margin-bottom: 3%;
+}
+
+.patientInfoContainer {
+  width: 80%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
+
 
 
 

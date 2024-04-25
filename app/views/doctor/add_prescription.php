@@ -39,8 +39,9 @@
 
                     <div class="patientSearch">
                         <div class="topic">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            <label>Patient Prescription</label>
+                        <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon"
+              id="back-icon">
+                            <h1>Patient Prescription</h1>
                         </div>
                         <hr />
                         <form action="<?php echo URLROOT; ?>/doctor/addMedication" method="POST" autocomplete="off">

@@ -1049,7 +1049,7 @@ class Patient extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
-
+            $this->patientModel->resetPassword($newpassword);
             $this->patientModel->resetPassword($newpassword, $_SESSION['USER_DATA']->user_ID);
 
             header("Location: /prescripsmart/patient/account_information");

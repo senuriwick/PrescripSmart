@@ -31,12 +31,12 @@
                 <a href="<?php echo URLROOT; ?>/doctor/viewOngoingSession" id="on-going">On-going session</a>
             </div>
             <div class="menu-item sessions">
-                <img src="<?php echo URLROOT ?>/public/img/docotr/session_icon.png" alt="icon">
+                <img src="<?php echo URLROOT ?>/public/img/doctor/session_icon.png" alt="icon">
                 <a href="<?php echo URLROOT; ?>/doctor/sessions" id="sessions">Sessions</a>
             </div>
             <div class="menu-item profile">
                 <img src="<?php echo URLROOT ?>/public/img/doctor/account_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/doctor/profile" id="profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/doctor/personal_information" id="profile">Profile</a>
             </div>
         </div>
 
