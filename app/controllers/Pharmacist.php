@@ -122,8 +122,12 @@
                 'user' => $user,
                 'pharmacist' => $pharmacist
             ];
+<<<<<<< Updated upstream
     
             $this->view('pharmacist/pharmacist_profileCheck', $data);
+=======
+            $this->view('pharmacist/pharmacist_profile', $data);
+>>>>>>> Stashed changes
         }
 
         public function accountInfoUpdate()
