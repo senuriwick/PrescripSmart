@@ -6,8 +6,9 @@ class M_Doctor {
         $this->db = new Database;
     }
 
-    public function getPatientsDetails(){
-        $this->db->query('SELECT * FROM patients');
+    public function getPatientsDetails($sessionId){
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON patients.patient_ID=appointments.patient_ID WHERE appointments.session_ID=:id');
+        $this->db->bind(':id',$sessionId);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -73,6 +74,20 @@ class M_Doctor {
         $this->db->bind(':id',$userid);
         $results = $this->db->resultSet();
         return $results;
+    }
+
+    public function getOngonigSession($userid){
+        $this->db->query('SELECT * FROM sessions WHERE CURTIME() BETWEEN start_time AND end_time AND sessionDate=CURDATE() AND doctor_ID=:id');
+        $this->db->bind(':id',$userid);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getOngoingPatient($sessionid){
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON patients.patient_ID=appointments.patient_ID  WHERE session_ID=:sessionid AND status="active" ORDER BY token_No ASC LIMIT 1');
+        $this->db->bind(':sessionid',$sessionid);
+        $result = $this->db->single();
+        return $result;
     }
 
     public function getonePatient($patientid){
