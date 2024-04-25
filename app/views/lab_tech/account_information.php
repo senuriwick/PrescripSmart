@@ -9,7 +9,7 @@
     <title>Account</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\general\profile_dashboard.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\lab_tech\profile_dashboard.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -25,29 +25,29 @@
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation_account.php'; ?>
 
-                <?php $receptionist = $data['receptionist'] ?>
+                <?php $tech = $data['tech'] ?>
 
                 <div class="inquiriesDiv">
-                    <h1>Employee ID: #<?php echo $receptionist->user_ID ?>
+                    <h1>Employee ID: #<?php echo $tech->user_ID ?>
                     </h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
                     <div class="accInfo">
-                        <form action="<?php echo URLROOT; ?>/receptionist/accountInfoUpdate" method="POST">
+                        <form action="<?php echo URLROOT; ?>/LabTechnician/accountInfoUpdate" method="POST">
                             <div class="parallel">
                                 <div class="input-group">
                                     <label for="name">Username</label>
                                     <input type="text" id="username" class="input" name="username"
-                                        value="<?php echo $receptionist->username ?>" style="display: inline-block;">
+                                        value="<?php echo $tech->username ?>" style="display: inline-block;">
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Associated Email Address/Phone Number</label>
-                                    <?php if ($receptionist->method_of_signin == "Email"): ?>
+                                    <?php if ($tech->method_of_signin == "Email"): ?>
                                         <input type="text" id="email" class="input" name="email" readonly
-                                            value="<?php echo $receptionist->email_phone ?>" style="display: inline-block;">
+                                            value="<?php echo $tech->email_phone ?>" style="display: inline-block;">
                                     <?php else: ?>
                                         <input type="text" id="phone" class="input" name="phone" readonly
-                                            value="<?php echo $receptionist->email_phone ?>" style="display: inline-block;">
+                                            value="<?php echo $tech->email_phone ?>" style="display: inline-block;">
                                     <?php endif; ?>
                                 </div>
 
@@ -58,7 +58,7 @@
 
                     <p class="sub2" style="font-weight: bold;">Reset Password</p>
                     <div class="accInfo">
-                        <form action="<?php echo URLROOT; ?>/receptionist/passwordReset" method="POST">
+                        <form action="<?php echo URLROOT; ?>/LabTechnician/passwordReset" method="POST">
                             <div class="input-group">
                                 <label for="password">Current Password</label>
                                 <input type="password" id="password" placeholder="Enter your current password here"
@@ -147,7 +147,7 @@
                     }
 
                     $.ajax({
-                        url: '/prescripsmart/receptionist/checkPassword',
+                        url: '/prescripsmart/LabTechnician/checkPassword',
                         method: 'POST',
                         data: { password: enteredPassword },
                         dataType: 'json',

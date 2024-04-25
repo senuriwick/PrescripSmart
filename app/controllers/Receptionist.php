@@ -1,5 +1,8 @@
 <?php
-  class Receptionist extends Controller 
+class Receptionist extends Controller
+{
+  public $userModel;
+  public function __construct()
   {
     public $repModel;
     public function __construct()
@@ -21,38 +24,20 @@
       $this->view('receptionist/searchApp', $data);
     }
 
-    public function login()
-   {
-      // Check for POST
-      if($_SERVER['REQUEST_METHOD'] == 'POST')
-      {
-         // Process form
-         // Sanitize POST data
-         //Then run the form
-         //define('FILTER_SANITIZE_STRING', 513);
+    $this->view('receptionist/addApp');
+  }
 
-         // Now, instead of using the constant, you can use the integer value directly
-         $_POST = filter_input_array(INPUT_POST, 513);
-        
-        // Init data
-        $data =[
-          'email_address' => trim($_POST['email_address']),
-          'password' => trim($_POST['password']),
-          'emailaddress_err' => '',
-          'password_err' => '',      
-        ];
+  public function login()
+  {
+    // Check for POST
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Process form
+      // Sanitize POST data
+      //Then run the form
+      //define('FILTER_SANITIZE_STRING', 513);
 
-        // Validate Email
-        if(empty($data['email_address']))
-        {
-          $data['emailaddress_err'] = 'Please enter email address';
-        }
-
-        // Validate Password
-        if(empty($data['password']))
-        {
-          $data['password_err'] = 'Please enter password';
-        }
+      // Now, instead of using the constant, you can use the integer value directly
+      $_POST = filter_input_array(INPUT_POST, 513);
 
         // Check for user/email
         if($this->repModel->findUserByEmail($data['email_address']))
@@ -101,9 +86,13 @@
           'password_err' => '',        
         ];
 
-        // Load view
+        } else {
+          $this->view('receptionist/login', $data);
+        }
+      } else {
+
+        // Load view with errors
         $this->view('receptionist/login', $data);
-        
       }
    }
 
@@ -563,29 +552,41 @@
     {
       $posts = $this->repModel->getAppointments();
       $data = [
-        'appointments'=> $posts
+        'email' => '',
+        'password' => '',
+        'email_err' => '',
+        'password_err' => '',
       ];
 
-      $this->view('receptionist/searchApp', $data);
+      // Load view
+      $this->view('receptionist/login', $data);
+
     }
 
     public function addAppointment()
     {
       $posts = $this->repModel->getDoctors();
       $ses_info = $this->repModel->getdocSessions();
+
       $data = [
-        'doctors'=> $posts,
-        'sessions'=> $ses_info
+        'selectedSession' => $selectedSession,
+        'patients' => $posts,
+        'selectedDoctor' => $selectedDoctor
       ];
 
-      $this->view('receptionist/addApp', $data);
+
+
+    } else {
+      echo "Session ID not provided";
     }
 
-    public function create_appointment()
-    {
-        $session_ID = $_GET['sessionID'] ?? null;
+  }
 
-        if ($session_ID != null) {
+  public function confirm_patient()
+  {
+    $session_ID = $_GET['sessionID'] ?? null;
+    $patient_ID = $_GET['patientID'] ?? null;
+    $doctor_ID = $_GET['doctorID'] ?? null;
 
             $selectedSession = $this->repModel->getSessionDetails($session_ID);
             $posts = $this->repModel->getPatients();
@@ -599,10 +600,19 @@
             $this->view('receptionist/appointPatient',$data);           
             
 
-        } else {
-            echo "Session ID not provided";
-        }
+        $data = [
+          'selectedSession' => $selectedSession,
+          'selectedPatient' => $posts,
+          'selectedDoctor' => $selectedDoctor
+        ];
+        $this->view('receptionist/confirmApp', $data);
 
+      } else {
+        echo "Session not found";
+      }
+
+    } else {
+      echo "Patient not found";
     }
 
     public function confirm_patient()
@@ -630,12 +640,11 @@
                 echo "Session not found";
             }
 
-        }
-        else{
-          echo"Patient not found";
-        }
-
-    }
+  public function confirm_appointment()
+  {
+    $session_ID = $_GET['sessionID'] ?? null;
+    $patient_ID = $_GET['patientID'] ?? null;
+    $doctor_ID = $_GET['doctorID'] ?? null;
 
     public function confirm_appointment()
     {
@@ -686,11 +695,25 @@
                 echo "Session not found";
             }
 
-        }
-        else{
-          echo"Patient not found";
-        }
+        $selectedSession = $this->userModel->getSessionDetails($session_ID);
+        $posts = $this->userModel->getPatientDetails($patient_ID);
+        $selectedDoctor = $this->userModel->getDoctorDetails($doctor_ID);
 
+        $data = [
+          'patient_id' => $patient_ID,
+          'doctor_id' => $doctor_ID,
+          'app_date' => $selectedSession->date,
+          'app_time' => $selectedSession->start_time,
+          'amount' => $selectedDoctor->visit_price
+        ];
+
+        $Appointment = $this->userModel->confirm_appointment($data);
+
+        if ($Appointment) {
+          echo "Appointment fixed successfully";
+        } else {
+          echo "Something went wrong";
+        }
     }
 
     public function sessionManage()
@@ -700,10 +723,6 @@
           'sessions' => $posts
       ];
 
-      $this->view('receptionist/manageSessions',$data);
-    }
-
-
     public function searchPatient()
     {
       $posts = $this->repModel->getPatients();
@@ -711,8 +730,12 @@
         'patients'=> $posts
       ];
 
-      $this->view('receptionist/searchPatient', $data);
-    }
+  public function sessionManage()
+  {
+    $posts = $this->userModel->getSessions();
+    $data = [
+      'sessions' => $posts
+    ];
 
     public function searchDoctor()
     {
@@ -721,9 +744,6 @@
         'doctors'=> $posts
       ];
 
-      $this->view('receptionist/searchDoctor', $data);
-    }
-
     public function searchNurse()
     {
       $posts = $this->repModel->getNurses();
@@ -731,9 +751,15 @@
         'nurses'=> $posts
       ];
 
+  public function searchDoctor()
+  {
+    $posts = $this->userModel->getDoctors();
+    $data = [
+      'doctors' => $posts
+    ];
 
-      $this->view('receptionist/searchNurse', $data);
-    }
+    $this->view('receptionist/searchDoctor', $data);
+  }
 
     public function account_info()
     {
@@ -759,10 +785,6 @@
       $this->view('receptionist/regDoctor');
     }
 
-    public function viewregNurse()
-    {
-      $this->view('receptionist/regNurse');
-    }
 
     public function viewregPatient()
     {
@@ -783,6 +805,7 @@
         }
       }
     }
+  }
 
     public function deleteProfileNurse($id)
     {
@@ -798,6 +821,7 @@
         }
       }
     }
+  }
 
     public function deleteProfilePatient($id)
     {
@@ -813,34 +837,33 @@
         }
       }
     }
+  }
 
-    public function regDoctor()
-    {
-      if($_SERVER['REQUEST_METHOD'] == 'POST')
-      {
-        // Process form
-        // Sanitize POST data
-        //Then run the form
-         //define('FILTER_SANITIZE_STRING', 513);
+  public function regDoctor()
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Process form
+      // Sanitize POST data
+      //Then run the form
+      //define('FILTER_SANITIZE_STRING', 513);
 
-        // Now, instead of using the constant, you can use the integer value directly
-                    $_POST = filter_input_array(INPUT_POST, 513);
-        // Init data
+      // Now, instead of using the constant, you can use the integer value directly
+      $_POST = filter_input_array(INPUT_POST, 513);
+      // Init data
 
 
-        $data = [
-          'first_name' => trim($_POST['first_name']),
-          'last_name' => trim($_POST['last_name']),
-          'email' => trim($_POST['email']),
-          'phone_number' => trim($_POST['phone_number']),
-          'password' => trim($_POST['password']),
-          'firstname_err' => '',
-          'lastname_err' => '',
-          'email_err' => '',
-          'phonenum_err' => '',
-          'password_err' => ''
-        ];
-
+      $data = [
+        'first_name' => trim($_POST['first_name']),
+        'last_name' => trim($_POST['last_name']),
+        'email' => trim($_POST['email']),
+        'phone_number' => trim($_POST['phone_number']),
+        'password' => trim($_POST['password']),
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
 
 
         // Validate Email
@@ -858,34 +881,27 @@
           }
         }
 
-        // Validate First Name
-        if(empty($data['first_name']))
-        {
-          $data['firstname_err'] = 'Please enter first name';
+          $data['email_err'] = 'Email is already taken';
         }
+      }
 
-        if(empty($data['last_name']))
-        {
-          $data['lastname_err'] = 'Please enter last name';
-        }
+      // Validate First Name
+      if (empty($data['first_name'])) {
+        $data['firstname_err'] = 'Please enter first name';
+      }
 
-        // Validate Email address
-        if(empty($data['email']))
-        {
-          $data['email_err'] = 'Please enter valid email address';
+      if (empty($data['last_name'])) {
+        $data['lastname_err'] = 'Please enter last name';
+      }
 
-        }
-        
-        if(empty($data['phone_number']))
-        {
-          $data['phonenum_err'] = 'Please enter valid email address';
+      // Validate Email address
+      if (empty($data['email'])) {
+        $data['email_err'] = 'Please enter valid email address';
 
-        }
+      }
 
-        else if(strlen($data['password']) < 6)
-        {
-          $data['password_err'] = 'Password must be at least 6 characters';
-        }
+      if (empty($data['phone_number'])) {
+        $data['phonenum_err'] = 'Please enter valid email address';
 
         // Validate Confirm Password
         // if(empty($data['confirm_password']))
@@ -918,63 +934,34 @@
             
           }
 
-        } 
-        else
-        {
-          // Load view with errors
-          $this->view('admin/register_email', $data);
-          
         }
 
-      }
-      else //if request method is not post
-      {
-        // Init data
-        $data =[
-          'first_name' => '',
-          'last_name' => '',
-          'email_address' => '',
-          'password' => '',
-          'firstname_err' => '',
-          'lastname_err' => '',
-          'emailaddress_err' => '',
-          'password_err' => ''
-        ];
+      } else {
+        // Load view with errors
+        $this->view('admin/register_email', $data);
 
-        // Load view
-       $this->view('receptionist/register_email', $data);
-       
       }
-      
 
+    } else //if request method is not post
+    {
+      // Init data
+      $data = [
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'emailaddress_err' => '',
+        'password_err' => ''
+      ];
+
+      // Load view
+      $this->view('receptionist/register_email', $data);
 
     }
 
-    public function regNurse()
-    {
-      
-      if($_SERVER['REQUEST_METHOD'] == 'POST')
-      {
-        // Process form
-        // Sanitize POST data
-        //Then run the form
-         //define('FILTER_SANITIZE_STRING', 513);
 
-        // Now, instead of using the constant, you can use the integer value directly
-                    $_POST = filter_input_array(INPUT_POST, 513);
-        // Init data
-        $data = [
-          'first_name' => trim($_POST['first_name']),
-          'last_name' => trim($_POST['last_name']),
-          'email' => trim($_POST['email']),
-          'phone_number' => trim($_POST['phone_number']),
-          'password' => trim($_POST['password']),
-          'firstname_err' => '',
-          'lastname_err' => '',
-          'email_err' => '',
-          'phonenum_err' => '',
-          'password_err' => ''
-        ];
 
         // Validate Email
         if(empty($data['email']))
@@ -991,33 +978,47 @@
           }
         }
 
-        // Validate First Name
-        if(empty($data['first_name']))
-        {
-          $data['firstname_err'] = 'Please enter first name';
+  }
+
+  public function regNurse()
+  {
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Process form
+      // Sanitize POST data
+      //Then run the form
+      //define('FILTER_SANITIZE_STRING', 513);
+
+      // Now, instead of using the constant, you can use the integer value directly
+      $_POST = filter_input_array(INPUT_POST, 513);
+      // Init data
+      $data = [
+        'first_name' => trim($_POST['first_name']),
+        'last_name' => trim($_POST['last_name']),
+        'email' => trim($_POST['email']),
+        'phone_number' => trim($_POST['phone_number']),
+        'password' => trim($_POST['password']),
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+
+      // Validate Email
+      if (empty($data['email'])) {
+        $data['email_err'] = 'Please enter email address';
+      } else {
+        // Check email
+        if ($this->userModel->findUserByEmail($data['email'])) {
+
+          $data['email_err'] = 'Email is already taken';
         }
+      }
 
-        if(empty($data['last_name']))
-        {
-          $data['lastname_err'] = 'Please enter last name';
-        }
-
-        // Validate Email address
-        if(empty($data['email']))
-        {
-          $data['email_err'] = 'Please enter valid email address';
-
-        }
-        
-        if(empty($data['phone_number']))
-        {
-          $data['phonenum_err'] = 'Please enter valid email address';
-
-        }
-
-        elseif(strlen($data['password']) < 6)
-      {
-          $data['password_err'] = 'Password must be at least 6 characters';
+      // Validate First Name
+      if (empty($data['first_name'])) {
+        $data['firstname_err'] = 'Please enter first name';
       }
 
         // Validate Confirm Password
@@ -1049,61 +1050,65 @@
             die('Something went wrong');
           }
 
-        } 
-        else
-        {
-          // Load view with errors
-          $this->view('receptionist/register_email', $data);
+      // Validate Email address
+      if (empty($data['email'])) {
+        $data['email_err'] = 'Please enter valid email address';
+
+      }
+
+      if (empty($data['phone_number'])) {
+        $data['phonenum_err'] = 'Please enter valid email address';
+
+      } elseif (strlen($data['password']) < 6) {
+        $data['password_err'] = 'Password must be at least 6 characters';
+      }
+
+      // Validate Confirm Password
+      // if(empty($data['confirm_password']))
+      // {
+      //   $data['confirm_password_err'] = 'Please confirm password';
+      // } else 
+      // {
+      //   if($data['password'] != $data['confirm_password'])
+      //   {
+      //     $data['confirm_password_err'] = 'Passwords do not match';
+      //   }
+      // }
+
+      // Make sure errors are empty
+      if (empty($data['firstname_err']) && empty($data['lastname_err']) && empty($data['phonenum_err']) && empty($data['email_err']) && empty($data['password_err'])) {
+        // Hash Password
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        // Register User
+        if ($this->userModel->regNurse($data)) {
+          // flash('register_success', 'You are registered and can log in');
+          redirect('/receptionist/searchNurse');
+        } else {
+          die('Something went wrong');
         }
 
-      }
-      else 
-      {
-        // Init data
-        $data =[
-          'first_name' => '',
-          'last_name' => '',
-          'email_address' => '',
-          'password' => '',
-          'firstname_err' => '',
-          'lastname_err' => '',
-          'emailaddress_err' => '',
-          'password_err' => ''
-        ];
-
-        // Load view
+      } else {
+        // Load view with errors
         $this->view('receptionist/register_email', $data);
       }
-      
 
+    } else {
+      // Init data
+      $data = [
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'emailaddress_err' => '',
+        'password_err' => ''
+      ];
 
+      // Load view
+      $this->view('receptionist/register_email', $data);
     }
-
-    public function regPatient()
-    {
-    
-      if($_SERVER['REQUEST_METHOD'] == 'POST')
-      {
-        // Process form
-        // Sanitize POST data
-        //Then run the form
-         //define('FILTER_SANITIZE_STRING', 513);
-
-        // Now, instead of using the constant, you can use the integer value directly
-                    $_POST = filter_input_array(INPUT_POST, 513);
-        // Init data
-        $data = [
-          'first_name' => trim($_POST['first_name']),
-          'last_name' => trim($_POST['last_name']),
-          'email' => trim($_POST['email']),
-          'phone_number' => trim($_POST['phone_number']),
-          'password' => trim($_POST['password']),
-          'firstname_err' => '',
-          'lastname_err' => '',
-          'email_err' => '',
-          'phonenum_err' => '',
-          'password_err' => ''
-        ];
 
         // Validate Email
         if(empty($data['email']))
@@ -1120,33 +1125,47 @@
           }
         }
 
-        // Validate First Name
-        if(empty($data['first_name']))
-        {
-          $data['firstname_err'] = 'Please enter first name';
+  }
+
+  public function regPatient()
+  {
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Process form
+      // Sanitize POST data
+      //Then run the form
+      //define('FILTER_SANITIZE_STRING', 513);
+
+      // Now, instead of using the constant, you can use the integer value directly
+      $_POST = filter_input_array(INPUT_POST, 513);
+      // Init data
+      $data = [
+        'first_name' => trim($_POST['first_name']),
+        'last_name' => trim($_POST['last_name']),
+        'email' => trim($_POST['email']),
+        'phone_number' => trim($_POST['phone_number']),
+        'password' => trim($_POST['password']),
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+
+      // Validate Email
+      if (empty($data['email'])) {
+        $data['email_err'] = 'Please enter email address';
+      } else {
+        // Check email
+        if ($this->userModel->findUserByEmail($data['email'])) {
+
+          $data['email_err'] = 'Email is already taken';
         }
+      }
 
-        if(empty($data['last_name']))
-        {
-          $data['lastname_err'] = 'Please enter last name';
-        }
-
-        // Validate Email address
-        if(empty($data['email']))
-        {
-          $data['email_err'] = 'Please enter valid email address';
-
-        }
-        
-        if(empty($data['phone_number']))
-        {
-          $data['phonenum_err'] = 'Please enter valid email address';
-
-        }
-
-        elseif(strlen($data['password']) < 6)
-      {
-          $data['password_err'] = 'Password must be at least 6 characters';
+      // Validate First Name
+      if (empty($data['first_name'])) {
+        $data['firstname_err'] = 'Please enter first name';
       }
 
         // Validate Confirm Password
@@ -1178,64 +1197,145 @@
             die('Something went wrong');
           }
 
-        } 
-        else
-        {
-          // Load view with errors
-          $this->view('receptionist/register_email', $data);
-        }
+      // Validate Email address
+      if (empty($data['email'])) {
+        $data['email_err'] = 'Please enter valid email address';
 
       }
-      else 
-      {
-        // Init data
-        $data =[
-          'first_name' => '',
-          'last_name' => '',
-          'email_address' => '',
-          'password' => '',
-          'firstname_err' => '',
-          'lastname_err' => '',
-          'emailaddress_err' => '',
-          'password_err' => ''
-        ];
 
-        // Load view
+      if (empty($data['phone_number'])) {
+        $data['phonenum_err'] = 'Please enter valid email address';
+
+      } elseif (strlen($data['password']) < 6) {
+        $data['password_err'] = 'Password must be at least 6 characters';
+      }
+
+      // Validate Confirm Password
+      // if(empty($data['confirm_password']))
+      // {
+      //   $data['confirm_password_err'] = 'Please confirm password';
+      // } else 
+      // {
+      //   if($data['password'] != $data['confirm_password'])
+      //   {
+      //     $data['confirm_password_err'] = 'Passwords do not match';
+      //   }
+      // }
+
+      // Make sure errors are empty
+      if (empty($data['firstname_err']) && empty($data['lastname_err']) && empty($data['phonenum_err']) && empty($data['email_err']) && empty($data['password_err'])) {
+        // Hash Password
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        // Register User
+        if ($this->userModel->regPatient($data)) {
+          // flash('register_success', 'You are registered and can log in');
+          redirect('/receptionist/searchPatient');
+        } else {
+          die('Something went wrong');
+        }
+
+      } else {
+        // Load view with errors
         $this->view('receptionist/register_email', $data);
       }
 
+    } else {
+      // Init data
+      $data = [
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'emailaddress_err' => '',
+        'password_err' => ''
+      ];
+
+      // Load view
+      $this->view('receptionist/register_email', $data);
     }
 
-    public function createusersession($user)
-    {
-      $_SESSION['email_address'] = $user->email_address;
-      $_SESSION['first_name'] = $user->first_name;
-      redirect('/receptionist/searchApp');
-    }
 
     public function showProfileDoc($id)
     {
       $table = 'doctors';
       $doctor = $this->repModel->getuserbyID($id,$table);
 
-      $data= [
-        'doctor'=>$doctor
-      ];
-      $this->view('receptionist/doctorProfile', $data);      
 
+  public function createusersession($user)
+  {
+    $_SESSION['email_address'] = $user->email_address;
+    $_SESSION['first_name'] = $user->first_name;
+    redirect('/receptionist/searchApp');
+  }
+
+  public function showProfileDoc($id)
+  {
+    $table = 'doctors';
+    $doctor = $this->userModel->getuserbyID($id, $table);
+
+    $data = [
+      'doctor' => $doctor
+    ];
+    $this->view('receptionist/doctorProfile', $data);
+
+  }
+
+  public function showProfileNurse($id)
+  {
+    $table = 'nurses';
+    $nurse = $this->userModel->getuserbyID($id, $table);
+
+    $data = [
+      'doctor' => $nurse
+    ];
+    $this->view('receptionist/nurseProfile', $data);
+
+  }
+
+  public function showProfilePatient($id)
+  {
+    $table = 'patients';
+    $patient = $this->userModel->getuserbyID($id, $table);
+
+    $data = [
+      'doctor' => $patient
+    ];
+    $this->view('receptionist/patientProfile', $data);
+
+  }
+
+  public function account_information()
+  {
+    $receptionist = $this->userModel->receptionistInfo();
+    $data = [
+      'receptionist' => $receptionist
+    ];
+    $this->view('receptionist/account_information', $data);
+  }
+
+  public function accountInfoUpdate()
+  {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $username = $_POST["username"];
+      $this->userModel->updateAccInfo($username);
+
+      header("Location: /prescripsmart/receptionist/account_information");
+      exit();
     }
+  }
 
     public function showProfileNurse($id)
     {
       $table= 'nurses';
       $nurse = $this->repModel->getuserbyID($id,$table);
 
-      $data= [
-        'doctor'=>$nurse
-      ];
-      $this->view('receptionist/nurseProfile', $data);
-       
+      header("Location: /prescripsmart/receptionist/account_information");
+      exit();
     }
+  }
 
     public function showProfilePatient($id)
     {
@@ -1261,3 +1361,54 @@
     }
 
   }
+
+  public function updateProfilePicture()
+  {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+      $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/profile_images/";
+      $target_file = $target_dir . basename($_FILES["image"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+      // Check file size
+      // if ($_FILES["image"]["size"] > 500000) {
+      //     echo "Sorry, your file is too large.";
+      //     $uploadOk = 0;
+      // }
+
+      //Allow only certain file formats
+      if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif"
+      ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+      }
+
+
+      if ($uploadOk == 0) {
+        // echo "Sorry, your file was not uploaded.";
+      } else {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+          echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+
+          $image = basename($_FILES["image"]["name"]);
+
+          $userID = $_SESSION['USER_DATA']->user_ID;
+          $result = $this->userModel->updateProfilePicture($image, $userID);
+          $_SESSION['USER_DATA']->profile_photo = $image;
+
+          if ($result) {
+            echo json_encode(array("success" => true));
+          } else {
+            echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
+          }
+        } else {
+          header("Location: /prescripsmart/general/error_page");
+        }
+      }
+    }
+  }
+
+}
