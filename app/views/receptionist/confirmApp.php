@@ -25,7 +25,7 @@
       </div>
 
       <?php
-            $dateString = date_create_from_format('Y-m-d', $data['selectedSession']->date);
+            $dateString = date_create_from_format('Y-m-d', $data['selectedSession']->sessionDate);
             $formatted_date = $dateString->format("Y, jS M, D");
             $start_time = date("h:i A", strtotime($data['selectedSession']->start_time));
             $end_time = date("h:i A", strtotime($data['selectedSession']->end_time));
@@ -46,12 +46,12 @@
 
           <div class="details">
               <p class="first"><b>Doctor</b>: </p>
-              <p>Dr. <?php echo ucwords($data['selectedDoctor']->first_name) ?> <?php echo ucwords($data['selectedDoctor']->last_name) ?></p>
+              <p>Dr. <?php echo ucwords($data['selectedDoctor']->first_Name) ?> <?php echo ucwords($data['selectedDoctor']->last_Name) ?></p>
           </div>
 
           <div class="details">
               <p class="first"><b>Patient</b>:  </p>
-              <p>Ms. <?php echo ucwords($data['selectedPatient']->first_name) ?> <?php echo ucwords($data['selectedPatient']->last_name) ?></p>
+              <p>Ms. <?php echo ucwords($data['selectedPatient']->first_Name) ?> <?php echo ucwords($data['selectedPatient']->last_Name) ?></p>
           </div>
 
           <div class="details">
@@ -66,10 +66,10 @@
 
           <div class="details">
               <p class="first"><b>Channelling Fee</b>: </p>
-              <p>Rs.<?php echo $data['selectedDoctor']->visit_price ?></p>
+              <p>Rs.<?php echo $data['selectedSession']->sessionCharge ?></p>
           </div>
       </div>
-      <button  type="submit" onclick="ConfirmAppointment(<?php echo $data['selectedPatient']->patient_id ?>,<?php echo $data['selectedSession']->session_id?>,<?php echo $data['selectedDoctor']->doctor_id ?>)">Confirm</button>
+      <button  type="submit" onclick="ConfirmAppointment(<?php echo $data['selectedPatient']->patient_ID ?>,<?php echo $data['selectedSession']->session_ID?>,<?php echo $data['selectedDoctor']->doctor_ID ?>)">Confirm</button>
 
 
       <script>

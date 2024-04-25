@@ -38,7 +38,7 @@
                         <div class="app-doc">
                             <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="profile-pic">
                             <h3 class="name">
-                                <?php echo ucwords($post->last_name); ?>
+                                <?php echo ucwords($post->last_Name); ?>
                             </h3>                           
                         </div>
                         <h4 class="doc-pos"><?php echo $post->specialization; ?></h4>                               
@@ -47,20 +47,20 @@
                         <?php foreach ($data['sessions'] as $sessions): ?>
                                
 
-                            <?php if ($post->doctor_id == $sessions->doctor_id): ?>
+                            <?php if ($post->doctor_ID == $sessions->doctor_ID): ?>
                                 <div class="sessions">
                                 <?php
-                                $dateString = date_create_from_format('Y-m-d', $sessions->date);
+                                $dateString = date_create_from_format('Y-m-d', $sessions->sessionDate);
                                 $formatted_date = $dateString->format("Y, jS M, D");
                                 $start_time = date("h:i A", strtotime($sessions->start_time));
                                 $end_time = date("h:i A", strtotime($sessions->end_time));
                                 ?> 
-                                    <h4><strong>Session #<?php echo $sessions->session_id; ?></strong></h4>
+                                    <h4><strong>Session #<?php echo $sessions->session_ID; ?></strong></h4>
                                     <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
                                     <p>Date: <?php echo $formatted_date; ?></p> 
                                     <p>Time: <?php echo $start_time . ' - ' .  $end_time; ?></p> 
 
-                                    <button onclick="bookNow(<?php echo $sessions->session_id; ?>)">
+                                    <button onclick="bookNow(<?php echo $sessions->session_ID; ?>)">
                                     <strong>BOOK NOW</strong>
                                     </button>
                                 </div>

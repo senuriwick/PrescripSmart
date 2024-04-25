@@ -26,20 +26,20 @@
                 </div>
 
         <?php
-            $dateString = date_create_from_format('Y-m-d', $data['selectedSession']->date);
+            $dateString = date_create_from_format('Y-m-d', $data['selectedSession']->sessionDate);
             $formatted_date = $dateString->format("Y, jS M, D");
             $start_time = date("h:i A", strtotime($data['selectedSession']->start_time));
             $end_time = date("h:i A", strtotime($data['selectedSession']->end_time));
         ?>
 
                 <div class="sessions">
-                      <h4><strong>Session #<?php echo $data['selectedSession']->session_id ?></strong></h4>
+                      <h4><strong>Session #<?php echo $data['selectedSession']->session_ID ?></strong></h4>
                       <hr style="margin-top: -2vh; width: 25vh;">
                       <!-- <p>Date: <?php echo $formatted_date ?></p> -->
                       <p>Time: <?php echo $start_time .'-'. $end_time ?> </p>
-                      <p>Dr. <?php echo $data['selectedDoctor']->first_name ;?> <?php echo $data['selectedDoctor']->last_name ;?></p>
+                      <p>Dr. <?php echo $data['selectedDoctor']->first_Name ;?> <?php echo $data['selectedDoctor']->last_Name ;?></p>
                       <p>Token No - 12</p>
-                      <p>Channeling Fee: <?php echo $data['selectedDoctor']->visit_price ;?></p>   
+                      <p>Channeling Fee: <?php echo $data['selectedSession']->sessionCharge ;?></p>   
                 </div>
                 <hr style="margin-bottom: 2vh; color:#445172BF;">
 
@@ -58,16 +58,16 @@
                                  <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png"  alt="profile-pic">
                                 <p class= "name">
                                      Mr.
-                                     <?php echo $post->last_name;?>
+                                     <?php echo $post->last_Name;?>
                                 </p>
                             </td>
 
                             <td>
-                                <a href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->patient_id ?>" style="margin-left: 10vh;" >Patient ID #<?php echo $post->patient_id;?></a>
+                                <a href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->patient_ID ?>" style="margin-left: 10vh;" >Patient ID #<?php echo $post->patient_ID;?></a>
                             </td>
 
                             <td>
-                                <button type="submit" class="add-app" onclick="selectPatient(<?php echo $post->patient_id ?>,<?php echo $data['selectedSession']->session_id ?>,<?php echo $data['selectedDoctor']->doctor_id ?>)">
+                                <button type="submit" class="add-app" onclick="selectPatient(<?php echo $post->patient_ID ?>,<?php echo $data['selectedSession']->session_ID ?>,<?php echo $data['selectedDoctor']->doctor_ID ?>)">
                                 <strong>ADD APPOINTMENT</strong>
                                 </button>                           
                             </td>                                               
@@ -79,11 +79,11 @@
       </div>
   </body>
   <script>
-    function selectPatient(patient_id,session_id,doctor_id) {
+    function selectPatient(patient_ID,session_ID,doctor_ID) {
     var confirmationURL = "<?php echo URLROOT; ?>/receptionist/confirm_patient";
-    confirmationURL += "?patientID=" + encodeURIComponent(patient_id);
-    confirmationURL += "&sessionID=" + encodeURIComponent(session_id);
-    confirmationURL += "&doctorID=" + encodeURIComponent(doctor_id);
+    confirmationURL += "?patientID=" + encodeURIComponent(patient_ID);
+    confirmationURL += "&sessionID=" + encodeURIComponent(session_ID);
+    confirmationURL += "&doctorID=" + encodeURIComponent(doctor_ID);
 
 
     window.location.href = confirmationURL;

@@ -38,12 +38,12 @@
                                  <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png"  alt="profile-pic">
                                 <p class= "name">
                                      Mr.
-                                     <?php echo $post->last_name;?>
+                                     <?php echo $post->last_Name;?>
                                 </p>
                             </td>
 
                             <td>
-                                <p style="margin-left: 10vh;" >Patient ID #<?php echo $post->patient_id;?></p>
+                                <p style="margin-left: 10vh;" >Patient ID #<?php echo $post->patient_ID;?></p>
                             </td>
 
                             <td>
