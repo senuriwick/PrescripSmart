@@ -247,12 +247,12 @@ body {
     margin-left: 3vw;
   }
   
-  .prescriptions {
+  .reports {
     background-color: rgba(68, 81, 114, 1);
     position: relative;
   }
   
-  .prescriptions::before {
+  .reports::before {
     content: '';
     position: absolute;
     left: 0;
@@ -262,14 +262,14 @@ body {
     background-color: #0069FF;
   }
   
-  .menu #prescriptions {
+  .menu #reports {
     color: #0069FF;
     border-color: #0069FF;
     border-spacing: 2cm;
     position: relative;
   }
   
-  .menu #prescriptions::after {
+  .menu #reports::after {
     content: '';
     position: absolute;
     bottom: -8px;

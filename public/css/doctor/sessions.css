@@ -25,7 +25,7 @@ p a:active{
 }
 
 .patientSearch {
-    margin-top: 2vh;
+    margin-top: 5vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
     padding: 1vh 3vh 2vh;
@@ -188,3 +188,58 @@ height: 50px;
   td .patientId{
     text-align: left;
   }
+
+  body {
+    font-family: inter;
+    margin: 0;
+    /* overflow: hidden; */
+  }
+  
+  .content {
+    display: flex;
+  }
+  
+  .main {
+    flex: 1;
+    margin-left: 220px;
+    margin-bottom: 3%;
+  }
+  
+  .patientInfoContainer {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 3vw;
+  }
+  
+  .sessions {
+    background-color: rgba(68, 81, 114, 1);
+    position: relative;
+  }
+  
+  .sessions::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #0069FF;
+  }
+  
+  .menu #sessions {
+    color: #0069FF;
+    border-color: #0069FF;
+    border-spacing: 2cm;
+    position: relative;
+  }
+  
+  .menu #sessions::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #0069FF;
+  }
+  
