@@ -27,6 +27,14 @@ class M_Doctor {
         return $this->db->rowCount();
     }
 
+    public function getpatientAppointmentId($sessionId,$patientId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:sessionId AND patient_ID=:patientId');
+        $this->db->bind(':sessionId',$sessionId);
+        $this->db->bind(':patientId',$patientId);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function getDiagnosis($diagnosisId){
         $this->db->query('SELECT prescriptions.*, doctors.* ,patients.* FROM `prescriptions` LEFT JOIN `patients` ON patients.patient_ID=prescriptions.patient_ID LEFT JOIN `doctors` ON prescriptions.doctor_ID=doctors.doctor_ID WHERE prescription_ID=:id');
         $this->db->bind(':id',$diagnosisId);
@@ -77,7 +85,7 @@ class M_Doctor {
     }
 
     public function getOngonigSession($userid){
-        $this->db->query('SELECT * FROM sessions WHERE CURTIME() BETWEEN start_time AND end_time AND sessionDate=CURDATE() AND doctor_ID=:id');
+        $this->db->query('SELECT * FROM sessions WHERE (start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time) OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time)) AND doctor_ID=:id');
         $this->db->bind(':id',$userid);
         $result = $this->db->single();
         return $result;
@@ -128,11 +136,12 @@ class M_Doctor {
         }
     }
 
-    public function addDiagnosis($patientId, $diagnosis)
+    public function addDiagnosis($patientId, $diagnosis,$appointmentId)
     {
-        $this->db->query('INSERT INTO prescriptions (patient_ID, diagnosis, prescription_Date) VALUES (:patient_id, :diagnosis, CURDATE())');
+        $this->db->query('INSERT INTO prescriptions (patient_ID, diagnosis, prescription_Date, appointment_ID) VALUES (:patient_id, :diagnosis, CURDATE(), :appointment_id)');
         $this->db->bind(':patient_id', $patientId);
         $this->db->bind(':diagnosis', $diagnosis);
+        $this->db->bind(':appointment_id',$appointmentId);
 
         // Execute
         if ($this->db->execute()) {

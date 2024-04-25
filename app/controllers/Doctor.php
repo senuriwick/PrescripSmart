@@ -49,8 +49,10 @@ class Doctor extends Controller{
             $remarks = $_POST['remarks'];
             $patient_id = $_POST['patientId'];
             $doctorid = $_SESSION['USER_DATA']->user_ID;
-            $appointmentid = $this->dpModel->getAppointmentId();
-            $this->dpModel->addDiagnosis($patient_id, $diagnosis,$doctorid);
+            // $appointmentid = $this->dpModel->getAppointmentId();
+            $sessionId = $this->dpModel->getOngonigSession($doctorid)->session_ID;
+            $appointment = $this->dpModel->getpatientAppointmentId($sessionId,$patient_id);
+            $this->dpModel->addDiagnosis($patient_id, $diagnosis,$doctorid,$appointment->appointment_ID);
             // Process each medication and its corresponding remark
             for ($i = 0; $i < count($medications); $i++) {
                 $medication = $medications[$i];
