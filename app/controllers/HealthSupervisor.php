@@ -216,46 +216,36 @@
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST["username"];
-                // $password = $_POST["password"];
-                // $newpassword = $_POST["newpassword"];
-
                 $this->healthSupervisorModel->updateAccInfo($username);
-
-                redirect("/HealthSupervisor/profile");
-                exit();
-            }
-        }
-
-        public function passwordReset()
-        {
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $newpassword = $_POST["newpassword"];
-    
-                $this->healthSupervisorModel->resetPassword($newpassword);
     
                 redirect('/healthSupervisor/profile');
                 exit();
             }
         }
+        public function passwordReset()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $newpassword = $_POST["newpassword"];
+            $this->healthSupervisorModel->resetPassword($newpassword);
 
-        public function checkCurrentPassword() {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
-                $currentPassword = $_POST['currentPassword'];
-    
-                // Assume $user is the object representing the logged-in user
-                $user_id = 3;
-                $user = $this->healthSupervisorModel->getUserDetails($user_id);
-    
-                if ($user && password_verify($currentPassword, $user->password)) {
-                    echo '<span style="color: green;">You\'re good to go!</span>';
-                } else {
-                    echo '<span style="color: red;">Incorrect password!</span>';
-                }
+            redirect('/healthSupervisor/profile');
+            exit();
+        }
+    }
+
+    public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
+
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
             } else {
-                // Handle invalid or missing parameters
-                echo '<span style="color: red;">Error: Invalid request.</span>';
+                echo json_encode(array("match" => false));
             }
         }
+    }
 
         public function personalInfoUpdate()
         {

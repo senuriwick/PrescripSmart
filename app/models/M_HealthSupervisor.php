@@ -79,18 +79,19 @@
         public function updateAccInfo($username)
         {
             $this->db->query('UPDATE users SET username = :username 
-            WHERE user_id = 1');
+            WHERE user_ID = :healthSupervisorID');
             $this->db->bind(':username', $username);
-            // $this->db->bind(':password', $newpassword);
-
+            $this->db->bind(':healthSupervisorID', $_SESSION['USER_DATA']->user_ID);
+    
             $this->db->execute();
         }
 
         public function resetPassword($newpassword)
         {
             $this->db->query('UPDATE users SET password = :newpassword 
-            WHERE user_id = 1');
+            WHERE user_ID = :healthSupervisorID');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+            $this->db->bind(':healthSupervisorID', $_SESSION['USER_DATA']->user_ID);
             $this->db->execute();
         }
 

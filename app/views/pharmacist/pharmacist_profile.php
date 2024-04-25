@@ -9,7 +9,7 @@
     <title>Account</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\healthSupervisor\healthSupervisor_profile.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\pharmacist\pharmacist_profile.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -25,10 +25,10 @@
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation_account.php'; ?>
 
-                <?php $nurse = $data['nurse'] ?>
+                <?php $pharmacist = $data['pharmacist'] ?>
 
                 <div class="inquiriesDiv">
-                    <h1>Employee ID: #<?php echo $nurse->user_ID ?>
+                    <h1>Employee ID: #<?php echo $pharmacist->user_ID ?>
                     </h1>
                     <p class="sub1" style="font-weight: bold;">Account Information</p>
 
@@ -38,16 +38,16 @@
                                 <div class="input-group">
                                     <label for="name">Username</label>
                                     <input type="text" id="username" class="input" name="username"
-                                        value="<?php echo $nurse->username ?>" style="display: inline-block;">
+                                        value="<?php echo $pharmacist->username ?>" style="display: inline-block;">
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Associated Email Address/Phone Number</label>
-                                    <?php if ($nurse->method_of_signin == "Email"): ?>
+                                    <?php if ($pharmacist->method_of_signin == "Email"): ?>
                                         <input type="text" id="email" class="input" name="email" readonly
-                                            value="<?php echo $nurse->email_phone ?>" style="display: inline-block;">
+                                            value="<?php echo $pharmacist->email_phone ?>" style="display: inline-block;">
                                     <?php else: ?>
                                         <input type="text" id="phone" class="input" name="phone" readonly
-                                            value="<?php echo $nurse->email_phone ?>" style="display: inline-block;">
+                                            value="<?php echo $pharmacist->email_phone ?>" style="display: inline-block;">
                                     <?php endif; ?>
                                 </div>
 
@@ -58,7 +58,7 @@
 
                     <p class="sub2" style="font-weight: bold;">Reset Password</p>
                     <div class="accInfo">
-                        <form action="<?php echo URLROOT; ?>/healthSupervisor/passwordReset" method="POST">
+                        <form action="<?php echo URLROOT; ?>/pharmacist/passwordReset" method="POST">
                             <div class="input-group">
                                 <label for="password">Current Password</label>
                                 <input type="password" id="password" placeholder="Enter your current password here"
@@ -100,6 +100,7 @@
     </div>
 
     <script>
+        
         document.addEventListener("DOMContentLoaded", function () {
             var inputFields = document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]');
             var submitBtn = document.getElementById('submit');
@@ -147,7 +148,7 @@
                     }
 
                     $.ajax({
-                        url: '/prescripsmart/healthSupervisor/checkPassword',
+                        url: '/prescripsmart/Pharmacist/checkPassword',
                         method: 'POST',
                         data: { password: enteredPassword },
                         dataType: 'json',
