@@ -451,6 +451,14 @@ class Patient extends Controller
         }
     }
 
+    public static function logged_in()
+    {
+        if (!empty($_SESSION['USER_DATA'])) {
+            return true;
+        }
+        return false;
+    }
+
     public function forgot_password()
     {
         $this->view('patient/forgot_password');
@@ -617,6 +625,7 @@ class Patient extends Controller
         }
     }
 
+
     public function send_security_email($email, $code)
     {
         $message = <<<MESSAGE
@@ -689,112 +698,145 @@ class Patient extends Controller
 
     public function inquiries_dashboard()
     {
-        $this->view('patient/inquiries_dashboard');
+        if ($this->logged_in()) {
+            $this->view('patient/inquiries_dashboard');
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function inquiries()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $email = $_POST["email"];
-            $name = $_POST["name"];
-            $message = $_POST["message"];
+        if ($this->logged_in()) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $email = $_POST["email"];
+                $name = $_POST["name"];
+                $message = $_POST["message"];
 
-            $inquirySaved = $this->patientModel->inquiries($_SESSION['USER_DATA']->user_ID, $email, $name, $message);
+                $inquirySaved = $this->patientModel->inquiries($_SESSION['USER_DATA']->user_ID, $email, $name, $message);
 
-            if ($inquirySaved) {
-                echo json_encode(array("success" => true));
-            } else {
-                echo json_encode(array("success" => false, "message" => "Failed to save the inquiry."));
+                if ($inquirySaved) {
+                    echo json_encode(array("success" => true));
+                } else {
+                    echo json_encode(array("success" => false, "message" => "Failed to save the inquiry."));
+                }
+
+                exit();
             }
-
-            exit();
+        } else {
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
     //APPOINTMENTS
     public function appointments_dashboard()
     {
-        $appointments = $this->patientModel->getAppointments($_SESSION['USER_DATA']->user_ID);
-        $data = [
-            'appointments' => $appointments
-        ];
-        $this->view('patient/appointments_dashboard', $data);
-    }
-
-    public function view_appointment()
-    {
-        $appointment_ID = $_GET['appointment_id'] ?? null;
-        $appointment = $this->patientModel->viewAppointment($appointment_ID, $_SESSION['USER_DATA']->user_ID);
-        $patient = $this->patientModel->patientDetails($appointment->patient_ID);
-        $merchant_id = 1226371;
-        $order_id = "$appointment->appointment_ID";
-        $amount = "$appointment->amount";
-        $currency = "LKR";
-        $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
-
-        $hash = strtoupper(
-            md5(
-                $merchant_id .
-                $order_id .
-                number_format($amount, 2, '.', '') .
-                $currency .
-                strtoupper(md5($merchant_secret))
-            )
-        );
-
-        if ($appointment_ID !== null) {
-            
+        if ($this->logged_in()) {
+            $appointments = $this->patientModel->getAppointments($_SESSION['USER_DATA']->user_ID);
             $data = [
-                'appointment' => $appointment,
-                'hash' => $hash,
-                'patient' => $patient
+                'appointments' => $appointments
             ];
-            $this->view('patient/view_appointment', $data);
+            $this->view('patient/appointments_dashboard', $data);
         } else {
             header("Location: /prescripsmart/general/error_page");
         }
     }
 
+    public function view_appointment()
+    {
+        if ($this->logged_in()) {
+            $appointment_ID = $_GET['appointment_id'] ?? null;
+            $appointment = $this->patientModel->viewAppointment($appointment_ID, $_SESSION['USER_DATA']->user_ID);
+            $patient = $this->patientModel->patientDetails($appointment->patient_ID);
+            $merchant_id = 1226371;
+            $order_id = "$appointment->appointment_ID";
+            $amount = "$appointment->amount";
+            $currency = "LKR";
+            $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
+
+            $hash = strtoupper(
+                md5(
+                    $merchant_id .
+                    $order_id .
+                    number_format($amount, 2, '.', '') .
+                    $currency .
+                    strtoupper(md5($merchant_secret))
+                )
+            );
+
+            if ($appointment_ID !== null) {
+
+                $data = [
+                    'appointment' => $appointment,
+                    'hash' => $hash,
+                    'patient' => $patient
+                ];
+                $this->view('patient/view_appointment', $data);
+            } else {
+                header("Location: /prescripsmart/general/error_page");
+            }
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+
+    }
+
     public function delete_appointment(int $appointment_ID)
     {
-        $this->patientModel->deleteAppointment($appointment_ID);
-        header("Location: /prescripsmart/patient/appointment_cancelled");
+        if ($this->logged_in()) {
+            $this->patientModel->deleteAppointment($appointment_ID);
+            header("Location: /prescripsmart/patient/appointment_cancelled");
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function new_appointment()
     {
-        $doctors = $this->patientModel->searchDoctor();
-        $data = [
-            'doctors' => $doctors
-        ];
-        $this->view('patient/new_appointment', $data);
+        if ($this->logged_in()) {
+            $doctors = $this->patientModel->searchDoctor();
+            $data = [
+                'doctors' => $doctors
+            ];
+            $this->view('patient/new_appointment', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function appointment_reservation()
     {
-        $doctor_ID = $_POST['doctor_ID'];
-        $session_ID = $_POST['session_ID'];
-        $time = $_POST['time'];
-        $date = $_POST['date'];
-        $charge = $_POST['charge'];
-        $number = $_POST['number'];
-        $referrence = $this->patientModel->confirmAppointment($_SESSION['USER_DATA']->user_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number);
-        header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
+        if ($this->logged_in()) {
+            $doctor_ID = $_POST['doctor_ID'];
+            $session_ID = $_POST['session_ID'];
+            $time = $_POST['time'];
+            $date = $_POST['date'];
+            $charge = $_POST['charge'];
+            $number = $_POST['number'];
+            $referrence = $this->patientModel->confirmAppointment($_SESSION['USER_DATA']->user_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number);
+            header("Location: /prescripsmart/patient/appointment_complete?referrence=$referrence");
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
     public function doctor_sessions()
     {
-        $doctor_ID = $_GET['doctor_ID'] ?? null;
+        if ($this->logged_in()) {
+            $doctor_ID = $_GET['doctor_ID'] ?? null;
 
-        if ($doctor_ID !== null) {
-            $session = $this->patientModel->docSession($doctor_ID);
-            $doctorImage = $this->patientModel->docImage($doctor_ID);
-            $doctorDetails = $this->patientModel->searchDoctor_byID($doctor_ID);
-            $data = [
-                'session' => $session,
-                'image' => $doctorImage,
-                'doctor' => $doctorDetails
-            ];
-            $this->view('patient/doctor_sessions', $data);
+            if ($doctor_ID !== null) {
+                $session = $this->patientModel->docSession($doctor_ID);
+                $doctorImage = $this->patientModel->docImage($doctor_ID);
+                $doctorDetails = $this->patientModel->searchDoctor_byID($doctor_ID);
+                $data = [
+                    'session' => $session,
+                    'image' => $doctorImage,
+                    'doctor' => $doctorDetails
+                ];
+                $this->view('patient/doctor_sessions', $data);
+            } else {
+                header("Location: /prescripsmart/general/error_page");
+            }
         } else {
             header("Location: /prescripsmart/general/error_page");
         }
@@ -802,15 +844,19 @@ class Patient extends Controller
 
     public function appointment_confirmation()
     {
-        $session_ID = $_GET['sessionID'] ?? null;
+        if ($this->logged_in()) {
+            $session_ID = $_GET['sessionID'] ?? null;
 
-        if ($session_ID != null) {
+            if ($session_ID != null) {
 
-            $selectedSession = $this->patientModel->getSessionDetails($session_ID);
-            $data = [
-                'selectedSession' => $selectedSession
-            ];
-            $this->view('patient/appointment_confirmation', $data);
+                $selectedSession = $this->patientModel->getSessionDetails($session_ID);
+                $data = [
+                    'selectedSession' => $selectedSession
+                ];
+                $this->view('patient/appointment_confirmation', $data);
+            } else {
+                header("Location: /prescripsmart/general/error_page");
+            }
         } else {
             header("Location: /prescripsmart/general/error_page");
         }
@@ -818,37 +864,41 @@ class Patient extends Controller
 
     public function appointment_complete()
     {
-        $referrence = $_GET['referrence'] ?? null;
-        $appointment = $this->patientModel->appointment($referrence);
-        $patient = $this->patientModel->patientDetails($appointment->patient_ID);
-        $doctor = $this->patientModel->searchDoctor_byID($appointment->doctor_ID);
-        $merchant_id = 1226371;
-        $order_id = "$appointment->appointment_ID";
-        $amount = "$appointment->amount";
-        $currency = "LKR";
-        $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
+        if ($this->logged_in()) {
+            $referrence = $_GET['referrence'] ?? null;
+            $appointment = $this->patientModel->appointment($referrence);
+            $patient = $this->patientModel->patientDetails($appointment->patient_ID);
+            $doctor = $this->patientModel->searchDoctor_byID($appointment->doctor_ID);
+            $merchant_id = 1226371;
+            $order_id = "$appointment->appointment_ID";
+            $amount = "$appointment->amount";
+            $currency = "LKR";
+            $merchant_secret = 'MTMzMjU4MTIxODMwMjE1OTE3MDIxOTQxMzUxMDM3NzkxMDIzNDI=';
 
-        $hash = strtoupper(
-            md5(
-                $merchant_id .
-                $order_id .
-                number_format($amount, 2, '.', '') .
-                $currency .
-                strtoupper(md5($merchant_secret))
-            )
-        );
-        $data = [
-            'appointment' => $appointment,
-            'hash' => $hash,
-            'patient' => $patient
-        ];
+            $hash = strtoupper(
+                md5(
+                    $merchant_id .
+                    $order_id .
+                    number_format($amount, 2, '.', '') .
+                    $currency .
+                    strtoupper(md5($merchant_secret))
+                )
+            );
+            $data = [
+                'appointment' => $appointment,
+                'hash' => $hash,
+                'patient' => $patient
+            ];
 
-        if ($_SESSION['USER_DATA']->method_of_signin == "Email") {
-            $this->appointment_email($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
+            if ($_SESSION['USER_DATA']->method_of_signin == "Email") {
+                $this->appointment_email($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
+            } else {
+                $this->appointment_message($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
+            }
+            $this->view('patient/appointment_complete', $data);
         } else {
-            $this->appointment_message($_SESSION['USER_DATA']->email_phone, $_SESSION['USER_DATA']->first_Name, $_SESSION['USER_DATA']->last_Name, $doctor->first_Name, $doctor->last_Name);
+            header("Location: /prescripsmart/general/error_page");
         }
-        $this->view('patient/appointment_complete', $data);
     }
 
     public function appointment_email($email, $firstName, $lastName, $doctorF, $doctorL)
@@ -944,30 +994,38 @@ class Patient extends Controller
 
     public function appointment_cancelled()
     {
-        $this->view('patient/appointment_cancelled');
+        if ($this->logged_in()) {
+            $this->view('patient/appointment_cancelled');
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     //PRESCRIPTIONS
     public function prescriptions_dashboard()
     {
-        $userID = $_SESSION['USER_DATA']->user_ID;
-        $prescriptions = $this->patientModel->prescriptions($userID);
-        $prescriptionDetails = [];
-        $labDetails = [];
-        foreach ($prescriptions as $prescription) {
-            $prescriptionID = $prescription->prescription_ID;
-            $medicineData = $this->patientModel->prescriptionMedicines($prescriptionID);
-            $labTests = $this->patientModel->labTests($prescriptionID);
-            $prescriptionDetails[$prescriptionID] = $medicineData;
-            $labDetails[$prescriptionID] = $labTests;
-        }
+        if ($this->logged_in()) {
+            $userID = $_SESSION['USER_DATA']->user_ID;
+            $prescriptions = $this->patientModel->prescriptions($userID);
+            $prescriptionDetails = [];
+            $labDetails = [];
+            foreach ($prescriptions as $prescription) {
+                $prescriptionID = $prescription->prescription_ID;
+                $medicineData = $this->patientModel->prescriptionMedicines($prescriptionID);
+                $labTests = $this->patientModel->labTests($prescriptionID);
+                $prescriptionDetails[$prescriptionID] = $medicineData;
+                $labDetails[$prescriptionID] = $labTests;
+            }
 
-        $data = [
-            'prescriptions' => $prescriptions,
-            'prescriptionDetails' => $prescriptionDetails,
-            'labDetails' => $labDetails
-        ];
-        $this->view('patient/prescriptions_dashboard', $data);
+            $data = [
+                'prescriptions' => $prescriptions,
+                'prescriptionDetails' => $prescriptionDetails,
+                'labDetails' => $labDetails
+            ];
+            $this->view('patient/prescriptions_dashboard', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function public_prescriptionView()
@@ -993,17 +1051,25 @@ class Patient extends Controller
 
     public function qr_download()
     {
-        $this->view('patient/qr_download');
+        if ($this->logged_in()) {
+            $this->view('patient/qr_download');
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     //REPORTS
     public function reports_dashboard()
     {
-        $reports = $this->patientModel->labreports($_SESSION['USER_DATA']->user_ID);
-        $data = [
-            'reports' => $reports
-        ];
-        $this->view('patient/reports_dashboard', $data);
+        if ($this->logged_in()) {
+            $reports = $this->patientModel->labreports($_SESSION['USER_DATA']->user_ID);
+            $data = [
+                'reports' => $reports
+            ];
+            $this->view('patient/reports_dashboard', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function updateDownloadCount($reportId)
@@ -1013,11 +1079,15 @@ class Patient extends Controller
 
     public function account_information()
     {
-        $patient = $this->patientModel->patientInfo();
-        $data = [
-            'patient' => $patient
-        ];
-        $this->view('patient/account_information', $data);
+        if ($this->logged_in()) {
+            $patient = $this->patientModel->patientInfo();
+            $data = [
+                'patient' => $patient
+            ];
+            $this->view('patient/account_information', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function accountInfoUpdate()
@@ -1059,13 +1129,17 @@ class Patient extends Controller
 
     public function personal_information()
     {
-        $patient = $this->patientModel->patientDetails();
-        $user = $this->patientModel->patientInfo();
-        $data = [
-            'patient' => $patient,
-            'user' => $user
-        ];
-        $this->view('patient/personal_information', $data);
+        if ($this->logged_in()) {
+            $patient = $this->patientModel->patientDetails();
+            $user = $this->patientModel->patientInfo();
+            $data = [
+                'patient' => $patient,
+                'user' => $user
+            ];
+            $this->view('patient/personal_information', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function personalInfoUpdate()
@@ -1095,12 +1169,16 @@ class Patient extends Controller
 
     public function security()
     {
-        $userID = $_SESSION['USER_DATA']->user_ID;
-        $user = $this->patientModel->find_user_by_id($userID);
-        $data = [
-            'user' => $user
-        ];
-        $this->view('patient/security', $data);
+        if ($this->logged_in()) {
+            $userID = $_SESSION['USER_DATA']->user_ID;
+            $user = $this->patientModel->find_user_by_id($userID);
+            $data = [
+                'user' => $user
+            ];
+            $this->view('patient/security', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function two_factor_authentication()
@@ -1132,7 +1210,6 @@ class Patient extends Controller
         } else {
             echo json_encode(['success' => false, 'message' => 'Invalid request method']);
         }
-
     }
 
     public function twofactorverification()

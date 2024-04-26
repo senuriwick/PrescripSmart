@@ -230,6 +230,17 @@ body {
   font-size: 12px;
 }
 
+.prescriptionsDiv .modal-content .pres-box table .status{
+  background-color: green;
+  width: 75px;
+  height: 5px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: small;
+  text-align: center;
+}
+
 .prescriptionsDiv .modal-content .pres-box table th {
   font-size: 12px;
   text-align: left;
@@ -254,6 +265,11 @@ body {
 
 .prescriptionsDiv .modal-content .test-box table td {
   font-size: 12px;
+}
+
+.prescriptionsDiv .modal-content .test-box table th {
+  font-size: 12px;
+  text-align: left;
 }
 
 .prescriptionsDiv .modal-content .notice {
