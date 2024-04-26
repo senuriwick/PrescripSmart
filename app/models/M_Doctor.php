@@ -117,16 +117,17 @@ class M_Doctor {
         return $results;
     }
 
-    public function addMedication($patientId, $diagnosisId, $medication, $remark)
+    public function addMedication($patientId, $diagnosisId, $medicationId, $medication, $remark)
     {
         // Using placeholders in the query to prevent SQL injection
-        $this->db->query('INSERT INTO patients_medications (patient_ID, prescription_ID, medication, remark) VALUES (:patient_id, :diagnosis_id, :medication, :remark)');
+        $this->db->query('INSERT INTO patients_medications (patient_ID, prescription_ID, medication_ID, medication, remark) VALUES (:patient_id, :diagnosis_id, :medication_id, :medication, :remark)');
 
         // Binding parameters
         $this->db->bind(':patient_id', $patientId);
         $this->db->bind(':diagnosis_id',$diagnosisId);
         $this->db->bind(':medication', $medication);
         $this->db->bind(':remark', $remark);
+        $this->db->bind(':medication_id',$medicationId);
 
         // Execute
         if ($this->db->execute()) {
@@ -136,12 +137,13 @@ class M_Doctor {
         }
     }
 
-    public function addDiagnosis($patientId, $diagnosis,$appointmentId)
+    public function addDiagnosis($patientId, $diagnosis,$doctorId,$appointmentId)
     {
-        $this->db->query('INSERT INTO prescriptions (patient_ID, diagnosis, prescription_Date, appointment_ID) VALUES (:patient_id, :diagnosis, CURDATE(), :appointment_id)');
+        $this->db->query('INSERT INTO prescriptions (doctor_ID, patient_ID, diagnosis, prescription_Date, appointment_ID) VALUES (:doctor_id, :patient_id, :diagnosis, CURDATE(), :appointment_id)');
         $this->db->bind(':patient_id', $patientId);
         $this->db->bind(':diagnosis', $diagnosis);
         $this->db->bind(':appointment_id',$appointmentId);
+        $this->db->bind(':doctor_id',$doctorId);
 
         // Execute
         if ($this->db->execute()) {
@@ -169,6 +171,13 @@ class M_Doctor {
         $this->db->bind(':id',$patientid);
         $results = $this->db->single();
         return $results;
+    }
+
+    public function getMedicationId($medicationName){
+        $this->db->query('SELECT * FROM  medicine_data WHERE Material_Description=:medicationName');
+        $this->db->bind(':medicationName',$medicationName);
+        $result = $this->db->single();
+        return $result;
     }
 
     // public function getTestId($testname){

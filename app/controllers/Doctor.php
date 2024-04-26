@@ -58,10 +58,11 @@ class Doctor extends Controller{
                 $medication = $medications[$i];
                 $remark = $remarks[$i];
                 $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
+                $medicationId = $this->dpModel->getMedicationId($medication);
 
                 // Insert into database
                 // Your DB insertion code here
-                $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID, $medication, $remark);
+                $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID,$medicationId->medicine_ID, $medication, $remark);
             }
 
             if($_POST['tests']){
