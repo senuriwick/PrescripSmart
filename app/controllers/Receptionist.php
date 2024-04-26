@@ -1,6 +1,6 @@
 <?php
 
-use Twilio\Rest\Client;
+ use Twilio\Rest\Client;
 
   class Receptionist extends Controller 
   {
@@ -414,7 +414,7 @@ use Twilio\Rest\Client;
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = 'prescripsmart@gmail.com';       // SMTP username
         $mail->Password = 'fgpacxjdxjogzlwk';                 // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, ssl also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
         $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
