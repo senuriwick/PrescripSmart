@@ -17,15 +17,21 @@
 </head>
 
 <body>
+<<<<<<< Updated upstream
     <div class="content">
         <div class="sideMenu">
-        <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+            <div class="logoDiv">
+                <img class="logoImg" src="<?php echo URLROOT?>/app/views/pharmacist/images/logo.png" />
+            </div>
+
+            <div class="userDiv">
+                <p class="mainOptions">
+                    <Datag>PHARMACIST</Datag>
+                </p>
+            </div>
 
             <div class="manageDiv">
-                <p class="mainOptions">Pharmacist Tools</p>
+                <p class="mainOptions">MANAGE</p>
 
                 <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a>
                 <a href="">Medications</a>
@@ -60,6 +66,17 @@
                         <p><a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a></p>
                         <p><a href="reports.html" style="color: black; font-weight: 500;">Medications</a></p>
                     </div>
+=======
+<div class="content">
+    <?php include 'side_navigation_panel.php'; ?>
+
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
+
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
+>>>>>>> Stashed changes
                     
                     <div class="patientSearch">
                         <div class="patient-div">

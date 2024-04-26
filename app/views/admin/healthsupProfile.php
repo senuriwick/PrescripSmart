@@ -30,9 +30,9 @@
             <div class="div-specifier">
                     <div class="user-details">
                         <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png">
-                        <h1><strong><?php echo ucwords($data['doctor']->first_name) ?> <?php echo ucwords($data['doctor']->last_name) ?></strong></h1>
+                        <h1><strong><?php echo ucwords($data['doctor']->first_Name) ?> <?php echo ucwords($data['doctor']->last_Name) ?></strong></h1>
                     </div>
-                    <h3>Employee ID #<?php echo $data['doctor']->emp_id ?></h3>
+                    <h3>Employee ID #<?php echo $data['doctor']->$user_ID ?></h3>
                     <h4>Personal information</h4>  
                     <hr  style="margin-top: -1.5vh; color:#445172BF;" width="85%">
             </div>
@@ -40,11 +40,11 @@
             <div class="row1">                   
                     <div class="firstname">
                             <h2>First Name</h2>
-                            <input type="text" value="<?php echo ucwords($data['doctor']->first_name) ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->first_Name) ?>">
                      </div>
                      <div class="lastname">
                             <h2>Last Name</h2>
-                            <input type="text" value="<?php echo ucwords($data['doctor']->last_name) ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->last_Name) ?>">
                      </div> 
             </div>
 

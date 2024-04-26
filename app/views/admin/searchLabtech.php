@@ -10,13 +10,21 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/search.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/>
+  <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/nav_tech.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 
 </head>
 <body>
 
-<?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
+<div class="content">
+    <?php include 'side_navigation_panel.php'; ?>
+
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
+
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
         <div class="searchDiv">
             <h1>Search Lab technician</h1>
@@ -36,17 +44,17 @@
                                     <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
                                     <p class= "name">
                                         Mr.
-                                        <?php echo ucwords($post->last_name);?>
+                                        <?php echo ucwords($post->last_Name);?>
                                     </p>
                                   </td>
                                                                       
                                     <td>
-                                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->emp_id;?></p>
+                                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->labtech_ID;?></p>
                                     </td>
 
                                     <td>
-                                    <a href="<?php echo URLROOT ?>/admin/showProfileLabtech/<?php echo $post->emp_id ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                                        <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->labtech_id ?>">
+                                    <a href="<?php echo URLROOT ?>/admin/showProfileLabtech/<?php echo $post->labtech_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                        <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->labtech_ID ?>">
                                         <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                         </form>
                                     </td>
@@ -103,6 +111,9 @@
                   <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
                   <a href="<?php echo URLROOT?>/admin/viewReglabtech">Register a new Lab Technician</a>
               </div>
-        </div>    
+        </div>  
+        </div>
+    </div>
+  </div>  
     </body>
 </html>

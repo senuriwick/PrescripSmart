@@ -1,3 +1,8 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
 .menu {
     margin-top: 2vh;
     display: flex;

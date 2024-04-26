@@ -122,7 +122,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" id="submit">SAVE CHANGES</button>
+                        <button type="submit" id="submit" name = "submit">SAVE CHANGES</button>
                     </form>
                 </div>
             </div>

@@ -1,6 +1,58 @@
+body {
+  font-family: inter;
+  margin: 0;
+  /* overflow: hidden; */
+}
 
-.appointments:after
- {
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-left: 220px;
+  margin-bottom: 3%;
+}
+
+.patientInfoContainer {
+  width: 80%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
+
+.appointments {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.appointments::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #0069FF;
+}
+
+.menu #appointments {
+  color: #0069FF;
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  position: relative;
+}
+
+.menu #appointments::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #0069FF;
+}
+
+.appointments:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -11,58 +63,53 @@
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
+
 .appointments:hover:after,
-.appointments.active:after
-{
+.appointments.active:after {
   transform: scaleX(1);
 }
 
 
-.searchDiv 
-{
+.searchDiv {
   margin-top: 4vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 0.5vh;
   padding: 2vh 5vh 2vh;
-  height:auto;
-  width:120vh;
+  height: auto;
+  width: 120vh;
 }
 
 
-.searchDiv h1 
-{
+.searchDiv h1 {
   font-weight: bold;
-  font-family: inter; 
+  font-family: inter;
   color: rgba(68, 81, 114, 1);
   font-size: 3.5vh;
 }
 
-.searchFiles
-{
-  padding:0.5vh;
+.searchFiles {
+  padding: 0.5vh;
   margin-right: 0.8vh;
   border: none;
-  
+
 }
 
-.searchFiles input
-{
+.searchFiles input {
   font-size: 2.1vh;
-  font-weight:400vh;
+  font-weight: 400vh;
   font-family: inter;
   border-radius: 0.5vh;
   width: 75vh;
   height: 5vh;
   border: none;
   padding-left: 15px;
-  
+
 }
 
-.searchFiles button
-{
+.searchFiles button {
   background-color: #0069FF;
-  width:14vh;
-  height:5.4vh;
+  width: 14vh;
+  height: 5.4vh;
   border-radius: 0.5vh;
   margin-left: 1.5vh;
   color: white;
@@ -74,13 +121,12 @@
   border: none;
 }
 
-.reg
-{
+.reg {
   margin-left: 35vh;
   margin-top: 20vh;
   background-color: #E3E8F4;
-  width:65vh;
-  height:20vh;
+  width: 65vh;
+  height: 20vh;
   border-color: #E3E8F4;
   text-align: center;
   font-size: 2.1vh;
@@ -90,10 +136,9 @@
   border-radius: 1.7vh;
 }
 
-.but
-{
-  Width:55vh;
-  height:5vh;
+.but {
+  Width: 55vh;
+  height: 5vh;
   padding-top: 0.5vh;
   border-radius: 0.8vh;
   background-color: #0069FF;
@@ -102,15 +147,13 @@
   font-weight: 30vh;
 }
 
-but :active
-{
-  background-color:#006aff50 ;
+but :active {
+  background-color: #006aff50;
 
 }
 
-.addapp
-{
-  
+.addapp {
+
   margin-left: 2.5vh;
   margin-top: 1.5vh;
   background-color: #EFF2FB;
@@ -119,37 +162,34 @@ but :active
   border-radius: 1vh;
 }
 
-.addapp p
-{
+.addapp p {
   margin-left: 11vh;
   color: #445172BF;
   margin-top: -5vh;
   font-size: 1.5vh;
 }
 
-.newapp
-{
+.newapp {
   display: flex;
 
 }
 
-.newapp img{
+.newapp img {
   padding: 3vh 3vh;
   width: 5vh;
   height: 5vh;
 }
 
-.newapp a{
+.newapp a {
   padding-top: 3vh;
   color: #0069FF;
-  text-decoration:none;
+  text-decoration: none;
 }
 
-.regbut
-{
+.regbut {
   background-color: #0069FF;
-  width:26vh;
-  height:5.5vh;
+  width: 26vh;
+  height: 5.5vh;
   border-radius: 0.5vh;
   margin-left: 33vh;
   color: white;
@@ -160,50 +200,48 @@ but :active
 
 }
 
-.app-doc
-{
+.app-doc {
   display: flex;
 
-  
+
 }
-.app-doc img
-{
+
+.app-doc img {
   width: 4vh;
   height: 4vh;
 }
-.app-doc h3
-{
+
+.app-doc h3 {
   color: #0069FF;
   margin-left: 3vh;
   font-size: 2.5vh;
   margin-block-start: auto;
 }
-.doc-pos
-{
+
+.doc-pos {
   margin-left: 7vh;
   margin-top: -2vh;
 }
 
-.sessions
-{
+.sessions {
   width: 33vh;
   height: 29vh;
   background-color: white;
   border-radius: 1vh;
 }
-.sessions h4
-{
+
+.sessions h4 {
   padding-left: 7vh;
   padding-top: 3vh;
   font-size: 2.4vh;
 }
-.sessions p
-{
+
+.sessions p {
   font-size: 2.3vh;
   padding-left: 2.5vh;
 }
-.sessions button
-{
+
+.sessions button {
   background-color: #0069FFBF;
   color: white;
   border-radius: 1vh;
@@ -212,21 +250,9 @@ but :active
   height: 4vh;
   margin-left: 3.5vh;
 }
-.session-details
-{
+
+.session-details {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(3, minmax(20vh, 1fr));
 }
-
-
-
-
-
-
-
-
-
-
-
-

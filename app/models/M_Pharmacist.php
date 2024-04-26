@@ -147,25 +147,26 @@
         }
 
         public function updateAccInfo($username)
-        {
-            $this->db->query('UPDATE users SET username = :username 
-            WHERE user_id = 1');
-            $this->db->bind(':username', $username);
-            // $this->db->bind(':password', $newpassword);
+    {
+        $this->db->query('UPDATE users SET username = :username 
+        WHERE user_ID = :pharmacistID');
+        $this->db->bind(':username', $username);
+        $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
 
-            $this->db->execute();
-        }
+        $this->db->execute();
+    }
 
         public function resetPassword($newpassword)
         {
             $this->db->query('UPDATE users SET password = :newpassword 
-            WHERE user_id = 3');
+            WHERE user_ID = :pharmacistID');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+            $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
             $this->db->execute();
         }
 
         public function pharmacistInfo($user_id){
-            $this->db->query('SELECT * FROM pharmacists WHERE user_id = :user_id');
+            $this->db->query('SELECT * FROM pharmacists WHERE pharmacist_ID = :user_id');
             $this->db->bind(':user_id', $user_id);
             $result = $this->db->single();
             return $result;
@@ -179,22 +180,27 @@
         $this->db->execute();
     }
 
-        public function updateInfo($fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification)
-        {
-            $this->db->query('UPDATE pharmacists SET first_name = :fname, last_name = :lname, display_name = :dname, 
-                home_address = :address, nic = :nic, contact_number = :contact,pharmacist_registrationNo = :regNo,qualifications = :qualification WHERE pharmacist_id = 1'); 
-            $this->db->bind(':fname', $fname);
-            $this->db->bind(':lname', $lname);
-            $this->db->bind(':dname', $dname);
-            $this->db->bind(':address', $address);
-            $this->db->bind(':nic', $nic);
-            $this->db->bind(':contact', $contact);
-            $this->db->bind(':regNo',$regNo);
-            $this->db->bind(':qualification',$qualification);
-    
-            $this->db->execute();  
+    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep)
+    {
+        $this->db->query('UPDATE pharmacists SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
+            home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
+            specialization = :spec, department = :dep
+            WHERE pharmacist_ID = :pharmacistID');
 
-        }
+        $this->db->bind(':fname', $fname);
+        $this->db->bind(':lname', $lname);
+        $this->db->bind(':dname', $dname);
+        $this->db->bind(':haddress', $haddress);
+        $this->db->bind(':nic', $nic);
+        $this->db->bind(':cno', $cno);
+        $this->db->bind(':regno', $regno);
+        $this->db->bind(':qual', $qual);
+        $this->db->bind(':spec', $spec);
+        $this->db->bind(':dep', $dep);
+        $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
+
+        $this->db->execute();
+    }
 
         public function getAllPrescriptions($patientId) {
             $this->db->query('SELECT * FROM prescriptions WHERE patient_id = :id');
@@ -223,10 +229,12 @@
             return $this->db->resultSet();
         }
 
-        public function getMedicationDetails($prescriptionId){
-            $this->db->query('SELECT * FROM medications WHERE prescription_id = :id');
-            $this->db->bind(':id', $prescriptionId);
-            return $this->db->resultSet();
+        public function getMedicationDetails($prescriptionId)
+        {
+            $this->db->query('SELECT * FROM patients_medications WHERE prescription_ID = :prescriptionID');
+            $this->db->bind(':prescriptionID', $prescriptionId);
+            $result = $this->db->resultSet();
+            return $result;
         }
 
         public function getLabDetails($prescriptionId){
@@ -234,6 +242,26 @@
             $this->db->bind(':id', $prescriptionId);
             return $this->db->resultSet();
         }
+
+        public function prescriptionMedicines($prescription_ID)
+    {
+        $this->db->query('SELECT * FROM patients_medications WHERE prescription_ID = :prescriptionID');
+        $this->db->bind(':prescriptionID', $prescription_ID);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function prescriptions($userID)
+    {
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        WHERE p.patient_ID = :userID
+        ORDER BY p.prescription_Date ASC');
+        $this->db->bind(':userID', $userID);
+
+        $result = $this->db->resultSet();
+        return $result;
+    }
 
     }
 ?>

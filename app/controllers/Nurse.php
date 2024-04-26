@@ -173,7 +173,7 @@ class Nurse extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
-
+            $_SESSION['USER_DATA']->password = password_hash($newpassword, PASSWORD_BCRYPT);
             $this->nurseModel->resetPassword($newpassword);
 
             header("Location: /prescripsmart/nurse/account_information");

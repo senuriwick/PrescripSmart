@@ -25,7 +25,7 @@ p a:active{
 }
 
 .patientSearch {
-    margin-top: 2vh;
+    margin-top: 5vh;
     margin-bottom: 4vh;
     background-color: rgba(239, 242, 251, 1);
     border-radius: 10px;
@@ -39,10 +39,11 @@ p a:active{
     gap: 2vw;
 }
 
-.patientSearch .topic label {
-    font-size: 3vh;
+.patientSearch .topic h1 {
+    font-size: 24px;
     font-weight: bold;
     color: rgba(68, 81, 114, 1);
+    margin-left: 0.2vw;
 }
 
 .diagnosis .searchBar {

@@ -37,7 +37,7 @@
         <button id="receptionist">Receptionist</button>
         <script>
           document.getElementById("receptionist").addEventListener("click", function () {
-              window.location.href = "<?php echo URLROOT?>/admin/login";
+              window.location.href = "<?php echo URLROOT?>/receptionist/login";
           });
         </script>
         

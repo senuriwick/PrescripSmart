@@ -1,7 +1,7 @@
 <div class="content">
     <div class="sideMenu"> 
       <div class="logoDiv">
-      <img class="logoImg" src="<?php echo URLROOT ?>/img/admin/Untitled design (5).png"/>
+      <img class="logoImg" src="<?php echo URLROOT ?>/img/receptionist/Untitled design (5).png"/>
       </div>
 
 
@@ -16,7 +16,7 @@
          <a href="<?php echo URLROOT ?>/receptionist/searchNurse" id="appointments">Nurses</a>
 
          <div class="othersDiv">
-          <a class="sideMenuTexts">Profile</a>
+         <a href="<?php echo URLROOT ?>/receptionist/account_info" id="prescriptions" class="sideMenuTexts">Profile</a>
           <a class="sideMenuTexts">Billing</a>
           <a class="sideMenuTexts">Terms of Services</a>
           <a class="sideMenuTexts">Privacy Policy</a>

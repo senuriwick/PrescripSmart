@@ -1,0 +1,289 @@
+.inquiriesDiv {
+    background-color: rgba(239, 242, 251, 1);
+    border-radius: 10px;
+    margin-top: 4vh;
+    padding: 1vh 3vh 2vh;
+    position: relative;
+}
+
+.inquiriesDiv h1 {
+    color: #0069ff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 2vh;
+}
+
+body {
+    font-family: inter;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+.content {
+    display: flex;
+}
+
+.main {
+    flex: 1;
+    margin-bottom: 3%;
+    margin-left: 220px;
+}
+
+.patientInfoContainer {
+    margin-left: 3vw;
+    margin-top: 5vh;
+    width: 80%;
+}
+
+.accInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.sub1 {
+    color: rgba(68, 81, 114, 1);
+    margin-right: 20px;
+    margin-top: 80px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.sub2 {
+    color: rgba(68, 81, 114, 1);
+    margin-right: 20px;
+    margin-top: 625px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.sub3 {
+    color: rgba(68, 81, 114, 1);
+    margin-right: 20px;
+    margin-top: 865px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.accInfo {
+    border-top: 1px solid rgba(68, 81, 114, 0.75);
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
+.parallel {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    margin-right: 50px;
+    margin-top: 15px;
+}
+
+.input {
+    align-items: center;
+    background-color: #ffffff;
+    border: solid 0.2rem #e3e8f4;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: rgba(68, 81, 114, 0.75);
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
+    font-size: 16px;
+    font-weight: 500;
+    height: 2.5rem;
+    justify-content: center;
+    line-height: 1.2125;
+    white-space: nowrap;
+    width: 28rem;
+}
+
+.input2 {
+    align-items: center;
+    background-color: #ffffff;
+    border: solid 0.2rem #e3e8f4;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: rgba(68, 81, 114, 0.75);
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
+    font-size: 16px;
+    font-weight: 500;
+    height: 2.5rem;
+    justify-content: center;
+    line-height: 1.2125;
+    white-space: nowrap;
+    width: 59rem;
+}
+
+.text {
+    font: italic;
+    font-size: 12px;
+}
+
+.content .main .patientInfoContainer .inquiriesDiv .save {
+    align-items: center;
+    background-color: grey;
+    border-color: grey;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    display: flex;
+    flex-shrink: 0;
+    font-family: Inter, 'Source Sans Pro';
+    font-size: 16px;
+    font-weight: 500;
+    height: 2rem;
+    justify-content: center;
+    line-height: 1.2125;
+    margin-top: 15px;
+    text-align: center;
+    white-space: nowrap;
+    width: 15rem;
+    cursor: pointer;
+}
+
+.input-group img[alt="edit-icon"] {
+    height: 2vh;
+    object-fit: contain;
+    position: absolute;
+    vertical-align: top;
+    width: 2vh;
+}
+
+.menu #personalinfo {
+    border-color: #0069FF;
+    border-spacing: 2cm;
+    color: #0069FF;
+    position: relative;
+}
+
+.menu #personalinfo::after {
+    background-color: #0069FF;
+    bottom: -8px;
+    content: '';
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.profile {
+    background-color: rgba(68, 81, 114, 1);
+    position: relative;
+}
+
+.profile::before {
+    background-color: #0069FF;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 5px;
+}
+
+.profile-pic-container {
+    border-radius: 50%;
+    display: inline-block;
+    height: 10vh;
+    overflow: hidden;
+    position: relative;
+    width: 10vh;
+}
+
+.profile-pic-container img {
+    height: auto;
+    width: 100%;
+}
+
+.profile-pic-container:hover .edit-icon {
+    display: block;
+}
+
+.profile-pic-container .edit-icon {
+    cursor: pointer;
+    display: none;
+    height: 5vh;
+    left: 45%;
+    position: absolute;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    width: 5vh;
+}
+
+.patientInfo {
+    display: flex;
+}
+
+.patientNameDiv {
+    margin-left: 20px;
+    padding: 0.01vh 0;
+}
+
+.patientInfo .name {
+    color: rgba(68, 81, 114, 1);
+    font-family: inter;
+    font-size: 2.5vh;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.patientInfo .role {
+    font-size: 2.2vh;
+    margin-top: 0vh;
+    padding-top: 0;
+}
+
+.inquiriesDiv img#signature-preview {
+    margin-top: 2vh;
+    min-width: 200px;
+    min-height: 150px;
+}
+
+.input-group input[type="file"] {
+    margin-top: 10px; 
+    padding: 10px; 
+    background-color: grey;
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+}
+
+.input-group input[type="file"]:hover {
+    background-color: #0050c4; 
+}
+
+.input-group input[type="file"]::file-selector-button {
+    display: none; 
+}
+
+.parallel .input-group .verify {
+    background-color: red; 
+    color: #FFFFFF; 
+    border: none;
+    border-radius: 5px; 
+    padding: 8px 16px; 
+    font-size: 14px;
+    font-weight: bold;
+    cursor: none;
+    margin-top: 20px;
+}
