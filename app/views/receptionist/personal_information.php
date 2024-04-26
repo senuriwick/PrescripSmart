@@ -97,11 +97,11 @@
                                 </div>
                             </div>
                             <div class="parallel">
-                                <div class="input-group">
+                                <!-- <div class="input-group">
                                     <label for="nurseregno">Registration Number</label>
                                     <input type="text" id="regno" name="regno" class="input"
                                         style="display: inline-block;" value="<?php echo $receptionist->registration_No; ?>">
-                                </div>
+                                </div> -->
                                 <div class="input-group">
                                     <label for="Qualification">Qualifications</label>
                                     <input type="text" id="qual" name="qual" class="input"
@@ -114,15 +114,15 @@
                                     <input type="text" id="dep" name="dep" class="input"
                                         style="display: inline-block;" value="<?php echo $receptionist->department; ?>">
                                 </div>
-                                <div class="input-group">
+                                <!-- <div class="input-group">
                                     <label for="specialization">Specialization (If Any)</label>
                                     <input type="text" id="spec" name="spec" class="input"
                                         style="display: inline-block;" value="<?php echo $receptionist->specialization; ?>">
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
-                        <button type="submit" id="submit" name = "submit">SAVE CHANGES</button>
+                        <button type="submit" id="submit" name = "submit" class = "save">SAVE CHANGES</button>
                     </form>
                 </div>
             </div>
