@@ -105,7 +105,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" id="submit" name = "submit">SAVE CHANGES</button>
+                        <button type="submit" id="submit" name = "submit" class = "save">SAVE CHANGES</button>
                     </form>
                 </div>
             </div>

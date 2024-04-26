@@ -34,27 +34,30 @@
         <?php include 'in_page_navigation.php'; ?>
 
                     <div class="patientSearch">
+                        <?php if($data['ongoingSession']&&$data['ongoingPatient']){?>
                         <div class="session-head">
-                            <h1>Session No.#1255</h1>
-                            <p>No. of patients left: <span class="countPatients">04</span></p>
+                            <h1>Session No.#<?php echo $data['ongoingSession']->session_ID;?></h1>
+                            <p>No. of patients left: <span class="countPatients"><?php echo $data['ongoingSession']->current_appointment-$data['ongoingPatient']->token_No;?></span></p>
                         </div>
                         <hr />
                         <div class="session-subhead"><b>On-going Appointment</b></div>
                         <div class="appoinment-details">
                             <div class="appoinment-number">
                                 <span class="num-head">NO.</span><br>
-                                <span class="num-main">12</span>
+                                <span class="num-main"><?php echo $data['ongoingPatient']->token_No;?></span>
                             </div>
                             <div class="patient-data">
                                 <div>
-                                    <b>Patient Name:  </b>Dananjaya de Silva(#1233458)
+                                    <b>Patient Name:  </b><?php echo $data['ongoingPatient']->display_Name;?> (#<?php echo $data['ongoingPatient']->patient_ID;?>)
                                 </div>
                                 <div class="btn-box">
                                     <button>VIEW PROFILE</button>
-                                    <button>ADD PRESCRIPTION</button>
+                                    <a href="<?php echo URLROOT;?>/doctor/addPrescription/<?php echo $data['ongoingPatient']->patient_ID;?>"><button>ADD PRESCRIPTION</button></a>
                                 </div>
                             </div>
-                        </div>
+                        </div><?php }else{?>
+                            <div class="session-subhead"><center>No on-going Appointment</center></div>
+                            <?php }?>
                     </div>
                 </div>
             </div>

@@ -263,6 +263,14 @@ class M_receptionist
     }
   }
 
+  public function getAppointments()
+  {
+    $this->db->query('SELECT * FROM appointments');
+    $results = $this->db->resultSet();
+    return $results;
+
+  }
+
     public function getuserbyID($id, $table)
     {
         $sql = "SELECT e.*, d.*
@@ -276,9 +284,6 @@ class M_receptionist
 
     return $row;
   }
-
-  
-
 
     public function confirm_appointment($data)
     {
@@ -311,4 +316,82 @@ class M_receptionist
         $this->db->execute();
 
     }
+
+  public function updateAccInfo2($username)
+  {
+    $this->db->query('UPDATE users SET username = :username 
+        WHERE user_ID = :receptionistID');
+    $this->db->bind(':username', $username);
+    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
+
+    $this->db->execute();
+  }
+
+  public function resetPassword($newpassword)
+  {
+    $this->db->query('UPDATE users SET password = :newpassword 
+        WHERE user_ID = :receptionistID');
+    $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
+    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
+    $this->db->execute();
+  }
+
+  public function receptionistDetails()
+  {
+    $this->db->query('SELECT * FROM receptionists WHERE receptionist_ID = :receptionistID');
+    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
+    $result = $this->db->single();
+    return $result;
+  }
+
+  public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $dep, $qual)
+  {
+    $this->db->query('UPDATE receptionists SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
+            home_Address = :haddress, NIC = :nic, contact_Number = :cno, department = :dep, qualifications = :qual
+            WHERE receptionist_ID = :receptionistID');
+
+    $this->db->bind(':fname', $fname);
+    $this->db->bind(':lname', $lname);
+    $this->db->bind(':dname', $dname);
+    $this->db->bind(':haddress', $haddress);
+    $this->db->bind(':nic', $nic);
+    $this->db->bind(':cno', $cno);
+    $this->db->bind(':dep', $dep);
+    $this->db->bind(':qual', $qual);
+    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
+
+    $this->db->execute();
+  }
+
+  public function find_user_by_id($user_ID)
+  {
+    $this->db->query('SELECT * FROM users WHERE user_ID = :user_ID');
+    $this->db->bind(':user_ID', $user_ID);
+    $result = $this->db->single();
+    return $result;
+  }
+
+  public function manage2FA($toggleState, $userID)
+  {
+    $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_ID = :userID');
+    $this->db->bind(':TFA', $toggleState);
+    $this->db->bind(':userID', $userID);
+    $this->db->execute();
+  }
+
+  public function updateProfilePicture($filename, $userID)
+  {
+    try {
+      $this->db->query('UPDATE users SET profile_photo = :profile_picture WHERE user_ID = :user_id');
+      $this->db->bind(':profile_picture', $filename);
+      $this->db->bind(':user_id', $userID);
+      $this->db->execute();
+      return true;
+    } catch (PDOException $e) {
+      error_log("Database error: " . $e->getMessage());
+      return false;
+    }
+  }
+
+
   }

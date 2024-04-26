@@ -35,13 +35,14 @@
                   <p class="description">Report #<?php echo $report->report_ID; ?>
                   </p>
                 </div>
+                <div class = "doctor">
                 <p>Referred by Dr.
                   <?php echo $report->first_Name; ?>
                   <?php echo $report->last_Name; ?>
-                </p>
-                <p>Issued on:
-                  <?php echo $report->date_of_report; ?>
-                </p>
+                </p></div>
+                <div class = "date">
+                <p>Issued on: <?php echo date('Y-m-d', strtotime($report->date_of_report)); ?></p>
+                </p></div>
 
                 <div class = "imgclass">
                 <?php if ($report->downloads <= 5): ?>

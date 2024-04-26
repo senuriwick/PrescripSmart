@@ -696,8 +696,6 @@ class M_admin
       } 
 
     
-  
-
   public function adminInfo()
   {
     $this->db->query('SELECT * FROM users WHERE user_ID = :nurseID');

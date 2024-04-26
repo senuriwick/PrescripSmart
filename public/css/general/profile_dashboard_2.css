@@ -136,7 +136,7 @@ body {
     font-size: 12px;
 }
 
-.content .main .patientInfoContainer .inquiriesDiv button {
+.content .main .patientInfoContainer .inquiriesDiv .save {
     align-items: center;
     background-color: grey;
     border-color: grey;
@@ -248,4 +248,42 @@ body {
     font-size: 2.2vh;
     margin-top: 0vh;
     padding-top: 0;
+}
+
+.inquiriesDiv img#signature-preview {
+    margin-top: 2vh;
+    min-width: 200px;
+    min-height: 150px;
+}
+
+.input-group input[type="file"] {
+    margin-top: 10px; 
+    padding: 10px; 
+    background-color: grey;
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+}
+
+.input-group input[type="file"]:hover {
+    background-color: #0050c4; 
+}
+
+.input-group input[type="file"]::file-selector-button {
+    display: none; 
+}
+
+.parallel .input-group .verify {
+    background-color: red; 
+    color: #FFFFFF; 
+    border: none;
+    border-radius: 5px; 
+    padding: 8px 16px; 
+    font-size: 14px;
+    font-weight: bold;
+    cursor: none;
+    margin-top: 20px;
 }

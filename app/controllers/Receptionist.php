@@ -744,10 +744,10 @@
       $this->view('receptionist/account_information' ,$data);
     }
 
-    public function security()
-    {
-      $this->view('receptionist/security');
-    }
+    // public function security()
+    // {
+    //   $this->view('receptionist/security');
+    // }
 
     public function personal_info()
     {
@@ -1257,6 +1257,164 @@
 
             header("Location: /prescripsmart/patient/account_information");
             exit();
+        }
+    }
+
+    public function account_information()
+    {
+        $receptionist = $this->repModel->receptionistInfo();
+        $data = [
+            'receptionist' => $receptionist
+        ];
+        $this->view('receptionist/account_information', $data);
+    }
+
+    public function accountInfoUpdaterecp()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["username"];
+            $this->repModel->updateAccInfo2($username);
+
+            header("Location: /prescripsmart/receptionist/account_information");
+            exit();
+        }
+    }
+
+    public function checkPassword()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $enteredPassword = $_POST["password"];
+            $databasePasswordHash = $_SESSION['USER_DATA']->password;
+
+            if (password_verify($enteredPassword, $databasePasswordHash)) {
+                echo json_encode(array("match" => true));
+            } else {
+                echo json_encode(array("match" => false));
+            }
+        }
+    }
+    public function passwordReset()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $newpassword = $_POST["newpassword"];
+            $_SESSION['USER_DATA']->password = password_hash($newpassword, PASSWORD_BCRYPT);
+            $this->repModel->resetPassword($newpassword);
+
+            header("Location: /prescripsmart/receptionist/account_information");
+            exit();
+        }
+    }
+
+    public function personal_information()
+    {
+        $receptionist = $this->repModel->receptionistDetails();
+        $user = $this->repModel->receptionistInfo();
+        $data = [
+            'receptionist' => $receptionist,
+            'user' => $user
+        ];
+        $this->view('receptionist/personal_information', $data);
+    }
+
+    public function personalInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $dname = $_POST["dname"];
+            $haddress = $_POST["haddress"];
+            $nic = $_POST["nic"];
+            $cno = $_POST["cno"];
+            $dep = $_POST["dep"];
+            $qual = $_POST["qual"];
+
+            $this->repModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno,$dep, $qual);
+
+            header("Location: /prescripsmart/receptionist/personal_information");
+            exit();
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+    }
+
+    public function security()
+    {
+        $userID = $_SESSION['USER_DATA']->user_ID;
+        $user = $this->repModel->find_user_by_id($userID);
+        $data = [
+            'user' => $user
+        ];
+        $this->view('receptionist/security', $data);
+    }
+
+    public function toggle2FA()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['toggle_state'])) {
+                $toggleState = $_POST['toggle_state'];
+                $userID = $_POST['userID'];
+
+                if ($toggleState == 'on') {
+                    $this->repModel->manage2FA($toggleState, $userID);
+                } else if ($toggleState == 'off') {
+                    $this->repModel->manage2FA($toggleState, $userID);
+                }
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+        }
+
+    }
+
+    public function updateProfilePicture()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+            $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/profile_images/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+            // Check file size
+            // if ($_FILES["image"]["size"] > 500000) {
+            //     echo "Sorry, your file is too large.";
+            //     $uploadOk = 0;
+            // }
+
+            //Allow only certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+
+
+            if ($uploadOk == 0) {
+                // echo "Sorry, your file was not uploaded.";
+            } else {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+
+                    $image = basename($_FILES["image"]["name"]);
+
+                    $userID = $_SESSION['USER_DATA']->user_ID;
+                    $result = $this->repModel->updateProfilePicture($image, $userID);
+                    $_SESSION['USER_DATA']->profile_photo = $image;
+
+                    if ($result) {
+                        echo json_encode(array("success" => true));
+                    } else {
+                        echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
+                    }
+                } else {
+                    header("Location: /prescripsmart/general/error_page");
+                }
+            }
         }
     }
 

@@ -4,14 +4,30 @@ class Doctor extends Controller{
     private $dpModel;
     public function __construct(){
         $this->dpModel = $this->model('M_Doctor');
+
+        // if(!isLoggedIn())
+        // {
+        //     redirect('/general/home');
+        // }
+        
     }
     public function index(){
         $this->view('doctor/patients');
     }
     public function patients(){
-        $patientsDetails = $this->dpModel->getPatientsDetails();
+        $doctorid = $_SESSION['USER_DATA']->user_ID;
+        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+        if($ongoingsession){
+            $ongoingsessionid = $ongoingsession->session_ID;
+            $patientsDetails = $this->dpModel->getPatientsDetails($ongoingsessionid);
+            
+        }else{
+            $patientsDetails = '';
+            $ongoingsession = '';
+        }
         $data = [
-            'patientsData' => $patientsDetails
+            'patientsData' => $patientsDetails,
+            'ongoingSession' =>$ongoingsession
         ];
         $this->view('doctor/patients',$data);
     }
@@ -34,16 +50,21 @@ class Doctor extends Controller{
             $medications = $_POST['medications'];
             $remarks = $_POST['remarks'];
             $patient_id = $_POST['patientId'];
-            $this->dpModel->addDiagnosis($patient_id, $diagnosis);
+            $doctorid = $_SESSION['USER_DATA']->user_ID;
+            // $appointmentid = $this->dpModel->getAppointmentId();
+            $sessionId = $this->dpModel->getOngonigSession($doctorid)->session_ID;
+            $appointment = $this->dpModel->getpatientAppointmentId($sessionId,$patient_id);
+            $this->dpModel->addDiagnosis($patient_id, $diagnosis,$doctorid,$appointment->appointment_ID);
             // Process each medication and its corresponding remark
             for ($i = 0; $i < count($medications); $i++) {
                 $medication = $medications[$i];
                 $remark = $remarks[$i];
                 $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
+                $medicationId = $this->dpModel->getMedicationId($medication);
 
                 // Insert into database
                 // Your DB insertion code here
-                $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID, $medication, $remark);
+                $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID,$medicationId->medicine_ID, $medication, $remark);
             }
 
             if($_POST['tests']){
@@ -167,7 +188,22 @@ class Doctor extends Controller{
     }
 
     public function viewOngoingSession(){
-        $this->view('doctor/on-going_session');
+
+        $doctorid = $_SESSION['USER_DATA']->user_ID;
+        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+        if($ongoingsession){
+            $ongoingsessionid = $ongoingsession->session_ID;
+            $ongoingPatient = $this->dpModel->getOngoingPatient($ongoingsessionid);
+            
+        }else{
+            $ongoingPatient = '';
+        }
+        $data = [
+            'ongoingPatient' => $ongoingPatient,
+            'ongoingSession' => $ongoingsession
+        ];
+        $this->view('doctor/on-going_session',$data);
+        
     }
 
     public function Profile(){
@@ -230,10 +266,39 @@ class Doctor extends Controller{
 
             $this->dpModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
 
+            if ($_FILES["sign"]["error"] === UPLOAD_ERR_OK) {
+                $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/signatures/";
+                $target_file = $target_dir . basename($_FILES["sign"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif"
+                ) {
+                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                    $uploadOk = 0;
+                }
+
+                if ($uploadOk == 0) {
+                    // echo "Sorry, your file was not uploaded.";
+                } else {
+                    if (move_uploaded_file($_FILES["sign"]["tmp_name"], $target_file)) {
+                        echo "The file " . htmlspecialchars(basename($_FILES["sign"]["name"])) . " has been uploaded.";
+                        $image = basename($_FILES["sign"]["name"]);
+                        $userID = $_SESSION['USER_DATA']->user_ID;
+                        $this->dpModel->updateSign($image, $userID);
+                    } else {
+                        header("Location: /prescripsmart/general/error_page");
+                        exit();
+                    }
+                }
+            }
             header("Location: /prescripsmart/doctor/personal_information");
             exit();
         } else {
             header("Location: /prescripsmart/general/error_page");
+            exit();
         }
     }
 

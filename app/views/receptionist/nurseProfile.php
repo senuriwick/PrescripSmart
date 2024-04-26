@@ -19,108 +19,11 @@
         <div class="content">
                 <?php include 'side_navigation_panel.php'; ?>
 
-                <div class="main">
-                        <?php include 'top_navigation_panel.php'; ?>
-
-                        <div class="patientInfoContainer">
-                                <?php include 'information_container.php'; ?>
-                                <?php include 'in_page_navigation.php'; ?>
-
-
-                                <div class="bar1">
-                                        <div class="search">
-                                                <div class="back" style="display: flex;">
-                                                        <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg">
-                                                        <h1 style="font-size: 3.3vh;">Search Nurse</h1>
-                                                </div>
-                                        </div>
-
-                                        <div class="bar2">
-                                                <div class="div-specifier">
-                                                        <div class="user-details">
-                                                                <img class="person-circle"
-                                                                        src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png">
-                                                                <h1><strong><?php echo ucwords($data['doctor']->first_name) ?>
-                                                                                <?php echo ucwords($data['doctor']->last_name) ?></strong>
-                                                                </h1>
-                                                        </div>
-                                                        <h3>Employee ID #<?php echo $data['doctor']->emp_id ?></h3>
-                                                        <h4>Personal information</h4>
-                                                        <hr style="margin-top: -1.5vh; color:#445172BF;" width="85%">
-                                                </div>
-
-                                                <div class="row1">
-                                                        <div class="firstname">
-                                                                <h2>First Name</h2>
-                                                                <input type="text"
-                                                                        value="<?php echo ucwords($data['doctor']->first_name) ?>">
-                                                        </div>
-                                                        <div class="lastname">
-                                                                <h2>Last Name</h2>
-                                                                <input type="text"
-                                                                        value="<?php echo ucwords($data['doctor']->last_name) ?>">
-                                                        </div>
-                                                </div>
-
-                                                <div class="row2">
-                                                        <div class="firstname">
-                                                                <h2>Display Name</h2>
-                                                                <input type="text"
-                                                                        value="<?php echo ucwords($data['doctor']->display_name) ?>">
-                                                        </div>
-
-                                                        <div class="firstname">
-                                                                <h2>Home Address</h2>
-                                                                <input type="text"
-                                                                        placeholder="Enter Your Home Address">
-                                                        </div>
-                                                </div>
-
-                                                <div class="row1">
-                                                        <div class="firstname">
-                                                                <h2>National Identity Card Number</h2>
-                                                                <input type="text" placeholder="Enter Your NIC Number">
-                                                        </div>
-                                                        <div class="lastname">
-                                                                <h2>Contact Number</h2>
-                                                                <input type="text"
-                                                                        value="<?php echo $data['doctor']->phone_number ?>">
-                                                        </div>
-                                                </div>
-
-                                                <div class="row1">
-                                                        <div class="firstname">
-                                                                <h2>Nurse Registration No.</h2>
-                                                                <input type="text"
-                                                                        placeholder="Enter Your Registration Number">
-                                                        </div>
-                                                        <div class="lastname">
-                                                                <h2>Qualifications</h2>
-                                                                <input type="text"
-                                                                        value="<?php echo $data['doctor']->Qualification ?>">
-                                                        </div>
-                                                </div>
-
-                                                <div class="row1">
-                                                        <div class="firstname">
-                                                                <h2>Department</h2>
-                                                                <input type="text" placeholder="Enter Your Department">
-                                                        </div>
-                                                        <div class="lastname">
-                                                                <h2>Specialization(If any)</h2>
-                                                                <input type="text"
-                                                                        value="<?php echo ucwords($data['doctor']->Specialization) ?>">
-                                                        </div>
-                                                </div>
-
-                                                <div class="btn">
-                                                        <button type="submit" onclick="openPopup()"><b>Save
-                                                                        Changes</b></button>
-                                                </div>
-
-                                        </div>
-                                </div>
-                        </div>
+    <div class="bar1" >
+        <div class="search">
+                <div class="back" style="display: flex;">                    
+                    <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >                   
+                    <h1 style="font-size: 3.3vh;">Search Nurse</h1>
                 </div>
         </div>
 
@@ -184,12 +87,6 @@
                 <div class="firstname">
                         <h2>Department</h2>
                         <input type="text" placeholder="Enter Your Department">
-                </div>
-                <div class="lastname">
-                        <h2>Specialization(If any)</h2>
-                        <input type="text" value="<?php echo ucwords($data['doctor']->Specialization) ?>">
-                </div> 
-            </div>
 
             <div class="btn">
                 <button type="submit" onclick="openPopup()"><b>Save Changes</b></button>     
