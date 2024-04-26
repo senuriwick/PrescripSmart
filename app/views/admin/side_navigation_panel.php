@@ -27,7 +27,7 @@
                 <a href="<?php echo URLROOT; ?>/admin/searchPatient" id="patients">Patients</a>
             </div>
             <div class="menu-item doctors">
-                <img src="<?php echo URLROOT ?>/public/img/admin/doctor_icon.png" alt="icon">
+                <img src="<?php echo URLROOT ?>/public/img/admin/doctor_icon2.png" alt="icon">
                 <a href="<?php echo URLROOT; ?>/admin/searchDoctor" id="doctors">Doctors</a>
             </div>
             <div class="menu-item nurses">

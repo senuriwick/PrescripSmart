@@ -20,7 +20,7 @@
         </div>
 
         <div class="manageDiv">
-            <p class="mainOptions">Health Supervisor Tools</p>
+            <p class="mainOptions">Supervisor Tools</p>
 
             <div class="menu-item inquiries">
                 <img src="<?php echo URLROOT; ?>/public/img/healthSupervisor/inquiries_icon2.png" alt="icon">
@@ -32,7 +32,7 @@
             </div>
             <div class="menu-item profile">
                 <img src="<?php echo URLROOT ?>/public/img/patient/account_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/pharmacist/profile" id="profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/healthSupervisor/profile" id="profile">Profile</a>
             </div>
         </div>
 

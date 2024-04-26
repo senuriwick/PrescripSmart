@@ -1,3 +1,8 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
 .menu {
     display: flex;
     padding-bottom: 0.1vh;
@@ -183,5 +188,15 @@ p a:active{
 .patients{
   background-color: rgba(68, 81, 114, 1);
   position: relative;
+}
+
+.patients::before {
+  background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
 }
 

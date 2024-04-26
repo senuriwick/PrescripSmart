@@ -16,50 +16,15 @@
 </head>
 
 <body>
-    <div class="content">
-        <div class="sideMenu">
-        <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+<div class="content">
+    <?php include 'side_navigation_panel.php'; ?>
 
-            <div class="manageDiv">
-                <p class="mainOptions">Health Supervisor Tools</p>
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
 
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">Inquiries</a>
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
-
-        </div>
-        <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT?>/public/img/healthSupervisor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
-            </div>
-            <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT?>/public/img/healthSupervisor/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name">HealthSupervisor Name</p>
-                            <p class="role">HealthSupervisor</p>
-                        </div>
-                    </div>
-
-                    <div class="menu">
-                        <p style="color:black">Inquiries</p>
-                        <p><a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a></p>
-                    </div>
-                    <hr class="divider">
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
                     <div class="patientFile">
                         <div class="patient-div">
                             <a href="<?php echo URLROOT ?>/HealthSupervisor/dashboard">
@@ -102,24 +67,19 @@
                     </div>
 
                     <div id="popup" class="popup">
-                    <div class="popup-content">
-                        <!-- Close button for the popup -->
-                        <span class="close" onclick="closePopup()">&times;</span>
-                        <!-- Email form -->
-                        <form action="<?php echo URLROOT ?>/healthSupervisor/sendEmail" method="post">
-                        <input type="hidden" name="inquiry_id" value="<?php echo $inquiry->inquiry_ID; ?>">
-                        <input type="hidden" name="inquiry_email" value="<?php echo $inquiry->email; ?>">
-                        <label for="message">Message:</label><br>
-                        <textarea id="message" name="message_content" rows="4" cols="50" required></textarea>
-                        <br><br>
-                        <input class="mark" type="submit" value="Send Email">
-                    </form>
-                    </div>
-
-                       
-                    
-
-
+                        <div class="popup-content">
+                            <!-- Close button for the popup -->
+                            <span class="close" onclick="closePopup()">&times;</span>
+                            <!-- Email form -->
+                            <form action="<?php echo URLROOT ?>/healthSupervisor/sendEmail" method="post">
+                            <input type="hidden" name="inquiry_id" value="<?php echo $inquiry->inquiry_ID; ?>">
+                            <input type="hidden" name="inquiry_email" value="<?php echo $inquiry->email; ?>">
+                            <label for="message">Message:</label><br>
+                            <textarea id="message" name="message_content" rows="4" cols="50" required></textarea>
+                            <br><br>
+                            <input class="mark" type="submit" value="Send Email">
+                            </form>
+                        </div>
                     </div>
 
                 </div>

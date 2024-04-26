@@ -115,6 +115,7 @@
                 $inquiry_email = $_POST["inquiry_email"];
                 $message_content = $_POST["message_content"];
                 $result = $this->healthSupervisorModel->markAsRead($inquiry_id);
+                $this->healthSupervisorModel->storeReply($inquiry_id, $message_content);
 
                 require '../PHPMailerAutoload.php';
 
@@ -146,7 +147,7 @@
         }
 
         public function profile(){
-            $user = $_SESSION['user'];
+            $user = $_SESSION['USER_DATA'];
             $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
             $data = [
@@ -157,63 +158,60 @@
             $this->view('healthSupervisor/healthSupervisor_profile', $data);
         }
 
-        public function personal(){
-            $user = $_SESSION['user'];
-            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
+        public function personal_information()
+    {
+        $healthSupervisor = $this->healthSupervisorModel->healthSupervisorDetails();
+        $user = $this->healthSupervisorModel->healthSupervisorInfo();
+        $data = [
+            'healthSupervisor' => $healthSupervisor,
+            'user' => $user
+        ];
+        $this->view('healthSupervisor/healthSupervisor_personalInfo', $data);
+    }
 
-            $data = [
-                'user' => $user,
-                'healthSupervisor' => $healthSupervisor
-            ];
-            $this->view('healthSupervisor/healthSupervisor_personalInfo',$data);
-        }
 
         // public function security(){
         //     $this->view('healthSupervisor/healthSupervisor_2factor');
         // }
 
-        public function security(){
-            $user = $_SESSION['user'];
-            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
+        public function security()
+    {
+        $userID = $_SESSION['USER_DATA']->user_ID;
+        $user = $this->healthSupervisorModel->getUserDetails($userID);
+        $data = [
+            'user' => $user
+        ];
+        $this->view('healthSupervisor/healthSupervisor_2factor', $data);
+    }
 
-            $data = [
-                'user' => $user,
-                'healthSupervisor' => $healthSupervisor
+    public function toggle2FA()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST['toggle_state'])) {
+                $toggleState = $_POST['toggle_state'];
+                $userID = $_POST['userID'];
 
-            ];
-            $this->view('healthSupervisor/healthSupervisor_2factor', $data);
-        }
-
-        public function toggle2FA()
-        {
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST['toggle_state'])) {
-                    $toggleState = $_POST['toggle_state'];
-                    $userID = $_POST['userID'];
-            
-                    if ($toggleState == 'ON') { 
-                        $this->healthSupervisorModel->manage2FA($toggleState, $userID);
-                    } else if ($toggleState == 'OFF') {
-                        $this->healthSupervisorModel->manage2FA($toggleState, $userID);
-                    }
-                    echo json_encode(['success' => true]);
-                } else {
-                    echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
+                if ($toggleState == 'on') {
+                    $this->healthSupervisorModel->manage2FA($toggleState, $userID);
+                } else if ($toggleState == 'off') {
+                    $this->healthSupervisorModel->manage2FA($toggleState, $userID);
                 }
+                echo json_encode(['success' => true]);
             } else {
-                echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+                echo json_encode(['success' => false, 'message' => 'Toggle state not provided']);
             }
-
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
         }
+
+    }
+
 
         public function accountInfoUpdate()
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST["username"];
-<<<<<<< HEAD
-
                 $this->healthSupervisorModel->updateAccInfo($username);
-
                 redirect("/healthSupervisor/profile");
                 exit();
             }
@@ -225,24 +223,13 @@
                 $newpassword = $_POST["newpassword"];
     
                 $this->healthSupervisorModel->resetPassword($newpassword);
-=======
-                $this->healthSupervisorModel->updateAccInfo($username);
->>>>>>> 8518232331a30ce64766164a40cd1a3daadc0254
     
                 redirect('/healthSupervisor/profile');
                 exit();
             }
         }
-        public function passwordReset()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $newpassword = $_POST["newpassword"];
-            $this->healthSupervisorModel->resetPassword($newpassword);
 
-            redirect('/healthSupervisor/profile');
-            exit();
-        }
-    }
+
 
     public function checkPassword()
     {
@@ -258,25 +245,77 @@
         }
     }
 
-        public function personalInfoUpdate()
-        {
-            $user_id = $_SESSION['data']->user_id;
+    public function personalInfoUpdate()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $dname = $_POST["dname"];
+            $haddress = $_POST["haddress"];
+            $nic = $_POST["nic"];
+            $cno = $_POST["cno"];
+            $regno = $_POST["regno"];
+            $qual = $_POST["qual"];
+            $spec = $_POST["spec"];
+            $dep = $_POST["dep"];
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $fname = $_POST["fName"];
-                $lname = $_POST["lName"];
-                $dname = $_POST["displayName"];
-                $address = $_POST["address"];
-                $nic = $_POST["nic"];
-                $contact = $_POST["contact"];
-                $regNo = $_POST["regNo"];
-                $qualification = $_POST["qualification"];
-    
-                $this->healthSupervisorModel->updateInfo($user_id, $fname, $lname, $dname, $address, $nic, $contact, $regNo,$qualification);
-                redirect("/healthSupervisor/personal");
-                exit();
+            $this->healthSupervisorModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
+
+            redirect('/healthSupervisor/personal_information');
+            exit();
+        } else {
+            redirect('/general/error_page');
+        }
+    }
+
+    public function updateProfilePicture()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+            $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/profile_images/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+            // Check file size
+            // if ($_FILES["image"]["size"] > 500000) {
+            //     echo "Sorry, your file is too large.";
+            //     $uploadOk = 0;
+            // }
+
+            //Allow only certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+
+
+            if ($uploadOk == 0) {
+                // echo "Sorry, your file was not uploaded.";
+            } else {
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+
+                    $image = basename($_FILES["image"]["name"]);
+
+                    $userID = $_SESSION['USER_DATA']->user_ID;
+                    $result = $this->pharmacistModel->updateProfilePicture($image, $userID);
+                    $_SESSION['USER_DATA']->profile_photo = $image;
+
+                    if ($result) {
+                        echo json_encode(array("success" => true));
+                    } else {
+                        echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
+                    }
+                } else {
+                    header("Location: /prescripsmart/general/error_page");
+                }
             }
         }
+    }
 
 
     }

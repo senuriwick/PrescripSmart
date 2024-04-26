@@ -1,38 +1,12 @@
-.menu {
-  margin-top: 2vh;
-  display: flex;
-  border-bottom: solid;
-  padding-bottom: 0.1vh;
-  border-width: 0.1vh;
-  border-color: rgba(164, 174, 199, 1);
-}
-
-.menu p {
-  margin-right: 4vh;
-  font-size: 2vh;
-  margin-bottom: 1vh;
-  color: rgba(164, 174, 199, 1);
-}
-
-.menu p a{
-  text-decoration: none;
-  color: rgba(164, 174, 199, 1);
-
-}
-
-p a:active{
-  color: black;
-}
-
 .patientSearch {
-  margin-top: 2vh;
+  margin-top: 4vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 10px;
   padding: 1vh 3vh 2vh;
 }
 
 .patientSearch h1 {
-  font-size: 3vh;
+  font-size: 24px;
   font-weight: bold;
   color: rgba(68, 81, 114, 1);
 }
@@ -105,42 +79,42 @@ display: flex;
 }
 
 .patient-test-data{
-margin-top: 2vh;
+margin-top: 4vh;
 background-color: rgba(239, 242, 251, 1);
 border-radius: 10px;
 padding: 1vh 3vh 2vh;
 }
 
 .patient-test-data h1{
-font-size: 3vh;
+font-size: 24px;
 color: #445172;
 }
 
-.patient-test-data .patientInfo{
+.patient-test-data .patientInfo2{
 display: flex;
 justify-content: left;
 align-items: center;
 }
 
-.patientInfo img{
+.patientInfo2 img{
 height: 5vh;
 padding: 1.75vh 1.7vh 1.7vh 1.7vh;
 }
 
 
-.patientInfo .infoDetail .name{
+.patientInfo2 .infoDetail .name{
 font-size: 2.5vb;
 font-weight: bold;
 margin: 0%;
 }
 
-.patientInfo .infoDetail .id{
+.patientInfo2 .infoDetail .id{
 font-size: 2vb;
 color: #0069FF;
 margin: 0%;
 }
 
-.patientInfo .infoDetail .age{
+.patientInfo2 .infoDetail .age{
 font-size: 1.7vb;
 color: #445172BF;
 margin: 0%;
@@ -234,5 +208,57 @@ background-color: #397A49;
 border: none;
 cursor: pointer;
 width: inherit;
+}
 
+body {
+  font-family: inter;
+  margin: 0;
+}
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 3%;
+  margin-left: 240px;
+}
+
+.patientInfoContainer {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
+}
+
+.patients {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.patients::before {
+  background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
+}
+
+.menu #patients {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
+}
+
+.menu #patients::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
 }

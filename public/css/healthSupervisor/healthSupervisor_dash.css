@@ -1,3 +1,8 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
 .menu {
     display: flex;
     padding-bottom: 0.1vh;
@@ -32,13 +37,14 @@ p a:active{
   margin-left: 0;
   color:rgba(164, 174, 199, 1);
 }
-          .ash-box {
-              width: 200px;
-              height: 200px;
-              background-color: #b2beb5; /* Ash color */
-              border: 1px solid #666; /* Optional: Add a border */
-            }
-            
+
+.ash-box {
+    width: 200px;
+    height: 200px;
+    background-color: #b2beb5; /* Ash color */
+    border: 1px solid #666; /* Optional: Add a border */
+  }
+  
 .patientFile {    
   background-color: rgba(239, 242, 251, 1);
   padding: 110px 1.5vw;
@@ -49,39 +55,39 @@ p a:active{
   margin-top:20px;
 }
 
-  .patientFile h2{
-    color: rgba(68, 81, 114, 1);
-    margin-top: -100px;
-    padding: 0;
-  }
+.patientFile h2{
+  color: rgba(68, 81, 114, 1);
+  margin-top: -100px;
+  padding: 0;
+}
   
-  .inquiry{
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 50px;
-    margin-bottom: 10px;
-    align-items: center;
-  }
+.inquiry{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 50px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.inquiry button {
+  border-style: none;
+  border-radius: 8px;
+  background-color: green;
+  color: white;
+  height: 28px;
+  width: 88px;    
+}
   
-  .inquiry button {
-    border-style: none;
-    border-radius: 8px;
-    background-color: green;
-    color: white;
-    height: 28px;
-    width: 88px;    
-  }
-  
-  .inquiry button:hover {
-    background-color: rgb(21, 185, 24);
-    cursor: pointer;
-  }
+.inquiry button:hover {
+  background-color: rgb(21, 185, 24);
+  cursor: pointer;
+}
   
 .inquiry #idNO {
-  margin-left: -250px;
+  margin-left: -181px;
 }
 
 
@@ -91,20 +97,24 @@ p a:active{
     margin-right: 10px; /* Adjust the margin to control the spacing */
 }
   
-  .inquiry p{
-    color: rgba(68, 81, 114, 1);
-    /* font-size: 1.1rem; */
-    width: 33%;
-  }
+.inquiry p{
+  color: rgba(68, 81, 114, 1);
+  /* font-size: 1.1rem; */
+  width: 33%;
+}
   
-  #idNO{
-    color:rgb(5, 83, 239);
-  }
+#idNO{
+  color:rgb(5, 83, 239);
+}
 
   
 .pagination {
-  margin-top: 4vh;
+  margin-top: 3vh;
   text-align: center;
+  min-width: 300px;
+  position:absolute;
+  bottom:30px;
+  left:350px;
 }
 
 .pagination a {
@@ -166,5 +176,15 @@ p a:active{
 .inquiries{
   background-color: rgba(68, 81, 114, 1);
   position: relative;
+}
+
+.inquiries::before {
+  background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
 }
 
