@@ -88,7 +88,7 @@
                                 <?php if ($test->remarks!=""){?><p class="rest-data">Remarks : <?php echo $test->remarks;}?></p>
                             </div>
                             <div method="POST" class="buttons">
-                                <button  style="background-color:#397A49;" value="<?php echo $test->report_ID;?>"> Upload Report</button><?php if($test->report!=""){?><i id="delete" value="<?php echo $test->report_ID;?>" class="fa-regular fa-trash-can"></i><?php } ?>
+                                <button  style="background-color:#397A49;" value="<?php echo $test->report_ID;?>"> Upload Report</button>
                                 <button  style="background-color: #0069FF;" value="<?php echo $test->report_ID;?>">Mark As Done</button>
                             </div>
                             <br>
@@ -121,8 +121,8 @@
 
                 const buttons = testbox.querySelector(".buttons");
                 const uploadbutton = buttons.children[0];
-                const markbutton = buttons.children[2];
-                const deleteicon = buttons.children[1];
+                const markbutton = buttons.children[1];
+                // const deleteicon = buttons.children[1];
                 const uploadmodel=document.getElementById("upload-model");
                 // const patientid = uploadbutton.getAttribute("name");
                 const closebutton=uploadmodel.querySelector(".close");
@@ -170,28 +170,30 @@
                     .catch((error)=>{
                         console.log('Error:',error);
                     });
+                    window.location.reload();
+
                 
                 });
 
-                deleteicon.addEventListener("click",()=>{
-                    var report_id = markbutton.value;
-                    console.log(report_id);
+                // deleteicon.addEventListener("click",()=>{
+                //     var report_id = markbutton.value;
+                //     console.log(report_id);
 
-                    fetch('<?php echo URLROOT;?>/LabTechnician/deletereport',{
-                        method:'POST',
-                        headers: {
-                            'Content-Type':'application/x-www-form-urlencoded',
-                        },
-                        body:'reportid='+report_id
-                    })
-                    .then(response=>response.text())
-                    .then(data =>{
-                        console.log('report deleted:',data);
-                    })
-                    .catch((error)=>{
-                        console.log('Error:',error);
-                    });
-                });
+                //     fetch('<?php echo URLROOT;?>/LabTechnician/deletereport',{
+                //         method:'POST',
+                //         headers: {
+                //             'Content-Type':'application/x-www-form-urlencoded',
+                //         },
+                //         body:'reportid='+report_id
+                //     })
+                //     .then(response=>response.text())
+                //     .then(data =>{
+                //         console.log('report deleted:',data);
+                //     })
+                //     .catch((error)=>{
+                //         console.log('Error:',error);
+                //     });
+                // });
 
             });
             

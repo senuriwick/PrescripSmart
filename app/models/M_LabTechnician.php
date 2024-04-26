@@ -9,7 +9,7 @@ class M_LabTechnician {
 
     public function repotsToUploadList(){
         $this->db->query('SELECT lab_reports.* , patients.* FROM `lab_reports` LEFT JOIN `patients` 
-        ON lab_reports.patient_ID=patients.patient_ID WHERE lab_reports.report="" OR lab_reports.date_of_conduct="" GROUP BY patients.patient_ID');
+        ON lab_reports.patient_ID=patients.patient_ID WHERE lab_reports.report IS NULL OR lab_reports.date_of_conduct IS NULL GROUP BY patients.patient_ID');
         $results = $this->db->resultSet();
         return $results;
     }
