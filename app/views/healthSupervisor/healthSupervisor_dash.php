@@ -33,18 +33,18 @@
                           <p><img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt=""></p>
                           <p id="idNO"><?php echo $inquiry->inquiry_ID; ?></p>
                           <p><?php echo $inquiry->name; ?></p>
-                          <p><?php echo $inquiry->Date; ?></p>
+                          <p><?php echo $inquiry->date; ?></p>
                           <a href="<?php echo URLROOT ?>/HealthSupervisor/inquiryDetails?id=<?php echo $inquiry->inquiry_ID; ?>"><button>View</button></a>
 
                         </div>
                         <?php endforeach; ?>  
                         <div class="pagination">
-                        <?php if (isset($data['totalPages'])): ?>
-                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/healthSupervisor/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php endfor; ?>
-                        <?php endif; ?>
-                    </div>
+                            <?php if (isset($data['totalPages'])): ?>
+                                <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                                    <a href="<?php echo URLROOT; ?>/healthSupervisor/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                                <?php endfor; ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
  
                     
