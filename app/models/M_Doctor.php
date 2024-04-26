@@ -8,9 +8,10 @@ class M_Doctor
         $this->db = new Database;
     }
 
-    public function getPatientsDetails()
+    public function getPatientsDetails($sessionId)
     {
-        $this->db->query('SELECT * FROM patients');
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE appointments.session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -87,6 +88,21 @@ class M_Doctor
         return $results;
     }
 
+    public function getOngonigSession($doctorId){
+        $this->db->query('SELECT * FROM sessions WHERE (start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
+        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time)) AND doctor_ID=:doctor_id');
+        $this->db->bind(':doctor_id',$doctorId);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getOngoingPatient($sessionId){
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE appointments.status="active" AND appointments.session_ID=:session_id ORDER BY appointments.token_No ASC LIMIT 1');
+        $this->db->bind(':session_id',$sessionId);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function getonePatient($patientid)
     {
         $this->db->query('SELECT * FROM patients WHERE patient_ID=:id');
@@ -127,6 +143,14 @@ class M_Doctor
         } else {
             return false;
         }
+    }
+
+    public function getpatientAppointmentId($sessionId,$patientId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:session_id AND patient_ID=:patient_id');
+        $this->db->bind(':session_id',$sessionId);
+        $this->db->bind(':patient_id',$patientId);
+        $result = $this->db->single();
+        return $result;
     }
 
     public function addDiagnosis($patientId, $diagnosis,$doctorId,$appointmentId)

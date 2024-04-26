@@ -54,11 +54,11 @@ class LabTechnician extends Controller{
             $reportid = $_POST['reportid'];
             
             $this->dpModel->markedTest($reportid);
-            $patient = $this->dpModel->checkReport($reportid);
-            echo $patient->patient_ID;
+            // $patient = $this->dpModel->checkReport($reportid);
+            // $patientId =$patient->patient_ID;
 
-            header('Location:'.URLROOT.'/LabTechnician/reports/'.$patient->patient_ID);
-            exit;
+            // header('Location:'.URLROOT.'/LabTechnician/reports/'.$patientId);
+            // exit;
         }else{
             echo "Error";
         }

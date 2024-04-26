@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         </div><?php }else{?>
-                            <div class="session-subhead"><center>No on-going Session</center></div>
+                            <div class="session-subhead"><center>No on-going Appointment</center></div>
                             <?php }?>
                     </div>
                 </div>
