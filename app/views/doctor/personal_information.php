@@ -55,7 +55,8 @@
                 <?php $doctor = $data['doctor'] ?>
 
                 <div class="inquiriesDiv">
-                    <form action="<?php echo URLROOT; ?>/doctor/personalInfoUpdate" method="POST">
+                    <form action="<?php echo URLROOT; ?>/doctor/personalInfoUpdate" method="POST"
+                        enctype="multipart/form-data">
                         <h1>Employee ID: #<?php echo $_SESSION['USER_DATA']->user_ID ?></h1>
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">
@@ -118,9 +119,21 @@
                                         style="display: inline-block;" value="<?php echo $doctor->specialization; ?>">
                                 </div>
                             </div>
+                            <div class="parallel">
+                                <div class="input-group">
+                                    <label for="signature">Signature</label>
+                                    <?php if ($doctor->signature): ?>
+                                        <img src="<?php echo URLROOT ?>\public\uploads\signatures\<?php echo $doctor->signature ?>"
+                                            id="signature-preview">
+                                    <?php else: ?>
+                                        <button class="verify" disabled>Unverified</button>
+                                    <?php endif; ?>
+                                    <input type="file" id="sign-upload" name="sign">
+                                </div>
+                            </div>
                         </div>
 
-                        <button type="submit" id="submit">SAVE CHANGES</button>
+                        <button type="submit" id="submit" class="save">SAVE CHANGES</button>
                     </form>
                 </div>
             </div>
@@ -136,15 +149,20 @@
         document.addEventListener("DOMContentLoaded", function () {
             var inputFields = document.querySelectorAll('input[type="text"], input[type="number"]');
             var submitBtn = document.getElementById('submit');
+            var fileInput = document.getElementById('sign-upload');
+
+            function enableButton() {
+                submitBtn.style.backgroundColor = "#0069FF";
+                submitBtn.style.borderColor = "#0069FF";
+            }
 
             inputFields.forEach(function (input) {
-                input.addEventListener('input', function () {
-                    submitBtn.style.backgroundColor = "#0069FF";
-                    submitBtn.style.borderColor = "#0069FF";
-                });
+                input.addEventListener('input', enableButton);
             });
+            fileInput.addEventListener('change', enableButton);
         });
     </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var editIcon = document.getElementById('edit-icon');
