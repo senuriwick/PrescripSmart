@@ -89,8 +89,8 @@ class M_Doctor
     }
 
     public function getOngonigSession($doctorId){
-        $this->db->query('SELECT * FROM sessions WHERE (start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
-        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time)) AND doctor_ID=:doctor_id');
+        $this->db->query('SELECT * FROM sessions WHERE ((start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
+        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id');
         $this->db->bind(':doctor_id',$doctorId);
         $result = $this->db->single();
         return $result;
@@ -107,6 +107,14 @@ class M_Doctor
     {
         $this->db->query('SELECT * FROM patients WHERE patient_ID=:id');
         $this->db->bind(':id', $patientid);
+        $results = $this->db->single();
+        return $results;
+    }
+
+    public function verifyDoctor($userId)
+    {
+        $this->db->query('SELECT * FROM  doctors WHERE doctor_ID=:id');
+        $this->db->bind(':id', $userId);
         $results = $this->db->single();
         return $results;
     }
