@@ -119,7 +119,7 @@
                             </td>
 
                             <td>
-                            <a href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->emp_id ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                            <a href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->patient_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
                                 <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfilePatient/<?php echo $post->patient_id ?>">
                                     <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/receptionist/Trash.png" alt="profile-pic">
                                 </form>                                    

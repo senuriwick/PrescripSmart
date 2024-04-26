@@ -35,8 +35,10 @@
                 placeholder="Enter Health Supervisors' Name/ID here">
               <button type="search" class="searchButton"><b>SEARCH</b></button>
             </form>
+
             <hr style="margin-bottom: 3vh;">
             <div class="details">
+
               <table>
                 <tbody>
                     <?php foreach($data['healthsups'] as $post): ?>
@@ -52,32 +54,22 @@
                                 <td>
                                     <p style="margin-left: 10vh;">Employee ID #<?php echo $post->supervisor_ID;?></p>
                                 </td>
-
+              
                                 <td>
-                                <a href="<?php echo URLROOT ?>/admin/showProfileHealthsup/<?php echo $post->supervisor_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                                    <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileHealthsup/<?php echo $post->user_ID ?>">
-                                       <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                                    </form>
-                                </td>
-                            </tr>
+                                <a href="<?php echo URLROOT ?>/admin/showProfileHealthsup/<?php echo $post->supervisor_ID ?>"><button
+                                    class="profileButton"><b>View Profile</b></button> </a>
+                                <form method="post"
+                                  action="<?php echo URLROOT; ?>/admin/deleteProfileHealthsup/<?php echo $post->supervisor_ID ?>">
+                                  <input type="image" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png"
+                                    alt="profile-pic">
+                                </form>
+                              </td>
+                          </tr>
                     <?php endforeach; ?>
               </tbody>
-        </table>
-        <script>
-                      document.addEventListener("DOMContentLoaded", function () {
-                      const searchInput = document.getElementById("searchinput");//element
-
-                      <td>
-                        <a href="<?php echo URLROOT ?>/admin/showProfileHealthsup/<?php echo $post->emp_id ?>"><button
-                            class="profileButton"><b>View Profile</b></button> </a>
-                        <form method="post"
-                          action="<?php echo URLROOT; ?>/admin/deleteProfileHealthsup/<?php echo $post->healthsp_id ?>">
-                          <input type="image" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png"
-                            alt="profile-pic">
-                        </form>
-                      </td>
+            </table>
+                     
                     </tr>
-                  <?php endforeach; ?>
                 </tbody>
               </table>
               <script>
@@ -134,4 +126,4 @@
   </div>
 </body>
 
-</html>
+</html> 

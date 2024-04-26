@@ -45,17 +45,17 @@
                         <img class="person-circle" src="<?php echo URLROOT ?>/img/admin/PersonCircle.png">
                         <p class="name">
                           Mr.
-                          <?php echo ucwords($post->last_name); ?>
+                          <?php echo ucwords($post->last_Name); ?>
                         </p>
                       </td>
                       <td>
-                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->emp_id; ?></p>
+                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_ID; ?></p>
                       </td>
                       <td>
-                        <a href="<?php echo URLROOT ?>/admin/showProfileDoc/<?php echo $post->emp_id ?>"><button
+                        <a href="<?php echo URLROOT ?>/admin/showProfileDoc/<?php echo $post->doctor_ID ?>"><button
                             class="profileButton"><b>View Profile</b></button> </a>
                         <form method="post"
-                          action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->emp_id ?>">
+                          action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->doctor_ID ?>">
                           <input type="image" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png"
                             onclick="confirmDelete()">
                         </form>
@@ -66,7 +66,6 @@
               </table>
 
 
-              <hr style="margin-bottom: 3vh;">
               <div class="details">
                     <table>
                       <tbody>
@@ -84,7 +83,7 @@
                               </td>
                               <td>
                                     <a href="<?php echo URLROOT ?>/admin/showProfileDoc/<?php echo $post->doctor_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                                     <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->emp_id ?>">  
+                                     <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->user_ID ?>">  
                                     <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" onclick="confirmDelete()">
                                     </form>
                               </td>                                                   

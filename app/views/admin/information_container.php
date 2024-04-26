@@ -16,7 +16,7 @@
     <div class="patientInfo">
 
         <div class="profile-pic-container">
-            <?php if ($_SESSION['USER_DATA']->profile_photo): ?>
+            <?php if ($_SESSION['profile_photo']): ?>
                 <img src="<?php echo URLROOT ?>\public\uploads\profile_images\<?php echo $_SESSION['USER_DATA']->profile_photo ?>"
                     alt="profile-pic" id="profile-pic">
             <?php else: ?>
@@ -26,11 +26,11 @@
 
         <div class="patientNameDiv">
             <p class="name">
-                <?php echo $_SESSION['USER_DATA']->first_Name ?>
-                <?php echo $_SESSION['USER_DATA']->last_Name ?>
+                <?php echo ucwords( $_SESSION['first_name']); ?>
+                <?php echo ucwords( $_SESSION['last_name']); ?>
             </p>
             <p class="role">
-                <?php echo $_SESSION['USER_DATA']->role ?>
+                <?php echo $_SESSION['role']?>
             </p>
         </div>
         

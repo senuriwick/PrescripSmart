@@ -1,4 +1,7 @@
 <?php
+
+use Twilio\Rest\Client;
+
   class Receptionist extends Controller 
   {
     public $repModel;
@@ -443,7 +446,7 @@
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = $_POST["email"];
-            $user = $this->patientModel->find_user_by_email($email);
+            $user = $this->repModel->findUserByEmail($email);
             $activation_code = $this->generate_activation_code();
 
             $activation_link = "http://localhost/prescripsmart/patient/activate?email=$email&activation_code=$activation_code";
@@ -642,10 +645,7 @@
       $session_ID = $_GET['sessionID'] ?? null;
       $patient_ID = $_GET['patientID'] ?? null;
       $doctor_ID = $_GET['doctorID'] ?? null;
-      $data = [
-        'appointments'=> $posts
-      ];
-
+      
 
       if($patient_ID != null)
         {
