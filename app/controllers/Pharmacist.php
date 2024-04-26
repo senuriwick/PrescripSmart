@@ -63,25 +63,7 @@
             $this->view('pharmacist/pharmacist_dashboard', $data);
         }
 
-        public function medications($page = 1){
-
-            $user = $_SESSION['USER_DATA'];
-            $itemsPerPage = 4;
-            $offset = ($page - 1) * $itemsPerPage;
-            $medications = $this->pharmacistModel->getMedicationsPaginated($itemsPerPage, $offset);
-            $totalMedications = $this->pharmacistModel->getTotalMedicationsCount(); 
-            $totalPages = ceil($totalMedications / $itemsPerPage);
-        
-            $data = [
-                'user' => $user,
-                'medications' => $medications,
-                'totalMedications' => $totalMedications,
-                'currentPage' => $page,
-                'totalPages' => $totalPages,
-            ];
-        
-            $this->view('pharmacist/pharmacist_allMedications', $data);
-        }
+       
 
         public function searchPatientAjax(){
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
@@ -97,18 +79,6 @@
                 
         }
 
-        public function searchMedicineAjax(){
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
-                $medicineName = $_POST['search'];
-                $medications = $this->pharmacistModel->searchMedicine($medicineName);
-
-                $data = [
-                    'medications' => $medications
-                ];
-
-                $this->view('pharmacist/pharmacist_medicineAjax',$data);
-            }
-        }
         
         public function profile() {
             $user_id = $_SESSION['USER_DATA']->user_ID;
@@ -208,60 +178,7 @@
     }
 
 
-        public function insertNewMedication(){
-            if($_SERVER["REQUEST_METHOD"] == "POST"){
-                $medicationData = [
-                    'name' => $_POST['name'],
-                    'expiry_date' => $_POST['expiry'],
-                    'quantity' => $_POST['quantity'],
-                    'dosage' => $_POST['dosage'],
-                    'batch' => $_POST['batch'],
-                    'status' => $_POST['status']
-                ];
-            $result = $this->pharmacistModel->insertMedication($medicationData);
-
-            if($result){
-                redirect("/Pharmacist/medications");
-            }
-            else{
-                echo "Error: Medication could not be added. please try again";
-            }
-            }
-        }
-
-        public function markOutOfStock(){
-            if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])){
-                $medication_id = $_GET['id'];
-
-                $result = $this->pharmacistModel->markMedicationOutOfStock($medication_id);
-
-                if($result){
-                    redirect("/Pharmacist/medications");
-                }else{
-                    echo "Error:Medication could not be marked as out of stock";
-                }
-            }else{
-                echo "Invalid request or missing parameters";
-            }
-        }
-
-        public function updateMedicationQuantity(){
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['medication_id']) && isset($_POST['quantity'])) {
-                $medicationId = $_POST['medication_id'];
-                $quantity = $_POST['quantity'];
-        
-                $result = $this->pharmacistModel->updateMedicationQuantity($medicationId, $quantity);
-        
-                if($result){
-                    echo json_encode(array('success' => true, 'message' => 'Medication quantity updated successfully'));
-                } else {
-                    echo json_encode(array('success' => false, 'message' => 'Error updating medication quantity'));
-                }
-            } else {
-                echo json_encode(array('success' => false, 'message' => 'Invalid request or missing parameters'));
-            }
-        }
-
+       
         public function searchPatient($page = 1){
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
 
@@ -297,32 +214,6 @@
         }
 
 
-        public function searchMedicine($page = 1) {
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
-                $medicineName = $_POST['search'];
-                $itemsPerPage = 4;
-                $offset = ($page - 1) * $itemsPerPage;
-                $medications = $this->pharmacistModel->getSearchedMedicationsPaginated($itemsPerPage, $offset, $medicineName);
-                $totalMedications = $this->pharmacistModel->getTotalMedicationsCount();
-                $totalPages = ceil($totalMedications / $itemsPerPage);
-                
-                // Condition 2: If medicine found, display it
-                if (!empty($medications)) {
-                    $data = [
-                        'medications' => $medications,
-                        'totalMedications' => $totalMedications,
-                        'currentPage' => $page,
-                        'totalPages' => $totalPages,
-                    ];
-                    $this->view('pharmacist/pharmacist_allMedications', $data);
-                } else {
-                    // Condition 3: If medicine not found, redirect to addNewMed page
-                    redirect('/pharmacist/addNewMed');
-                    exit();
-                }
-            }
-        }
-
         
         public function security(){
             $user = $_SESSION['USER_DATA'];
@@ -354,58 +245,6 @@
 
         }
 
-        public function pharmacistMedication(){
-            $this->view('pharmacist/pharmacist_medication');
-        }
-
-        public function addNewMed(){
-            $this->view('pharmacist/pharmacist_addNewMed');
-        }
-
-        public function oneMedDetails(){
-            $this->view('pharmacist/pharmacist_oneMedDetails');
-        }
-
-        public function enterNewMed(){
-            $this->view('pharmacist/pharmacist_newMed');
-        }
-
-        // public function allPrescriptions(){
-        //     $this->view('pharmacist/pharmacist_prescription');
-        // }
-
-        // public function allPrescriptions() {
-        //     $patientId = $_GET['patient_id'];
-
-        //     $prescriptions = $this->pharmacistModel->getAllPrescriptions($patientId);
-        //     $prescriptionCount = $this->pharmacistModel->getPrescriptionCount($patientId);
-
-        //     $data = [
-        //         'prescriptions' => $prescriptions,
-        //         'prescriptionCount' => $prescriptionCount
-        //     ];
-        //     $this->view('pharmacist/pharmacist_prescription', $data);
-        // }
-
-        public function getPrescriptionDetails(){
-            $prescriptionId = $_GET['prescription_id']; // Retrieve the prescription ID from the GET parameter
-            // Now you can use $prescriptionId to fetch the specific prescription details from your model
-            $patient = $this->pharmacistModel->getPatientDetails($prescriptionId);
-            $diagnoses = $this->pharmacistModel->getDiagnosisDetails($prescriptionId);
-            $medications = $this->pharmacistModel->getMedicationDetails($prescriptionId);
-            $labtests = $this->pharmacistModel->getLabDetails($prescriptionId);
-        
-            // Then you can pass this data to your view
-            $data = [
-                'patient' => $patient,
-                'diagnoses' =>$diagnoses,
-                'medications' => $medications,
-                'labtests' => $labtests
-            ];
-        
-            $this->view('pharmacist/pharmacist_prescriptionPopup', $data);
-        }
-
         public function allPrescriptions()
     {
         $patientId = $_GET['patient_id'];
@@ -423,6 +262,33 @@
             'prescriptionDetails' => $prescriptionDetails,
         ];
         $this->view('pharmacist/pharmacist_prescription', $data);
+    }
+
+    public function prescriptionStatus($page = 1)
+    {
+        $allPrescriptions = $this->pharmacistModel->allPrescriptions();
+        $recordsPerPage = 5;
+        $totalPrescriptions = count($allPrescriptions);
+        $totalPages = ceil($totalPrescriptions / $recordsPerPage);
+        $prescriptionDetails = [];
+        
+        $offset = ($page - 1) * $recordsPerPage;
+        $prescriptions = array_slice($allPrescriptions, $offset, $recordsPerPage);
+
+        foreach ($prescriptions as $prescription) {
+            $prescriptionID = $prescription->prescription_ID;
+            $medicineData = $this->pharmacistModel->getMedicationDetails($prescriptionID);
+            $prescriptionDetails[$prescriptionID] = $medicineData;
+        }
+
+
+        $data = [
+            'prescriptions' => $prescriptions,
+            'prescriptionDetails' => $prescriptionDetails,
+            'totalPages' => $totalPages,
+            'currentPage' => $page
+        ];
+        $this->view('pharmacist/pharmacist_prescriptionStatus', $data);
     }
 
         public function updateProfilePicture()
@@ -473,7 +339,46 @@
             }
         }
     }
-        
+
+    public function updateMedicineStatus(){
+        {
+            if (isset($_POST['id']) && isset($_POST['status'])) {
+                $id = $_POST['id'];
+                $status = $_POST['status'];
+                $success = $this->pharmacistModel->markMedicationStatus($status, $id);
+    
+                if ($success) {
+                    echo json_encode(array('success' => true));
+                } else {
+                    echo json_encode(array('success' => false, 'message' => 'Failed to update appointment status'));
+                }
+            } else {
+                echo json_encode(array('success' => false, 'message' => 'Appointment ID or status not provided'));
+            }
+        } 
+    }
+
+    public function filterPrescriptions()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPrescriptions = $this->pharmacistModel->filterPrescriptions($searchQuery);
+        echo json_encode($filteredPrescriptions);
+    }
+
+    public function analysis(){
+    
+        // Call the method to fetch most commonly prescribed medications
+        $commonlyPrescribedMedications = $this->pharmacistModel->fetchCommonlyPrescribedMedications();
+    
+        // Pass the data to the view
+        $data = [
+            'commonlyPrescribedMedications' => $commonlyPrescribedMedications
+        ];
+    
+        // Load the view and pass the data to it
+        $this->view('pharmacist/pharmacist_analysis', $data);
+    }
+    
         
         
     }

@@ -26,14 +26,22 @@
                 <img src="<?php echo URLROOT; ?>/public/img/nurse/patient_icon.png" alt="icon">
                 <a href="<?php echo URLROOT; ?>/pharmacist/dashboard" id="patients">Patients</a>
             </div>
-            <div class="menu-item medications">
+            <div class="menu-item prescriptions">
                 <img src="<?php echo URLROOT ?>/public/img/pharmacist/medicine_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/pharmacist/medications" id="medications">Medications</a>
+                <a href="<?php echo URLROOT; ?>/pharmacist/prescriptionStatus" id="prescriptions">Prescriptions</a>
             </div>
-            <div class="menu-item profile">
+
+            <div class="menu-item analysis">
+                <img src="<?php echo URLROOT ?>/public/img/nurse/account_icon.png" alt="icon">
+                <a href="<?php echo URLROOT; ?>/pharmacist/analysis" id="profile">Medication Analysis</a>
+            </div>
+
+            <div class="menu-item ">
                 <img src="<?php echo URLROOT ?>/public/img/nurse/account_icon.png" alt="icon">
                 <a href="<?php echo URLROOT; ?>/pharmacist/profile" id="profile">Profile</a>
             </div>
+
+
         </div>
 
 
