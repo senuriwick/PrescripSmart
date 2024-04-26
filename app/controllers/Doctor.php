@@ -46,25 +46,32 @@ class Doctor extends Controller{
     public function addMedication()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
             $diagnosis = $_POST['diagnosis'];
-            $medications = $_POST['medications'];
-            $remarks = $_POST['remarks'];
             $patient_id = $_POST['patientId'];
             $doctorid = $_SESSION['USER_DATA']->user_ID;
             // $appointmentid = $this->dpModel->getAppointmentId();
             $sessionId = $this->dpModel->getOngonigSession($doctorid)->session_ID;
             $appointment = $this->dpModel->getpatientAppointmentId($sessionId,$patient_id);
             $this->dpModel->addDiagnosis($patient_id, $diagnosis,$doctorid,$appointment->appointment_ID);
-            // Process each medication and its corresponding remark
-            for ($i = 0; $i < count($medications); $i++) {
-                $medication = $medications[$i];
-                $remark = $remarks[$i];
-                $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
-                $medicationId = $this->dpModel->getMedicationId($medication);
 
-                // Insert into database
-                // Your DB insertion code here
-                $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID,$medicationId->medicine_ID, $medication, $remark);
+            if($_POST['medications']){
+                $medications = $_POST['medications'];
+                $remarks = $_POST['remarks'];
+
+            // Process each medication and its corresponding remark
+                for ($i = 0; $i < count($medications); $i++) {
+                    $medication = $medications[$i];
+                    $remark = $remarks[$i];
+                    $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
+                    $medicationId = $this->dpModel->getMedicationId($medication);
+
+                    // Insert into database
+                    // Your DB insertion code here
+                    $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID,$medicationId->medicine_ID, $medication, $remark);
+                }
+
             }
 
             if($_POST['tests']){
@@ -75,7 +82,7 @@ class Doctor extends Controller{
                     $testremark = $testremarks[$i];
                     $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
                     $testid = $this->dpModel->getTestId($test);
-                    $this->dpModel->addTest($patient_id,$testid->test_ID,$diagnosisID->prescription_ID, $testremark);
+                    $this->dpModel->addTest($patient_id,$testid->test_ID,$diagnosisID->prescription_ID, $testremark, $doctorid);
                 }
             }
             // After processing

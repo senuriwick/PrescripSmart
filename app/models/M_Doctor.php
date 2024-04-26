@@ -169,13 +169,14 @@ class M_Doctor
         }
     }
 
-    public function addTest($patientId, $testId, $diagnosisId, $remark)
+    public function addTest($patientId, $testId, $diagnosisId, $remark,$doctorId)
     {
-        $this->db->query('INSERT INTO lab_reports (test_ID, patient_ID, prescription_ID, remarks) VALUES (:test_id, :patient_id, :diagnosis_id, :remarks)');
+        $this->db->query('INSERT INTO lab_reports (test_ID, patient_ID, prescription_ID, remarks, doctor_ID) VALUES (:test_id, :patient_id, :diagnosis_id, :remarks, :doctor_id)');
         $this->db->bind(':patient_id', $patientId);
         $this->db->bind(':test_id', $testId);
         $this->db->bind(':diagnosis_id', $diagnosisId);
         $this->db->bind(':remarks', $remark);
+        $this->db->bind(':doctor_id',$doctorId);
         if ($this->db->execute()) {
             return true;
         } else {
