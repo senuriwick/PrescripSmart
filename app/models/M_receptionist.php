@@ -31,7 +31,7 @@ class M_receptionist
 
     public function authenticate($email_address, $password)
     {
-        $this->db->query('SELECT * FROM employees WHERE email_phone = :email_address AND active = 1');
+        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address AND active = 1');
         $this->db->bind(':email_address', $email_address);
         $result = $this->db->single();
         return $result;
@@ -39,7 +39,7 @@ class M_receptionist
 
     public function employee_authentication($email_address, $password)
     {
-        $this->db->query('SELECT * FROM employees WHERE email_phone = :email_address OR username = :email_address');
+        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address OR username = :email_address');
         $this->db->bind(':email_address', $email_address);
         $result = $this->db->single();
         return $result;
@@ -47,7 +47,7 @@ class M_receptionist
 
     public function updateCode($code, $user)
     {
-        $this->db->query('UPDATE employees SET otp_code = :code WHERE email_phone = :user OR emp_id = :user');
+        $this->db->query('UPDATE users SET otp_code = :code WHERE email_phone = :user OR user_ID = :user');
         $this->db->bind(':code', password_hash($code, PASSWORD_BCRYPT));
         $this->db->bind(':user', $user);
         $this->db->execute();
@@ -55,7 +55,7 @@ class M_receptionist
 
       public function findUserByEmail($email)
       {
-        $this->db->query('SELECT * FROM employees WHERE email_address = :email_address');
+        $this->db->query('SELECT * FROM users WHERE email_address = :email_address');
         // Bind value
         $this->db->bind(':email_address', $email);
   
@@ -73,7 +73,7 @@ class M_receptionist
 
       public function findUserByid($user_ID)
     {
-        $this->db->query('SELECT * FROM employees WHERE user_ID = :user_ID');
+        $this->db->query('SELECT * FROM users WHERE user_ID = :user_ID');
         $this->db->bind(':user_ID', $user_ID);
         $result = $this->db->single();
         return $result;
@@ -81,7 +81,7 @@ class M_receptionist
 
       function deleteUserByid(int $id, int $active = 0)
     {
-        $this->db->query('DELETE FROM employees WHERE user_ID =:id and active=:active');
+        $this->db->query('DELETE FROM users WHERE user_ID =:id and active=:active');
 
         $this->db->bind(':id', $id);
         $this->db->bind(':active', $active);
@@ -90,7 +90,7 @@ class M_receptionist
 
     public function activate($email)
     {
-        $this->db->query('UPDATE employees SET active = 1, activated_at = CURRENT_TIMESTAMP WHERE email_phone = :email');
+        $this->db->query('UPDATE users SET active = 1, activated_at = CURRENT_TIMESTAMP WHERE email_phone = :email');
         $this->db->bind(':email', $email);
         $this->db->execute();
     }
@@ -99,7 +99,7 @@ class M_receptionist
 
       public function login($email, $password)
       {
-          $this->db->query('SELECT * FROM employees WHERE email_address = :email_address');
+          $this->db->query('SELECT * FROM users WHERE email_address = :email_address');
           $this->db->bind(':email_address', $email);
       
           $row = $this->db->single();
@@ -153,7 +153,7 @@ class M_receptionist
 
     public function receptionistInfo()
     {
-        $this->db->query('SELECT * FROM employees WHERE emp_id = :userID');
+        $this->db->query('SELECT * FROM users WHERE user_ID = :userID');
         $this->db->bind(':userID', $_SESSION['USER_DATA']->user_ID);
         $result = $this->db->single();
         return $result;
@@ -340,9 +340,9 @@ class M_receptionist
     public function getuserbyID($id, $table)
     {
         $sql = "SELECT e.*, d.*
-                FROM employees e
-                JOIN $table d ON e.emp_id = d.emp_id
-                WHERE e.emp_id = :id";
+                FROM users e
+                JOIN $table d ON e.user_ID = d.user_iD
+                WHERE e.user_ID = :id";
 
         $this->db->query($sql);
         $this->db->bind(':id', $id);
@@ -374,8 +374,8 @@ class M_receptionist
 
     public function updateAccInfo($username, $userID)
     {
-        $this->db->query('UPDATE employees SET username = :username 
-        WHERE emp_id = :userID');
+        $this->db->query('UPDATE users SET username = :username 
+        WHERE user_ID = :userID');
         $this->db->bind(':username', $username);
         $this->db->bind(':userID', $userID);
 

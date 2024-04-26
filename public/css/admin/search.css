@@ -272,8 +272,9 @@ body {
 
 .main {
   flex: 1;
-  margin-left: 220px;
+  margin-left: 28vh;
   margin-bottom: 3%;
+
 }
 
 .patientInfoContainer {

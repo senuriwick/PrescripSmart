@@ -32,7 +32,7 @@
                         <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png">
                         <h1><strong><?php echo ucwords($data['doctor']->first_name) ?> <?php echo ucwords($data['doctor']->last_name) ?></strong></h1>
                     </div>
-                    <h3>Employee ID #<?php echo $data['doctor']->emp_id ?></h3>
+                    <h3>Employee ID #<?php echo $data['doctor']->user_ID ?></h3>
                     <h4>Personal information</h4>  
                     <hr  style="margin-top: -1.5vh; color:#445172BF;" width="85%">
             </div>

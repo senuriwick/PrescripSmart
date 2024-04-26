@@ -54,7 +54,7 @@
 
                                     <td>
                                     <a href="<?php echo URLROOT ?>/admin/showProfileLabtech/<?php echo $post->labtech_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                                        <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->labtech_id ?>">
+                                        <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->labtech_ID ?>">
                                         <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                         </form>
                                     </td>

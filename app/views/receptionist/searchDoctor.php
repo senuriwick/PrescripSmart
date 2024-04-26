@@ -46,7 +46,7 @@
                                     </td>
 
                                     <td>
-                                    <a href="<?php echo URLROOT ?>/receptionist/showProfileDoc/<?php echo $post->emp_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                    <a href="<?php echo URLROOT ?>/receptionist/showProfileDoc/<?php echo $post->doctor_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
                                                                             
                                         <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileDoc/<?php echo $post->doctor_id ?>">
                                             <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">

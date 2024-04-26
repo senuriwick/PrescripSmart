@@ -12,7 +12,7 @@ class M_admin
     // Register user
     public function register($data)
     {
-        $this->db->query('INSERT INTO admins (first_Name, last_Name, email, password) VALUES(:first_name, :last_name, :email_address, :password)');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
         // Bind values
         $this->db->bind(':first_name', $data['first_name']);
         $this->db->bind(':last_name', $data['last_name']);
@@ -35,7 +35,7 @@ class M_admin
       
       public function login($email, $password)
     {
-        $this->db->query('SELECT * FROM users WHERE email = :email_address');
+        $this->db->query('SELECT * FROM users WHERE email_phone = :email_address');
         $this->db->bind(':email_address', $email);
     
         $row = $this->db->single();
@@ -585,24 +585,12 @@ class M_admin
       }   
       
       
-        public function getDoctorbyID($id)
-      {
-        $sql = "SELECT users.*, doctors.*
-        FROM users 
-        JOIN doctors ON users.user_ID = doctors.doctor_ID
-        WHERE users.user_ID = :id";
-
-        $this->db->query($sql);
-        $this->db->bind(':id', $id);
-        $row = $this->db->single();
-
-        return $row;
-      }
+       
       public function getPatientbyID($id)
       {
         $sql = "SELECT users.*, patients.*
         FROM users 
-        INNER JOIN patients ON users.user_ID = patients.patient_ID
+        JOIN patients ON users.user_ID = patients.patient_ID
         WHERE users.user_ID = :id";
 
         $this->db->query($sql);
@@ -615,7 +603,7 @@ class M_admin
       {
         $sql = "SELECT users.*, nurses.*
         FROM users 
-        INNER JOIN nurses ON users.user_ID = nurses.nurse_ID
+        JOIN nurses ON users.user_ID = nurses.nurse_ID
         WHERE users.user_ID = :id";
 
         $this->db->query($sql);
@@ -628,7 +616,7 @@ class M_admin
       {
         $sql = "SELECT users.*, labtechnicians.*
         FROM users 
-        INNER JOIN labtechnicians ON users.user_ID = labtechnicians.labtech_ID
+        JOIN labtechnicians ON users.user_ID = labtechnicians.labtech_ID
         WHERE users.user_ID = :id";
 
         $this->db->query($sql);
@@ -641,7 +629,21 @@ class M_admin
       {
         $sql = "SELECT users.*, healthsupervisors.*
         FROM users 
-        INNER JOIN healthsupervisors ON users.user_ID = healthsupervisors.supervisor_ID
+        JOIN healthsupervisors ON users.user_ID = healthsupervisors.supervisor_ID
+        WHERE users.user_ID = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id);
+        $row = $this->db->single();
+
+        return $row;
+      }
+      
+      public function getDoctorbyID($id)
+      {
+        $sql = "SELECT users.*, doctors.*
+        FROM users 
+        JOIN doctors ON users.user_ID = doctors.doctor_ID
         WHERE users.user_ID = :id";
 
         $this->db->query($sql);
@@ -654,7 +656,7 @@ class M_admin
       {
         $sql = "SELECT users.*, receptionists.*
         FROM users 
-        INNER JOIN receptionists ON users.user_ID = receptionists.receptionist_ID
+        JOIN receptionists ON users.user_ID = receptionists.receptionist_ID
         WHERE users.user_ID = :id";
 
         $this->db->query($sql);
@@ -667,7 +669,7 @@ class M_admin
       {
         $sql = "SELECT users.*, pharmacists.*
         FROM users 
-        INNER JOIN pharmacists ON users.user_ID = pharmacists.pharmacist_ID
+        JOIN pharmacists ON users.user_ID = pharmacists.pharmacist_ID
         WHERE users.user_ID = :id";
 
         $this->db->query($sql);
