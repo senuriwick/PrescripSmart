@@ -194,6 +194,15 @@ class Doctor extends Controller{
         $this->view('doctor/sessions',$data);
     }
 
+    public function verifyDoctor(){
+        $userId = $_GET['userId'] ?? '';
+        if (!empty($userId)) {
+            $result = $this->dpModel->verifyDoctor($userId);
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        }
+    }
+
     public function viewOngoingSession(){
 
         $doctorid = $_SESSION['USER_DATA']->user_ID;
