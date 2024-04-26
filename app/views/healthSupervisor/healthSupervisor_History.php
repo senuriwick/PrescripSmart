@@ -34,7 +34,7 @@
                           <p><img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt=""></p>
                           <p id="idNO"><?php echo $readInquiry->inquiry_ID ?></p>
                           <p><?php echo $readInquiry->name ?></p>
-                          <p><?php echo $readInquiry->Date ?></p>
+                          <p><?php echo $readInquiry->date ?></p>
                           <input type="checkbox" id="scales" name="scales" checked />
                         </div>
                         <?php endforeach ?>
