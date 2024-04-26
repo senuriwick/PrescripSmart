@@ -1,3 +1,10 @@
+.main {
+  flex: 1;
+  margin-left: 28vh;
+  margin-bottom: 3%;
+
+}
+
 .back
  {
   padding-left: 5vh;

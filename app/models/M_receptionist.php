@@ -26,21 +26,7 @@ class M_receptionist
     }
   }
 
-  // public function findUserByEmail($email)
-  // {
-  //   $this->db->query('SELECT * FROM receptionists WHERE email_address = :email_address');
-  //   // Bind value
-  //   $this->db->bind(':email_address', $email);
-
-  //   $row = $this->db->single();
-
-  //   // Check row
-  //   if ($this->db->rowCount() > 0) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  
 
     public function authenticate($email_address, $password)
     {
@@ -164,13 +150,15 @@ class M_receptionist
         $this->db->execute();
     }
 
-    // public function receptionistInfo()
-    // {
-    //     $this->db->query('SELECT * FROM users WHERE user_ID = :userID');
-    //     $this->db->bind(':userID', $_SESSION['USER_DATA']->user_ID);
-    //     $result = $this->db->single();
-    //     return $result;
-    // }
+    public function receptionistInfo()
+    {
+        $this->db->query('SELECT * FROM users WHERE user_ID = :userID');
+        $this->db->bind(':userID', $_SESSION['USER_DATA']->user_ID);
+        $result = $this->db->single();
+        return $result;
+    }
+
+     
 
   public function getPatients()
   {
@@ -212,6 +200,7 @@ class M_receptionist
         $result = $this->db->single();
         return $result;
     }
+  
 
   public function deleteProfileDoc($id)
   {
@@ -234,6 +223,7 @@ class M_receptionist
         $result = $this->db->single();
         return $result;
     }
+  
 
   public function regNurse($data)
   {
@@ -295,23 +285,6 @@ class M_receptionist
     return $row;
   }
 
-  // public function confirm_appointment($data)
-  // {
-  //   $this->db->query('INSERT INTO appointments (patient_id, doctor_id, date, time, amount) VALUES(:patient_id, :doctor_id, :app_date, :app_time, :amount)');
-  //   $this->db->bind(':patient_id', $data['patient_id']);
-  //   $this->db->bind(':doctor_id', $data['doctor_id']);
-  //   $this->db->bind(':app_date', $data['app_date']);
-  //   $this->db->bind(':app_time', $data['app_time']);
-  //   $this->db->bind(':amount', $data['amount']);
-
-  //   if ($this->db->execute()) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-
     public function confirm_appointment($data)
     {
       $this->db->query('INSERT INTO appointments (patient_ID,session_ID,doctor_ID, date, time, amount) VALUES(:patient_id,:session_id,:doctor_id, :app_date, :app_time, :amount)');
@@ -343,14 +316,6 @@ class M_receptionist
         $this->db->execute();
 
     }
-
-    public function receptionistInfo()
-  {
-    $this->db->query('SELECT * FROM users WHERE user_ID = :receptionistID');
-    $this->db->bind(':receptionistID', $_SESSION['USER_DATA']->user_ID);
-    $result = $this->db->single();
-    return $result;
-  }
 
   public function updateAccInfo2($username)
   {

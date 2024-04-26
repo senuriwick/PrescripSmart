@@ -241,13 +241,7 @@
 
     public function createusersession($user)
     {
-      $_SESSION['profile_photo'] = $user->profile_photo;
-      $_SESSION['role'] = $user->role;
-      $_SESSION['user_name'] = $user->username;
-      $_SESSION['email_address'] = $user->email_phone;
-      $_SESSION['first_name'] = $user->first_Name;
-      $_SESSION['last_name'] = $user->last_Name;
-
+      $_SESSION['USER_DATA'] = $user;
       redirect('/admin/searchDoctor');
     }
 

@@ -1,4 +1,20 @@
 
+  .content {
+    display: flex;
+  }
+  
+  .main {
+    flex: 1;
+    margin-left: 28vh;
+    margin-bottom: 3%;
+  }
+  
+  .patientInfoContainer {
+    width: 80%;
+    margin-top: 5vh;
+    margin-left: 3vw;
+  }
+ 
  .back
  {
   padding-left: 5vh;
@@ -75,7 +91,13 @@
     border-radius: 0.5vh;
     margin-top: 3vh;
     width:135vh;
-    margin-bottom: 3vh;
+}
+h1
+{
+    color: #445172;
+    font-size: 30px;
+    font-weight: bold;
+    
 }
 
 .details button

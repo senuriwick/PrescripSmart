@@ -88,5 +88,11 @@
                         <h2>Department</h2>
                         <input type="text" placeholder="Enter Your Department">
 
-                </div>
-        </div>
+            <div class="btn">
+                <button type="submit" onclick="openPopup()"><b>Save Changes</b></button>     
+            </div>
+              
+    </div>
+</div>
+       
+               

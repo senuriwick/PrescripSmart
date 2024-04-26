@@ -15,7 +15,15 @@
   </head>
 <body>
 
-<?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
+<div class="content">
+    <?php include 'side_navigation_panel.php'; ?>
+
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
+
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
   <div class="details">
         <div class="back" style="display: flex; ">         
