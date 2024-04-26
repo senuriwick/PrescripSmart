@@ -2,141 +2,130 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>Pharmacist Prescription</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_prescription.css" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <!-- <script src="main.js"></script> -->
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>Prescriptions</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\pharmacist\pharmacist_prescription.css" />
 </head>
 
 <body>
-    <div id="dim-overlay"></div>
-    <div class="content">
-        <div class="sideMenu">
-        <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+  <div class="content">
+  <?php include 'side_navigation_panel.php'; ?>
 
-            <div class="manageDiv">
-            <p class="mainOptions">Pharmacist Tools</p>
+    <div class="main">
+        <?php include 'top_navigation_panel.php'; ?>
 
-                <a href="<?php echo URLROOT; ?>/Pharmacist/dashboard">Patients</a>
-                <a href="">Medications</a>
-                <a href="<?php echo URLROOT ?>/Pharmacist/profile">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
+      <div class="patientInfoContainer">
+      <?php include 'information_container.php'; ?>
+      <?php include 'in_page_navigation.php'; ?>
+        
+        <div class="prescriptionsDiv">
+          <h1>Prescriptions</h1>
+          <?php foreach ($data['prescriptions'] as $prescription): ?>
+            <div class="prescriptionFiles">
 
-        </div>
-        <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT?>/app/views/pharmacist/images/user.png" alt="user-icon">
-                    <p>USERNAME</p>
+              <div class="file">
+                <div class="desDiv">
+                  <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
+                  <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
                 </div>
-            </div>
-            <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT?>/app/views/pharmacist/images/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name">Patient Name</p>
-                            <p class="role">Patient</p>
-                        </div>
-                    </div>
+                <p class = "doctor">Issued by: Dr.
+                  <?php echo $prescription->first_Name; ?>
+                  <?php echo $prescription->last_Name; ?>
+                </p>
+                <p class = "date">Issued on:
+                  <?php echo $prescription->prescription_Date; ?>
+                </p>
+                <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon"
+                  data-container-pid="<?= $prescription->prescription_ID ?>">
+              </div>
 
-                    <div class="menu">
-                    <p style="color:black">Patients</p>
-                        <p><a href="<?php echo URLROOT ?>/Pharmacist/medications">Medications</a></p>
-                    </div>
-                    
-                    <div class="patientSearch">
-                        <div class="patient-div">
-                            <a href="<?php echo URLROOT ?>/Pharmacist/dashboard">
-                                <img
-                                  class="vector"
-                                  src="<?php echo URLROOT?>/app/views/pharmacist/images/vector.png"
-                                  alt="Sample Image"
-                                />
-                            </a>
-                            <img class="person-circle" src="<?php echo URLROOT?>/app/views/pharmacist/images/personcircle.png" alt="patient-pic">
-                            <div class="patient-desc">
-                                <p><?php echo $_GET['patient_name']; ?></p>
-                                <p>Patient ID <?php echo $_GET['patient_id']; ?></p>
-                                <p><?php echo $_GET['patient_age']; ?> Years</p>
-                            </div>
-                        </div>
-                        <div class="topic">
-                            <label>Prescriptions(<?php echo $data['prescriptionCount'] ?>)</label>
-                        </div>
-                        <div class="prescription-table">
-                        <table>
-                            <tbody>
-                                <?php foreach ($data['prescriptions'] as $prescription): ?>
-                                    <tr class="clickable-row">
-                                        <td>
-                                        <div class="presDiv" data-prescription-id="<?php echo $prescription->id; ?>">
-                                                <img src="<?php echo URLROOT ?>/app/views/pharmacist/images/description.png" alt="download-icon">
-                                                <p><?php echo $prescription->prescription_text; ?></p>
-                                            </div>
-                                        </td>
-                                        <td><?php echo $prescription->prescribing_doctor; ?></td>
-                                        <td><?php echo $prescription->prescribing_date; ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                            <div id="content">
-                                
-                            </div>
-                                
-                        </div>
-                    </div>
-                </div>
             </div>
+
+            <div id="myModal<?= $prescription->prescription_ID ?>" class="modal" style="display: none;">
+
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <a href="www.prescripsmart.com">www.prescripsmart.com</a>
+                <div class="model-head">
+                  <div>P</div>
+                  <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
+                  <i class="fa-solid fa-circle-arrow-up"></i>
+                </div>
+                <div class="model-details">
+                  <div>Prescription ID: #
+                    <?php echo $prescription->prescription_ID; ?>
+                  </div>
+                  <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name?> <?php echo $_SESSION['USER_DATA']->last_Name?></div>
+                  <div>Pres Date & Time:
+                    <?php echo $prescription->prescription_Date; ?>
+                  </div>
+                  <div>Age: 22 Yrs</div>
+                  <div>Referred by: Dr.
+                    <?php echo $prescription->first_Name; ?>
+                    <?php echo $prescription->last_Name; ?>
+                  </div>
+                </div>
+
+                <div class="pres-box">
+                  <label>Medications</label>
+                  <table>
+                    <tbody>
+                    <th>Name</th>
+                    <!-- <th>Dosage</th> -->
+                    <th>Remarks</th>
+                    <?php foreach ($data['prescriptionDetails'][$prescription->prescription_ID] as $medicine): ?>
+                      <tr>
+                        <td><?php echo $medicine->medication; ?></td>
+                        <!-- <td><?php echo $medicine->dosage; ?></td> -->
+                        <td><?php echo $medicine->remark; ?></td>
+                      </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="notice">(For viewing purpose only)</div>
+
+               
+
+              </div>
+            </div>
+          <?php endforeach; ?>
         </div>
+
+      </div>
     </div>
-    <script>
-        $(document).ready(function() {
-    // Attach click event listener to prescription div elements
-    $('.presDiv').on('click', function() {
-        var prescriptionId = $(this).data('prescription-id');
-        var patientName = '<?php echo $_GET['patient_name']; ?>';
-        var patientAge = '<?php echo $_GET['patient_age']; ?>';
-        // Make AJAX request to fetch prescription details
-        $.ajax({
-            url: '<?php echo URLROOT; ?>/Pharmacist/getPrescriptionDetails',
-            method: 'GET',
-            data: { 
-                prescription_id: prescriptionId,
-                patient_name: patientName,
-                patient_age: patientAge
-             },
-            success: function(response) {
-                // Handle the response and display details in the popup
-                $('#content').html(response);
-            },
-            error: function(xhr, status, error) {
-                // Handle errors
-                console.error(error);
-            }
-        });
-    });
-});
-    </script>
-    <script src="<?php echo URLROOT?>/app/views/pharmacist/javascripts/pharmcist_prescription.js"></script>
+  </div>
 </body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const eyeIcons = document.querySelectorAll('.file img[src*="Eye.png"]');
+
+    eyeIcons.forEach(icon => {
+      const prescriptionID = icon.getAttribute('data-container-pid');
+      const modal = document.getElementById(`myModal${prescriptionID}`);
+      const closeButton = modal.querySelector(".close");
+
+      icon.addEventListener("click", () => {
+        modal.style.display = 'block';
+      });
+
+      closeButton.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
+
 </html>

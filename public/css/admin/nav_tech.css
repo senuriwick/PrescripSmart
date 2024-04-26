@@ -1,0 +1,31 @@
+.labtechs {
+    background-color: rgba(68, 81, 114, 1);
+    position: relative;
+}
+
+.labtechs::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #0069FF;
+}
+
+.menu #techs {
+    color: #0069FF;
+    border-color: #0069FF;
+    border-spacing: 2cm;
+    position: relative;
+}
+
+.menu #techs::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #0069FF;
+}

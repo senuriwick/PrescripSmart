@@ -16,53 +16,16 @@
 </head>
 
 <body>
-    <div class="content">
-        <div class="sideMenu">
-        <div class="logoDiv">
-            <div>P</div>
-            <h5>PrescripSmart</h5>
-        </div>
+<div class="content">
+    <?php include 'side_navigation_panel.php'; ?>
 
-            <div class="manageDiv">
-                <p class="mainOptions">Health Supervisor Tools</p>
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
 
-                <a href="">Inquiries</a>
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a>
-                <a href="<?php echo URLROOT ?>/HealthSupervisor/profile">Profile</a>
-            </div>
-            <div class="othersDiv">
-                <p class="sideMenuTexts">Billing</p>
-                <p class="sideMenuTexts">Terms of Services</p>
-                <p class="sideMenuTexts">Privacy Policy</p>
-                <p class="sideMenuTexts">Settings</p>
-            </div>
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
 
-        </div>
-        <div class="container">
-            <div class="navBar">
-                <div class="navBar">
-                    <img src="<?php echo URLROOT?>/public/img/healthSupervisor/user.png" alt="user-icon">
-                    <p>USERNAME</p>
-                </div>
-            </div>
-
-            <?php $user = $data['user'] ?>
-            <?php $healthSupervisor = $data['healthSupervisor'] ?>
-            <div class="main">
-                <div class="main-Container">
-                    <div class="userInfo">
-                        <img src="<?php echo URLROOT?>/public/img/healthSupervisor/profile.png" alt="profile-pic">
-                        <div class="userNameDiv">
-                            <p class="name"><?php echo $healthSupervisor->display_name ?></p>
-                            <p class="role"><?php echo $user->role ?></p>
-                        </div>
-                    </div>
-
-                    <div class="menu">
-                        <p style="color:black">Inquiries</p>
-                        <p><a href="<?php echo URLROOT ?>/HealthSupervisor/history">History</a></p>
-                    </div>
-                    <hr class="divider">
                     <div class="patientFile">
                         <h2>Inquiries(<?php echo $data['totalNewInquiries'] ?>)</h2>
                         <?php foreach($data['newInquiries'] as $inquiry): ?>
@@ -70,18 +33,18 @@
                           <p><img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt=""></p>
                           <p id="idNO"><?php echo $inquiry->inquiry_ID; ?></p>
                           <p><?php echo $inquiry->name; ?></p>
-                          <p><?php echo $inquiry->Date; ?></p>
+                          <p><?php echo $inquiry->date; ?></p>
                           <a href="<?php echo URLROOT ?>/HealthSupervisor/inquiryDetails?id=<?php echo $inquiry->inquiry_ID; ?>"><button>View</button></a>
 
                         </div>
                         <?php endforeach; ?>  
                         <div class="pagination">
-                        <?php if (isset($data['totalPages'])): ?>
-                            <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
-                                <a href="<?php echo URLROOT; ?>/healthSupervisor/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
-                            <?php endfor; ?>
-                        <?php endif; ?>
-                    </div>
+                            <?php if (isset($data['totalPages'])): ?>
+                                <?php for ($i = 1; $i <= $data['totalPages']; $i++): ?>
+                                    <a href="<?php echo URLROOT; ?>/healthSupervisor/dashboard/<?php echo $i; ?>" <?php echo ($i == $data['currentPage']) ? 'class="active"' : ''; ?>><?php echo $i; ?></a>
+                                <?php endfor; ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
  
                     

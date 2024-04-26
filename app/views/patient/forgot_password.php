@@ -35,6 +35,17 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var emailInput = document.getElementById('email');
+            var emailError = document.getElementById('email_error');
+
+            emailInput.addEventListener('input', function () {
+                if (emailInput.value.trim() !== '') {
+                    emailError.textContent = '';
+                }
+            });
+        });
+
         document.getElementById('cancel').addEventListener('click', function () {
             window.history.back();
         });
@@ -72,4 +83,5 @@
 
     </script>
 </body>
+
 </html>

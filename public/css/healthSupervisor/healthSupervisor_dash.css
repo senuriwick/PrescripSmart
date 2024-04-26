@@ -1,3 +1,8 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
 .menu {
     display: flex;
     padding-bottom: 0.1vh;
@@ -32,13 +37,14 @@ p a:active{
   margin-left: 0;
   color:rgba(164, 174, 199, 1);
 }
-          .ash-box {
-              width: 200px;
-              height: 200px;
-              background-color: #b2beb5; /* Ash color */
-              border: 1px solid #666; /* Optional: Add a border */
-            }
-            
+
+.ash-box {
+    width: 200px;
+    height: 200px;
+    background-color: #b2beb5; /* Ash color */
+    border: 1px solid #666; /* Optional: Add a border */
+  }
+  
 .patientFile {    
   background-color: rgba(239, 242, 251, 1);
   padding: 110px 1.5vw;
@@ -49,39 +55,39 @@ p a:active{
   margin-top:20px;
 }
 
-  .patientFile h2{
-    color: rgba(68, 81, 114, 1);
-    margin-top: -100px;
-    padding: 0;
-  }
+.patientFile h2{
+  color: rgba(68, 81, 114, 1);
+  margin-top: -100px;
+  padding: 0;
+}
   
-  .inquiry{
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 50px;
-    margin-bottom: 10px;
-    align-items: center;
-  }
+.inquiry{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 50px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.inquiry button {
+  border-style: none;
+  border-radius: 8px;
+  background-color: green;
+  color: white;
+  height: 28px;
+  width: 88px;    
+}
   
-  .inquiry button {
-    border-style: none;
-    border-radius: 8px;
-    background-color: green;
-    color: white;
-    height: 28px;
-    width: 88px;    
-  }
-  
-  .inquiry button:hover {
-    background-color: rgb(21, 185, 24);
-    cursor: pointer;
-  }
+.inquiry button:hover {
+  background-color: rgb(21, 185, 24);
+  cursor: pointer;
+}
   
 .inquiry #idNO {
-  margin-left: -250px;
+  margin-left: -181px;
 }
 
 
@@ -91,52 +97,94 @@ p a:active{
     margin-right: 10px; /* Adjust the margin to control the spacing */
 }
   
-  .inquiry p{
-    color: rgba(68, 81, 114, 1);
-    /* font-size: 1.1rem; */
-    width: 33%;
-  }
-  
-  #idNO{
-    color:rgb(5, 83, 239);
-  }
-
-  .pagination {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    list-style: none;
-    padding: 0;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.inquiry p{
+  color: rgba(68, 81, 114, 1);
+  /* font-size: 1.1rem; */
+  width: 33%;
 }
   
-  /* Pagination link styles */
-  .pagination a {
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 0 4px;
-    text-decoration: none;
-    color: #333;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
+#idNO{
+  color:rgb(5, 83, 239);
+}
+
   
-  /* Active page link styles */
-  .pagination a.active {
-    background-color: #007BFF;
-    color: #fff;
-    border: 1px solid #007BFF;
-  }
-  
-  /* Hover styles for pagination links */
-  .pagination a:hover {
-    background-color: #f5f5f5;
-  }
-  
-  
+.pagination {
+  margin-top: 3vh;
+  text-align: center;
+  min-width: 300px;
+  position:absolute;
+  bottom:30px;
+  left:350px;
+}
+
+.pagination a {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #0069FF;
+  color: white;
+}
+
+.pagination a:hover {
+  background-color: #0069FF;
+  color: white;
+}
+
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 3%;
+  margin-left: 220px;
+}
+
+.patientInfoContainer {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
+}
+
+.menu #inquiries {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
+}
+
+.menu #inquiries::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.inquiries{
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.inquiries::before {
+  background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
+}
+

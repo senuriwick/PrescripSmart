@@ -1,130 +1,163 @@
-   
-    .searchDiv 
-    {
-      padding-left: 2vh;
-      height:15vh;
-      width:120vh;
-    }
+body {
+  font-family: inter;
+  margin: 0;
+  /* overflow: hidden; */
+}
 
-    .searchDiv h1 
-    {
-      font-weight: bold;
-      font-family: inter;  
-      color: #000000;
-      font-size: 3.4vh;
-    }
-  
-    .searchFiles
-    {
-      padding:0.5vh;
-      margin-right: 0.8vh;
-    }
-  
-    .search-input
-    {
-      font-size: 2.1vh;
-      font-family: inter;
-      border-radius: 1vh;
-      width: 75vh;
-      height: 5vh;
-      padding-left: 15px;
-      color: #445172BF;
-      border-color: #445172BF;
-    }
-  
-    .searchFiles button
-    {
-      background-color: #0069FF;
-      width:14vh;
-      height:5.4vh;
-      border-radius: 1vh;
-      margin-left: 1.5vh;
-      color: white;
-      font-weight: 100vh;
-      font-Size: 1.7vh;
-      font-family: inter;
-      Line-height: 1.5vh;
-      margin-bottom: 4vh;
-      border: none;
-    }
-  
-    .today-date
-    {
-    color: #0069FF;
-    margin-left: 2vh;
-    margin-top: 4vh;
-    font-size:3vh;
-    }
+.content {
+  display: flex;
+}
 
-    .sessions
-    {
-      margin-left: 2vh ;
-      width: 100vh;
-      height: 40vh;
-      background-color: #EFF2FB;
-    }
-    .sessions img
-    {
-      margin-top: 3vh;
-      width: 5vh;
-      height: 5vh;
-      margin-left: 4vh;
-    }
-    .doc-info
-    {
-      display: flex;
-    }
-    h3
-    {
-     margin-left: 2vh;
-     color: #0069FF;
-    }
-    h5
-    {
-      margin-top: -2vh;
-      margin-left: 11vh;
+.main {
+  flex: 1;
+  margin-left: 220px;
+  margin-bottom: 3%;
+}
 
-    }
-    .session-card
-    {
-      width: 30vh;
-      height: 25vh;
-      background-color: white;
-      border-radius: 1vh;
-      margin-left: 4vh;
+.patientInfoContainer {
+  width: 80%;
+  margin-top: 5vh;
+  margin-left: 3vw;
+}
 
-    }
-    .session-card h4
-    {
-      padding-left: 5vh;
-      padding-top: 1vh;
-      font-size: 2.5vh;
-    }
-    .session-card p
-    {
-      font-size: 2vh;
-      padding-left: 2.5vh;
-    }
-    .session-card button
-    {
-      background-color: #397A49;
-      color: white;
-      border-radius: 1vh;
-      border: none;
-      width: 20vh;
-      height: 4vh;
-      margin-left: 4vh;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+.sessions {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.sessions::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #0069FF;
+}
+
+.menu #sessions {
+  color: #0069FF;
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  position: relative;
+}
+
+.menu #sessions::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #0069FF;
+}
+
+.searchDiv {
+  padding-left: 2vh;
+  height: 15vh;
+  width: 120vh;
+}
+
+.searchDiv h1 {
+  font-weight: bold;
+  font-family: inter;
+  color: #000000;
+  font-size: 3.4vh;
+}
+
+.searchFiles {
+  padding: 0.5vh;
+  margin-right: 0.8vh;
+}
+
+.search-input {
+  font-size: 2.1vh;
+  font-family: inter;
+  border-radius: 1vh;
+  width: 75vh;
+  height: 5vh;
+  padding-left: 15px;
+  color: #445172BF;
+  border-color: #445172BF;
+}
+
+.searchFiles button {
+  background-color: #0069FF;
+  width: 14vh;
+  height: 5.4vh;
+  border-radius: 1vh;
+  margin-left: 1.5vh;
+  color: white;
+  font-weight: 100vh;
+  font-Size: 1.7vh;
+  font-family: inter;
+  Line-height: 1.5vh;
+  margin-bottom: 4vh;
+  border: none;
+}
+
+.today-date {
+  color: #0069FF;
+  margin-left: 2vh;
+  margin-top: 4vh;
+  font-size: 3vh;
+}
+
+.sessions {
+  margin-left: 2vh;
+  width: 100vh;
+  height: 40vh;
+  background-color: #EFF2FB;
+}
+
+.sessions img {
+  margin-top: 3vh;
+  width: 5vh;
+  height: 5vh;
+  margin-left: 4vh;
+}
+
+.doc-info {
+  display: flex;
+}
+
+h3 {
+  margin-left: 2vh;
+  color: #0069FF;
+}
+
+h5 {
+  margin-top: -2vh;
+  margin-left: 11vh;
+
+}
+
+.session-card {
+  width: 30vh;
+  height: 25vh;
+  background-color: white;
+  border-radius: 1vh;
+  margin-left: 4vh;
+
+}
+
+.session-card h4 {
+  padding-left: 5vh;
+  padding-top: 1vh;
+  font-size: 2.5vh;
+}
+
+.session-card p {
+  font-size: 2vh;
+  padding-left: 2.5vh;
+}
+
+.session-card button {
+  background-color: #397A49;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  width: 20vh;
+  height: 4vh;
+  margin-left: 4vh;
+}

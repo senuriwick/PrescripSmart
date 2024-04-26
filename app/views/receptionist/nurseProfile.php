@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <title>Nurse Profile</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/Profile.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/navbar&sidemenu.css"/>
-  <script src="<?php echo URLROOT ?>/js/receptionist/script.js"></script>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <title>Nurse Profile</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/Profile.css" />
+        <script src="<?php echo URLROOT ?>/js/receptionist/script.js"></script>
 </head>
 
 <body>
 
-<?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
+        <div class="content">
+                <?php include 'side_navigation_panel.php'; ?>
 
     <div class="bar1" >
         <div class="search">
@@ -32,7 +33,7 @@
                         <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png">
                         <h1><strong><?php echo ucwords($data['doctor']->first_name) ?> <?php echo ucwords($data['doctor']->last_name) ?></strong></h1>
                     </div>
-                    <h3>Employee ID #<?php echo $data['doctor']->emp_id ?></h3>
+                    <h3>Employee ID #<?php echo $data['doctor']->user_ID ?></h3>
                     <h4>Personal information</h4>  
                     <hr  style="margin-top: -1.5vh; color:#445172BF;" width="85%">
             </div>
@@ -86,18 +87,6 @@
                 <div class="firstname">
                         <h2>Department</h2>
                         <input type="text" placeholder="Enter Your Department">
-                </div>
-                <div class="lastname">
-                        <h2>Specialization(If any)</h2>
-                        <input type="text" value="<?php echo ucwords($data['doctor']->Specialization) ?>">
-                </div> 
-            </div>
 
-            <div class="btn">
-                <button type="submit" onclick="openPopup()"><b>Save Changes</b></button>     
-            </div>
-              
-    </div>
-</div>
-       
-               
+                </div>
+        </div>
