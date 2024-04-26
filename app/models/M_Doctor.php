@@ -145,6 +145,14 @@ class M_Doctor
         }
     }
 
+    public function getpatientAppointmentId($sessionId,$patientId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:session_id AND patient_ID=:patient_id');
+        $this->db->bind(':session_id',$sessionId);
+        $this->db->bind(':patient_id',$patientId);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function addDiagnosis($patientId, $diagnosis,$doctorId,$appointmentId)
     {
         $this->db->query('INSERT INTO prescriptions (doctor_ID, patient_ID, diagnosis, prescription_Date, appointment_ID) VALUES (:doctor_id, :patient_id, :diagnosis, CURDATE(), :appointment_id)');
