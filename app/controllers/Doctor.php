@@ -203,12 +203,6 @@ class Doctor extends Controller{
             'ongoingSession' => $ongoingsession
         ];
         $this->view('doctor/on-going_session',$data);
-
-        
-           
-
-        
-
         
     }
 
@@ -272,10 +266,39 @@ class Doctor extends Controller{
 
             $this->dpModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
 
+            if ($_FILES["sign"]["error"] === UPLOAD_ERR_OK) {
+                $target_dir = "C:/xampp/htdocs/PrescripSmart/public/uploads/signatures/";
+                $target_file = $target_dir . basename($_FILES["sign"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif"
+                ) {
+                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                    $uploadOk = 0;
+                }
+
+                if ($uploadOk == 0) {
+                    // echo "Sorry, your file was not uploaded.";
+                } else {
+                    if (move_uploaded_file($_FILES["sign"]["tmp_name"], $target_file)) {
+                        echo "The file " . htmlspecialchars(basename($_FILES["sign"]["name"])) . " has been uploaded.";
+                        $image = basename($_FILES["sign"]["name"]);
+                        $userID = $_SESSION['USER_DATA']->user_ID;
+                        $this->dpModel->updateSign($image, $userID);
+                    } else {
+                        header("Location: /prescripsmart/general/error_page");
+                        exit();
+                    }
+                }
+            }
             header("Location: /prescripsmart/doctor/personal_information");
             exit();
         } else {
             header("Location: /prescripsmart/general/error_page");
+            exit();
         }
     }
 

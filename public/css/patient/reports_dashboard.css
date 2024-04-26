@@ -36,6 +36,16 @@
   display: flex;
 }
 
+.file .doctor {
+  width: 400px;
+  align-items: left;
+  margin-left: 20px;
+}
+
+.file .date {
+  width: 300px;
+}
+
 .file .desDiv img {
   height: 3vh;
   padding: 1.75vh 0vh 1vh 1.5vh;
