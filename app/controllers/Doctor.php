@@ -4,14 +4,30 @@ class Doctor extends Controller{
     private $dpModel;
     public function __construct(){
         $this->dpModel = $this->model('M_Doctor');
+
+        // if(!isLoggedIn())
+        // {
+        //     redirect('/general/home');
+        // }
+        
     }
     public function index(){
         $this->view('doctor/patients');
     }
     public function patients(){
-        $patientsDetails = $this->dpModel->getPatientsDetails();
+        $doctorid = $_SESSION['USER_DATA']->user_ID;
+        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+        if($ongoingsession){
+            $ongoingsessionid = $ongoingsession->session_ID;
+            $patientsDetails = $this->dpModel->getPatientsDetails($ongoingsessionid);
+            
+        }else{
+            $patientsDetails = '';
+            $ongoingsession = '';
+        }
         $data = [
-            'patientsData' => $patientsDetails
+            'patientsData' => $patientsDetails,
+            'ongoingSession' =>$ongoingsession
         ];
         $this->view('doctor/patients',$data);
     }
@@ -34,7 +50,11 @@ class Doctor extends Controller{
             $medications = $_POST['medications'];
             $remarks = $_POST['remarks'];
             $patient_id = $_POST['patientId'];
-            $this->dpModel->addDiagnosis($patient_id, $diagnosis);
+            $doctorid = $_SESSION['USER_DATA']->user_ID;
+            // $appointmentid = $this->dpModel->getAppointmentId();
+            $sessionId = $this->dpModel->getOngonigSession($doctorid)->session_ID;
+            $appointment = $this->dpModel->getpatientAppointmentId($sessionId,$patient_id);
+            $this->dpModel->addDiagnosis($patient_id, $diagnosis,$doctorid,$appointment->appointment_ID);
             // Process each medication and its corresponding remark
             for ($i = 0; $i < count($medications); $i++) {
                 $medication = $medications[$i];
@@ -167,7 +187,28 @@ class Doctor extends Controller{
     }
 
     public function viewOngoingSession(){
-        $this->view('doctor/on-going_session');
+
+        $doctorid = $_SESSION['USER_DATA']->user_ID;
+        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+        if($ongoingsession){
+            $ongoingsessionid = $ongoingsession->session_ID;
+            $ongoingPatient = $this->dpModel->getOngoingPatient($ongoingsessionid);
+            
+        }else{
+            $ongoingPatient = '';
+        }
+        $data = [
+            'ongoingPatient' => $ongoingPatient,
+            'ongoingSession' => $ongoingsession
+        ];
+        $this->view('doctor/on-going_session',$data);
+
+        
+           
+
+        
+
+        
     }
 
     public function Profile(){

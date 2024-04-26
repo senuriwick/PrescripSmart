@@ -42,7 +42,7 @@
                         <hr />
                         <div class="patient-details">
                             <table>
-                                <tbody>
+                                <tbody><?php if($data['ongoingSession']){?>
                                 <?php foreach($data['patientsData'] as $patientData): ?>
                                     <tr class="patient-details-row">
                                         
@@ -69,6 +69,8 @@
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
+                                    <?php }else{?>
+                                        <p>no patients</p><?php }?>
                                 </tbody>
                             </table>
                             <script>

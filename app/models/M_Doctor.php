@@ -6,8 +6,9 @@ class M_Doctor {
         $this->db = new Database;
     }
 
-    public function getPatientsDetails(){
-        $this->db->query('SELECT * FROM patients');
+    public function getPatientsDetails($sessionId){
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON patients.patient_ID=appointments.patient_ID WHERE appointments.session_ID=:id');
+        $this->db->bind(':id',$sessionId);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -24,6 +25,14 @@ class M_Doctor {
         $this->db->bind(':id',$patientid);
         $this->db->resultSet();
         return $this->db->rowCount();
+    }
+
+    public function getpatientAppointmentId($sessionId,$patientId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:sessionId AND patient_ID=:patientId');
+        $this->db->bind(':sessionId',$sessionId);
+        $this->db->bind(':patientId',$patientId);
+        $result = $this->db->single();
+        return $result;
     }
 
     public function getDiagnosis($diagnosisId){
@@ -75,6 +84,20 @@ class M_Doctor {
         return $results;
     }
 
+    public function getOngonigSession($userid){
+        $this->db->query('SELECT * FROM sessions WHERE (start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time) OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time)) AND doctor_ID=:id');
+        $this->db->bind(':id',$userid);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function getOngoingPatient($sessionid){
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON patients.patient_ID=appointments.patient_ID  WHERE session_ID=:sessionid AND status="active" ORDER BY token_No ASC LIMIT 1');
+        $this->db->bind(':sessionid',$sessionid);
+        $result = $this->db->single();
+        return $result;
+    }
+
     public function getonePatient($patientid){
         $this->db->query('SELECT * FROM patients WHERE patient_ID=:id');
         $this->db->bind(':id',$patientid);
@@ -113,11 +136,12 @@ class M_Doctor {
         }
     }
 
-    public function addDiagnosis($patientId, $diagnosis)
+    public function addDiagnosis($patientId, $diagnosis,$appointmentId)
     {
-        $this->db->query('INSERT INTO prescriptions (patient_ID, diagnosis, prescription_Date) VALUES (:patient_id, :diagnosis, CURDATE())');
+        $this->db->query('INSERT INTO prescriptions (patient_ID, diagnosis, prescription_Date, appointment_ID) VALUES (:patient_id, :diagnosis, CURDATE(), :appointment_id)');
         $this->db->bind(':patient_id', $patientId);
         $this->db->bind(':diagnosis', $diagnosis);
+        $this->db->bind(':appointment_id',$appointmentId);
 
         // Execute
         if ($this->db->execute()) {
