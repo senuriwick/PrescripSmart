@@ -1,0 +1,259 @@
+body {
+  font-family: Inter, 'Source Sans Pro';
+  margin: 0;
+}
+
+.menu {
+    display: flex;
+    padding-bottom: 0.1vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+}
+
+
+.menu p {
+    margin-right: 4vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;   
+}
+
+.menu p:first-child{
+  font-weight: 500;
+}
+
+.menu p a{
+    text-decoration: none;
+    color: rgba(164, 174, 199, 1);
+}
+
+p a:active{
+    color: black;
+}
+
+.divider{
+  width: 96%;
+  margin-left: 0;
+  color:rgba(164, 174, 199, 1);
+}
+
+.prescriptionsDiv {
+    margin-top: 3vh;
+    padding-bottom: 5vh;
+    border-width: 0.1vh;
+    border-color: rgba(164, 174, 199, 1);
+  }
+  
+.analysisContainer h2 {
+  font-size: 25px; /* Adjust the font size as needed */
+  font-weight: bold;
+  color: #007bff; /* Blue color */
+  margin-bottom: 20px; /* Add some spacing below the heading */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for emphasis */
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+
+
+#search {
+  padding: 1.6vh 41vw 1.8vh 1vw;
+  border-radius: 0.5rem;
+  border-style: none;
+  background-color: rgba(239, 242, 251, 1);
+  font-size: 1.1rem;
+}
+
+#searchButton {
+  padding: 1.6vh 3vw;
+  margin-left: 0.5vw;
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #0069FF;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#searchButton:hover {
+  background-color: rgba(0, 80, 200, 1); 
+  cursor: pointer;
+}
+
+.patientFile {
+  background-color: rgba(239, 242, 251, 1);
+  margin-top: 3vh;
+  padding: 0.5vh 1vw;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row; 
+  width: 93%;
+  margin-bottom: -0.5rem;
+  align-items: center;
+}
+
+.patientFile p {
+  margin: 0.5vh 1vw;
+  font-size: 1.1rem;
+  width:36.7%;
+}
+
+.patientFile #patientId {
+  color: rgba(68, 81, 114, 0.75);
+}
+
+.patientFile button {
+  border-style: none;
+  border-radius: 0.5rem;
+  background-color: #0069FF;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5vh 1vw;
+}
+
+.patientFile button:hover {
+  background-color: rgba(0, 80, 200, 1); 
+  cursor: pointer;
+}
+.center-content {
+  margin-left: 25%;
+  margin-top: 30px; 
+}
+
+.grey-text {
+  color:rgba(164, 174, 199, 1);
+  font-size: 1.5rem;
+  font-style:italic;
+}
+
+.person-circle{
+  width:40px;
+  height:40px;
+}
+
+.pagination {
+  margin-top: 4vh;
+  text-align: center;
+}
+
+.pagination a {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #0069FF;
+  color: white;
+}
+
+.pagination a:hover {
+  background-color: #0069FF;
+  color: white;
+}
+
+
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 3%;
+  margin-left: 220px;
+}
+
+.patientInfoContainer {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  width: 80%;
+}
+
+.menu #analysis {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
+}
+
+.menu #analysis::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.analysis{
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.analysis::before {
+  background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
+}
+
+.analysisContainer {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* .analysisContainer h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+} */
+
+.analysisSection {
+  margin-bottom: 30px;
+}
+
+.analysisSection h3 {
+  color: #555;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.medicationList, .dosageFormsList, .therapeuticClassesList {
+  margin-top: 10px;
+}
+
+.medicationItem, .dosageFormItem, .therapeuticClassItem {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.medicationItem p, .dosageFormItem p, .therapeuticClassItem p {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.medicationItem p:first-child, .dosageFormItem p:first-child, .therapeuticClassItem p:first-child {
+  font-weight: bold;
+}
+
+.medicationItem p:last-child, .dosageFormItem p:last-child, .therapeuticClassItem p:last-child {
+  color: #777;
+}
