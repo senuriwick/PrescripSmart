@@ -26,10 +26,9 @@
         }
 
         public function getPatientsPaginated($itemsPerPage, $offset){
-            $this->db->query('SELECT * FROM patients LIMIT :offset, :itemsPerPage');
+            $this->db->query('SELECT p.patient_ID, p.display_Name, p.age, p.weight, p.height, p.gender, p.home_Address, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID LIMIT :offset, :itemsPerPage');
             $this->db->bind(':offset', $offset, PDO::PARAM_INT);
             $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
-        
             return $this->db->resultSet();
         }
 
@@ -227,6 +226,23 @@
         $this->db->query($query);
         $results = $this->db->resultSet();
     
+        return $results;
+    }
+
+    public function fetchCommonlyPrescribedMedicationsByMonth($month){
+        // Execute SQL query to retrieve most commonly prescribed medications for a specific month
+        $query = "SELECT pm.medication, COUNT(*) AS usage_count 
+                  FROM patients_medications pm
+                  INNER JOIN prescriptions p ON pm.prescription_id = p.prescription_id
+                  WHERE MONTH(p.prescription_date) = :month
+                  GROUP BY pm.medication 
+                  ORDER BY usage_count DESC 
+                  LIMIT 5"; // Assuming you want to display top 5 medications
+        
+        $this->db->query($query);
+        $this->db->bind(':month', $month);
+        $results = $this->db->resultSet();
+        
         return $results;
     }
     

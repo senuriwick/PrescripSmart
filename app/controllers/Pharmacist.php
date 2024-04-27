@@ -365,10 +365,14 @@
         echo json_encode($filteredPrescriptions);
     }
 
-    public function analysis(){
-    
-        // Call the method to fetch most commonly prescribed medications
-        $commonlyPrescribedMedications = $this->pharmacistModel->fetchCommonlyPrescribedMedications();
+    public function analysis($month = null){
+        if($month !== null) {
+            // Call the method to fetch data for the specified month
+            $commonlyPrescribedMedications = $this->pharmacistModel->fetchMonthlyData($month);
+        } else {
+            // Call the method to fetch most commonly prescribed medications
+            $commonlyPrescribedMedications = $this->pharmacistModel->fetchCommonlyPrescribedMedications();
+        }
     
         // Pass the data to the view
         $data = [
@@ -378,6 +382,7 @@
         // Load the view and pass the data to it
         $this->view('pharmacist/pharmacist_analysis', $data);
     }
+    
     
         
         
