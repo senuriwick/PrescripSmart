@@ -12,24 +12,36 @@ class Nurse extends Controller
 
     }
 
+    public static function logged_in()
+    {
+        if (!empty($_SESSION['USER_DATA'])) {
+            return true;
+        }
+        return false;
+    }
+
     public function patients_dashboard($page = 1)
     {
-        $allPatients = $this->nurseModel->getAllPatients();
-        $recordsPerPage = 10;
-        $totalPatients = count($allPatients);
-        $totalPages = ceil($totalPatients / $recordsPerPage);
+        if ($this->logged_in()) {
+            $allPatients = $this->nurseModel->getAllPatients();
+            $recordsPerPage = 10;
+            $totalPatients = count($allPatients);
+            $totalPages = ceil($totalPatients / $recordsPerPage);
 
-        $offset = ($page - 1) * $recordsPerPage;
-        $patients = array_slice($allPatients, $offset, $recordsPerPage);
+            $offset = ($page - 1) * $recordsPerPage;
+            $patients = array_slice($allPatients, $offset, $recordsPerPage);
 
-        $data = [
-            'patients' => $patients,
-            'allPatients' => $allPatients,
-            'currentPage' => $page,
-            'totalPages' => $totalPages
-        ];
+            $data = [
+                'patients' => $patients,
+                'allPatients' => $allPatients,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
 
-        $this->view('nurse/patients_dashboard', $data);
+            $this->view('nurse/patients_dashboard', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function filterPatients()
@@ -41,51 +53,63 @@ class Nurse extends Controller
 
     public function patient_profile()
     {
-        $patientID = $_GET['patientId'];
-        $patient = $this->nurseModel->patientdetails($patientID);
-        $data = [
-            'patient' => $patient
-        ];
-        $this->view('nurse/patient_profile', $data);
+        if ($this->logged_in()) {
+            $patientID = $_GET['patientId'];
+            $patient = $this->nurseModel->patientdetails($patientID);
+            $data = [
+                'patient' => $patient
+            ];
+            $this->view('nurse/patient_profile', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function appointments()
     {
-        $currentSession = $this->nurseModel->currentSession();
+        if ($this->logged_in()) {
+            $currentSession = $this->nurseModel->currentSession();
 
-        if ($currentSession) {
-            $currentSessionID = $currentSession->session_ID;
-            $doctorID = $currentSession->doctor_ID;
-            $doctorDetails = $this->nurseModel->doctors($doctorID);
-            $appointments = $this->nurseModel->appointments($currentSessionID);
+            if ($currentSession) {
+                $currentSessionID = $currentSession->session_ID;
+                $doctorID = $currentSession->doctor_ID;
+                $doctorDetails = $this->nurseModel->doctors($doctorID);
+                $appointments = $this->nurseModel->appointments($currentSessionID);
 
-            $data = [
-                'appointments' => $appointments,
-                'session' => $currentSession,
-                'doctor' => $doctorDetails
-            ];
-            $this->view('nurse/appointments', $data);
+                $data = [
+                    'appointments' => $appointments,
+                    'session' => $currentSession,
+                    'doctor' => $doctorDetails
+                ];
+                $this->view('nurse/appointments', $data);
+            } else {
+                $this->view('nurse/appointments');
+            }
         } else {
-            $this->view('nurse/appointments');
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
     public function appointment_view()
     {
-        $appointmentID = $_GET['reference'];
-        $appointment = $this->nurseModel->filter_appointment_by_ID($appointmentID);
+        if ($this->logged_in()) {
+            $appointmentID = $_GET['reference'];
+            $appointment = $this->nurseModel->filter_appointment_by_ID($appointmentID);
 
-        $doctorID = $appointment->doctor_ID;
-        $patientID = $appointment->patient_ID;
-        $doctorDetails = $this->nurseModel->doctors($doctorID);
-        $patientDetails = $this->nurseModel->patientdetails($patientID);
+            $doctorID = $appointment->doctor_ID;
+            $patientID = $appointment->patient_ID;
+            $doctorDetails = $this->nurseModel->doctors($doctorID);
+            $patientDetails = $this->nurseModel->patientdetails($patientID);
 
-        $data = [
-            'appointment' => $appointment,
-            'doctor' => $doctorDetails,
-            'patient' => $patientDetails
-        ];
-        $this->view('nurse/appointment_view', $data);
+            $data = [
+                'appointment' => $appointment,
+                'doctor' => $doctorDetails,
+                'patient' => $patientDetails
+            ];
+            $this->view('nurse/appointment_view', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function appointment_complete()
@@ -107,42 +131,54 @@ class Nurse extends Controller
 
     public function ongoing_session()
     {
-        $currentSession = $this->nurseModel->currentSession();
+        if ($this->logged_in()) {
+            $currentSession = $this->nurseModel->currentSession();
 
-        if ($currentSession) {
-            $currentSessionID = $currentSession->session_ID;
-            $doctorID = $currentSession->doctor_ID;
-            $doctorDetails = $this->nurseModel->doctors($doctorID);
-            $appointments = $this->nurseModel->appointments($currentSessionID);
+            if ($currentSession) {
+                $currentSessionID = $currentSession->session_ID;
+                $doctorID = $currentSession->doctor_ID;
+                $doctorDetails = $this->nurseModel->doctors($doctorID);
+                $appointments = $this->nurseModel->appointments($currentSessionID);
 
-            $data = [
-                'appointments' => $appointments,
-                'session' => $currentSession,
-                'doctor' => $doctorDetails
-            ];
-            $this->view('nurse/ongoing_session', $data);
+                $data = [
+                    'appointments' => $appointments,
+                    'session' => $currentSession,
+                    'doctor' => $doctorDetails
+                ];
+                $this->view('nurse/ongoing_session', $data);
+            } else {
+                $this->view('nurse/ongoing_session');
+            }
         } else {
-            $this->view('nurse/ongoing_session');
+            header("Location: /prescripsmart/general/error_page");
         }
     }
 
     public function sessions()
     {
-        $groupedSessions = $this->nurseModel->sessions();
-        $data = [
-            'groupedSessions' => $groupedSessions
-        ];
-        $this->view('nurse/sessions', $data);
+        if ($this->logged_in()) {
+            $groupedSessions = $this->nurseModel->sessions();
+            $data = [
+                'groupedSessions' => $groupedSessions
+            ];
+            $this->view('nurse/sessions', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
 
     public function account_information()
     {
-        $nurse = $this->nurseModel->nurseInfo();
-        $data = [
-            'nurse' => $nurse
-        ];
-        $this->view('nurse/account_information', $data);
+        if ($this->logged_in()) {
+            $nurse = $this->nurseModel->nurseInfo();
+            $data = [
+                'nurse' => $nurse
+            ];
+            $this->view('nurse/account_information', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function accountInfoUpdate()
@@ -183,13 +219,17 @@ class Nurse extends Controller
 
     public function personal_information()
     {
-        $nurse = $this->nurseModel->nurseDetails();
-        $user = $this->nurseModel->nurseInfo();
-        $data = [
-            'nurse' => $nurse,
-            'user' => $user
-        ];
-        $this->view('nurse/personal_information', $data);
+        if ($this->logged_in()) {
+            $nurse = $this->nurseModel->nurseDetails();
+            $user = $this->nurseModel->nurseInfo();
+            $data = [
+                'nurse' => $nurse,
+                'user' => $user
+            ];
+            $this->view('nurse/personal_information', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function personalInfoUpdate()
@@ -217,12 +257,16 @@ class Nurse extends Controller
 
     public function security()
     {
-        $userID = $_SESSION['USER_DATA']->user_ID;
-        $user = $this->nurseModel->find_user_by_id($userID);
-        $data = [
-            'user' => $user
-        ];
-        $this->view('nurse/security', $data);
+        if ($this->logged_in()) {
+            $userID = $_SESSION['USER_DATA']->user_ID;
+            $user = $this->nurseModel->find_user_by_id($userID);
+            $data = [
+                'user' => $user
+            ];
+            $this->view('nurse/security', $data);
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
     }
 
     public function toggle2FA()

@@ -10,13 +10,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/RegisterActor.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
   
 </head>
  <body>
 
-   <?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
+ <div class="content">
+    <?php include 'side_navigation_panel.php'; ?>
+
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
+
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
    
       <div class="details">
           <div class="back" style="display: flex; ">         
@@ -75,13 +82,6 @@
         </form>
              
     </div>
- 
-        <div class="popup">
-            <h2>Registration successful!</h2>
-            <a><button onclick="popup()"><b>Back to dashboard</b></button></a>
-        </div>
-
-
 <script>
   function popup()
   {
