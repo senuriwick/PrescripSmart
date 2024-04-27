@@ -46,7 +46,7 @@
                             <?php endforeach; ?>
                         </div>
                         
-                        <div id="session-patients" class="clicked-session">
+                        <!-- <div id="session-patients" class="clicked-session">
                             <div class="session-number">
                                 <h1>Session #1234</h1>
                                 <p>Number of patients <span style="color: blue;">04</span></p>
@@ -76,7 +76,7 @@
                                 </tbody>
                             </table>
 
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
@@ -95,7 +95,8 @@
                     <hr/>
                     <!-- <button type="button">VIEW PATIENTS</button> -->
                 </div>
-                <div class="patients"></div>
+                <div class="patients">
+                </div>
             </div>
             <div class="cancel">
                 <button>CANCEL SESSION</button>
@@ -141,8 +142,24 @@
             function showPatients(result){
                 const sessionModal = document.getElementById("session-modal");
                 const patientCountdiv = sessionModal.querySelector(".patient-data");
-                patientCountdiv.innetHTML = `
+                patientCountdiv.innerHTML = `
                 <div>No. of patients: ${result.patientCount}</div>`;
+                
+                var patientsdiv = sessionModal.querySelector(".patients");
+                patientsdiv.innerHTML = "";
+                if(result.sessionPatients.length>0){
+                    result.sessionPatients.forEach(patient =>{
+                        const item = document.createElement('div');
+                        item.classList.add('patients-item');
+                        item.textContent = patient.token_No+" "+patient.display_Name;
+
+                        patientsdiv.appendChild(item);
+                    })
+                }
+                
+                // patientCountdiv.innetHTML = "";
+                // const patientNo = document.getElementById("patinet-no");
+                // patientNo.innerHTML=``;
             }
 
             // viewPatientsButton.addEventListener("click", () => {

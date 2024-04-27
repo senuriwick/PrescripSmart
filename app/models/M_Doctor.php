@@ -96,7 +96,7 @@ class M_Doctor
     }
 
     public function getSessionPatients($sessionId){
-        $this->db->query('SELECT * FROM appointments WHERE session_ID=:session_id');
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE session_ID=:session_id');
         $this->db->bind(':session_id',$sessionId);
         $results = $this->db->resultSet();
         return $results;
