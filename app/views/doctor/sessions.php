@@ -41,7 +41,7 @@
                                 <hr>
                                 <div>Date: <?php echo formatCustomDate($sessionData->sessionDate);?></div>
                                 <div>Time: <?php echo formatCustomTime($sessionData->start_time);?></div>
-                                <button sessionID="<?php echo $sessionData->session_ID;?>">VIEW SESSION</button>
+                                <button sessionID="<?php echo $sessionData->session_ID;?>">VIEW PATIENTS</button>
                             </div>
                             <?php endforeach; ?>
                         </div>
@@ -88,13 +88,14 @@
             <span class="close">&times;</span>
             <div class="session-modal-content">
             <div class="modal-head"><b>Session #1254</b></div>
-                <hr />
-                <div>Date: Sunday, 17th Sept,2023</div>
-                <div>Time: 08.00 AM</div>
+                <hr/>
+                
                 <div class="patient-data">
-                    <div>No. of patients: 09</div>
-                    <button type="button">VIEW PATIENTS</button>
+                    <!-- <div>No. of patients: 09</div> -->
+                    <hr/>
+                    <!-- <button type="button">VIEW PATIENTS</button> -->
                 </div>
+                <div class="patients"></div>
             </div>
             <div class="cancel">
                 <button>CANCEL SESSION</button>
@@ -104,33 +105,54 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const viewSessionButtons = document.querySelectorAll(".session-card button");
+            const viewPatientsButton = document.querySelectorAll(".session-card button");
             const sessionModal = document.getElementById("session-modal");
             const closeSessionModal = sessionModal.querySelector(".close");
 
-            const viewPatientsButton = sessionModal.querySelector(".patient-data button");
+
+            // const viewPatientsButton = sessionModal.querySelector(".patient-data button");
             const sessionPatient = document.getElementById("session-patients");
             const sessiondetails=document.getElementById("session-details");
 
 
-            viewSessionButtons.forEach(button => {
+            viewPatientsButton.forEach(button => {
                 const sessionID = button.getAttribute("sessionID");
                 button.addEventListener("click", () => {
                     sessionModal.style.display = "block";
                     sessionModal.setAttribute("sessionid",sessionID);
-                    console.log(sessionID);
-
+                    showSessionDetails(sessionID);
                 });
             });
 
-            viewPatientsButton.addEventListener("click", () => {
-                console.log("view patient button clicked");
-                sessionPatient.style.display="block";
-                sessionModal.style.display="none";
-                sessiondetails.style.display="none";
+            function showSessionDetails(sessionId){
+                console.log(sessionId);
+                fetch(`http://localhost/Prescripsmart/doctor/showSessionPatients?sessionid=${sessionId}`)
+                .then(response =>{
+                    console.log(response);
+                    return response.json();
+                })
+                .then(data =>{
+                    console.log(data);
+                    showPatients(data);
+                })
+                .catch(error =>console.error('Error',error));
+            }
+
+            function showPatients(result){
+                const sessionModal = document.getElementById("session-modal");
+                const patientCountdiv = sessionModal.querySelector(".patient-data");
+                patientCountdiv.innetHTML = `
+                <div>No. of patients: ${result.patientCount}</div>`;
+            }
+
+            // viewPatientsButton.addEventListener("click", () => {
+            //     console.log("view patient button clicked");
+            //     sessionPatient.style.display="block";
+            //     sessionModal.style.display="none";
+            //     sessiondetails.style.display="none";
 
 
-            });
+            // });
 
             closeSessionModal.addEventListener("click", () => {
                 sessionModal.style.display = "none";

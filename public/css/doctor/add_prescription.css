@@ -39,6 +39,10 @@ p a:active{
     gap: 2vw;
 }
 
+.patientSearch .topic img{
+    cursor: pointer;
+}
+
 .patientSearch .topic h1 {
     font-size: 24px;
     font-weight: bold;

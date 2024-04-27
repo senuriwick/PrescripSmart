@@ -107,6 +107,12 @@
         </div>
     </div>
     <script>
+
+
+        document.getElementById('back-icon').addEventListener("click", function () {
+            window.history.back();
+            });
+
         function getSearchResults(query) {
             if (query.length >= 1) {
                 fetch(`http://localhost/Prescripsmart/doctor/searchMedication?query=${query}`)
