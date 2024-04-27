@@ -61,7 +61,7 @@
                                         <td><?php echo $medicine->medication; ?></td>
                                         <!-- <td><?php echo $medicine->dosage; ?></td> -->
                                         <td><?php echo $medicine->remark; ?></td>
-                                        <td <?php if ($medicine->status == "Issued"): ?> class="status" <?php endif; ?>>
+                                        <td <?php if ($medicine->status == "issued"): ?> class="status" <?php endif; ?>>
                                             <?php echo $medicine->status; ?>
                                         </td>
 
