@@ -1,8 +1,9 @@
 .prescriptionsDiv {
-    background-color: rgba(239, 242, 251, 1);
-    border-radius: 10px;
-    margin-top: 4vh;
-    padding: 1vh 3vh 2vh;
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  margin-top: 4vh;
+  padding: 1vh 3vh 2vh;
+  position: relative;
   }
   
   .prescriptionsDiv h1 {

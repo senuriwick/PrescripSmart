@@ -11,12 +11,12 @@
 } */
 
 .file {
-  background-color: rgba(239, 242, 251, 1);
+  background-color:white;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 1vh;
-
+  width:943px;
   /* border-style: solid;
   border-width: 0.1vh;
   border-color: rgba(68, 81, 114, 0.5); */
@@ -272,7 +272,7 @@ body {
 
 .pagination {
   margin-top: 4vh;
-  text-align: center;
+  text-align: end;
 }
 
 .pagination a {
@@ -298,11 +298,12 @@ body {
 }
 
 #search {
-  padding: 1.6vh 41vw 1.8vh 1vw;
+  background-color: white;
   border-radius: 0.5rem;
   border-style: none;
-  background-color: rgba(239, 242, 251, 1);
   font-size: 1.1rem;
+  margin-top: 2vh;
+  padding: 1.6vh 37vw 1.8vh 1vw;
 }
 
 #searchButton {
@@ -322,10 +323,20 @@ body {
   margin-left: 0.2vw;
   margin-bottom: 1.5vh;
   color: rgba(68, 81, 114, 1);
+  font-size:24px;
 }
+
 
 .divider {
   width: 96%;
   margin-left: 0;
   color: rgba(164, 174, 199, 1);
+}
+
+.inquiriesDiv{
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  margin-top: 4vh;
+  padding: 1vh 3vh 2vh;
+  position: relative;
 }

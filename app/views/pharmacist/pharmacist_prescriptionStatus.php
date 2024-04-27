@@ -24,80 +24,83 @@
       <div class="patientInfoContainer">
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
+        <div class="inquiriesDiv">
+            <?php
+            $prescriptions = $data["prescriptions"];
+            $totalPages = $data["totalPages"];
+            $currentPage = $data["currentPage"];
+            ?>
 
-        <?php
-        $prescriptions = $data["prescriptions"];
-        $totalPages = $data["totalPages"];
-        $currentPage = $data["currentPage"];
-        ?>
-          <h2 class="searchHeader">Search Prescriptions</h2>
-          <input type="text" id="search" name="search" placeholder="Enter prescription ID" class="inputfield">
-          <button id="searchButton">SEARCH</button>
-
-          <hr class="divider"> 
-
-        <div class="prescriptionsDiv">
           
-          <div class="searchDiv">
-            <?php foreach ($prescriptions as $prescription): ?>
-              <div class="prescriptionFiles">
-                <div class="file">
-                  <div class="desDiv">
-                    <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
-                    <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
+              <h2 class="searchHeader">Search Prescriptions</h2>
+              <input type="text" id="search" name="search" placeholder="Enter prescription ID" class="inputfield">
+              <button id="searchButton">SEARCH</button>
+
+              <hr class="divider"> 
+
+            <div class="prescriptionsDiv">
+              
+              <div class="searchDiv">
+                <?php foreach ($prescriptions as $prescription): ?>
+                  <div class="prescriptionFiles">
+                    <div class="file">
+                      <div class="desDiv">
+                        <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
+                        <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
+                      </div>
+                      <p class="doctor">Issued by: Dr. <?php echo $prescription->first_Name; ?> <?php echo $prescription->last_Name; ?></p>
+                      <p class="date">Issued on: <?php echo $prescription->prescription_Date; ?></p>
+                      <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon" data-container-pid="<?= $prescription->prescription_ID ?>">
+                    </div>
                   </div>
-                  <p class="doctor">Issued by: Dr. <?php echo $prescription->first_Name; ?> <?php echo $prescription->last_Name; ?></p>
-                  <p class="date">Issued on: <?php echo $prescription->prescription_Date; ?></p>
-                  <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon" data-container-pid="<?= $prescription->prescription_ID ?>">
-                </div>
+                  <div id="myModal<?= $prescription->prescription_ID ?>" class="modal" style="display: none;">
+                    <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <a href="www.prescripsmart.com">www.prescripsmart.com</a>
+                      <div class="model-head">
+                        <div>P</div>
+                        <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
+                        <i class="fa-solid fa-circle-arrow-up"></i>
+                      </div>
+                      <div class="model-details">
+                        <div>Prescription ID: #<?php echo $prescription->prescription_ID; ?></div>
+                        <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name ?> <?php echo $_SESSION['USER_DATA']->last_Name ?></div>
+                        <div>Pres Date & Time: <?php echo $prescription->prescription_Date; ?></div>
+                        <div>Age: 22 Yrs</div>
+                        <div>Referred by: Dr. <?php echo $prescription->first_Name; ?> <?php echo $prescription->last_Name; ?></div>
+                      </div>
+                      <div class="pres-box">
+                        <label>Medications</label>
+                        <table>
+                          <tbody>
+                            <th>Name</th>
+                            <!-- <th>Dosage</th> -->
+                            <th>Remarks</th>
+                            <th>Status</th>
+                            <?php foreach ($data['prescriptionDetails'][$prescription->prescription_ID] as $medicine): ?>
+                              <tr>
+                                <td><?php echo $medicine->medication; ?></td>
+                                <!-- <td><?php echo $medicine->dosage; ?></td> -->
+                                <td><?php echo $medicine->remark; ?></td>
+                                <td>
+                                  <input type="checkbox" data-container-pid="<?= $prescription->prescription_ID ?>" value="<?= $medicine->id; ?>" <?php if ($medicine->status === 'issued') echo 'checked'; ?>>
+                                </td>
+                              </tr>
+                            <?php endforeach ?>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="notice">(For viewing purpose only)</div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
               </div>
-              <div id="myModal<?= $prescription->prescription_ID ?>" class="modal" style="display: none;">
-                <div class="modal-content">
-                  <span class="close">&times;</span>
-                  <a href="www.prescripsmart.com">www.prescripsmart.com</a>
-                  <div class="model-head">
-                    <div>P</div>
-                    <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
-                    <i class="fa-solid fa-circle-arrow-up"></i>
-                  </div>
-                  <div class="model-details">
-                    <div>Prescription ID: #<?php echo $prescription->prescription_ID; ?></div>
-                    <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name ?> <?php echo $_SESSION['USER_DATA']->last_Name ?></div>
-                    <div>Pres Date & Time: <?php echo $prescription->prescription_Date; ?></div>
-                    <div>Age: 22 Yrs</div>
-                    <div>Referred by: Dr. <?php echo $prescription->first_Name; ?> <?php echo $prescription->last_Name; ?></div>
-                  </div>
-                  <div class="pres-box">
-                    <label>Medications</label>
-                    <table>
-                      <tbody>
-                        <th>Name</th>
-                        <!-- <th>Dosage</th> -->
-                        <th>Remarks</th>
-                        <th>Status</th>
-                        <?php foreach ($data['prescriptionDetails'][$prescription->prescription_ID] as $medicine): ?>
-                          <tr>
-                            <td><?php echo $medicine->medication; ?></td>
-                            <!-- <td><?php echo $medicine->dosage; ?></td> -->
-                            <td><?php echo $medicine->remark; ?></td>
-                            <td>
-                              <input type="checkbox" data-container-pid="<?= $prescription->prescription_ID ?>" value="<?= $medicine->id; ?>" <?php if ($medicine->status === 'issued') echo 'checked'; ?>>
-                            </td>
-                          </tr>
-                        <?php endforeach ?>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="notice">(For viewing purpose only)</div>
-                </div>
-              </div>
-            <?php endforeach; ?>
-          </div>
-        </div>
-        <div class="pagination">
-          <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-            <a href="<?php echo URLROOT ?>/pharmacist/prescriptionStatus/<?php echo $i ?>" <?php if ($currentPage == $i) echo 'class="active"'; ?>><?php echo $i ?></a>
-          <?php endfor; ?>
+            </div>
+            <div class="pagination">
+              <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="<?php echo URLROOT ?>/pharmacist/prescriptionStatus/<?php echo $i ?>" <?php if ($currentPage == $i) echo 'class="active"'; ?>><?php echo $i ?></a>
+              <?php endfor; ?>
+            </div>
         </div>
       </div>
     </div>
