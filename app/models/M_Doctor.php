@@ -10,8 +10,15 @@ class M_Doctor
 
     public function getPatientsDetails($sessionId)
     {
-        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE appointments.session_ID=:session_id');
+        $this->db->query('SELECT appointments.*, patients.*, users.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID LEFT JOIN users ON appointments.patient_ID=users.user_ID WHERE appointments.session_ID=:session_id');
         $this->db->bind(':session_id',$sessionId);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function filterPatients($session_id,$query){
+        $this->db->query("SELECT appointments.*, patients.*, users.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID LEFT JOIN users ON appointments.patient_ID=users.user_ID WHERE appointments.session_ID=:session_id AND patients.display_Name LIKE '%$query%' ");
+        $this->db->bind(':session_id',$session_id);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -86,6 +93,20 @@ class M_Doctor
         $this->db->bind(':id', $userid);
         $results = $this->db->resultSet();
         return $results;
+    }
+
+    public function getSessionPatients($sessionId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getSessionPatientsCount($sessionId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        $this->db->resultSet();
+        return $this->db->rowCount();
     }
 
     public function getOngonigSession($doctorId){

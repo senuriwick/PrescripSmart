@@ -8,9 +8,9 @@ function show(icon) {
 
     if (content.style.display === "none" || content.style.display === "") {
         content.style.display = "block";
-        presBtn.style.backgroundColor = "green";
-        presBtn.style.width = "15vw";
-        presBtn.innerHTML = "View Medical History";
+        // presBtn.style.backgroundColor = "green";
+        // presBtn.style.width = "15vw";
+        // presBtn.innerHTML = "View Medical History";
         icon.classList.remove("fa-solid", "fa-chevron-down");
         icon.classList.add("fa-solid", "fa-chevron-up");
     } else {
