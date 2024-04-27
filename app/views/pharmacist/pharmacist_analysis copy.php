@@ -17,16 +17,6 @@
                 <div class="analysisContainer">
                     <div class="analysisContent">
                         <h2>Medication Analysis</h2>
-                        <!-- Add month selection form -->
-                        <form id="monthSelectionForm">
-                            <label for="selectedMonth">Select Month:</label>
-                            <select id="selectedMonth" name="selectedMonth">
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <option value="4">April</option>
-                            </select>
-                            <button type="submit">Fetch Data</button>
-                        </form>
                         <div class="analysisSection">
                             <h3>Most Commonly Prescribed Medications</h3>
                             <div class="medicationList">
@@ -79,50 +69,6 @@
             };
 
             new Chart(ctx, config);
-
-            // Add event listener for form submission
-            document.getElementById('monthSelectionForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Get selected month from the form
-                var selectedMonth = document.getElementById('selectedMonth').value;
-
-                // Send selected month to the controller using AJAX
-                fetchMonthlyData(selectedMonth);
-            });
-
-            // Function to send selected month to the controller using AJAX
-            document.getElementById('monthSelectionForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Get selected month from the form
-                var selectedMonth = document.getElementById('selectedMonth').value;
-
-                // Send selected month to the controller using AJAX
-                fetchMonthlyData(selectedMonth);
-            });
-
-            // Function to send selected month to the controller using AJAX
-            function fetchMonthlyData(selectedMonth) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '<?php echo URLROOT; ?>/pharmacist/analysis', true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            var data = JSON.parse(xhr.responseText);
-                            // Handle response data as needed
-                            console.log(data);
-                        } else {
-                            console.error('Error fetching data:', xhr.status);
-                        }
-                    }
-                };
-
-                xhr.send(JSON.stringify({ month: selectedMonth }));
-            }
-
         });
     </script>
 

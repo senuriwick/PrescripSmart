@@ -106,6 +106,7 @@
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $newpassword = $_POST["newpassword"];
+            $_SESSION['USER_DATA']->password = $newpassword;
             $this->healthSupervisorModel->resetPassword($newpassword);
 
             redirect('/healthSupervisor/profile');
