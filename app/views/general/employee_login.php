@@ -75,7 +75,7 @@
                                 if (response.role === 'Admin') {
                                     window.location.href = '/prescripsmart/admin/searchPatient';
                                 } else if (response.role === 'Doctor') {
-                                    window.location.href = '/prescripsmart/doctor/sessions';
+                                    window.location.href = '/prescripsmart/doctor/patients';
                                 } else if (response.role === 'Nurse') {
                                     window.location.href = '/prescripsmart/nurse/patients_dashboard';
                                 } else if (response.role === 'Receptionist') {
