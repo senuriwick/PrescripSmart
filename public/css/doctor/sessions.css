@@ -120,6 +120,19 @@ height: 50px;
     margin-bottom: 15px;
 }
 
+.session-content .session-modal-content .patients{
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+
+}
+
+.session-content .session-modal-content .patients .patients-item{
+    padding: 2px;
+}
+
 .session-content .session-modal-content .patient-data button {
     background-color: rgba(0, 105, 255, 1);
     border: none;
