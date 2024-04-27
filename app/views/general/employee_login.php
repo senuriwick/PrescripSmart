@@ -85,7 +85,7 @@
                                 } else if (response.role === 'Pharmacist') {
                                     window.location.href = '/prescripsmart/pharmacist/dashboard';
                                 } else if (response.role === 'Health_supervisor') {
-                                    window.location.href = '/prescripsmart/HealthSupervisor/dashboard';
+                                    window.location.href = '/prescripsmart/healthSupervisor/dashboard';
                                 } else {
                                     window.location.href = '/prescripsmart/general/home';
                                 }
