@@ -10,8 +10,15 @@ class M_Doctor
 
     public function getPatientsDetails($sessionId)
     {
-        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE appointments.session_ID=:session_id');
+        $this->db->query('SELECT appointments.*, patients.*, users.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID LEFT JOIN users ON appointments.patient_ID=users.user_ID WHERE appointments.session_ID=:session_id');
         $this->db->bind(':session_id',$sessionId);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function filterPatients($session_id,$query){
+        $this->db->query("SELECT appointments.*, patients.*, users.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID LEFT JOIN users ON appointments.patient_ID=users.user_ID WHERE appointments.session_ID=:session_id AND patients.display_Name LIKE '%$query%' ");
+        $this->db->bind(':session_id',$session_id);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -88,9 +95,23 @@ class M_Doctor
         return $results;
     }
 
+    public function getSessionPatients($sessionId){
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getSessionPatientsCount($sessionId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        $this->db->resultSet();
+        return $this->db->rowCount();
+    }
+
     public function getOngonigSession($doctorId){
-        $this->db->query('SELECT * FROM sessions WHERE (start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
-        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time)) AND doctor_ID=:doctor_id');
+        $this->db->query('SELECT * FROM sessions WHERE ((start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
+        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id');
         $this->db->bind(':doctor_id',$doctorId);
         $result = $this->db->single();
         return $result;
@@ -107,6 +128,14 @@ class M_Doctor
     {
         $this->db->query('SELECT * FROM patients WHERE patient_ID=:id');
         $this->db->bind(':id', $patientid);
+        $results = $this->db->single();
+        return $results;
+    }
+
+    public function verifyDoctor($userId)
+    {
+        $this->db->query('SELECT * FROM  doctors WHERE doctor_ID=:id');
+        $this->db->bind(':id', $userId);
         $results = $this->db->single();
         return $results;
     }
@@ -169,13 +198,14 @@ class M_Doctor
         }
     }
 
-    public function addTest($patientId, $testId, $diagnosisId, $remark)
+    public function addTest($patientId, $testId, $diagnosisId, $remark,$doctorId)
     {
-        $this->db->query('INSERT INTO lab_reports (test_ID, patient_ID, prescription_ID, remarks) VALUES (:test_id, :patient_id, :diagnosis_id, :remarks)');
+        $this->db->query('INSERT INTO lab_reports (test_ID, patient_ID, prescription_ID, remarks, doctor_ID) VALUES (:test_id, :patient_id, :diagnosis_id, :remarks, :doctor_id)');
         $this->db->bind(':patient_id', $patientId);
         $this->db->bind(':test_id', $testId);
         $this->db->bind(':diagnosis_id', $diagnosisId);
         $this->db->bind(':remarks', $remark);
+        $this->db->bind(':doctor_id',$doctorId);
         if ($this->db->execute()) {
             return true;
         } else {

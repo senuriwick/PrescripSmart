@@ -29,4 +29,7 @@ Using MVC architecture and related folder structure.
 - **PHP**: Used as the server-side scripting language.
 - **Database**: MySQL
 
-
+### APIs
+- **Payhere**: Used as the payment gateaway for online payments. (https://www.payhere.lk/)
+- **Twillio**: Used as the communication API for sending SMS. (https://www.twilio.com/en-us)
+- **Google Maps** - Used Maps Javascript API to show geolocation. (https://developers.google.com/maps)

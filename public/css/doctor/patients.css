@@ -26,7 +26,7 @@ form input {
 }
 
 .patient-details table {
-  width: 100%;
+  width: 97%;
   border-collapse: separate;
   border-spacing: 0 1vh;
 }
@@ -61,6 +61,11 @@ td button {
   cursor: pointer;
 }
 
+td button .history{
+  background-color: rgb(3, 107, 15);
+
+}
+
 .patient-details .desDiv {
   display: flex;
   justify-content: space-between;
@@ -72,8 +77,10 @@ td button {
 }
 
 .desDiv img {
+  border-radius: 50%;
   height: 5vh;
-  padding: 1.75vh 0vh 1vh 1.5vh;
+  margin-right: 1vh;
+  width: 5vh;
 }
 
 .patient-data {
@@ -135,6 +142,33 @@ body {
   width: 100%;
   height: 4px;
   background-color: #0069FF;
+}
+
+.pagination {
+  margin-top: 4vh;
+  text-align: right;
+}
+
+.pagination a {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #0069FF;
+  color: white;
+}
+
+.pagination a:hover {
+  background-color: #0069FF;
+  color: white;
 }
 
 

@@ -15,6 +15,7 @@
 <body>
     <div class="menu">
         <a href="<?php echo URLROOT; ?>/pharmacist/dashboard" id="patients">Patients</a>
-        <a href="<?php echo URLROOT; ?>/pharmacist/medications" id="medications">Medications</a>
+        <a href="<?php echo URLROOT; ?>/pharmacist/prescriptionStatus" id="prescriptions">Prescriptions</a>
+        <a href="<?php echo URLROOT; ?>/pharmacist/analysis" id="analysis">Analysis</a>
     </div>
 </body>

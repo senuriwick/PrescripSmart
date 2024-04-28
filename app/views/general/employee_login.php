@@ -75,7 +75,7 @@
                                 if (response.role === 'Admin') {
                                     window.location.href = '/prescripsmart/admin/searchPatient';
                                 } else if (response.role === 'Doctor') {
-                                    window.location.href = '/prescripsmart/doctor/sessions';
+                                    window.location.href = '/prescripsmart/doctor/patients';
                                 } else if (response.role === 'Nurse') {
                                     window.location.href = '/prescripsmart/nurse/patients_dashboard';
                                 } else if (response.role === 'Receptionist') {
@@ -83,9 +83,9 @@
                                 } else if (response.role === 'Lab_technician') {
                                     window.location.href = '/prescripsmart/LabTechnician/patient';
                                 } else if (response.role === 'Pharmacist') {
-                                    window.location.href = '/prescripsmart/pharmacist/pharmacist_dashboard';
+                                    window.location.href = '/prescripsmart/pharmacist/dashboard';
                                 } else if (response.role === 'Health_supervisor') {
-                                    window.location.href = '/prescripsmart/healthSupervisor/healthSupervisor_dashboard';
+                                    window.location.href = '/prescripsmart/healthSupervisor/dashboard';
                                 } else {
                                     window.location.href = '/prescripsmart/general/home';
                                 }

@@ -43,33 +43,36 @@ p a:active{
     border-color: rgba(164, 174, 199, 1);
   }
   
-.prescriptionsDiv h2{
-  margin-left: 0.2vw;
-  margin-bottom: 1.5vh;
+.analysisContainer h2 {
+  font-weight: bold;
   color: rgba(68, 81, 114, 1);
-  font-size: 24px;
+  font-size: 24px;/* Blue color */
+  margin-bottom: 20px; /* Add some spacing below the heading */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 2px; /* Add letter spacing for emphasis */
+  padding-bottom: 10px;
+  text-align: end;
 }
 
+
+
 #search {
-  background-color: white;
+  padding: 1.6vh 41vw 1.8vh 1vw;
   border-radius: 0.5rem;
   border-style: none;
+  background-color: rgba(239, 242, 251, 1);
   font-size: 1.1rem;
-  margin-top: 2vh;
-  padding: 1.6vh 38vw 1.8vh 1vw;
 }
 
 #searchButton {
-  background-color: #0069FF;
-  border-radius: 0.5rem;
+  padding: 1.6vh 3vw;
+  margin-left: 0.5vw;
   border-style: none;
+  border-radius: 0.5rem;
+  background-color: #0069FF;
   color: white;
-  cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 2vh;
-  margin-left: 0.5vw;
-  padding: 1.6vh 3vw;
 }
 
 #searchButton:hover {
@@ -78,7 +81,7 @@ p a:active{
 }
 
 .patientFile {
-  background-color:white;
+  background-color: rgba(239, 242, 251, 1);
   margin-top: 3vh;
   padding: 0.5vh 1vw;
   border-radius: 5px;
@@ -105,9 +108,7 @@ p a:active{
   background-color: #0069FF;
   color: white;
   font-size: 1rem;
-  /* padding: 0.5vh 4vw; */
-  width:166px;
-  height: 27px;
+  padding: 0.5vh 1vw;
 }
 
 .patientFile button:hover {
@@ -125,18 +126,14 @@ p a:active{
   font-style:italic;
 }
 
-.patientFile img {
-  border-radius: 50%;
-  display: inline-block;
-  height: 5vh;
-  margin-right: 1vw;
-  overflow: hidden;
-  width: 5vh;
+.person-circle{
+  width:40px;
+  height:40px;
 }
 
 .pagination {
   margin-top: 4vh;
-  text-align: end;
+  text-align: center;
 }
 
 .pagination a {
@@ -178,14 +175,14 @@ p a:active{
   width: 80%;
 }
 
-.menu #patients {
+.menu #analysis {
   border-color: #0069FF;
   border-spacing: 2cm;
   color: #0069FF;
   position: relative;
 }
 
-.menu #patients::after {
+.menu #analysis::after {
   background-color: #0069FF;
   bottom: -8px;
   content: '';
@@ -195,12 +192,12 @@ p a:active{
   width: 100%;
 }
 
-.patients{
+.analysis{
   background-color: rgba(68, 81, 114, 1);
   position: relative;
 }
 
-.patients::before {
+.analysis::before {
   background-color: #0069FF;
   bottom: 0;
   content: '';
@@ -210,10 +207,59 @@ p a:active{
   width: 5px;
 }
 
-.ash-box{
+.analysisContainer {
+  display: flex;
+  justify-content: space-between;
   background-color: rgba(239, 242, 251, 1);
-  border-radius: 10px;
-  margin-top: 4vh;
-  padding: 1vh 3vh 2vh;
-  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.analysisSection {
+  margin-bottom: 30px;
+}
+
+.analysisSection h3 {
+  color: #0069ff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.medicationList, .dosageFormsList, .therapeuticClassesList {
+  margin-top: 10px;
+}
+
+.medicationItem, .dosageFormItem, .therapeuticClassItem {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.medicationItem p, .dosageFormItem p, .therapeuticClassItem p {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.medicationItem p:first-child, .dosageFormItem p:first-child, .therapeuticClassItem p:first-child {
+  font-weight: bold;
+}
+
+.medicationItem p:last-child, .dosageFormItem p:last-child, .therapeuticClassItem p:last-child {
+  color: #777;
+}
+
+.pieChartContainer {
+  width: 40%;
+  margin-left: 20px;
+  margin-top:120px;
+}
+
+.analysisContent {
+  width: 55%;
 }

@@ -14,22 +14,47 @@ class Doctor extends Controller{
     public function index(){
         $this->view('doctor/patients');
     }
-    public function patients(){
+    public function patients($page = 1){
         $doctorid = $_SESSION['USER_DATA']->user_ID;
         $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
         if($ongoingsession){
             $ongoingsessionid = $ongoingsession->session_ID;
             $patientsDetails = $this->dpModel->getPatientsDetails($ongoingsessionid);
+            $recodesPerPage =8;
+            $totalPatients = count($patientsDetails);
+            $totalPages = ceil($totalPatients / $recodesPerPage);
+
+            $offset = ($page -1)*$recodesPerPage;
+            $patients = array_slice($patientsDetails,$offset,$recodesPerPage);
             
         }else{
             $patientsDetails = '';
             $ongoingsession = '';
+            $patients='';
+            $page='';
+            $totalPages='';
         }
         $data = [
             'patientsData' => $patientsDetails,
-            'ongoingSession' =>$ongoingsession
+            'patients' => $patients,
+            'ongoingSession' =>$ongoingsession,
+            'currentPage' =>$page,
+            'totalPages'=>$totalPages
         ];
         $this->view('doctor/patients',$data);
+    }
+
+    public function searchPatient(){
+        $query = $_GET['query'];
+        $doctorid = $_SESSION['USER_DATA']->user_ID;
+        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+        if($ongoingsession){
+            $ongoingsessionid = $ongoingsession->session_ID;
+            $patientsDetails = $this->dpModel->filterPatients($ongoingsessionid,$query);
+            header('Content-Type: application/json');
+            echo json_encode($patientsDetails);
+        }
+
     }
 
     public function addPrescription($id){
@@ -46,25 +71,32 @@ class Doctor extends Controller{
     public function addMedication()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
             $diagnosis = $_POST['diagnosis'];
-            $medications = $_POST['medications'];
-            $remarks = $_POST['remarks'];
             $patient_id = $_POST['patientId'];
             $doctorid = $_SESSION['USER_DATA']->user_ID;
             // $appointmentid = $this->dpModel->getAppointmentId();
             $sessionId = $this->dpModel->getOngonigSession($doctorid)->session_ID;
             $appointment = $this->dpModel->getpatientAppointmentId($sessionId,$patient_id);
             $this->dpModel->addDiagnosis($patient_id, $diagnosis,$doctorid,$appointment->appointment_ID);
-            // Process each medication and its corresponding remark
-            for ($i = 0; $i < count($medications); $i++) {
-                $medication = $medications[$i];
-                $remark = $remarks[$i];
-                $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
-                $medicationId = $this->dpModel->getMedicationId($medication);
 
-                // Insert into database
-                // Your DB insertion code here
-                $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID,$medicationId->medicine_ID, $medication, $remark);
+            if($_POST['medications']){
+                $medications = $_POST['medications'];
+                $remarks = $_POST['remarks'];
+
+            // Process each medication and its corresponding remark
+                for ($i = 0; $i < count($medications); $i++) {
+                    $medication = $medications[$i];
+                    $remark = $remarks[$i];
+                    $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
+                    $medicationId = $this->dpModel->getMedicationId($medication);
+
+                    // Insert into database
+                    // Your DB insertion code here
+                    $this->dpModel->addMedication($patient_id, $diagnosisID->prescription_ID,$medicationId->medicine_ID, $medication, $remark);
+                }
+
             }
 
             if($_POST['tests']){
@@ -75,7 +107,7 @@ class Doctor extends Controller{
                     $testremark = $testremarks[$i];
                     $diagnosisID = $this->dpModel->getDiagnosisId($patient_id);
                     $testid = $this->dpModel->getTestId($test);
-                    $this->dpModel->addTest($patient_id,$testid->test_ID,$diagnosisID->prescription_ID, $testremark);
+                    $this->dpModel->addTest($patient_id,$testid->test_ID,$diagnosisID->prescription_ID, $testremark, $doctorid);
                 }
             }
             // After processing
@@ -187,6 +219,26 @@ class Doctor extends Controller{
         $this->view('doctor/sessions',$data);
     }
 
+
+    public function showSessionPatients(){
+        $sessionId = $_GET['sessionid'];
+        if(!empty($sessionId)){
+            $sessionPatients = $this->dpModel->getSessionPatients($sessionId);
+            $sessionPatientCount = $this->dpModel->getSessionPatientsCount($sessionId);
+            header('Content-Type: application/json');
+            echo json_encode(["sessionPatients"=>$sessionPatients,"patientCount"=>$sessionPatientCount]);
+        }
+    }
+
+    public function verifyDoctor(){
+        $userId = $_GET['userId'] ?? '';
+        if (!empty($userId)) {
+            $result = $this->dpModel->verifyDoctor($userId);
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        }
+    }
+
     public function viewOngoingSession(){
 
         $doctorid = $_SESSION['USER_DATA']->user_ID;
@@ -215,16 +267,16 @@ class Doctor extends Controller{
         $this->view('doctor/profile',$data);
     }
 
-    public function changePassword(){
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            if($_POST['submit']){
-                $newpw = $_POST['newpw'];
-                $confirmpw = $_POST['confirmPW'];
+    // public function changePassword(){
+    //     if($_SERVER['REQUEST_METHOD']=='POST'){
+    //         if($_POST['submit']){
+    //             $newpw = $_POST['newpw'];
+    //             $confirmpw = $_POST['confirmPW'];
                 
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
     // public function personalInfo(){
     //     $userid = $_SESSION['USER_DATA']->user_ID;

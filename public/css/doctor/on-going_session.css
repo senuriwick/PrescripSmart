@@ -71,7 +71,8 @@ p a:active{
     display: inline;
     text-align: center;
     padding: 3px 10px;
-    border: 1px solid rgba(164, 174, 199, 1);
+    border: 3px solid #0069FF;
+
 }
 
 .patientSearch .appoinment-details .appoinment-number .num-head {

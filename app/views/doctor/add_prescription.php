@@ -44,10 +44,10 @@
                             <h1>Patient Prescription</h1>
                         </div>
                         <hr />
-                        <form action="<?php echo URLROOT; ?>/doctor/addMedication" method="POST" autocomplete="off">
+                        <form action="<?php echo URLROOT; ?>/doctor/addMedication" method="POST" autocomplete="off" onsubmit="return verifyDoctor(<?php echo $user_id; ?>)">
                             <div class="diagnosis">
                                 <label><b>Diagnosis</b></label>
-                                <input type="textbox" name="diagnosis" class="searchBar" placeholder="Enter diagnosis here....." />
+                                <input type="textbox" name="diagnosis" id="diagnosis" class="searchBar" placeholder="Enter diagnosis here....." />
                             </div>
 
                             <div class="medication">
@@ -93,6 +93,8 @@
                                         </table>
                                     </div>
                                 </div>
+                                <?php $user_id = $_SESSION['USER_DATA']->user_ID; ?>
+
                                 <input type="hidden" name="patientId" value="<?php echo $data['patient']->patient_ID ?>" />
                             </div>
                             <div class="save-Btn">
@@ -105,6 +107,12 @@
         </div>
     </div>
     <script>
+
+
+        document.getElementById('back-icon').addEventListener("click", function () {
+            window.history.back();
+            });
+
         function getSearchResults(query) {
             if (query.length >= 1) {
                 fetch(`http://localhost/Prescripsmart/doctor/searchMedication?query=${query}`)
@@ -283,8 +291,8 @@
             }
 
             deleteCell.classList.add("test-delete");
-            documnet.getElementById("searchtest").value = "";
-            documnet.getElementById("testremarks").value ="";
+            document.getElementById("searchtest").value = "";
+            document.getElementById("testremarks").value ="";
         }
 
         function removeRow(deleteBtn){
@@ -292,5 +300,46 @@
             var table = row.parentNode;
             table.removeChild(row);
         }
+
+        function verifyDoctor(userId) {
+            return fetch(`http://localhost/Prescripsmart/doctor/verifyDoctor?userId=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.signature.length > 0) {
+                        return true; 
+                    } else {
+                        alert("Verification failed");
+                        return false; 
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    return false; 
+                });
+        }
+
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var userId = <?php echo $user_id; ?>;
+            var diagnosis = document.getElementById("diagnosis").value;
+            var medTable = document.getElementById("medication-table");
+            var testTable = document.getElementById("test-table");
+            if(!diagnosis){
+                alert("Please enter a diagosis"); 
+            }else if((medTable.rows.length <= 0)&&(testTable.rows.length<=0)){
+                alert("Please add medications or lab test"); 
+            } else{
+            verifyDoctor(userId)
+                .then(verified => {
+                    if (verified) {
+                        this.submit();
+                    } else {
+                        console.log("Doctor verification failed");
+                    }
+                });
+            }
+        });
+
     </script>
 </body>
