@@ -32,7 +32,7 @@
                         <div class="inquiry">
                           <p><img src="<?php echo URLROOT?>/public/img/healthSupervisor/envelope.png" alt=""></p>
                           <p id="idNO"><?php echo $inquiry->inquiry_ID; ?></p>
-                          <p><?php echo $inquiry->name; ?></p>
+                          <p id="name"><?php echo $inquiry->name; ?></p>
                           <p><?php echo $inquiry->date; ?></p>
                           <a href="<?php echo URLROOT ?>/HealthSupervisor/inquiryDetails?id=<?php echo $inquiry->inquiry_ID; ?>"><button>View</button></a>
 

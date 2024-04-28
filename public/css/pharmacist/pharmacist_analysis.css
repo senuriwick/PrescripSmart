@@ -44,14 +44,14 @@ p a:active{
   }
   
 .analysisContainer h2 {
-  font-size: 25px; /* Adjust the font size as needed */
   font-weight: bold;
-  color: #007bff; /* Blue color */
+  color: rgba(68, 81, 114, 1);
+  font-size: 24px;/* Blue color */
   margin-bottom: 20px; /* Add some spacing below the heading */
   text-transform: uppercase; /* Convert text to uppercase */
   letter-spacing: 2px; /* Add letter spacing for emphasis */
   padding-bottom: 10px;
-  text-align: center;
+  text-align: end;
 }
 
 
@@ -210,25 +210,19 @@ p a:active{
 .analysisContainer {
   display: flex;
   justify-content: space-between;
-  background-color: #f9f9f9;
+  background-color: rgba(239, 242, 251, 1);
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 20px;
   margin-top: 20px;
 }
 
-/* .analysisContainer h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 20px;
-} */
-
 .analysisSection {
   margin-bottom: 30px;
 }
 
 .analysisSection h3 {
-  color: #555;
+  color: #0069ff;
   font-size: 20px;
   margin-bottom: 10px;
 }

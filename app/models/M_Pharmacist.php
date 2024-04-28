@@ -221,7 +221,7 @@
                   FROM patients_medications 
                   GROUP BY medication 
                   ORDER BY usage_count DESC 
-                  LIMIT 5"; // Assuming you want to display top 5 medications
+                  LIMIT 4"; // Assuming you want to display top 5 medications
     
         $this->db->query($query);
         $results = $this->db->resultSet();
@@ -229,7 +229,7 @@
         return $results;
     }
 
-    public function fetchCommonlyPrescribedMedicationsByMonth($month){
+    public function fetchMonthlyData($month){
         // Execute SQL query to retrieve most commonly prescribed medications for a specific month
         $query = "SELECT pm.medication, COUNT(*) AS usage_count 
                   FROM patients_medications pm
@@ -237,7 +237,7 @@
                   WHERE MONTH(p.prescription_date) = :month
                   GROUP BY pm.medication 
                   ORDER BY usage_count DESC 
-                  LIMIT 5"; // Assuming you want to display top 5 medications
+                  LIMIT 4"; // Assuming you want to display top 5 medications
         
         $this->db->query($query);
         $this->db->bind(':month', $month);
