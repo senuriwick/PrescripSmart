@@ -263,3 +263,33 @@ p a:active{
 .analysisContent {
   width: 55%;
 }
+
+#monthSelectionForm {
+  margin-top: 20px;
+}
+
+#monthSelectionForm label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#monthSelectionForm select {
+  font-size: 16px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid rgba(164, 174, 199, 1);
+}
+
+#monthSelectionForm button {
+  font-size: 16px;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #0069FF;
+  color: white;
+  cursor: pointer;
+}
+
+#monthSelectionForm button:hover {
+  background-color: rgba(0, 80, 200, 1);
+}

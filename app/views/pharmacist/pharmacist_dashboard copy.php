@@ -1,7 +1,7 @@
 <?php require APPROOT."/views/inc/components/header.php" ?>
 <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_dashboard.css" />
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
-<!-- <script src="main.js"></script> -->
+<script src="main.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                     </form>
                 </div>
                 <hr class="divider">
-            <div class="details">
+
                 <div class="patientFiles">
                     <?php if (empty($data['patients'])): ?>
                     <div class="center-content">
@@ -52,71 +52,56 @@
                 </div>
             </div>
             </div>
-            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    //   document.addEventListener("DOMContentLoaded", function () {
+        $(document).ready(function () {
+            // Attach input event handler to the search input field
+            $('#search').on('input', function () {
+                // Get the current value of the search input
+                var searchTerm = $(this).val();
 
-    //     function attachViewProfileListeners() {
-    //       var viewButtons = document.querySelectorAll(".viewButton");
-    //       viewButtons.forEach(function (button) {
-    //         button.addEventListener("click", function () {
-    //           var patientId = this.value;
-    //           window.location.href = "<?php echo URLROOT ?>/nurse/patient_profile?patientId=" + patientId;
-    //         });
-    //       });
-    //     }
+                // Select the search button
+                var searchButton = $('#searchButton');
 
-        document.getElementById("search").addEventListener("input", function () {
-          var searchQuery = this.value.trim();
-          if (searchQuery !== "") {
-            console.log(searchQuery);
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "<?php echo URLROOT ?>/pharmacist/filterPatients?search=" + searchQuery, true);
-            xhr.onreadystatechange = function () {
-              if (xhr.readyState == 4 && xhr.status == 200) {
-                var filteredPatients = JSON.parse(xhr.responseText);
-                updatePatientList(filteredPatients);
-                // attachViewProfileListeners();
-              }
-            };
-            xhr.send();
-          } else {
-            location.reload();
-          }
+                // Disable the search button if the search term is empty
+                if (searchTerm.trim() === '') {
+                    searchButton.prop('disabled', true);
+                } else {
+                    searchButton.prop('disabled', false);
+                }
+
+                // Perform AJAX request only if the search term is not empty
+                if (searchTerm.trim() !== '') {
+                    $.ajax({
+                        url: '<?php echo URLROOT; ?>/Pharmacist/searchPatientAjax',
+                        type: 'POST',
+                        data: { search: searchTerm },
+                        success: function (response) {
+                            // Check if response is empty (no patient found)
+                            if (response.trim() === '') {
+                                // Display "Patient not found" message
+                                $('.patientFiles').html('<p>Patient not found</p>');
+                            } else {
+                                // Update the HTML content of the element with the class "patientFiles"
+                                $('.patientFiles').html(response);
+
+                                // Hide the pagination div
+                                $('.pagination').hide();
+                            }
+                        },
+                        error: function () {
+                            // Handle errors
+                        }
+                    });
+                } else {
+                    // Clear the results and show the pagination div if the search term is empty
+                    // $('.patientFiles').html('');
+                    $('.pagination').show();
+                }
+            });
         });
-
-        // attachViewProfileListeners();
-    
-
-      function updatePatientList(filteredPatients) {
-        var patientsContainer = document.querySelector(".details");
-        patientsContainer.innerHTML = "";
-
-        filteredPatients.forEach(function (patient) {
-          var patientHTML = `
-          <div class="patientFile">   
-                        <img class="person-circle" src="<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $patient->profile_photo ?>" alt="patient-pic">
-                        <p><?php echo $patient->display_Name; ?></p>
-                        <p id="patientId">Patient ID <span><?php echo $patient->patient_ID; ?></span></p>
-                        <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->patient_ID; ?>&patient_name=<?php echo urlencode($patient->display_Name); ?>&patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
-                    </div>`;
-          patientsContainer.innerHTML += patientHTML;
-          
-        });
-      }
     </script>
-
-    <!-- <script>
-      var viewButtons = document.querySelectorAll(".viewButton");
-      viewButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          var patientId = this.value;
-          window.location.href = "<?php echo URLROOT ?>/nurse/patient_profile?patientId=" + patientId;
-        });
-      });
-    </script> -->
 </body>
 </html>

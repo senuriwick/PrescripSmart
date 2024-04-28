@@ -44,18 +44,18 @@
                         </div>  
 
                         <div class="row">
-                            <div>
+                            <div class="details">
                                 <p class="label">Email Address</p>
-                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry -> email ?>" class="inputfield">
+                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry->email ?>" title="<?php echo $inquiry->email ?>" class="inputfield" readonly>
                             </div>
-                            <div>
+                            <div class="details">
                                 <p class="label">Name</p>
-                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry -> name ?>" class="inputfield">
+                                <input type="text" id="searchBar" name="name" placeholder="<?php echo $inquiry -> name ?>" class="inputfield" readonly>
                             </div>
                         </div>
                         <div>
                             <p class="label">Message</p>
-                            <textarea id="searchBar" name="name" placeholder="<?php echo $inquiry -> message ?>" class="inputfield"></textarea>
+                            <textarea name="name" placeholder="<?php echo $inquiry -> message ?>" class="inputfield" readonly></textarea>
                         </div>
 
                         <?php else : ?>

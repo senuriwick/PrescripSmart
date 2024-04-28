@@ -102,17 +102,6 @@
             $this->db->execute();
         }
 
-        public function passwordReset()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $newpassword = $_POST["newpassword"];
-            $_SESSION['USER_DATA']->password = $newpassword;
-            $this->healthSupervisorModel->resetPassword($newpassword);
-
-            redirect('/healthSupervisor/profile');
-            exit();
-        }
-    }
 
         public function getUserDetails($userId) {
             $this->db->query('SELECT * FROM users WHERE user_id = :userId');

@@ -34,69 +34,78 @@
             
         }
 
+        public static function logged_in()
+        {
+            if (!empty($_SESSION['USER_DATA'])) {
+                return true;
+            }
+            return false;
+        }
+
         public function dashboard($page = 1){
-            $user = $_SESSION['USER_DATA'];
-            $itemsPerPage =5;
-            $offset = ($page - 1) * $itemsPerPage;
-            $newInquiries = $this->healthSupervisorModel->getNewInquiriesPaginated($itemsPerPage,$offset);
-            $totalNewInquiries = $this->healthSupervisorModel->getNewInquiriesCount();
-            $totalPages = ceil($totalNewInquiries/$itemsPerPage);
+            if ($this->logged_in()) {
+                $user = $_SESSION['USER_DATA'];
+                $itemsPerPage =5;
+                $offset = ($page - 1) * $itemsPerPage;
+                $newInquiries = $this->healthSupervisorModel->getNewInquiriesPaginated($itemsPerPage,$offset);
+                $totalNewInquiries = $this->healthSupervisorModel->getNewInquiriesCount();
+                $totalPages = ceil($totalNewInquiries/$itemsPerPage);
 
-            $data = [
-                'newInquiries' => $newInquiries,
-                'totalNewInquiries' => $totalNewInquiries,
-                'currentPage' => $page,
-                'totalPages' => $totalPages,
-                'user' => $user,
-            ];
+                $data = [
+                    'newInquiries' => $newInquiries,
+                    'totalNewInquiries' => $totalNewInquiries,
+                    'currentPage' => $page,
+                    'totalPages' => $totalPages,
+                    'user' => $user,
+                ];
 
-            $this->view('healthSupervisor/healthSupervisor_dash', $data);
+                $this->view('healthSupervisor/healthSupervisor_dash', $data);
+            }else{
+                redirect('general/error_page');
+            }
         }
 
 
         public function inquiryDetails(){
-            if(isset($_GET['id'])) {
-                $inquiry_id = $_GET['id'];
-                $inquiryDetails = $this->healthSupervisorModel->getInquiryDetailsById($inquiry_id);
-                $data = [
-                    'inquiry' =>$inquiryDetails
-                ];
-                $this->view('healthSupervisor/healthSupervisor_oneInquiry', $data);
-            }
-            else{
-                echo "nothing";
+            if ($this->logged_in()) {
+                if(isset($_GET['id'])) {
+                    $inquiry_id = $_GET['id'];
+                    $inquiryDetails = $this->healthSupervisorModel->getInquiryDetailsById($inquiry_id);
+                    $data = [
+                        'inquiry' =>$inquiryDetails
+                    ];
+                    $this->view('healthSupervisor/healthSupervisor_oneInquiry', $data);
+                }
+                else{
+                    echo "nothing";
+                }
+            }else{
+                redirect('general/error_page');
             }
         }
-        
-        // public function historry(){
-        //     $readInquiries = $this->healthSupervisorModel->getReadInquiries();
-        //     $readInquiriesCount = $this->healthSupervisorModel->getReadInquiriesCount();
-        //     $data = [
-        //         'inquiries' => $readInquiries,
-        //         'count' => $readInquiriesCount
-        //     ];
-        //     $this->view('healthSupervisor/healthSupervisor_History', $data);
-        // }
 
         public function history($page = 1){
+            if ($this->logged_in()) {
+                $user = $_SESSION['USER_DATA'];
+                $itemsPerPage =5;
+                $offset = ($page - 1) * $itemsPerPage;
+                $readInquiries = $this->healthSupervisorModel->getReadInquiriesPaginated($itemsPerPage,$offset);
+                $totalReadInquiries = $this->healthSupervisorModel->getReadInquiriesCount();
 
-            $user = $_SESSION['USER_DATA'];
-            $itemsPerPage =5;
-            $offset = ($page - 1) * $itemsPerPage;
-            $readInquiries = $this->healthSupervisorModel->getReadInquiriesPaginated($itemsPerPage,$offset);
-            $totalReadInquiries = $this->healthSupervisorModel->getReadInquiriesCount();
+                $totalPages = ceil($totalReadInquiries/$itemsPerPage);
 
-            $totalPages = ceil($totalReadInquiries/$itemsPerPage);
+                $data = [
+                    'readInquiries' => $readInquiries,
+                    'totalReadInquiries' => $totalReadInquiries,
+                    'currentPage' => $page,
+                    'totalPages' => $totalPages,
+                    'user' => $user,
+                ];
 
-            $data = [
-                'readInquiries' => $readInquiries,
-                'totalReadInquiries' => $totalReadInquiries,
-                'currentPage' => $page,
-                'totalPages' => $totalPages,
-                'user' => $user,
-            ];
-
-            $this->view('healthSupervisor/healthSupervisor_History', $data);
+                $this->view('healthSupervisor/healthSupervisor_History', $data);
+            }else{
+                redirect('general/error_page');
+            }
         }
 
         public function markAsRead(){
@@ -109,80 +118,93 @@
 
         public function sendEmail(){
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Retrieve the values from the $_POST superglobal
-                $inquiry_id = $_POST["inquiry_id"];
-                $inquiry_email = $_POST["inquiry_email"];
-                $message_content = $_POST["message_content"];
-                $result = $this->healthSupervisorModel->markAsRead($inquiry_id);
-                $this->healthSupervisorModel->storeReply($inquiry_id, $message_content);
+            if ($this->logged_in()) {
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Retrieve the values from the $_POST superglobal
+                    $inquiry_id = $_POST["inquiry_id"];
+                    $inquiry_email = $_POST["inquiry_email"];
+                    $message_content = $_POST["message_content"];
+                    $result = $this->healthSupervisorModel->markAsRead($inquiry_id);
+                    $this->healthSupervisorModel->storeReply($inquiry_id, $message_content);
 
-                require '../PHPMailerAutoload.php';
+                    require '../PHPMailerAutoload.php';
 
-                $mail = new PHPMailer;
-                $mail->isSMTP();                                      
-                $mail->Host = 'smtp.gmail.com';                       
-                $mail->SMTPAuth = true;                               
-                $mail->Username = 'prescripsmart@gmail.com';       
-                $mail->Password = 'fgpacxjdxjogzlwk';                  
-                $mail->SMTPSecure = 'tls';                            
-                $mail->Port = 587;                                    
+                    $mail = new PHPMailer;
+                    $mail->isSMTP();                                      
+                    $mail->Host = 'smtp.gmail.com';                       
+                    $mail->SMTPAuth = true;                               
+                    $mail->Username = 'prescripsmart@gmail.com';       
+                    $mail->Password = 'fgpacxjdxjogzlwk';                  
+                    $mail->SMTPSecure = 'tls';                            
+                    $mail->Port = 587;                                    
 
-                $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
-                $mail->addAddress($inquiry_email);     
-                $mail->isHTML(true);
+                    $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
+                    $mail->addAddress($inquiry_email);     
+                    $mail->isHTML(true);
 
-                $mail->Subject = 'Reply to your Inquiry';
-                $mail->Body = $message_content;
+                    $mail->Subject = 'Reply to your Inquiry';
+                    $mail->Body = $message_content;
 
-                if (!$mail->send()) {
-                    echo 'Message could not be sent.';
-                    echo 'Mailer Error: ' . $mail->ErrorInfo;
-                } else {
-                    //echo 'Message has been sent';
+                    if (!$mail->send()) {
+                        echo 'Message could not be sent.';
+                        echo 'Mailer Error: ' . $mail->ErrorInfo;
+                    } else {
+                        //echo 'Message has been sent';
+                    }
+
+                    redirect('/healthSupervisor/dashboard');
                 }
-
-                redirect('/healthSupervisor/dashboard');
+            }else{
+                redirect('general/error_page');
             }
         }
 
-        public function profile(){
-            $user = $_SESSION['USER_DATA'];
-            $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
+        public function account_information(){
+            if ($this->logged_in()) {
+                $user = $_SESSION['USER_DATA'];
+                $healthSupervisor = $this->healthSupervisorModel->healthSupervisorInfo();
 
-            $data = [
-                'user' => $user,
-                'healthSupervisor' => $healthSupervisor
-            ];
+                $data = [
+                    'user' => $user,
+                    'healthSupervisor' => $healthSupervisor
+                ];
 
-            $this->view('healthSupervisor/healthSupervisor_profile', $data);
+                $this->view('healthSupervisor/healthSupervisor_profile', $data);
+            }else{
+                redirect('general/error_page');
+            }
         }
 
-        public function personal_information()
-    {
-        $healthSupervisor = $this->healthSupervisorModel->healthSupervisorDetails();
-        $user = $this->healthSupervisorModel->healthSupervisorInfo();
-        $data = [
-            'healthSupervisor' => $healthSupervisor,
-            'user' => $user
-        ];
-        $this->view('healthSupervisor/healthSupervisor_personalInfo', $data);
-    }
+        public function personal_information(){
+            if ($this->logged_in()) {
+                {
+                $healthSupervisor = $this->healthSupervisorModel->healthSupervisorDetails();
+                $user = $this->healthSupervisorModel->healthSupervisorInfo();
+                $data = [
+                    'healthSupervisor' => $healthSupervisor,
+                    'user' => $user
+                ];
+                $this->view('healthSupervisor/healthSupervisor_personalInfo', $data);
+                }
+            }else{
+                redirect('general/error_page');
+            }
+        }
 
-
-        // public function security(){
-        //     $this->view('healthSupervisor/healthSupervisor_2factor');
-        // }
-
-        public function security()
-    {
-        $userID = $_SESSION['USER_DATA']->user_ID;
-        $user = $this->healthSupervisorModel->getUserDetails($userID);
-        $data = [
-            'user' => $user
-        ];
-        $this->view('healthSupervisor/healthSupervisor_2factor', $data);
-    }
+        public function security(){
+            if ($this->logged_in()) {
+                
+                $userID = $_SESSION['USER_DATA']->user_ID;
+                $user = $this->healthSupervisorModel->getUserDetails($userID);
+                $data = [
+                    'user' => $user
+                ];
+                $this->view('healthSupervisor/healthSupervisor_2factor', $data);
+            }else{
+                redirect('general/error_page');
+            }
+        }
+        
 
     public function toggle2FA()
     {
@@ -212,7 +234,7 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST["username"];
                 $this->healthSupervisorModel->updateAccInfo($username);
-                redirect("/healthSupervisor/profile");
+                redirect("/healthSupervisor/account_information");
                 exit();
             }
         }
@@ -221,10 +243,10 @@
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $newpassword = $_POST["newpassword"];
-    
+                $_SESSION['USER_DATA']->password = password_hash($newpassword, PASSWORD_BCRYPT);
                 $this->healthSupervisorModel->resetPassword($newpassword);
     
-                redirect('/healthSupervisor/profile');
+                redirect('/healthSupervisor/account_information');
                 exit();
             }
         }

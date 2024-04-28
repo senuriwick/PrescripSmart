@@ -90,12 +90,13 @@ color:rgba(164, 174, 199, 1);
     cursor: pointer;
   }
   
-  .inquiry img{
-    width:28px;
-    height: 28px; 
-    margin-right:10px;
-    margin-top:10px;
+  .inquiry img {
+    height: 3vh;
+    padding: 1.75vh 0vh 1vh 1.5vh;
+    margin-right: 225px;
+    margin-top:1px;
   }
+    
   
   .inquiry p{
     color: rgba(68, 81, 114, 1);
@@ -108,8 +109,8 @@ color:rgba(164, 174, 199, 1);
   }
 
 #scales{
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 
 .content {
