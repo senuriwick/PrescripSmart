@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/patientProfile.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/patient.css"/>
 </head>
 
 <body>
@@ -27,13 +28,29 @@
                 <?php $patient = $data['patient'] ?>
 
                 <div class="inquiriesDiv">
-                         <div class="back" style="display: flex;">                    
-                            <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" onclick="goback()" style="cursor: pointer;" >                   
-                            <h1 style="font-size: 3.3vh;">Search Patient</h1>                           
-                        </div>
-                        <p class="display-id">Patient ID: #
-                            <?php echo $patient->patient_ID ?>
-                        </p>
+                        
+
+                        <div class="patientFileExt">
+            <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon"
+              id="back-icon">
+            <img src="<?php echo URLROOT; ?>\public\uploads\profile_images\<?php echo $patient->profile_photo ?>"
+              alt="patient-pic" class="patient-pic">
+
+            <div class="fileInfo">
+              <?php if ($patient->gender == "male"): ?>
+                <p class = "name">Mr.
+                  <?php echo $patient->display_Name; ?>
+                </p>
+              <?php else: ?>
+                <p class = "name">Ms.
+                  <?php echo $patient->display_Name; ?>
+                </p>
+              <?php endif; ?>
+              <p class="patientIdClass">Patient ID #
+                <?php echo $patient->patient_ID; ?>
+              </p>
+            </div>
+          </div>
                         
                         <p class="sub1" style="font-weight: bold;">Personal Information</p>
                         <div class="accInfo">
@@ -158,12 +175,13 @@
     </script>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('back-icon').addEventListener('click', goback);
+});
 
-
-      function goback() 
-      {
-        window.history.back();
-      }
+function goback() {
+    window.history.back();
+}
    
     document.addEventListener("DOMContentLoaded", function () {
     var editIcon = document.getElementById('edit-icon');

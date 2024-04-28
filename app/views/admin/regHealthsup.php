@@ -29,7 +29,7 @@
      
       <div class="details">
           <div class="back" style="display: flex; ">       
-              <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" onclick="goback()" style="cursor: pointer;" >       
+          <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon" onclick="goback()">       
               <h1 >Health Supervisor Registration</h1>
           </div>
 

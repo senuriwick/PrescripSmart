@@ -28,9 +28,9 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
-<div class="details">
+       <div class="details">
         <div class="back" style="display: flex; ">
-            <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" onclick="goback()" style="cursor: pointer;">          
+            <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon" onclick="goback()">          
             <h1 >Patient Registration</h1>
         </div>
   
@@ -41,14 +41,14 @@
                         <h3 style="color: #0069FF;">first name</h3>
                         <p style="color: red;">*</p>
                   </div>
-                  <input type="text" name="first_name" placeholder="Enter Your first name">
+                  <input type="text" name="first_name" placeholder="Enter Your first name" required>
               </div>
               <div class="lastname">
                   <div class="req">
                     <h3 style="color: #0069FF;">last name</h3>
                     <p style="color: red;">*</p>
                   </div>
-                  <input type="text" name="last_name" placeholder="Enter Your last name">
+                  <input type="text" name="last_name" placeholder="Enter Your last name" required>
               </div>
           </div>
 
@@ -62,7 +62,7 @@
                       <h3 style="color: #0069FF;">contact number</h3>
                       <p style="color: red;">*</p>
                   </div>
-                  <input type="text" name="phone_number" placeholder="Enter Your phone number">
+                  <input type="text" name="phone_number" placeholder="Enter Your phone number" required>
               </div>
           </div>
 
@@ -71,7 +71,7 @@
                   <h3 style="color: #0069FF;">create password</h3>
                   <p style="color: red;">*</p>
             </div>
-            <input type="password" name="password" placeholder="Enter password">
+            <input type="password" name="password" placeholder="Enter password" required>
         </div>
         <button type="submit"><b>Register</b></button>
    </form>
