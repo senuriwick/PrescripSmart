@@ -13,9 +13,8 @@
     }
 
     public function index()
-    {
-     
-      $this->view('admin/index');
+    {  
+      $this->view('general/home');
     }
 
     public function register_select()
@@ -252,198 +251,160 @@
       session_destroy();
       redirect('admin/login');
     }
+
     public function searchPatient($page = 1)
     {
-      $perPage = 4;
-      $total_records = $this->userModel->getPatients();
-      $totalPages = ceil($total_records/$perPage);
+    
+            $allPatients = $this->userModel->getPatient_set();
+            $recordsPerPage = 2;
+            $totalPatients = count($allPatients);
+            $totalPages = ceil($totalPatients / $recordsPerPage);
 
-      //Validating the current page
-      if($page <1)
-      {
-        $page = 1;
-      }
-      elseif($page > $totalPages)
-      {
-        $page = $totalPages;
-      }
+            $offset = ($page - 1) * $recordsPerPage;
+            $patients = array_slice($allPatients, $offset, $recordsPerPage);
 
-      
-      $patients = $this->userModel->getPatient_set($page, $perPage);
-      $data = [
-        'patients'=> $patients,
-        'currentPage' => $page,
-        'totalPages' => $totalPages
-      ];
+            $data = [
+                'patients' => $patients,
+                'allPatients' => $allPatients,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
 
-      $this->view('admin/searchPatient', $data);
+            $this->view('admin/searchPatient', $data);
+        
     }
+
+    public function filterPatients()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->userModel->filterPatients($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+    
 
     public function searchDoctor($page = 1)
     {
-      $perPage = 2;
-      $total_records = $this->userModel->getDoctors();
-      $totalPages = ceil($total_records/$perPage);
+            $alldoctors = $this->userModel->getalldoctors();
+            $recordsPerPage = 2;
+            $totalPatients = count($alldoctors);
+            $totalPages = ceil($totalPatients / $recordsPerPage);
 
-      //Validating the current page
-      if($page <1)
-      {
-        $page = 1;
-      }
-      elseif($page > $totalPages)
-      {
-        $page = $totalPages;
-      }
+            $offset = ($page - 1) * $recordsPerPage;
+            $doctors = array_slice($alldoctors, $offset, $recordsPerPage);
 
-      $doctors = $this->userModel->getDoctor_set($page, $perPage);
-      $alldoctors = $this->userModel->getalldoctors();
-      if($doctors)
-      {
-        $data = [
-          'doctors'=> $doctors,
-          'currentPage' => $page,
-          'totalPages' => $totalPages,
-          'doctorlist' => $alldoctors
-           
-        ];
+            $data = [
+                'patients' => $doctors,
+                'allDoctors' => $alldoctors,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
 
-      }
-      
-      $this->view('admin/searchDoctor', $data);
+            $this->view('admin/searchDoctors', $data);
     }
 
     public function searchHealthsup($page = 1)
     {
 
-      $perPage = 4;
-      $total_records = $this->userModel->getHealthsups();
-      $totalPages = ceil($total_records/$perPage);
+            $allHealthsups = $this->userModel->getHealthsup_set();
+            $recordsPerPage = 2;
+            $totalHealthsups = count($allHealthsups);
+            $totalPages = ceil($totalHealthsups / $recordsPerPage);
 
-      //Validating the current page
-      if($page <1)
-      {
-        $page = 1;
-      }
-      elseif($page > $totalPages)
-      {
-        $page = $totalPages;
-      }
+            $offset = ($page - 1) * $recordsPerPage;
+            $healthsups = array_slice($allHealthsups, $offset, $recordsPerPage);
 
-      $healthsups = $this->userModel->getHealthsup_set($page, $perPage);
-      $data = [
-        'healthsups'=> $healthsups,
-        'currentPage' => $page,
-        'totalPages' => $totalPages
-      ];
-      $this->view('admin/searchHealthsup', $data);
+            $data = [
+                'patients' => $healthsups,
+                'allHealthsups' => $allHealthsups,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
+
+            $this->view('admin/searchHealthsup', $data);
     }
 
     public function searchLabtech($page = 1)
     {
-      $perPage = 4;
-      $total_records = $this->userModel->getLabtechs();
-      $totalPages = ceil($total_records/$perPage);
+            $allLabtechs = $this->userModel->getLabtech_set();
+            $recordsPerPage = 2;
+            $totalLabtechs = count($allLabtechs);
+            $totalPages = ceil($totalLabtechs / $recordsPerPage);
 
-      //Validating the current page
-      if($page <1)
-      {
-        $page = 1;
-      }
-      elseif($page > $totalPages)
-      {
-        $page = $totalPages;
-      }
-      $labtechs = $this->userModel->getLabtech_set($page, $perPage);
-      $data = [
-        'labtechs'=> $labtechs,
-        'currentPage' => $page,
-        'totalPages' => $totalPages
-      ];
+            $offset = ($page - 1) * $recordsPerPage;
+            $labtechs = array_slice($allLabtechs, $offset, $recordsPerPage);
 
+            $data = [
+                'patients' => $labtechs,
+                'allLabtechs' => $allLabtechs,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
 
-      $this->view('admin/searchLabtech', $data);
+            $this->view('admin/searchLabtech', $data);
     }
 
     public function searchNurse($page = 1)
     {
-      $perPage = 4;
-      $total_records = $this->userModel->getNurses();
-      $totalPages = ceil($total_records/$perPage);
+            $allNurses = $this->userModel->getNurse_set();
+            $recordsPerPage = 2;
+            $totalNurses = count($allNurses);
+            $totalPages = ceil($totalNurses / $recordsPerPage);
 
-      //Validating the current page
-      if($page <1)
-      {
-        $page = 1;
-      }
-      elseif($page > $totalPages)
-      {
-        $page = $totalPages;
-      }
-      $nurses = $this->userModel->getNurse_set($page, $perPage);
-      $data = [
-        'nurses'=> $nurses,
-        'currentPage' => $page,
-        'totalPages' => $totalPages
-      ];
+            $offset = ($page - 1) * $recordsPerPage;
+            $nurses = array_slice($allNurses, $offset, $recordsPerPage);
 
+            $data = [
+                'patients' => $nurses,
+                'allNurses' => $allNurses,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
 
-      $this->view('admin/searchNurse', $data);
+            $this->view('admin/searchNurse', $data);
     }
 
 
     public function searchPharmacist($page = 1)
     {
-      $perPage = 4;
-      $total_records = $this->userModel->getPharmacists();
-      $totalPages = ceil($total_records/$perPage);
+            $allPharmacists = $this->userModel->getPharmacist_set();
+            $recordsPerPage = 2;
+            $totalPharmacists = count($allPharmacists);
+            $totalPages = ceil($totalPharmacists / $recordsPerPage);
 
-      //Validating the current page
-      if($page <1)
-      {
-        $page = 1;
-      }
-      elseif($page > $totalPages)
-      {
-        $page = $totalPages;
-      }
-      $pharmacists = $this->userModel->getPharmacist_set($page, $perPage);
-      $data = [
-        'pharmacists'=> $pharmacists,
-        'currentPage' => $page,
-        'totalPages' => $totalPages
-      ];
+            $offset = ($page - 1) * $recordsPerPage;
+            $pharmacists = array_slice($allPharmacists, $offset, $recordsPerPage);
 
+            $data = [
+                'patients' => $pharmacists,
+                'allPharmacists' => $allPharmacists,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
 
-      $this->view('admin/searchPharmacist', $data);
+            $this->view('admin/searchPharmacist', $data);
     }
 
     public function searchReceptionist($page = 1)
     {
-      $perPage = 4;
-      $total_records = $this->userModel->getReceptionists();
-      $totalPages = ceil($total_records/$perPage);
+            $allReceptionists = $this->userModel->getReceptionist_set();
+            $recordsPerPage = 2;
+            $totalreceptionists = count($allReceptionists);
+            $totalPages = ceil($totalreceptionists / $recordsPerPage);
 
-      //Validating the current page
-      if($page <1)
-      {
-        $page = 1;
-      }
-      elseif($page > $totalPages)
-      {
-        $page = $totalPages;
-      }
-      $receptionists = $this->userModel->getReceptionist_set($page, $perPage);
-      if($receptionists)
-      {
-        $data = [
-          'receptionists'=> $receptionists,
-          'currentPage' => $page,
-          'totalPages' => $totalPages
-        ];
-      }
-      
-      $this->view('admin/searchReceptionist', $data);
+            $offset = ($page - 1) * $recordsPerPage;
+            $receptionists = array_slice($allReceptionists, $offset, $recordsPerPage);
+
+            $data = [
+                'patients' => $receptionists,
+                'allReceptionists' => $allReceptionists,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
+
+            $this->view('admin/searchReceptionist', $data);
     }
+
+    
 
     public function viewRegdoctor()
     {
@@ -1407,7 +1368,7 @@
       {
         if($this->userModel->deleteProfileDoc($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/admin/searchDoctor');
         }
         else
         {
@@ -1421,7 +1382,7 @@
       {
         if($this->userModel->deleteProfileLabtech($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/admin/searchLabtech');
         }
         else
         {
@@ -1435,7 +1396,7 @@
       {
         if($this->userModel->deleteProfileHealthsup($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/admin/searchHealthsup');
         }
         else
         {
@@ -1450,7 +1411,7 @@
       {
         if($this->userModel-> deleteProfileNurse($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/admin/searchNurse');
         }
         else
         {
@@ -1464,7 +1425,7 @@
       {
         if($this->userModel->deleteProfilePatient($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/admin/searchPatient');
         }
         else
         {
@@ -1478,7 +1439,7 @@
       {
         if($this->userModel->deleteProfilePharmacist($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/admin/searchPharmacist');
         }
         else
         {
@@ -1493,7 +1454,7 @@
       {
         if($this->userModel->deleteProfileReceptionist($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/admin/searchReceptionist');
         }
         else
         {
@@ -1509,7 +1470,7 @@
 
       $data= [
         'doctor'=>$doctor
-      ];
+      ]; 
       $this->view('admin/doctorProfile', $data);      
 
     }
@@ -1523,6 +1484,18 @@
         'doctor'=>$healthsup
       ];
       $this->view('admin/healthsupProfile', $data);
+       
+    }
+
+    public function showpatientProfile($id)
+    {
+  
+      $patient = $this->userModel->getPatientbyID($id);
+
+      $data= [
+        'patient'=>$patient
+      ];
+      $this->view('admin/patientProfile', $data);
        
     }
 
