@@ -8,14 +8,14 @@ class M_LabTechnician {
     }
 
     public function repotsToUploadList(){
-        $this->db->query('SELECT lab_reports.* , patients.* FROM `lab_reports` LEFT JOIN `patients` 
-        ON lab_reports.patient_ID=patients.patient_ID WHERE lab_reports.report IS NULL OR lab_reports.date_of_conduct IS NULL GROUP BY patients.patient_ID');
+        $this->db->query('SELECT lab_reports.* , patients.*,users.* FROM `lab_reports` LEFT JOIN `patients` 
+        ON lab_reports.patient_ID=patients.patient_ID LEFT JOIN users ON patients.patient_ID=users.user_ID WHERE lab_reports.report IS NULL OR lab_reports.date_of_conduct IS NULL GROUP BY patients.patient_ID');
         $results = $this->db->resultSet();
         return $results;
     }
 
     public function getPatient($patientID){
-        $this->db->query('SELECT * FROM patients WHERE patient_ID=:id');
+        $this->db->query('SELECT patients.*, users.* FROM patients LEFT JOIN users ON patients.patient_ID=users.user_ID WHERE patient_ID=:id');
         $this->db->bind(':id',$patientID);
         $results = $this->db->single();
         return $results;

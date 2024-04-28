@@ -38,7 +38,7 @@
                                     <tr class="patient-detail-row">
                                         <td>
                                             <div class="desDiv">
-                                                <img src="../public/img/lab_tech/profile.png" alt="user-icon">
+                                                <img src="<?php echo URLROOT;?>/public/uploads/profile_images/<?php echo $reportToUpload->profile_photo;?>" alt="user-icon">
                                                 <p class="patientName"><?php echo $reportToUpload->display_Name; ?></p>
                                             </div>
                                         </td>
@@ -46,7 +46,7 @@
                                         <td>Patient ID-<?php echo $reportToUpload->patient_ID; ?></td>
                                         <td><a
                                                 href="<?php echo URLROOT; ?>/LabTechnician/reports/<?php echo $reportToUpload->patient_ID; ?>"><button>View
-                                                    Test</button></a></td>
+                                                    Tests</button></a></td>
                                     </tr>
 
                                 <?php endforeach; ?>
