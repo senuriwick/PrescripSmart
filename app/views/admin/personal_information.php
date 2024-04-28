@@ -41,11 +41,11 @@
 
                     <div class="patientNameDiv">
                         <p class="name">
-                            <?php echo $_SESSION['USER_DATA']->first_Name ?>
-                            <?php echo $_SESSION['USER_DATA']->last_Name ?>
+                            <?php echo ucwords($_SESSION['USER_DATA']->first_Name) ?>
+                            <?php echo ucwords($_SESSION['USER_DATA']->last_Name) ?>
                         </p>
                         <p class="role">
-                            <?php echo $_SESSION['USER_DATA']->role ?>
+                            <?php echo ucwords($_SESSION['USER_DATA']->role) ?>
                         </p>
                     </div>
 
@@ -53,6 +53,8 @@
                 <?php include 'in_page_navigation_account.php'; ?>
 
                 <?php $admin = $data['admin'] ?>
+                <?php $user = $data['user'] ?>
+
 
                 <div class="inquiriesDiv">
                     <form action="<?php echo URLROOT; ?>/admin/personalInfoUpdate" method="POST">
@@ -82,7 +84,7 @@
                             <div class="input-group">
                                 <label for="address">Home Address</label>
                                 <input type="text" id="haddress" name="haddress" class="input2"
-                                    value="<?php echo $admin->home_Address; ?>">
+                                    value="<?php echo $user->home_Address; ?>">
                             </div>
                             <div class="parallel">
                                 <div class="input-group">
@@ -96,13 +98,7 @@
                                         style="display: inline-block;" value="<?php echo $admin->contact_Number; ?>">
                                 </div>
                             </div>
-                            <div class="parallel">
-                                <div class="input-group">
-                                    <label for="department">Department</label>
-                                    <input type="text" id="dep" name="dep" class="input"
-                                        style="display: inline-block;" value="<?php echo $admin->department; ?>">
-                                </div>
-                            </div>
+                            
                         </div>
 
                         <button type="submit" id="submit" name = "submit" class = "save">SAVE CHANGES</button>

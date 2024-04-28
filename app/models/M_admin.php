@@ -83,14 +83,120 @@ class M_admin
 
 
   // Find user by email
+  public function filterPatients($searchQuery) {
+    $searchQuery = '%' . $searchQuery . '%'; 
+    $this->db->query('SELECT p .*, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+    $this->db->bind(':searchQuery', $searchQuery);
+    $filteredPatients = $this->db->resultSet();
+
+    foreach ($filteredPatients as &$patient) {
+        $address = $patient->home_Address;
+        $parts = explode(", ", $address);
+        $patient->city = end($parts);
+    }
+    
+    return $filteredPatients;
+}
+
+public function filterDoctors  ($searchQuery) {
+  $searchQuery = '%' . $searchQuery . '%'; 
+  $this->db->query('SELECT p .*, u.profile_photo FROM doctors p INNER JOIN users u ON p.doctor_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->bind(':searchQuery', $searchQuery);
+  $filteredPatients = $this->db->resultSet();
+
+  foreach ($filteredPatients as &$patient) {
+      $address = $patient->home_Address;
+      $parts = explode(", ", $address);
+      $patient->city = end($parts);
+  }
+  
+  return $filteredPatients;
+}
+
+public function filterHealthsups($searchQuery) {
+  $searchQuery = '%' . $searchQuery . '%'; 
+  $this->db->query('SELECT p .*, u.profile_photo FROM healthsupervisors p INNER JOIN users u ON p.supervisor_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->bind(':searchQuery', $searchQuery);
+
+  $filteredPatients = $this->db->resultSet();
+
+  foreach ($filteredPatients as &$patient) {
+      $address = $patient->home_Address;
+      $parts = explode(", ", $address);
+      $patient->city = end($parts);
+  }
+  
+  return $filteredPatients;
+}
+
+public function filterLabtechs($searchQuery) {
+  $searchQuery = '%' . $searchQuery . '%'; 
+  $this->db->query('SELECT p .*, u.profile_photo FROM labtechnicians p INNER JOIN users u ON p.labtech_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->bind(':searchQuery', $searchQuery);
+  $filteredPatients = $this->db->resultSet();
+
+  foreach ($filteredPatients as &$patient) {
+      $address = $patient->home_Address;
+      $parts = explode(", ", $address);
+      $patient->city = end($parts);
+  }
+  
+  return $filteredPatients;
+}
+
+public function filterNurses($searchQuery) {
+  $searchQuery = '%' . $searchQuery . '%'; 
+  $this->db->query('SELECT p .*, u.profile_photo FROM nurses p INNER JOIN users u ON p.nurse_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->bind(':searchQuery', $searchQuery);
+  $filteredPatients = $this->db->resultSet();
+
+  foreach ($filteredPatients as &$patient) {
+      $address = $patient->home_Address;
+      $parts = explode(", ", $address);
+      $patient->city = end($parts);
+  }
+  
+  return $filteredPatients;
+}
+
+public function filterPharmacists($searchQuery) {
+  $searchQuery = '%' . $searchQuery . '%'; 
+  $this->db->query('SELECT p .*, u.profile_photo FROM pharmacists p INNER JOIN users u ON p.pharmacist_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->bind(':searchQuery', $searchQuery);
+  $filteredPatients = $this->db->resultSet();
+
+  foreach ($filteredPatients as &$patient) {
+      $address = $patient->home_Address;
+      $parts = explode(", ", $address);
+      $patient->city = end($parts);
+  }
+  
+  return $filteredPatients;
+}
+
+public function filterReceptionists($searchQuery) {
+  $searchQuery = '%' . $searchQuery . '%'; 
+  $this->db->query('SELECT p .*, u.profile_photo FROM receptionists p INNER JOIN users u ON p.receptionist_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->bind(':searchQuery', $searchQuery);
+  $filteredPatients = $this->db->resultSet();
+
+  foreach ($filteredPatients as &$patient) {
+      $address = $patient->home_Address;
+      $parts = explode(", ", $address);
+      $patient->city = end($parts);
+  }
+  
+  return $filteredPatients;
+}
   
 
-  public function getPatient_set($page = 1, $perPage = 4)
+  public function getPatient_set()
   {
-    $offset = ($page - 1) * $perPage;
-    $this->db->query('SELECT * FROM patients LIMIT :offset, :perPage');
-    $this->db->bind(':offset', $offset, PDO::PARAM_INT);
-    $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+    $this->db->query('SELECT patients.*,users.*
+    FROM patients
+    INNER JOIN users ON users.user_ID = patients.patient_ID
+    WHERE users.active = 1');
+    
 
     return $this->db->resultSet();
 
@@ -116,7 +222,10 @@ class M_admin
 
   public function getalldoctors()
   {
-    $this->db->query('SELECT * FROM doctors');
+    $this->db->query('SELECT doctors.*,users.*
+    FROM doctors
+    INNER JOIN users ON users.user_ID = doctors.doctor_ID
+    WHERE users.active = 1');
     $results = $this->db->resultSet();
     return $results;
 
@@ -131,12 +240,13 @@ class M_admin
   }
 
 
-  public function getHealthsup_set($page = 1, $perPage = 4)
+  public function getHealthsup_set()
   {
-    $offset = ($page - 1) * $perPage;
-    $this->db->query('SELECT * FROM healthsupervisors LIMIT :offset, :perPage');
-    $this->db->bind(':offset', $offset, PDO::PARAM_INT);
-    $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+    $this->db->query('SELECT healthsupervisors.*,users.*
+    FROM healthsupervisors
+    INNER JOIN users ON users.user_ID = healthsupervisors.supervisor_ID
+    WHERE users.active = 1');
+    
 
     return $this->db->resultSet();
 
@@ -149,12 +259,13 @@ class M_admin
     return $row->total;
   }
 
-  public function getLabtech_set($page = 1, $perPage = 4)
+  public function getLabtech_set()
   {
-    $offset = ($page - 1) * $perPage;
-    $this->db->query('SELECT * FROM labtechnicians LIMIT :offset, :perPage');
-    $this->db->bind(':offset', $offset, PDO::PARAM_INT);
-    $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+    $this->db->query('SELECT labtechnicians.*,users.*
+    FROM labtechnicians
+    INNER JOIN users ON users.user_ID = labtechnicians.labtech_ID
+    WHERE users.active = 1');
+   
 
     return $this->db->resultSet();
 
@@ -167,13 +278,13 @@ class M_admin
     return $row->total;
   }
 
-  public function getNurse_set($page = 1, $perPage = 4)
+  public function getNurse_set()
   {
-    $offset = ($page - 1) * $perPage;
-    $this->db->query('SELECT * FROM nurses LIMIT :offset, :perPage');
-    $this->db->bind(':offset', $offset, PDO::PARAM_INT);
-    $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
-
+    $this->db->query('SELECT nurses.*,users.*
+    FROM nurses
+    INNER JOIN users ON users.user_ID = nurses.nurse_ID
+    WHERE users.active = 1');
+    
     return $this->db->resultSet();
 
   }
@@ -185,12 +296,14 @@ class M_admin
     return $row->total;
   }
 
-  public function getPharmacist_set($page = 1, $perPage = 4)
+  public function getPharmacist_set()
   {
-    $offset = ($page - 1) * $perPage;
-    $this->db->query('SELECT * FROM pharmacists LIMIT :offset, :perPage');
-    $this->db->bind(':offset', $offset, PDO::PARAM_INT);
-    $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+    
+    $this->db->query('SELECT pharmacists.*,users.*
+    FROM pharmacists
+    INNER JOIN users ON users.user_ID = pharmacists.pharmacist_ID
+    WHERE users.active = 1');
+    
 
     return $this->db->resultSet();
 
@@ -203,12 +316,14 @@ class M_admin
     return $row->total;
   }
 
-  public function getReceptionist_set($page = 1, $perPage = 4)
+  public function getReceptionist_set()
   {
-    $offset = ($page - 1) * $perPage;
-    $this->db->query('SELECT * FROM receptionists LIMIT :offset, :perPage');
-    $this->db->bind(':offset', $offset, PDO::PARAM_INT);
-    $this->db->bind(':perPage', $perPage, PDO::PARAM_INT);
+    
+    $this->db->query('SELECT receptionists.*,users.*
+    FROM receptionists
+    INNER JOIN users ON users.user_ID = receptionists.receptionist_ID
+    WHERE users.active = 1');
+    
 
     return $this->db->resultSet();
 
@@ -224,7 +339,7 @@ class M_admin
 
     public function regDoctor($data)
     {
-        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password,role) VALUES(:first_name, :last_name, :email_address, :password , "Doctor")');
             $this->db->bind(':first_name', $data['first_name']);
             $this->db->bind(':last_name', $data['last_name']);
             $this->db->bind(':email_address', $data['email']);
@@ -259,7 +374,7 @@ class M_admin
 
       public function regHealthsup($data)
       {
-        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :phone_number, :password)');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password,role) VALUES(:first_name, :last_name, :email_address, :phone_number, :password, "Health Supervisor")');
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -298,7 +413,7 @@ class M_admin
       public function regLabtech($data)
       {
 
-        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
+        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password, role) VALUES(:first_name, :last_name, :email_address, :password, "Lab technician")');
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -333,7 +448,7 @@ class M_admin
       public function regNurse($data)
       {
 
-        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');             
+        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password, role) VALUES(:first_name, :last_name, :email_address, :password, "Nurse")');             
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -367,7 +482,7 @@ class M_admin
       public function regPatient($data)
       {
 
-        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');             
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password, role) VALUES(:first_name, :last_name, :email_address, :password, "Patient")');             
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -401,7 +516,7 @@ class M_admin
       public function regPharmacist($data)
       {
 
-        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password, role) VALUES(:first_name, :last_name, :email_address, :password, "Pharmacist")');
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -440,7 +555,7 @@ class M_admin
       public function regReceptionist($data)
       {
 
-        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password) VALUES(:first_name, :last_name, :email_address, :password)');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password, role) VALUES(:first_name, :last_name, :email_address, :password, "Receptionist")');
                 $this->db->bind(':first_name', $data['first_name']);
                 $this->db->bind(':last_name', $data['last_name']);
                 $this->db->bind(':email_address', $data['email']);
@@ -472,7 +587,9 @@ class M_admin
 
       public function deleteProfileDoc($id)
       {
-        $this->db->query('DELETE FROM doctors WHERE doctor_ID = :id');
+        $this->db->query('UPDATE users
+        SET active = 0
+        WHERE user_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -489,7 +606,9 @@ class M_admin
 
       public function deleteProfileHealthsup($id)
       {
-        $this->db->query('DELETE FROM healthsupervisors WHERE supervisor_ID = :id');
+        $this->db->query('UPDATE users
+        SET active = 0
+        WHERE user_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -505,7 +624,9 @@ class M_admin
 
       public function deleteProfileLabtech($id)
       {
-        $this->db->query('DELETE FROM labtechnicians WHERE labtech_ID = :id');
+        $this->db->query('UPDATE users
+        SET active = 0
+        WHERE user_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -522,7 +643,9 @@ class M_admin
 
       public function deleteProfileNurse($id)
       {
-        $this->db->query('DELETE FROM nurses WHERE nurse_ID = :id');
+        $this->db->query('UPDATE users
+        SET active = 0
+        WHERE user_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -538,7 +661,9 @@ class M_admin
 
       public function deleteProfilePatient($id)
       {
-        $this->db->query('DELETE FROM patients WHERE patient_ID = :id');
+        $this->db->query('UPDATE users
+        SET active = 0
+        WHERE user_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -554,7 +679,9 @@ class M_admin
 
       public function deleteProfilePharmacist($id)
       {
-        $this->db->query('DELETE FROM pharmacists WHERE pharmacist_ID = :id');
+        $this->db->query('UPDATE users
+        SET active = 0
+        WHERE user_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -570,7 +697,9 @@ class M_admin
 
       public function deleteProfileReceptionist($id)
       {
-        $this->db->query('DELETE FROM receptionists WHERE receptionist_ID = :id');
+        $this->db->query('UPDATE users
+        SET active = 0
+        WHERE user_ID = :id');
         $this->db->bind(':id',$id);
 
          // Execute
@@ -639,6 +768,7 @@ class M_admin
         return $row;
       }
       
+      
       public function getDoctorbyID($id)
       {
         $sql = "SELECT users.*, doctors.*
@@ -698,8 +828,8 @@ class M_admin
     
   public function adminInfo()
   {
-    $this->db->query('SELECT * FROM users WHERE user_ID = :nurseID');
-    $this->db->bind(':nurseID', $_SESSION['USER_DATA']->user_ID);
+    $this->db->query('SELECT * FROM users WHERE user_ID = :adminID');
+    $this->db->bind(':adminID', $_SESSION['USER_DATA']->user_ID);
     $result = $this->db->single();
     return $result;
   }

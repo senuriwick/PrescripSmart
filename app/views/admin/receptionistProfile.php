@@ -5,23 +5,29 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Nurse Profile</title>
+  <title>Receptionist Profile</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/Profile.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 </head>
 
 <body>
 
-<?php require APPROOT .'/views/includes/navbar&sidemenu.php'; ?>
+<div class="content">
+    <?php include 'side_navigation_panel.php'; ?>
 
+    <div class="main">
+      <?php include 'top_navigation_panel.php'; ?>
+
+      <div class="patientInfoContainer">
+        <?php include 'information_container.php'; ?>
+        <?php include 'in_page_navigation.php'; ?>
     <div class="bar1" >
         <div class="search">
                 <div class="back" style="display: flex;">                    
-                    <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >                   
+                    <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" onclick="goback()" style="cursor: pointer;" >                   
                     <h1 style="font-size: 3.3vh;">Search Receptionist</h1>
                 </div>
         </div>
@@ -30,7 +36,7 @@
             <div class="div-specifier">
                     <div class="user-details">
                         <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png">
-                        <h1><strong><?php echo ucwords($data['doctor']->first_name) ?> <?php echo ucwords($data['doctor']->last_name) ?></strong></h1>
+                        <h1><strong><?php echo ucwords($data['doctor']->first_Name) ?> <?php echo ucwords($data['doctor']->last_Name) ?></strong></h1>
                     </div>
                     <h3>Employee ID #<?php echo $data['doctor']->user_ID ?></h3>
                     <h4>Personal information</h4>  
@@ -40,64 +46,71 @@
             <div class="row1">                   
                     <div class="firstname">
                             <h2>First Name</h2>
-                            <input type="text" value="<?php echo ucwords($data['doctor']->first_name) ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->first_Name) ?>">
                      </div>
                      <div class="lastname">
                             <h2>Last Name</h2>
-                            <input type="text" value="<?php echo ucwords($data['doctor']->last_name) ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->last_Name) ?>">
                      </div> 
             </div>
 
             <div class="row2">
                     <div class="firstname">
                           <h2>Display Name</h2>
-                          <input type="text" value="<?php echo ucwords($data['doctor']->display_name) ?>">
+                          <input type="text" value="<?php echo ucwords($data['doctor']->display_Name) ?>">
                     </div>                    
                   
                     <div class="firstname">
                           <h2>Home Address</h2>
-                          <input type="text" placeholder="Enter Your Home Address">
+                          <input type="text" value="<?php echo ucwords($data['doctor']->home_Address) ?>">
                     </div>    
             </div>
 
             <div class="row1">                   
                 <div class="firstname">
                         <h2>National Identity Card Number</h2>
-                        <input type="text" placeholder="Enter Your NIC Number">
+                        <input type="text" value="<?php echo ucwords($data['doctor']->NIC) ?>">
                 </div>
                 <div class="lastname">
                         <h2>Contact Number</h2>
-                        <input type="text" value="<?php echo $data['doctor']->phone_number ?>">
+                        <input type="text" value="<?php echo $data['doctor']->contact_Number ?>">
                 </div> 
             </div>
 
             <div class="row1">                   
                 <div class="firstname">
                         <h2>Receptionist Registration No.</h2>
-                        <input type="text" placeholder="Enter Your Registration Number">
+                        <input type="text" value="<?php echo ucwords($data['doctor']->registration_No) ?>">
                 </div>
                 <div class="lastname">
                         <h2>Qualifications</h2>
-                        <input type="text" value="<?php echo ucwords($data['doctor']->Qualifications) ?>">
+                        <input type="text" value="<?php echo ucwords($data['doctor']->qualifications) ?>">
                 </div> 
             </div>
 
             <div class="row1">                   
                 <div class="firstname">
                         <h2>Department</h2>
-                        <input type="text" placeholder="Enter Your Department">
+                        <input type="text" value="<?php echo ucwords($data['doctor']->department) ?>">
                 </div>
                 <div class="lastname">
                         <h2>Specialization(If any)</h2>
-                        <input type="text" placeholder="Any Specialization Here">
+                        <input type="text" value="<?php echo ucwords($data['doctor']->specialization) ?>">
                 </div> 
             </div>
 
-            <div class="btn">
+            <!-- <div class="btn">
                 <button type="submit" onclick="openPopup()"><b>Save Changes</b></button>     
-            </div>
+            </div> -->
               
     </div>
 </div>
+<script>
+      function goback() 
+      {
+        window.history.back();
+      }
+     </script>
+</html>
        
                
