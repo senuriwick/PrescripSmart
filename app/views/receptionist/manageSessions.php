@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/sessionManage.css" />
+  <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\receptionist\sessionManage.css" />
+  
   <script src="<?php echo URLROOT ?>/js/receptionist/script.js"></script>
 </head>
 
@@ -26,9 +27,37 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
-
+        <h1 class = "today">Todays' Sessions</h1>
         <h3 class="today-date" id="today-date"></h3>
-        <script>
+        <div class="searchDiv">
+          <div class="searchFiles">
+            <input class="search-input" type="search" placeholder="Search Doctor name/ID here">
+            <button type="search"><b>SEARCH</b></button>
+          </div>
+        </div>
+
+        <div class="sessions">
+          <div class="doc-info">
+            <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="user-icon">
+            <h3 class = "name2">Dr. Asanka Sayakkara</h3>
+          </div>
+
+          <h5 class ="specialization">Consultant physician</h5>
+          <hr style="color: #D9D9D9; margin-bottom:2vh; width:90vh; margin-top: -2vh;">
+
+          <div class="session-card">
+            <h4><strong>Session #23233</strong></h4>
+            <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
+            <p>Date: Sunday, 17th Sept, 2023</p>
+            <p>Time: 06.00 A.M </p>
+            <button><strong>CANCEL</strong> </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
           var today = new Date();
           var suffixes = ["th", "st", "nd", "rd"];
           function getDaySuffix(day) {
@@ -47,32 +76,4 @@
           // Display the date
           document.getElementById("today-date").innerHTML = formattedDate;
         </script>
-
-        <div class="searchDiv">
-          <h1>Todays' Sessions</h1>
-          <div class="searchFiles">
-            <input class="search-input" type="search" placeholder="Search Doctor name/ID here">
-            <button type="search"><b>SEARCH</b></button>
-          </div>
-        </div>
-
-        <div class="sessions">
-          <div class="doc-info">
-            <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="user-icon">
-            <h3>Dr. Asanka Sayakkara</h3>
-          </div>
-
-          <h5>Consultant physician</h5>
-          <hr style="color: #D9D9D9; margin-bottom:2vh; width:90vh; margin-top: -2vh;">
-
-          <div class="session-card">
-            <h4><strong>Session #23233</strong></h4>
-            <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
-            <p>Date: Sunday, 17th Sept, 2023</p>
-            <p>Time: 06.00 A.M </p>
-            <button><strong>CANCEL</strong> </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </body>
