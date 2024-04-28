@@ -88,9 +88,9 @@ p a:active{
 }
   
 .inquiry #idNO {
-  margin-left: -181px;
+  margin-left: -189px;
+  margin-right: -78px;
 }
-
 
 .inquiry img {
     width: 28px;
@@ -187,5 +187,9 @@ p a:active{
   position: absolute;
   top: 0;
   width: 5px;
+}
+
+#name{
+  margin-right: 169px;
 }
 
