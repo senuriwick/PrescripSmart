@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/search.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/nav_nurse.css"/>
+  <!-- <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/nav_nurse.css"/> -->
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/nurse.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 
 </head>

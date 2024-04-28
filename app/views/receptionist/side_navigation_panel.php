@@ -26,7 +26,7 @@
                 <img src="<?php echo URLROOT; ?>/public/img/receptionist/appointment_icon2.png" alt="icon">
                 <a href="<?php echo URLROOT ?>/receptionist/searchAppointment" id="appointments">Appointments</a>
             </div>
-            <div class="menu-item sessions">
+            <div class="menu-item se">
                 <img src="<?php echo URLROOT ?>/public/img/receptionist/session_icon.png" alt="icon">
                 <a href="<?php echo URLROOT ?>/receptionist/sessionManage" id="sessions">Sessions</a>
             </div>

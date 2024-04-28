@@ -5,7 +5,7 @@ p a:active{
 }
 
 .patientSearch {
-  margin-top: 5vh;
+  margin-top: 4vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 10px;
   padding: 1vh 3vh 2vh;
@@ -72,6 +72,10 @@ td button .history{
   align-items: center;
 }
 
+.patient-details .desDiv .patientName {
+  width: 200px;
+}
+
 .patient-details.patient-details-row{
   display: flex;
 }
@@ -84,7 +88,10 @@ td button .history{
 }
 
 .patient-data {
-  margin-bottom: 2vh;
+  /* margin-bottom: 2vh; */
+display: flex;
+justify-content: space-between;
+margin-right: 20px;
 }
 
 
@@ -171,5 +178,15 @@ body {
   color: white;
 }
 
+.details{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 32px;
+  align-items: center;
+  padding-left: 115px;
+}
 
-
+.details button {
+  background-color: green;
+  margin-right: 2px;
+}

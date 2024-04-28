@@ -54,21 +54,24 @@
                                             <div class="desDiv">
                                                 <img src="<?php echo URLROOT;?>/public/uploads/profile_images/<?php echo $patient->profile_photo;?>" alt="user-icon">
                                                 <p class="patientName"><?php echo $patient->display_Name; ?></p>
+                                                <p>Patient ID - <?php echo $patient->patient_ID ?></p>
                                                 <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patient->patient_ID; ?>" onclick="show(this)"></i>                                            
                                             </div>
                                         </td>
                                         
-                                        <td>Patient ID - <?php echo $patient->patient_ID ?></td>
+                                        <!-- <td>Patient ID - <?php echo $patient->patient_ID ?></td> -->
                                         <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patient->patient_ID;?>"><button>Add Prescription</button></a></td>
                                     </tr>
                                     
                                     <tr>
                                         <td colspan="3">
                                             <div id="content<?php echo $patient->patient_ID; ?>" class="patient-data" style="display: none;">
+                                            <div class = "details">
                                                 <p>Age: <?php echo $patient->age; ?></p>
                                                 <p>Height: <?php echo $patient->height; ?> cm</p>
                                                 <p>Weight: <?php echo $patient->weight; ?> kg</p>
                                                 <a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $patient->patient_ID;?>"><button class="history">View Medical History</button></a>
+                                            </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -172,11 +175,7 @@
                                     // else{
                                     //     location.reload();
                                     // }
-
-
                                 }
-
-                                
                               </script>
                         </div>
                     </div>

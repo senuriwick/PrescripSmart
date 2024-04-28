@@ -53,7 +53,7 @@
             })
 
             ({
-                key: "AIzaSyAdc9cMWSNcdSTmGloyYjkDLLPXNpUsA5o",
+                key: "",
                 v: "weekly",
             });
 
