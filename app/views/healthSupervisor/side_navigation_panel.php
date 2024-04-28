@@ -32,7 +32,7 @@
             </div>
             <div class="menu-item profile">
                 <img src="<?php echo URLROOT ?>/public/img/patient/account_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/healthSupervisor/profile" id="profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/healthSupervisor/account_information" id="profile">Profile</a>
             </div>
         </div>
 

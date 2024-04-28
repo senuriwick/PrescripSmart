@@ -92,11 +92,18 @@ p a:active{
   margin-right: -78px;
 }
 
-.inquiry img {
+/* .inquiry img {
     width: 28px;
     height: 28px;
     margin-right: 10px;
     margin-top:10px;
+} */
+
+.inquiry img {
+  height: 3vh;
+  padding: 1.75vh 0vh 1vh 1.5vh;
+  margin-right: 200px;
+  margin-top:1px;
 }
   
 .inquiry p{
