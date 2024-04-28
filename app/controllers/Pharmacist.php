@@ -184,10 +184,14 @@
         public function personal_information(){
 
             if ($this->logged_in()) {
-                $user_id = $_SESSION['USER_DATA']->user_ID;
-                $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
+                // $user_id = $_SESSION['USER_DATA']->user_ID;
+                // $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
+                $pharmacist = $this->pharmacistModel->pharmacistInfo($_SESSION['USER_DATA']->user_ID);
+                $user = $this->pharmacistModel->getUserDetails($_SESSION['USER_DATA']->user_ID);
                 $data = [
-                    'pharmacist' => $pharmacist
+                    // 'pharmacist' => $pharmacist
+                    'pharmacist' => $pharmacist,
+                    'user' => $user
                 ];
                 $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
             }else{
@@ -409,6 +413,13 @@
                 echo json_encode(array('success' => false, 'message' => 'Appointment ID or status not provided'));
             }
         } 
+    }
+
+    public function filterPrescriptions()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPrescriptions = $this->pharmacistModel->filterPrescriptions($searchQuery);
+        echo json_encode($filteredPrescriptions);
     }
 
     public function analysis(){
