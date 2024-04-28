@@ -151,9 +151,10 @@ class Doctor extends Controller{
     public function showDiagnosis(){
         $prescriptionid = $_GET['prescriptionid']?? '';
         if(!empty($prescriptionid)){
-            $result = $this->dpModel->getDiagnosis($prescriptionid);
+            $diagnosis = $this->dpModel->getDiagnosis($prescriptionid);
+            $doctor = $this->dpModel->getDoctor($_SESSION['USER_DATA']->user_ID);
             header('Content-Type: application/json');
-            echo json_encode($result);
+            echo json_encode(["prescription"=>$diagnosis,"doctor"=>$doctor]);
         }
     }
 
