@@ -72,7 +72,8 @@ color:rgba(164, 174, 199, 1);
   }
 
   .inquiry #idNO {
-    margin-left: -210px;
+    margin-left: -213px;
+    margin-right: -78px;
   }
   
   .inquiry button {
@@ -207,6 +208,10 @@ color:rgba(164, 174, 199, 1);
   margin-left: 3vw;
   margin-top: 5vh;
   width: 80%;
+}
+
+#name{
+  margin-right: 169px;
 }
 
 

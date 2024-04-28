@@ -358,33 +358,29 @@
         } 
     }
 
-    public function filterPrescriptions()
-    {
-        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
-        $filteredPrescriptions = $this->pharmacistModel->filterPrescriptions($searchQuery);
-        echo json_encode($filteredPrescriptions);
-    }
-
-    public function analysis($month = null){
-        if($month !== null) {
-            // Call the method to fetch data for the specified month
-            $commonlyPrescribedMedications = $this->pharmacistModel->fetchMonthlyData($month);
+    public function analysis(){
+        // Check if 'month' query parameter is set
+        $selectedMonth = isset($_GET['month']) ? $_GET['month'] : null;
+        
+        if (!empty($selectedMonth)) {
+            // If month is selected, fetch data for the specified month
+            $commonlyPrescribedMedications = $this->pharmacistModel->fetchMonthlyData($selectedMonth);
         } else {
-            // Call the method to fetch most commonly prescribed medications
+            // If month is not selected, handle it accordingly
+            // For example, you might want to set a default month or return an error message
+            // Here, I'm assuming you want to fetch commonly prescribed medications if no month is selected
             $commonlyPrescribedMedications = $this->pharmacistModel->fetchCommonlyPrescribedMedications();
         }
-    
-        // Pass the data to the view
+        
+        // Prepare response data as an associative array
         $data = [
             'commonlyPrescribedMedications' => $commonlyPrescribedMedications
         ];
-    
-        // Load the view and pass the data to it
+        
+        // Output JSON data
         $this->view('pharmacist/pharmacist_analysis', $data);
     }
     
-    
-        
         
     }
     

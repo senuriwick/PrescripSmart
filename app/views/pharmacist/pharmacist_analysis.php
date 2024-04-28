@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+    <button id="generateReportButton">Generate Report</button>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
     <script>
@@ -67,7 +68,7 @@
                     datasets: [{
                         label: 'Medication Prescriptions',
                         data: counts,
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8E5EA2', '#FF0000'], // Change colors as needed
+                        backgroundColor: ['#6CE5E8', '#41B8D5', '#2F5F98', '#2D8BBA'], // Change colors as needed
                     }]
                 },
                 options: {
@@ -80,17 +81,6 @@
 
             new Chart(ctx, config);
 
-            // Add event listener for form submission
-            document.getElementById('monthSelectionForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Get selected month from the form
-                var selectedMonth = document.getElementById('selectedMonth').value;
-
-                // Send selected month to the controller using AJAX
-                fetchMonthlyData(selectedMonth);
-            });
-
             // Function to send selected month to the controller using AJAX
             document.getElementById('monthSelectionForm').addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent default form submission
@@ -98,31 +88,40 @@
                 // Get selected month from the form
                 var selectedMonth = document.getElementById('selectedMonth').value;
 
-                // Send selected month to the controller using AJAX
-                fetchMonthlyData(selectedMonth);
-            });
-
-            // Function to send selected month to the controller using AJAX
-            function fetchMonthlyData(selectedMonth) {
+                var selectedMonth = this.value;
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '<?php echo URLROOT; ?>/pharmacist/analysis', true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            var data = JSON.parse(xhr.responseText);
-                            // Handle response data as needed
-                            console.log(data);
-                        } else {
-                            console.error('Error fetching data:', xhr.status);
-                        }
+                var url = "<?php echo URLROOT ?>/pharmacist/analysis?month=" + selectedMonth;
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = JSON.parse(xhr.responseText);
+                        // Handle response data as needed
+                        console.log(data);
                     }
                 };
+                xhr.send();
+            });
 
-                xhr.send(JSON.stringify({ month: selectedMonth }));
-            }
+            document.getElementById('generateReportButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default form submission (if applicable)
 
+            // Send AJAX request to server-side script for report generation
+            var xhr = new XMLHttpRequest();
+            var url = "<?php echo URLROOT ?>/pharmacist/generateReport"; // Replace with actual script URL
+            xhr.open("POST", url, true); // Change to POST if form has additional data
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Adjust if needed
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                // Handle server response - potentially a download link or prompt
+                var response = xhr.responseText;
+                console.log(response); // For debugging
+                // Offer user to download the generated PDF report
+                }
+            };
+            // Send data to server (if applicable)
+            // xhr.send("selectedMonth=" + selectedMonth); // Example for sending selected month
+            xhr.send();
+            });
         });
     </script>
 
