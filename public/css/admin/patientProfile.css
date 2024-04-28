@@ -3,6 +3,7 @@
     border-radius: 10px;
     padding: 1vh 3vh 2vh;
     position: relative;
+    margin-top: 4vh;
 }
 
 
@@ -83,7 +84,7 @@ body {
     margin-top: 80px;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 35px;
 }
 
 .sub2 {
@@ -217,7 +218,7 @@ body {
     width: 5vh;
 }
 
-.menu #personalinfo {
+/* .menu #personalinfo {
     border-color: #0069FF;
     border-spacing: 2cm;
     color: #0069FF;
@@ -232,9 +233,9 @@ body {
     left: 0;
     position: absolute;
     width: 100%;
-}
+} */
 
-.profile {
+/* .profile {
     background-color: rgba(68, 81, 114, 1);
     position: relative;
 }
@@ -247,15 +248,22 @@ body {
     position: absolute;
     top: 0;
     width: 5px;
-}
+} */
 
 .back
  {
   padding-left: 3vh;
   padding-top: -5vh;
   display: flex;
-  
  } 
+
+ .back img {
+    align-self: center;
+    cursor: pointer;
+    height: 24px;
+    margin-right: 20px;
+    width: 24px;
+ }
 .back h1
 {
   margin-left: 2vh;
@@ -271,4 +279,49 @@ body {
   margin-top: -2vh;
 
 }
+
+.patientFileExt {
+    /* border-bottom: solid;
+    border-color: rgba(164, 174, 199, 1);
+    border-width: 0.1vh; */
+    display: flex;
+    margin: 1vh 0.5vw;
+    /* padding-bottom: 1.8vh; */
+    margin-top: 2vh;
+  }
+  
+  .patientFileExt img.patient-pic {
+    border-radius: 50%;
+    display: inline-block;
+    height: 8vh;
+    margin-right: 1vw;
+    overflow: hidden;
+    width: 8vh;
+  }
+  
+  .patientFileExt img.back-icon {
+    align-self: center;
+    cursor: pointer;
+    height: 24px;
+    margin-right: 20px;
+    width: 24px;
+  }
+  
+  .patientFileExt .fileInfo p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    margin-left: 0.5vw;
+    padding-top: 2px;
+  }
+
+  .patientFileExt .name {
+    color: #445172;
+  }
+  
+  .patientFileExt .fileInfo .patientIdClass {
+    color: #0069FF;
+    font-size: 1rem;
+    font-weight: 400;
+  }
 

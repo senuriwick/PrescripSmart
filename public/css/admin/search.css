@@ -3,7 +3,7 @@
   background-color: rgba(239, 242, 251, 1);
   border-radius: 0.5vh;
   height:auto;
-  width:120vh;
+  width:130vh;
   margin-top: 4vh;
   padding: 1vh 3vh 2vh;
 }
@@ -30,10 +30,11 @@
   font-weight:40vh;
   font-family: inter;
   border-radius: 0.5vh;
-  width: 78vh;
+  width: 128vh;
   height: 5vh;
   border: none;
   padding-left: 1.4vh; 
+  margin-bottom: 2vh;
 }
 .searchButton
 {
@@ -141,31 +142,41 @@
 
 .addapp
   {
-    
-    margin-left: 2.5vh;
-    margin-top: 1.5vh;
+    /* margin-left: 2vh; */
+    margin-top: 4vh;
     background-color: #EFF2FB;
-    width: 50vh;
-    height: 10vh;
+    width:136vh;
+    height: 8vh;
     border-radius: 1vh;
+    justify-content: center;
   }
 
-.newapp
+.addapp .newapp
   {
     display: flex;
+    align-items: center;
+    margin-left: 10px;
 
   }
+  
 .newapp img
 {
-    padding: 2vh 2vh;
-    width: 6vh;
-    height: 6vh;
+    /* padding: 2vh 2vh; */
+    width: 30px;
+    height: 30px;
+    /* align-self: center; */
+    padding-top: 2vh;
+    padding-right: 3vh;
+    padding-left: 1vh;
+    justify-self: center;
 }
   .newapp a
 {
-    padding-top: 3vh;
+    padding-top: 2vh;
     color: #0069FF;
     text-decoration:none;
+    justify-self: center;
+    font-weight: bolder;
 }
 
 .row
@@ -187,35 +198,48 @@
 
 .person-circle
 {
-  padding-left: 1vh;
+  /* padding-left: 1vh;
   padding-right: 1vh;
-  padding-top: 1vh;
-  width: 5vh;
+  padding-top: 1vh; */
+  border-radius: 50%;
+  display: inline-block;
   height: 5vh;
+  width: 5vh;
+  margin-right: 3vh;
+  overflow: hidden;
+  /* margin-top: 1vh; */
+  margin-left: 2vh;
+  /* margin-bottom: 1vh; */
 }
 .row .name
 {
-  width: 20vh;
+  width: 275px;
   color: black;
 }
+/* 
+.row .ID {
+  width: 200px;
+} */
 
 td
 {
   display: flex;
+  align-items: center;
 }
 .trash-image
 {
-  width: 4vh;
-  height: 4vh;
-  padding-top: 1.5vh;
-  padding-right: 2vh;
-  margin-left: 2vh;
+  width: 20px;
+  height: 20px;
+  /* padding-top: 1.5vh; */
+  /* padding-right: 2vh; */
+  margin-left: 3vh;
+  /* justify-self: center; */
 }
 .profileButton
 {
   margin-left:27vh;
   Width:25vh;
-  margin-top: 1vh;
+  /* margin-top: 1vh; */
   border-radius:1vh;
   background-color: #0069FF;
   color: white;
@@ -256,11 +280,6 @@ body {
   margin-top: 5vh;
   margin-left: 3vw;
 }
-
-
-
-
-
 
 
 
