@@ -73,8 +73,26 @@
             rows1.forEach(row => {
                 row.addEventListener("click", () => {
                     var reportid = row.getAttribute('reportid');
-                    window.open(`<?php echo URLROOT;?>/doctor/loadReport?reportid=${reportid}`,'_blank')
+
+                    fetch(`<?php echo URLROOT;?>/doctor/chechRoport?reportid=${reportid}`)
+                    .then(response=>{
+                        console.log(response);
+                        return response.json();
+                    })
+                    .then(data =>{
+                        console.log(data);
+                        console.log(data.report);
+                        if((data.report)){
+                            window.open(`<?php echo URLROOT;?>/doctor/loadReport?reportid=${data.report_ID}`,'_blank')
+
+                        }else{
+                            alert("This lab report is not uploaded yet");
+                        }
+                    })
+
+                    
                 });
+
             });
 
         });

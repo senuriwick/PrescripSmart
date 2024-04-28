@@ -188,6 +188,18 @@ class Doctor extends Controller{
         $this->view('doctor/reports',$data);
     }
 
+    public function chechRoport(){
+        $reportid = $_GET['reportid']?? '';
+
+        if(!empty($reportid)){
+            $report = $this->dpModel->getReport($reportid);
+            header('Content-Type: application/json');
+            echo json_encode($report);
+            // return $report;
+
+        }
+    }
+
     public function loadReport(){
         $reportid = $_GET['reportid']?? '';
         if(!empty($reportid)){
@@ -272,6 +284,13 @@ class Doctor extends Controller{
         ];
         $this->view('doctor/on-going_session',$data);
         
+    }
+
+    public function ongoingSessionPatient(){
+        $patientId = $_GET['patientid'];
+        $patient = $this->dpModel->getonePatient($patientId);
+        header('Content-Type: application/json');
+        echo json_encode($patient);
     }
 
     public function Profile(){

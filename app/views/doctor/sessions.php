@@ -35,7 +35,7 @@
 
                     <div class="patientSearch">
                         <div   id="session-details" class="sessions-box">
-                            <?php if(isset($data['sessionData'])){?>
+                            
                         <?php foreach($data['sessionsData'] as $sessionData): ?>
                             <div class="session-card">
                                 <div><b>Session ID: <?php echo $sessionData->session_ID; ?></b></div>
@@ -44,8 +44,7 @@
                                 <div>Time: <?php echo formatCustomTime($sessionData->start_time);?></div>
                                 <button sessionID="<?php echo $sessionData->session_ID;?>">VIEW PATIENTS</button>
                             </div>
-                            <?php endforeach; ?><?php }else{?>
-                                <p>No sessions<p><?php }?>
+                            <?php endforeach; ?>
                         </div>
                         
                         <!-- <div id="session-patients" class="clicked-session">
