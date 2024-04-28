@@ -27,7 +27,7 @@
         
       <div class="details">
           <div class="back" style="display: flex; ">         
-              <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >         
+              <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" onclick="goback()" style="cursor: pointer;" >         
               <h1 >Nurse Registration</h1>
           </div>
           <form action="<?php echo URLROOT; ?>/admin/regNurse "method="POST">
@@ -74,10 +74,17 @@
         </form>
       </div>
 
-      <div class="popup">
+      <script>
+      function goback() 
+    {
+        window.history.back();
+    }
+     </script>
+
+      <!-- <div class="popup">
           <h2>Registration successful!</h2>
           <a><button><b>Back to dashboard</b></button></a>
-        </div>
+        </div> -->
         
     </html>
         
