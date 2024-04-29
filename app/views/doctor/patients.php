@@ -16,6 +16,10 @@
 </head>
 
 <body>
+<?php $currentPage = $data['currentPage'];
+  $totalPages = $data['totalPages'];
+//   $allPatients = $data['allPatients'];
+  ?>
     <div class="content">
     <?php include 'side_navigation_panel.php'; ?>
         <!-- <div class="container"> -->
@@ -36,68 +40,142 @@
                     <div class="patientSearch">
                         <h1>Search Patient</h1>
                         <form>
-                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" />
+                            <input type="text" class="searchBar" id="searchInput" placeholder="Enter patient name or Id" oninput="searchPatient(this.value)" />
 
                         </form>
                         <hr />
-                        <div class="patient-details">
+                        <div class="patient-details" id="patient-details">
                             <table>
-                                <tbody><?php if($data['ongoingSession']){?>
-                                <?php foreach($data['patientsData'] as $patientData): ?>
+                                <tbody id="table"><?php if($data['ongoingSession']){?>
+                                <?php foreach($data['patients'] as $patient): ?>
                                     <tr class="patient-details-row">
                                         
                                         <td>
                                             <div class="desDiv">
-                                                <img src="<?php echo URLROOT;?>/public/img/doctor/profile.png" alt="user-icon">
-                                                <p class="patientName"><?php echo $patientData->display_Name; ?></p>
-                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patientData->patient_ID; ?>" onclick="show(this)"></i>                                            
+                                                <img src="<?php echo URLROOT;?>/public/uploads/profile_images/<?php echo $patient->profile_photo;?>" alt="user-icon">
+                                                <p class="patientName"><?php echo $patient->display_Name; ?></p>
+                                                <p>Patient ID - <?php echo $patient->patient_ID ?></p>
+                                                <i class="fa-solid fa-chevron-down" data-target="content<?php echo $patient->patient_ID; ?>" onclick="show(this)"></i>                                            
                                             </div>
                                         </td>
                                         
-                                        <td>Patient ID - <?php echo $patientData->patient_ID ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_ID;?>"><button>Add Prescription</button></a></td>
+                                        <!-- <td>Patient ID - <?php echo $patient->patient_ID ?></td> -->
+                                        <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patient->patient_ID;?>"><button>Add Prescription</button></a></td>
                                     </tr>
                                     
                                     <tr>
                                         <td colspan="3">
-                                            <div id="content<?php echo $patientData->patient_ID; ?>" class="patient-data" style="display: none;">
-                                                <p>Age: <?php echo $patientData->age; ?></p>
-                                                <p>Height: <?php echo $patientData->height; ?> cm</p>
-                                                <p>Weight: <?php echo $patientData->weight; ?> kg</p>
-                                                <a href="<?php echo URLROOT; ?>/doctor/addPrescription/<?php echo $patientData->patient_ID;?>"><button>Add prescription</button></a>
+                                            <div id="content<?php echo $patient->patient_ID; ?>" class="patient-data" style="display: none;">
+                                            <div class = "details">
+                                                <p>Age: <?php echo $patient->age; ?></p>
+                                                <p>Height: <?php echo $patient->height; ?> cm</p>
+                                                <p>Weight: <?php echo $patient->weight; ?> kg</p>
+                                                <a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/<?php echo $patient->patient_ID;?>"><button class="history">View Medical History</button></a>
+                                            </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
+                                    
                                     <?php }else{?>
                                         <p>no patients</p><?php }?>
                                 </tbody>
-                            </table>
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function () {
-                                  const searchInput = document.getElementById("searchInput");
-                              
-                                  searchInput.addEventListener("input", function () {
-                                    const searchTerm = searchInput.value.toLowerCase();
-                                    const regex = new RegExp(searchTerm, 'i');
-                                    const patientRows = document.querySelectorAll(".patient-details-row");
-                              
-                                        patientRows.forEach(function (row) {
-                                            const patientName = row.querySelector(".patientName").textContent.toLowerCase();
-                                        //   if (patientName.includes(searchTerm)) {
-                                        //     row.style.display = "table-row";
-                                        //   } else {
-                                        //     row.style.display = "none";
-
-                                            if (regex.test(patientName)) {
-                                                    row.style.display = "table-row";
-                                                } else {
-                                                    row.style.display = "none";
-                                                }
-                                      });
-                                    });
-                                  });
                                 
+                                
+                            </table>
+                            <div class="pagination">
+                                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                            <a href="<?php echo URLROOT ?>/doctor/patients/<?php echo $i ?>" <?php if ($currentPage == $i)
+                                                    echo 'class="active"'; ?>><?php echo $i ?></a>
+                                        <?php endfor; ?>
+                                        </div>
+                            <script>
+                                // document.addEventListener("DOMContentLoaded", function () {
+                                //   const searchInput = document.getElementById("searchInput");
+                              
+                                //   searchInput.addEventListener("input", function () {
+                                //     const searchTerm = searchInput.value.toLowerCase();
+                                //     const regex = new RegExp(searchTerm, 'i');
+                                //     const patientRows = document.querySelectorAll(".patient-details-row");
+                              
+                                //         patientRows.forEach(function (row) {
+                                //             const patientName = row.querySelector(".patientName").textContent.toLowerCase();
+                                //         //   if (patientName.includes(searchTerm)) {
+                                //         //     row.style.display = "table-row";
+                                //         //   } else {
+                                //         //     row.style.display = "none";
+
+                                //             if (regex.test(patientName)) {
+                                //                     row.style.display = "table-row";
+                                //                 } else {
+                                //                     row.style.display = "none";
+                                //                 }
+                                //       });
+                                //     });
+                                //   });
+
+                                function searchPatient(query){
+                                    if(query.length>=1){
+                                        fetch(`http://localhost/Prescripsmart/doctor/searchPatient?query=${query}`)
+                                        .then(response =>{
+                                            console.log(response);
+                                            return response.json();
+
+                                        })
+                                        .then(data =>{
+                                            console.log(data);
+                                            showPatients(data);
+                                        })
+                                        .catch(error =>console.error('Error:',error));
+
+
+                                    }else{
+                                        location.reload();
+                                    }
+                                                                    }
+
+                                function showPatients(resultPatients){
+                                    // console.log(resultPatients);
+                                    var patientTable = document.getElementById("patient-details");
+                                    var patientrow = document.getElementById("table");
+                                    patientrow.innerHTML="";
+
+                                    if(resultPatients.length > 0){
+                                        
+                                        resultPatients.forEach(patient =>{
+                                            patientHTML=`
+                                            <tr class="patient-details-row">
+                                            
+                                            <td>
+                                                <div class="desDiv">
+                                                    <img src="<?php echo URLROOT;?>/public/uploads/profile_images/${patient.profile_photo}" alt="user-icon">
+                                                    <p class="patientName">${patient.display_Name}</p>
+                                                    <i class="fa-solid fa-chevron-down" data-target="content${patient.patient_ID}" onclick="show(this)"></i>                                            
+                                                </div>
+                                            </td>
+                                            
+                                            <td>Patient ID - ${patient.patient_ID}</td>
+                                            <td><a href="<?php echo URLROOT; ?>/doctor/addPrescription/${patient.patient_ID}"><button>Add Prescription</button></a></td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td colspan="3">
+                                                    <div id="content${patient.patient_ID}" class="patient-data" style="display: none;">
+                                                        <p>Age: ${patient.age}</p>
+                                                        <p>Height: ${patient.height}cm</p>
+                                                        <p>Weight: ${patient.weight} kg</p>
+                                                        <a href="<?php echo URLROOT; ?>/doctor/viewPrescriptions/${patient.patient_ID}"><button class="history">View Medical History</button></a>
+                                                    </div>
+                                                </td>
+                                            </tr>`;
+                                            patientrow.innerHTML+=patientHTML;
+                                    });
+                                        
+                                    }
+                                    // else{
+                                    //     location.reload();
+                                    // }
+                                }
                               </script>
                         </div>
                     </div>

@@ -15,7 +15,7 @@
 <body>
     <div class="menu">
         <a href="<?php echo URLROOT ?>/receptionist/searchAppointment" id="appointments">Appointments</a>
-        <a href="<?php echo URLROOT ?>/receptionist/sessionManage" id="sessions">Sessions</a>
+        <a href="<?php echo URLROOT ?>/receptionist/sessionManage" id="se">Sessions</a>
         <a href="<?php echo URLROOT ?>/receptionist/searchPatient" id="patients">Patients</a>
         <a href="<?php echo URLROOT ?>/receptionist/searchDoctor" id="doctors">Doctors</a>
         <a href="<?php echo URLROOT ?>/receptionist/searchNurse" id="nurses">Nurses</a>

@@ -47,7 +47,8 @@
                                 #
                                 <?php echo  $post->appointment_ID ?>
                             </h2>
-                            <button>Cancel Appointment</button>
+                            
+                            <button style="cursor: pointer;" onclick="cancelAppointment(<?php echo $post->appointment_ID;?>)">Cancel Appointment</button>
                         </div>
                                                       
                         <div class="app-details">
@@ -57,9 +58,14 @@
                         </div>
                                                
                         <div class="app-info">
-                            <h4>Patient: Mr. Perera</h4>
-                            <h4>Doctor: Dr. Peiris</h4>
-                            <h4>Payment Status: <button style="margin-top: -1vh;"><b>MARK AS PAID</b></button></h4>
+                            <h4>Patient: <?php echo $post->first_Name; echo " ";echo $post->last_Name;?></h4>
+                            <h4>Doctor: Dr. <?php echo $post->display_Name;?></h4>
+                            <h4>Payment Status: 
+                            <?php if($post->payment_status == "UNPAID"): ?>
+                                <button style="margin-top: -1vh; ; cursor: pointer" onclick="markAsPaid(<?php echo $post->appointment_ID;?>)"><b>MARK AS PAID</b></button></h4>
+                            <?php elseif($post->payment_status == "PAID"):  ?>
+                                <button style="margin-top: -1vh; background-color:#397A49;"><b>PAID</b></button></h4>
+                            <?php endif ?>    
                         </div>
                     </td>
                 </tr>
@@ -106,5 +112,35 @@
             <p>The modern way schedule and meet with convenience</p>
         </div>
     </div>
+
+    <script>
+        //function for markAsPaid button
+        function markAsPaid(appointmentId){
+            fetch(`<?php echo URLROOT ?>/receptionist/markAsPaid?appointmentid=${appointmentId}`)
+            .then(response=>{
+                console.log(response);
+                return response.json();
+            })
+            .then(data=>{
+                console.log(data);
+            })
+            .catch(error=>console.error("Error",error));
+            location.reload();
+        }
+
+        //function for cancel appointment
+        function cancelAppointment(appointmentId){
+            fetch(`<?php echo URLROOT ?>/receptionist/cancelAppointment?appointmentid=${appointmentId}`)
+            .then(response=>{
+                console.log(response);
+                return response.json();
+            })
+            .then(data=>{
+                console.log(data);
+            })
+            .catch(error=>console.error("Error",error));
+            location.reload();
+        }
+    </script>
 
 </body>

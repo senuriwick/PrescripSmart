@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
@@ -26,11 +25,11 @@
 
         <div class="patientNameDiv">
             <p class="name">
-                <?php echo $_SESSION['USER_DATA']->first_Name ?>
-                <?php echo $_SESSION['USER_DATA']->last_Name ?>
+                <?php echo ucwords($_SESSION['USER_DATA']->first_Name) ?>
+                <?php echo ucwords($_SESSION['USER_DATA']->last_Name) ?>
             </p>
             <p class="role">
-                <?php echo $_SESSION['USER_DATA']->role ?>
+                <?php echo ucwords($_SESSION['USER_DATA']->role) ?>
             </p>
         </div>
         

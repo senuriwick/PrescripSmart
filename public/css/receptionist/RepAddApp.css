@@ -223,13 +223,6 @@ but :active {
   margin-top: -2vh;
 }
 
-.sessions {
-  width: 33vh;
-  height: 29vh;
-  background-color: white;
-  border-radius: 1vh;
-}
-
 .sessions h4 {
   padding-left: 7vh;
   padding-top: 3vh;
@@ -255,4 +248,60 @@ but :active {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(3, minmax(20vh, 1fr));
+}
+
+.sessions img {
+  margin-top: 3vh;
+  width: 5vh;
+  height: 5vh;
+  margin-left: 4vh;
+}
+
+.doc-info {
+  display: flex;
+}
+
+.doc-info h3 {
+  margin-left: 2vh;
+  color: #0069FF;
+}
+
+.sessions h5 {
+  margin-left: 11vh;
+  margin-top:-15px ;
+}
+.session-card {
+  width: 30vh;
+  height: 25vh;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 4vh;
+  margin-bottom: 15px;
+
+}
+
+.session-card h4 {
+  padding-left: 5vh;
+  padding-top: 1vh;
+  font-size: 2.5vh;
+}
+
+.session-card p {
+  font-size: 2vh;
+  padding-left: 2.5vh;
+}
+
+.session-card button {
+  background-color: #397A49;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  width: 20vh;
+  height: 4vh;
+  margin-left: 4vh;
+}
+
+.session-cards-container {
+  display: flex;
+  flex-wrap: wrap; 
 }

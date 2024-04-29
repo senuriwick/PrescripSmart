@@ -19,6 +19,10 @@ form input {
   margin-bottom: 5px;
 }
 
+.patient-details{
+  width: 97%;
+}
+
 .patient-details table {
   width: 100%;
   border-collapse: separate;
@@ -62,8 +66,10 @@ td button {
 }
 
 .desDiv img {
+  border-radius: 50%;
   height: 5vh;
-  padding: 1.75vh 0vh 1vh 1.5vh;
+  margin-right: 1vh;
+  width: 5vh;
 }
 
 .patient-details .patient-data {
@@ -97,25 +103,27 @@ align-items: center;
 }
 
 .patientInfo2 img{
-height: 5vh;
-padding: 1.75vh 1.7vh 1.7vh 1.7vh;
+  height: 7vh;
+  padding: 1.75vh 1.7vh 1.7vh 1.7vh;
+  border-radius: 50%;
+  width: 7vh;
 }
 
 
 .patientInfo2 .infoDetail .name{
-font-size: 2.5vb;
+font-size: 3vh;
 font-weight: bold;
 margin: 0%;
 }
 
 .patientInfo2 .infoDetail .id{
-font-size: 2vb;
+font-size: 2.5vb;
 color: #0069FF;
 margin: 0%;
 }
 
 .patientInfo2 .infoDetail .age{
-font-size: 1.7vb;
+font-size: 2vh;
 color: #445172BF;
 margin: 0%;
 }
@@ -132,6 +140,7 @@ margin: inherit;
 
 .test-details-box .test-details{
 padding: 1vh;
+width: 60%;
 }
 
 .test-details-box .buttons{
@@ -151,14 +160,14 @@ border-radius: 5px;
 }
 
 .test-details .test-descript{
-font-size: 1.7vh;
+/* font-size: 1.7vh; */
 color: #0069FF;
 font-weight: bold;
 margin: 0%;
 }
 
 .test-details .rest-data{
-font-size: 1.7vh;
+/* font-size: 1.7vh; */
 color: #445172;
 margin: 0%;
 }
@@ -180,7 +189,7 @@ background-color: rgba(0, 0, 0, 0.5);
 
 .upload-model .model-content{
 background-color: #fff;
-  margin: 8% auto;
+  margin: 20% auto;
   padding: 20px;
   border: 1px solid #888;
   border-radius: 10px;
@@ -202,13 +211,14 @@ cursor: pointer;
   border-radius: 10px;
 }
 
-.model-content button{
+.model-content form button{
 border-radius: 5px;
 background-color: #397A49;
 border: none;
 cursor: pointer;
-width: inherit;
-}
+width: 70px;
+height: 25px;
+color: #fff;}
 
 body {
   font-family: inter;

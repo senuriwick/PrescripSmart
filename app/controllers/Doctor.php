@@ -14,22 +14,47 @@ class Doctor extends Controller{
     public function index(){
         $this->view('doctor/patients');
     }
-    public function patients(){
+    public function patients($page = 1){
         $doctorid = $_SESSION['USER_DATA']->user_ID;
         $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
         if($ongoingsession){
             $ongoingsessionid = $ongoingsession->session_ID;
             $patientsDetails = $this->dpModel->getPatientsDetails($ongoingsessionid);
+            $recodesPerPage =8;
+            $totalPatients = count($patientsDetails);
+            $totalPages = ceil($totalPatients / $recodesPerPage);
+
+            $offset = ($page -1)*$recodesPerPage;
+            $patients = array_slice($patientsDetails,$offset,$recodesPerPage);
             
         }else{
             $patientsDetails = '';
             $ongoingsession = '';
+            $patients='';
+            $page='';
+            $totalPages='';
         }
         $data = [
             'patientsData' => $patientsDetails,
-            'ongoingSession' =>$ongoingsession
+            'patients' => $patients,
+            'ongoingSession' =>$ongoingsession,
+            'currentPage' =>$page,
+            'totalPages'=>$totalPages
         ];
         $this->view('doctor/patients',$data);
+    }
+
+    public function searchPatient(){
+        $query = $_GET['query'];
+        $doctorid = $_SESSION['USER_DATA']->user_ID;
+        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+        if($ongoingsession){
+            $ongoingsessionid = $ongoingsession->session_ID;
+            $patientsDetails = $this->dpModel->filterPatients($ongoingsessionid,$query);
+            header('Content-Type: application/json');
+            echo json_encode($patientsDetails);
+        }
+
     }
 
     public function addPrescription($id){
@@ -126,9 +151,10 @@ class Doctor extends Controller{
     public function showDiagnosis(){
         $prescriptionid = $_GET['prescriptionid']?? '';
         if(!empty($prescriptionid)){
-            $result = $this->dpModel->getDiagnosis($prescriptionid);
+            $diagnosis = $this->dpModel->getDiagnosis($prescriptionid);
+            $doctor = $this->dpModel->getDoctor($_SESSION['USER_DATA']->user_ID);
             header('Content-Type: application/json');
-            echo json_encode($result);
+            echo json_encode(["prescription"=>$diagnosis,"doctor"=>$doctor]);
         }
     }
 
@@ -163,6 +189,18 @@ class Doctor extends Controller{
         $this->view('doctor/reports',$data);
     }
 
+    public function chechRoport(){
+        $reportid = $_GET['reportid']?? '';
+
+        if(!empty($reportid)){
+            $report = $this->dpModel->getReport($reportid);
+            header('Content-Type: application/json');
+            echo json_encode($report);
+            // return $report;
+
+        }
+    }
+
     public function loadReport(){
         $reportid = $_GET['reportid']?? '';
         if(!empty($reportid)){
@@ -194,6 +232,33 @@ class Doctor extends Controller{
         $this->view('doctor/sessions',$data);
     }
 
+
+    public function showSessionPatients(){
+        $sessionId = $_GET['sessionid'];
+        if(!empty($sessionId)){
+            $sessionPatients = $this->dpModel->getSessionPatients($sessionId);
+            $sessionPatientCount = $this->dpModel->getSessionPatientsCount($sessionId);
+            header('Content-Type: application/json');
+            echo json_encode(["sessionPatients"=>$sessionPatients,"patientCount"=>$sessionPatientCount,"sessionId"=>$sessionId]);
+        }
+    }
+
+    public function cancelSession(){
+        $sessionId = $_GET['sessionid'];
+        // var_dump($sessionId);
+        // $msg = [];
+        if(!empty($sessionId)){
+            $cancel = $this->dpModel->cancelSession($sessionId);
+            if($cancel){
+                $msg = "Canceling session succesfull";
+            }else{
+                $msg="error";
+            }
+            header('Content-Type: application/json');
+            echo json_encode($msg);
+        }
+    }
+
     public function verifyDoctor(){
         $userId = $_GET['userId'] ?? '';
         if (!empty($userId)) {
@@ -222,6 +287,13 @@ class Doctor extends Controller{
         
     }
 
+    public function ongoingSessionPatient(){
+        $patientId = $_GET['patientid'];
+        $patient = $this->dpModel->getonePatient($patientId);
+        header('Content-Type: application/json');
+        echo json_encode($patient);
+    }
+
     public function Profile(){
         $userid = $_SESSION['USER_DATA']->user_ID;
         $user = $this->dpModel->getProfileDetails($userid);
@@ -231,16 +303,16 @@ class Doctor extends Controller{
         $this->view('doctor/profile',$data);
     }
 
-    public function changePassword(){
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            if($_POST['submit']){
-                $newpw = $_POST['newpw'];
-                $confirmpw = $_POST['confirmPW'];
+    // public function changePassword(){
+    //     if($_SERVER['REQUEST_METHOD']=='POST'){
+    //         if($_POST['submit']){
+    //             $newpw = $_POST['newpw'];
+    //             $confirmpw = $_POST['confirmPW'];
                 
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
     // public function personalInfo(){
     //     $userid = $_SESSION['USER_DATA']->user_ID;

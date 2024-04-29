@@ -5,12 +5,13 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <title>Register a Nurse</title>
+  <title>Register a healthsupervisor</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/RegisterActor.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/>
+  <!-- <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/> -->
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/supervisor.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 
 </head>
@@ -28,7 +29,7 @@
      
       <div class="details">
           <div class="back" style="display: flex; ">       
-              <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" >       
+          <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon" onclick="goback()">       
               <h1 >Health Supervisor Registration</h1>
           </div>
 
@@ -73,12 +74,18 @@
           </div>         
           <button type="submit"><b>Register</b></button>
     </form>
+    <script>
+      function goback() 
+    {
+      window.history.back();
+    }
+     </script>
       </div>
 
-        <div class="popup">
+        <!-- <div class="popup">
           <h2>Registration successful!</h2>
           <a><button><b>Back to dashboard</b></button></a>
-        </div>
+        </div> -->
 
     </html>
         

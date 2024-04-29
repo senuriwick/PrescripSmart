@@ -5,7 +5,7 @@ p a:active{
 }
 
 .patientSearch {
-  margin-top: 5vh;
+  margin-top: 4vh;
   background-color: rgba(239, 242, 251, 1);
   border-radius: 10px;
   padding: 1vh 3vh 2vh;
@@ -26,7 +26,7 @@ form input {
 }
 
 .patient-details table {
-  width: 100%;
+  width: 97%;
   border-collapse: separate;
   border-spacing: 0 1vh;
 }
@@ -61,10 +61,19 @@ td button {
   cursor: pointer;
 }
 
+td button .history{
+  background-color: rgb(3, 107, 15);
+
+}
+
 .patient-details .desDiv {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.patient-details .desDiv .patientName {
+  width: 200px;
 }
 
 .patient-details.patient-details-row{
@@ -72,12 +81,17 @@ td button {
 }
 
 .desDiv img {
+  border-radius: 50%;
   height: 5vh;
-  padding: 1.75vh 0vh 1vh 1.5vh;
+  margin-right: 1vh;
+  width: 5vh;
 }
 
 .patient-data {
-  margin-bottom: 2vh;
+  /* margin-bottom: 2vh; */
+display: flex;
+justify-content: space-between;
+margin-right: 20px;
 }
 
 
@@ -137,5 +151,42 @@ body {
   background-color: #0069FF;
 }
 
+.pagination {
+  margin-top: 4vh;
+  text-align: right;
+}
 
+.pagination a {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: black;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+}
 
+.pagination a.active {
+  background-color: #0069FF;
+  color: white;
+}
+
+.pagination a:hover {
+  background-color: #0069FF;
+  color: white;
+}
+
+.details{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 32px;
+  align-items: center;
+  padding-left: 115px;
+}
+
+.details button {
+  background-color: green;
+  margin-right: 2px;
+}

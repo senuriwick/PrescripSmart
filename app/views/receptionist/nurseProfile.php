@@ -19,19 +19,19 @@
         <div class="content">
                 <?php include 'side_navigation_panel.php'; ?>
 
-    <div class="bar1" >
-        <div class="search">
-                <div class="back" style="display: flex;">                    
-                    <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >                   
-                    <h1 style="font-size: 3.3vh;">Search Nurse</h1>
-                </div>
-        </div>
+                <div class="main" >
+                        <div class="search">
+                                <div class="back" style="display: flex;">                    
+                                <img src="<?php echo URLROOT ?>/img/receptionist/Vector.svg" >                   
+                                <h1 style="font-size: 3.3vh;">Search Nurse</h1>
+                                </div>
+                        </div>
 
         <div class="bar2">
             <div class="div-specifier">
                     <div class="user-details">
                         <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png">
-                        <h1><strong><?php echo ucwords($data['doctor']->first_name) ?> <?php echo ucwords($data['doctor']->last_name) ?></strong></h1>
+                        <h1><strong><?php echo ucwords($data['doctor']->first_Name) ?> <?php echo ucwords($data['doctor']->last_Name) ?></strong></h1>
                     </div>
                     <h3>Employee ID #<?php echo $data['doctor']->user_ID ?></h3>
                     <h4>Personal information</h4>  
@@ -41,18 +41,18 @@
             <div class="row1">                   
                     <div class="firstname">
                             <h2>First Name</h2>
-                            <input type="text" value="<?php echo ucwords($data['doctor']->first_name) ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->first_Name) ?>">
                      </div>
                      <div class="lastname">
                             <h2>Last Name</h2>
-                            <input type="text" value="<?php echo ucwords($data['doctor']->last_name) ?>">
+                            <input type="text" value="<?php echo ucwords($data['doctor']->last_Name) ?>">
                      </div> 
             </div>
 
             <div class="row2">
                     <div class="firstname">
                           <h2>Display Name</h2>
-                          <input type="text" value="<?php echo ucwords($data['doctor']->display_name) ?>">
+                          <input type="text" value="<?php echo ucwords($data['doctor']->display_Name) ?>">
                     </div>                    
                   
                     <div class="firstname">

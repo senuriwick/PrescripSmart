@@ -162,14 +162,20 @@ class M_receptionist
 
   public function getPatients()
   {
-    $this->db->query('SELECT * FROM patients');
+    $this->db->query('SELECT patients.*,users.*
+    FROM patients
+    INNER JOIN users ON users.user_ID = patients.patient_ID
+    WHERE users.active = 1');
     $result = $this->db->resultSet();
     return $result;
   }
 
   public function getDoctors()
   {
-    $this->db->query('SELECT * FROM doctors');
+    $this->db->query('SELECT doctors.*,users.*
+    FROM doctors
+    INNER JOIN users ON users.user_ID = doctors.doctor_ID
+    WHERE users.active = 1');
     $result = $this->db->resultSet();
     return $result;
   }
@@ -200,6 +206,17 @@ class M_receptionist
         $result = $this->db->single();
         return $result;
     }
+
+    public function getNurses()
+  {
+    $this->db->query('SELECT nurses.*,users.*
+    FROM nurses
+    INNER JOIN users ON users.user_ID = nurses.nurse_ID
+    WHERE users.active = 1');
+    
+    return $this->db->resultSet();
+
+  }
   
 
   public function deleteProfileDoc($id)
@@ -265,18 +282,83 @@ class M_receptionist
 
   public function getAppointments()
   {
-    $this->db->query('SELECT * FROM appointments');
+    $this->db->query('SELECT a .*, d.display_Name, p.first_Name, p.last_Name FROM appointments a INNER JOIN patients p ON a.patient_ID = p.patient_ID INNER JOIN doctors d ON d.doctor_ID = a.doctor_ID WHERE a.status!="cancelled"');
     $results = $this->db->resultSet();
     return $results;
 
   }
 
-    public function getuserbyID($id, $table)
-    {
-        $sql = "SELECT e.*, d.*
-                FROM users e
-                JOIN $table d ON e.user_ID = d.user_iD
-                WHERE e.user_ID = :id";
+  //function for markaspaid
+  public function markAsPaid($appointmentID){
+    $this->db->query('UPDATE appointments SET payment_status="PAID" WHERE appointment_ID=:appointmentid');
+    $this->db->bind(':appointmentid',$appointmentID);
+
+    if($this->db->execute()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  //function for cancel the appointment
+  public function cancelAppointment($appointmentID){
+    $this->db->query('UPDATE appointments SET status="cancelled" WHERE appointment_ID=:appintmentid');
+    $this->db->bind(':appintmentid',$appointmentID);
+
+    if($this->db->execute()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  public function getPatientbyID($id)
+  {
+    $sql = "SELECT users.*, patients.*
+    FROM users 
+    INNER JOIN patients ON users.user_ID = patients.patient_ID
+    WHERE users.user_ID = :id";
+
+    $this->db->query($sql);
+    $this->db->bind(':id', $id);
+    $row = $this->db->single();
+
+    return $row;
+  }
+
+  public function getNursebyID($id)
+  {
+    $sql = "SELECT users.*, nurses.*
+    FROM users 
+    JOIN nurses ON users.user_ID = nurses.nurse_ID
+    WHERE users.user_ID = :id";
+
+    $this->db->query($sql);
+    $this->db->bind(':id', $id);
+    $row = $this->db->single();
+
+    return $row;
+  }
+
+  public function getSessionbyID($id)
+  {
+    $sql = "SELECT sessions.*, nurses.*
+    FROM sessions 
+    JOIN nurses ON sessions.nurse_ID = nurses.nurse_ID
+    WHERE nurses.nurse_ID = :id";
+
+    $this->db->query($sql);
+    $this->db->bind(':id', $id);
+    $results = $this->db->resultSet();
+    return $results;
+  }
+
+  public function getDoctorbyID($id)
+  {
+    $sql = "SELECT users.*, doctors.*
+    FROM users 
+    JOIN doctors ON users.user_ID = doctors.doctor_ID
+    WHERE users.user_ID = :id";
 
     $this->db->query($sql);
     $this->db->bind(':id', $id);
@@ -305,6 +387,39 @@ class M_receptionist
         }
 
     }
+    public function confirmAppointment($patient_ID, $doctor_ID, $session_ID, $time, $date, $charge, $number)
+    {
+        try {
+            $this->db->beginTransaction();
+
+            $this->db->query('INSERT INTO appointments (patient_ID, session_ID, doctor_ID, time, date, status, amount, payment_status, token_No) 
+                          VALUES (:patient_id, :session_id, :doctor_id, :sessionTime, :session_date, "active", :charge, "UNPAID", :current_appointment)');
+            $this->db->bind(':patient_id', $patient_ID);
+            $this->db->bind(':session_id', $session_ID);
+            $this->db->bind(':doctor_id', $doctor_ID);
+            $this->db->bind(':sessionTime', $time);
+            $this->db->bind(':session_date', $date);
+            $this->db->bind(':charge', $charge);
+            $this->db->bind(':current_appointment', $number);
+            $this->db->execute();
+
+            // Get the last inserted ID
+            $reference = $this->db->lastInsertId();
+
+            $this->db->query('UPDATE sessions SET current_appointment = current_appointment + 1, current_appointment_time = ADDTIME(current_appointment_time, "00:10:00")
+                          WHERE session_ID = :session_id');
+            $this->db->bind(':session_id', $session_ID);
+            $this->db->execute();
+
+            $this->db->commit();
+
+            return $reference;
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 
     public function updateAccInfo($username, $userID)
     {
@@ -314,6 +429,38 @@ class M_receptionist
         $this->db->bind(':userID', $userID);
 
         $this->db->execute();
+
+    }
+
+    public function addedSession($id,$Start_time, $End_time, $Total_app, $charge, $Room_no)
+    {
+      $this->db->query('INSERT INTO sessions ( doctor_ID, start_time, end_time,total_appointments,current_appointment, current_appointment_time, sessionCharge, room_no) 
+                          VALUES (:doctor_id, :start_time, :end_time, :total_appointments, "0", :start_time, :sessionCharge, :room_no)');
+            $this->db->bind(':doctor_id', $id);
+            $this->db->bind(':start_time', $Start_time);
+            $this->db->bind(':end_time', $End_time);
+            $this->db->bind(':total_appointments', $Total_app);
+            $this->db->bind(':sessionCharge', $charge);
+            $this->db->bind(':room_no', $Room_no);
+
+            $this->db->execute();
+    }
+
+    public function assignNurse($nurseID,$session_ID)
+    {
+      $this->db->query('UPDATE sessions SET nurse_ID = :nurse_id 
+      WHERE session_ID = :sessionID');
+      $this->db->bind(':nurse_id', $nurseID);
+      $this->db->bind(':sessionID', $session_ID);
+
+      if($this->db->execute())
+        {
+          return true;
+        }
+         else
+        {
+          return false;
+        }
 
     }
 

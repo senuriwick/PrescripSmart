@@ -10,8 +10,15 @@ class M_Doctor
 
     public function getPatientsDetails($sessionId)
     {
-        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE appointments.session_ID=:session_id');
+        $this->db->query('SELECT appointments.*, patients.*, users.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID LEFT JOIN users ON appointments.patient_ID=users.user_ID WHERE appointments.session_ID=:session_id');
         $this->db->bind(':session_id',$sessionId);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function filterPatients($session_id,$query){
+        $this->db->query("SELECT appointments.*, patients.*, users.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID LEFT JOIN users ON appointments.patient_ID=users.user_ID WHERE appointments.session_ID=:session_id AND patients.display_Name LIKE '%$query%' ");
+        $this->db->bind(':session_id',$session_id);
         $results = $this->db->resultSet();
         return $results;
     }
@@ -34,10 +41,17 @@ class M_Doctor
 
     public function getDiagnosis($diagnosisId)
     {
-        $this->db->query('SELECT prescriptions.*, doctors.* ,patients.* FROM `prescriptions` LEFT JOIN `patients` ON patients.patient_ID=prescriptions.patient_ID LEFT JOIN `doctors` ON prescriptions.doctor_ID=doctors.doctor_ID WHERE prescription_ID=:id');
+        $this->db->query('SELECT prescriptions.* ,patients.* FROM `prescriptions` LEFT JOIN `patients` ON patients.patient_ID=prescriptions.patient_ID WHERE prescription_ID=:id');
         $this->db->bind(':id', $diagnosisId);
         $results = $this->db->single();
         return $results;
+    }
+
+    public function getDoctor($id){
+        $this->db->query('SELECT doctors.*, users.* FROM doctors LEFT JOIN users ON users.user_ID=doctors.doctor_ID WHERE doctor_ID=:id');
+        $this->db->bind(':id',$id);
+        $result = $this->db->single();
+        return $result;
     }
 
     public function getMedications($diagnosisId)
@@ -82,15 +96,41 @@ class M_Doctor
 
     public function getSessionsDetails($userid)
     {
-        $this->db->query('SELECT * FROM sessions WHERE doctor_ID=:id');
+        $this->db->query('SELECT * FROM sessions WHERE doctor_ID=:id AND status="active"');
         $this->db->bind(':id', $userid);
         $results = $this->db->resultSet();
         return $results;
     }
 
+    public function getSessionPatients($sessionId){
+        $this->db->query('SELECT appointments.*, patients.* FROM appointments LEFT JOIN patients ON appointments.patient_ID=patients.patient_ID WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        $results = $this->db->resultSet();
+        return $results;
+    }
+
+    public function getSessionPatientsCount($sessionId){
+        $this->db->query('SELECT * FROM appointments WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        $this->db->resultSet();
+        return $this->db->rowCount();
+    }
+
+    public function cancelSession($sessionId){
+        $this->db->query('UPDATE sessions SET status="cancelled" WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        // $this->db->execute();
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function getOngonigSession($doctorId){
         $this->db->query('SELECT * FROM sessions WHERE ((start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
-        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id');
+        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id AND status="active"');
         $this->db->bind(':doctor_id',$doctorId);
         $result = $this->db->single();
         return $result;

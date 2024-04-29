@@ -1,0 +1,31 @@
+.patients {
+    background-color: rgba(68, 81, 114, 1);
+    position: relative;
+}
+
+.patients::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #0069FF;
+}
+
+.menu #patients {
+    color: #0069FF;
+    border-color: #0069FF;
+    border-spacing: 2cm;
+    position: relative;
+}
+
+.menu #patients::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #0069FF;
+}
