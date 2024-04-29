@@ -135,15 +135,24 @@ class Doctor extends Controller{
         }
     }
 
-    public function viewPrescriptions($id){
+    public function viewPrescriptions($id,$page=1){
         $prescriptionDetails = $this->dpModel->getPrescriptionDetails($id);
         $prescriptionCount = $this->dpModel->getPrescriptionCount($id);
         $patient = $this->dpModel->getonePatient($id);
+        $recodesPerPage=8;
+        $totalprescriptions=count($prescriptionDetails);
+        $totalPages = ceil($totalprescriptions/$recodesPerPage);
+
+        $offset = ($page-1)*$recodesPerPage;
+        $prescriptions = array_slice($prescriptionDetails,$offset,$recodesPerPage);
 
         $data = [
             'prescriptionsData' => $prescriptionDetails,
             'prescriptionsCount' => $prescriptionCount,
-            'patient' => $patient
+            'patient' => $patient,
+            'prescriptions'=>$prescriptions,
+            'currentPage'=>$page,
+            'totalPages'=>$totalPages
         ];
         $this->view('doctor/prescriptions',$data);
     }
@@ -176,15 +185,24 @@ class Doctor extends Controller{
         }
     }
 
-    public function viewReports($id){
+    public function viewReports($id,$page=1){
         $reportDetails = $this->dpModel->getReportDetails($id);
         $reportCount = $this->dpModel->getReportCount($id);
         $patient = $this->dpModel->getonePatient($id);
+        $recodesPerPage=8;
+        $totalreports = count($reportDetails);
+        $totalPages = ceil($totalreports/$recodesPerPage);
+
+        $offset = ($page-1)*$recodesPerPage;
+        $reports = array_slice($reportDetails,$offset,$recodesPerPage);
 
         $data = [
             'reportsData' => $reportDetails,
             'reportsCount' => $reportCount,
-            'patient' => $patient
+            'patient' => $patient,
+            'reports'=>$reports,
+            'currentPage'=>$page,
+            'totalPages'=>$totalPages
         ];
         $this->view('doctor/reports',$data);
     }

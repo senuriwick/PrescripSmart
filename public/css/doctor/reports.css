@@ -42,6 +42,8 @@ p a:active{
     font-size: 3vh;
     font-weight: bold;
     color: rgba(68, 81, 114, 1);
+    margin-bottom: 2vh;
+    margin-top: 2vh;
 }
 
 .prescription-table table {
@@ -278,3 +280,31 @@ body {
     height: 4px;
     background-color: #0069FF;
   }
+
+  .pagination {
+    margin-top: 4vh;
+    text-align: right;
+  }
+  
+  .pagination a {
+    background-color: white;
+    border-radius: 0.5rem;
+    color: black;
+    display: inline-block;
+    font-size: small;
+    font-weight: bold;
+    margin: 0 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #0069FF;
+    color: white;
+  }
+  
+  .pagination a:hover {
+    background-color: #0069FF;
+    color: white;
+  }
+  
