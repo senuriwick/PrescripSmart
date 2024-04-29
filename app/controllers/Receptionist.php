@@ -110,6 +110,26 @@
       }
    }
 
+   public function filterNurses()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->repModel->filterNurses($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+
+    public function filterPatients()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->repModel->filterPatients($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+    public function filterDoctors()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->repModel->filterDofilterPatientsctors($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+
    public function authenticate()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -143,6 +163,7 @@
             }
         }
     }
+
 
    public function forgot_password()
     {
@@ -562,11 +583,23 @@
         }
     }
 
-    public function searchAppointment()
+  
+
+    public function searchAppointment($page = 1)
     {
-      $posts = $this->repModel->getAppointments();
+      $allPatients = $this->repModel->getPatients();
+      $recordsPerPage = 1;
+      $totalPatients = count($allPatients);
+      $totalPages = ceil($totalPatients / $recordsPerPage);
+      $offset = ($page - 1) * $recordsPerPage;
+      $patients = array_slice($allPatients, $offset, $recordsPerPage);
+        $posts = $this->repModel->getAppointments();
       $data = [
-        'appointments'=> $posts
+        'appointments'=> $posts,
+        'patients' => $patients,
+        'allPatients' => $allPatients,
+        'currentPage' => $page,
+        'totalPages' => $totalPages
       ];
 
       $this->view('receptionist/searchApp', $data);
@@ -592,6 +625,15 @@
       }
     }
 
+    public function cancelSession(){
+      $sessionid = $_GET['appointmentid']?? '';
+      if(!empty($AppointmentId)){
+        $result = $this->repModel->cancelSession($sessionid);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+      }
+    }
+
     public function addAppointment()
     {
       $posts = $this->repModel->getDoctors();
@@ -604,12 +646,22 @@
       $this->view('receptionist/addApp', $data);
     }
 
-    public function create_appointment()
+    
+            
+
+
+    public function create_appointment($page = 1)
     {
         $session_ID = $_GET['sessionID'] ?? null;
 
         if ($session_ID != null) {
 
+            $allPatients = $this->repModel->getPatients();
+            $recordsPerPage = 10;
+            $totalPatients = count($allPatients);
+            $totalPages = ceil($totalPatients / $recordsPerPage);
+            $offset = ($page - 1) * $recordsPerPage;
+            $patients = array_slice($allPatients, $offset, $recordsPerPage);           
             $selectedSession = $this->repModel->getSessionDetails($session_ID);
             $posts = $this->repModel->getPatients();
             $selectedDoctor = $this->repModel->getDoctorDetails($selectedSession->doctor_ID);
@@ -617,7 +669,11 @@
             $data = [
                 'selectedSession' => $selectedSession,
                 'patients' => $posts,
-                'selectedDoctor'=> $selectedDoctor
+                'selectedDoctor'=> $selectedDoctor,
+                'patients' => $patients,
+                'allPatients' => $allPatients,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
             ];
             $this->view('receptionist/appointPatient',$data);           
             
@@ -813,12 +869,22 @@
   }
 
 
-    public function searchPatient()
+    public function searchPatient($page = 1)
     {
-      $posts = $this->repModel->getPatients();
-      $data = [
-        'patients'=> $posts
-      ];
+      $allPatients = $this->repModel->getPatients();
+            $recordsPerPage = 10;
+            $totalPatients = count($allPatients);
+            $totalPages = ceil($totalPatients / $recordsPerPage);
+
+            $offset = ($page - 1) * $recordsPerPage;
+            $patients = array_slice($allPatients, $offset, $recordsPerPage);
+
+            $data = [
+                'patients' => $patients,
+                'allPatients' => $allPatients,
+                'currentPage' => $page,
+                'totalPages' => $totalPages
+            ];
 
       $this->view('receptionist/searchPatient', $data);
     }
@@ -853,11 +919,6 @@
       $this->view('receptionist/account_information' ,$data);
     }
 
-    // public function security()
-    // {
-    //   $this->view('receptionist/security');
-    // }
-
     public function personal_info()
     {
       $this->view('receptionist/personal_info');
@@ -884,7 +945,7 @@
       {
         if($this->repModel->deleteProfileDoc($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/receptionist/searchDoctor');
         }
         else
         {
@@ -899,7 +960,7 @@
       {
         if($this->repModel-> deleteProfileNurse($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/receptionist/searchNurse');
         }
         else
         {
@@ -914,7 +975,7 @@
       {
         if($this->repModel->deleteProfilePatient($id))
         {
-          echo"Profile sucessfully deleted";
+          redirect('/receptionist/searchPatient');
         }
         else
         {
@@ -1017,9 +1078,7 @@
           // Register User
           if($this->repModel->regDoctor($data))
           {
-            // flash('register_success', 'You are registered and can log in');
-            redirect('/receptionist/searchDoctor');
-           
+            redirect('/receptionist/searchDoctor');           
           }
            else 
           {
@@ -1031,7 +1090,7 @@
         else
         {
           // Load view with errors
-          $this->view('admin/register_email', $data);
+          $this->view('receptionist/regDoctor', $data);
           
         }
 
@@ -1051,7 +1110,7 @@
         ];
 
         // Load view
-       $this->view('receptionist/register_email', $data);
+       $this->view('receptionist/regDoctor', $data);
        
       }
       
@@ -1162,7 +1221,7 @@
         else
         {
           // Load view with errors
-          $this->view('receptionist/register_email', $data);
+          $this->view('receptionist/regNurse', $data);
         }
 
       }
@@ -1181,11 +1240,8 @@
         ];
 
         // Load view
-        $this->view('receptionist/register_email', $data);
+        $this->view('receptionist/regNurse', $data);
       }
-      
-
-
     }
 
     public function regPatient()
@@ -1291,7 +1347,7 @@
         else
         {
           // Load view with errors
-          $this->view('receptionist/register_email', $data);
+          $this->view('receptionist/regPatient', $data);
         }
 
       }
@@ -1310,7 +1366,7 @@
         ];
 
         // Load view
-        $this->view('receptionist/register_email', $data);
+        $this->view('receptionist/regPatient', $data);
       }
 
     }

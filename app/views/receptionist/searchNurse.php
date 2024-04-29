@@ -30,7 +30,7 @@
                 <div class="addapp">
                     <div class="newapp">
                         <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
-                        <a href="<?php echo URLROOT ?>/admin/viewRegnurse">NEW NURSE</a>
+                        <a href="<?php echo URLROOT ?>/receptionist/viewRegnurse">NEW NURSE</a>
                     </div>
                 </div>
 
@@ -50,7 +50,8 @@
                     <tr class="row">
                                                                                
                          <td >
-                            <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png"  alt="profile-pic">
+                            <img class="person-circle" 
+                            src="<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $post->profile_photo ?>">
                             <p class= "name">
                                 Mr.
                                 <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>

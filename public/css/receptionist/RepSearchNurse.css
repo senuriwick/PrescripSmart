@@ -217,13 +217,19 @@ but :active
 
 .person-circle
 {
-  padding-left: 3vh;
+  /* padding-left: 1vh;
   padding-right: 1vh;
-  padding-top: 2vh;
-  width: 6vh;
-  height: 6vh;
+  padding-top: 1vh; */
+  border-radius: 50%;
+  display: inline-block;
+  height: 5vh;
+  width: 5vh;
+  margin-right: 3vh;
+  overflow: hidden;
+  margin-top: 2vh;
+  margin-left: 2vh;
+  margin-bottom: 1vh;
 }
-
 td
 {
   display: flex;

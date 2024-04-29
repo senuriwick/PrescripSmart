@@ -49,7 +49,7 @@
             });
 
             document.getElementById("viewAppointmentButton").addEventListener("click", function () {
-            window.location.href = "<?php echo URLROOT; ?>/receptionist/searchPatient";
+            window.location.href = "<?php echo URLROOT; ?>/receptionist/searchApp";
         });
 
         }

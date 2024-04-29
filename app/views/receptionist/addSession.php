@@ -56,14 +56,14 @@
                         <div class="top2">
                             <div class="email">
                                 <h3>Total Appointments</h3>
-                                <input type="number" name="email" placeholder="Enter Your email address">
+                                <input type="number" name="email" placeholder="Enter ttotal ">
                             </div>
                             <div class="phone">
                                 <div class="req">
                                     <h3 style="color: #0069FF;">Room Number</h3>
                                     <p style="color: red;">*</p>
                                 </div>
-                                <input type="text" name="phone_number" placeholder="Enter Your phone number">
+                                <input type="text" name="phone_number" placeholder="Enter Your Room number">
                             </div>
                         </div>
 
@@ -73,8 +73,9 @@
                                     <h3 style="color: #0069FF;">Charge</h3>
                                     <p style="color: red;">*</p>
                                 </div>
-                                <input type="text" name="charge" placeholder="Enter Your first name">
-                        </div>        
+                                <input type="text" name="charge" placeholder="Enter the Session charge">
+                            </div> 
+                        </div>       
 
                         
                         <button type="submit"><b>Add Session</b></button>
