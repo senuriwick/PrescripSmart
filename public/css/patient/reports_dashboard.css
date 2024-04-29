@@ -34,12 +34,14 @@
 
 .file .desDiv {
   display: flex;
+  width: 200px;
 }
 
 .file .doctor {
   width: 400px;
   align-items: left;
   margin-left: 20px;
+  /* justify-content: left; */
 }
 
 .file .date {

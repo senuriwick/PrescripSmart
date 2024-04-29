@@ -23,7 +23,7 @@ class M_LabTechnician {
 
     public function getTests($patientID){
         $this->db->query('SELECT lab_reports.* , doctors.*, tests.* FROM `lab_reports` LEFT JOIN `doctors` 
-        ON lab_reports.doctor_ID=doctors.doctor_ID LEFT JOIN `tests`ON tests.test_ID=lab_reports.test_ID WHERE lab_reports.patient_ID=:id AND date_of_conduct IS NULL OR date_of_report IS NULL');
+        ON lab_reports.doctor_ID=doctors.doctor_ID LEFT JOIN `tests`ON tests.test_ID=lab_reports.test_ID WHERE lab_reports.patient_ID=:id AND date_of_report IS NULL');
         $this->db->bind(':id',$patientID);
         $results = $this->db->resultSet();
         return $results;

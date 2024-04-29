@@ -34,7 +34,7 @@
                                 <option value="11">November</option>
                                 <option value="12">December</option>
                             </select>
-                            <button type="submit">Fetch Data</button>
+                            <button id = "fetchData" type="submit">Fetch Data</button>
                         </form>
 
                         <div class="analysisSection">
@@ -53,7 +53,7 @@
                         <canvas id="medicationPieChart"></canvas>
                     </div>
                 </div>
-                <button id="generateReportButton">Generate Report</button>
+                <button class="printReport" onclick="printReport()">Print Report</button>
             </div>
         </div>
     </div>
@@ -97,6 +97,43 @@
 
 <script>
      // Function to send selected month to the controller using AJAX
+    //  function printReport() {
+    //     var printContent = document.querySelector('.analysisContainer').outerHTML;
+    //     var originalContent = document.body.innerHTML;
+        
+    //     document.body.innerHTML = printContent;
+
+    //     // Wait a short delay for rendering to complete, then trigger print
+    //     setTimeout(function() {
+    //         window.print();
+    //         document.body.innerHTML = originalContent;
+    //     }, 500);
+    // }
+
+    function printReport() {
+    // Hide the fetch data button before printing
+        var fetchDataButton = document.getElementById('fetchData');
+        fetchDataButton.style.display = 'none';
+
+        var printContent = document.querySelector('.analysisContainer').outerHTML;
+        var originalContent = document.body.innerHTML;
+
+        document.body.innerHTML = printContent;
+        var monthLabel = document.querySelector('label[for="selectedMonth"]');
+
+    // Update the label text to "Selected Month"
+        monthLabel.innerText = "Selected Month";
+
+        // Wait a short delay for rendering to complete, then trigger print
+        setTimeout(function() {
+            window.print();
+            document.body.innerHTML = originalContent;
+            // Restore the visibility of the fetch data button after printing
+            fetchDataButton.style.display = 'block';
+        }, 500);
+    }
+
+    
      document.getElementById('monthSelectionForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
@@ -178,40 +215,31 @@
 
 </script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+<!-- <script>
+    document.getElementById('generateReportButton').addEventListener('click', function() {
+        printBtn = document.getElementById('generateReportButton');
+        printBtn.style.display = 'none';
+        window.print();
+        printBtn.style.display = 'block';
+    });
+</script> -->
 
-        <script>
-        function generatePDFReport(data) {
-            // Initialize jsPDF
-            var doc = new jsPDF();
+<!-- <script>
+document.getElementById('generateReportButton').addEventListener('click', function() {
+    // Construct the URL with query parameters
+    var url = '<?php echo URLROOT ?>/pharmacist/printable_analysis.php?';
 
-            // Add content to the PDF
-            doc.text('Medication Analysis Report', 10, 10);
-            doc.text('---------------------------------------------', 10, 20);
+    // Append each medication data to the URL
+    <?php foreach ($data['commonlyPrescribedMedications'] as $medication): ?>
+        url += 'medication[]=<?php echo urlencode($medication->medication); ?>&';
+        url += 'usage_count[]=<?php echo urlencode($medication->usage_count); ?>&';
+    <?php endforeach; ?>
 
-            // Add medication details to the PDF
-            var y = 30;
-            data.forEach(function(medication) {
-                doc.text('Medication Name: ' + medication.medication, 10, y);
-                doc.text('Total Prescriptions: ' + medication.usage_count, 10, y + 10);
-                doc.text('---------------------------------------------', 10, y + 20);
-                y += 30;
-            });
-
-            // Save the PDF
-            doc.save('medication_analysis_report.pdf');
-        }
-
-</script>
-
-<script>
-document.getElementById('generateReportButton').addEventListener('click', function(event) {
-    event.preventDefault();
-
-    // Call the function to generate the PDF report with the data
-    generatePDFReport(data);
+    // Redirect to the printable analysis page
+    window.location.href = url;
 });
-</script>
+</script> -->
+
 
 
 </body>

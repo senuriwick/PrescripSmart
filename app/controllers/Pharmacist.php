@@ -8,61 +8,6 @@
 
         }
 
-        // public function dashboard(){
-        //     $patients = $this->pharmacistModel->getPatients();
-        //     $data = [
-        //         'patients' => $patients
-        //     ];
-        //     $this->view('pharmacist/pharmacist_dashboard', $data);
-        // }
-
-            
-        public function login(){
-            $this->view('pharmacist/login');
-        }
-
-        public function loginCheck(){
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $username = $_POST["username"];
-                $password = $_POST["password"];
-    
-                $user = $this->pharmacistModel->getUserByUsername($username);
-                // $pharmacist = $this->pharmacistModel->pharmacistInfo($user->user_ID);
-    
-                if ($user && password_verify($password, $user->password)) {
-                    // Password is correct
-                    session_start();
-                    $_SESSION['USER_DATA'] = $user;
-                    // $_SESSION['pharmacist'] = $pharmacist;
-                    redirect("/Pharmacist/dashboard");
-                    exit();
-                } else {
-                    // Password is incorrect
-                    $error = "Invalid username or password";
-                }
-            }
-    
-            
-        }
-        // public function dashboard($page = 1){
-        //     $user = $_SESSION['USER_DATA'];
-        //     $itemsPerPage =5;
-        //     $offset = ($page - 1) * $itemsPerPage;
-        //     $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
-        //     $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
-        //     $totalPages = ceil($totalPatients/$itemsPerPage);
-
-        //     $data = [
-        //         'user' => $user,
-        //         'patients' => $patients,
-        //         'totalPatients' => $totalPatients,
-        //         'currentPage' => $page,
-        //         'totalPages' => $totalPages,
-        //     ];
-
-        //     $this->view('pharmacist/pharmacist_dashboard', $data);
-        // }
-
         public static function logged_in()
         {
             if (!empty($_SESSION['USER_DATA'])) {
@@ -91,7 +36,7 @@
     
                 $this->view('pharmacist/pharmacist_dashboard', $data);
             } else {
-                header("Location: /prescripsmart/general/error_page");
+                redirect('/general/error_page');
             }
         }
 
@@ -121,7 +66,7 @@
 
             $this->view('pharmacist/pharmacist_profile', $data);
         }else{
-            header("Location: /prescripsmart/general/error_page");
+            redirect('/general/error_page');
         }
         }
 
@@ -151,8 +96,6 @@
         public function checkCurrentPassword() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
                 $currentPassword = $_POST['currentPassword'];
-    
-                // Assume $user is the object representing the logged-in user
                 $user_id = $_SESSION['USER_DATA']->user_id;
                 $user = $this->pharmacistModel->getUserDetails($user_id);
     
@@ -162,7 +105,7 @@
                     echo '<span style="color: red;">Incorrect password!</span>';
                 }
             } else {
-                // Handle invalid or missing parameters
+
                 echo '<span style="color: red;">Error: Invalid request.</span>';
             }
         }
@@ -184,18 +127,15 @@
         public function personal_information(){
 
             if ($this->logged_in()) {
-                // $user_id = $_SESSION['USER_DATA']->user_ID;
-                // $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
                 $pharmacist = $this->pharmacistModel->pharmacistInfo($_SESSION['USER_DATA']->user_ID);
                 $user = $this->pharmacistModel->getUserDetails($_SESSION['USER_DATA']->user_ID);
                 $data = [
-                    // 'pharmacist' => $pharmacist
                     'pharmacist' => $pharmacist,
                     'user' => $user
                 ];
-                $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
+                $this->view('pharmacist/pharmacist_personalInfo',$data);
             }else{
-                header("Location: /prescripsmart/general/error_page"); 
+                redirect('/general/error_page');
             }
         }
     
@@ -247,7 +187,6 @@
                     ];
                     $this->view('pharmacist/pharmacist_dashboard', $data);  
                 } else {
-                    // Condition 3: If medicine not found, redirect to addNewMed page
                     $data = [
                         'user' => $user,
                         'pharmacist' => $pharmacist
@@ -270,7 +209,7 @@
                 ];
                 $this->view('pharmacist/pharmacist_2factor', $data);
             }else{
-                header("Location: /prescripsmart/general/error_page"); 
+                redirect('/general/error_page'); 
             }
         }
 
@@ -315,7 +254,7 @@
             ];
             $this->view('pharmacist/pharmacist_prescription', $data);
         }else{
-            header("Location: /prescripsmart/general/error_page"); 
+            redirect('/general/error_page'); 
         }
     }
 
@@ -356,14 +295,6 @@
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-
-            // Check file size
-            // if ($_FILES["image"]["size"] > 500000) {
-            //     echo "Sorry, your file is too large.";
-            //     $uploadOk = 0;
-            // }
-
-            //Allow only certain file formats
             if (
                 $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif"
@@ -374,7 +305,7 @@
 
 
             if ($uploadOk == 0) {
-                // echo "Sorry, your file was not uploaded.";
+
             } else {
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
@@ -391,7 +322,7 @@
                         echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
                     }
                 } else {
-                    header("Location: /prescripsmart/general/error_page");
+                    redirect('/general/error_page');
                 }
             }
         }
@@ -433,12 +364,11 @@
             ];
             $this->view('pharmacist/pharmacist_analysis', $data);
         }else{
-            header("Location: /prescripsmart/general/error_page");
+            redirect('/general/error_page');
         }
     }
 
     public function analysisMonth(){
-        // Check if 'month' query parameter is set
         $selectedMonth = isset($_GET['month']) ? $_GET['month'] : null;
         
         if (!empty($selectedMonth)) {

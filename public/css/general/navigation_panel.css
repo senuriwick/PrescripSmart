@@ -5,7 +5,7 @@
 .sideMenu {
   background-color: rgba(7, 28, 74, 1);
   height: 100vh;
-  min-width: 15vw;
+  min-width: 220px;
   overflow: hidden;
   position: fixed;
 }
