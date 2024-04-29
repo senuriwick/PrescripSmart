@@ -16,6 +16,13 @@
             return false;
         }
 
+        public function logout()
+        {
+        if (!empty($_SESSION['USER_DATA'])) {
+            unset($_SESSION['USER_DATA']);
+        }
+        }
+
         public function dashboard($page = 1){
             if ($this->logged_in()) {
                 $user = $_SESSION['USER_DATA'];
@@ -33,7 +40,7 @@
                     'user' => $user,
                 ];
 
-                $this->view('healthSupervisor/healthSupervisor_dash', $data);
+                $this->view('healthSupervisor/healthSupervisor_dashboard', $data);
             }else{
                 redirect('/general/error_page');
             }

@@ -9,7 +9,7 @@
     <title>Security</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\nurse\profile_dashboard_3.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/pharmacist/pharmacist_2factor.css" />
 </head>
 
 <body>
@@ -69,7 +69,7 @@
             var user_ID = user;
 
             $.ajax({
-                url: '<?php echo URLROOT?>/nurse/toggle2FA',
+                url: '<?php echo URLROOT?>/pharmacist/toggle2FA',
                 method: 'POST',
                 dataType: 'json',
                 data: {

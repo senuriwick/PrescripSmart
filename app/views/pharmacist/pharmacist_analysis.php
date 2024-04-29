@@ -1,5 +1,4 @@
 <?php require APPROOT."/views/inc/components/header.php" ?>
-    <!-- <link rel="stylesheet" href="styles/pharmacist_dashboard.css" /> -->
     <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_analysis.css" />
 
 </head>
@@ -17,7 +16,7 @@
                 <div class="analysisContainer">
                     <div class="analysisContent">
                         <h2>Medication Analysis</h2>
-                        <!-- Add month selection form -->
+    
                         <form id="monthSelectionForm">
                             <label for="selectedMonth">Select Month:</label>
                             <select id="selectedMonth" name="selectedMonth">
@@ -96,22 +95,9 @@
     </script>
 
 <script>
-     // Function to send selected month to the controller using AJAX
-    //  function printReport() {
-    //     var printContent = document.querySelector('.analysisContainer').outerHTML;
-    //     var originalContent = document.body.innerHTML;
-        
-    //     document.body.innerHTML = printContent;
-
-    //     // Wait a short delay for rendering to complete, then trigger print
-    //     setTimeout(function() {
-    //         window.print();
-    //         document.body.innerHTML = originalContent;
-    //     }, 500);
-    // }
 
     function printReport() {
-    // Hide the fetch data button before printing
+   
         var fetchDataButton = document.getElementById('fetchData');
         fetchDataButton.style.display = 'none';
 
@@ -121,23 +107,21 @@
         document.body.innerHTML = printContent;
         var monthLabel = document.querySelector('label[for="selectedMonth"]');
 
-    // Update the label text to "Selected Month"
         monthLabel.innerText = "Selected Month";
 
-        // Wait a short delay for rendering to complete, then trigger print
+        
         setTimeout(function() {
             window.print();
             document.body.innerHTML = originalContent;
-            // Restore the visibility of the fetch data button after printing
             fetchDataButton.style.display = 'block';
         }, 500);
     }
 
     
      document.getElementById('monthSelectionForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault(); 
 
-            // Get selected month from the form
+           
             var selectedMonth = document.getElementById('selectedMonth').value;
             console.log(selectedMonth);
             var xhr = new XMLHttpRequest();
@@ -146,8 +130,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var data = JSON.parse(xhr.responseText);
-                    // Handle response data as needed
-                    // console.log(data);
+                
                     updatePieChart(data);
                 }
             };
@@ -177,7 +160,7 @@
                     datasets: [{
                         label: 'Medication Prescriptions',
                         data: counts,
-                        backgroundColor: ['#6CE5E8', '#41B8D5', '#2F5F98', '#2D8BBA'], // Change colors as needed
+                        backgroundColor: ['#6CE5E8', '#41B8D5', '#2F5F98', '#2D8BBA'], 
                     }]
                 },
                 options: {
@@ -190,7 +173,7 @@
 
             new Chart(ctx, config);
 
-            // Update the analysis section HTML
+
             updateAnalysisSectionHTML(data);
         }
 
@@ -214,33 +197,6 @@
         }
 
 </script>
-
-<!-- <script>
-    document.getElementById('generateReportButton').addEventListener('click', function() {
-        printBtn = document.getElementById('generateReportButton');
-        printBtn.style.display = 'none';
-        window.print();
-        printBtn.style.display = 'block';
-    });
-</script> -->
-
-<!-- <script>
-document.getElementById('generateReportButton').addEventListener('click', function() {
-    // Construct the URL with query parameters
-    var url = '<?php echo URLROOT ?>/pharmacist/printable_analysis.php?';
-
-    // Append each medication data to the URL
-    <?php foreach ($data['commonlyPrescribedMedications'] as $medication): ?>
-        url += 'medication[]=<?php echo urlencode($medication->medication); ?>&';
-        url += 'usage_count[]=<?php echo urlencode($medication->usage_count); ?>&';
-    <?php endforeach; ?>
-
-    // Redirect to the printable analysis page
-    window.location.href = url;
-});
-</script> -->
-
-
 
 </body>
 </html>

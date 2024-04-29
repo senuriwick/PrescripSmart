@@ -1,7 +1,7 @@
 <?php require APPROOT."/views/inc/components/header.php" ?>
 <link rel="stylesheet" href="<?php echo URLROOT ;?>/public/css/pharmacist/pharmacist_dashboard.css" />
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/pharmacist/sideMenu&navBar.css" />
-<!-- <script src="main.js"></script> -->
+
 </head>
 
 <body>
@@ -44,7 +44,7 @@
                 <?php $totalPages = $data['totalPages'];
                       $currentPage = $data['currentPage'];
                 ?>
-                <!-- Pagination Links -->
+            
                 <div class="pagination">
                     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                         <a href="<?php echo URLROOT ?>/pharmacist/dashboard/<?php echo $i ?>" <?php if ($currentPage == $i) echo 'class="active"'; ?>><?php echo $i ?></a>

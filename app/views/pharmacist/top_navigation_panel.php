@@ -52,7 +52,7 @@
             }
           }
         };
-        xhr.open('GET', '<?php echo URLROOT; ?>/patient/logout', true);
+        xhr.open('GET', '<?php echo URLROOT; ?>/pharmacist/logout', true);
         xhr.send();
       }
     });

@@ -9,7 +9,7 @@
     <title>Personal Information</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT ?>\public\css\pharmacist\pharmacist_personalInfo.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/pharmacist/pharmacist_personalInfo.css" />
 </head>
 
 <body>
@@ -41,11 +41,11 @@
 
                     <div class="patientNameDiv">
                         <p class="name">
-                            <?php echo $user->first_Name ?>
-                            <?php echo $user->last_Name ?>
+                            <?php echo $_SESSION['USER_DATA']->first_Name ?>
+                            <?php echo $_SESSION['USER_DATA']->last_Name ?>
                         </p>
                         <p class="role">
-                            <?php echo $user->role ?>
+                            <?php echo $_SESSION['USER_DATA']->role ?>
                         </p>
                     </div>
 
