@@ -181,10 +181,11 @@
                 </div>
                 <p class="doctor">Issued by: Dr. ${prescription.first_Name} ${prescription.last_Name}</p>
                 <p class="date">Issued on: ${prescription.prescription_Date}</p>
-                <img src="<?php echo URLROOT; ?>/public/img/patient/Eye.png" alt="eye-icon" data-container-pid=${prescription.prescription_ID}>
+                <img src="<?php echo URLROOT; ?>/public/img/patient/Eye.png" alt="eye-icon" data-container-pid="${prescription.prescription_ID}">
             </div>
             `;
         prescriptionsContainer.innerHTML += prescriptionHTML;
+        attachEyeIconListeners();
       });
       const eyeIcons = document.querySelectorAll('.file img[src*="Eye.png"]');
         eyeIcons.forEach(icon => {
@@ -225,7 +226,7 @@
         var checkbox = $(this);
         var prescriptionID = checkbox.data('container-pid');
         var id = checkbox.val();
-        var status = checkbox.is(":checked") ? 'issued' : 'not_issued'; // Adjust status values as needed
+        var status = checkbox.is(":checked") ? 'issued' : 'not_issued'; 
         var formData = {
           id: id,
           status: status
