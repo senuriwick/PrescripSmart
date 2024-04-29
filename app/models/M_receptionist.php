@@ -435,7 +435,7 @@ class M_receptionist
     public function addedSession($id,$Start_time, $End_time, $Total_app, $charge, $Room_no)
     {
       $this->db->query('INSERT INTO sessions ( doctor_ID, start_time, end_time,total_appointments,current_appointment, current_appointment_time, sessionCharge, room_no) 
-                          VALUES (:doctor_id, :start_time, :end_time, :total_appointments, "0", :start_time, :sessionCharge, :room_no)');
+                          VALUES (:doctor_id, :start_time, :end_time, :total_appointments, "1", :start_time, :sessionCharge, :room_no)');
             $this->db->bind(':doctor_id', $id);
             $this->db->bind(':start_time', $Start_time);
             $this->db->bind(':end_time', $End_time);
@@ -443,8 +443,12 @@ class M_receptionist
             $this->db->bind(':sessionCharge', $charge);
             $this->db->bind(':room_no', $Room_no);
 
-            $this->db->execute();
-    }
+            if($this->db->execute()){
+              return true;
+            }else{
+              return false;
+            }
+  }
 
     public function assignNurse($nurseID,$session_ID)
     {

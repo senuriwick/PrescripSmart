@@ -663,8 +663,7 @@
         else
         {
           // Load view with errors
-          //$this->view('admin/register_email', $data);
-          echo"this 13";
+          $this->view('admin/regDoctor', $data);
         }
 
       }

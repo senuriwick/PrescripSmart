@@ -26,6 +26,14 @@
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation.php'; ?>
 
+                <div class="addapp">
+                    <div class="newapp">
+                        <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
+                        <a href="<?php echo URLROOT ?>/receptionist/addAppointment">Schedule an appointment</a>
+                    </div>
+                    
+                 </div>
+
 <div class="searchDiv">
     <h1>Search Appointment</h1>
     <div class="searchFiles">
@@ -75,6 +83,7 @@
     </table>
     </div>
 </div>
+</div>
 
 
 
@@ -100,20 +109,7 @@
                     });
                 });
             });
-    </script>
-      
-      <h2 style="color: #445172; margin-left: 3vh; font-size: 2.5vh; margin-top:3vh;">Add new</h2>
-
-        <div class="addapp">
-            <div class="newapp">
-                <img src="<?php echo URLROOT ?>/img/receptionist/Calendar3.png"">
-                <a href="<?php echo URLROOT ?>/receptionist/addAppointment">Schedule an appointment</a>
-            </div>
-            <p>The modern way schedule and meet with convenience</p>
-        </div>
-    </div>
-
-    <script>
+    
         //function for markAsPaid button
         function markAsPaid(appointmentId){
             fetch(`<?php echo URLROOT ?>/receptionist/markAsPaid?appointmentid=${appointmentId}`)

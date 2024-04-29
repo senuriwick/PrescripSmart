@@ -751,8 +751,10 @@
         $End_time = $_POST['last_name'];
         $Total_app = $_POST['email'];
         $Room_no = $_POST['phone_number'];
+        $Charge = $_POST['charge'];
+
         
-      $addedSession = $this->repModel->addedSession($selectedDoctor->doctor_ID, $Start_time, $End_time, $Total_app, $selectedDoctor->sessionCharge, $Room_no);
+      $addedSession = $this->repModel->addedSession($selectedDoctor->doctor_ID, $Start_time, $End_time, $Total_app, $Charge, $Room_no);
       if($addedSession)
       {
         $this->view('receptionist/appointment_complete');

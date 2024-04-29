@@ -38,7 +38,7 @@
                             <h3 style="color: #0069FF;">first name</h3>
                             <p style="color: red;">*</p>
                       </div>
-                      <input type="text" name="first_name" placeholder="Enter Your first name">
+                      <input type="text" name="first_name" placeholder="Enter Your first name"required>
                       <span class="error-message"><?php echo $data['firstname_err']; ?></span>
 
                       
@@ -48,8 +48,8 @@
                           <h3 style="color: #0069FF;">last name</h3>
                           <p style="color: red;">*</p>
                        </div>
-                       <input type="text" name="last_name" placeholder="Enter Your last name">
-                       <span class="error-message"><?php echo $data['firstname_err']; ?></span>
+                       <input type="text" name="last_name" placeholder="Enter Your last name"required>
+                       <span class="error-message"><?php echo $data['lastname_err']; ?></span>
 
                   </div>
               </div>
@@ -57,8 +57,8 @@
               <div class="top2">
                         <div class="email">
                             <h3>email address</h3>
-                            <input type="text" name="email" placeholder="Enter Your email address">
-                            <span class="error-message"><?php echo $data['firstname_err']; ?></span>
+                            <input type="text" name="email" placeholder="Enter Your email address"required>
+                            <span class="error-message"><?php echo $data['email_err']; ?></span>
 
                         </div>
                        <div class="phone">
@@ -66,8 +66,8 @@
                                     <h3 style="color: #0069FF;">contact number</h3>
                                     <p style="color: red;">*</p>
                             </div>
-                           <input type="text" name="phone_number" placeholder="Enter Your phone number">
-                           <span class="error-message"><?php echo $data['firstname_err']; ?></span>
+                           <input type="text" name="phone_number" placeholder="Enter Your phone number"required>
+                           <span class="error-message"><?php echo $data['phonenum_err']; ?></span>
 
                        </div>
               </div>
@@ -77,8 +77,8 @@
                             <h3 style="color: #0069FF;">create password</h3>
                             <p style="color: red;">*</p>
                     </div>
-                    <input type="password" name="password" placeholder="Enter password">
-                    <span class="error-message"><?php echo $data['firstname_err']; ?></span>
+                    <input type="password" name="password" placeholder="Enter password"required>
+                    <span class="error-message"><?php echo $data['password_err']; ?></span>
 
               </div>
               <button type="submit"><b>Register</b></button>
