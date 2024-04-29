@@ -11,19 +11,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/RepAssignPatient.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/receptionist/patient.css" />
     <script src="<?php echo URLROOT ?>/js/receptionist/script.js"></script>
 
 
 </head>
 
 <body>
+<?php $currentPage = $data['currentPage'];
+    $totalPages = $data['totalPages'];
+    $allPatients = $data['allPatients'] ?>
 
     <div class="content">
         <?php include 'side_navigation_panel.php'; ?>
 
         <div class="main">
             <?php include 'top_navigation_panel.php'; ?>
-<div class="patientInfoContainer">
+            <div class="patientInfoContainer">
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation.php'; ?>
                   
@@ -56,10 +60,12 @@
                     <div class="searchFiles">
                         <form>
                             <input type="search" id="searchinput" placeholder="Enter patient Name/ID here">
-                            <button type="search"><b>SEARCH</b></button>
+                            <!-- <button type="search"><b>SEARCH</b></button> -->
+                            <hr style="margin-bottom: 3vh;">
+
                         </form>
                     </div>
-
+                    <div class="file-details">
                     <div class="details">
                         <table>
                             <tbody>
@@ -78,11 +84,10 @@
                                         <td>
                                             <p style="margin-left: 10vh;">Patient ID #<?php echo $post->patient_ID; ?></p>
                                         </td>
-                                        <td>
-                                            <a>
-                                                <button class="profileButton" onclick="selectPatient(<?php echo $post->patient_ID?>,<?php echo $data['selectedSession']->session_ID?>,<?php echo $data['selectedDoctor']->doctor_ID?>)">
+                                        <td>                               
+                                        <a><button class="profileButton" onclick="selectPatient(<?php echo $post->patient_ID?>,<?php echo $data['selectedSession']->session_ID?>,<?php echo $data['selectedDoctor']->doctor_ID?>)">
                                                 <b>ADD APPOINTMENT</b>
-                                                </button> </a>
+                                                </button></a>
                             
                                         </td>
 
@@ -91,9 +96,82 @@
 
                             </tbody>
                         </table>
+
                 
       </div>
-  </body>
+    </div>
+</div>
+                    <div class="pagination">
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="<?php echo URLROOT ?>/receptionist/create_appointment/<?php echo $i ?>" <?php if ($currentPage == $i)
+                        echo 'class="active"'; ?>><?php echo $i ?></a>
+                        <?php endfor; ?>
+                    </div>
+
+                    </body>
+
+                    <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+
+                            document.getElementById("searchinput").addEventListener("input", function () {
+                            var searchQuery = this.value.trim();
+                            if (searchQuery !== "") {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open("GET", "<?php echo URLROOT ?>/receptionist/filterPatients?search=" + searchQuery, true);
+                                xhr.onreadystatechange = function () {
+                                if (xhr.readyState == 4 && xhr.status == 200) {
+                                    var filteredPatients = JSON.parse(xhr.responseText);
+                                    updatePatientList(filteredPatients);
+
+                                }
+                                };
+                                xhr.send();
+                            } else {
+                                location.reload();
+                            }
+                        });
+                    });
+
+                    function updatePatientList(filteredPatients) {
+                    var patientsContainer = document.querySelector(".file-details .details");
+                     patientsContainer.innerHTML = "";
+
+                filteredPatients.forEach(function (patient) {
+                var patientHTML = `
+                        <table>
+                            <tbody>
+                                <tr class="row">
+                                      <td>
+                                            <img class="person-circle"
+                                                src="<?php echo URLROOT ?>/public/uploads/profile_images/${patient.profile_photo}"
+                                                alt="profile-pic"></td>
+                                                <td>
+                                                <strong>
+                                                 <p class="name">${patient.gender === 'male' ? 'Mr.' : 'Ms.'} ${patient.first_Name} ${patient.last_Name}
+                                                </p>
+                                            </strong>
+                                            </td>
+                                                                                                             
+                                            <td>
+                                            <p>Patient ID #${patient.patient_ID}</p>
+                                            </td>
+
+                                        <td>
+                                            <a><button class="profileButton" onclick="selectPatient(${patient.patient_ID},<?php echo $data['selectedSession']->session_ID?>,<?php echo $data['selectedDoctor']->doctor_ID?>)">
+                                                <b>ADD APPOINTMENT</b>
+                                                </button></a>
+                                            
+                                        </td>
+
+                                    </tr>
+
+                            </tbody>
+                        </table>`
+      patientsContainer.innerHTML += patientHTML;
+    });
+  }
+</script>
+ 
   <script>
     function selectPatient(patient_ID,session_ID,doctor_ID) {
     var confirmationURL = "<?php echo URLROOT; ?>/receptionist/confirm_patient";

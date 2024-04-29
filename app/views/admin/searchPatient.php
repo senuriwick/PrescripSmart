@@ -63,7 +63,7 @@
                               <p class="name">Mr.
                                 <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
                               </p>
-                              </p>
+                              
                             </strong>
                           <?php else: ?>
                             <strong>
@@ -102,8 +102,6 @@
               <?php endfor; ?>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
@@ -138,14 +136,14 @@
     filteredPatients.forEach(function (patient) {
       var patientHTML = `
           <table>
-                   <tbody>
+              <tbody>
                       
                          <tr class="row"> 
                           <td><img class="person-circle" src= "<?php echo URLROOT ?>/public/uploads/profile_images/${patient.profile_photo}"  alt="profile-pic"></td>                                                                                   
                             <td >
                             <strong>
                         <p class="name">${patient.gender === 'male' ? 'Mr.' : 'Ms.'} ${patient.first_Name} ${patient.last_Name}</p>
-                    </strong>
+                        </strong>
                             </td>
 
                             <td>
@@ -155,7 +153,7 @@
                             <td>
                             <a href="<?php echo URLROOT ?>/admin/showProfilePatient/${patient.patient_ID}"><button class="profileButton"><b>View Profile</b></button> </a>
                             <form id="deleteForm_${patient.patient_ID}" method="post"
-                                action="<?php echo URLROOT; ?>/admin/deleteProfilePatient/${patient.patient_ID}">
+                            action="<?php echo URLROOT; ?>/admin/deleteProfilePatient/${patient.patient_ID}">
                             <input type="image" id="trash" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png">
                             </form>                                
                             </td> 
