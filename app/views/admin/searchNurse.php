@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/search.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/nav_nurse.css"/>
+  <!-- <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/nav_nurse.css"/> -->
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/nurse.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 
 </head>
@@ -30,12 +31,18 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
+        <div class="addapp">
+          <div class="newapp">
+            <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
+            <a href="<?php echo URLROOT ?>/admin/viewRegnurse">NEW NURSE</a>
+          </div>
+        </div>
         <div class="searchDiv">
               <h1>Search Nurse</h1>
               <div class="searchFiles">
               <form>
-                  <input type="text" id="searchinput" class="searchinput" placeholder="Enter Nurses' Name/ID here">
-                  <button type="search" class="searchButton"><b>SEARCH</b></button>
+                  <input type="text" id="searchinput" class="searchinput" placeholder="Enter nurse's name here">
+                  <!-- <button type="search" class="searchButton"><b>SEARCH</b></button> -->
               </form>
               <hr style="margin-bottom: 3vh;">
 
@@ -43,24 +50,35 @@
                 <table>
                     <tbody>
                     <?php foreach($data['allNurses'] as $post): ?>
-                              <tr class="row">                                                                                                           
-                                  <td >
-                                      <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
-                                      <p class= "name">
-                                        Mr.
-                                        <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
-                                      </p> 
-                                  </td>
-                                                                   
-                                  <td>
-                                      <p style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_ID;?></p>
-                                  </td>
+                              <tr class="row">  
+                              <td><img class="person-circle" src= "<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $post->profile_photo?>"  alt="profile-pic"></td>                                                                                                         
+                              <td >
+                                <?php if ($post->gender == "male"): ?>
+                            <strong>
+                              <p class= "name">Mr.
+                              <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?></p>
+                              </p>
+                            </strong>
+                          <?php else: ?>
+                            <strong>
+                              <p class= "name">Ms.
+                              <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?></p>
+                              </p>
+                            </strong>
+                          <?php endif; ?>
+                            </td>
 
+                      <td>                   
+                                  <td>
+                                      <p class = "ID">Employee ID #<?php echo $post->nurse_ID;?></p>
+                                  </td>
                                   <td>
                                   <a href="<?php echo URLROOT ?>/admin/showProfileNurse/<?php echo $post->nurse_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                                      <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->nurse_ID ?>">
-                                      <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                                      </form>
+                                  <form id="deleteForm_<?php echo $post->nurse_ID ?>" method="post"
+                            action="<?php echo URLROOT; ?>/admin/deleteProfileNurse/<?php echo $post->nurse_ID ?>">
+                            <input type="image" id="trash" class="trash-image"
+                              src="<?php echo URLROOT ?>/img/admin/Trash.png">
+                          </form>
                                   </td>
                               </tr>           
                   <?php endforeach; ?>  
@@ -77,14 +95,6 @@
                       <?php endfor; ?>
        </div>
     </div>
-    
-        <div class="addapp">
-            <div class="newapp">
-                <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
-                <a href="<?php echo URLROOT?>/admin/viewRegnurse">Register a new Nurse</a>
-            </div>
-        </div>
-        
         </div>
     </div>
   </div>
@@ -145,9 +155,10 @@
 
                             <td>
                             <a href="<?php echo URLROOT ?>/admin/showProfilePatient/<?php echo $post->patient_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                                <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->patient_ID ?>">
-                                <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                                </form>                                    
+                            <form id="deleteForm_${patient.patient_ID}" method="post"
+                                action="<?php echo URLROOT; ?>/admin/deleteProfileNurse/${patient.patient_ID}">
+                            <input type="image" id="trash" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png">
+                            </form>                                  
                             </td> 
                         </tr> 
                     </tbody> 
@@ -155,5 +166,21 @@
           patientsContainer.innerHTML += patientHTML;
         });
       }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var trashIcons = document.querySelectorAll('.trash-image');
+
+    trashIcons.forEach(function (trashIcon) {
+      trashIcon.addEventListener('click', function () {
+        var formId = this.parentNode.getAttribute('id');
+        if (formId) {
+          document.getElementById(formId).submit();
+        } else {
+          console.error('Form ID not found');
+        }
+      });
+    });
+  });
 </script>
 </html>

@@ -35,6 +35,7 @@
 
                     <div class="patientSearch">
                         <div   id="session-details" class="sessions-box">
+                            
                         <?php foreach($data['sessionsData'] as $sessionData): ?>
                             <div class="session-card">
                                 <div><b>Session ID: <?php echo $sessionData->session_ID; ?></b></div>
@@ -87,7 +88,7 @@
         <div class="session-content">
             <span class="close">&times;</span>
             <div class="session-modal-content">
-            <div class="modal-head"><b>Session #1254</b></div>
+            <div class="modal-head"></div>
                 <hr/>
                 
                 <div class="patient-data">
@@ -99,7 +100,7 @@
                 </div>
             </div>
             <div class="cancel">
-                <button>CANCEL SESSION</button>
+                <button id="cancelSession" onclick="cancelSession(this.value)" >CANCEL SESSION</button>
             </div>
         </div>
     </div>
@@ -126,7 +127,7 @@
             });
 
             function showSessionDetails(sessionId){
-                console.log(sessionId);
+                // console.log(sessionId);
                 fetch(`http://localhost/Prescripsmart/doctor/showSessionPatients?sessionid=${sessionId}`)
                 .then(response =>{
                     console.log(response);
@@ -141,6 +142,10 @@
 
             function showPatients(result){
                 const sessionModal = document.getElementById("session-modal");
+                const sessionIddiv = sessionModal.querySelector(".modal-head");
+                // sessionIddiv.innerHTML = "";
+                sessionIddiv.innerHTML=`
+                <b>Session #${result.sessionId}</b> `;
                 const patientCountdiv = sessionModal.querySelector(".patient-data");
                 patientCountdiv.innerHTML = `
                 <div>No. of patients: ${result.patientCount}</div>`;
@@ -154,14 +159,20 @@
                         item.textContent = patient.token_No+" "+patient.display_Name;
 
                         patientsdiv.appendChild(item);
-                    })
+                    });
                 }
-                
-                // patientCountdiv.innetHTML = "";
-                // const patientNo = document.getElementById("patinet-no");
-                // patientNo.innerHTML=``;
+
+                var cancelbutton = document.getElementById("cancelSession");
+                cancelbutton.value = result.sessionId;
+                // cancelbutton.onclick = cancelSession(result.sessionId);
             }
 
+            
+
+            // const cancelbutton.addEventListener("click",()=>{
+            //     var sessionId = cancelbutton.value;
+
+            // });
             // viewPatientsButton.addEventListener("click", () => {
             //     console.log("view patient button clicked");
             //     sessionPatient.style.display="block";
@@ -182,6 +193,23 @@
             });
 
         });
+
+        function cancelSession(sessionId){
+
+            fetch(`http://localhost/Prescripsmart/doctor/cancelSession?sessionid=${sessionId}`)
+            .then(response =>{
+                console.log(response);
+                return response.json();
+            })
+            .then(data =>{
+                console.log(data);
+                alert(data);
+                
+            })
+            .catch(error =>console.error("Error",error));
+
+            window.location.reload();
+        }
 
     </script>
 </body>

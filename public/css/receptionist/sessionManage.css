@@ -20,15 +20,16 @@ body {
   margin-left: 3vw;
 }
 
-.sessions {
-  background-color: #EFF2FB;
+.se {
+  background-color: rgba(68, 81, 114, 1);
   position: relative;
   height: auto;
   padding-bottom: 5px;
   margin-bottom: 10px;
 }
 
-.sessions::before {
+.se::before {
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -37,14 +38,14 @@ body {
   background-color: #0069FF;
 }
 
-.menu #sessions {
+.menu #se {
   color: #0069FF;
   border-color: #0069FF;
   border-spacing: 2cm;
   position: relative;
 }
 
-.menu #sessions::after {
+.menu #se::after {
   content: '';
   position: absolute;
   bottom: -8px;
@@ -56,15 +57,18 @@ body {
 
 .searchDiv {
   padding-left: 2vh;
-  height: 15vh;
+  /* height: 15vh; */
   width: 120vh;
 }
 
-.searchDiv h1 {
-  font-weight: bold;
+.today {
+  color: rgba(68, 81, 114, 1);
   font-family: inter;
-  color: #000000;
-  font-size: 3.4vh;
+  font-size: 24px;
+  font-weight: bold;
+  /* margin-left: 3px; */
+  margin-top: 4vh;
+  margin-left: 2vh;
 }
 
 .searchFiles {
@@ -90,10 +94,10 @@ body {
   border-radius: 1vh;
   margin-left: 1.5vh;
   color: white;
-  font-weight: 100vh;
+  font-weight: 100;
   font-Size: 1.7vh;
   font-family: inter;
-  Line-height: 1.5vh;
+  line-height: 1.5vh;
   margin-bottom: 4vh;
   border: none;
 }
@@ -101,8 +105,8 @@ body {
 .today-date {
   color: #0069FF;
   margin-left: 2vh;
-  margin-top: 4vh;
-  font-size: 3vh;
+  /* margin-top: 4vh; */
+  font-size: 18px;
 }
 
 .sessions img {
@@ -116,15 +120,15 @@ body {
   display: flex;
 }
 
-.doc-info h3 {
+.name2 {
   margin-left: 2vh;
   color: #0069FF;
 }
 
-.sessions h5 {
+.specialization {
+  margin-top: -2vh;
   margin-left: 11vh;
-  margin-top:-15px ;
-}
+} 
 
 
 .session-card {

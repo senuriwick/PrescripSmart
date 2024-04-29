@@ -256,7 +256,7 @@
     {
     
             $allPatients = $this->userModel->getPatient_set();
-            $recordsPerPage = 2;
+            $recordsPerPage = 10;
             $totalPatients = count($allPatients);
             $totalPages = ceil($totalPatients / $recordsPerPage);
 
@@ -431,7 +431,7 @@
             $receptionists = array_slice($allReceptionists, $offset, $recordsPerPage);
 
             $data = [
-                'patients' => $receptionists,
+                'receptionists' => $receptionists,
                 'allReceptionists' => $allReceptionists,
                 'currentPage' => $page,
                 'totalPages' => $totalPages
@@ -1408,7 +1408,7 @@
         }
         else
         {
-          echo"something went wrong";
+          header("Location: /prescripsmart/general/error_page");
         }
       }
     }
@@ -1422,7 +1422,7 @@
         }
         else
         {
-          echo"something went wrong";
+          header("Location: /prescripsmart/general/error_page");
         }
       }
     }
@@ -1436,7 +1436,7 @@
         }
         else
         {
-          echo"something went wrong";
+          header("Location: /prescripsmart/general/error_page");
         }
       }
     }
@@ -1451,7 +1451,7 @@
         }
         else
         {
-          echo"something went wrong";
+          header("Location: /prescripsmart/general/error_page");
         }
       }
     }
@@ -1459,13 +1459,14 @@
     {
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
+        
         if($this->userModel->deleteProfilePatient($id))
         {
           redirect('/admin/searchPatient');
         }
         else
         {
-          echo"something went wrong";
+          header("Location: /prescripsmart/general/error_page");
         }
       }
     }
@@ -1479,7 +1480,7 @@
         }
         else
         {
-          echo"something went wrong";
+          header("Location: /prescripsmart/general/error_page");
         }
       }
     }
@@ -1494,7 +1495,7 @@
         }
         else
         {
-          echo"something went wrong";
+          header("Location: /prescripsmart/general/error_page");
         }
       }
     }
@@ -1517,7 +1518,7 @@
       $healthsup = $this->userModel->getSupervisorbyID($id);
 
       $data= [
-        'doctor'=>$healthsup
+        'healthsup'=>$healthsup
       ];
       $this->view('admin/healthsupProfile', $data);
        
@@ -1541,7 +1542,7 @@
       $labtech = $this->userModel->getLabtechbyID($id);
 
       $data= [
-        'doctor'=>$labtech
+        'labtech'=>$labtech
       ];
       $this->view('admin/labtechProfile', $data);
        
@@ -1553,7 +1554,7 @@
       $nurse = $this->userModel->getNursebyID($id);
 
       $data= [
-        'doctor'=>$nurse
+        'nurse'=>$nurse
       ];
       $this->view('admin/nurseProfile', $data);
        
@@ -1561,11 +1562,10 @@
     }
     public function showProfilePatient($id)
     {
-    
       $patient = $this->userModel->getPatientbyID($id);
 
       $data= [
-        'doctor'=>$patient
+        'patient'=>$patient
       ];
       $this->view('admin/patientProfile', $data);
        
@@ -1577,7 +1577,7 @@
       $pharmacist = $this->userModel->getPharmacistbyID($id);
 
       $data= [
-        'doctor'=>$pharmacist
+        'pharmacist'=>$pharmacist
       ];
       $this->view('admin/pharmacistProfile', $data);
        
@@ -1589,7 +1589,7 @@
       $receptionist = $this->userModel->getReceptionistbyID($id);
 
       $data= [
-        'doctor'=>$receptionist
+        'receptionist'=>$receptionist
       ];
       $this->view('admin/receptionistProfile', $data);
       

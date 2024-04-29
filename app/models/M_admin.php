@@ -85,7 +85,7 @@ class M_admin
   // Find user by email
   public function filterPatients($searchQuery) {
     $searchQuery = '%' . $searchQuery . '%'; 
-    $this->db->query('SELECT p .*, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+    $this->db->query('SELECT p .*, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID WHERE p.first_Name LIKE :searchQuery OR p.last_Name LIKE :searchQuery OR p.display_Name LIKE :searchQuery');
     $this->db->bind(':searchQuery', $searchQuery);
     $filteredPatients = $this->db->resultSet();
 
@@ -100,7 +100,7 @@ class M_admin
 
 public function filterDoctors  ($searchQuery) {
   $searchQuery = '%' . $searchQuery . '%'; 
-  $this->db->query('SELECT p .*, u.profile_photo FROM doctors p INNER JOIN users u ON p.doctor_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->query('SELECT p .*, u.profile_photo FROM doctors p INNER JOIN users u ON p.doctor_ID = u.user_ID WHERE p.first_Name LIKE :searchQuery OR p.last_Name LIKE :searchQuery OR p.display_Name LIKE :searchQuery');
   $this->db->bind(':searchQuery', $searchQuery);
   $filteredPatients = $this->db->resultSet();
 
@@ -115,7 +115,7 @@ public function filterDoctors  ($searchQuery) {
 
 public function filterHealthsups($searchQuery) {
   $searchQuery = '%' . $searchQuery . '%'; 
-  $this->db->query('SELECT p .*, u.profile_photo FROM healthsupervisors p INNER JOIN users u ON p.supervisor_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->query('SELECT p .*, u.profile_photo FROM healthsupervisors p INNER JOIN users u ON p.supervisor_ID = u.user_ID WHERE p.first_Name LIKE :searchQuery OR p.last_Name LIKE :searchQuery OR p.display_Name LIKE :searchQuery');
   $this->db->bind(':searchQuery', $searchQuery);
 
   $filteredPatients = $this->db->resultSet();
@@ -131,7 +131,7 @@ public function filterHealthsups($searchQuery) {
 
 public function filterLabtechs($searchQuery) {
   $searchQuery = '%' . $searchQuery . '%'; 
-  $this->db->query('SELECT p .*, u.profile_photo FROM labtechnicians p INNER JOIN users u ON p.labtech_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->query('SELECT p .*, u.profile_photo FROM labtechnicians p INNER JOIN users u ON p.labtech_ID = u.user_ID WHERE p.first_Name LIKE :searchQuery OR p.last_Name LIKE :searchQuery OR p.display_Name LIKE :searchQuery');
   $this->db->bind(':searchQuery', $searchQuery);
   $filteredPatients = $this->db->resultSet();
 
@@ -146,7 +146,7 @@ public function filterLabtechs($searchQuery) {
 
 public function filterNurses($searchQuery) {
   $searchQuery = '%' . $searchQuery . '%'; 
-  $this->db->query('SELECT p .*, u.profile_photo FROM nurses p INNER JOIN users u ON p.nurse_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->query('SELECT p .*, u.profile_photo FROM nurses p INNER JOIN users u ON p.nurse_ID = u.user_ID WHERE p.first_Name LIKE :searchQuery OR p.last_Name LIKE :searchQuery OR p.display_Name LIKE :searchQuery');
   $this->db->bind(':searchQuery', $searchQuery);
   $filteredPatients = $this->db->resultSet();
 
@@ -161,7 +161,7 @@ public function filterNurses($searchQuery) {
 
 public function filterPharmacists($searchQuery) {
   $searchQuery = '%' . $searchQuery . '%'; 
-  $this->db->query('SELECT p .*, u.profile_photo FROM pharmacists p INNER JOIN users u ON p.pharmacist_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->query('SELECT p .*, u.profile_photo FROM pharmacists p INNER JOIN users u ON p.pharmacist_ID = u.user_ID WHERE p.first_Name LIKE :searchQuery OR p.last_Name LIKE :searchQuery OR p.display_Name LIKE :searchQuery');
   $this->db->bind(':searchQuery', $searchQuery);
   $filteredPatients = $this->db->resultSet();
 
@@ -176,7 +176,7 @@ public function filterPharmacists($searchQuery) {
 
 public function filterReceptionists($searchQuery) {
   $searchQuery = '%' . $searchQuery . '%'; 
-  $this->db->query('SELECT p .*, u.profile_photo FROM receptionists p INNER JOIN users u ON p.receptionist_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
+  $this->db->query('SELECT p .*, u.profile_photo FROM receptionists p INNER JOIN users u ON p.receptionist_ID = u.user_ID WHERE p.first_Name LIKE :searchQuery OR p.last_Name LIKE :searchQuery OR p.display_Name LIKE :searchQuery');
   $this->db->bind(':searchQuery', $searchQuery);
   $filteredPatients = $this->db->resultSet();
 
@@ -374,7 +374,7 @@ public function filterReceptionists($searchQuery) {
 
       public function regHealthsup($data)
       {
-        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password,role) VALUES(:first_name, :last_name, :email_address, :phone_number, :password, "Health Supervisor")');
+        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password,role) VALUES(:first_name, :last_name, :email_address, :phone_number, :password, "Health_supervisor")');
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);
@@ -413,7 +413,7 @@ public function filterReceptionists($searchQuery) {
       public function regLabtech($data)
       {
 
-        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password, role) VALUES(:first_name, :last_name, :email_address, :password, "Lab technician")');
+        $this->db->query('INSERT INTO users (first_name, last_name, email_phone, password, role) VALUES(:first_name, :last_name, :email_address, :password, "Lab_technician")');
               $this->db->bind(':first_name', $data['first_name']);
               $this->db->bind(':last_name', $data['last_name']);
               $this->db->bind(':email_address', $data['email']);

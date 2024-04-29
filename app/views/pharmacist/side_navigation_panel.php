@@ -32,13 +32,13 @@
             </div>
 
             <div class="menu-item analysis">
-                <img src="<?php echo URLROOT ?>/public/img/pharmacist/Charts.png" alt="icon">
+                <img src="<?php echo URLROOT ?>/public/img/pharmacist/codicon_graph.png" alt="icon">
                 <a href="<?php echo URLROOT; ?>/pharmacist/analysis" id="profile">Medication Analysis</a>
             </div>
 
             <div class="menu-item profile">
                 <img src="<?php echo URLROOT ?>/public/img/nurse/account_icon.png" alt="icon">
-                <a href="<?php echo URLROOT; ?>/pharmacist/profile" id="profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/pharmacist/account_information" id="profile">Profile</a>
             </div>
 
 

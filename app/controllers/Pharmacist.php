@@ -44,23 +44,55 @@
     
             
         }
-        public function dashboard($page = 1){
-            $user = $_SESSION['USER_DATA'];
-            $itemsPerPage =5;
-            $offset = ($page - 1) * $itemsPerPage;
-            $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
-            $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
-            $totalPages = ceil($totalPatients/$itemsPerPage);
+        // public function dashboard($page = 1){
+        //     $user = $_SESSION['USER_DATA'];
+        //     $itemsPerPage =5;
+        //     $offset = ($page - 1) * $itemsPerPage;
+        //     $patients = $this->pharmacistModel->getPatientsPaginated($itemsPerPage,$offset);
+        //     $totalPatients = $this->pharmacistModel->getTotalPatientsCount();
+        //     $totalPages = ceil($totalPatients/$itemsPerPage);
 
-            $data = [
-                'user' => $user,
-                'patients' => $patients,
-                'totalPatients' => $totalPatients,
-                'currentPage' => $page,
-                'totalPages' => $totalPages,
-            ];
+        //     $data = [
+        //         'user' => $user,
+        //         'patients' => $patients,
+        //         'totalPatients' => $totalPatients,
+        //         'currentPage' => $page,
+        //         'totalPages' => $totalPages,
+        //     ];
 
-            $this->view('pharmacist/pharmacist_dashboard', $data);
+        //     $this->view('pharmacist/pharmacist_dashboard', $data);
+        // }
+
+        public static function logged_in()
+        {
+            if (!empty($_SESSION['USER_DATA'])) {
+                return true;
+            }
+            return false;
+        }
+
+        public function dashboard($page = 1)
+        {
+            if ($this->logged_in()) {
+                $allPatients = $this->pharmacistModel->getAllPatients();
+                $recordsPerPage = 5;
+                $totalPatients = count($allPatients);
+                $totalPages = ceil($totalPatients / $recordsPerPage);
+    
+                $offset = ($page - 1) * $recordsPerPage;
+                $patients = array_slice($allPatients, $offset, $recordsPerPage);
+    
+                $data = [
+                    'patients' => $patients,
+                    'allPatients' => $allPatients,
+                    'currentPage' => $page,
+                    'totalPages' => $totalPages
+                ];
+    
+                $this->view('pharmacist/pharmacist_dashboard', $data);
+            } else {
+                header("Location: /prescripsmart/general/error_page");
+            }
         }
 
        
@@ -78,9 +110,9 @@
             }
                 
         }
-
         
-        public function profile() {
+        public function account_information() {
+            if ($this->logged_in()) {
             $user_id = $_SESSION['USER_DATA']->user_ID;
             $pharmacist = $this->pharmacistModel->getUserDetails($user_id);
             $data = [
@@ -88,7 +120,11 @@
             ];
 
             $this->view('pharmacist/pharmacist_profile', $data);
+        }else{
+            header("Location: /prescripsmart/general/error_page");
         }
+        }
+
         public function accountInfoUpdate()
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -96,7 +132,7 @@
 
                 $this->pharmacistModel->updateAccInfo($username);
 
-                redirect("/Pharmacist/profile");
+                redirect("/Pharmacist/account_information");
                 exit();
             }
         }
@@ -104,10 +140,10 @@
         {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $newpassword = $_POST["newpassword"];
-    
+                $_SESSION['USER_DATA']->password = password_hash($newpassword, PASSWORD_BCRYPT);
                 $this->pharmacistModel->resetPassword($newpassword);
     
-                redirect('/Pharmacist/profile');
+                redirect('/Pharmacist/account_information');
                 exit();
             }
         }
@@ -145,37 +181,46 @@
         }
     }
 
-        public function personal(){
-            $user_id = $_SESSION['USER_DATA']->user_ID;
-            $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
-            $data = [
-                'pharmacist' => $pharmacist
-            ];
-            $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
-        }
+        public function personal_information(){
 
+            if ($this->logged_in()) {
+                // $user_id = $_SESSION['USER_DATA']->user_ID;
+                // $pharmacist = $this->pharmacistModel->pharmacistInfo($user_id);
+                $pharmacist = $this->pharmacistModel->pharmacistInfo($_SESSION['USER_DATA']->user_ID);
+                $user = $this->pharmacistModel->getUserDetails($_SESSION['USER_DATA']->user_ID);
+                $data = [
+                    // 'pharmacist' => $pharmacist
+                    'pharmacist' => $pharmacist,
+                    'user' => $user
+                ];
+                $this->view('pharmacist/pharmacist_personalInfoCheck',$data);
+            }else{
+                header("Location: /prescripsmart/general/error_page"); 
+            }
+        }
+    
          public function personalInfoUpdate()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $fname = $_POST["fname"];
-            $lname = $_POST["lname"];
-            $dname = $_POST["dname"];
-            $haddress = $_POST["haddress"];
-            $nic = $_POST["nic"];
-            $cno = $_POST["cno"];
-            $regno = $_POST["regno"];
-            $qual = $_POST["qual"];
-            $spec = $_POST["spec"];
-            $dep = $_POST["dep"];
+        {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $fname = $_POST["fname"];
+                $lname = $_POST["lname"];
+                $dname = $_POST["dname"];
+                $haddress = $_POST["haddress"];
+                $nic = $_POST["nic"];
+                $cno = $_POST["cno"];
+                $regno = $_POST["regno"];
+                $qual = $_POST["qual"];
+                $spec = $_POST["spec"];
+                $dep = $_POST["dep"];
 
-            $this->pharmacistModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
+                $this->pharmacistModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
 
-            redirect("/Pharmacist/personal");
-            exit();
-        } else {
-            redirect("/general/error_page");
+                redirect("/Pharmacist/personal");
+                exit();
+            } else {
+                redirect("/general/error_page");
+            }
         }
-    }
 
 
        
@@ -216,11 +261,17 @@
 
         
         public function security(){
-            $user = $_SESSION['USER_DATA'];
-            $data = [
-                'user'=>$user,
-            ];
-            $this->view('pharmacist/pharmacist_2factor', $data);
+
+            if ($this->logged_in()) {
+
+                $user = $_SESSION['USER_DATA'];
+                $data = [
+                    'user'=>$user,
+                ];
+                $this->view('pharmacist/pharmacist_2factor', $data);
+            }else{
+                header("Location: /prescripsmart/general/error_page"); 
+            }
         }
 
         public function toggle2FA()
@@ -247,48 +298,54 @@
 
         public function allPrescriptions()
     {
-        $patientId = $_GET['patient_id'];
-        $prescriptions = $this->pharmacistModel->prescriptions($patientId);
-        $prescriptionDetails = [];
+        if ($this->logged_in()) {
+            $patientId = $_GET['patient_id'];
+            $prescriptions = $this->pharmacistModel->prescriptions($patientId);
+            $prescriptionDetails = [];
 
-        foreach ($prescriptions as $prescription) {
-            $prescriptionID = $prescription->prescription_ID;
-            $medicineData = $this->pharmacistModel->getMedicationDetails($prescriptionID);
-            $prescriptionDetails[$prescriptionID] = $medicineData;
+            foreach ($prescriptions as $prescription) {
+                $prescriptionID = $prescription->prescription_ID;
+                $medicineData = $this->pharmacistModel->getMedicationDetails($prescriptionID);
+                $prescriptionDetails[$prescriptionID] = $medicineData;
+            }
+
+            $data = [
+                'prescriptions' => $prescriptions,
+                'prescriptionDetails' => $prescriptionDetails,
+            ];
+            $this->view('pharmacist/pharmacist_prescription', $data);
+        }else{
+            header("Location: /prescripsmart/general/error_page"); 
         }
-
-        $data = [
-            'prescriptions' => $prescriptions,
-            'prescriptionDetails' => $prescriptionDetails,
-        ];
-        $this->view('pharmacist/pharmacist_prescription', $data);
     }
 
     public function prescriptionStatus($page = 1)
     {
-        $allPrescriptions = $this->pharmacistModel->allPrescriptions();
-        $recordsPerPage = 5;
-        $totalPrescriptions = count($allPrescriptions);
-        $totalPages = ceil($totalPrescriptions / $recordsPerPage);
-        $prescriptionDetails = [];
-        
-        $offset = ($page - 1) * $recordsPerPage;
-        $prescriptions = array_slice($allPrescriptions, $offset, $recordsPerPage);
+        if ($this->logged_in()) {
+            $allPrescriptions = $this->pharmacistModel->allPrescriptions();
+            $recordsPerPage = 5;
+            $totalPrescriptions = count($allPrescriptions);
+            $totalPages = ceil($totalPrescriptions / $recordsPerPage);
+            $prescriptionDetails = [];
+            
+            $offset = ($page - 1) * $recordsPerPage;
+            $prescriptions = array_slice($allPrescriptions, $offset, $recordsPerPage);
 
-        foreach ($prescriptions as $prescription) {
-            $prescriptionID = $prescription->prescription_ID;
-            $medicineData = $this->pharmacistModel->getMedicationDetails($prescriptionID);
-            $prescriptionDetails[$prescriptionID] = $medicineData;
+            foreach ($prescriptions as $prescription) {
+                $prescriptionID = $prescription->prescription_ID;
+                $medicineData = $this->pharmacistModel->getMedicationDetails($prescriptionID);
+                $prescriptionDetails[$prescriptionID] = $medicineData;
+            }
+
+
+            $data = [
+                'prescriptions' => $prescriptions,
+                'prescriptionDetails' => $prescriptionDetails,
+                'totalPages' => $totalPages,
+                'currentPage' => $page
+            ];
+            $this->view('pharmacist/pharmacist_prescriptionStatus', $data);
         }
-
-
-        $data = [
-            'prescriptions' => $prescriptions,
-            'prescriptionDetails' => $prescriptionDetails,
-            'totalPages' => $totalPages,
-            'currentPage' => $page
-        ];
-        $this->view('pharmacist/pharmacist_prescriptionStatus', $data);
     }
 
         public function updateProfilePicture()
@@ -358,30 +415,46 @@
         } 
     }
 
+    public function filterPrescriptions()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPrescriptions = $this->pharmacistModel->filterPrescriptions($searchQuery);
+        echo json_encode($filteredPrescriptions);
+    }
+
     public function analysis(){
+
+        if ($this->logged_in()) {
+        
+            $commonlyPrescribedMedications = $this->pharmacistModel->fetchCommonlyPrescribedMedications();
+            
+            $data = [
+                "commonlyPrescribedMedications" => $commonlyPrescribedMedications
+            ];
+            $this->view('pharmacist/pharmacist_analysis', $data);
+        }else{
+            header("Location: /prescripsmart/general/error_page");
+        }
+    }
+
+    public function analysisMonth(){
         // Check if 'month' query parameter is set
         $selectedMonth = isset($_GET['month']) ? $_GET['month'] : null;
         
         if (!empty($selectedMonth)) {
             // If month is selected, fetch data for the specified month
             $commonlyPrescribedMedications = $this->pharmacistModel->fetchMonthlyData($selectedMonth);
-        } else {
-            // If month is not selected, handle it accordingly
-            // For example, you might want to set a default month or return an error message
-            // Here, I'm assuming you want to fetch commonly prescribed medications if no month is selected
-            $commonlyPrescribedMedications = $this->pharmacistModel->fetchCommonlyPrescribedMedications();
         }
-        
-        // Prepare response data as an associative array
-        $data = [
-            'commonlyPrescribedMedications' => $commonlyPrescribedMedications
-        ];
-        
         // Output JSON data
-        $this->view('pharmacist/pharmacist_analysis', $data);
+        echo json_encode($commonlyPrescribedMedications);
+    }
+
+    public function filterPatients()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->pharmacistModel->filterPatients($searchQuery);
+        echo json_encode($filteredPatients);
     }
     
-        
-    }
-    
+}   
 ?>

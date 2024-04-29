@@ -10,13 +10,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/RegisterActor.css"/>
-  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/>
+  <!-- <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/navbar&sidemenu.css"/> -->
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/receptionist.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 
 </head>
 <body>
 <div class="content">
-    <?php include 'side_navigation_panel.php'; ?>
+        <?php include 'side_navigation_panel.php'; ?>
 
     <div class="main">
       <?php include 'top_navigation_panel.php'; ?>
@@ -26,7 +27,7 @@
         <?php include 'in_page_navigation.php'; ?>
 <div class="details">
         <div class="back" style="display: flex; ">         
-            <img src="<?php echo URLROOT ?>/img/admin/Vector.svg" onclick="goback()" style="cursor: pointer;" >          
+        <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon" onclick="goback()">          
             <h1 >Receptionist Registration</h1>
         </div>       
         <form action="<?php echo URLROOT; ?>/admin/regReceptionist "method="POST">

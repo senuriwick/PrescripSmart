@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/search.css" />
-  <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/nav_doctor.css"/>
+  <!-- <link rel="stylesheet" href="<?php echo URLROOT?>/css/admin/nav_doctor.css"/> -->
+  <link rel="stylesheet" href="<?php echo URLROOT ?>/css/admin/doctor.css"/>
   <script src="<?php echo URLROOT ?>/js/admin/script.js"></script>
 
 </head>
@@ -32,12 +33,18 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
+        <div class="addapp">
+          <div class="newapp">
+            <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
+            <a href="<?php echo URLROOT ?>/admin/viewregdoctor">NEW DOCTOR</a>
+          </div>
+        </div>
         <div class="searchDiv">
           <h1>Search Doctor</h1>
           <div class="searchFiles">
             <form>
-              <input type="text" id="searchinput" class="searchinput" placeholder="Enter Doctors' Name/ID here">
-              <button type="text" class="searchButton"><b>SEARCH</b></button>
+              <input type="text" id="searchinput" class="searchinput" placeholder="Enter doctor's name here">
+              <!-- <button type="text" class="searchButton"><b>SEARCH</b></button> -->
             </form>
 
             <hr style="margin-bottom: 3vh;">
@@ -46,24 +53,34 @@
                 <tbody>
                   <?php foreach ($data['allDoctors'] as $post): ?>
                     <tr class="row">
+                    <td><img class="person-circle" src= "<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $post->profile_photo?>"  alt="profile-pic"></td> 
+                    <td >
+                                <?php if ($post->gender == "male"): ?>
+                            <strong>
+                              <p class= "name">Mr.
+                              <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>                                </p>
+                              </p>
+                            </strong>
+                          <?php else: ?>
+                            <strong>
+                              <p class= "name">Ms.
+                              <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>                                </p>
+                              </p>
+                            </strong>
+                          <?php endif; ?>
+                            </td>
+
                       <td>
-                        <img class="person-circle" src="<?php echo URLROOT ?>/img/admin/PersonCircle.png">
-                        <p class="name">
-                          Mr.
-                          <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
-                        </p>
-                      </td>
-                      <td>
-                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_ID; ?></p>
+                        <p>Employee ID #<?php echo $post->doctor_ID; ?></p>
                       </td>
                       <td>
                         <a href="<?php echo URLROOT ?>/admin/showProfileDoc/<?php echo $post->doctor_ID ?>"><button
                             class="profileButton"><b>View Profile</b></button> </a>
-                        <form method="post"
-                          action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->doctor_ID ?>">
-                          <input type="image" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png"
-                            onclick="confirmDelete()">
-                        </form>
+                            <form id="deleteForm_<?php echo $post->doctor_ID ?>" method="post"
+                            action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->doctor_ID ?>">
+                            <input type="image" id="trash" class="trash-image"
+                              src="<?php echo URLROOT ?>/img/admin/Trash.png">
+                          </form>
                       </td>
                     </tr>
                   <?php endforeach; ?>
@@ -82,13 +99,6 @@
                       <?php endfor; ?>
 
 
-          </div>
-        </div>
-
-        <div class="addapp">
-          <div class="newapp">
-            <img src="<?php echo URLROOT ?>/img/admin/FilePerson.png">
-            <a href="<?php echo URLROOT ?>/admin/viewregdoctor">Register a new doctor</a>
           </div>
         </div>
       </div>
@@ -125,32 +135,51 @@
         filteredPatients.forEach(function (patient) {
           var patientHTML = `
           <table>
-          <tbody>
-          <tr class="row">
-                      <td>
-                        <img class="person-circle" src="<?php echo URLROOT ?>/img/admin/PersonCircle.png">
-                        <p class="name">
-                          Mr.
-                          <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
-                        </p>
-                      </td>
-                      <td>
-                        <p style="margin-left: 10vh;">Employee ID #<?php echo $post->doctor_ID; ?></p>
-                      </td>
-                      <td>
-                        <a href="<?php echo URLROOT ?>/admin/showProfileDoc/<?php echo $post->doctor_ID ?>"><button
-                            class="profileButton"><b>View Profile</b></button> </a>
-                        <form method="post"
-                          action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/<?php echo $post->doctor_ID ?>">
-                          <input type="image" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png"
-                            onclick="confirmDelete()">
-                        </form>
-                      </td>
-                    </tr>
-                    </tbody> 
-                <table>`;
+                   <tbody>
+                      
+                         <tr class="row"> 
+                          <td><img class="person-circle" src= "<?php echo URLROOT ?>/public/uploads/profile_images/${patient.profile_photo}"  alt="profile-pic"></td>                                                                                   
+                            <td >
+                            <strong>
+                        <p class="name">${patient.gender === 'male' ? 'Mr.' : 'Ms.'} ${patient.first_Name} ${patient.last_Name}</p>
+                    </strong>
+                            </td>
+
+                            <td>
+                                <p>Employee ID #${patient.patient_ID}</p>
+                            </td>
+
+                            <td>
+                            <a href="<?php echo URLROOT ?>/admin/showProfilePatient/${patient.patient_ID}"><button class="profileButton"><b>View Profile</b></button> </a>
+                            <form id="deleteForm_${patient.patient_ID}" method="post"
+                                action="<?php echo URLROOT; ?>/admin/deleteProfileDoc/${patient.patient_ID}">
+                            <input type="image" id="trash" class="trash-image" src="<?php echo URLROOT ?>/img/admin/Trash.png">
+                            </form>                                    
+                            </td> 
+                        </tr>  
+              
+                  </tbody>
+                </table>`
           patientsContainer.innerHTML += patientHTML;
         });
       }
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var trashIcons = document.querySelectorAll('.trash-image');
+
+    trashIcons.forEach(function (trashIcon) {
+      trashIcon.addEventListener('click', function () {
+        var formId = this.parentNode.getAttribute('id');
+        if (formId) {
+          document.getElementById(formId).submit();
+        } else {
+          console.error('Form ID not found');
+        }
+      });
+    });
+  });
+</script>
+
 </html>

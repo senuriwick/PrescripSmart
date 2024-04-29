@@ -188,6 +188,18 @@ class Doctor extends Controller{
         $this->view('doctor/reports',$data);
     }
 
+    public function chechRoport(){
+        $reportid = $_GET['reportid']?? '';
+
+        if(!empty($reportid)){
+            $report = $this->dpModel->getReport($reportid);
+            header('Content-Type: application/json');
+            echo json_encode($report);
+            // return $report;
+
+        }
+    }
+
     public function loadReport(){
         $reportid = $_GET['reportid']?? '';
         if(!empty($reportid)){
@@ -226,7 +238,23 @@ class Doctor extends Controller{
             $sessionPatients = $this->dpModel->getSessionPatients($sessionId);
             $sessionPatientCount = $this->dpModel->getSessionPatientsCount($sessionId);
             header('Content-Type: application/json');
-            echo json_encode(["sessionPatients"=>$sessionPatients,"patientCount"=>$sessionPatientCount]);
+            echo json_encode(["sessionPatients"=>$sessionPatients,"patientCount"=>$sessionPatientCount,"sessionId"=>$sessionId]);
+        }
+    }
+
+    public function cancelSession(){
+        $sessionId = $_GET['sessionid'];
+        // var_dump($sessionId);
+        // $msg = [];
+        if(!empty($sessionId)){
+            $cancel = $this->dpModel->cancelSession($sessionId);
+            if($cancel){
+                $msg = "Canceling session succesfull";
+            }else{
+                $msg="error";
+            }
+            header('Content-Type: application/json');
+            echo json_encode($msg);
         }
     }
 
@@ -256,6 +284,13 @@ class Doctor extends Controller{
         ];
         $this->view('doctor/on-going_session',$data);
         
+    }
+
+    public function ongoingSessionPatient(){
+        $patientId = $_GET['patientid'];
+        $patient = $this->dpModel->getonePatient($patientId);
+        header('Content-Type: application/json');
+        echo json_encode($patient);
     }
 
     public function Profile(){

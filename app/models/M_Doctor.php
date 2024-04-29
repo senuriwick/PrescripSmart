@@ -89,7 +89,7 @@ class M_Doctor
 
     public function getSessionsDetails($userid)
     {
-        $this->db->query('SELECT * FROM sessions WHERE doctor_ID=:id');
+        $this->db->query('SELECT * FROM sessions WHERE doctor_ID=:id AND status="active"');
         $this->db->bind(':id', $userid);
         $results = $this->db->resultSet();
         return $results;
@@ -109,9 +109,21 @@ class M_Doctor
         return $this->db->rowCount();
     }
 
+    public function cancelSession($sessionId){
+        $this->db->query('UPDATE sessions SET status="cancelled" WHERE session_ID=:session_id');
+        $this->db->bind(':session_id',$sessionId);
+        // $this->db->execute();
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function getOngonigSession($doctorId){
         $this->db->query('SELECT * FROM sessions WHERE ((start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
-        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id');
+        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id AND sessions.status="active"');
         $this->db->bind(':doctor_id',$doctorId);
         $result = $this->db->single();
         return $result;
