@@ -143,11 +143,30 @@ td:hover {
 }
 
 .modal-content .model-head {
-    display: flex;
     align-items: center;
-    height: 40px;
-    margin-top: 4px;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
+  height: 40px;
+  margin-bottom: 10px;
+  margin-top: 4px;
+    
+
+    >div {
+        /* align-items: center; */
+        background-color: #ff8100;
+        border-radius: 8px;
+        color: white;
+        display: flex;
+        font-size: 24px;
+        font-weight: 700;
+        height: 35px;
+        justify-content: center;
+        margin-left: 0px;
+        margin-right: 5px;
+        min-height: 35px;
+        min-width: 35px;
+        width: 35px;
+      }
 }
 
 .modal-content .model-head img {
@@ -223,6 +242,11 @@ td:hover {
     font-size: 10px;
     margin-top: 6px;
     text-align: center;
+}
+.modal-content .sign{
+    height: 3vh;
+    align-items: left;
+    width: 3vh;
 }
 
 body {

@@ -111,19 +111,19 @@ align-items: center;
 
 
 .patientInfo2 .infoDetail .name{
-font-size: 2.5vb;
+font-size: 3vh;
 font-weight: bold;
 margin: 0%;
 }
 
 .patientInfo2 .infoDetail .id{
-font-size: 2vb;
+font-size: 2.5vb;
 color: #0069FF;
 margin: 0%;
 }
 
 .patientInfo2 .infoDetail .age{
-font-size: 1.7vb;
+font-size: 2vh;
 color: #445172BF;
 margin: 0%;
 }
@@ -160,14 +160,14 @@ border-radius: 5px;
 }
 
 .test-details .test-descript{
-font-size: 1.7vh;
+/* font-size: 1.7vh; */
 color: #0069FF;
 font-weight: bold;
 margin: 0%;
 }
 
 .test-details .rest-data{
-font-size: 1.7vh;
+/* font-size: 1.7vh; */
 color: #445172;
 margin: 0%;
 }
