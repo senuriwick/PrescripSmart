@@ -472,6 +472,19 @@ class M_receptionist
     return $results;
   }
 
+  public function getDocSessionbyID($id)
+  {
+    $sql = "SELECT sessions.*, doctors.*
+    FROM sessions 
+    JOIN doctors ON sessions.doctor_ID = doctors.doctor_ID
+    WHERE doctors.doctor_ID = :id";
+
+    $this->db->query($sql);
+    $this->db->bind(':id', $id);
+    $results = $this->db->resultSet();
+    return $results;
+  }
+
   public function getDoctorbyID($id)
   {
     $sql = "SELECT users.*, doctors.*
@@ -596,16 +609,18 @@ public function filterNurses($searchQuery) {
 
     }
 
-    public function addedSession($id,$Start_time, $End_time, $Total_app, $charge, $Room_no)
+    public function addedSession($id,$Start_time, $End_time, $Total_app, $charge, $Room_no, $date)
     {
-      $this->db->query('INSERT INTO sessions ( doctor_ID, start_time, end_time,total_appointments,current_appointment, current_appointment_time, sessionCharge, room_no) 
-                          VALUES (:doctor_id, :start_time, :end_time, :total_appointments, "1", :start_time, :sessionCharge, :room_no)');
+      $this->db->query('INSERT INTO sessions ( doctor_ID, start_time, end_time,total_appointments,current_appointment, current_appointment_time, sessionCharge, room_no, sessionDate) 
+                          VALUES (:doctor_id, :start_time, :end_time, :total_appointments, "1", :start_time, :sessionCharge, :room_no, :date)');
             $this->db->bind(':doctor_id', $id);
             $this->db->bind(':start_time', $Start_time);
             $this->db->bind(':end_time', $End_time);
             $this->db->bind(':total_appointments', $Total_app);
             $this->db->bind(':sessionCharge', $charge);
             $this->db->bind(':room_no', $Room_no);
+            $this->db->bind(':date', $date);
+
 
             if($this->db->execute()){
               return true;
