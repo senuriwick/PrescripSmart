@@ -11,8 +11,7 @@
         {
             $this->db->query("SELECT * FROM users WHERE username = :username");
             $this->db->bind(':username', $username);
-            return $this->db->single(PDO::FETCH_OBJ); 
-           
+            return $this->db->single(PDO::FETCH_OBJ);    
         }
 
         public function getPatients(){
@@ -172,24 +171,32 @@
 
     public function prescriptions($userID)
     {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
-        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        $this->db->query('SELECT p. *,pt.age, d.first_Name, d.last_Name FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pt ON p.patient_ID = pt.Patient_ID
         WHERE p.patient_ID = :userID
-        ORDER BY p.prescription_Date ASC');
+        ORDER BY p.prescription_Date DESC');
         $this->db->bind(':userID', $userID);
 
         $result = $this->db->resultSet();
         return $result;
     }
 
-    public function allPrescriptions()
-    {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
-        JOIN doctors d ON p.doctor_ID = d.doctor_ID 
-        ORDER BY p.prescription_Date ASC');
+    // public function allPrescriptions()
+    // {
+    //     $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
+    //     JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+    //     ORDER BY p.prescription_Date ASC');
 
+    //     $result = $this->db->resultSet();
+    //     return $result;
+    // }
+
+    public function allPrescriptions(){
+        $this->db->query('SELECT p.* ,d.first_Name, d.last_Name,pt.age FROM prescriptions p JOIN doctors d ON p.doctor_ID = d.doctor_ID JOIN
+        patients pt ON pt.patient_ID = p.patient_ID ORDER BY p.prescription_Date DESC');
         $result = $this->db->resultSet();
         return $result;
+
     }
 
     public function markMedicationStatus($status, $id)

@@ -66,7 +66,7 @@
                         <div>Prescription ID: #<?php echo $prescription->prescription_ID; ?></div>
                         <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name ?> <?php echo $_SESSION['USER_DATA']->last_Name ?></div>
                         <div>Pres Date & Time: <?php echo $prescription->prescription_Date; ?></div>
-                        <div>Age: 22 Yrs</div>
+                        <div>Age: <?php echo $prescription->age; ?></div>
                         <div>Referred by: Dr. <?php echo $prescription->first_Name; ?> <?php echo $prescription->last_Name; ?></div>
                       </div>
                       <div class="pres-box">
