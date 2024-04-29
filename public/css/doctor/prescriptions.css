@@ -42,6 +42,8 @@ p a:active{
     font-size: 3vh;
     font-weight: bold;
     color: rgba(68, 81, 114, 1);
+    margin-bottom: 2vh;
+    margin-top: 2vh;
 }
 
 .prescription-table table {
@@ -174,6 +176,10 @@ td:hover {
     height: 40px;
 }
 
+.modal-content .model-head .id{
+    display: flex;
+}
+
 .modal-content .model-details {
     display: grid;
     grid-template-columns: auto auto;
@@ -237,16 +243,23 @@ td:hover {
 .modal-content .test-box table td {
     font-size: 12px;
 }
+/* .modal-content .footer{
+    display: flex;
+    justify-content: space-between;
+} */
 
 .modal-content .notice {
     font-size: 10px;
     margin-top: 6px;
     text-align: center;
 }
-.modal-content .sign{
-    height: 3vh;
-    align-items: left;
-    width: 3vh;
+.modal-content .sign button{
+    font-size: x-small;
+    color: white;
+    background-color: green;
+    border: none;
+    height: 2.2vh;
+    border-radius: 7px;
 }
 
 body {
@@ -302,3 +315,31 @@ body {
     height: 4px;
     background-color: #0069FF;
   }
+
+  .pagination {
+    margin-top: 4vh;
+    text-align: right;
+  }
+  
+  .pagination a {
+    background-color: white;
+    border-radius: 0.5rem;
+    color: black;
+    display: inline-block;
+    font-size: small;
+    font-weight: bold;
+    margin: 0 0.25rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #0069FF;
+    color: white;
+  }
+  
+  .pagination a:hover {
+    background-color: #0069FF;
+    color: white;
+  }
+  

@@ -17,6 +17,9 @@
 </head>
 
 <body>
+<?php $currentPage = $data['currentPage'];
+  $totalPages = $data['totalPages'];
+  ?>
     <div class="content">
     <?php include 'side_navigation_panel.php'; ?>
         <!-- <div class="container"> -->
@@ -44,20 +47,26 @@
                         <div class="prescription-table">
                             <table>
                                 <tbody>
-                                    <?php foreach($data['reportsData'] as $reportData): ?>
-                                    <tr class="clickable-row1" reportid="<?php echo $reportData->report_ID;?>">
+                                    <?php foreach($data['reports'] as $report): ?>
+                                    <tr class="clickable-row1" reportid="<?php echo $report->report_ID;?>">
                                         <td>
                                             <div class="presDiv" id="presDiv" >
                                                 <img src="<?php echo URLROOT;?>/public/img/doctor/description.png" alt="download-icon">
-                                                <p><?php echo $reportData->name; ?></p>
+                                                <p><?php echo $report->name; ?></p>
                                             </div>
                                         </td>
-                                        <td><?php echo $reportData->date_of_report;?></td>
+                                        <td><?php echo $report->date_of_report;?></td>
                                         <td></td>
                                     </tr>
                                     <?php endforeach; ?>    
                                 </tbody>
                             </table>
+                            <div class="pagination">
+                                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                            <a href="<?php echo URLROOT ?>/doctor/viewReports/<?php echo $data['patient']->patient_ID;?>/<?php echo $data['patient']->patient_ID;?>/<?php echo $i ?>" <?php if ($currentPage == $i)
+                                                    echo 'class="active"'; ?>><?php echo $i ?></a>
+                                        <?php endfor; ?>
+                                        </div>
 
                         </div>
                     </div>

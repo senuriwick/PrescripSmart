@@ -18,6 +18,10 @@
 </head>
 
 <body>
+<?php $currentPage = $data['currentPage'];
+  $totalPages = $data['totalPages'];
+  $prescriptionsData = $data['prescriptionsData'];
+  ?>
     <div class="content">
     <?php include 'side_navigation_panel.php'; ?>
         <!-- <div class="container"> -->
@@ -44,16 +48,16 @@
                         <div class="prescription-table">
                             <table>
                                 <tbody>
-                                    <?php foreach($data['prescriptionsData'] as $prescriptionData): ?>
-                                    <tr class="clickable-row" prescriptionid="<?php echo $prescriptionData->prescription_ID; ?>">
+                                    <?php foreach($data['prescriptions'] as $prescription): ?>
+                                    <tr class="clickable-row" prescriptionid="<?php echo $prescription->prescription_ID; ?>">
                                         <td>
                                             <div class="presDiv">
                                                 <img src="<?php echo URLROOT;?>/public/img/doctor/description.png" alt="download-icon">
-                                                <p><?php echo $prescriptionData->diagnosis;?></p>
+                                                <p><?php echo $prescription->diagnosis;?></p>
                                             </div>
                                         </td>
-                                        <td>DR. <?php echo $prescriptionData->display_Name; ?></td>
-                                        <td><?php echo $prescriptionData->prescription_Date; ?></td>
+                                        <td>DR. <?php echo $prescription->display_Name; ?></td>
+                                        <td><?php echo $prescription->prescription_Date; ?></td>
                                     </tr>
                                     <?php endforeach;?>
                                     <tr>
@@ -65,6 +69,12 @@
                                     </a>
                                 </tbody>
                             </table>
+                            <div class="pagination">
+                                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                            <a href="<?php echo URLROOT ?>/doctor/viewPrescriptions/<?php echo $data['patient']->patient_ID;?>/<?php echo $i ?>" <?php if ($currentPage == $i)
+                                                    echo 'class="active"'; ?>><?php echo $i ?></a>
+                                        <?php endfor; ?>
+                                        </div>
                         </div>
                     </div>
                 </div>
@@ -106,8 +116,7 @@
             </div>
             <div class="footer">
             <div class="notice">(For viewing purpose only)</div>
-            <div class="sign"></div>
-                                    </div>
+            
         </div>
     </div>
     
@@ -157,7 +166,7 @@
                 const sign = document.querySelector(".sign");
 
                 modelhead.innerHTML = `
-                <div>Prescription ID: ${result.prescription.prescription_ID}</div>
+                <div><div class="id">Prescription ID: ${result.prescription.prescription_ID}<div class="sign"> <button>Verified</button></div></div></div>
                 <div>Patient: ${result.prescription.display_Name}</div>
                 <div>Pres Date & Time: ${result.prescription.prescription_Date}</div>
                 <div>Age: ${result.prescription.age}</div>
@@ -166,9 +175,9 @@
                 diagnosisContent.innerHTML = '';
                 diagnosisContent.textContent = result.prescription.diagnosis;
 
-                // sign.innerHTML ="";
+                sign.innerHTML ="";
                 sign.innerHTML=`
-                <img src="<?php echo URLROOT;?>/public/uploads/signatures/${result.doctor.signature}`;
+                <button>Verified</button>`;
 
             }
 

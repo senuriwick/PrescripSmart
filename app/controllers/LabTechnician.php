@@ -81,6 +81,12 @@ class LabTechnician extends Controller{
                         if(move_uploaded_file($reportTemp,$destination)){
                             echo "Uploaded succes";
                             $this->dpModel->uploadReport($reportid,$reportname,$reportsize);
+                            $patient = $this->dpModel->getPatient($patientid);
+                            if($patient->method_of_signin == 'Email'){
+                                $this->sendEmail($patient->email_phone, $reportid, $patient);
+                            } else {
+                                $this->sendSMS($patient->email_phone, $reportid, $patient);
+                            }
                         }
                     }else{
                         echo "Please select only pdf file";
@@ -93,6 +99,62 @@ class LabTechnician extends Controller{
         header('Location:'.URLROOT.'/LabTechnician/reports/'.$patientid);
         exit;
         }
+    }
+
+    public function sendEmail($email, $reportID, $patient) {
+
+            $message = <<<MESSAGE
+
+            Dear Mr/Ms. $patient->first_Name $patient->last_Name,
+            the test results of Lab Ref No: $reportID are ready to be viewed. Please login to your account to download your report.
+
+            Best Regards,
+            Team PrescripSmart
+            MESSAGE;
+
+            require '../PHPMailerAutoload.php';
+
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'prescripsmart@gmail.com';
+            $mail->Password = 'fgpacxjdxjogzlwk';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('prescripsmart@gmail.com', 'Prescripsmart');
+            $mail->addAddress($email);
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Lab report result is ready.';
+            $mail->Body = $message;
+
+            if (!$mail->send()) {
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                //echo 'Message has been sent';
+            }
+        }
+    }
+
+    public function sendSMS($phone, $reportID, $patient)
+    {
+        require '../vendor/autoload.php';
+
+        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
+        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
+        $twilio_number = "+12674227302";
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create(
+            $phone_number,
+            array(
+                'from' => $twilio_number,
+                'body' => 'Dear Mr/Ms. ' . $patient->first_Name . $patient->last_Name ',the test results of Lab Ref No:' . $reportID . 'are ready to be viewed. Please login to your account to download your report.'
+            )
+        );
     }
 
     public function deletereport(){
