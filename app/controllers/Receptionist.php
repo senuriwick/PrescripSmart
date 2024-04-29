@@ -670,11 +670,11 @@
               'appointments'=>$posts
             ];
 
-            $Appointment = $this->repModel->confirm_appointment($data);
+            $Appointment = $this->repModel->confirmAppointment($patient_ID, $doctor_ID, $session_ID, $selectedSession->current_appointment_time, $selectedSession->sessionDate, $selectedSession->sessionCharge, $selectedSession->current_appointment);
 
             if($Appointment)
             {
-              $this->view('receptionist/searchApp',$apps);
+              $this->view('receptionist/appointment_complete',$apps);
             }
             else
             {
@@ -693,15 +693,56 @@
 
     }
 
+    public function appointment_successful()
+    {
+        $this->view('receptionist/appointment_complete');
+    }
+
     public function sessionManage()
     {
       $posts = $this->repModel->getdocSessions();
+      $doctors = $this->repModel->getDoctors(); 
       $data = [
-          'sessions' => $posts
+          'sessions' => $posts,
+          'doctors' => $doctors
       ];
 
       $this->view('receptionist/manageSessions',$data);
     }
+
+    public function addSession()
+    {
+      $doctor_ID = $_GET['doctorID'] ?? null;
+      $selectedDoctor = $this->repModel->getDoctorDetails($doctor_ID);
+      $data = [
+        'doctor'=> $selectedDoctor
+      ];
+
+      $this->view('receptionist/addSession',$data);
+
+
+    }
+
+    public function newSession($id)
+    {
+      $selectedDoctor = $this->repModel->getdocSessions($id);
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $Start_time = $_POST['first_name'];
+        $End_time = $_POST['last_name'];
+        $Total_app = $_POST['email'];
+        $Room_no = $_POST['phone_number'];
+        
+      $addedSession = $this->repModel->addedSession($selectedDoctor->doctor_ID, $Start_time, $End_time, $Total_app, $selectedDoctor->sessionCharge, $Room_no);
+      if($addedSession)
+      {
+        $this->view('receptionist/appointment_complete');
+      }
+      else
+      {
+        echo "Something went wrong";
+      }
+    }
+  }
 
 
     public function searchPatient()
@@ -1215,8 +1256,8 @@
 
     public function showProfileDoc($id)
     {
-      $table = 'doctors';
-      $doctor = $this->repModel->getuserbyID($id,$table);
+   
+      $doctor = $this->repModel->getDoctorbyID($id);
 
       $data= [
         'doctor'=>$doctor
@@ -1227,8 +1268,7 @@
 
     public function showProfileNurse($id)
     {
-      $table= 'nurses';
-      $nurse = $this->repModel->getuserbyID($id,$table);
+      $nurse = $this->repModel->getNursebyID($id);
 
       $data= [
         'doctor'=>$nurse
@@ -1239,8 +1279,8 @@
 
     public function showProfilePatient($id)
     {
-      $table = 'patients';
-      $patient = $this->repModel->getuserbyID($id,$table);
+     
+      $patient = $this->repModel->getPatientbyID($id);
 
       $data= [
         'doctor'=>$patient

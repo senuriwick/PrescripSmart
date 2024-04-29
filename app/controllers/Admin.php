@@ -280,6 +280,42 @@
         $filteredPatients = $this->userModel->filterPatients($searchQuery);
         echo json_encode($filteredPatients);
     }
+    public function filterDoctors()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->userModel->filterDofilterPatientsctors($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+    public function filterHealthsups()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->userModel->filterHealthsups($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+    public function filterLabtechs()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->userModel->filterLabtechs($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+    public function filterNurses()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->userModel->filterNurses($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+    public function filterPharmacists()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->userModel->filterPharmacists($searchQuery);
+        echo json_encode($filteredPatients);
+    }
+    public function filterReceptionists()
+    {
+        $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+        $filteredPatients = $this->userModel->filterReceptionists($searchQuery);
+        echo json_encode($filteredPatients);
+    }
     
 
     public function searchDoctor($page = 1)
@@ -299,7 +335,7 @@
                 'totalPages' => $totalPages
             ];
 
-            $this->view('admin/searchDoctors', $data);
+            $this->view('admin/searchDoctor', $data);
     }
 
     public function searchHealthsup($page = 1)

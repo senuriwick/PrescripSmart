@@ -45,7 +45,7 @@
                         <div class="details">
                             <table>
                                 <tbody>
-                                    <?php foreach ($data['receptionists'] as $post): ?>
+                                    <?php foreach ($data['allReceptionists'] as $post): ?>
                                         <tr class="row">
                                             <td>
                                                 <img class="person-circle"
@@ -101,7 +101,7 @@
 
                      <div class="pagination">
                      <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <a href="<?php echo URLROOT ?>/admin/searchPatient/<?php echo $i ?>" <?php if ($currentPage == $i)
+                        <a href="<?php echo URLROOT ?>/admin/searchReceptionist/<?php echo $i ?>" <?php if ($currentPage == $i)
                                 echo 'class="active"'; ?>><?php echo $i ?></a>
                       <?php endfor; ?>
 
@@ -126,7 +126,7 @@
           var searchQuery = this.value.trim();
           if (searchQuery !== "") {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "<?php echo URLROOT ?>/admin/filterPatients?search=" + searchQuery, true);
+            xhr.open("GET", "<?php echo URLROOT ?>/admin/filterReceptionists?search=" + searchQuery, true);
             xhr.onreadystatechange = function () {
               if (xhr.readyState == 4 && xhr.status == 200) {
                 var filteredPatients = JSON.parse(xhr.responseText);

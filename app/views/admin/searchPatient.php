@@ -44,7 +44,7 @@
               <div class="details">
                  <table>
                    <tbody>
-                      <?php foreach($data['patients'] as $post): ?>
+                      <?php foreach($data['allPatients'] as $post): ?>
                          <tr class="row">                                                                                         
                             <td >
                                 <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
@@ -69,7 +69,7 @@
                             </td>
 
                             <td>
-                            <a href="<?php echo URLROOT ?>/admin/showProfilePatient/<?php echo $post->patient_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                            <a href="<?php echo URLROOT ?>/admin/showpatientProfile/<?php echo $post->patient_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
                                 <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->patient_ID ?>">
                                 <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                                 </form>                                    

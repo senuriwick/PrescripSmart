@@ -1,0 +1,334 @@
+body {
+  font-family: inter;
+  margin: 0;
+}
+
+.content {
+  display: flex;
+}
+
+.adminDiv {
+  border-bottom: solid;
+  border-color: rgba(217, 217, 217, 0.75);
+  border-width: 0.1vh;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 3%;
+  margin-left: 220px;
+}
+
+.adminInfoContainer {
+  margin-left: 3vw;
+  margin-top: 5vh;
+  width: 70%;
+}
+
+.adminInfo {
+  display: flex;
+}
+
+.adminInfo img {
+  height: 10vh;
+  margin-right: 1.5vw;
+}
+
+.patientNameDivDiv {
+  padding: 0.01vh 0;
+}
+
+.adminInfo .name {
+  color: rgba(68, 81, 114, 1);
+  font-family: inter;
+  font-size: 2.5vh;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.adminInfo .role {
+  font-size: 1.8vh;
+  margin-top: 0vh;
+  padding-top: 0;
+}
+
+.searchDiv {
+  background-color: rgba(239, 242, 251, 1);
+  border-radius: 10px;
+  height: 300px;
+  margin-top: 4vh;
+  padding: 1vh 3vh 2vh;
+}
+
+.searchDiv h1 {
+  color: rgba(68, 81, 114, 1);
+  font-family: inter;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.line1 {
+  background-color: rgba(68, 81, 114, 0.75);
+  height: 0.05rem;
+  left: 17.5rem;
+  position: absolute;
+  top: 27rem;
+  width: 53rem;
+}
+
+.smallrect {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  height: 10rem;
+  left: 18rem;
+  position: absolute;
+  top: 28rem;
+  width: 16rem;
+}
+
+.sessionname {
+  color: #000000;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 16px;
+  height: 3rem;
+  left: 19rem;
+  line-height: 1.2125;
+  position: absolute;
+  text-align: left;
+  top: 28rem;
+  white-space: nowrap;
+  width: 17.1rem;
+}
+
+.text {
+  color: #000000;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 15px;
+  font-weight: 400;
+  height: 5.4rem;
+  left: 19rem;
+  line-height: 1.2125;
+  position: absolute;
+  top: 28rem;
+  width: 31.6rem;
+}
+
+.line2 {
+  background-color: rgba(68, 81, 114, 0.75);
+  height: 0.1rem;
+  left: 19rem;
+  position: absolute;
+  top: 28rem;
+  width: 13.5rem;
+}
+
+.rectangle-70-mtM {
+  background-color: rgba(0, 105, 255, 0.75);
+  border-color: rgba(0, 105, 255, 0.75);
+  border-radius: 0.5rem;
+  color: #ffffff;
+  font-family: Inter, 'Source Sans Pro';
+  font-size: 15px;
+  font-weight: 600;
+  height: 2rem;
+  left: 19rem;
+  line-height: 1.2125;
+  position: absolute;
+  top: 35rem;
+  white-space: nowrap;
+  width: 13.5rem;
+
+  ;
+}
+
+.reg {
+  background-color: #E3E8F4;
+  border-color: #E3E8F4;
+  border-radius: 1.7vh;
+  font-family: inter;
+  font-size: 2.1vh;
+  font-weight: 35vh;
+  height: 20vh;
+  margin-left: 35vh;
+  margin-top: 20vh;
+  padding-top: 1vh;
+  text-align: center;
+  width: 65vh;
+}
+
+.but {
+  background-color: #0069FF;
+  border-radius: 0.8vh;
+  color: white;
+  font-size: 2.3vh;
+  font-weight: 30vh;
+  height: 5vh;
+  padding-top: 0.5vh;
+  Width: 55vh;
+}
+
+but :active {
+  background-color: #006aff50;
+}
+
+.customConfirmation {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: none;
+  left: 30vw;
+  position: absolute;
+  top: 30vh;
+  width: 40vw;
+  z-index: 1;
+}
+
+.customConfirmationContent {
+  padding: 20px;
+  text-align: center;
+}
+
+.customConfirmationButton {
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+}
+
+.yesButton {
+  background-color: #0069FF;
+  border-color: #0069FF;
+  color: #fff;
+}
+
+.noButton {
+  background-color: #FF0000;
+  border-color: #FF0000;
+  color: #fff;
+}
+
+.confirmationOptions {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  left: 30vw;
+  position: absolute;
+  top: 30vh;
+  width: 40vw;
+  z-index: 1;
+
+  /* display: none; */
+}
+
+.confirmationOptionsContent {
+  padding: 20px;
+  text-align: center;
+}
+
+.viewAppointmentButton {
+  background-color: #0069FF;
+  color: #fff;
+  font-family: 'Source Sans Pro';
+  height: 2.5rem;
+  width: 10rem;
+
+  border-color: #0069FF
+}
+
+.viewAppointmentButton2 {
+  background-color: #0069FF;
+  border-color: #0069FF;
+  color: #fff;
+  font-family: 'Source Sans Pro';
+  height: 2.5rem;
+  margin-left: 350px;
+  width: 10rem;
+}
+
+.payNowButton {
+  background-color: green;
+  border-color: green;
+  color: #fff;
+  font-family: 'Source Sans Pro';
+  height: 2.5rem;
+  width: 10rem;
+}
+
+.menu #appointments {
+  border-color: #0069FF;
+  border-spacing: 2cm;
+  color: #0069FF;
+  position: relative;
+}
+
+.menu #appointments::after {
+  background-color: #0069FF;
+  bottom: -8px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.menu {
+  border-bottom: solid;
+  border-color: rgba(164, 174, 199, 1);
+  border-width: 0.1vh;
+  display: flex;
+  margin-top: 2vh;
+  padding-bottom: 0.1vh;
+}
+
+.menu a {
+  color: rgba(164, 174, 199, 1);
+  font-family: inter;
+  font-size: 2vh;
+  margin-bottom: 1vh;
+  margin-right: 6.5vh;
+  text-decoration: none;
+}
+
+.menu a:active {
+  color: #0069FF;
+}
+
+a:hover {
+  color: #17058aee;
+}
+
+.sessions {
+  background-color: rgba(68, 81, 114, 1);
+  position: relative;
+}
+
+.sessions::before {
+  background-color: #0069FF;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 5px;
+}
+
+.searchDiv .confirmationOptionsContent .buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.searchDiv .success {
+  color: rgba(68, 81, 114, 1);
+  ;
+  font-size: 24px;
+  font-weight: bold;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 65px;
+  padding: 20px;
+  text-align: center;
+}

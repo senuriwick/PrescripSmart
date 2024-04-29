@@ -6,7 +6,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Receptionist Search Doctor</title>
+    <title>Search a Doctor</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -43,10 +43,10 @@
                             <tr class="row">                                                                           
                 
                                     <td >
-                                        <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                        <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png"  alt="profile-pic">
                                         <p class="name">
                                         Mr. 
-                                        <?php echo $post->last_Name;?>
+                                        <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
                                         </p> 
                                     </td>
 
@@ -58,7 +58,7 @@
                                     <a href="<?php echo URLROOT ?>/receptionist/showProfileDoc/<?php echo $post->doctor_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
                                                                             
                                         <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileDoc/<?php echo $post->doctor_id ?>">
-                                            <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                            <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/receptionist/Trash.png" alt="profile-pic">
                                         </form>
                                     </td>
                                                 

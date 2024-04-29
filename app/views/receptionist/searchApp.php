@@ -47,6 +47,7 @@
                                 #
                                 <?php echo  $post->appointment_ID ?>
                             </h2>
+                            
                             <button>Cancel Appointment</button>
                         </div>
                                                       
@@ -59,7 +60,12 @@
                         <div class="app-info">
                             <h4>Patient: Mr. Perera</h4>
                             <h4>Doctor: Dr. Peiris</h4>
-                            <h4>Payment Status: <button style="margin-top: -1vh;"><b>MARK AS PAID</b></button></h4>
+                            <h4>Payment Status: 
+                            <?php if($post->payment_status == "UNPAID"): ?>
+                                <button style="margin-top: -1vh;"><b>MARK AS PAID</b></button></h4>
+                            <?php elseif($post->payment_status == "PAID"):  ?>
+                                <button style="margin-top: -1vh; background-color:#397A49"><b>PAID</b></button></h4>
+                            <?php endif ?>    
                         </div>
                     </td>
                 </tr>
