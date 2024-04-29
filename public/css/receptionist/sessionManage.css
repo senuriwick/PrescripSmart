@@ -109,6 +109,11 @@ body {
   font-size: 18px;
 }
 
+.sessions
+{
+  background-color: #EFF2FB;
+}
+
 .sessions img {
   margin-top: 3vh;
   width: 5vh;

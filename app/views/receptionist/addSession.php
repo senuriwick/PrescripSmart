@@ -67,6 +67,15 @@
                             </div>
                         </div>
 
+                        <div class="top1">
+                            <div class="firstname">
+                                <div class="req">
+                                    <h3 style="color: #0069FF;">Charge</h3>
+                                    <p style="color: red;">*</p>
+                                </div>
+                                <input type="text" name="charge" placeholder="Enter Your first name">
+                        </div>        
+
                         
                         <button type="submit"><b>Add Session</b></button>
                     </form>

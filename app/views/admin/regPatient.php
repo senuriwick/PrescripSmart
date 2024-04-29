@@ -59,7 +59,7 @@
           <div class="top2">
               <div class="email">
                   <h3>email address</h3>
-                  <input type="text" name="email" placeholder="Enter Your email address">
+                  <input type="text" name="email" placeholder="Enter Your email address"required>
                   <span class="error-message"><?php echo $data['email_err']; ?></span>
 
               </div>
