@@ -1,5 +1,7 @@
 <?php
 
+use Twilio\Rest\Client;
+
 class LabTechnician extends Controller{
 
     private $dpModel;
@@ -137,7 +139,7 @@ class LabTechnician extends Controller{
                 //echo 'Message has been sent';
             }
         }
-    }
+    
 
     public function sendSMS($phone, $reportID, $patient)
     {
@@ -152,7 +154,7 @@ class LabTechnician extends Controller{
             $phone_number,
             array(
                 'from' => $twilio_number,
-                'body' => 'Dear Mr/Ms. ' . $patient->first_Name . $patient->last_Name ',the test results of Lab Ref No:' . $reportID . 'are ready to be viewed. Please login to your account to download your report.'
+                'body' => 'Dear Mr/Ms. ' . $patient->first_Name . $patient->last_Name .',the test results of Lab Ref No:' . $reportID . 'are ready to be viewed. Please login to your account to download your report.'
             )
         );
     }

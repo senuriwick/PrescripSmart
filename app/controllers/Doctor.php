@@ -14,34 +14,50 @@ class Doctor extends Controller{
     public function index(){
         $this->view('doctor/patients');
     }
-    public function patients($page = 1){
-        $doctorid = $_SESSION['USER_DATA']->user_ID;
-        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
-        if($ongoingsession){
-            $ongoingsessionid = $ongoingsession->session_ID;
-            $patientsDetails = $this->dpModel->getPatientsDetails($ongoingsessionid);
-            $recodesPerPage =8;
-            $totalPatients = count($patientsDetails);
-            $totalPages = ceil($totalPatients / $recodesPerPage);
 
-            $offset = ($page -1)*$recodesPerPage;
-            $patients = array_slice($patientsDetails,$offset,$recodesPerPage);
-            
-        }else{
-            $patientsDetails = '';
-            $ongoingsession = '';
-            $patients='';
-            $page='';
-            $totalPages='';
+    public static function logged_in()
+    {
+        if (!empty($_SESSION['USER_DATA'])) {
+            return true;
         }
-        $data = [
-            'patientsData' => $patientsDetails,
-            'patients' => $patients,
-            'ongoingSession' =>$ongoingsession,
-            'currentPage' =>$page,
-            'totalPages'=>$totalPages
-        ];
-        $this->view('doctor/patients',$data);
+        return false;
+    }
+
+    public function patients($page = 1){
+
+        if ($this->logged_in()) {
+            $doctorid = $_SESSION['USER_DATA']->user_ID;
+            $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+            if($ongoingsession){
+                $ongoingsessionid = $ongoingsession->session_ID;
+                $patientsDetails = $this->dpModel->getPatientsDetails($ongoingsessionid);
+                $recodesPerPage =8;
+                $totalPatients = count($patientsDetails);
+                $totalPages = ceil($totalPatients / $recodesPerPage);
+    
+                $offset = ($page -1)*$recodesPerPage;
+                $patients = array_slice($patientsDetails,$offset,$recodesPerPage);
+                
+            }else{
+                $patientsDetails = '';
+                $ongoingsession = '';
+                $patients='';
+                $page='';
+                $totalPages='';
+            }
+            $data = [
+                'patientsData' => $patientsDetails,
+                'patients' => $patients,
+                'ongoingSession' =>$ongoingsession,
+                'currentPage' =>$page,
+                'totalPages'=>$totalPages
+            ];
+            $this->view('doctor/patients',$data);        
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+
+        
     }
 
     public function searchPatient(){
@@ -136,25 +152,32 @@ class Doctor extends Controller{
     }
 
     public function viewPrescriptions($id,$page=1){
-        $prescriptionDetails = $this->dpModel->getPrescriptionDetails($id);
-        $prescriptionCount = $this->dpModel->getPrescriptionCount($id);
-        $patient = $this->dpModel->getonePatient($id);
-        $recodesPerPage=8;
-        $totalprescriptions=count($prescriptionDetails);
-        $totalPages = ceil($totalprescriptions/$recodesPerPage);
 
-        $offset = ($page-1)*$recodesPerPage;
-        $prescriptions = array_slice($prescriptionDetails,$offset,$recodesPerPage);
+        if ($this->logged_in()) {
+            $prescriptionDetails = $this->dpModel->getPrescriptionDetails($id);
+            $prescriptionCount = $this->dpModel->getPrescriptionCount($id);
+            $patient = $this->dpModel->getonePatient($id);
+            $recodesPerPage=8;
+            $totalprescriptions=count($prescriptionDetails);
+            $totalPages = ceil($totalprescriptions/$recodesPerPage);
+    
+            $offset = ($page-1)*$recodesPerPage;
+            $prescriptions = array_slice($prescriptionDetails,$offset,$recodesPerPage);
+    
+            $data = [
+                'prescriptionsData' => $prescriptionDetails,
+                'prescriptionsCount' => $prescriptionCount,
+                'patient' => $patient,
+                'prescriptions'=>$prescriptions,
+                'currentPage'=>$page,
+                'totalPages'=>$totalPages
+            ];
+            $this->view('doctor/prescriptions',$data);        } else {
+            header("Location: /prescripsmart/general/error_page");
+}
 
-        $data = [
-            'prescriptionsData' => $prescriptionDetails,
-            'prescriptionsCount' => $prescriptionCount,
-            'patient' => $patient,
-            'prescriptions'=>$prescriptions,
-            'currentPage'=>$page,
-            'totalPages'=>$totalPages
-        ];
-        $this->view('doctor/prescriptions',$data);
+        
+        
     }
 
     public function showDiagnosis(){
@@ -186,25 +209,32 @@ class Doctor extends Controller{
     }
 
     public function viewReports($id,$page=1){
-        $reportDetails = $this->dpModel->getReportDetails($id);
-        $reportCount = $this->dpModel->getReportCount($id);
-        $patient = $this->dpModel->getonePatient($id);
-        $recodesPerPage=8;
-        $totalreports = count($reportDetails);
-        $totalPages = ceil($totalreports/$recodesPerPage);
 
-        $offset = ($page-1)*$recodesPerPage;
-        $reports = array_slice($reportDetails,$offset,$recodesPerPage);
-
-        $data = [
-            'reportsData' => $reportDetails,
-            'reportsCount' => $reportCount,
-            'patient' => $patient,
-            'reports'=>$reports,
-            'currentPage'=>$page,
-            'totalPages'=>$totalPages
-        ];
-        $this->view('doctor/reports',$data);
+        if ($this->logged_in()) {
+            $reportDetails = $this->dpModel->getReportDetails($id);
+            $reportCount = $this->dpModel->getReportCount($id);
+            $patient = $this->dpModel->getonePatient($id);
+            $recodesPerPage=8;
+            $totalreports = count($reportDetails);
+            $totalPages = ceil($totalreports/$recodesPerPage);
+    
+            $offset = ($page-1)*$recodesPerPage;
+            $reports = array_slice($reportDetails,$offset,$recodesPerPage);
+    
+            $data = [
+                'reportsData' => $reportDetails,
+                'reportsCount' => $reportCount,
+                'patient' => $patient,
+                'reports'=>$reports,
+                'currentPage'=>$page,
+                'totalPages'=>$totalPages
+            ];
+            $this->view('doctor/reports',$data);        
+        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+        
+        
     }
 
     public function chechRoport(){
@@ -242,12 +272,16 @@ class Doctor extends Controller{
     }
 
     public function sessions(){
-        $userid = $_SESSION['USER_DATA']->user_ID;
-        $sessionsDetails = $this->dpModel->getSessionsDetails($userid);
-        $data = [
-            'sessionsData' => $sessionsDetails
-        ];
-        $this->view('doctor/sessions',$data);
+        if ($this->logged_in()) {
+            $userid = $_SESSION['USER_DATA']->user_ID;
+            $sessionsDetails = $this->dpModel->getSessionsDetails($userid);
+            $data = [
+                'sessionsData' => $sessionsDetails
+            ];
+            $this->view('doctor/sessions',$data);        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+        
     }
 
 
@@ -287,21 +321,23 @@ class Doctor extends Controller{
     }
 
     public function viewOngoingSession(){
-
-        $doctorid = $_SESSION['USER_DATA']->user_ID;
-        $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
-        if($ongoingsession){
-            $ongoingsessionid = $ongoingsession->session_ID;
-            $ongoingPatient = $this->dpModel->getOngoingPatient($ongoingsessionid);
-            
-        }else{
-            $ongoingPatient = '';
+        if ($this->logged_in()) {
+            $doctorid = $_SESSION['USER_DATA']->user_ID;
+            $ongoingsession = $this->dpModel->getOngonigSession($doctorid);
+            if($ongoingsession){
+                $ongoingsessionid = $ongoingsession->session_ID;
+                $ongoingPatient = $this->dpModel->getOngoingPatient($ongoingsessionid);
+                
+            }else{
+                $ongoingPatient = '';
+            }
+            $data = [
+                'ongoingPatient' => $ongoingPatient,
+                'ongoingSession' => $ongoingsession
+            ];
+            $this->view('doctor/on-going_session',$data);        } else {
+            header("Location: /prescripsmart/general/error_page");
         }
-        $data = [
-            'ongoingPatient' => $ongoingPatient,
-            'ongoingSession' => $ongoingsession
-        ];
-        $this->view('doctor/on-going_session',$data);
         
     }
 
@@ -313,12 +349,17 @@ class Doctor extends Controller{
     }
 
     public function Profile(){
-        $userid = $_SESSION['USER_DATA']->user_ID;
-        $user = $this->dpModel->getProfileDetails($userid);
-        $data = [
-            'user' => $user
-        ];
-        $this->view('doctor/profile',$data);
+
+        if ($this->logged_in()) {
+            $userid = $_SESSION['USER_DATA']->user_ID;
+            $user = $this->dpModel->getProfileDetails($userid);
+            $data = [
+                'user' => $user
+            ];
+            $this->view('doctor/profile',$data);        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+        
     }
 
     // public function changePassword(){
@@ -347,13 +388,17 @@ class Doctor extends Controller{
 
     public function personal_information()
     {
-        $patient = $this->dpModel->doctorDetails();
-        $user = $this->dpModel->doctorInfo();
-        $data = [
-            'doctor' => $patient,
-            'user' => $user
-        ];
-        $this->view('doctor/personal_information', $data);
+        if ($this->logged_in()) {
+            $doctor = $this->dpModel->doctorDetails();
+            $user = $this->dpModel->doctorInfo();
+            $data = [
+                'doctor' => $doctor,
+                'user' => $user
+            ];
+            $this->view('doctor/personal_information', $data);        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+        
     }
 
     public function personalInfoUpdate()
@@ -505,12 +550,16 @@ class Doctor extends Controller{
 
     public function security()
     {
-        $userID = $_SESSION['USER_DATA']->user_ID;
-        $user = $this->dpModel->find_user_by_id($userID);
-        $data = [
-            'user' => $user
-        ];
-        $this->view('doctor/security', $data);
+        if ($this->logged_in()) {
+            $userID = $_SESSION['USER_DATA']->user_ID;
+            $user = $this->dpModel->find_user_by_id($userID);
+            $data = [
+                'user' => $user
+            ];
+            $this->view('doctor/security', $data);        } else {
+            header("Location: /prescripsmart/general/error_page");
+        }
+        
     }
 
     public function toggle2FA()
