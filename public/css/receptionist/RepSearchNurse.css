@@ -185,32 +185,37 @@ but :active
 .row
 {
     background-color: #ffffff;
-    display: flex;
     border-radius: 1vh;
     margin-bottom: 2vh;
     height:8vh;
     width: 100%;
 }
-.row p
+.name
 {
-  color: #445172BF;
+  color: #000000;
   cursor: pointer; 
-  width: 20vh;
+  width: 40vh;
   font-size: 2vh;
+  
+}
+
+.row .id
+{
+  color: #0069FF;
+  width: 40vh;
+  font-size: 2vh;
+  margin-top: -3vh;
+  margin-left: 6vh;
+
 }
 
 .person-circle
 {
-  padding-left: 1vh;
+  padding-left: 3vh;
   padding-right: 1vh;
-  padding-top: 1vh;
-  width: 5vh;
-  height: 5vh;
-}
-.row .name
-{
-  width: 20vh;
-  color: #000000;
+  padding-top: 2vh;
+  width: 6vh;
+  height: 6vh;
 }
 
 td
@@ -227,7 +232,7 @@ td
 }
 .profileButton
 {
-  margin-left:27vh;
+  margin-left:9vh;
   Width:25vh;
   margin-top: 1vh;
   border-radius:1vh;
@@ -239,11 +244,35 @@ td
   width: 12vw;
   height: 5vh;
   border: none;
-  cursor: pointer;    
+  cursor: pointer; 
+  margin-bottom: 1vh;   
+}
+
+.sessionButton
+{
+  margin-left:10vh;
+  Width:25vh;
+  margin-top: 1vh;
+  border-radius:1vh;
+  background-color: #397A49;
+  color: white;
+  font-family: inter;
+  font-weight: 10vh;
+  font-size: 1.5vh;
+  width: 12vw;
+  height: 5vh;
+  border: none;
+  cursor: pointer;  
+  margin-bottom: 1vh;   
+  
 }
 .details table
 {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 1vh;
+}
+.details
+{
+  padding-bottom: 2vh;
 }

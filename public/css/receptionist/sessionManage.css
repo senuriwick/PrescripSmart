@@ -116,8 +116,18 @@ body {
   margin-left: 4vh;
 }
 
+.sessions h5
+{
+  margin-left:6vh;
+}
+
 .doc-info {
   display: flex;
+}
+
+.doc-info h3
+{
+  margin-left:2vh;
 }
 
 .name2 {
