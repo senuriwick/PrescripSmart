@@ -137,36 +137,42 @@ but :active
 
 }
 .addapp
-{
-  
-  margin-left: 2.5vh;
-  margin-top: 1.5vh;
-  background-color: #EFF2FB;
-  width: 55vh;
-  height: 11vh;
-  border-radius: 1vh;
-}
-.addapp p
-{
-  margin-left: 11vh;
-  color: #445172BF;
-  margin-top: -5vh;
-  font-size: 1.5vh;
-}
-.newapp
-{
-  display: flex;
+  {
+    /* margin-left: 2vh; */
+    margin-top: 4vh;
+    background-color: #EFF2FB;
+    width:130vh;
+    height: 8vh;
+    border-radius: 1vh;
+    justify-content: center;
+  }
 
+.addapp .newapp
+  {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+
+  }
+  
+.newapp img
+{
+    /* padding: 2vh 2vh; */
+    width: 30px;
+    height: 30px;
+    /* align-self: center; */
+    padding-top: 2vh;
+    padding-right: 3vh;
+    padding-left: 1vh;
+    justify-self: center;
 }
-.newapp img{
-  padding: 3vh 3vh;
-  width: 5vh;
-  height: 5vh;
-}
-.newapp a{
-  padding-top: 3vh;
-  color: #0069FF;
-  text-decoration:none;
+  .newapp a
+{
+    padding-top: 2vh;
+    color: #0069FF;
+    text-decoration:none;
+    justify-self: center;
+    font-weight: bolder;
 }
 .regbut
 {
@@ -185,32 +191,37 @@ but :active
 .row
 {
     background-color: #ffffff;
-    display: flex;
     border-radius: 1vh;
     margin-bottom: 2vh;
     height:8vh;
     width: 100%;
 }
-.row p
+.name
 {
-  color: #445172BF;
+  color: #000000;
   cursor: pointer; 
-  width: 20vh;
+  width: 40vh;
   font-size: 2vh;
+  
+}
+
+.row .id
+{
+  color: #0069FF;
+  width: 40vh;
+  font-size: 2vh;
+  margin-top: -3vh;
+  margin-left: 6vh;
+
 }
 
 .person-circle
 {
-  padding-left: 1vh;
+  padding-left: 3vh;
   padding-right: 1vh;
-  padding-top: 1vh;
-  width: 5vh;
-  height: 5vh;
-}
-.row .name
-{
-  width: 20vh;
-  color: #000000;
+  padding-top: 2vh;
+  width: 6vh;
+  height: 6vh;
 }
 
 td
@@ -227,7 +238,7 @@ td
 }
 .profileButton
 {
-  margin-left:27vh;
+  margin-left:9vh;
   Width:25vh;
   margin-top: 1vh;
   border-radius:1vh;
@@ -239,11 +250,35 @@ td
   width: 12vw;
   height: 5vh;
   border: none;
-  cursor: pointer;    
+  cursor: pointer; 
+  margin-bottom: 1vh;   
+}
+
+.sessionButton
+{
+  margin-left:10vh;
+  Width:25vh;
+  margin-top: 1vh;
+  border-radius:1vh;
+  background-color: #397A49;
+  color: white;
+  font-family: inter;
+  font-weight: 10vh;
+  font-size: 1.5vh;
+  width: 12vw;
+  height: 5vh;
+  border: none;
+  cursor: pointer;  
+  margin-bottom: 1vh;   
+  
 }
 .details table
 {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 1vh;
+}
+.details
+{
+  padding-bottom: 2vh;
 }

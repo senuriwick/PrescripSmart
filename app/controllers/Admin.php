@@ -444,37 +444,114 @@
 
     public function viewRegdoctor()
     {
-      $this->view('admin/regDoctor');
+      $data =[
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+      $this->view('admin/regDoctor',$data);
     }
 
     public function viewReghealthsup()
     {
-      $this->view('admin/regHealthsup');
+      $data =[
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+      $this->view('admin/regHealthsup',$data);
     }
 
     public function viewReglabtech()
     {
-      $this->view('admin/regLabtech');
+      $data =[
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+      $this->view('admin/regLabtech',$data);
     }
 
     public function viewRegnurse()
     {
-      $this->view('admin/regNurse');
+      $data =[
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+      $this->view('admin/regNurse',$data);
     }
 
     public function viewRegpatient()
     {
-      $this->view('admin/regPatient');
+      $data =[
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+      $this->view('admin/regPatient',$data);
     }
 
     public function viewRegpharmacist()
     {
-      $this->view('admin/regPharmacist');
+      $data =[
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+      $this->view('admin/regPharmacist',$data);
     }
 
     public function viewRegreceptionist()
     {
-      $this->view('admin/regReceptionist');
+      $data =[
+        'first_name' => '',
+        'last_name' => '',
+        'email_address' => '',
+        'password' => '',
+        'firstname_err' => '',
+        'lastname_err' => '',
+        'email_err' => '',
+        'phonenum_err' => '',
+        'password_err' => ''
+      ];
+      $this->view('admin/regReceptionist',$data);
     }
 
 
@@ -586,8 +663,7 @@
         else
         {
           // Load view with errors
-          //$this->view('admin/register_email', $data);
-          echo"this 13";
+          $this->view('admin/regDoctor', $data);
         }
 
       }
@@ -1007,8 +1083,6 @@
     
     public function regPatient()
     {
-      $this->view('admin/regPatient');
-
 
       if($_SERVER['REQUEST_METHOD'] == 'POST')
       {
@@ -1110,7 +1184,7 @@
         else
         {
           // Load view with errors
-          $this->view('admin/register_email', $data);
+          $this->view('admin/regPatient', $data);
         }
 
       }

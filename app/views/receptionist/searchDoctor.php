@@ -28,6 +28,13 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
+        <div class="addapp">
+          <div class="newapp">
+            <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
+            <a href="<?php echo URLROOT ?>/admin/viewRegnurse">NEW DOCTOR</a>
+          </div>
+        </div>
+
       <div class="searchDiv">
             <h1>Search Doctor</h1>
             <div class="searchFiles">
@@ -93,12 +100,7 @@
     </div>
 
 
-    <div class="addapp">
-        <div class="newapp">
-            <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
-            <a href="<?php echo URLROOT ?>/receptionist/viewregDoctor">Register a new doctor</a>
-        </div>
-    </div>
+    
     </div>
     </div>
     </div>

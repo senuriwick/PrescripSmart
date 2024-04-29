@@ -42,28 +42,28 @@
                                     <h3 style="color: #0069FF;">first name</h3>
                                     <p style="color: red;">*</p>
                                 </div>
-                                <input type="text" name="first_name" placeholder="Enter Your first name">
+                                <input type="text" name="first_name" placeholder="Enter Your first name"required>
                             </div>
                             <div class="lastname">
                                 <div class="req">
                                     <h3 style="color: #0069FF;">last name</h3>
                                     <p style="color: red;">*</p>
                                 </div>
-                                <input type="text" name="last_name" placeholder="Enter Your last name">
+                                <input type="text" name="last_name" placeholder="Enter Your last name"required>
                             </div>
                         </div>
 
                         <div class="top2">
                             <div class="email">
                                 <h3>email address</h3>
-                                <input type="text" name="email" placeholder="Enter Your email address">
+                                <input type="text" name="email" placeholder="Enter Your email address"required>
                             </div>
                             <div class="phone">
                                 <div class="req">
                                     <h3 style="color: #0069FF;">contact number</h3>
                                     <p style="color: red;">*</p>
                                 </div>
-                                <input type="text" name="phone_number" placeholder="Enter Your phone number">
+                                <input type="text" name="phone_number" placeholder="Enter Your phone number"required>
                             </div>
                         </div>
 
@@ -72,7 +72,7 @@
                                 <h3 style="color: #0069FF;">create password</h3>
                                 <p style="color: red;">*</p>
                             </div>
-                            <input type="password" name="password" placeholder="Enter password">
+                            <input type="password" name="password" placeholder="Enter password"required>
                         </div>
                         <button type="submit"><b>Register</b></button>
                     </form>

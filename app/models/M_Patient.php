@@ -287,8 +287,8 @@ class M_Patient
     //PRESCRIPTIONS
     public function prescriptions($userID)
     {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
-        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name, pa.age FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pa ON pa.patient_ID = p.patient_ID
         WHERE p.patient_ID = :userID
         ORDER BY p.prescription_Date ASC');
         $this->db->bind(':userID', $userID);
@@ -411,12 +411,12 @@ class M_Patient
         $this->db->execute();
     }
 
-    public function resetPassword($newpassword, $userID)
+    public function resetPassword($newpassword)
     {
         $this->db->query('UPDATE users SET password = :newpassword 
         WHERE user_ID = :userID');
         $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
-        $this->db->bind('userID', $userID);
+        $this->db->bind('userID', $_SESSION['USER_DATA']->user_ID);
         $this->db->execute();
     }
 

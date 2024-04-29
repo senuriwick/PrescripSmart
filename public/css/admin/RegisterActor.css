@@ -199,3 +199,10 @@ h1
     margin-right: 20px;
     width: 24px;
   }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  

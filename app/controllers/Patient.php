@@ -1006,6 +1006,7 @@ class Patient extends Controller
     {
         if ($this->logged_in()) {
             $userID = $_SESSION['USER_DATA']->user_ID;
+            $patient = $this->patientModel->patientDetails();
             $prescriptions = $this->patientModel->prescriptions($userID);
             $prescriptionDetails = [];
             $labDetails = [];
@@ -1020,7 +1021,7 @@ class Patient extends Controller
             $data = [
                 'prescriptions' => $prescriptions,
                 'prescriptionDetails' => $prescriptionDetails,
-                'labDetails' => $labDetails
+                'labDetails' => $labDetails,
             ];
             $this->view('patient/prescriptions_dashboard', $data);
         } else {

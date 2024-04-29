@@ -27,6 +27,13 @@
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation.php'; ?>
 
+                <div class="addapp">
+                    <div class="newapp">
+                        <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
+                        <a href="<?php echo URLROOT ?>/admin/viewRegnurse">NEW NURSE</a>
+                    </div>
+                </div>
+
         <div class="searchDiv">
             <h1>Search Nurse</h1>
             <div class="searchFiles">
@@ -51,15 +58,14 @@
                         </td>
                                                                    
                         <td>
-                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_ID;?></p>
+                            <label class= "id" style="margin-left: 10vh;">Employee ID #<?php echo $post->nurse_ID;?></label>
                         </td>
 
                         <td>
-                        <a href="<?php echo URLROOT ?>/receptionist/showProfileNurse/<?php echo $post->nurse_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                            <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileNurse/<?php echo $post->nurse_id ?>">
-                                <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
-                            </form>
-                             </td>
+                        <a href="<?php echo URLROOT ?>/receptionist/nurseViewSessions/<?php echo $post->nurse_ID ?>"><button class="profileButton"><b>View Assigned Sessions</b></button> </a>
+                        <a href="<?php echo URLROOT ?>/receptionist/nurseAssignSessions/<?php echo $post->nurse_ID ?>"><button class="sessionButton"><b>Assign to a Session</b></button> </a>                       
+                       
+                       </td>
                                                
                                                                   
                       </tr>
@@ -96,12 +102,7 @@
                   </script>
             </div>
         </div>
-        <div class="addapp">
-                    <div class="newapp">
-                        <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
-                        <a href="<?php echo URLROOT ?>/admin/viewregNurse">Register a new Nurse</a>
-                    </div>
-                </div>
+       
 
 
             </div>
