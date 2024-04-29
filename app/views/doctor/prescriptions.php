@@ -76,7 +76,8 @@
             <span class="close">&times;</span>
             <a href="www.prescripsamert.com">www.prescripsamert.com</a>
             <div class="model-head">
-                <img src="<?php echo URLROOT;?>/public/img/doctor/qr.png" alt="qr-img" />
+                <div>p</div>
+                <!-- <img src="<?php echo URLROOT;?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                 <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                 <i class="fa-solid fa-circle-arrow-up"></i>
             </div>
