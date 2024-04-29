@@ -38,75 +38,35 @@
 
              <hr style="margin-bottom: 3vh; margin-top:-0.5vh">
 
-             <div class="details">
-    <table>
-        <tbody>
-            <?php foreach ($data['doctors'] as $post): ?>
-                <tr class="row"> 
-                    <td>
-                        <div class="app-doc">
-                            <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="profile-pic">
-                            <h3 class="name">
-                                <?php echo ucwords($post->last_Name); ?>
-                            </h3>                           
-                        </div>
-                        <h4 class="doc-pos"><?php echo $post->specialization; ?></h4>                               
+             <?php foreach ($data['doctors'] as $doctor) : ?>
+        <div class="sessions">
+          <div class="doc-info">
+            <img src="<?php echo URLROOT ?>/img/receptionist/PersonCircle.png" alt="user-icon">
+            <h3>Dr. <?php echo $doctor->first_Name . ' ' . $doctor->last_Name ?></h3>
+          </div>
+          <h5><?php echo $doctor->specialization ?></h5>
+          <hr style="color: #D9D9D9; margin-bottom:2vh; width:90%;">
 
-                        <div class="session-details">
-                        <?php foreach ($data['sessions'] as $sessions): ?>
-                               
-
-                            <?php if ($post->doctor_ID == $sessions->doctor_ID): ?>
-                                <div class="sessions">
-                                <?php
-                                $dateString = date_create_from_format('Y-m-d', $sessions->sessionDate);
-                                $formatted_date = $dateString->format("Y, jS M, D");
-                                $start_time = date("h:i A", strtotime($sessions->start_time));
-                                $end_time = date("h:i A", strtotime($sessions->end_time));
-                                ?> 
-                                    <h4><strong>Session #<?php echo $sessions->session_ID; ?></strong></h4>
-                                    <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
-                                    <p>Date: <?php echo $formatted_date; ?></p> 
-                                    <p>Time: <?php echo $start_time . ' - ' .  $end_time; ?></p> 
-
-                                    <button onclick="bookNow(<?php echo $sessions->session_ID; ?>)">
-                                    <strong>BOOK NOW</strong>
-                                    </button>
-                                </div>
-                            <?php endif; ?>
-                          <?php endforeach; ?>
-                        </div>
-                        <br>                       
-                    </td>
-                </tr>
+          <div class="session-cards-container">
+            <?php foreach ($data['sessions'] as $session) : ?>
+              <?php if ($doctor->doctor_ID == $session->doctor_ID) : ?>
+                <div class="session-card">
+                  <h4><strong>Session #<?php echo $session->session_ID ?></strong></h4>
+                  <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
+                  <p>Date: <?php echo $session->sessionDate ?></p>
+                  <p>Time: <?php echo $session->start_time . '-' . $session->end_time ?></p>
+                  <button onclick="bookNow(<?php echo $session->session_ID; ?>)">
+                  <strong>BOOK NOW</strong>
+                </button>
+                </div>
+                
+              <?php endif; ?>
             <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+          </div>
+        </div>
+      <?php endforeach; ?>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById("searchinput");
-
-        searchInput.addEventListener("input", function () {
-            const searchTerm = searchInput.value.toLowerCase();
-            const regex = new RegExp(searchTerm, 'i');
-            const Rows = document.querySelectorAll(".row");
-
-            Rows.forEach(function (row) {
-                const NameElement = row.querySelector(".name");
-                if (NameElement) { // Check if the element is not null
-                    const Name = NameElement.textContent.toLowerCase();
-                    if (regex.test(Name)) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                }
-            });
-        });
-    });
-
         function bookNow(sessionID) 
         {
         var confirmationURL = "<?php echo URLROOT; ?>/receptionist/create_appointment";

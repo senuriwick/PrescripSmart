@@ -33,6 +33,56 @@
         <?php include 'information_container.php'; ?>
         <?php include 'in_page_navigation.php'; ?>
 
+<<<<<<< HEAD
+        <div class="searchDiv">
+                <h1>Search Pharmacist</h1>
+                <div class="searchFiles">
+                    <form>
+                        <input type="text" id="searchinput" class="searchinput" placeholder="Enter Pharmacists' Name/ID here">
+                        <button type="search" class="searchButton"><b>SEARCH</b></button>
+                    </form>
+                    <hr style="margin-bottom: 3vh;">
+
+                    <div class="details">
+                        <table>
+                            <tbody>
+                            <?php foreach($data['allPharmacists'] as $post): ?>
+                                <tr class="row">                                                                                                      
+                                    <td >
+                                        <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                                        <p class= "name">
+                                            Mr.
+                                            <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
+                                        </p> 
+                                    </td>
+                                    <td>
+                                            <p style="margin-left: 10vh;">Employee ID #<?php echo $post->pharmacist_ID;?></p>
+                                    </td>
+
+                                    <td>
+                                    <a href="<?php echo URLROOT ?>/admin/showProfilePharmacist/<?php echo $post->pharmacist_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                        <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfilePharmacist/<?php echo $post->pharmacist_ID ?>">
+                                            <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                        </form>
+                                    </td>
+                                </tr>                                                                                            
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+
+        <div class="pagination">
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="<?php echo URLROOT ?>/admin/searchPharmacist/<?php echo $i ?>" <?php if ($currentPage == $i)
+                                echo 'class="active"'; ?>><?php echo $i ?></a>
+                      <?php endfor; ?>
+
+       </div>
+    </div>
+
+=======
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
         <div class="addapp">
           <div class="newapp">
             <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
@@ -113,6 +163,23 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
 
+<<<<<<< HEAD
+  document.getElementById("searchinput").addEventListener("input", function () {
+          var searchQuery = this.value.trim();
+          if (searchQuery !== "") {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "<?php echo URLROOT ?>/admin/filterPharmacists?search=" + searchQuery, true);
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4 && xhr.status == 200) {
+                var filteredPatients = JSON.parse(xhr.responseText);
+                updatePatientList(filteredPatients);
+                
+              }
+            };
+            xhr.send();
+          } else {
+            location.reload();
+=======
     document.getElementById("searchinput").addEventListener("input", function () {
       var searchQuery = this.value.trim();
       if (searchQuery !== "") {
@@ -123,6 +190,7 @@
             var filteredPatients = JSON.parse(xhr.responseText);
             updatePatientList(filteredPatients);
 
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
           }
         };
         xhr.send();

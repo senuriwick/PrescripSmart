@@ -6,7 +6,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Receptionist Search Nurse</title>
+    <title> Search a Nurse</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -26,6 +26,15 @@
           <div class="patientInfoContainer">
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation.php'; ?>
+
+        <div class="searchDiv">
+            <h1>Search Nurse</h1>
+            <div class="searchFiles">
+                <form>
+                    <input type="search" id="searchinput" placeholder="Enter Doctor Name/ID here">
+                    <button type="search"><b>SEARCH</b></button> 
+                </form>
+            </div>
             
             <div class="details">
                 <table>
@@ -34,10 +43,10 @@
                     <tr class="row">
                                                                                
                          <td >
-                            <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                            <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png"  alt="profile-pic">
                             <p class= "name">
                                 Mr.
-                                <?php echo $post->last_Name;?>
+                                <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
                             </p> 
                         </td>
                                                                    
@@ -46,8 +55,8 @@
                         </td>
 
                         <td>
-                        <a href="<?php echo URLROOT ?>/admin/showProfileNurse/<?php echo $post->nurse_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                            <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfileNurse/<?php echo $post->nurse_id ?>">
+                        <a href="<?php echo URLROOT ?>/receptionist/showProfileNurse/<?php echo $post->nurse_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                            <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfileNurse/<?php echo $post->nurse_id ?>">
                                 <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
                             </form>
                              </td>
@@ -58,6 +67,9 @@
 
                     </tbody>
                 </table>
+
+                
+
                 <script>
                       document.addEventListener("DOMContentLoaded", function () {
                       const searchInput = document.getElementById("searchinput");//element
@@ -84,16 +96,17 @@
                   </script>
             </div>
         </div>
-
-
-            </div>
-
-            <div class="addapp">
-                <div class="newapp">
-                    <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
-                    <a href="<?php echo URLROOT ?>/admin/viewregNurse">Register a new Nurse</a>
+        <div class="addapp">
+                    <div class="newapp">
+                        <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
+                        <a href="<?php echo URLROOT ?>/admin/viewregNurse">Register a new Nurse</a>
+                    </div>
                 </div>
+
+
             </div>
+
+            
         </div>
     </div>
     </div>

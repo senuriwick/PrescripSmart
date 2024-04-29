@@ -718,7 +718,7 @@ public function filterReceptionists($searchQuery) {
       public function getPatientbyID($id)
       {
         $sql = "SELECT users.*, patients.*
-        FROM users
+        FROM users 
         INNER JOIN patients ON users.user_ID = patients.patient_ID
         WHERE users.user_ID = :id";
 
@@ -758,7 +758,7 @@ public function filterReceptionists($searchQuery) {
       {
         $sql = "SELECT users.*, healthsupervisors.*
         FROM users 
-        JOIN healthsupervisors ON users.user_ID = healthsupervisors.supervisor_ID
+        INNER JOIN healthsupervisors ON users.user_ID = healthsupervisors.supervisor_ID
         WHERE users.user_ID = :id";
 
         $this->db->query($sql);

@@ -23,6 +23,9 @@ body {
 .se {
   background-color: rgba(68, 81, 114, 1);
   position: relative;
+  height: auto;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .se::before {
@@ -106,13 +109,6 @@ body {
   font-size: 18px;
 }
 
-.sessions {
-  margin-left: 2vh;
-  width: 100vh;
-  height: 40vh;
-  background-color: #EFF2FB;
-}
-
 .sessions img {
   margin-top: 3vh;
   width: 5vh;
@@ -134,12 +130,14 @@ body {
   margin-left: 11vh;
 } 
 
+
 .session-card {
   width: 30vh;
   height: 25vh;
   background-color: white;
-  border-radius: 1vh;
+  border-radius: 10px;
   margin-left: 4vh;
+  margin-bottom: 15px;
 
 }
 
@@ -162,4 +160,62 @@ body {
   width: 20vh;
   height: 4vh;
   margin-left: 4vh;
+}
+
+.session-cards-container {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+/* .session-card {
+  flex: 0 0 50%; 
+} */
+
+.addapp
+{
+  margin-left: 6vh;
+  background-color: #EFF2FB;
+  width: 35vh;
+  height: 11vh;
+  border-radius: 1vh;
+  margin-bottom: 3vh;
+}
+
+.addapp p
+{
+  margin-left: 11vh;
+  color: #445172BF;
+  margin-top: -5vh;
+  font-size: 1.5vh;
+}
+
+.newapp
+{
+  display: flex;
+
+}
+
+.newapp img{
+  padding: 3vh 3vh;
+  width: 5vh;
+  height: 5vh;
+}
+
+.newapp a{
+  padding-top: 3vh;
+  color: #0069FF;
+  text-decoration:none;
+}
+
+.doc-info button
+{
+  background-color: #FF002E;
+  width: 23vh;
+  height: 4.5vh;
+  border-radius: 1vh;
+  color: #FFFFFF;
+  font-size: 2.5vh;
+  margin-top:2.5vh;
+  margin-left: 5vh;
+  border: none; 
 }

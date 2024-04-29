@@ -50,6 +50,16 @@
 
             <div class="file-details">
               <div class="details">
+<<<<<<< HEAD
+                 <table>
+                   <tbody>
+                      <?php foreach($data['allPatients'] as $post): ?>
+                         <tr class="row">                                                                                         
+                            <td >
+                                <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png"  alt="profile-pic">
+                              
+                                <?php if ($post->gender == "male"): ?>
+=======
                 <table>
                   <tbody>
                     <?php foreach ($data['patients'] as $post): ?>
@@ -59,6 +69,7 @@
                             alt="profile-pic"></td>
                         <td>
                           <?php if ($post->gender == "male"): ?>
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
                             <strong>
                               <p class="name">Mr.
                                 <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
@@ -79,6 +90,15 @@
                           <p>Patient ID #<?php echo $post->patient_ID; ?></p>
                         </td>
 
+<<<<<<< HEAD
+                            <td>
+                            <a href="<?php echo URLROOT ?>/admin/showpatientProfile/<?php echo $post->patient_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
+                                <form method="post" action="<?php echo URLROOT; ?>/admin/deleteProfile/<?php echo $post->patient_ID ?>">
+                                <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/admin/Trash.png" alt="profile-pic">
+                                </form>                                    
+                            </td> 
+                        </tr>  
+=======
                         <td>
                           <a href="<?php echo URLROOT ?>/admin/showProfilePatient/<?php echo $post->patient_ID ?>"><button
                               class="profileButton"><b>View Profile</b></button> </a>
@@ -89,6 +109,7 @@
                           </form>
                         </td>
                       </tr>
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
                     <?php endforeach ?>
                   </tbody>
                 </table>

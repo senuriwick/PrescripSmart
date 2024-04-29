@@ -101,10 +101,17 @@
           </div>
 
           <div class="pagination">
+<<<<<<< HEAD
+          <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <a href="<?php echo URLROOT ?>/admin/searchHealthsup/<?php echo $i ?>" <?php if ($currentPage == $i)
+                                echo 'class="active"'; ?>><?php echo $i ?></a>
+                      <?php endfor; ?>
+=======
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
               <a href="<?php echo URLROOT ?>/admin/searchPatient/<?php echo $i ?>" <?php if ($currentPage == $i)
                       echo 'class="active"'; ?>><?php echo $i ?></a>
             <?php endfor; ?>
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
           </div>
         </div>
 
@@ -117,6 +124,23 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
 
+<<<<<<< HEAD
+  document.getElementById("searchinput").addEventListener("input", function () {
+          var searchQuery = this.value.trim();
+          if (searchQuery !== "") {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "<?php echo URLROOT ?>/admin/filterHealthsups?search=" + searchQuery, true);
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4 && xhr.status == 200) {
+                var filteredPatients = JSON.parse(xhr.responseText);
+                updatePatientList(filteredPatients);
+                
+              }
+            };
+            xhr.send();
+          } else {
+            location.reload();
+=======
     document.getElementById("searchinput").addEventListener("input", function () {
       var searchQuery = this.value.trim();
       if (searchQuery !== "") {
@@ -127,6 +151,7 @@
             var filteredPatients = JSON.parse(xhr.responseText);
             updatePatientList(filteredPatients);
 
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
           }
         };
         xhr.send();

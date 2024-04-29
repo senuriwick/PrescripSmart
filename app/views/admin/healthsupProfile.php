@@ -27,8 +27,21 @@
 
                 <?php $healthsup = $data['healthsup'] ?>
 
+<<<<<<< HEAD
+        <div class="bar2">
+            <div class="div-specifier">
+                    <div class="user-details">
+                        <img class="person-circle" src= "<?php echo URLROOT ?>/img/admin/PersonCircle.png">
+                        <h1><strong><?php echo ucwords($data['doctor']->first_Name) ?> <?php echo ucwords($data['doctor']->last_Name) ?></strong></h1>
+                    </div>
+                    <h3>Employee ID #<?php echo $data['doctor']->user_ID ?></h3>
+                    <h4>Personal information</h4>  
+                    <hr style="margin-top: -1.5vh; color:#445172BF;" width="85%">
+            </div>
+=======
                 <div class="inquiriesDiv">
                         
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
 
                         <div class="patientFileExt">
             <img src="<?php echo URLROOT; ?>\public\img\patient\back_arrow_icon.png" alt="back-icon" class="back-icon"
@@ -36,6 +49,56 @@
             <img src="<?php echo URLROOT; ?>\public\uploads\profile_images\<?php echo $healthsup->profile_photo ?>"
               alt="patient-pic" class="patient-pic">
 
+<<<<<<< HEAD
+            <div class="row2">
+                    <div class="firstname">
+                          <h2>Display Name</h2>
+                          <input type="text" value="<?php echo ucwords($data['doctor']->display_Name) ?>">
+                    </div>                    
+                  
+                    <div class="firstname">
+                          <h2>Home Address</h2>
+                          <input type="text" value="<?php echo ucwords($data['doctor']->home_Address) ?>">
+                    </div>    
+            </div>
+
+            <div class="row1">                   
+                <div class="firstname">
+                        <h2>National Identity Card Number</h2>
+                        <input type="text" value="<?php echo ucwords($data['doctor']->NIC) ?>">
+                </div>
+                <div class="lastname">
+                        <h2>Contact Number</h2>
+                        <input type="text" value="<?php echo $data['doctor']->contact_Number ?>">
+                </div> 
+            </div>
+
+            <div class="row1">                   
+                <div class="firstname">
+                        <h2>Health Supervisor Registration No.</h2>
+                        <input type="text" value="<?php echo ucwords($data['doctor']->registration_No) ?>">
+                </div>
+                <div class="lastname">
+                        <h2>Qualifications</h2>
+                        <input type="text" value="<?php echo $data['doctor']->qualifications ?>">
+                </div> 
+            </div>
+
+            <div class="row1">                   
+                <div class="firstname">
+                        <h2>Department</h2>
+                        <input type="text" value="<?php echo ucwords($data['doctor']->department) ?>">
+                </div>
+                <div class="lastname">
+                        <h2>Specialization(If any)</h2>
+                        <input type="text" value="<?php echo ucwords($data['doctor']->specialization) ?>">
+                </div> 
+            </div>
+
+            <!-- <div class="btn">
+                <button type="submit" onclick="openPopup()"><b>Save Changes</b></button>     
+            </div> -->
+=======
             <div class="fileInfo">
             <?php if ($healthsup->gender == "male"): ?>
                 <p class = "name">Mr.
@@ -46,6 +109,7 @@
                   <?php echo $healthsup->display_Name; ?>
                 </p>
               <?php endif; ?>
+>>>>>>> bebfa1faf0ab4ed1ad59fd62cfa9937d8214108b
               
               <p class="patientIdClass">Employee ID #<?php echo $healthsup->supervisor_ID; ?>
               </p>

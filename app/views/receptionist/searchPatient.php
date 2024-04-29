@@ -6,7 +6,7 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Receptionist Search Patient</title>
+    <title>Search a Patient</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -50,20 +50,20 @@
                                                 alt="profile-pic">
                                             <p class="name">
                                                 Mr.
-                                                <?php echo $post->last_name; ?>
+                                                <?php echo ucwords($post->first_Name . ' ' . $post->last_Name); ?>
                                             </p>
                                         </td>
 
                                         <td>
-                                            <p style="margin-left: 10vh;">Patient ID #<?php echo $post->patient_id; ?></p>
+                                            <p style="margin-left: 10vh;">Patient ID #<?php echo $post->patient_ID; ?></p>
                                         </td>
 
                                         <td>
                                             <a
-                                                href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->emp_id ?>"><button
+                                                href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->user_ID ?>"><button
                                                     class="profileButton"><b>View Profile</b></button> </a>
                                             <form method="post"
-                                                action="<?php echo URLROOT; ?>/receptionist/deleteProfilePatient/<?php echo $post->patient_id ?>">
+                                                action="<?php echo URLROOT; ?>/receptionist/deleteProfilePatient/<?php echo $post->patient_ID ?>">
                                                 <input type="image" class="trash-image"
                                                     src="<?php echo URLROOT ?>/img/receptionist/Trash.png"
                                                     alt="profile-pic">
@@ -98,38 +98,16 @@
                             });
                         </script>
                     </div>
+
+                </div>
+                <div class="addapp">
+                        <div class="newapp">
+                        <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
+                        <a href="<?php echo URLROOT?>/receptionist/viewregPatient">Register a new Patient</a>
+                        </div>
                 </div>
 
-            <div class="details">
-                <table>
-                    <tbody>
-                    <?php foreach($data['patients'] as $post): ?>
-                      <tr class="row">                                                                                                     
-
-                            <td >
-                                 <img class="person-circle" src= "<?php echo URLROOT ?>/img/receptionist/PersonCircle.png"  alt="profile-pic">
-                                <p class= "name">
-                                     Mr.
-                                     <?php echo $post->last_Name;?>
-                                </p>
-                            </td>
-
-                            <td>
-                                <p style="margin-left: 10vh;" >Patient ID #<?php echo $post->patient_ID;?></p>
-                            </td>
-
-                            <td>
-                            <a href="<?php echo URLROOT ?>/receptionist/showProfilePatient/<?php echo $post->patient_ID ?>"><button class="profileButton"><b>View Profile</b></button> </a>
-                                <form method="post" action="<?php echo URLROOT; ?>/receptionist/deleteProfilePatient/<?php echo $post->patient_id ?>">
-                                    <input type="image" class="trash-image" src= "<?php echo URLROOT ?>/img/receptionist/Trash.png" alt="profile-pic">
-                                </form>                                    
-                            </td>                 
-             
-                    </tr>
-                <?php endforeach; ?>
-
-              </tbody>
-            </table>
+            
             <script>
                       document.addEventListener("DOMContentLoaded", function () {
                       const searchInput = document.getElementById("searchinput");//element
@@ -157,12 +135,7 @@
           </div>
         </div>     
 
-        <div class="addapp">
-            <div class="newapp">
-                <img src="<?php echo URLROOT ?>/img/receptionist/FilePerson.png">
-                <a href="<?php echo URLROOT?>/receptionist/viewregPatient">Register a new Patient</a>
-            </div>
-        </div>
+        
     </div>
 </body>
 
