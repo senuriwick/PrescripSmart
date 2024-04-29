@@ -411,12 +411,12 @@ class M_Patient
         $this->db->execute();
     }
 
-    public function resetPassword($newpassword, $userID)
+    public function resetPassword($newpassword)
     {
         $this->db->query('UPDATE users SET password = :newpassword 
         WHERE user_ID = :userID');
         $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
-        $this->db->bind('userID', $userID);
+        $this->db->bind('userID', $_SESSION['USER_DATA']->user_ID);
         $this->db->execute();
     }
 

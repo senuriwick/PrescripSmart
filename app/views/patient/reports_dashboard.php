@@ -45,8 +45,8 @@
                 </p></div>
 
                 <div class = "imgclass">
-                <?php if ($report->downloads <= 5): ?>
-                  <a href="<?php echo URLROOT; ?>/public/uploads/<?php echo $report->report; ?>"
+                <?php if ($report->downloads <= 5 && $report->date_of_report !== NULL): ?>
+                  <a href="<?php echo URLROOT; ?>/public/uploads/reports/<?php echo $report->report; ?>"
                     class="download-link" data-report-id="<?= $report->report_ID ?>">
                     <img src="<?php echo URLROOT; ?>/public/img/patient/download.png" alt="download-icon">
                   </a>

@@ -136,7 +136,6 @@ class LabTechnician extends Controller{
             } else {
                 //echo 'Message has been sent';
             }
-        }
     }
 
     public function sendSMS($phone, $reportID, $patient)
