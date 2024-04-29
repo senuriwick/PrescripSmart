@@ -282,10 +282,34 @@ class M_receptionist
 
   public function getAppointments()
   {
-    $this->db->query('SELECT * FROM appointments');
+    $this->db->query('SELECT a .*, d.display_Name, p.first_Name, p.last_Name FROM appointments a INNER JOIN patients p ON a.patient_ID = p.patient_ID INNER JOIN doctors d ON d.doctor_ID = a.doctor_ID WHERE a.status!="cancelled"');
     $results = $this->db->resultSet();
     return $results;
 
+  }
+
+  //function for markaspaid
+  public function markAsPaid($appointmentID){
+    $this->db->query('UPDATE appointments SET payment_status="PAID" WHERE appointment_ID=:appointmentid');
+    $this->db->bind(':appointmentid',$appointmentID);
+
+    if($this->db->execute()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  //function for cancel the appointment
+  public function cancelAppointment($appointmentID){
+    $this->db->query('UPDATE appointments SET status="cancelled" WHERE appointment_ID=:appintmentid');
+    $this->db->bind(':appintmentid',$appointmentID);
+
+    if($this->db->execute()){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   public function getPatientbyID($id)

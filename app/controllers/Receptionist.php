@@ -572,6 +572,26 @@
       $this->view('receptionist/searchApp', $data);
     }
 
+    //marked as paid for a appointment
+    public function markAsPaid(){
+      $AppointmentId = $_GET['appointmentid']?? '';
+      if(!empty($AppointmentId)){
+        $result = $this->repModel->markAsPaid($AppointmentId);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+      }
+    }
+
+    // cancel a appontment
+    public function cancelAppointment(){
+      $AppointmentId = $_GET['appointmentid']?? '';
+      if(!empty($AppointmentId)){
+        $result = $this->repModel->cancelAppointment($AppointmentId);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+      }
+    }
+
     public function addAppointment()
     {
       $posts = $this->repModel->getDoctors();

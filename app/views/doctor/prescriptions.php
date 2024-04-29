@@ -76,7 +76,8 @@
             <span class="close">&times;</span>
             <a href="www.prescripsamert.com">www.prescripsamert.com</a>
             <div class="model-head">
-                <img src="<?php echo URLROOT;?>/public/img/doctor/qr.png" alt="qr-img" />
+                <div>p</div>
+                <!-- <img src="<?php echo URLROOT;?>/public/img/doctor/qr.png" alt="qr-img" /> -->
                 <h4><u>CONFIDENTIAL PRESCRIPTION</u></h4>
                 <i class="fa-solid fa-circle-arrow-up"></i>
             </div>
@@ -103,7 +104,10 @@
                     </tbody>
                 </table>
             </div>
+            <div class="footer">
             <div class="notice">(For viewing purpose only)</div>
+            <div class="sign"></div>
+                                    </div>
         </div>
     </div>
     
@@ -150,16 +154,22 @@
             function showDiagnosisDetails(result){
                 const diagnosisContent = document.getElementById('diagnosis');
                 const modelhead = document.getElementById('model-details');
+                const sign = document.querySelector(".sign");
 
                 modelhead.innerHTML = `
-                <div>Prescription ID: ${result.prescription_ID}</div>
-                <div>Patient: ${result.display_Name}</div>
-                <div>Pres Date & Time: ${result.prescription_Date}</div>
-                <div>Age: ${result.age}</div>
-                <div>Referred by: Dr.${result.display_Name}</div>`;
+                <div>Prescription ID: ${result.prescription.prescription_ID}</div>
+                <div>Patient: ${result.prescription.display_Name}</div>
+                <div>Pres Date & Time: ${result.prescription.prescription_Date}</div>
+                <div>Age: ${result.prescription.age}</div>
+                <div>Referred by: Dr.${result.doctor.display_Name}</div>`;
 
                 diagnosisContent.innerHTML = '';
-                diagnosisContent.textContent = result.diagnosis;
+                diagnosisContent.textContent = result.prescription.diagnosis;
+
+                // sign.innerHTML ="";
+                sign.innerHTML=`
+                <img src="<?php echo URLROOT;?>/public/uploads/signatures/${result.doctor.signature}`;
+
             }
 
             function showMedications(prescriptionid){
