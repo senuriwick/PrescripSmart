@@ -8,32 +8,6 @@
 
         }
 
-        public function login(){
-            $this->view('healthSupervisor/login');
-        }
-
-        public function loginCheck(){
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $username = $_POST["username"];
-                $password = $_POST["password"];
-    
-                $user = $this->healthSupervisorModel->getUserByUsername($username);
-    
-                if ($user && password_verify($password, $user->password)) {
-                    // Password is correct
-                    session_start();
-                    $_SESSION['USER_DATA'] = $user;
-                    redirect("/healthSupervisor/dashboard");
-                    exit();
-                } else {
-                    // Password is incorrect
-                    $error = "Invalid username or password";
-                }
-            }
-    
-            
-        }
-
         public static function logged_in()
         {
             if (!empty($_SESSION['USER_DATA'])) {
@@ -61,7 +35,7 @@
 
                 $this->view('healthSupervisor/healthSupervisor_dash', $data);
             }else{
-                redirect('general/error_page');
+                redirect('/general/error_page');
             }
         }
 
@@ -80,7 +54,7 @@
                     echo "nothing";
                 }
             }else{
-                redirect('general/error_page');
+                redirect('/general/error_page');
             }
         }
 
@@ -104,7 +78,7 @@
 
                 $this->view('healthSupervisor/healthSupervisor_History', $data);
             }else{
-                redirect('general/error_page');
+                redirect('/general/error_page');
             }
         }
 
@@ -155,7 +129,7 @@
                     redirect('/healthSupervisor/dashboard');
                 }
             }else{
-                redirect('general/error_page');
+                redirect('/general/error_page');
             }
         }
 
@@ -171,7 +145,7 @@
 
                 $this->view('healthSupervisor/healthSupervisor_profile', $data);
             }else{
-                redirect('general/error_page');
+                redirect('/general/error_page');
             }
         }
 
@@ -187,7 +161,7 @@
                 $this->view('healthSupervisor/healthSupervisor_personalInfo', $data);
                 }
             }else{
-                redirect('general/error_page');
+                redirect('/general/error_page');
             }
         }
 
@@ -201,7 +175,7 @@
                 ];
                 $this->view('healthSupervisor/healthSupervisor_2factor', $data);
             }else{
-                redirect('general/error_page');
+                redirect('/general/error_page');
             }
         }
         
@@ -298,14 +272,6 @@
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-
-            // Check file size
-            // if ($_FILES["image"]["size"] > 500000) {
-            //     echo "Sorry, your file is too large.";
-            //     $uploadOk = 0;
-            // }
-
-            //Allow only certain file formats
             if (
                 $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif"
@@ -333,7 +299,7 @@
                         echo json_encode(array("success" => false, "message" => "Failed to update profile picture in database"));
                     }
                 } else {
-                    header("Location: /prescripsmart/general/error_page");
+                     redirect('/general/error_page');
                 }
             }
         }
