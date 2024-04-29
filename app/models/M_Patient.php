@@ -287,8 +287,8 @@ class M_Patient
     //PRESCRIPTIONS
     public function prescriptions($userID)
     {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
-        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        $this->db->query('SELECT p. *, d.first_Name, d.last_Name, pa.age FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pa ON pa.patient_ID = p.patient_ID
         WHERE p.patient_ID = :userID
         ORDER BY p.prescription_Date ASC');
         $this->db->bind(':userID', $userID);
