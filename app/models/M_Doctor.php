@@ -41,10 +41,17 @@ class M_Doctor
 
     public function getDiagnosis($diagnosisId)
     {
-        $this->db->query('SELECT prescriptions.*, doctors.* ,patients.* FROM `prescriptions` LEFT JOIN `patients` ON patients.patient_ID=prescriptions.patient_ID LEFT JOIN `doctors` ON prescriptions.doctor_ID=doctors.doctor_ID WHERE prescription_ID=:id');
+        $this->db->query('SELECT prescriptions.* ,patients.* FROM `prescriptions` LEFT JOIN `patients` ON patients.patient_ID=prescriptions.patient_ID WHERE prescription_ID=:id');
         $this->db->bind(':id', $diagnosisId);
         $results = $this->db->single();
         return $results;
+    }
+
+    public function getDoctor($id){
+        $this->db->query('SELECT doctors.*, users.* FROM doctors LEFT JOIN users ON users.user_ID=doctors.doctor_ID WHERE doctor_ID=:id');
+        $this->db->bind(':id',$id);
+        $result = $this->db->single();
+        return $result;
     }
 
     public function getMedications($diagnosisId)
@@ -123,7 +130,7 @@ class M_Doctor
 
     public function getOngonigSession($doctorId){
         $this->db->query('SELECT * FROM sessions WHERE ((start_time <= end_time AND CURTIME() BETWEEN start_time AND end_time)
-        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id AND sessions.status="active"');
+        OR (start_time > end_time AND (CURTIME() >= start_time OR CURTIME() <= end_time))) AND sessionDate=CURDATE() AND doctor_ID=:doctor_id AND status="active"');
         $this->db->bind(':doctor_id',$doctorId);
         $result = $this->db->single();
         return $result;

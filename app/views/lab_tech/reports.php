@@ -26,7 +26,7 @@
                 <?php include 'in_page_navigation.php'; ?>
                     <div class="patient-test-data" id="patient-test-data">
                         <div class="patientInfo2">
-                            <img src="<?php echo URLROOT;?>/public/img/lab_tech/profile.png" alt="profile">
+                            <img src="<?php echo URLROOT;?>/public/uploads/profile_images/<?php echo $data['patientDetails']->profile_photo;?>" alt="profile">
                             <div class="infoDetail">
                                 <p class="name"><?php echo $data['patientDetails']->display_Name;?></p>
                                 <p class="id">Patient ID-<?php echo $data['patientDetails']->patient_ID;?></p>
