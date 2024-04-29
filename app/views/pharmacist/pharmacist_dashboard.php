@@ -57,17 +57,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    //   document.addEventListener("DOMContentLoaded", function () {
-
-    //     function attachViewProfileListeners() {
-    //       var viewButtons = document.querySelectorAll(".viewButton");
-    //       viewButtons.forEach(function (button) {
-    //         button.addEventListener("click", function () {
-    //           var patientId = this.value;
-    //           window.location.href = "<?php echo URLROOT ?>/nurse/patient_profile?patientId=" + patientId;
-    //         });
-    //       });
-    //     }
 
         document.getElementById("search").addEventListener("input", function () {
           var searchQuery = this.value.trim();
@@ -79,7 +68,6 @@
               if (xhr.readyState == 4 && xhr.status == 200) {
                 var filteredPatients = JSON.parse(xhr.responseText);
                 updatePatientList(filteredPatients);
-                // attachViewProfileListeners();
               }
             };
             xhr.send();
@@ -88,7 +76,6 @@
           }
         });
 
-        // attachViewProfileListeners();
     
 
       function updatePatientList(filteredPatients) {
@@ -98,10 +85,10 @@
         filteredPatients.forEach(function (patient) {
           var patientHTML = `
           <div class="patientFile">   
-                        <img class="person-circle" src="<?php echo URLROOT ?>/public/uploads/profile_images/<?php echo $patient->profile_photo ?>" alt="patient-pic">
-                        <p><?php echo $patient->display_Name; ?></p>
-                        <p id="patientId">Patient ID <span><?php echo $patient->patient_ID; ?></span></p>
-                        <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=<?php echo $patient->patient_ID; ?>&patient_name=<?php echo urlencode($patient->display_Name); ?>&patient_age=<?php echo $patient->age; ?>" id="viewButton"><button>View Prescriptions</button></a>
+                        <img class="person-circle" src="<?php echo URLROOT ?>/public/uploads/profile_images/${patient.profile_photo}" alt="patient-pic">
+                        <p>${patient.display_Name}</p>
+                        <p id="patientId">Patient ID <span>${patient.patient_ID}</span></p>
+                        <a href="<?php echo URLROOT ?>/Pharmacist/allPrescriptions?patient_id=${patient.patient_ID}&patient_name=${patient.display_Name}&patient_age=${patient.age} id="viewButton"><button>View Prescriptions</button></a>
                     </div>`;
           patientsContainer.innerHTML += patientHTML;
           
@@ -109,14 +96,5 @@
       }
     </script>
 
-    <!-- <script>
-      var viewButtons = document.querySelectorAll(".viewButton");
-      viewButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          var patientId = this.value;
-          window.location.href = "<?php echo URLROOT ?>/nurse/patient_profile?patientId=" + patientId;
-        });
-      });
-    </script> -->
 </body>
 </html>

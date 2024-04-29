@@ -32,7 +32,7 @@
             </div>
 
             <div class="menu-item analysis">
-                <img src="<?php echo URLROOT ?>/public/img/pharmacist/Charts.png" alt="icon">
+                <img src="<?php echo URLROOT ?>/public/img/pharmacist/codicon_graph.png" alt="icon">
                 <a href="<?php echo URLROOT; ?>/pharmacist/analysis" id="profile">Medication Analysis</a>
             </div>
 

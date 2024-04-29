@@ -144,7 +144,7 @@
       }
 
       // Attach event listeners for eye icons initially
-      attachEyeIconListeners();
+     
 
       // Event listener for search bar input
       document.getElementById("search").addEventListener("input", function() {
@@ -165,6 +165,7 @@
           location.reload();
         }
       });
+      attachEyeIconListeners();
     });
 
     function updatePatientList(filteredPrescriptions) {
@@ -180,10 +181,42 @@
                 </div>
                 <p class="doctor">Issued by: Dr. ${prescription.first_Name} ${prescription.last_Name}</p>
                 <p class="date">Issued on: ${prescription.prescription_Date}</p>
-                <img src="<?php echo URLROOT; ?>/public/img/patient/Eye.png" alt="eye-icon" data-container-pid="${prescription.prescription_ID}">
-            </div>`;
+                <img src="<?php echo URLROOT; ?>/public/img/patient/Eye.png" alt="eye-icon" data-container-pid=${prescription.prescription_ID}>
+            </div>
+            `;
         prescriptionsContainer.innerHTML += prescriptionHTML;
       });
+      const eyeIcons = document.querySelectorAll('.file img[src*="Eye.png"]');
+        eyeIcons.forEach(icon => {
+          const prescriptionID = icon.getAttribute('data-container-pid');
+          console.log('Prescription ID:', prescriptionID); // Debug: Log prescription ID
+
+          // Check if modal element exists
+          const modal = document.getElementById(`myModal${prescriptionID}`);
+          if (!modal) {
+            console.error('Modal not found for Prescription ID:', prescriptionID);
+            return; // Skip attaching event listeners if modal is not found
+          }
+
+          const closeButton = modal.querySelector(".close");
+
+          // Show modal when eye icon is clicked
+          icon.addEventListener("click", () => {
+            modal.style.display = 'block';
+          });
+
+          // Close modal when close button is clicked
+          closeButton.addEventListener("click", () => {
+            modal.style.display = "none";
+          });
+
+          // Close modal when clicking outside the modal
+          window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+              modal.style.display = "none";
+            }
+          });
+        });
     }
 
     $(document).ready(function() {
@@ -218,6 +251,7 @@
       });
 
       // Set checkbox status based on initial medicine status
+      
       $('input[type="checkbox"]').each(function() {
         var checkbox = $(this);
         if (checkbox.data('status') === 'issued') {
@@ -226,39 +260,8 @@
       });
     });
   </script>
-  <script>
-    const eyeIcons = document.querySelectorAll('.file img[src*="Eye.png"]');
-        eyeIcons.forEach(icon => {
-          const prescriptionID = icon.getAttribute('data-container-pid');
-          console.log('Prescription ID:', prescriptionID); // Debug: Log prescription ID
 
-          // Check if modal element exists
-          const modal = document.getElementById(`myModal${prescriptionID}`);
-          if (!modal) {
-            console.error('Modal not found for Prescription ID:', prescriptionID);
-            return; // Skip attaching event listeners if modal is not found
-          }
 
-          const closeButton = modal.querySelector(".close");
-
-          // Show modal when eye icon is clicked
-          icon.addEventListener("click", () => {
-            modal.style.display = 'block';
-          });
-
-          // Close modal when close button is clicked
-          closeButton.addEventListener("click", () => {
-            modal.style.display = "none";
-          });
-
-          // Close modal when clicking outside the modal
-          window.addEventListener("click", (event) => {
-            if (event.target === modal) {
-              modal.style.display = "none";
-            }
-          });
-        });
-  </script>
 </body>
 
 </html>
