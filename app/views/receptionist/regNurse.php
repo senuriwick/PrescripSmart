@@ -41,40 +41,33 @@
             <div class="top1">
               <div class="firstname">
                 <h3>first name</h3>
-                <input type="text" placeholder="Enter first name"required>
+                <input type="text"  name="first_name" placeholder="Enter first name"required>
               </div>
               <div class="lastname">
                 <h3>last name</h3>
-                <input type="text" placeholder="Enter last name"required>
+                <input type="text" name="last_name" placeholder="Enter last name"required>
               </div>
             </div>
-
 
             <div class="top2">
               <div class="email">
                 <h3>email address</h3>
-                <input type="text" placeholder="Enter email address"required>
+                <input type="text" name="email" placeholder="Enter email address"required>
               </div>
               <div class="phone">
                 <h3>contact number</h3>
-                <input type="text" placeholder="Enter phone number"required>
+                <input type="text" name="phone_number" placeholder="Enter phone number"required>
               </div>
             </div>
 
             <div class="top3">
               <h3>Create password</h3>
-              <input type="text" placeholder="Enter password"required>
+              <input type="text" name="password" placeholder="Enter password"required>
             </div>
             <button type="submit"><b>Register</b></button>
 
           </form>
         </div>
-
-        <div class="popup">
-          <h2>Registration successful!</h2>
-          <a><button><b>Back to dashboard</b></button></a>
-        </div>
-
       </div>
     </div>
   </div>

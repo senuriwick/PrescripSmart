@@ -26,13 +26,12 @@
                 <?php include 'information_container.php'; ?>
                 <?php include 'in_page_navigation.php'; ?>
 
-                <div class="addapp">
-                    <div class="newapp">
-                        <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
-                        <a href="<?php echo URLROOT ?>/receptionist/addAppointment">Schedule an appointment</a>
-                    </div>
-                    
-                 </div>
+    <div class="addapp">
+        <div class="newapp">
+        <img src="<?php echo URLROOT ?>/img/admin/Vector (1).png">
+                <a href="<?php echo URLROOT ?>/receptionist/addAppointment">Schedule an appointment</a>
+        </div>
+    </div>
 
 <div class="searchDiv">
     <h1>Search Appointment</h1>
@@ -83,33 +82,13 @@
     </table>
     </div>
 </div>
-</div>
 
 
+
+        
+    </div>
 
     <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const searchInput = document.getElementById("searchinput");
-
-                searchInput.addEventListener("input", function () {
-                    const searchTerm = searchInput.value;
-                    const regex = new RegExp(searchTerm, 'i'); 
-                    const Rows = document.querySelectorAll(".row");
-
-                    Rows.forEach(function (row) {
-                        const NameElement = row.querySelector(".identity");
-                        if (NameElement) { // Check if the element is not null
-                            const Name = NameElement.textContent.toLowerCase();
-                            if (regex.test(Name)) {
-                                row.style.display = "";
-                            } else {
-                                row.style.display = "none";
-                            }
-                        }
-                    });
-                });
-            });
-    
         //function for markAsPaid button
         function markAsPaid(appointmentId){
             fetch(`<?php echo URLROOT ?>/receptionist/markAsPaid?appointmentid=${appointmentId}`)

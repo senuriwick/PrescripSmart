@@ -74,7 +74,7 @@
                   <hr style="margin-top: -2vh; width: 25vh; color:#445172BF;">
                   <p>Date: <?php echo $session->sessionDate ?></p>
                   <p>Time: <?php echo $session->start_time . '-' . $session->end_time ?></p>
-                  <button><strong>CANCEL</strong> </button>
+                  <button onclick="cancelSession(<?php echo $session->session_ID ?>)"><strong>CANCEL</strong> </button>
                 </div>
               <?php endif; ?>
             <?php endforeach; ?>
@@ -91,5 +91,18 @@
         confirmationURL += "?doctorID=" + encodeURIComponent(doctor_ID);
         window.location.href = confirmationURL;
          }
+
+         function cancelSession(sessionId){
+            fetch(`<?php echo URLROOT ?>/receptionist/cancelSession?sessionid=${sessionId}`)
+            .then(response=>{
+                console.log(response);
+                return response.json();
+            })
+            .then(data=>{
+                console.log(data);
+            })
+            .catch(error=>console.error("Error",error));
+            location.reload();
+        }
                               
 </script>

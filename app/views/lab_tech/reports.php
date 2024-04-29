@@ -46,8 +46,8 @@
                                 <?php if ($test->remarks!=""){?><p class="rest-data">Remarks : <?php echo $test->remarks;}?></p>
                             </div>
                             <div method="POST" class="buttons">
-                                <button  style="background-color:#397A49;" value="<?php echo $test->report_ID;?>"> Upload Report</button>
-                                <button  style="background-color: #0069FF;" value="<?php echo $test->report_ID;?>">Mark As Done</button>
+                                <button  id="uploadBtn" style="background-color:#397A49; display: none;" value="<?php echo $test->report_ID;?>"> Upload Report</button>
+                                <button  id="markBtn" style="background-color: #0069FF;" value="<?php echo $test->report_ID;?>">Mark As Done</button>
                             </div>
                             <br>
                         </div>
@@ -89,6 +89,14 @@
                 const uploadedcontent=document.getElementById("upload-patient-test-data");
                 const reportidInput = document.getElementById("reportid");
 
+                // Set visibility based on localStorage
+        const buttonState = localStorage.getItem('buttonState' + markbutton.value);
+        if (buttonState === 'upload') {
+            markbutton.style.display = "none";
+            uploadbutton.style.display = "block";
+        }
+
+
                 uploadbutton.addEventListener("click",()=>{
                     patienttestdata.style.display="block";
                     uploadmodel.style.display="block";
@@ -124,11 +132,16 @@
                     .then(response=>response.text())
                     .then(data =>{
                         console.log('success:',data);
+                        // Update local storage to remember the state change
+                localStorage.setItem('buttonState' + markbutton.value, 'upload');
+                window.location.reload();
                     })
                     .catch((error)=>{
                         console.log('Error:',error);
                     });
-                    window.location.reload();
+                    // window.location.reload();
+                    // markbutton.style.display="none";
+                    // uploadbutton.style.display="block";
 
                 
                 });

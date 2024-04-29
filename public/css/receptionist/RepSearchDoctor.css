@@ -220,12 +220,20 @@ but :active {
   font-size: 2vh;
 }
 
-.person-circle {
-  padding-left: 1vh;
+.person-circle
+{
+  /* padding-left: 1vh;
   padding-right: 1vh;
-  padding-top: 1vh;
-  width: 5vh;
+  padding-top: 1vh; */
+  border-radius: 50%;
+  display: inline-block;
   height: 5vh;
+  width: 5vh;
+  margin-right: 3vh;
+  overflow: hidden;
+  margin-top: 2vh;
+  margin-left: 2vh;
+  /* margin-bottom: 1vh; */
 }
 
 .row .name {
