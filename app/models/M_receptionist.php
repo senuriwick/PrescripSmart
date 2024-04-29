@@ -340,6 +340,19 @@ class M_receptionist
     return $row;
   }
 
+  public function getSessionbyID($id)
+  {
+    $sql = "SELECT sessions.*, nurses.*
+    FROM sessions 
+    JOIN nurses ON sessions.nurse_ID = nurses.nurse_ID
+    WHERE nurses.nurse_ID = :id";
+
+    $this->db->query($sql);
+    $this->db->bind(':id', $id);
+    $results = $this->db->resultSet();
+    return $results;
+  }
+
   public function getDoctorbyID($id)
   {
     $sql = "SELECT users.*, doctors.*
@@ -431,6 +444,24 @@ class M_receptionist
             $this->db->bind(':room_no', $Room_no);
 
             $this->db->execute();
+    }
+
+    public function assignNurse($nurseID,$session_ID)
+    {
+      $this->db->query('UPDATE sessions SET nurse_ID = :nurse_id 
+      WHERE session_ID = :sessionID');
+      $this->db->bind(':nurse_id', $nurseID);
+      $this->db->bind(':sessionID', $session_ID);
+
+      if($this->db->execute())
+        {
+          return true;
+        }
+         else
+        {
+          return false;
+        }
+
     }
 
   public function updateAccInfo2($username)

@@ -764,6 +764,52 @@
     }
   }
 
+  public function nurseAssignSessions($id)
+  {
+
+    $posts = $this->repModel->getdocSessions();
+    $doctors = $this->repModel->getDoctors(); 
+      $data = [
+          'nurse_id'=>$id,
+          'sessions' => $posts,
+          'doctors' => $doctors
+      ];
+    $this->view('receptionist/viewSessions', $data);
+
+  }
+
+  public function nurseViewSessions($id)
+  {
+    $posts = $this->repModel->getSessionbyID($id);
+    $data = [
+      'nurse_id'=>$id,
+      'sessions' => $posts
+  ];
+
+  $this->view('receptionist/viewNurse_Sessions', $data);
+
+
+
+  }
+
+  public function nurse_assigned()
+  {
+    $session_ID = $_GET['sessionID'] ?? null;
+    $nurseID = $_GET['nurseID'] ?? null;
+    $posts = $this->repModel->getNurses();
+      $data = [
+        'nurses'=> $posts
+      ];
+
+    $assign_Nurse = $this->repModel->assignNurse($nurseID,$session_ID);
+    if($assign_Nurse)
+    {
+      $this->view('receptionist/searchNurse',$data);
+
+    }
+
+  }
+
 
     public function searchPatient()
     {
