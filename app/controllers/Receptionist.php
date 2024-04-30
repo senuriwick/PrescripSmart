@@ -626,8 +626,8 @@
     }
 
     public function cancelSession(){
-      $sessionid = $_GET['appointmentid']?? '';
-      if(!empty($AppointmentId)){
+      $sessionid = $_GET['sessionid']?? '';
+      if(!empty($sessionid)){
         $result = $this->repModel->cancelSession($sessionid);
         header('Content-Type: application/json');
         echo json_encode($result);

@@ -78,7 +78,7 @@
                                     <?php endforeach; ?>
                                     
                                     <?php }else{?>
-                                        <p>no patients</p><?php }?>
+                                        <p><center>no patients</p></center><?php }?>
                                 </tbody>
                                 
                                 
