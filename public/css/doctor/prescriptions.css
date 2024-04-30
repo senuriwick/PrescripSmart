@@ -176,9 +176,9 @@ td:hover {
     height: 40px;
 }
 
-.modal-content .model-head .id{
+/* .modal-content .model-head .id{
     display: flex;
-}
+} */
 
 .modal-content .model-details {
     display: grid;
@@ -188,6 +188,9 @@ td:hover {
 .modal-content .model-details>div {
     font-size: 12px;
     padding: 2px 0;
+}
+.modal-content .model-details>div .id{
+    display: flex;
 }
 
 .modal-content .pres-box {

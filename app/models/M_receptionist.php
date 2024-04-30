@@ -187,7 +187,7 @@ class M_receptionist
   {
     $sql = "SELECT sessions.*, doctors.*
               FROM sessions
-              INNER JOIN doctors ON sessions.doctor_ID = doctors.doctor_ID";
+              INNER JOIN doctors ON sessions.doctor_ID = doctors.doctor_ID WHERE sessions.status='active'";
                 
       $this->db->query($sql);
       $rows = $this->db->resultSet(); 

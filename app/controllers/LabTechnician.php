@@ -9,6 +9,15 @@ class LabTechnician extends Controller{
         $this->dpModel = $this->model('M_LabTechnician');
     }
 
+
+    public static function logged_in()
+    {
+        if (!empty($_SESSION['USER_DATA'])) {
+            return true;
+        }
+        return false;
+    }
+
     public function index(){
         $this->view('lab_tech/patient');
     }
