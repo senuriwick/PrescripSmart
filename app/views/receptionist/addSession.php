@@ -75,6 +75,13 @@
                                 </div>
                                 <input type="text" name="charge" placeholder="Enter the Session charge">
                             </div> 
+                            <div class="lastname">
+                                <div class="req">
+                                    <h3 style="color: #0069FF;">End Time</h3>
+                                    <p style="color: red;">*</p>
+                                </div>
+                                <input type="date" name="date" placeholder="Enter date">
+                            </div>
                         </div>       
 
                         

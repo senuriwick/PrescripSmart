@@ -801,16 +801,17 @@
 
     public function newSession($id)
     {
-      $selectedDoctor = $this->repModel->getdocSessions($id);
+      $selectedDoctor = $this->repModel->getDoctorDetails($id);
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Start_time = $_POST['first_name'];
         $End_time = $_POST['last_name'];
         $Total_app = $_POST['email'];
         $Room_no = $_POST['phone_number'];
         $Charge = $_POST['charge'];
+        $date  = $_POST['date'];
 
         
-      $addedSession = $this->repModel->addedSession($selectedDoctor->doctor_ID, $Start_time, $End_time, $Total_app, $Charge, $Room_no);
+      $addedSession = $this->repModel->addedSession($selectedDoctor->doctor_ID, $Start_time, $End_time, $Total_app, $Charge, $Room_no, $date);
       if($addedSession)
       {
         $this->view('receptionist/appointment_complete');
