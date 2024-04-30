@@ -73,6 +73,7 @@
             $this->db->query('SELECT COUNT(*) as Count FROM inquiries WHERE status = :status');
             $this->db->bind(':status','Closed');
             $result = $this->db->Single();
+
             return $result->Count;   
         }
 
@@ -80,6 +81,7 @@
             $this->db->query('Update inquiries SET reply = :reply WHERE inquiry_ID = :inquiry_ID');
             $this->db->bind(':reply', $message_content);
             $this->db->bind(':inquiry_ID', $inquiry_id);
+
             $this->db->execute();
         }
 
@@ -99,6 +101,7 @@
             WHERE user_ID = :healthSupervisorID');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
             $this->db->bind(':healthSupervisorID', $_SESSION['USER_DATA']->user_ID);
+
             $this->db->execute();
         }
 
@@ -110,28 +113,28 @@
             return $this->db->single();
         }
 
-    public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep)
-    {
-        $this->db->query('UPDATE healthsupervisors SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
-            home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
-            specialization = :spec, department = :dep
-            WHERE supervisor_ID = :supervisorID');
+        public function updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep)
+        {
+            $this->db->query('UPDATE healthsupervisors SET first_Name = :fname, last_Name = :lname, display_Name = :dname, 
+                home_Address = :haddress, NIC = :nic, contact_Number = :cno, registration_No = :regno, qualifications = :qual, 
+                specialization = :spec, department = :dep
+                WHERE supervisor_ID = :supervisorID');
 
-        $this->db->bind(':fname', $fname);
-        $this->db->bind(':lname', $lname);
-        $this->db->bind(':dname', $dname);
-        $this->db->bind(':haddress', $haddress);
-        $this->db->bind(':nic', $nic);
-        $this->db->bind(':cno', $cno);
-        $this->db->bind(':regno', $regno);
-        $this->db->bind(':qual', $qual);
-        $this->db->bind(':spec', $spec);
-        $this->db->bind(':dep', $dep);
-        $this->db->bind(':supervisorID', $_SESSION['USER_DATA']->user_ID);
+            $this->db->bind(':fname', $fname);
+            $this->db->bind(':lname', $lname);
+            $this->db->bind(':dname', $dname);
+            $this->db->bind(':haddress', $haddress);
+            $this->db->bind(':nic', $nic);
+            $this->db->bind(':cno', $cno);
+            $this->db->bind(':regno', $regno);
+            $this->db->bind(':qual', $qual);
+            $this->db->bind(':spec', $spec);
+            $this->db->bind(':dep', $dep);
+            $this->db->bind(':supervisorID', $_SESSION['USER_DATA']->user_ID);
 
-        $this->db->execute();
-    }
-    
+            $this->db->execute();
+        }
+        
 
         public function manage2FA($toggleState, $userID)
         {
@@ -142,7 +145,7 @@
         }
 
         public function updateProfilePicture($filename, $userID)
-    {
+        {
         try {
             $this->db->query('UPDATE users SET profile_photo = :profile_picture WHERE user_ID = :user_id');
             $this->db->bind(':profile_picture', $filename);
@@ -153,26 +156,23 @@
             error_log("Database error: " . $e->getMessage());
             return false;
         }
-    }
+        }
 
-    public function healthSupervisorInfo()
-    {
-        $this->db->query('SELECT * FROM users WHERE user_ID = :healthSupervisorID');
-        $this->db->bind(':healthSupervisorID', $_SESSION['USER_DATA']->user_ID);
-        $result = $this->db->single();
-        return $result;
-    }
+        public function healthSupervisorInfo()
+        {
+            $this->db->query('SELECT * FROM users WHERE user_ID = :healthSupervisorID');
+            $this->db->bind(':healthSupervisorID', $_SESSION['USER_DATA']->user_ID);
+            $result = $this->db->single();
+            return $result;
+        }
 
-    public function healthSupervisorDetails()
-    {
-        $this->db->query('SELECT * FROM healthsupervisors WHERE supervisor_ID = :supervisorID');
-        $this->db->bind(':supervisorID', $_SESSION['USER_DATA']->user_ID);
-        $result = $this->db->single();
-        return $result;
-    }
-
-
-
+        public function healthSupervisorDetails()
+        {
+            $this->db->query('SELECT * FROM healthsupervisors WHERE supervisor_ID = :supervisorID');
+            $this->db->bind(':supervisorID', $_SESSION['USER_DATA']->user_ID);
+            $result = $this->db->single();
+            return $result;
+        }
 
     }
 ?>

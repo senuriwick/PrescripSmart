@@ -9,7 +9,7 @@
     <title>Account</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A300%2C400%2C500%2C600" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>\public\css\healthSupervisor\healthSupervisor_profile.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/healthSupervisor/healthSupervisor_profile.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 

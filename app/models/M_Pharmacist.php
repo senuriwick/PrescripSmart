@@ -11,17 +11,19 @@
         {
             $this->db->query("SELECT * FROM users WHERE username = :username");
             $this->db->bind(':username', $username);
-            return $this->db->single(PDO::FETCH_OBJ); 
-           
+
+            return $this->db->single(PDO::FETCH_OBJ);    
         }
 
         public function getPatients(){
             $this->db->query('SELECT * FROM Patients');
+
             return $this->db->resultSet();
         }
 
         public function getMedications(){
             $this->db->query('SELECT * FROM medication');
+
             return $this->db->resultSet();
         }
 
@@ -29,6 +31,7 @@
             $this->db->query('SELECT p.patient_ID, p.display_Name, p.age, p.weight, p.height, p.gender, p.home_Address, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID LIMIT :offset, :itemsPerPage');
             $this->db->bind(':offset', $offset, PDO::PARAM_INT);
             $this->db->bind(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
+
             return $this->db->resultSet();
         }
 
@@ -81,6 +84,7 @@
             WHERE user_ID = :pharmacistID');
             $this->db->bind(':newpassword', password_hash($newpassword, PASSWORD_BCRYPT));
             $this->db->bind(':pharmacistID', $_SESSION['USER_DATA']->user_ID);
+
             $this->db->execute();
         }
 
@@ -88,6 +92,7 @@
             $this->db->query('SELECT * FROM pharmacists WHERE pharmacist_ID = :user_id');
             $this->db->bind(':user_id', $user_id);
             $result = $this->db->single();
+
             return $result;
         }
 
@@ -96,6 +101,7 @@
         $this->db->query('UPDATE users SET two_factor_auth = :TFA WHERE user_id = :userID');
         $this->db->bind(':TFA', $toggleState);
         $this->db->bind(':userID', $userID);
+
         $this->db->execute();
     }
 
@@ -124,6 +130,7 @@
         public function getAllPrescriptions($patientId) {
             $this->db->query('SELECT * FROM prescriptions WHERE patient_id = :id');
             $this->db->bind(':id', $patientId);
+            
             return $this->db->resultSet();
         }
 
@@ -131,6 +138,7 @@
             $this->db->query('SELECT COUNT(*) AS count FROM prescriptions WHERE patient_id = :id');
             $this->db->bind(':id', $patientId);
             $result = $this->db->single();
+
             return $result->count;
         }
 
@@ -138,6 +146,7 @@
             $this->db->query('SELECT * FROM prescriptions WHERE id = :id');
             $this->db->bind(':id', $prescriptionId);
             $result = $this->db->single();
+
             return $result;
         }
         
@@ -145,6 +154,7 @@
         public function getDiagnosisDetails($prescriptionId){
             $this->db->query('SELECT * FROM diagnosis WHERE prescription_id = :id');
             $this->db->bind(':id', $prescriptionId);
+
             return $this->db->resultSet();
         }
 
@@ -153,12 +163,14 @@
             $this->db->query('SELECT * FROM patients_medications WHERE prescription_ID = :prescriptionID');
             $this->db->bind(':prescriptionID', $prescriptionId);
             $result = $this->db->resultSet();
+
             return $result;
         }
 
         public function getLabDetails($prescriptionId){
             $this->db->query('SELECT * FROM lab_tests WHERE prescription_id = :id');
             $this->db->bind(':id', $prescriptionId);
+
             return $this->db->resultSet();
         }
 
@@ -167,29 +179,39 @@
         $this->db->query('SELECT * FROM patients_medications WHERE prescription_ID = :prescriptionID');
         $this->db->bind(':prescriptionID', $prescription_ID);
         $result = $this->db->resultSet();
+
         return $result;
     }
 
     public function prescriptions($userID)
     {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
-        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+        $this->db->query('SELECT p. *,pt.*, d.first_Name AS d_first_Name, d.last_Name AS d_last_Name FROM prescriptions p 
+        INNER JOIN doctors d ON p.doctor_ID = d.doctor_ID INNER JOIN patients pt ON p.patient_ID = pt.Patient_ID
         WHERE p.patient_ID = :userID
-        ORDER BY p.prescription_Date ASC');
+        ORDER BY p.prescription_Date DESC');
         $this->db->bind(':userID', $userID);
 
         $result = $this->db->resultSet();
         return $result;
     }
 
-    public function allPrescriptions()
-    {
-        $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
-        JOIN doctors d ON p.doctor_ID = d.doctor_ID 
-        ORDER BY p.prescription_Date ASC');
+    // public function allPrescriptions()
+    // {
+    //     $this->db->query('SELECT p. *, d.first_Name, d.last_Name FROM prescriptions p 
+    //     JOIN doctors d ON p.doctor_ID = d.doctor_ID 
+    //     ORDER BY p.prescription_Date ASC');
 
+    //     $result = $this->db->resultSet();
+    //     return $result;
+    // }
+
+    public function allPrescriptions(){
+        $this->db->query('SELECT p.*,pt.* ,d.first_Name AS d_first_Name, d.last_Name AS d_last_Name,pt.age FROM prescriptions p JOIN doctors d ON p.doctor_ID = d.doctor_ID JOIN
+        patients pt ON pt.patient_ID = p.patient_ID ORDER BY p.prescription_Date DESC');
         $result = $this->db->resultSet();
+
         return $result;
+
     }
 
     public function markMedicationStatus($status, $id)
@@ -197,6 +219,7 @@
         $this->db->query('UPDATE patients_medications SET status = :status WHERE id = :id');
         $this->db->bind(':status', $status);
         $this->db->bind(':id', $id);
+        
         return $this->db->execute();
     }
 
@@ -216,12 +239,11 @@
     }
 
     public function fetchCommonlyPrescribedMedications(){
-        // Execute SQL query to retrieve most commonly prescribed medications
         $query = "SELECT medication, COUNT(*) AS usage_count 
                   FROM patients_medications 
                   GROUP BY medication 
                   ORDER BY usage_count DESC 
-                  LIMIT 4"; // Assuming you want to display top 5 medications
+                  LIMIT 4"; 
     
         $this->db->query($query);
         $results = $this->db->resultSet();
@@ -230,15 +252,13 @@
     }
 
     public function fetchMonthlyData($month){
-        // Execute SQL query to retrieve most commonly prescribed medications for a specific month
         $query = "SELECT pm.medication, COUNT(*) AS usage_count 
                   FROM patients_medications pm
                   INNER JOIN prescriptions p ON pm.prescription_id = p.prescription_id
                   WHERE MONTH(p.prescription_date) = :month
                   GROUP BY pm.medication 
                   ORDER BY usage_count DESC 
-                  LIMIT 4"; // Assuming you want to display top 5 medications
-        
+                  LIMIT 4"; 
         $this->db->query($query);
         $this->db->bind(':month', $month);
         $results = $this->db->resultSet();
@@ -258,15 +278,25 @@
         $this->db->query('SELECT p .*, u.profile_photo FROM patients p INNER JOIN users u ON p.patient_ID = u.user_ID WHERE display_Name LIKE :searchQuery');
         $this->db->bind(':searchQuery', $searchQuery);
         $filteredPatients = $this->db->resultSet();
-
-        // foreach ($filteredPatients as &$patient) {
-        //     $address = $patient->home_Address;
-        //     $parts = explode(", ", $address);
-        //     $patient->city = end($parts);
-        // }
         
         return $filteredPatients;
     }
+
+    public function updateProfilePicture($filename, $userID)
+    {
+        try {
+            $this->db->query('UPDATE users SET profile_photo = :profile_picture WHERE user_ID = :user_id');
+            $this->db->bind(':profile_picture', $filename);
+            $this->db->bind(':user_id', $userID);
+            $this->db->execute();
+            return true;
+        } catch (PDOException $e) {
+            error_log("Database error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+
     
 
     

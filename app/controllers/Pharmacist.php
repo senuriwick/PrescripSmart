@@ -93,22 +93,22 @@
             }
         }
 
-        public function checkCurrentPassword() {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
-                $currentPassword = $_POST['currentPassword'];
-                $user_id = $_SESSION['USER_DATA']->user_id;
-                $user = $this->pharmacistModel->getUserDetails($user_id);
+        // public function checkCurrentPassword() {
+        //     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
+        //         $currentPassword = $_POST['currentPassword'];
+        //         $user_id = $_SESSION['USER_DATA']->user_id;
+        //         $user = $this->pharmacistModel->getUserDetails($user_id);
     
-                if ($user && password_verify($currentPassword, $user->password)) {
-                    echo '<span style="color: green;">You\'re good to go!</span>';
-                } else {
-                    echo '<span style="color: red;">Incorrect password!</span>';
-                }
-            } else {
+        //         if ($user && password_verify($currentPassword, $user->password)) {
+        //             echo '<span style="color: green;">You\'re good to go!</span>';
+        //         } else {
+        //             echo '<span style="color: red;">Incorrect password!</span>';
+        //         }
+        //     } else {
 
-                echo '<span style="color: red;">Error: Invalid request.</span>';
-            }
-        }
+        //         echo '<span style="color: red;">Error: Invalid request.</span>';
+        //     }
+        // }
 
         public function checkPassword()
     {
@@ -155,7 +155,7 @@
 
                 $this->pharmacistModel->updateInfo($fname, $lname, $dname, $haddress, $nic, $cno, $regno, $qual, $spec, $dep);
 
-                redirect("/Pharmacist/personal");
+                redirect("/Pharmacist/personal_information");
                 exit();
             } else {
                 redirect("/general/error_page");
@@ -210,6 +210,13 @@
                 $this->view('pharmacist/pharmacist_2factor', $data);
             }else{
                 redirect('/general/error_page'); 
+            }
+        }
+
+        public function logout()
+        {
+            if (!empty($_SESSION['USER_DATA'])) {
+                unset($_SESSION['USER_DATA']);
             }
         }
 
@@ -313,7 +320,7 @@
                     $image = basename($_FILES["image"]["name"]);
 
                     $userID = $_SESSION['USER_DATA']->user_ID;
-                    $result = $this->nurseModel->updateProfilePicture($image, $userID);
+                    $result = $this->pharmacistModel->updateProfilePicture($image, $userID);
                     $_SESSION['USER_DATA']->profile_photo = $image;
 
                     if ($result) {
@@ -372,10 +379,8 @@
         $selectedMonth = isset($_GET['month']) ? $_GET['month'] : null;
         
         if (!empty($selectedMonth)) {
-            // If month is selected, fetch data for the specified month
             $commonlyPrescribedMedications = $this->pharmacistModel->fetchMonthlyData($selectedMonth);
         }
-        // Output JSON data
         echo json_encode($commonlyPrescribedMedications);
     }
 

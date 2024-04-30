@@ -48,7 +48,7 @@
                         <img src="<?php echo URLROOT; ?>\public\img\patient\description.png" alt="description-icon">
                         <p class="description">Prescription #<?php echo $prescription->prescription_ID; ?></p>
                       </div>
-                      <p class="doctor">Issued by: Dr. <?php echo $prescription->first_Name; ?> <?php echo $prescription->last_Name; ?></p>
+                      <p class="doctor">Issued by: Dr. <?php echo $prescription->d_first_Name; ?> <?php echo $prescription->d_last_Name; ?></p>
                       <p class="date">Issued on: <?php echo $prescription->prescription_Date; ?></p>
                       <img src="<?php echo URLROOT; ?>\public\img\patient\Eye.png" alt="eye-icon" data-container-pid="<?= $prescription->prescription_ID ?>">
                     </div>
@@ -64,10 +64,10 @@
                       </div>
                       <div class="model-details">
                         <div>Prescription ID: #<?php echo $prescription->prescription_ID; ?></div>
-                        <div>Patient: <?php echo $_SESSION['USER_DATA']->first_Name ?> <?php echo $_SESSION['USER_DATA']->last_Name ?></div>
+                        <div>Patient: <?php echo $prescription->first_Name ?> <?php echo $prescription->last_Name ?></div>
                         <div>Pres Date & Time: <?php echo $prescription->prescription_Date; ?></div>
-                        <div>Age: 22 Yrs</div>
-                        <div>Referred by: Dr. <?php echo $prescription->first_Name; ?> <?php echo $prescription->last_Name; ?></div>
+                        <div>Age: <?php echo $prescription->age; ?></div>
+                        <div>Referred by: Dr. <?php echo $prescription->d_first_Name; ?> <?php echo $prescription->d_last_Name; ?></div>
                       </div>
                       <div class="pres-box">
                         <label>Medications</label>
