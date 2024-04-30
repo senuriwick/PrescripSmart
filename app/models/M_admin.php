@@ -337,40 +337,41 @@ public function filterReceptionists($searchQuery) {
   }
 
 
-    public function regDoctor($data)
-    {
-        $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password,role) VALUES(:first_name, :last_name, :email_address, :password , "Doctor")');
-            $this->db->bind(':first_name', $data['first_name']);
-            $this->db->bind(':last_name', $data['last_name']);
-            $this->db->bind(':email_address', $data['email']);
-            $this->db->bind(':password', $data['password']);
+  public function regDoctor($data)
+  {
+      $this->db->query('INSERT INTO users (first_Name, last_Name, email_phone, password,role) VALUES(:first_name, :last_name, :email_address, :password , "Doctor")');
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':password', $data['password']);
 
-    
-          $employeeInserted = $this->db->execute();
-
-         $user_id = $this->db->lastInsertId();
-         $this->db->query('INSERT INTO doctors (doctor_ID,first_Name, last_Name, email, contact_Number, password) VALUES(:doctor_id, :first_name, :last_name, :email_address, :phone_number, :password)');
-            $this->db->bind(':doctor_id', $user_id);
-            $this->db->bind(':first_name', $data['first_name']);
-            $this->db->bind(':last_name', $data['last_name']);
-            $this->db->bind(':email_address', $data['email']);
-            $this->db->bind(':phone_number', $data['phone_number']);
-
-          $doctorInserted = $this->db->execute();
-
-          
-          
   
-          // Execute
-          if($employeeInserted && $doctorInserted )
-          {
-            return true;
-          }
-          else
-          {
-            return false;
-          }
-    }
+        $employeeInserted = $this->db->execute();
+
+       $user_id = $this->db->lastInsertId();
+       $this->db->query('INSERT INTO doctors (doctor_ID,first_Name, last_Name, email, contact_Number) VALUES(:doctor_id, :first_name, :last_name, :email_address, :phone_number)');
+          $this->db->bind(':doctor_id', $user_id);
+          $this->db->bind(':first_name', $data['first_name']);
+          $this->db->bind(':last_name', $data['last_name']);
+          $this->db->bind(':email_address', $data['email']);
+          $this->db->bind(':phone_number', $data['phone_number']);
+
+
+        $doctorInserted = $this->db->execute();
+
+        
+        
+
+        // Execute
+        if($employeeInserted && $doctorInserted )
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+  }
 
       public function regHealthsup($data)
       {

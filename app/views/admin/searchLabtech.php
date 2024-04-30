@@ -123,7 +123,7 @@
 
           <div class="pagination">
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-              <a href="<?php echo URLROOT ?>/admin/searchPatient/<?php echo $i ?>" <?php if ($currentPage == $i)
+              <a href="<?php echo URLROOT ?>/admin/searchLabtech/<?php echo $i ?>" <?php if ($currentPage == $i)
                       echo 'class="active"'; ?>><?php echo $i ?></a>
             <?php endfor; ?>
           </div>
