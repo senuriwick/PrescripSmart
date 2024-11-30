@@ -85,7 +85,7 @@ class General extends Controller
         $mail->Host = 'smtp.gmail.com';                       
         $mail->SMTPAuth = true;                               
         $mail->Username = 'annabethwalker22@gmail.com';       
-        $mail->Password = 'loezmkkmqombsiyb';                 
+        $mail->Password = '';                 
         $mail->SMTPSecure = 'tls';                            
         $mail->Port = 587;                                    
 
@@ -108,9 +108,9 @@ class General extends Controller
     {
         require '../vendor/autoload.php';
 
-        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
-        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
-        $twilio_number = "+12674227302";
+        $account_sid = '';
+        $auth_token = '';
+        $twilio_number = "";
 
         $client = new Client($account_sid, $auth_token);
         $client->messages->create(
@@ -243,7 +243,7 @@ class General extends Controller
         $mail->Host = 'smtp.gmail.com';                       
         $mail->SMTPAuth = true;                               
         $mail->Username = 'prescripsmart@gmail.com';      
-        $mail->Password = 'fgpacxjdxjogzlwk';                 
+        $mail->Password = '';                 
         $mail->SMTPSecure = 'tls';                            
         $mail->Port = 587;                                 
 
@@ -266,9 +266,9 @@ class General extends Controller
     {
         require '../vendor/autoload.php';
         
-        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
-        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
-        $twilio_number = "+12674227302";
+        $account_sid = '';
+        $auth_token = '';
+        $twilio_number = "";
 
         $client = new Client($account_sid, $auth_token);
         $recovery_link = "http://localhost/prescripsmart/general/resetPassword?user=$phone_number";
