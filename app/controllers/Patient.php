@@ -35,9 +35,9 @@ class Patient extends Controller
     {
         require '../vendor/autoload.php';
 
-        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
-        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
-        $twilio_number = "+12674227302";
+        $account_sid = '';
+        $auth_token = '';
+        $twilio_number = "";
 
         $client = new Client($account_sid, $auth_token);
         $client->messages->create(
@@ -109,7 +109,7 @@ class Patient extends Controller
         $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = 'prescripsmart@gmail.com';       // SMTP username
-        $mail->Password = 'fgpacxjdxjogzlwk';                 // SMTP password
+        $mail->Password = '';                 // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
@@ -164,7 +164,7 @@ class Patient extends Controller
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'prescripsmart@gmail.com';
-            $mail->Password = 'fgpacxjdxjogzlwk';
+            $mail->Password = '';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
@@ -521,7 +521,7 @@ class Patient extends Controller
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'prescripsmart@gmail.com';
-        $mail->Password = 'fgpacxjdxjogzlwk';
+        $mail->Password = '';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -544,9 +544,9 @@ class Patient extends Controller
     {
         require '../vendor/autoload.php';
 
-        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
-        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
-        $twilio_number = "+12674227302";
+        $account_sid = '';
+        $auth_token = '';
+        $twilio_number = "";
 
         $client = new Client($account_sid, $auth_token);
         $recovery_link = "http://localhost/prescripsmart/patient/resetPassword?user=$phone_number";
@@ -641,7 +641,7 @@ class Patient extends Controller
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'prescripsmart@gmail.com';
-        $mail->Password = 'fgpacxjdxjogzlwk';
+        $mail->Password = '';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -664,9 +664,9 @@ class Patient extends Controller
     {
         require '../vendor/autoload.php';
 
-        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
-        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
-        $twilio_number = "+12674227302";
+        $account_sid = '';
+        $auth_token = '';
+        $twilio_number = "";
 
         $client = new Client($account_sid, $auth_token);
         $client->messages->create(
@@ -916,7 +916,7 @@ class Patient extends Controller
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'prescripsmart@gmail.com';
-        $mail->Password = 'fgpacxjdxjogzlwk';
+        $mail->Password = '';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -939,9 +939,9 @@ class Patient extends Controller
     {
         require '../vendor/autoload.php';
 
-        $account_sid = 'ACb18f4915d6508e8c112c8f304f009608';
-        $auth_token = 'b3aa1aebe6000a185c26365bf692a85b';
-        $twilio_number = "+12674227302";
+        $account_sid = '';
+        $auth_token = '';
+        $twilio_number = "";
 
         $client = new Client($account_sid, $auth_token);
         $client->messages->create(
